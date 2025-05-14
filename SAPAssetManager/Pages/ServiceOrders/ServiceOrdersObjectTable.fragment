@@ -1,0 +1,38 @@
+{
+	"_Type": "Section.Type.ObjectTable",
+	"_Name": "ServiceOrders",
+	"EmptySection": {
+		"Caption": "$(L, no_serviceorders_available)"
+	},
+	"Header": {
+		"UseTopPadding": false
+	},
+	"ObjectCell": {
+		"Icons": "/SAPAssetManager/Rules/ServiceOrders/ListView/ServiceOrderListViewIconImages.js",
+		"Title": "#Property:Description",
+		"Subhead": "{ObjectID}",
+		"AccessoryType": "DisclosureIndicator",
+		"StatusText": "#Property:Priority_Nav/#Property:Description",
+		"SubstatusText": "/SAPAssetManager/Rules/WorkOrders/ListView/WorkOrdersListViewFormat.js",
+		"Footnote": "/SAPAssetManager/Rules/DateTime/ServiceDueByDate.js",
+		"Styles": {
+			"StatusText": "/SAPAssetManager/Rules/Priority/S4PriorityStatusStyle.js"
+		},
+		"OnPress": "/SAPAssetManager/Rules/ServiceOrders/ListView/ServiceOrderDetailsNav.js",
+		"PreserveIconStackSpacing": false,
+		"ContextMenu": {
+			"PerformFirstActionWithFullSwipe": true,
+			"Items":"/SAPAssetManager/Rules/ContextMenuTable.js",
+			"LeadingItems": "/SAPAssetManager/Rules/ContextMenuLeadingItems.js",
+			"TrailingItems": "/SAPAssetManager/Rules/ContextMenuTrailingItems.js"
+		}
+	},
+	"Target": {
+		"EntitySet": "S4ServiceOrders",
+		"Service": "/SAPAssetManager/Services/AssetManager.service"
+	},
+	"DataSubscriptions": [
+		"S4ServiceOrders",
+		"PMMobileStatuses"
+	]
+}

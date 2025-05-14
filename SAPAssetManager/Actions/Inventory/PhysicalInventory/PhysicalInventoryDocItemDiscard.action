@@ -1,0 +1,9 @@
+{
+    "Target": {
+        "EntitySet": "PhysicalInventoryDocItems",
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+   	"OnSuccess": "/SAPAssetManager/Rules/ApplicationEvents/AutoSync/actions/DeleteEntitySuccessMessageWithAutoSave.js",
+    "OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/DeleteEntityFailureMessage.action",
+    "_Type": "Action.Type.ODataService.DeleteEntity"
+}

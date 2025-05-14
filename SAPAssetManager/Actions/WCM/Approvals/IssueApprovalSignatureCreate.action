@@ -1,0 +1,20 @@
+{
+  "_Type": "Action.Type.ODataService.CreateMedia",
+  "Target" : {
+    "EntitySet" : "Documents",
+    "Service" : "/SAPAssetManager/Services/AssetManager.service"
+  },
+  "Headers" : {
+     "slug" : {}
+  },
+  "Properties" : {
+    "ObjectKey": "/SAPAssetManager/Rules/Documents/DocumentTransactionID.js",
+    "MimeType": "#ClientData/#Property:signatureMedia:/#Property:contentType"
+  },
+  "Media": "#ClientData/#Property:signatureMedia",
+  "OnSuccess": "/SAPAssetManager/Rules/WCM/Approvals/IssueApprovalSignatureCreateOnSuccess.js",
+  "OnFailure": "/SAPAssetManager/Rules/SignatureControl/Create/SignatureCreateOnFailure.js",
+  "ActionResult": {
+    "_Name": "SignatureResult"
+  }
+}

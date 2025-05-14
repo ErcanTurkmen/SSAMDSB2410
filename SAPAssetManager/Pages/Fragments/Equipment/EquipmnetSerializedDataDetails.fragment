@@ -1,0 +1,40 @@
+{
+    "_Type": "Section.Type.KeyValue",
+    "_Name": "EquipmentSerializedDataDetailsKeyValueTable",
+    "Visible": "/SAPAssetManager/Rules/Equipment/SerializedData/IsEquipmentSerializedDataSectionVisible.js",
+    "Header": {
+        "Caption": "$(L,serialized_data)"
+    },
+    "KeyAndValues": [
+        {
+            "_Name": "MyEquipSerialNumber.MaterialNum",
+            "KeyName": "$(L,material)",
+            "Value": "/SAPAssetManager/Rules/Equipment/SerializedData/SerializedDataMaterial.js"
+        },
+        {
+            "_Name": "MyEquipSerialNumber.SerialNumber",
+            "KeyName": "$(L,serial_number)",
+            "Value": "/SAPAssetManager/Rules/Equipment/SerializedData/SerializedDataSerialNumber.js"
+        },
+        {
+            "_Name": "MyEquipSerialNumber.IUIDType",
+            "KeyName": "$(L,iuid_type)",
+            "Value": "/SAPAssetManager/Rules/Equipment/SerializedData/SerializedDataIUIDType.js"
+        },
+        {
+            "_Name": "MyEquipSerialNumber.UniqueItemIdentifier",
+            "KeyName": "$(L,uii)",
+            "Value": "/SAPAssetManager/Rules/Equipment/SerializedData/SerializedDataUniqueItemIdentifier.js"
+        },
+        {
+            "_Name": "MyEquipSerialNumber.UIIPlant",
+            "KeyName": "$(L,responsible_plant_uii)",
+            "Value": "/SAPAssetManager/Rules/Equipment/SerializedData/SerializedDataUIIPlant.js" 
+        }
+    ],
+    "Target": {
+        "EntitySet": "{@odata.readLink}",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$expand=SerialNumber"
+    }
+}

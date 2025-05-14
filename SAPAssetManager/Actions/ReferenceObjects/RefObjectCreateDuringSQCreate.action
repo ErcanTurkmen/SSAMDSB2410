@@ -1,0 +1,19 @@
+{
+    "_Type": "Action.Type.ODataService.CreateEntity",
+    "Target": {
+        "EntitySet": "S4ServiceQuotationRefObjs",
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "Properties": {
+        "ObjectID": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationLocalID.js",
+        "ObjectType": "/SAPAssetManager/Rules/ServiceOrders/ServiceOrderObjectType.js"
+    },
+    "Headers": {
+        "OfflineOData.RemoveAfterUpload": "true",
+        "OfflineOData.TransactionID": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationLocalID.js"
+    },
+    "CreateLinks": [],
+    "OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/CreateEntityFailureMessage.action",
+    "ShowActivityIndicator": true,
+    "ActivityIndicatorText": " "
+}

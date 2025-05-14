@@ -1,0 +1,26 @@
+{
+   "_Type": "Control.Type.FormCell.ListPicker",
+   "_Name": "ServiceOrgLstPkr",
+   "Caption": "$(L,service_organization)*",
+   "AllowMultipleSelection": false,
+   "IsPickerDismissedOnSelection": true,
+   "IsSearchCancelledAfterSelection": true,
+   "Search": {
+       "Enabled": true,
+       "Delay": 500,
+       "MinimumCharacterThreshold": 3,
+       "Placeholder": "$(L,search)"
+   },
+   "Value": "{ServiceOrg}",
+   "IsEditable": "/SAPAssetManager/Rules/Common/IsOnCreate.js",
+   "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js",
+   "PickerItems": {
+       "DisplayValue": "{{#Property:OrgId}} - {{#Property:ServiceOrg_Nav/#Property:Description}}",
+       "ReturnValue": "{OrgId}",
+       "Target": {
+           "EntitySet": "S4BPOrgs",
+           "Service": "/SAPAssetManager/Services/AssetManager.service",
+           "QueryOptions": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderCreateUpdateControlsQueryOptions.js"
+       }
+   }
+}

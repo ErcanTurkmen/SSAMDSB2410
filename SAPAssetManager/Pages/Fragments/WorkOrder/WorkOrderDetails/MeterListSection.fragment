@@ -1,0 +1,27 @@
+{
+    "Visible": "/SAPAssetManager/Rules/WorkOrders/Meter/Details/HideDisconnectSection.js",
+    "Header": {
+        "Caption": "$(L,meters)"
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_meter_available)"
+    },
+    "Footer": {
+        "Caption": "$(L,see_all)",
+        "AccessoryType": "DisclosureIndicator",
+        "FooterStyle": "Attribute",
+        "AttributeLabel": "/SAPAssetManager/Rules/WorkOrders/Meter/Details/WorkOrderMetersCount.js",
+        "OnPress": "/SAPAssetManager/Actions/WorkOrders/Meter/MetersListClassicViewNav.action"
+    },
+    "MaxItemCount": 2,
+    "ObjectCell": "/SAPAssetManager/Pages/Fragments/WorkOrder/MeterListObjectCell.fragment",
+    "Target": {
+        "EntitySet": "{{#Property:@odata.readLink}}/OrderISULinks",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$filter=sap.entityexists(Device_Nav)&$expand=Workorder_Nav/DisconnectActivity_Nav/DisconnectObject_Nav,Installation_Nav,Premise_Nav,Device_Nav/DeviceCategory_Nav/Material_Nav,Device_Nav/RegisterGroup_Nav/Division_Nav,Device_Nav/Equipment_Nav/ObjectStatus_Nav/SystemStatus_Nav,Device_Nav/GoodsMovement_Nav,Device_Nav/DeviceLocation_Nav/FuncLocation_Nav/Address/AddressCommunication,ConnectionObject_Nav/FuncLocation_Nav/Address/AddressCommunication,Device_Nav/DeviceLocation_Nav/Premise_Nav,Workorder_Nav/OrderMobileStatus_Nav,Workorder_Nav/OrderISULinks,Device_Nav/MeterReadings_Nav"
+
+    },
+    "_Type": "Section.Type.ObjectTable",
+    "_Name": "MeterList",
+    "DataSubscriptions": ["OrderISULinks", "Devices"]
+}

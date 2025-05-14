@@ -1,0 +1,13 @@
+{
+    "Title": "/SAPAssetManager/Rules/SideDrawer/SideDrawerWorkPermitsCount.js",
+    "OnPress": "/SAPAssetManager/Actions/WCM/WorkPermitsListViewNav.action",
+    "_Name": "WorkPermits",
+    "ResetIfPressedWhenActive": true,
+    "Image": "$(PLT,/SAPAssetManager/Images/workpermits.png,/SAPAssetManager/Images/workpermits.android.png)",
+        "Styles": {
+        "SectionItemInactive": "$(PLT,SectionItemActive,SideDrawerItemActive)",
+        "SectionItemActive": "$(PLT,SectionItemActive,SideDrawerItemActive)",
+        "SectionItemOnPress": "$(PLT,SectionItemActive,SideDrawerItemActive)"
+    },
+    "Visible": "/SAPAssetManager/Rules/UserFeatures/IsWCMWorkPermitEnabled.js"
+}

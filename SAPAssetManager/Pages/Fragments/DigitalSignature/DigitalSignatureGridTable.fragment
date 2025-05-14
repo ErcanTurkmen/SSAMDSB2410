@@ -1,0 +1,63 @@
+{
+    "_Name": "GridTableSection",
+    "_Type": "Section.Type.GridTable",
+    "EmptySection": {
+        "Caption": "$(L,no_signatory_to_show)"
+    },
+    "Header": {
+        "Grid": {
+            "Items": [
+                {
+                    "Style": "GridTableHeaderText",
+                    "Text": "$(L,signatory)",
+                    "TextAlignment": "left"
+                },
+                {
+                    "Style": "GridTableHeaderText",
+                    "Text": "$(L,time_stamp)",
+                    "TextAlignment": "left"
+                },
+                {
+                    "Style": "GridTableHeaderText",
+                    "Text": "$(L,status)",
+                    "TextAlignment": "left"
+                }
+            ]
+        }
+    },
+    "Row": {
+        "Items": [
+            {
+                "BindTo": "headline",
+                "Style": "GridTableRowText",
+                "Text": "{{#Property:SignatoryFirstName}}  {{#Property:SignatoryLastName}}",
+                "TextAlignment": "left"
+            },
+            {
+                "BindTo": "footnote",
+                "Style": "GridTableRowText",
+                "Text": "/SAPAssetManager/Rules/DigitalSignature/DigitalSignatureDate.js",
+                "TextAlignment": "left"
+            },
+            {
+                "BindTo": "subheadline",
+                "Style": "GridTableRowText",
+                "Text": "/SAPAssetManager/Rules/DigitalSignature/DigitalSignatureState.js",
+                "TextAlignment": "left"
+            }
+        ],
+        "Layout": {
+            "ColumnWidthPercentage": [
+                0.3333,
+                0.3333,
+                0.3333
+            ]
+        }
+    },
+    "Target": {
+        "EntitySet": "/SAPAssetManager/Rules/DigitalSignature/DigitalSignaturesTableEntitySet.js",
+        "QueryOptions": "$expand=DigitalSignatureHeader_Nav",
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "Visible": "/SAPAssetManager/Rules/DigitalSignature/DigitalSignatureIsEnable.js"
+}

@@ -1,0 +1,17 @@
+{
+    "_Type": "Section.Type.FormCell",
+    "_Name": "NoteSection",
+    "Controls": [  
+        {
+            "_Type": "Fragment",
+            "Fragment": "/SAPAssetManager/Pages/Notes/NoteTypeControl.fragment",
+            "Properties": {
+                "IsVisible": "/SAPAssetManager/Rules/Notes/Create/IsNoteTypeControlVisible.js"
+            }
+        },
+        {
+            "_Type": "Fragment",
+            "Fragment": "/SAPAssetManager/Pages/Notes/NoteValueControl.fragment"
+        }
+    ]
+}

@@ -1,0 +1,27 @@
+[
+    {
+        "name": "search",
+        "normalAssetName": "Search",
+        "isVisible": true,
+        "isEnabled": true
+    },
+    {
+        "name": "settings",
+        "normalAssetName": "Settings",
+        "isVisible": true,
+        "isEnabled": true
+    },
+    {
+        "name": "currentLocation",
+        "normalAssetName": "Location",
+        "selectedAssetName": "LocationEnabled",
+        "isVisible": true,
+        "isEnabled": true
+    },
+    {
+        "name": "zoomExtents",
+        "normalAssetName": "ZoomExtent",
+        "isVisible": true,
+        "isEnabled": true
+    }
+]

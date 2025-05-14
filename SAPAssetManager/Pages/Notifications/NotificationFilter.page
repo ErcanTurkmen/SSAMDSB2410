@@ -1,0 +1,148 @@
+{
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "_Name": "NotificationFilter",
+        "Items": [
+            {
+                "Position": "Left",
+                "_Name": "Cancel",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)",
+                "OnPress": "/SAPAssetManager/Actions/Page/CancelPage.action"
+            },
+            {
+                "Position": "Right",
+                "_Name": "Done",
+                "SystemItem": "/SAPAssetManager/Rules/Filter/FilterSystemItem.js",
+                "Text": "/SAPAssetManager/Rules/Filter/FilterText.js",
+                "OnPress": "/SAPAssetManager/Rules/Filter/ApplyFilterAndSave.js"
+            }
+        ]
+    },
+    "Caption":"$(L,filter)",
+    "Result": "/SAPAssetManager/Rules/Notifications/NotificationListFilterResults.js",
+    "Controls":
+    [{
+        "Sections":
+        [{
+            "Controls": [{
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/SortByFilter.fragment",
+				"Properties": {
+                    "SortByItems": [
+                        {
+                            "ReturnValue":"Priority",
+                            "DisplayValue":"$(L,priority)"
+                        },
+                        {
+                            "ReturnValue":"NotificationDescription",
+                            "DisplayValue":"$(L,description)"
+                        },
+                        {
+                            "ReturnValue":"RequiredEndDate",
+                            "DisplayValue":"$(L,due_date)"
+                        },
+                        {
+                            "ReturnValue":"NotificationNumber",
+                            "DisplayValue":"$(L,notification_id)"
+                        }
+                    ]
+				}
+            }]
+        },
+        {
+            "Controls":
+            [{
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/MobileStatusFilter.fragment",
+				"Properties": {
+                    "FilterProperty":"/SAPAssetManager/Rules/Notifications/MobileStatus/NotificationsMobileStatusFilter.js"
+				}
+            },
+            "/SAPAssetManager/Pages/Fragments/Filter/PriorityFilter.fragment",
+            {
+                "_Type": "Fragment",
+                "Fragment":  "/SAPAssetManager/Pages/Fragments/Filter/TypeFilter.fragment",
+				"Properties": {
+                    "Value": "{NotifType}",
+                    "PickerItems": {
+                        "DisplayValue": "{{#Property:NotifType}} - {{#Property:Description}}",
+                        "ReturnValue": "{NotifType}",
+                        "Target": {
+                            "EntitySet": "NotificationTypes",
+                            "Service": "/SAPAssetManager/Services/AssetManager.service",
+                            "QueryOptions": "/SAPAssetManager/Rules/Notifications/ListView/NotificationTypesListPickerItems.js"
+                        }
+                    },
+                    "FilterProperty": "NotificationType"
+				}
+            },
+            {
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/PhaseFilter.fragment",
+				"Properties": {
+                    "PickerItems": "/SAPAssetManager/Rules/Notifications/NotificationPhaseModelFilterPickerItems.js",
+                    "IsVisible" : "/SAPAssetManager/Rules/Common/IsPhaseModelEnabled.js"
+				}
+            }]
+        },
+        {
+            "Controls": [
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/FilterByFilter.fragment",
+                    "Properties": {
+                        "_Name": "MinorWorkMobileStatusFilter",
+                        "FilterProperty": "/SAPAssetManager/Rules/WorkOrders/MinorWorkMobileStatusFilterItems.js",
+                        "IsVisible": "/SAPAssetManager/Rules/WorkOrders/IsEmergencyMinorWorkEnabled.js"
+                    }
+                }
+            ]
+        },
+        {
+            "Controls": [
+                {
+                    "_Type": "Control.Type.FormCell.Switch",
+                    "_Name": "CreationDateSwitch",
+                    "Caption":"$(L,creation_date)",
+                    "Value": false,
+                    "OnValueChange": "/SAPAssetManager/Rules/Notifications/NotificationCreationDateFilter.js"
+                },
+                {
+                    "_Type": "Control.Type.FormCell.DatePicker",
+                    "_Name": "StartDateFilter",
+                    "Caption": "$(L,date_from)",
+                    "Mode": "Date",
+                    "IsVisible": false,
+                    "OnValueChange": "/SAPAssetManager/Rules/Filter/Validation/CompareStartEndDateComponent.js"
+                },
+                {
+                    "_Type": "Control.Type.FormCell.DatePicker",
+                    "_Name": "EndDateFilter",
+                    "Caption": "$(L,date_to)",
+                    "Mode": "Date",
+                    "IsVisible": false,
+                    "OnValueChange": "/SAPAssetManager/Rules/Filter/Validation/CompareStartEndDateComponent.js"
+                }
+            ]
+        }],
+        "_Name":"FormCellContainer",
+        "_Type":"Control.Type.FormCellContainer"
+    }],
+    "FioriToolbar": {
+        "_Name": "NotificationFilterFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Items": [
+            {
+				"_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/ResetFilterToolbarItem.fragment",
+				"Properties": {
+                    "OnPress": "/SAPAssetManager/Rules/Notifications/NotificationListFilterReset.js"
+				}
+			}
+        ]
+    },
+    "_Type": "Page",
+    "_Name": "NotificationFilterPage",
+    "OnLoaded": "/SAPAssetManager/Rules/Filter/NotificationFilterOnLoaded.js"
+}

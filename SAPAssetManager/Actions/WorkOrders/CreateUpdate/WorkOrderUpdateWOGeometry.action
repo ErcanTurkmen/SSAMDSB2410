@@ -1,0 +1,13 @@
+{
+	"_Type": "Action.Type.ODataService.UpdateEntity",
+	"Target": {
+		"EntitySet": "MyWorkOrderGeometries",
+		"Service": "/SAPAssetManager/Services/AssetManager.service",
+		"ReadLink": ""
+	},
+	"CreateLinks": [],
+	"OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/UpdateEntityFailureMessage.action",
+	"OnSuccess": "/SAPAssetManager/Rules/ApplicationEvents/AutoSync/actions/CreateEntitySuccessMessageNoClosePageWithAutoSave.js",
+	"ShowActivityIndicator": true,
+	"ActivityIndicatorText" : "  "
+}

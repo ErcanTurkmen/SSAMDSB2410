@@ -1,0 +1,6 @@
+{
+    "Message": "$(L,download_documents_nothing_selected_message)",
+    "Duration": 9999,
+    "Animated": true,
+    "_Type": "Action.Type.BannerMessage"
+}

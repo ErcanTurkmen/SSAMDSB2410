@@ -1,0 +1,15 @@
+{
+   "Caption": "$(L,priority)",
+   "Value": "{Priority}",
+   "Segments": {
+       "DisplayValue": "{Description}",
+       "ReturnValue": "{Priority}",
+       "Target": {
+           "EntitySet": "ServicePriorities",
+           "Service": "/SAPAssetManager/Services/AssetManager.service",
+           "QueryOptions": "$orderby=Priority"
+       }
+   },
+   "_Name": "PrioritySeg",
+   "_Type": "Control.Type.FormCell.SegmentedControl"
+}

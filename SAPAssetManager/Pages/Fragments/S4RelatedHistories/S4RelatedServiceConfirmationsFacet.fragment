@@ -1,0 +1,7 @@
+{
+    "AccessoryType": "DisclosureIndicator",
+    "KeyName": "$(L,related_confirmations)",
+    "Value": "/SAPAssetManager/Rules/S4RelatedHistories/S4RelatedServiceConfirmationsCount.js",
+    "OnPress": "/SAPAssetManager/Rules/S4RelatedHistories/S4RelatedServiceConfirmationsListViewNav.js",
+    "Visible": "/SAPAssetManager/Rules/S4RelatedHistories/IsS4Visible.js"
+}

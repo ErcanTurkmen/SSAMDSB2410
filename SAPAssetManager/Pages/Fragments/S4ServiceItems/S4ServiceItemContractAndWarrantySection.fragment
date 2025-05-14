@@ -1,0 +1,34 @@
+{
+    "Header": {
+        "Caption": "$(L,service_contract_warranty)"
+    },
+    "KeyAndValues": [
+        {
+            "_Name": "S4ServiceContract.ObjectID",
+            "KeyName": "$(L,service_contract)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/Details/ServiceContractValue.js"
+        },
+        {
+            "_Name": "ServiceProfile",
+            "KeyName": "$(L,service_profile)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemServiceProfileValue.js"
+        },
+        {
+            "_Name": "ResponseProfile",
+            "KeyName": "$(L,response_profile)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemResponseProfileValue.js"
+        },
+        {
+            "_Name": "AccountingInd",
+            "KeyName": "$(L,accounting_indicator)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemAccountingIndicatorValue.js"
+        },
+        {
+            "_Name": "WarrantyDesc",
+            "KeyName": "$(L,warranty)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemWarrantyValue.js"
+        }
+    ],
+    "_Type": "Section.Type.KeyValue",
+    "_Name": "ServiceContractWarrantySection"
+}

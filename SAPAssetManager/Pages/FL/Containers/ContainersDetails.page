@@ -1,0 +1,51 @@
+{
+	"Caption": "$(L, fld_container_details)",
+	"ActionBar": {
+		"Items": [
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment"
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"ObjectHeader": {
+						"HeadlineText": "{ContainerID}",
+						"Subhead": "/SAPAssetManager/Rules/FL/Containers/Details/GetIsContainerReleasedDetails.js",
+						"StatusText": "{FldLogsContainerStatus_Nav/FldContainerStatusDescription}"
+					},			
+					"_Name": "SectionObjectHeader",
+					"_Type": "Section.Type.ObjectHeader"
+				}
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		},
+		{
+			"Items": [{
+				"_Name": "ContainerItemsListTab",
+				"Caption": "$(L, fld_container_items)",
+				"PageToOpen" : "/SAPAssetManager/Pages/FL/Containers/ContainerItemsList.page",
+				"_Type": "Control.Type.TabItem"
+			},
+			{
+				"_Name": "PackagesListTab",
+				"Caption": "$(L, fld_packages)",
+				"PageToOpen" : "/SAPAssetManager/Pages/FL/Packages/PackagesList.page",
+				"_Type": "Control.Type.TabItem"
+			},
+			{
+				"_Name": "ContainersHeaderTab",
+				"Caption": "$(L, header)",
+				"PageToOpen" : "/SAPAssetManager/Pages/FL/Containers/ContainersHeader.page",
+				"PageMetadata": "/SAPAssetManager/Rules/FL/Containers/Details/ContainersHeaderPageMetadata.js",
+				"_Type": "Control.Type.TabItem"
+			}],
+			"Position": "Top",
+			"_Type": "Control.Type.Tabs",
+			"_Name": "TabsControl"
+		}
+	],
+	"_Name": "ContainersDetailsPage",
+	"_Type": "Page"
+}

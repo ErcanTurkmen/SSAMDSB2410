@@ -1,0 +1,25 @@
+{
+    "_Type": "Section.Type.ChartContent",
+    "_Name": "MeasurementsContent",
+    "Footer": {
+        "Caption": "$(L,see_all_data)",
+        "AccessoryType": "DisclosureIndicator",
+        "FooterStyle": "Attribute",
+        "AttributeLabel": "/SAPAssetManager/Rules/Measurements/Document/MeasurementDocsCount.js",
+        "OnPress": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointHistoryListViewNav.js"
+    },
+    "ChartContent": {
+        "Title": "{PointDesc}",
+        "Subtitle": "/SAPAssetManager/Rules/Analytics/AnalyticsSeriesTitles.js",
+        "StatusText": "/SAPAssetManager/Rules/Analytics/AnalyticsReadingTimeStamp.js",
+        "ChartView": {
+            "ChartType": "/SAPAssetManager/Rules/Analytics/ChartType.js",
+            "ChartHeight": "/SAPAssetManager/Rules/Analytics/ChartHeight.js",
+            "SeriesTitles": "/SAPAssetManager/Rules/Analytics/AnalyticsSeriesTitles.js",
+            "Data": "/SAPAssetManager/Rules/Analytics/AnalyticsDataSeries.js",
+            "CategoryAxisTitle": "$(L,date)",
+            "ValueAxisTitle": "/SAPAssetManager/Rules/Analytics/AnalyticsValueAxisTitle.js",
+            "CategoryTitles": "/SAPAssetManager/Rules/Analytics/AnalyticsCategoryTitles.js"
+        }
+    }
+}

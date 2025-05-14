@@ -1,0 +1,7 @@
+{
+	"DestinationName": "com.sap.epd.xrviewerapp.visualization",
+	"ServiceUrl": "/destinations/mobileservices",
+	"PathSuffix": "/v1",
+	"OfflineEnabled": false,
+	"SourceType": "Mobile"
+}

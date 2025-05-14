@@ -1,0 +1,7 @@
+{
+    "_Type" : "Action.Type.Navigation",
+    "PageToOpen" : "/SAPAssetManager/Pages/Notifications/NotificationsListView.page",
+    "ShowActivityIndicator": true,
+    "ActivityIndicatorText" : " ",
+    "PageMetadata": "/SAPAssetManager/Rules/Notifications/ListView/NotificationsPageMetadata.js"
+}

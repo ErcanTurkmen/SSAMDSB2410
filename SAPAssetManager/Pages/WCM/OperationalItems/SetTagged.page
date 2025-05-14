@@ -1,0 +1,58 @@
+{
+	"Caption": "/SAPAssetManager/Rules/WCM/OperationalItems/SetUntagged/SetTaggedUntaggedCaption.js",
+	"OnLoaded": "/SAPAssetManager/Rules/WCM/OperationalItems/SetTagged/SetTaggedPageOnLoaded.js",
+	"OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+	"ActionBar": {
+		"Items": [
+			"/SAPAssetManager/Pages/Fragments/CancelButton.fragment",
+			{
+				"_Type": "Fragment",
+				"Fragment": "/SAPAssetManager/Pages/Fragments/DoneButton.fragment",
+				"Properties": {
+					"OnPress": "/SAPAssetManager/Rules/WCM/OperationalItems/SetTagged/SetTaggedDonePressed.js",
+					"Text": "$(L, done)"
+				}
+			}
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				"/SAPAssetManager/Pages/WCM/Fragments/OperationalItems/SetTaggedObjectHeader.fragment",
+				"/SAPAssetManager/Pages/WCM/Fragments/OperationalItems/SetTaggedLockNumber.fragment",
+				{
+					"Controls": [
+						{
+                            "_Type": "Fragment",
+                            "Fragment": "/SAPAssetManager/Pages/Fragments/Signature/SignatureControlCreateControl.fragment",
+                            "Properties": {
+                                "WatermarkText": "/SAPAssetManager/Rules/WCM/OperationalItems/SignatureAttachment/SignatureWatermarkText.js",
+								"Caption": "/SAPAssetManager/Rules/WCM/Common/SignatureCaption.js",
+								"OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js"
+                            }
+                        }
+					],
+					"_Name": "SignatureCaptureSection",
+					"Visible": "/SAPAssetManager/Rules/WCM/OperationalItems/SignatureAttachment/IsWCMSignatureEnabled.js",
+					"_Type": "Section.Type.FormCell"
+				},
+				{
+					"Controls": [
+                        {
+                            "_Type": "Fragment",
+                            "Fragment": "/SAPAssetManager/Pages/Fragments/Documents/DocumentFormCell.fragment",
+							"Properties": {
+								"AttachmentTitle": "$(L, attachments_count)"
+							}
+                        }
+					],
+					"_Type": "Section.Type.FormCell"
+				}
+			],
+			"_Name": "FormCellContainer",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"_Name": "SetTaggedPage",
+	"_Type": "Page"
+}

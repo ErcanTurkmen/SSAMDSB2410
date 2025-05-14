@@ -1,0 +1,25 @@
+{
+    "Header": {
+        "Caption": "$(L,connection_object)"
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_connection_object_available)"
+    },
+    "ObjectCell":
+    {
+        "AccessoryType": "DisclosureIndicator",
+        "Title": "/SAPAssetManager/Rules/WorkOrders/Meter/ReferenceObject/ConnectionObjectBasicInfo.js",
+        "Subhead": "/SAPAssetManager/Rules/WorkOrders/Meter/ReferenceObject/DeviceLocationBasicInfo.js",
+        "OnPress": "/SAPAssetManager/Actions/Meters/ConnectionObjectNav.action",
+        "PreserveIconStackSpacing": false
+    },
+    "Target":
+    {
+        "EntitySet": "ConnectionObjects",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$filter=OrderISULink_Nav/any(isu:isu/Workorder_Nav/OrderId eq '{{#Property:OrderId}}')&$expand=ConnectionObjectMRNote_Nav,FuncLocation_Nav/RelatedWOHistory,FuncLocation_Nav/NotifHistory_Nav,FuncLocation_Nav/Partners,FuncLocation_Nav/ObjectStatus_Nav/SystemStatus_Nav,FuncLocation_Nav/Address,DeviceLocations_Nav,AuthorizationGroup_Nav,PolRegStructElement_Nav"
+    },
+    "_Type": "Section.Type.ObjectTable",
+    "_Name": "WorkOrderConnectionObjectSection",
+    "Visible": "/SAPAssetManager/Rules/WorkOrders/Meter/IsConnectionObjectVisible.js"
+}

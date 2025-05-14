@@ -1,0 +1,24 @@
+{
+    "Header": {
+        "Caption": "$(L,disapproval_reason)"
+    },
+    "ObjectCell": {
+        "PreserveIconStackSpacing": false,
+        "Title": "/SAPAssetManager/Rules/Supervisor/Reject/RejectReasonText.js"
+    },
+    "Target": {
+        "EntitySet": "MyWorkOrderHeaders",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$filter=OrderId eq '{{#Property:OrderId}}'&$select=OrderId"
+    },
+    "_Type": "Section.Type.ObjectTable",
+    "_Name": "RejectionReason",
+    "DataSubscriptions": ["PMMobileStatuses"],
+    "Visible": "/SAPAssetManager/Rules/Supervisor/Reject/RejectReasonIsVisible.js",
+    "Footer": {
+        "Caption": "$(L,see_all)",
+        "AccessoryType": "DisclosureIndicator",
+        "OnPress": "/SAPAssetManager/Rules/Notes/NotesViewNav.js",
+        "FooterStyle": "Attribute"
+    }
+}

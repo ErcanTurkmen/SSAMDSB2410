@@ -1,0 +1,9 @@
+{
+    "_Type": "Control.Type.FormCell.SimpleProperty",
+    "_Name": "OnlineFlocControl",
+    "Caption": "$(L,functional_location)",
+    "PlaceHolder": "$(L,functional_location)",
+    "Value": "{{#Property:HeaderFlocId}} - {{#Property:HeaderFlocDescription}}",
+    "Enabled": false,
+    "IsVisible": "/SAPAssetManager/Rules/Common/IsFromOnlineFlocCreate.js"
+}

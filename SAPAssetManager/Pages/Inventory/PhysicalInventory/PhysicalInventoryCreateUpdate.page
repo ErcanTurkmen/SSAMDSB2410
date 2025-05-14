@@ -1,0 +1,348 @@
+{
+    "Caption": "$(L,physical_inventory_label)",
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "Items": [
+            {
+                "Position": "Left",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)",
+                "OnPress": "/SAPAssetManager/Rules/Common/CheckForChangesBeforeClose.js"
+            },
+            {
+                "Position": "Right",
+                "SystemItem": "$(PLT,'Done','', '', 'Done')",
+                "Text": "/SAPAssetManager/Rules/Common/Platform/DoneText.js",
+                "OnPress": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/Create/OnPressDoneButton.js"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "Header": {
+                        "UseTopPadding": false
+                    },
+                    "Controls": [
+                        {
+                            "PlaceHolder": "$(L,document_id)",
+                            "IsEditable": false,
+                            "Value": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryDocumentID.js",
+                            "_Name": "DocumentIdTitle",
+                            "Caption": "$(L,document_id)",
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        },
+                        {
+                            "Caption": "$(L,count_date)",
+                            "DateTimeEntryMode" : "date",
+                            "Mode" : "Date",
+                            "_Type": "Control.Type.FormCell.DatePicker",
+                            "_Name": "CountDatePicker",
+                            "Value": "{PlanCountdate}",
+                            "IsEditable": false
+                        },
+                        {
+                            "_Name": "PlantLstPkr",
+                            "_Type": "Control.Type.FormCell.ListPicker",
+                            "Caption": "$(L,plant)",
+                            "AllowMultipleSelection": false,
+                            "AllowDefaultValueIfOneItem": false,
+                            "IsPickerDismissedOnSelection": true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 3,
+                                "Placeholder": "$(L,search)",
+								"BarcodeScanner": true
+                            },
+                            "IsEditable": true,
+                            "Value": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryDocumentPlant.js",
+                            "OnValueChange": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/OnPlantValueChanged.js",
+                            "PickerItems": {
+								"DisplayValue": "{{#Property:Plant}} - {{#Property:PlantDescription}}",
+								"ReturnValue": "{Plant}",
+								"Target": {
+									"EntitySet": "Plants",
+                                    "Service": "/SAPAssetManager/Services/AssetManager.service"
+								}
+							}
+                        },
+                        {
+							"AllowEmptySelection": true,
+							"AllowMultipleSelection": false,
+							"IsPickerDismissedOnSelection": true,
+							"AllowDefaultValueIfOneItem": true,
+							"Caption": "$(L,storage_location)",
+							"IsEditable": true,
+							"IsSelectedSectionEnabled": false,
+							"PickerItems": {
+								"DisplayValue": "{{#Property:StorageLocation}} - {{#Property:StorageLocationDesc}}",
+								"ReturnValue": "{StorageLocation}",
+								"Target": {
+									"EntitySet": "StorageLocations",
+                                    "QueryOptions": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryDocumentStorageLocationQueryOptions.js",
+									"Service": "/SAPAssetManager/Services/AssetManager.service"
+								}
+							},
+							"PickerPrompt": "$(L,select_single_item)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryDocumentStorageLocation.js",
+							"OnValueChange": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryOnStorageLocationChanged.js",
+							"_Name": "StorageLocationPicker",
+							"_Type": "Control.Type.FormCell.ListPicker"
+						},
+                        {
+							"AllowEmptySelection": false,
+							"AllowMultipleSelection": false,
+                            "IsPickerDismissedOnSelection": true,
+							"AllowDefaultValueIfOneItem": true,
+							"Caption": "$(L,stock_type)",
+							"IsSelectedSectionEnabled": false,
+							"PickerItems": {
+								"DisplayValue": "{{#Property:Stocktype}} - {{#Property:StockTypeText}}",
+								"ReturnValue": "{Stocktype}",
+								"Target": {
+									"EntitySet": "PhysicalInventoryStockTypes",
+                                    "QueryOptions": "$orderby=Stocktype",
+									"Service": "/SAPAssetManager/Services/AssetManager.service"
+								}
+							},
+                            "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js",
+							"PickerPrompt": "$(L,select_single_item)",
+                            "IsEditable": true,
+							"Value": "1",
+							"_Name": "StockTypePicker",
+							"_Type": "Control.Type.FormCell.ListPicker"
+						},
+                        {
+                            "AllowEmptySelection": true,
+                            "AllowMultipleSelection": false,
+                            "IsPickerDismissedOnSelection": true,
+                            "AllowDefaultValueIfOneItem": false,
+                            "Caption": "$(L,special_stock_indicator)",
+                            "IsEditable": true,
+                            "IsSelectedSectionEnabled": false,
+                            "PickerItems": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventorySpecialStockListPickerItems.js",
+                            "PickerPrompt": "$(L,select_single_item)",
+                            "IsVisible": true,
+                            "Value": "{SpecialStock}",
+                            "OnValueChange": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventorySpecialStockListPickerOnChanged.js",
+                            "_Name": "SpecialStockIndicatorPicker",
+                            "_Type": "Control.Type.FormCell.ListPicker"
+                        },
+                        {
+                            "AllowEmptySelection": true,
+                            "AllowMultipleSelection": false,
+                            "IsPickerDismissedOnSelection": true,
+                            "AllowDefaultValueIfOneItem": false,
+                            "IsSearchCancelledAfterSelection": true,
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 3,
+                                "Placeholder": "$(L,search)",
+								"BarcodeScanner": true
+                            },
+                            "Caption": "/SAPAssetManager/Rules/Inventory/Validation/VendorMandatoryLabel.js",
+                            "IsEditable": true,
+                            "IsSelectedSectionEnabled": false,
+                            "PickerItems": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/VendorListPickerItems.js",
+                            "Value": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryVendorValue.js",
+                            "PickerPrompt": "$(L,select_single_item)",
+                            "IsVisible": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryVendorIsVisible.js",
+                            "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js",
+                            "_Name": "VendorListPicker",
+                            "_Type": "Control.Type.FormCell.ListPicker"
+                        },
+                        {
+                            "Caption": "/SAPAssetManager/Rules/Inventory/Validation/WBSMandatoryLabel.js",
+                            "AlternateInput": "Barcode",
+                            "PlaceHolder": "",
+                            "IsEditable": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/WBSElementEditable.js",
+                            "Value": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryWBSValue.js",
+                            "IsVisible": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryWBSIsVisible.js",
+                            "_Name": "WBSElementSimple",
+                            "OnValueChange": "/SAPAssetManager/Rules/Inventory/Validation/WBSElementValidateLength.js",
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        },
+                        {
+                            "Value": "{PhysInvNo}",
+                            "_Name": "PhysInventoryProperty",
+                            "Caption": "$(L,inventory_number)",
+                            "_Type": "Control.Type.FormCell.SimpleProperty",
+                            "OnValueChange": "/SAPAssetManager/Rules/Inventory/Validation/InventoryNumberValidateLength.js"
+                        },
+                        {
+                            "Value": "{Physinventref}",
+                            "_Name": "PhysInventoryReferenceProperty",
+                            "Caption": "$(L,pi_inv_ref_title)",
+                            "_Type": "Control.Type.FormCell.SimpleProperty",
+                            "OnValueChange": "/SAPAssetManager/Rules/Inventory/Validation/ReferenceValidateLength.js"
+                        }
+                    ]
+                },
+                {
+                    "Controls": [
+                        {
+                            "PlaceHolder": "$(L,item_number)",
+                            "IsEditable": false,
+                            "Value": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryDocumentItemNum.js",
+                            "_Name": "ItemNumberTitle",
+                            "Caption": "$(L,item_number)",
+                            "IsVisible": true,
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        },
+                        {
+                            "_Name": "MatrialListPicker",
+                            "_Type": "Control.Type.FormCell.ListPicker",
+                            "Caption": "$(L,material_number)",
+                            "AllowMultipleSelection": false,
+                            "AllowDefaultValueIfOneItem": true,
+                            "IsPickerDismissedOnSelection": true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 1,
+                                "Placeholder": "$(L,search)",
+								"BarcodeScanner": true
+                            },
+							"Value": "{MaterialNum}",
+                            "OnValueChange": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryOnMaterialListPickerChanged.js",
+                            "IsEditable": true,
+							"PickerItems": {
+                                "ObjectCell": {
+                                    "PreserveIconStackSpacing": false,
+                                    "Title": "{{#Property:MaterialNum}} - {{#Property:Material/#Property:Description}}",
+                                    "Footnote": "{{#Property:Material/#Property:ManufacturerPartNum}}",
+                                    "Subhead": "{#Property:Plant}/{#Property:StorageLocation}"
+                                },
+                                "ReturnValue": "{MaterialNum}",
+                                "Target":
+                                {
+                                    "EntitySet" : "MaterialSLocs",
+                                    "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions" : "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryMaterialListPickerQueryOptions.js"
+                                }
+                            }
+                        },
+                        {
+							"Caption": "$(L,storage_bin)",
+							"IsEditable": false,
+							"KeyboardType": "Default",
+							"Value": "/SAPAssetManager/Rules/Inventory/Validation/GetStorageBin.js",
+							"_Name": "StorageBinSimple",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+                        {
+                            "_Type": "Control.Type.FormCell.ListPicker",
+                            "_Name": "BatchListPicker",
+                            "AllowEmptySelection": true,
+                            "AllowMultipleSelection": false,
+                            "IsPickerDismissedOnSelection": true,
+                            "AllowDefaultValueIfOneItem": true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 1,
+                                "Placeholder": "$(L,search)",
+								"BarcodeScanner": true
+                            },
+                            "Caption": "$(L,batch)",
+                            "Value": "{Batch}",
+                            "IsEditable": false,
+                            "PickerPrompt": "$(L,select_single_item)",
+                            "PickerItems": {
+                                "DisplayValue": "{Batch}",
+                                "ReturnValue": "{Batch}",
+                                "Target": {
+                                    "EntitySet": "MaterialBatchStockSet",
+                                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/GetPhysicalInventoryDocumentItemBatchQueryOptions.js"
+                                }
+                            }
+                        },
+                        {
+							"Caption": "$(L,quantity)",
+							"IsEditable": "/SAPAssetManager/Rules/Inventory/Validation/IsQuantityEditable.js",
+							"KeyboardType": "Number",
+                            "Value": "{EntryQuantity}",
+							"_Name": "QuantitySimple",
+                            "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+                        {
+                            "_Name": "UOMListPicker",
+                            "_Type": "Control.Type.FormCell.ListPicker",
+                            "Caption": "$(L,uom)",
+                            "AllowMultipleSelection": false,
+                            "AllowDefaultValueIfOneItem": true,
+                            "IsPickerDismissedOnSelection": true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 1,
+                                "Placeholder": "$(L,search)",
+								"BarcodeScanner": true
+                            },
+							"Value": "{EntryUOM}",
+                            "IsEditable": false,
+                            "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js",
+                            "PickerItems": {
+                                "ReturnValue": "{UOM}",
+                                 "ObjectCell": {
+                                    "PreserveIconStackSpacing": false,
+                                    "Title": "{{#Property:UOM}}",
+                                    "SubstatusText": "{BaseUOM}"
+                                },
+                                "Target":
+                                {
+                                    "EntitySet" : "MaterialUOMs",
+                                    "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions": "$orderby=UOM"
+                                }
+                            }
+                        },
+                        {
+							"Caption": "$(L,pi_zero_count)",
+							"IsEditable": true,
+                            "OnValueChange": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/Count/ZeroCountOnChange.js",
+							"Value": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/Count/GetZeroCount.js",
+							"_Name": "ZeroCountSwitch",
+							"_Type": "Control.Type.FormCell.Switch"
+						},
+                        {
+                            "_Type": "Control.Type.FormCell.Button",
+                            "_Name": "SerialNumberAdd",
+                            "Title": "$(L,serial_add_serial_number)",
+                            "OnPress": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/Count/SerialNav.js",
+                            "TextAlignment": "Center",
+							"IsVisible": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/Count/ShowSerialNumberButtonDuringCreate.js"
+                        }
+                    ]
+                }
+            ],
+            "_Name": "FormCellContainer",
+            "_Type": "Control.Type.FormCellContainer"
+        }
+    ],
+    "FioriToolbar": {
+		"_Name": "PhysicalInventoryCreateUpdateFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+		"Items": [
+			{
+				"_Name": "Next",
+				"_Type": "FioriToolbarItem.Type.Button",
+				"Title": "$(L,next)",
+                "OnPress": "/SAPAssetManager/Actions/Inventory/PhysicalInventory/PhysicalInventoryCreateUpdateRequired.action",
+				"Visible": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/Create/IsNextButtonVisible.js"
+			}
+		]
+	},
+    "_Type": "Page",
+    "_Name": "PhysicalInventoryCreateUpdatePage",
+    "OnReturning": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/Count/PhysicalInventoryCountUpdateOnReturning.js"
+}

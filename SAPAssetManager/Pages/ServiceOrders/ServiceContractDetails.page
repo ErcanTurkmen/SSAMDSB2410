@@ -1,0 +1,95 @@
+{
+	"Caption": "/SAPAssetManager/Rules/ServiceOrders/ServiceContracts/ServiceContractDetailsCaption.js",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Header": {
+						"Caption": "$(L,sold_to_party)"
+					},
+					"EmptySection": {
+						"Caption": "$(L,no_sold_to_party_available)"
+					},
+					"ContactCell": {
+						"Headline": "/SAPAssetManager/Rules/ServiceOrders/Details/SoldToPartyName.js",
+						"ActivityItems": [
+							{
+								"ActivityType": "Phone",
+								"ActivityValue": "/SAPAssetManager/Rules/ServiceOrders/Details/SoldToPartyPhone.js"
+							},
+							{
+								"ActivityType": "Email",
+								"ActivityValue": "/SAPAssetManager/Rules/ServiceOrders/Details/SoldToPartyEmail.js"
+							},
+							{
+								"ActivityType": "Message",
+								"ActivityValue": "/SAPAssetManager/Rules/ServiceOrders/Details/SoldToPartyPhone.js"
+							}
+						],
+						"OnPress": "/SAPAssetManager/Rules/Meter/BusinessPartners/BusinessPartnerDetailsViewNav.js"
+					},
+					"Target": {
+						"EntitySet": "{{#Property:@odata.readLink}}/Customer_Nav",
+						"Service": "/SAPAssetManager/Services/AssetManager.service",
+						"QueryOptions": "$expand=Address_Nav/AddressCommunication"
+					},
+					"_Name": "SoldToPartySection",
+					"_Type": "Section.Type.ContactCell"
+				},
+				{
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "ContractDetailsSection",
+                    "Header": {
+                        "Caption": "$(L, service_contract)"
+                    },
+                    "KeyAndValues": [
+                        {
+							"_Name": "ObjectID",
+                            "KeyName": "$(L, ID)",
+                            "Value": "{ObjectID}"
+                        },
+                        {
+							"_Name": "StatusDesc",
+                            "KeyName": "$(L, status)",
+                            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceContracts/ServiceContractStatusDescValue.js"
+                        },
+                        {
+							"_Name": "Description",
+                            "KeyName": "$(L, description)",
+                            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceContracts/ServiceContractDescriptionValue.js"
+                        },
+                        {
+							"_Name": "CreatedOn",
+                            "KeyName": "$(L, created_on)",
+                            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceContracts/ServiceContractCreatedOnDate.js"
+                        },
+                        {
+							"_Name": "BusinessPartner.FullName[0]",
+                            "KeyName": "$(L, contact_person)",
+                            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceContracts/ServiceContractContactPersonValue.js"
+                        },
+                        {
+							"_Name": "ContractStartDate",
+                            "KeyName": "$(L, contract_start_date)",
+                            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceOrderStartDate.js"
+                        },
+                        {
+							"_Name": "BusinessPartner.FullName[1]",
+                            "KeyName": "$(L, employee_responsible)",
+                            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceContracts/ServiceContractEmployeeRespValue.js"
+                        },
+                        {
+							"_Name": "ContractEndDate",
+                            "KeyName": "$(L, contract_end_date)",
+                            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceOrderEndDate.js"
+                        }
+                    ]
+                }
+			],
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"_Name": "ServiceContractDetailsPage",
+	"_Type": "Page"
+}

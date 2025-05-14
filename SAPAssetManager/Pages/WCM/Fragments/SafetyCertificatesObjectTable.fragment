@@ -1,0 +1,25 @@
+{
+    "Search": {
+        "Enabled": true,
+        "Delay": 500,
+        "MinimumCharacterThreshold": 3,
+        "Placeholder": "$(L,search)",
+        "BarcodeScanner": true
+    },
+    "Header": {
+		"UseTopPadding": false
+	},
+    "ObjectCell":"/SAPAssetManager/Pages/WCM/Fragments/SafetyCertificateObjectCell.fragment",
+    "Target": {
+        "EntitySet": "/SAPAssetManager/Rules/WCM/SafetyCertificates/RelatedSafetyCertificates.js",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "/SAPAssetManager/Rules/WCM/SafetyCertificates/SafetyCertificatesListViewQueryOption.js"
+    },
+    "EmptySection": {
+        "Caption": "$(L,wcm_no_certificates)",
+        "HidesFooter":true
+    },
+    "Visible": true,
+    "_Name": "SafetyCertificates",
+    "_Type": "Section.Type.ObjectTable"
+}

@@ -1,0 +1,82 @@
+{
+    "Caption": "/SAPAssetManager/Rules/Forms/FSM/FormPageTitle.js",
+	"OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "OnLoaded": "/SAPAssetManager/Rules/Forms/FSM/FSMFormOnPageLoad.js",
+    "ActionBar": {
+        "Items": [
+            {
+                "OnPress": "/SAPAssetManager/Rules/Forms/FSM/FSMFormClosePageWrapper.js",
+                "Position": "Left",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)"
+            },
+            {
+                "Position": "Right",
+                "Text": "$(L,forms_save_draft)",
+                "OnPress": "/SAPAssetManager/Rules/Forms/FSM/FSMFormSaveWrapper.js",
+                "Visible": "/SAPAssetManager/Rules/Forms/FSM/FSMFormSaveVisible.js"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "Header": {
+                        "UseTopPadding": false
+                    },
+                    "Module": "extension-ProgressTrackerFramework",
+                    "Control": "ProgressTrackerExtension",
+                    "Class": "ProgressTrackerExtension",
+                    "Height": "/SAPAssetManager/Rules/TimelineControl/ProgressTrackerHeight.js",
+                    "ExtensionProperties": {
+                        "Config": {
+                            "IsIndexVisible": true,
+                            "IsCompactMode": "/SAPAssetManager/Rules/Common/IsCompactMode.js"
+
+                        },
+                        "InitialSteps": "/SAPAssetManager/Rules/Forms/FSM/ProgressTrackerInitialSteps.js",
+                        "OnStepSelected": "/SAPAssetManager/Rules/Forms/FSM/ProgressTrackerOnStepSelected.js"
+                    },
+                    "Visible": true,
+                    "_Name": "ProgressTrackerExtensionControl",
+                    "_Type": "Section.Type.Extension"
+				}
+            ],
+            "_Name": "FormCellSectionedTable",
+            "_Type": "Control.Type.SectionedTable"
+        }   
+    ],
+    "FioriToolbar": {
+        "_Name": "SingleFormFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Items": [
+            {
+                "Title": "$(L,forms_previous)",
+                "Enabled": "/SAPAssetManager/Rules/Forms/FSM/FSMPreviousButtonEnabled.js",
+                "_Name": "ToolbarItem2",
+                "OnPress":"/SAPAssetManager/Rules/Forms/FSM/FSMPreviousPage.js",
+                "_Type": "FioriToolbarItem.Type.Button"
+            },
+            {
+                "Title": "$(L,smart_forms_submit)",
+                "Visible": "/SAPAssetManager/Rules/Forms/FSM/FSMFormSaveVisible.js",
+                "Text": "$(L,smart_forms_submit)",
+                "OnPress": "/SAPAssetManager/Rules/Forms/FSM/FSMFormSubmit.js",
+                "_Name": "ToolbarItem1",
+                "ButtonType": "Primary",
+                "_Type": "FioriToolbarItem.Type.Button"
+            },
+            {
+                "Title": "$(L,next)",
+                "OnPress":"/SAPAssetManager/Rules/Forms/FSM/FSMNextPage.js",
+                "Enabled": "/SAPAssetManager/Rules/Forms/FSM/FSMNextButtonEnabled.js",
+                "_Name": "ToolbarItem0",
+                "_Type": "FioriToolbarItem.Type.Button"
+            }
+        ]
+    },
+    "_Name": "SingleForm",
+    "_Type": "Page"
+}
+ 

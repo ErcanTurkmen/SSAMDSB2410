@@ -1,0 +1,67 @@
+{
+	"Caption": "$(L,wcm_work_approvals)",
+	"OnLoaded": "/SAPAssetManager/Rules/Filter/ListPageWithFilterOnLoaded.js",
+	"ActionBar":
+	{
+		"Items": [
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment",
+			{
+				"_Type": "Fragment",
+				"Fragment": "/SAPAssetManager/Pages/Fragments/FilterButton.fragment",
+				"Properties": {
+					"OnPress": "/SAPAssetManager/Rules/WCM/WorkApprovals/List/WorkApprovalsFilterPageNav.js"
+				}
+			}
+		]
+	},
+	"Controls":
+	[{
+		"Sections":
+		[{
+			"_Type": "Fragment",
+            "Fragment": "/SAPAssetManager/Pages/WCM/Fragments/WorkApprovalsObjectTable.fragment",
+            "Properties":{
+              "Header": {
+                  "Caption": "/SAPAssetManager/Rules/WCM/WorkApprovals/List/WorkApprovalsCaption.js"
+              },
+              "Target": {
+                  "EntitySet": "WCMApprovals",
+                  "Service": "/SAPAssetManager/Services/AssetManager.service",
+                  "QueryOptions": "/SAPAssetManager/Rules/WCM/WorkApprovals/List/WorkApprovalsQueryOptions.js"
+              }
+            }
+		}],
+		"FilterFeedbackBar": {
+			"_Type": "Control.Type.FilterFeedbackBar",
+			"_Name": "FilterFeedback",
+			"ShowAllFilters": true,
+			"FastFilters": [
+				{
+					"_Name": "Created",
+					"_Type": "Control.Type.FastFilterItem",
+					"FilterType": "Filter",
+					"FilterProperty": "ActualSystemStatus",
+					"DisplayValue": "/SAPAssetManager/Rules/WCM/Common/StatusCreatedText.js",
+					"ReturnValue": "/SAPAssetManager/Globals/SystemStatuses/Created.global"
+				},
+				{
+					"_Name": "Prepared",
+					"_Type": "Control.Type.FastFilterItem",
+					"FilterType": "Filter",
+					"FilterProperty": "ActualSystemStatus",
+					"DisplayValue": "/SAPAssetManager/Rules/WCM/Common/StatusPreparedText.js",
+					"ReturnValue": "/SAPAssetManager/Globals/SystemStatuses/Prepared.global"
+				},
+				{
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/WCM/Fragments/FastFilterItems/WorkPermitPrinted.fragment"
+				}
+			]
+		},
+		"Filters": "/SAPAssetManager/Rules/WCM/WorkApprovals/List/WorkApprovalsFilters.js",
+		"_Type" : "Control.Type.SectionedTable",
+		"_Name" : "SectionedTable"
+	}],
+	"_Name": "WorkApprovalsListViewPage",
+	"_Type": "Page"
+}

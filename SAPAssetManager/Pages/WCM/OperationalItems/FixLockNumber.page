@@ -1,0 +1,27 @@
+{
+	"Caption": "$(L,set_tagged)",
+	"ActionBar": {
+		"Items": [
+			{
+				"_Type": "Fragment",
+				"Fragment": "/SAPAssetManager/Pages/Fragments/DoneButton.fragment",
+				"Properties": {
+					"OnPress": "/SAPAssetManager/Rules/WCM/OperationalItems/SetTagged/FixLockNumberDonePressed.js",
+					"Text": "$(L, done)"
+				}
+			}
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				"/SAPAssetManager/Pages/WCM/Fragments/OperationalItems/SetTaggedObjectHeader.fragment",
+				"/SAPAssetManager/Pages/WCM/Fragments/OperationalItems/SetTaggedLockNumber.fragment"
+			],
+			"_Name": "FormCellContainer",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"_Name": "FixLockNumberPage",
+	"_Type": "Page"
+}

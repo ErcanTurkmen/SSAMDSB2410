@@ -1,0 +1,27 @@
+{
+    "_Type": "Control.Type.FormCell.ListPicker",
+    "_Name": "ProcessTypeLstPkr",
+    "Caption": "$(L,process_type)",
+    "AllowEmptySelection": false,
+    "AllowMultipleSelection": false,
+    "IsPickerDismissedOnSelection": true,
+    "IsSearchCancelledAfterSelection": true,
+    "Search": {
+        "Enabled": true,
+        "Delay": 500,
+        "MinimumCharacterThreshold": 3,
+        "Placeholder": "$(L,search)"
+    },
+    "Value": "{ProcessType}",
+    "IsEditable": "/SAPAssetManager/Rules/Common/IsOnCreate.js",
+    "OnValueChange": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ProcessTypeOnValueChange.js",
+    "PickerItems": {
+        "DisplayValue": "{{#Property:TransactionType}} - {{#Property:Description}}",
+        "ReturnValue": "{TransactionType}",
+        "Target": {
+            "EntitySet": "ServiceProcessTypes",
+            "Service": "/SAPAssetManager/Services/AssetManager.service",
+            "QueryOptions": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderCreateUpdateControlsQueryOptions.js"
+        }
+    }
+}

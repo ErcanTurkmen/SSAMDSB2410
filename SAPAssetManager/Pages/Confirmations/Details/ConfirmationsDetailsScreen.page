@@ -1,0 +1,300 @@
+{
+	"Caption": "/SAPAssetManager/Rules/Confirmations/Details/GetConfirmationDetailsCaption.js",
+    "OnReturning": "/SAPAssetManager/Rules/Confirmations/Details/ConfirmationDetailsOnReturning.js",
+    "ActionBar": {
+        "_Name": "ConfirmationsDetails",
+        "Items": [
+            {
+                "Position": "Right",
+                "_Name": "Edit",
+                "SystemItem": "Edit",
+                "Caption": "$(L,edit)",
+                "Visible": "/SAPAssetManager/Rules/Confirmations/Details/IsEditServiceConfirmationEnabled.js",
+                "OnPress": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/ServiceConfirmationUpdateNav.js"
+            },
+            {
+                "Position": "Right",
+                "_Name": "Add",
+                "SystemItem": "Add",
+                "Caption": "$(L,add)",
+                "OnPress": "/SAPAssetManager/Actions/Confirmations/Details/AddServiceConfirmationActionsPopover.action",
+                "Visible":  "/SAPAssetManager/Rules/ServiceConfirmations/Details/IsAddServiceConfirmationActionsVisible.js"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable",
+            "Sections": [
+                {
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/QAB/QuickActionBarExtensionSection.fragment",
+					"Properties": {
+						"ExtensionProperties": {
+							"Chips": "/SAPAssetManager/Rules/Confirmations/Details/ConfirmationQABChips.js"
+						}
+					}
+				},
+                {
+                    "Header": {
+                        "UseTopPadding": false,
+                        "Caption": "$(L, confirmation_details)"
+                    },
+                    "KeyAndValues": [
+                        {
+                            "_Name": "Description",
+                            "KeyName": "$(L, description)",
+                            "Value": "/SAPAssetManager/Rules/Confirmations/Details/GetConfirmationDetailsDescriptionView.js"
+                        },
+                        {
+                            "_Name": "PMMobileStatus.MobileStatus",
+                            "KeyName": "$(L, status)",
+                            "Value": "/SAPAssetManager/Rules/Confirmations/Details/GetConfirmationDetailsStatusView.js"
+                        },
+                        {
+                            "_Name": "ObjectID",
+                            "KeyName": "$(L, confirmation_id)",
+                            "Value": "/SAPAssetManager/Rules/Confirmations/Details/GetConfirmationDetailsObjectIdView.js"
+                        },
+                        {
+                            "_Name": "CreatedBy",
+                            "KeyName": "$(L, created_by_label)",
+                            "Value": "/SAPAssetManager/Rules/Confirmations/Details/GetConfirmationDetailsCreatedByView.js"
+                        },
+                        {
+                            "_Name": "S4ServiceConfirmationItem.NetValue",
+                            "KeyName": "$(L, net_value)",
+                            "Value": "/SAPAssetManager/Rules/Confirmations/Details/GetConfirmationDetailsNetValue.js"
+                        }
+                    ],
+                    "DataSubscriptions": ["PMMobileStatuses"],
+                    "Target": {
+						"EntitySet": "{@odata.readLink}",
+						"Service": "/SAPAssetManager/Services/AssetManager.service",
+						"QueryOptions": "/SAPAssetManager/Rules/Confirmations/Details/GetConfirmationDetailDataQuery.js"
+					},
+                    "Visible": true,
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "ConfirmationDetails"
+                },
+                {
+                  "_Type": "Fragment",
+                  "Fragment": "/SAPAssetManager/Pages/ServiceOrders/ServiceOrdersObjectTable.fragment",
+                  "Properties": {
+                    "_Name": "ServiceOrderSection",
+                    "Header": {
+                        "Caption": "$(L, service_order)"
+                    },
+                    "Target": {
+                        "QueryOptions": "$expand=S4ServiceConfirmationTranHistory_Nav,TransHistories_Nav/S4ServiceConfirms_Nav&$filter=TransHistories_Nav/any(wp: (wp/S4ServiceConfirms_Nav/ObjectID eq '{{#Property:ObjectID}}')) or S4ServiceConfirmationTranHistory_Nav/any(wp: (wp/ObjectID eq '{{#Property:ObjectID}}'))&$top=1"
+                    },
+                    "MaxItemCount": 1
+                  }
+                },
+				{
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Confirmations/ServiceConfirmationItem/ServiceConfirmationItemObjectTableSection.fragment",
+                    "Properties": {
+                        "MaxItemCount": 2,
+                        "Header": {
+                            "UseTopPadding": true,
+                            "Caption": "$(L, confirmation_items)"
+                        },
+                        "Target": {
+                            "EntitySet": "{{#Property:@odata.id}}/ServiceConfirmationItems_Nav"
+                        },
+                        "Layout": {
+                            "NumberOfColumns": 1
+                        },
+                        "Footer": {
+                            "OnPress": "/SAPAssetManager/Rules/Confirmations/Item/ConfirmationsItemsListViewNav.js"
+                        },
+                        "DataSubscriptions": ["S4ServiceConfirmationItems", "PMMobileStatuses"]
+                    }
+                },
+				{
+					"_Name": "SoldToPartySection",
+					"_Type": "Section.Type.ContactCell",
+					"MaxItemCount": 1,
+					"ContactCell": {
+						"Headline": "{OrgName1}",
+                        "Subheadline": "{BPNum}",
+                        "ActivityItems": [
+                            {
+                              "ActivityType": "Phone",
+								"ActivityValue": "/SAPAssetManager/Rules/ServiceOrders/Details/SoldToPartyPhone.js"
+                            },
+                            {
+                              "ActivityType": "Email",
+                              "ActivityValue": "/SAPAssetManager/Rules/ServiceOrders/Details/SoldToPartyEmail.js"
+                            }
+                        ],
+                        "OnPress": "/SAPAssetManager/Rules/Meter/BusinessPartners/BusinessPartnerDetailsViewNav.js"
+					},
+					"Target": {
+                        "EntitySet": "S4BusinessPartners",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "/SAPAssetManager/Rules/Confirmations/Details/GetConfirmationDetailsSoldPartyQuery.js"
+					},
+					"EmptySection": {
+                        "Caption": "$(L, no_sold_to_party_available)"
+                    },
+					"Header": {
+		 				"UseTopPadding": true,
+						"Caption": "$(L, sold_to_party)"
+    				}
+				},
+				{
+                    "Header": {
+                        "UseTopPadding": true,
+                        "Caption": "$(L, reference_objects)"
+                    },
+                    "KeyAndValues": [
+                        {
+                            "_Name": "Material.Description",
+                            "KeyName": "$(L, product)",
+                            "Value": "/SAPAssetManager/Rules/Confirmations/Details/GetConfirmationDetailsProducts.js"
+                        },
+                        {
+                            "_Name": "MyEquipment.EquipDesc",
+                            "KeyName": "$(L, equipment)",
+                            "Value": "/SAPAssetManager/Rules/Confirmations/Details/GetConfirmationDetailsEquipments.js"
+                        },
+                        {
+                            "_Name": "MyFunctionalLocation.FuncLocDesc",
+                            "KeyName": "$(L, functional_location)",
+                            "Value": "/SAPAssetManager/Rules/Confirmations/Details/GetConfirmationDetailsFLocs.js"
+                        }
+                    ],
+                    "Visible": true,
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "ReferenceObjects"
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Equipment/ObjectTableSection.fragment",
+                    "Properties": {
+                        "_Name": "EquipmentSection",
+                        "MaxItemCount": 2,
+                        "Header": {
+                            "UseTopPadding": true
+                        },
+                        "ObjectCell": {
+							"Title": "#Property:MyEquipment_Nav/#Property:EquipDesc",
+							"Subhead": "#Property:EquipID",
+							"StatusText": "#Property:MyEquipment_Nav/#Property:ObjectStatus_Nav/#Property:SystemStatus_Nav/#Property:StatusText",
+							"Description": "#Property:MyEquipment_Nav/#Property:TechnicalID"
+						},
+                        "Target": {
+                            "EntitySet": "{{#Property:@odata.id}}/RefObjects_Nav",
+                            "QueryOptions": "$orderby=EquipID&$top=2&$expand=MyEquipment_Nav/ObjectStatus_Nav/SystemStatus_Nav&$filter=sap.entityexists(MyEquipment_Nav)"
+                        },
+                        "Layout": {
+                            "NumberOfColumns": 1
+                        },
+                        "Footer": {
+                            "AttributeLabel": "/SAPAssetManager/Rules/Equipment/EquipmentCount.js",
+                            "OnPress": "/SAPAssetManager/Actions/Equipment/EquipmentListViewNav.action"
+                        }
+                    }
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/FunctionalLocation/FunctionalLocationObjectTable.fragment",
+                    "Properties": {
+                        "_Name": "FuncLocationSection",
+                        "MaxItemCount": 2,
+                        "Header": {
+                            "UseTopPadding": true
+                        },
+                        "ObjectCell": {
+							"Title": "#Property:MyFunctionalLocation_Nav/#Property:FuncLocDesc",
+        					"Subhead": "#Property:MyFunctionalLocation_Nav/#Property:FuncLocId"
+						},
+                        "Footer": {
+							"Caption": "$(L,see_all)",
+							"AccessoryType": "DisclosureIndicator",
+							"FooterStyle": "Attribute",
+							"AttributeLabel": "/SAPAssetManager/Rules/FunctionalLocation/FunctionalLocationCount.js",
+							"OnPress": "/SAPAssetManager/Actions/FunctionalLocation/FunctionalLocationsListViewNav.action"
+						},
+                        "Layout": {
+                            "NumberOfColumns": 1
+                        },
+                        "Target": {
+							"EntitySet": "{{#Property:@odata.readLink}}/RefObjects_Nav",
+							"QueryOptions": "$orderby=FLocID&$top=2&$expand=MyFunctionalLocation_Nav&$filter=sap.entityexists(MyFunctionalLocation_Nav)"
+						}
+                    }
+                },
+				{
+                    "Header": {
+                        "Caption": "$(L, service_contract_warranty)",
+                        "UseTopPadding": true
+                    },
+                    "KeyAndValues": [
+                        {
+                            "_Name": "ContractAccount",
+                            "KeyName": "$(L, service_contract)",
+                            "Value": "/SAPAssetManager/Rules/Confirmations/Details/GetConfirmationServiceContractValue.js"
+                        },
+                        {
+                            "_Name": "WarrantyID",
+                            "KeyName": "$(L, warranty_id)",
+                            "Value": "/SAPAssetManager/Rules/Confirmations/Details/GetConfirmationWarrantyValue.js"
+                        }
+                    ],
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "SrvContractWarranty"
+                },
+                {
+                    "Header": {
+                        "UseTopPadding": true
+                    },
+                    "SimplePropertyCells": [
+                       {
+							"SimplePropertyCell": {
+								"AccessoryType": "DisclosureIndicator",
+								"KeyName": "$(L,notes)",
+								"Value": "/SAPAssetManager/Rules/Notes/NotesCount.js",
+								"OnPress": "/SAPAssetManager/Actions/Notes/NotesListViewNav.action"
+							}
+						},
+                        {
+                            "SimplePropertyCell": "/SAPAssetManager/Pages/Fragments/Documents/DocumentsSimplePropertyCell.fragment"
+                        },
+                        {
+                            "SimplePropertyCell": "/SAPAssetManager/Pages/Fragments/S4RelatedHistories/S4RelatedServiceRequestsFacet.fragment"
+                        },
+						{
+                           "SimplePropertyCell": {
+                                "KeyName": "$(L, organizational_data)",
+                                "AccessoryType": "DisclosureIndicator",
+                                "OnPress": "/SAPAssetManager/Rules/ServiceOrders/Details/OrganizationalData/OrganizationalDataNav.js",
+								"Visible": "/SAPAssetManager/Rules/ServiceOrders/Details/OrganizationalData/IsOrganizationalDataEnabled.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": "/SAPAssetManager/Pages/Fragments/S4RelatedHistories/S4RelatedServiceOrdersFacet.fragment"
+                        }
+                    ],
+                    "Layout": {
+                        "NumberOfColumns": 2,
+                        "MinimumInteritemSpacing": "$(PLT,66,0)"
+                    },
+                    "DataSubscriptions": ["S4ServiceConfirmationDocuments"],
+                    "_Type": "Section.Type.SimplePropertyCollection"
+                }
+            ]
+        }
+    ],
+    "FioriToolbar": {
+        "_Name": "ConfirmationsDetailsScreenFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Visible": "/SAPAssetManager/Rules/Confirmations/Details/IsConfirmationCompleted.js",
+        "Items": "/SAPAssetManager/Rules/Common/DetailsPageToolbar/DetailsPageToolbarItems.js"
+    },
+	"_Name": "ConfirmationsDetailsScreenPage",
+	"_Type": "Page"
+}

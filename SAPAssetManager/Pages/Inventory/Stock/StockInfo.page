@@ -1,0 +1,69 @@
+{
+	"_Type": "Page",
+	"_Name": "StockInfoPage",
+	"Caption": "/SAPAssetManager/Rules/Inventory/Stock/StockDescription.js",
+	"Controls": [
+		{
+			"_Type": "Control.Type.SectionedTable",
+			"_Name": "StockDetailsSectionedTable",
+			"Sections": [
+				{
+					"_Type": "Section.Type.KeyValue",
+					"_Name": "StockDetailsKevyValueSection",
+					"KeyAndValues": [
+						{
+                            "_Name": "MaterialNum",
+                            "KeyName": "$(L,material)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/Stock/StockNumberAndDescription.js"
+                        },
+                        {
+                            "_Name": "Plant",
+                            "KeyName": "$(L,plant)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/Stock/StockPlantDescription.js"
+                        },
+                        {
+                            "_Name": "StorageLocation",
+                            "KeyName": "$(L,storage_location)",
+                            "Value": "{StorageLocation} - {StorageLocationDesc}"
+                        },
+                         {
+                            "_Name": "StorageBin",
+                            "KeyName": "$(L,storage_bin)",
+                            "Value": "$(DV,{StorageBin}, '-')"
+                        },
+                        {
+                            "_Name": "UnrestrictedQuantity",
+                            "KeyName": "$(L,unrestricted_quantity)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/Stock/StockUnrestrictedQuantity.js"
+                        },                   
+						{
+                            "_Name": "Material.MaterialType",
+                            "KeyName": "$(L,material_type)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/Stock/StockMaterialType.js"
+                        },
+                        {
+                            "_Name": "MaterialGroup",
+                            "KeyName": "$(L,material_group)",
+                            "Value": "$(DV,{Material/MaterialGroup}, '-')"
+                        },
+                        {
+                            "_Name": "ManufacturerPartNum",
+                            "KeyName": "$(L,mpn)",
+                            "Value": "$(DV,{Material/ManufacturerPartNum}, '-')"
+                        },
+                        {
+                            "_Name": "SerialProfile",
+                            "KeyName": "$(L,serial_profile)",
+                            "Value": "$(DV,{MaterialPlant/SerialNumberProfile}, '-')"
+                        },
+                        {
+                            "_Name": "BatchIndicator",
+                            "KeyName": "$(L,batch_indicator)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/Stock/BatchIndicator.js"
+                        }
+					]
+				}
+			]
+		}
+	]
+}

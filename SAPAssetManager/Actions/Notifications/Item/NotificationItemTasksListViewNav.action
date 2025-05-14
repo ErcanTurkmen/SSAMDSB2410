@@ -1,0 +1,5 @@
+{
+    "_Type" : "Action.Type.Navigation",
+    "PageToOpen" : "/SAPAssetManager/Pages/Notifications/NotificationItemTasksListView.page",
+    "PageMetadata": "/SAPAssetManager/Rules/Notifications/Item/Task/NotificationItemTasksPageMetadata.js"
+}

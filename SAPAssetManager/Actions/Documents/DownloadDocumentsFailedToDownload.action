@@ -1,0 +1,9 @@
+{
+    "Message": "",
+    "Duration": 9999,
+    "Animated": true,
+	"ActionLabel": "$(PLT,'$(L, tap_error_message)','$(L, view_details)', '', '$(L, view_details)')",
+	"OnActionLabelPress": "/SAPAssetManager/Actions/Documents/DownloadDocumentsErrorsListViewNav.action",
+	"DismissBannerOnAction": true,
+    "_Type": "Action.Type.BannerMessage"
+}

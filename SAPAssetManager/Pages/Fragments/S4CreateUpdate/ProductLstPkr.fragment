@@ -1,0 +1,26 @@
+{
+    "_Type": "Control.Type.FormCell.ListPicker",
+    "_Name": "ProductLstPkr",
+    "Caption": "$(L,product)",
+    "AllowMultipleSelection": false,
+    "IsPickerDismissedOnSelection": true,
+    "IsSearchCancelledAfterSelection": true,
+    "Search": {
+        "Enabled": true,
+        "Delay": 500,
+        "MinimumCharacterThreshold": 3,
+        "Placeholder": "$(L,search)"
+    },
+    "Value": "{Product}",
+    "OnValueChange": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/OnRefObjectsValueChanged.js",
+    "IsEditable": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/IsRefObjectPickerEditable.js",
+    "PickerItems": {
+        "DisplayValue": "{{#Property:MaterialNum}} - {{#Property:Description}}",
+        "ReturnValue": "{MaterialNum}",
+        "Target": {
+            "EntitySet": "Materials",
+            "Service": "/SAPAssetManager/Services/AssetManager.service",
+            "QueryOptions": "$orderby=MaterialNum"
+        }
+    }
+}

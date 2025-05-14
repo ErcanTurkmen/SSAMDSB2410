@@ -1,0 +1,79 @@
+{
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "_Type": "Page",
+    "_Name": "CreatedPhysicalInventoryListPage",
+    "Caption": "$(L, physical_inventory_list)",
+    "ActionBar": {
+        "Items": [
+            {
+                "Position": "Left",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)",
+                "OnPress": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/CancelPhysicalInventoryCreate.js"
+            },
+            {
+                "Position": "Right",
+                "SystemItem": "$(PLT,'Done','','', 'Done')",
+                "Caption": "$(L,done)",
+                "Text": "$(L,done)",
+                "OnPress": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryCloseModalOnSave.js"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "Header": {
+                        "UseTopPadding": false
+                    },
+                    "Controls": [{
+                        "_Type": "Control.Type.FormCell.SimpleProperty",
+                        "_Name": "PlantStorageLocation",
+                        "Caption": "$(L, plant_storage_location)",
+                        "Value": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryItemPlantStorageLocationValue.js",
+                        "IsEditable": false
+                    }],
+                    "_Type": "Section.Type.FormCell",
+                    "_Name": "FormCellSection1"
+                },
+                {
+                    "Header": {
+                        "Caption": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryDocumentItemsCountCaption.js"
+                    },
+                    "ObjectCell": {
+                        "Title": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/GetMaterialBinBatchForItem.js",
+                        "StatusText": "{EntryQuantity} {EntryUOM}",
+                        "AccessoryType": "DisclosureIndicator"
+                    },
+                    "Target": {
+                        "EntitySet": "PhysicalInventoryDocItems",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryDocItemsQueryOptions.js"
+                    },
+                    "EmptySection": {
+                      "Caption": "$(L,no_items)"
+                    },
+                    "Visible": true,
+                    "_Name": "DisplayPhysicalInventoryDocItems",
+                    "_Type": "Section.Type.ObjectTable"
+                }, 
+                {
+                    "_Type": "Section.Type.ButtonTable",
+                    "_Name": "AddAnotherMaterial",
+                    "Buttons": [
+                        {
+                            "_Type": "ButtonTable.Type.Button",
+                            "Visible": true,
+                            "Title" : "$(L, add_another_item)",
+                            "OnPress" : "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryItemCreateNavWrapper.js",
+                            "TextAlignment": "Center"
+                        } 
+                    ]
+                }
+            ],
+            "_Name": "SectionedTable",
+            "_Type": "Control.Type.SectionedTable"
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "_Type": "Action.Type.ODataService.CreateEntity",
+    "Headers": {
+        "OfflineOData.RemoveAfterUpload": "true",
+        "OfflineOData.TransactionID": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetHeaderLocalId.js"
+    },
+    "Target":
+    {
+        "EntitySet": "PurchaseRequisitionHeaders",
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "Properties":
+    {
+        "PurchaseReqNo": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetHeaderLocalId.js"
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "Message": "$(L,scanner_barcode_no_match)",
+    "Duration": 5,
+    "Animated": true,
+    "_Type": "Action.Type.BannerMessage"
+}

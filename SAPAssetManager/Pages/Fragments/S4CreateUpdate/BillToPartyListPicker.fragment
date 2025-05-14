@@ -1,0 +1,26 @@
+{
+   "_Type": "Control.Type.FormCell.ListPicker",
+   "_Name": "BillToPartyLstPkr",
+   "Caption": "$(L,bill_to_party)*",
+   "AllowMultipleSelection": false,
+   "IsPickerDismissedOnSelection": true,
+   "IsSearchCancelledAfterSelection": true,
+   "Search": {
+       "Enabled": true,
+       "Delay": 500,
+       "MinimumCharacterThreshold": 3,
+       "Placeholder": "$(L,search)"
+   },
+   "Value": "{BillToParty}",
+   "IsEditable": "/SAPAssetManager/Rules/Common/IsOnCreate.js",
+   "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js",
+   "PickerItems": {
+       "DisplayValue": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/BillToPartyPickerItemsDisplayValue.js",
+       "ReturnValue": "{BusinessPartnerTo}",
+       "Target": {
+           "EntitySet": "S4BPRelationships",
+           "Service": "/SAPAssetManager/Services/AssetManager.service",
+           "QueryOptions": "$expand=S4BusinessPartner_Nav"
+       }
+   }
+}

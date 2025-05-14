@@ -1,0 +1,22 @@
+{
+	"Caption": "$(L, workorders)",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/WCM/Fragments/RelatedWorkOrders/RelatedWorkOrdersObjectTable.fragment",
+					"Properties": {
+						"Search": {
+							"Enabled": true
+						}
+					}
+				}
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"_Name": "WCMRelatedWorkOrdersListViewPage",
+	"_Type": "Page"
+}

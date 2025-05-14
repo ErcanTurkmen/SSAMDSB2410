@@ -1,0 +1,34 @@
+{
+	"Caption": "/SAPAssetManager/Rules/S4RelatedHistories/S4RelatedHistoriesPendingCaption.js",
+	"Controls": [
+		{
+			"_Type": "Control.Type.SectionedTable",
+			"Sections": [
+				{
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/S4RelatedHistories/S4RelatedHistoriesPendingSection.fragment",
+					"Properties": {
+						"MaxItemCount": null,
+						"Header": {
+							"Caption": null,
+							"UseTopPadding": false
+						},
+						"Search": {
+							"Enabled": true,
+							"Delay": 500,
+							"MinimumCharacterThreshold": 3,
+							"Placeholder": "$(L,search)",
+							"BarcodeScanner": true
+						},
+						"Footer": null,
+						"Target": {
+							"QueryOptions":"/SAPAssetManager/Rules/S4RelatedHistories/S4RelatedHistoriesQueryOptions.js"
+						}
+					}
+				}
+			]
+		}
+	],
+	"_Type": "Page",
+	"_Name": "S4RelatedHistoriesPendingListViewPage"
+}

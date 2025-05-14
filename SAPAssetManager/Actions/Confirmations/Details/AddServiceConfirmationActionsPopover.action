@@ -1,0 +1,28 @@
+{
+	"PopoverItems": [
+        {
+            "Title": "$(L, add_confirmation_item)",
+            "Visible": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/AddConfirmationToServiceItemEnabled.js",
+            "OnPress": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/ServiceConfirmationCreateNav.js"
+        },
+        {
+            "Title": "$(L, add_hoc_confirmation_item)",
+            "Visible": false,
+            "OnPress": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/ServiceHocConfirmationCreateUpdateNav.js"
+        },
+        {
+            "Title": "$(L, add_note)",
+            "Visible": "/SAPAssetManager/Rules/Confirmations/Details/IsEditServiceConfirmationEnabled.js",
+            "OnPress": "/SAPAssetManager/Rules/Notes/NoteCreateNav.js"
+        },
+        {
+            "Title": "$(L, add_attachment)",
+            "Visible": "/SAPAssetManager/Rules/Confirmations/Details/IsEditServiceConfirmationEnabled.js",
+            "OnPress": "/SAPAssetManager/Rules/Documents/Create/DocumentCreateBDSNav.js"
+        },
+        {
+            "Title": "$(L, add_service_quotation)"
+        }
+    ],
+	"_Type": "Action.Type.PopoverMenu"
+}

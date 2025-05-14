@@ -1,0 +1,47 @@
+{
+	"_Type": "Page",
+	"_Name": "SelectConfirmationPage",
+	"Caption": "$(L, select_confirmation)",
+	"OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+	"ActionBar": {
+		"Items": [
+			{
+				"Position": "Left",
+				"SystemItem": "Cancel",
+				"Caption": "$(L,cancel)",
+				"OnPress": "/SAPAssetManager/Rules/Common/CheckForChangesBeforeCancel.js",
+				"Visible": "/SAPAssetManager/Rules/WorkOrders/Complete/IsNotCompleteAction.js"
+			}
+		]
+	},
+	"Controls": [
+		{
+			"_Type": "Control.Type.SectionedTable",
+			"_Name": "SectionedTable",
+			"Sections": [
+				{
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/Confirmations/ConfirmationsObjectTableSection.fragment",
+					"Properties": {
+						"_Name": "ConfirmationSelectionSection",
+						"Footer": {
+							"Visible": false
+						},
+						"Header": {
+							"UseTopPadding": false
+						},
+						"Search": {
+							"Enabled": false
+						},
+						"ObjectCell": {
+							"OnPress": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/SelectedServiceConfirmationCreateNav.js"
+						},
+						"Target": {
+							"QueryOptions": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/NotCompletedServiceConfirmationsQueryOptions.js"
+						}
+					}
+				}
+			]
+		}
+	]
+}

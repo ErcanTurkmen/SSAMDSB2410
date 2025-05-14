@@ -1,0 +1,61 @@
+{
+	"Caption": "/SAPAssetManager/Rules/WorkOrders/History/WorkOrderRelatedHistoryCaption.js",
+	"Controls": [
+		{
+			"_Type": "Control.Type.SectionedTable",
+			"Sections": [
+                {
+                    "Header": {
+                        "Caption": "$(L,previous_workorders)"
+                    },
+                    "EmptySection": {
+                        "Caption": "$(L,no_recent_workorders_available)"
+                    },
+                    "MaxItemCount": 3,
+                    "ObjectCell": "/SAPAssetManager/Pages/Fragments/WorkOrder/History/RelatedWorkOrderObjectCell.fragment",
+                    "Footer": {
+                        "Caption": "$(L,see_all)",
+                        "AccessoryType": "DisclosureIndicator",
+                        "FooterStyle": "Attribute",
+                        "AttributeLabel": "/SAPAssetManager/Rules/WorkOrders/History/WorkOrderHistoryRecentCount.js",
+                        "OnPress": "/SAPAssetManager/Rules/WorkOrders/History/WorkOrderHistoriesRecentListViewNav.js"
+                    },
+                    "Target": {
+                        "EntitySet": "/SAPAssetManager/Rules/WorkOrders/History/WorkOrderHistoryEntitySet.js",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "/SAPAssetManager/Rules/WorkOrders/History/WorkOrderRelatedHistoriesQueryOptions.js"
+                    },
+                    "_Name": "WorkorderHistoryListViewSection",
+                    "_Type": "Section.Type.ObjectTable"
+                },
+				{
+                    "Header": {
+                        "Caption": "$(L,pending_workorders)"
+                    },
+                    "EmptySection": {
+                        "Caption": "$(L,no_pending_workorders_available)"
+
+                    },
+                    "MaxItemCount": 3,
+                    "ObjectCell": "/SAPAssetManager/Pages/Fragments/WorkOrder/History/RelatedWorkOrderObjectCell.fragment",
+                    "Footer": {
+                        "Caption": "$(L,see_all)",
+                        "AccessoryType": "DisclosureIndicator",
+                        "FooterStyle": "Attribute",
+                        "AttributeLabel": "/SAPAssetManager/Rules/WorkOrders/History/WorkOrderHistoryPendingCount.js",
+                        "OnPress": "/SAPAssetManager/Rules/WorkOrders/History/WorkOrderHistoriesPendingListViewNav.js"
+                    },
+                    "Target": {
+                        "EntitySet": "/SAPAssetManager/Rules/WorkOrders/History/WorkOrderHistoryEntitySet.js",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions":"$filter=ReferenceType eq 'P'&$expand=HistoryLongText,HistoryPriority&$top=3&$orderby=Priority,OrderId desc"
+                    },
+                    "_Name": "WorkorderPendingListViewSection",
+                    "_Type": "Section.Type.ObjectTable"
+                }
+			]
+		}
+	],
+	"_Type": "Page",
+	"_Name": "WorkOrderRelatedHistoriesListViewPage"
+}

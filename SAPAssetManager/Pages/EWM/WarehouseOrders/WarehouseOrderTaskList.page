@@ -1,0 +1,69 @@
+{
+	"Caption": "$(L,emw_wo_tasks)",
+	"ActionBar": {
+		"Items": [
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment"
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Header": {
+						"Caption": "/SAPAssetManager/Rules/EWM/WarehouseTask/ListView/WarehouseTaskListCaption.js",
+						"UseTopPadding": false
+					},
+					"EmptySection": {
+						"Caption": "$(L,ewm_no_tasks)"
+					},
+					"ObjectCell": "/SAPAssetManager/Pages/Fragments/EWM/WarehouseTaskCell.fragment",
+					"Search": {
+						"Enabled": true,
+						"Delay": 500,
+						"MinimumCharacterThreshold": 3,
+						"Placeholder": "$(L,search)",
+						"BarcodeScanner": true
+					},
+					"Target": {
+						"EntitySet": "WarehouseTasks",
+						"QueryOptions": "/SAPAssetManager/Rules/EWM/WarehouseTask/ListView/WarehouseTaskListQuery.js",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					},
+					"_Name": "WarehouseTasksSectionObjectTable",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"FilterFeedbackBar": {
+				"_Type": "Control.Type.FilterFeedbackBar",
+				"_Name": "FilterFeedback",
+				"ShowAllFilters": true,
+				"FastFilters": [
+					{
+						"_Name": "OpenTasks",
+						"_Type": "Control.Type.FastFilterItem",
+						"FilterType": "Filter",
+						"FilterProperty": "",
+						"CustomQueryGroup": "TasksFilter",
+						"DisplayValue": "/SAPAssetManager/Rules/EWM/WarehouseTask/ListView/WarehouseTaskOpenFilterDisplayValue.js",
+						"ReturnValue": "WTStatus eq '' or WTStatus eq 'B'"
+					},
+					{
+						"_Name": "ConfirmedTasks",
+						"_Type": "Control.Type.FastFilterItem",
+						"FilterType": "Filter",
+						"FilterProperty": "",
+						"CustomQueryGroup": "TasksFilter",
+						"DisplayValue": "/SAPAssetManager/Rules/EWM/WarehouseTask/ListView/WarehouseTaskConfirmedFilterDisplayValue.js",
+						"ReturnValue": "WTStatus eq 'C'"
+					}
+				]
+			},
+			"Filters": "/SAPAssetManager/Rules/EWM/WarehouseTask/ListView/GetWarehouseTaskPreselectedFilter.js",
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"OnLoaded": "/SAPAssetManager/Rules/EWM/WarehouseTask/ListView/PageOnLoaded.js",
+	"_Name": "WarehouseOrderTaskList",
+	"_Type": "Page"
+}

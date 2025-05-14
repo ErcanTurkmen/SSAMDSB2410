@@ -1,0 +1,5 @@
+{
+    "_Type" : "Action.Type.Navigation",
+    "PageToOpen" : "/SAPAssetManager/Pages/Meters/ConnectionObjectDetails.page",
+    "PageMetadata": "/SAPAssetManager/Rules/Meters/ConnectionObjectDetailsPageMetadata.js"
+}

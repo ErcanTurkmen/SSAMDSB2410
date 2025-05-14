@@ -1,0 +1,11 @@
+{
+    "Actions": [
+        "/SAPAssetManager/Actions/ServiceConfirmations/ServiceConfirmationCreateUpdateNav.action"
+    ],
+    "OnSuccess": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/SetConfirmationStatuses.js",
+    "OnFailure" : "/SAPAssetManager/Rules/Common/ChangeSet/ChangeSetOnFailure.js",
+    "Target": {
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "_Type": "Action.Type.ODataService.ChangeSet"
+}

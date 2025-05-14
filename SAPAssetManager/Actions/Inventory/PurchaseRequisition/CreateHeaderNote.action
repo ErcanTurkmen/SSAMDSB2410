@@ -1,0 +1,25 @@
+{
+    "_Type": "Action.Type.ODataService.CreateEntity",
+    "Headers": {
+        "OfflineOData.RemoveAfterUpload": "true",
+        "OfflineOData.TransactionID": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetHeaderLocalId.js"
+    },
+    "Target": {
+        "EntitySet": "PurchaseRequisitionLongTexts",
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "CreateLinks": [
+        {
+            "Property": "PurchaseRequisitionHeader_Nav",
+            "Target": {
+                "EntitySet": "PurchaseRequisitionHeaders",
+                "ReadLink": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetHeaderLink.js"
+            }
+        }
+    ],
+    "Properties": {
+        "PurchaseReqNo": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetHeaderLocalId.js",
+        "NewTextString": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetHeaderNote.js",
+        "TextString": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetHeaderNote.js"
+    }
+}

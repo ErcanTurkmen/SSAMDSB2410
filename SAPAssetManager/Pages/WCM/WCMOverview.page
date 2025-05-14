@@ -1,0 +1,195 @@
+{
+	"Caption": "$(L,app_display_name)",
+	"ActionBar": {
+		"Items": [
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment"
+		]
+	},
+	"Controls": [
+		{
+			"_Type": "Control.Type.SectionedTable",
+			"_Name": "OverviewPageSectionedTable",
+			"Sections": [
+				"/SAPAssetManager/Pages/Fragments/Map/WCMMapSection.fragment",
+				{
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/QAB/QuickActionBarExtensionSection.fragment",
+					"Properties": {
+						"ExtensionProperties": {
+							"Chips": "/SAPAssetManager/Rules/WCM/OverviewQABChips.js"
+						}
+					}
+				},
+				{
+					"_Type": "Section.Type.ObjectCollection",
+					"Visible": "/SAPAssetManager/Rules/UserFeatures/IsWCMSafetyCertificateEnabled.js",
+					"Layout": {
+						"NumberOfColumns": 2,
+						"MinimumInteritemSpacing": "$(PLT,66,0)"
+					},
+					"_Name": "OperationalItemsSection",
+					"Header": {
+						"Caption": "$(L,wcm_operational_items)",
+						"UseTopPadding": false
+					},
+					"EmptySection": {
+						"Caption": "$(L,wcm_no_operational_items)"
+					},
+					"MaxItemCount": 4,
+					"ObjectCell": "/SAPAssetManager/Pages/WCM/Fragments/OperationalItems/OperationalItemObjectCell.fragment",
+					"Target": {
+						"EntitySet": "WCMDocumentItems",
+						"Service": "/SAPAssetManager/Services/AssetManager.service",
+						"QueryOptions": "/SAPAssetManager/Rules/WCM/OperationalItems/ListView/OperationalItemsListViewQueryOptions.js"
+					},
+					"Footer": {
+						"Caption": "$(L,see_all)",
+						"AccessoryType": "DisclosureIndicator",
+						"AttributeLabel": "/SAPAssetManager/Rules/WCM/OperationalItems/OperationalItemsCount.js",
+						"FooterStyle": "Attribute",
+						"OnPress": "/SAPAssetManager/Rules/WCM/OperationalItems/ListView/OperationalItemsListViewNav.js",
+						"Visible": "/SAPAssetManager/Rules/WCM/WCMOverviewRules/SeeAllIsVisible.js"
+					},
+					"DataSubscriptions": ["PMMobileStatuses"]
+				},
+				{
+					"_Type": "Section.Type.ObjectCollection",
+					"Visible": "/SAPAssetManager/Rules/UserFeatures/IsWCMSafetyCertificateEnabled.js",
+					"Layout": {
+						"NumberOfColumns": 2,
+						"MinimumInteritemSpacing": "$(PLT,66,0)"
+					},
+					"_Name": "CertificatesSection",
+					"Header": {
+						"Caption": "$(L,isolation_certificates)"
+					},
+					"EmptySection": {
+						"Caption": "$(L,wcm_no_certificates)"
+					},
+					"MaxItemCount": 4,
+					"ObjectCell": "/SAPAssetManager/Pages/WCM/Fragments/SafetyCertificateObjectCell.fragment",
+					"Target": {
+						"EntitySet": "WCMDocumentHeaders",
+						"Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "/SAPAssetManager/Rules/WCM/SafetyCertificates/LOTOCertificatesOverviewPageQueryOption.js"
+					},
+					"Footer": {
+						"Caption": "$(L,see_all)",
+						"AccessoryType": "DisclosureIndicator",
+						"OnPress":"/SAPAssetManager/Actions/WCM/LOTOCertificatesListViewNav.action",
+						"AttributeLabel": "/SAPAssetManager/Rules/WCM/SafetyCertificates/LOTOCertificatesCount.js",
+						"FooterStyle": "Attribute",
+						"Visible": "/SAPAssetManager/Rules/WCM/WCMOverviewRules/SeeAllIsVisible.js"
+					},
+					"DataSubscriptions": ["PMMobileStatuses", "WCMDocumentItems"]
+				},
+                {
+					"_Type": "Section.Type.ObjectCollection",
+					"Visible": "/SAPAssetManager/Rules/UserFeatures/IsWCMWorkPermitEnabled.js",
+					"Layout": {
+						"NumberOfColumns": 2,
+						"MinimumInteritemSpacing": "$(PLT,66,0)"
+					},
+					"_Name": "WorkPermitsSection",
+					"Header": {
+						"Caption": "$(L,wcm_work_permits)",
+						"UseTopPadding": "/SAPAssetManager/Rules/UserFeatures/IsWCMSafetyCertificateEnabled.js"
+					},
+					"EmptySection": {
+						"Caption": "$(L,wcm_no_work_permits)"
+					},
+					"MaxItemCount": 4,
+					"ObjectCell": "/SAPAssetManager/Pages/WCM/Fragments/WorkPermitObjectCell.fragment",
+					"Target": {
+						"EntitySet": "WCMApplications",
+						"Service": "/SAPAssetManager/Services/AssetManager.service",
+						"QueryOptions": "/SAPAssetManager/Rules/WCM/WorkPermits/WorkPermitsListViewQueryOption.js"
+					},
+					"Footer": {
+						"Caption": "$(L,see_all)",
+						"AccessoryType": "DisclosureIndicator",
+						"AttributeLabel": "/SAPAssetManager/Rules/WCM/WorkPermits/WorkPermitsCount.js",
+						"FooterStyle": "Attribute",
+						"OnPress": "/SAPAssetManager/Actions/WCM/WorkPermitsListViewNav.action",
+						"Visible": "/SAPAssetManager/Rules/WCM/WCMOverviewRules/SeeAllIsVisible.js"
+					}
+				},
+                {
+					"_Type": "Section.Type.ObjectCollection",
+					"Visible": "/SAPAssetManager/Rules/UserFeatures/IsWCMWorkOrderEnabled.js",
+					"Layout": {
+						"NumberOfColumns": 2,
+						"MinimumInteritemSpacing": "$(PLT,66,0)"
+					},
+					"_Name": "WCMOverviewWorkorders",
+					"Header": {
+						"Caption": "$(L,workorders)",
+						"UseTopPadding": "/SAPAssetManager/Rules/WCM/WCMOverviewRules/WorkOrdersSectionUseTopPadding.js"
+					},
+					"EmptySection": {
+						"Caption": "$(L,no_workorders_available)"
+					},
+					"MaxItemCount": 4,
+					"ObjectCell": "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderObjectCell.fragment",
+					"Target": {
+				        "EntitySet" : "MyWorkOrderHeaders",
+				        "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "/SAPAssetManager/Rules/WorkOrders/ListView/WorkOrdersListViewQueryOptionWrapper.js"
+                    },
+					"Footer": {
+						"Caption": "$(L,see_all)",
+						"AccessoryType": "DisclosureIndicator",
+						"AttributeLabel": "/SAPAssetManager/Rules/WCM/WCMOverviewRules/WorkOrdersCount.js",
+						"FooterStyle": "Attribute",
+						"OnPress": "/SAPAssetManager/Rules/WorkOrders/WorkOrdersListViewNav.js"
+					}
+				},
+                {
+					"SimplePropertyCells": [
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "DisclosureIndicator",
+								"KeyName": "$(L,equipment)",
+								"Value": "/SAPAssetManager/Rules/Equipment/EquipmentCount.js",
+								"OnPress": "/SAPAssetManager/Rules/Equipment/EquipmentListViewNav.js"
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "DisclosureIndicator",
+								"KeyName": "$(L,functional_locations)",
+								"Value": "/SAPAssetManager/Rules/FunctionalLocation/FunctionalLocationCount.js",
+								"OnPress": "/SAPAssetManager/Rules/FunctionalLocation/FunctionalLocationListViewNav.js"
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "DisclosureIndicator",
+								"KeyName": "$(L,reminders)",
+								"Value": "/SAPAssetManager/Rules/OverviewPage/OverviewPageRemindersCount.js",
+								"OnPress": "/SAPAssetManager/Actions/Reminders/RemindersListViewNav.action"
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "DisclosureIndicator",
+								"KeyName": "$(L,notifications)",
+								"Value": "/SAPAssetManager/Rules/Notifications/NotificationsTotalCount.js",
+								"OnPress": "/SAPAssetManager/Actions/Notifications/NotificationsListViewNav.action"
+							}
+						}
+					],
+					"Layout": {
+						"NumberOfColumns": 2,
+						"MinimumInteritemSpacing": "$(PLT,66,0)"
+					},
+					"DataSubscriptions": ["MyNotificationHeaders", "UserPreferences"],
+					"_Type": "Section.Type.SimplePropertyCollection"
+				}
+			]
+		}
+	],
+	"_Type": "Page",
+	"_Name": "WCMOverviewPage",
+	"DataSubscriptions": ["/SAPAssetManager/Services/AssetManager.service"]
+}

@@ -1,0 +1,52 @@
+{
+    "_Type": "Section.Type.ObjectCollection",
+    "Visible": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/TimeCaptureSectionVisible.js",
+    "Layout": {
+        "NumberOfColumns": 2,
+        "MinimumInteritemSpacing": "$(PLT,66,0)"
+    },
+    "_Name": "TimeCaptureSection",
+    "Header": {
+        "Caption": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/TimeCaptureSectionTitle.js"
+    },
+    "ObjectCells": [
+        {
+            "ObjectCell": {
+                "PreserveIconStackSpacing": false,
+                "Icons": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/TimeCaptureSectionTodayIcons.js",
+                "AccessoryType": "DisclosureIndicator",
+                "Title": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/TimeCaptureSectionDateTitle.js",
+                "Subhead": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/TimeCaptureSectionTodayHours.js",
+                "OnPress": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/OnPressTimeCaptureSectionToday.js",
+                "StatusText": "/SAPAssetManager/Rules/Crew/TimeSheets/CrewTimeSheetsTodaysCrewMembers.js",
+                "SubstatusText": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/TimeCaptureSectionTodayHours.js",
+                "Styles": {
+                    "Subhead": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/SubHeadFontColorToday.js"
+                }
+            }
+        },
+        {
+            "ObjectCell": {
+                "PreserveIconStackSpacing": false,
+                "Icons": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/TimeCaptureSectionYesterdayIcons.js",
+                "AccessoryType": "DisclosureIndicator",
+                "Title": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/TimeCaptureSectionYesterdayTitle.js",
+                "Subhead": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/TimeCaptureSectionYesterdayHours.js",
+                "OnPress": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/OnPressTimeCaptureSectionTomorrow.js",
+                "StatusText": "/SAPAssetManager/Rules/Crew/TimeSheets/CrewTimeSheetsPreviousDayCrewMembers.js",
+                "SubstatusText": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/TimeCaptureSectionYesterdayHours.js",
+                "Styles": {
+                    "Subhead": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/SubHeadFontColorYesterday.js"
+                }
+            }
+        }
+    ],
+    "Footer": {
+        "Caption": "$(L,see_all)",
+        "AccessoryType": "DisclosureIndicator",
+        "AttributeLabel": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/TimeCaptureSectionCount.js",
+        "FooterStyle": "Attribute",
+        "OnPress": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/OnPressTimeCaptureSectionSeeAll.js"
+    },
+    "DataSubscriptions": "/SAPAssetManager/Rules/Crew/OverviewPageTimeCaptureDataSubscription.js"
+}

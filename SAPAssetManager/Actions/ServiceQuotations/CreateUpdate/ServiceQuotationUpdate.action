@@ -1,0 +1,33 @@
+{
+	"_Type": "Action.Type.ODataService.UpdateEntity",
+    "Target": {
+        "EntitySet": "S4ServiceQuotations",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+		"ReadLink": "{@odata.readLink}"
+    },
+    "Properties": {
+        "Description": "#Page:ServiceQuotationCreateUpdatePage/#Control:DescriptionNote/#Value",
+        "Priority": "#Page:ServiceQuotationCreateUpdatePage/#Control:PrioritySeg/#SelectedValue",
+		"QuotationStartDateTime": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationValidFromDateValue.js",
+		"QuotationEndDateTime": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationValidToDateValue.js",
+		"Category1": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/GetServiceQuotationCategory1.js",
+		"Category2": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/GetServiceQuotationCategory2.js",
+		"Category3": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/GetServiceQuotationCategory3.js",
+		"Category4": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/GetServiceQuotationCategory4.js",
+		"SchemaID": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationSchemaIDValue.js",
+		"CategoryID": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationCategoryIDValue.js",
+		"SubjectProfile": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationSubjectProfileValue.js",
+		"CatalogType": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationCatalogTypeValue.js",
+		"CodeGroup": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationCodeGroupValue.js",
+		"Code": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationCodeValue.js"
+    },
+    "Headers": {
+        "OfflineOData.TransactionID": "#Property:ObjectID"
+    },	
+	"CreateLinks": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationCreateLinks.js",
+	"UpdateLinks": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationUpdateLinks.js",
+	"DeleteLinks": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationDeleteLinks.js",
+    "OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/UpdateEntityFailureMessage.action",
+    "ShowActivityIndicator": true,
+    "ActivityIndicatorText" : "  "
+}

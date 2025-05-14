@@ -1,0 +1,15 @@
+[
+    {
+        "Position": "Right",
+        "SystemItem": "Edit",
+        "Caption": "$(L,edit)",
+        "Visible": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/EditSericeItemEnabled.js",
+        "OnPress": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/EditSericeItemNav.js"
+    },
+    {
+        "Position": "Right",
+        "SystemItem": "Add",
+        "Caption": "$(L,add)",
+        "OnPress": "/SAPAssetManager/Actions/ServiceOrders/Item/CreateItemPopover.action"
+    }
+]

@@ -1,0 +1,70 @@
+{
+	"Caption": "$(L, prod_ord_header)",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"KeyAndValues": [
+						{
+                            "KeyName": "$(L, status)",
+							"Value": "$(L, open)"
+                        },
+						{
+                            "_Name": "OrderType",
+                            "KeyName": "$(L, order_type)",
+							"Value": "{OrderType}"
+                        },
+						{
+                            "_Name": "ProductionPlant",
+                            "KeyName": "$(L, plant)",
+							"Value": "{ProductionPlant}"
+                        },
+						{
+                            "_Name": "BasicStartDate",
+                            "KeyName": "$(L, basic_start_date)",
+							"Value": "/SAPAssetManager/Rules/Inventory/ProductionOrder/GetBasicStartDateForProductionOrderHeader.js"
+                        },
+						{
+                            "_Name": "Reservation",
+                            "KeyName": "$(L, reservation)",
+							"Value": "{Reservation}"
+                        },
+						{
+                            "_Name": "RoutingNumber",
+                            "KeyName": "$(L, routing_no)",
+							"Value": "{RoutingNumber}"
+                        },
+                        {
+                            "_Name": "ProductionOrderText.TextString",
+                            "KeyName": "$(L, note)",
+							"Value": "/SAPAssetManager/Rules/Inventory/ProductionOrder/GetProductionOrderText.js"
+                        }
+					],
+					"_Type": "Section.Type.KeyValue",
+                    "_Name": "KeyValueTable"
+				}
+			],
+			"Target": {
+				"Service": "/SAPAssetManager/Services/AssetManager.service",
+				"EntitySet": "ProductionOrderHeaders"
+			},
+			"_Type": "Control.Type.SectionedTable",		
+			"_Name": "SectionedTable0"
+		}
+	],
+	"FioriToolbar": {
+		"_Name": "ProductionOrderHeaderFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Items": [
+            {
+                "_Name": "IssuePartTbI",
+                "_Type": "FioriToolbarItem.Type.Button",
+                "Enabled" : "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/BulkGoodsIssueIsAllowed.js",
+                "Title": "$(L,issue_all)",
+                "OnPress": "/SAPAssetManager/Rules/Inventory/ProductionOrder/SetProductionOrderComponentsGoodsIssueIssueAll.js"
+            }
+        ]
+    },
+	"_Type": "Page",
+	"_Name": "ProductionOrderHeader"
+}

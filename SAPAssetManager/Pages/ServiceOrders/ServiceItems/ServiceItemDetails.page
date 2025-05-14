@@ -1,0 +1,224 @@
+{
+    "Caption": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemHeader.js",
+    "OnReturning": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemDetailsPageOnReturning.js",
+    "ActionBar": {
+        "Items": "/SAPAssetManager/Pages/Fragments/S4ServiceItems/S4ServiceItemActionBarItems.fragment"
+    },
+    "Controls": [
+        {
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable",
+            "Sections": [
+                {
+                    "_Type": "Section.Type.ObjectHeader",
+                    "ObjectHeader": {
+                        "HeadlineText": "{ItemDesc}",
+                        "DetailImage": "$(PLT, /SAPAssetManager/Images/DetailImages/ServiceItem.ios.png, /SAPAssetManager/Images/DetailImages/ServiceItem.android.png)",
+                        "StatusText": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemStatusText.js",
+                        "Subhead": "/SAPAssetManager/Rules/DateTime/DueDate.js"
+                    }
+                },
+                {
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/QAB/QuickActionBarExtensionSection.fragment",
+					"Properties": {
+						"ExtensionProperties": {
+							"Chips": "/SAPAssetManager/Rules/ServiceItems/QAB/ServiceItemsQABChips.js"
+						}
+					}
+				},
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderDetails/ProgressTrackerSectionWorkOrderDetails.fragment",
+                    "Properties": {
+                        "Footer": {
+                            "UseBottomPadding": true
+                        }
+                    }
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Equipment/ObjectTableSection.fragment",
+                    "Properties": {
+                        "Header": {
+                            "UseTopPadding": "/SAPAssetManager/Rules/TimelineControl/IsTimelineControlVisible.js"
+                        },
+                        "ObjectCell": {
+                            "Title": "#Property:Equipment_Nav/#Property:EquipDesc",
+                            "Subhead": "#Property:EquipID",
+                            "StatusText": "#Property:Equipment_Nav/#Property:ObjectStatus_Nav/#Property:SystemStatus_Nav/#Property:StatusText",
+                            "Description": "#Property:Equipment_Nav/#Property:TechnicalID",
+                            "DetailImage": "/SAPAssetManager/Rules/Equipment/EquipmentDetailImage.js"
+                        },
+                        "Target": {
+                            "EntitySet": "{{#Property:@odata.readLink}}/RefObjects_Nav",
+                            "QueryOptions": "$orderby=EquipID&$top=2&$expand=Equipment_Nav/ObjectStatus_Nav/SystemStatus_Nav&$filter=sap.entityexists(Equipment_Nav)"
+                        },
+                        "Footer": {
+                            "AttributeLabel": "/SAPAssetManager/Rules/Equipment/EquipmentCount.js",
+                            "Visible": "/SAPAssetManager/Rules/Equipment/EquipmentsListFooterVisible.js"
+                        },
+                        "DataSubscriptions": ["S4ServiceOrderRefObjs"]
+                    }
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/FunctionalLocation/FunctionalLocationObjectTable.fragment",
+                    "Properties": {
+                        "ObjectCell": {
+                            "Title": "#Property:FuncLoc_Nav/#Property:FuncLocDesc",
+                            "Subhead": "#Property:FuncLoc_Nav/#Property:FuncLocId",
+                            "DetailImage": "/SAPAssetManager/Rules/FunctionalLocation/FunctionaLocationDetailImage.js"
+                        },
+                        "Footer": {
+                            "Caption": "$(L,see_all)",
+                            "AccessoryType": "DisclosureIndicator",
+                            "FooterStyle": "Attribute",
+                            "Visible": "/SAPAssetManager/Rules/FunctionalLocation/FunctionalLocationListFooterVisible.js",
+                            "AttributeLabel": "/SAPAssetManager/Rules/FunctionalLocation/FunctionalLocationCount.js",
+                            "OnPress": "/SAPAssetManager/Actions/FunctionalLocation/FunctionalLocationsListViewNav.action"
+                        },
+                        "Target": {
+                            "EntitySet": "{{#Property:@odata.readLink}}/RefObjects_Nav",
+                            "QueryOptions": "$orderby=FLocID&$top=2&$expand=FuncLoc_Nav&$filter=sap.entityexists(FuncLoc_Nav)"
+                        },
+                        "DataSubscriptions": ["S4ServiceOrderRefObjs"]
+                    }
+                },
+                {
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/NotesObjectSection.fragment",
+					"Properties": {
+						"Header": {
+							"Items": [
+								{
+									"_Type": "SectionHeaderItem.Type.Label",
+									"_Name": "notes_section_caption",
+									"Title": "$(L,notes)",
+									"Position": "Left"
+								},
+								{
+									"_Name": "add_note_btn_label",
+									"Title": "$(L,add)",
+									"_Type": "SectionHeaderItem.Type.Button",
+									"Position": "Right",
+									"OnPress": "/SAPAssetManager/Rules/Notes/NoteCreateNav.js",
+									"Visible": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/IsServiceItemOrderNotCompleted.js",
+									"Styles": {
+										"Button": "HeaderItemButtonText"
+									}
+								}
+							]
+						},
+						"Target": {
+							"EntitySet": "{{#Property:@odata.readLink}}/LongText_Nav"
+						},
+						"ObjectCell": {
+							"Title": "/SAPAssetManager/Rules/Notes/List/NoteType.js",
+							"Subhead": "{TextString}",
+							"AccessoryButtonIcon": "/SAPAssetManager/Rules/Notes/List/NoteAccessoryButtonIcon.js",
+							"OnAccessoryButtonPress": "/SAPAssetManager/Rules/Notes/List/NoteEditNavFromList.js",
+							"Footnote": "/SAPAssetManager/Rules/Notes/List/NoteTime.js",
+							"OnPress": "/SAPAssetManager/Rules/Notes/List/NoteDetailsNavFromList.js",
+							"Styles": {
+								"Title": ""
+							}
+						},
+						"Footer": {
+							"Caption": "$(L,see_all)",
+							"AccessoryType": "DisclosureIndicator",
+							"AttributeLabel": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemNotesCount.js",
+							"FooterStyle": "Attribute",
+							"Visible": "/SAPAssetManager/Rules/ServiceOrders/Details/ServiceOrderNoteSectionFooterIsVisible.js",
+							"OnPress": "/SAPAssetManager/Actions/Notes/NotesListViewNav.action"
+						},
+						"DataSubscriptions": ["S4ServiceOrderLongTexts"]
+					}
+				},
+                "/SAPAssetManager/Pages/Fragments/Forms/SDF/FormObjectTableSection.fragment",
+                "/SAPAssetManager/Pages/Fragments/Forms/FSM/FormInstanceObjectTableOperation.fragment",
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/S4ServiceItems/S4ServiceItemDetailsSection.fragment",
+                    "Properties": {
+                        "Header": {
+                            "UseTopPadding": true
+                        }
+                    }
+                },
+                "/SAPAssetManager/Pages/Fragments/S4ServiceItems/S4ServiceItemDatesSection.fragment",
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/S4ServiceItems/S4ServiceItemOrderDetailsSection.fragment",
+                    "Properties": {
+                        "ObjectCell": {
+                            "DetailImage": "$(PLT, /SAPAssetManager/Images/DetailImages/WO.png, /SAPAssetManager/Images/DetailImages/WO.android.png)"
+                        }
+                    }
+                },
+                "/SAPAssetManager/Pages/Fragments/S4ServiceItems/S4ServiceItemSubItemObjectTable.fragment",
+                "/SAPAssetManager/Pages/Fragments/S4ServiceItems/S4ServiceItemSubItemEDTTable.fragment",
+                "/SAPAssetManager/Pages/Fragments/S4ServiceItems/S4ServiceItemParentItemObjectTable.fragment",
+                "/SAPAssetManager/Pages/Fragments/Documents/DocumentsSection.fragment",
+                "/SAPAssetManager/Pages/Fragments/S4ServiceItems/S4ServiceItemContractAndWarrantySection.fragment",
+                "/SAPAssetManager/Pages/Fragments/S4ServiceItems/S4ServiceItemCategorizationSection.fragment",
+                {
+                    "SimplePropertyCells": [
+                        {
+                            "SimplePropertyCell": {
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName": "$(L,service_contract)",
+                                "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceContracts/ServiceContractCount.js",
+                                "OnPress": "/SAPAssetManager/Rules/ServiceOrders/ServiceContracts/ServiceContractDetailsNav.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName": "$(L,business_partners)",
+                                "Value": "/SAPAssetManager/Rules/BusinessPartners/BusinessPartnersCount.js",
+                                "OnPress": "/SAPAssetManager/Actions/BusinessPartners/BusinessPartnersListViewNav.action"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName": "$(L,reference_objects)",
+                                "Value": "/SAPAssetManager/Rules/ServiceOrders/Details/ReferenceObjectsCount.js",
+                                "OnPress": "/SAPAssetManager/Actions/ReferenceObjects/ReferenceObjectDetailsNav.action",
+								"Visible": "/SAPAssetManager/Rules/ServiceOrders/IsS4ServiceIntegrationEnabled.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName": "$(L, organizational_data)",
+                                "AccessoryType": "DisclosureIndicator",
+                                "OnPress": "/SAPAssetManager/Rules/ServiceOrders/Details/OrganizationalData/OrganizationalDataNav.js",
+                                "Visible": "/SAPAssetManager/Rules/ServiceOrders/Details/OrganizationalData/IsOrganizationalDataEnabled.js"
+                            }
+                        },
+                        {
+							"SimplePropertyCell": "/SAPAssetManager/Pages/Fragments/S4Errors/S4ErrorsFacet.fragment"
+						}
+                    ],
+                    "Layout":
+                    {
+                        "NumberOfColumns": 2,
+                        "MinimumInteritemSpacing": "$(PLT,66,0)"
+                    },
+                    "_Type" : "Section.Type.SimplePropertyCollection",
+                    "DataSubscriptions": ["S4ServiceOrderLongTexts", "S4ServiceOrderPartners", "S4ServiceOrderRefObjs", "ServiceOrgs", "SalesOrgs", "SalesRespOrgs", "Documents"]
+                }
+            ]
+        }
+    ],
+    "FioriToolbar": {
+		"_Name": "ServiceItemDetailsFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+		"Visible": "/SAPAssetManager/Rules/Common/DetailsPageToolbar/DetailsPageToolbarVisibility.js",
+		"Items": "/SAPAssetManager/Rules/Common/DetailsPageToolbar/DetailsPageToolbarItems.js"
+	},
+    "_Type": "Page",
+    "_Name": "ServiceItemDetailsPage",
+    "DataSubscriptions": ["PMMobileStatuses"]
+}

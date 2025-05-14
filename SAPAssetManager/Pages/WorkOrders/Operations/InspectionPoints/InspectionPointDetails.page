@@ -1,0 +1,146 @@
+{
+	"Caption": "$(L,inspection_point)",
+	"ActionBar":
+	{
+		"_Name": "InspectionPointDetails",
+		"Items":
+		[{
+			"Text": "$(L,record_results)",
+			"_Name": "Inspection",
+			"Position": "Right",
+			"OnPress": "/SAPAssetManager/Rules/InspectionCharacteristics/InspectionCharacteristicsDynamicPageNavWrapper.js",
+			"Visible": "/SAPAssetManager/Rules/InspectionCharacteristics/Update/EnableRecordResults.js"
+		}]
+	},
+	"Controls":
+	[{
+		"Sections":
+		[{
+			"_Type": "Section.Type.KeyValue",
+			"_Name": "InspectionPointDetailsSection",
+			"Header": {
+				"Caption": "$(L,inspection_point_details)"
+			},
+			"KeyAndValues": [
+				{
+					"_Name": "InspectionLot",
+					"KeyName": "$(L,inspection_lot)",
+					"Value": "/SAPAssetManager/Rules/WorkOrders/InspectionLot/InspectionLotDescriptionOrId.js"
+				},
+				{
+					"_Name": "ValuationStatus",
+					"KeyName": "$(L,valuation)",
+					"Value": "/SAPAssetManager/Rules/WorkOrders/Operations/InspectionPoints/InspectionPointValuationStatusWithRead.js"
+				},
+				{
+					"_Name": "ValCode",
+					"KeyName": "$(L,status)",
+					"Value": "/SAPAssetManager/Rules/WorkOrders/Operations/InspectionPoints/InspectionPointCodeWithRead.js"
+				}
+			]
+		},
+		{
+			"_Type": "Fragment",
+            "Fragment": "/SAPAssetManager/Pages/Fragments/Equipment/ObjectTableSection.fragment",
+            "Properties": {
+                "Footer": {
+					"Visible": false
+				},
+				"ObjectCell": {
+					"PreserveIconStackSpacing": true
+				},
+				"Target": {
+					"EntitySet": "{{#Property:@odata.readLink}}/Equip_Nav",
+					"QueryOptions": "$select=EquipDesc,EquipId"
+				},
+				"Visible": "/SAPAssetManager/Rules/WorkOrders/Operations/InspectionPoints/InspectionPointsEquipmentSectionIsVisible.js"
+			}
+		},
+		{
+			"Header": {
+				"Caption": "$(L,functional_location)"
+			},
+			"EmptySection": {
+				"Caption": "$(L,no_functional_location_available)"
+			},
+			"ObjectCell": {
+				"PreserveIconStackSpacing": true,
+				"AccessoryType": "DisclosureIndicator",
+				"Title": "{FuncLocDesc}",
+				"OnPress": "/SAPAssetManager/Actions/FunctionalLocation/FunctionalLocationDetailsNav.action",
+				"Subhead": "{FuncLocId}"
+			},
+			"Target": {
+				"EntitySet": "{{#Property:@odata.readLink}}/FuncLoc_Nav",
+				"Service": "/SAPAssetManager/Services/AssetManager.service",
+				"QueryOptions": ""
+			},
+			"_Type": "Section.Type.ObjectTable",
+			"Visible": "/SAPAssetManager/Rules/WorkOrders/Operations/InspectionPoints/InspectionPointsFunctionalLocationSectionIsVisible.js"
+		},
+		{
+			"Header": {
+				"DataTable":
+				{
+					"Items":
+					[{
+						"Text": "$(L,characteristic)",
+						"TextAlignment": "Center"
+					},
+					{
+						"Text": "$(L,value)",
+						"TextAlignment": "Center"
+					},
+					{
+						"Text": "$(L,valuation)",
+						"TextAlignment": "Center"
+					},
+					{
+						"Text": "$(L,notification)",
+						"TextAlignment": "Center"
+					}]
+				}
+			},
+			"Row":
+			{
+				"Layout": {
+                        "ColumnWidth": [200,200,200,-1]
+                    },
+				"Items":
+				[{
+					"Text": "{ShortDesc}",
+					"TextAlignment": "Center"
+				},
+				{
+					"Text": "/SAPAssetManager/Rules/InspectionCharacteristics/CodeValue.js",
+					"TextAlignment": "Center"
+				},
+				{
+					"Text": "/SAPAssetManager/Rules/InspectionCharacteristics/ValuationShortText.js",
+					"Style": "/SAPAssetManager/Rules/InspectionCharacteristics/ValuationStyle.js",
+					"TextAlignment": "Center"
+				},
+				{
+					"Text": "/SAPAssetManager/Rules/InspectionCharacteristics/NotificationNumber.js",
+					"TextAlignment": "Center"
+
+				}],
+				"OnPress": "/SAPAssetManager/Actions/WorkOrders/InspectionCharacteristics/InspectionCharacteristicNav.action",
+				"AccessoryType": "DisclosureIndicator"
+			},
+			"Target":
+			{
+				"EntitySet": "{{#Property:@odata.readLink}}/InspectionChar_Nav",
+				"Service": "/SAPAssetManager/Services/AssetManager.service",
+				"QueryOptions": "$expand=InspectionCode_Nav,NotifItems_Nav,InspectionPoint_Nav/WOOperation_Nav,InspectionLot_Nav/WOHeader_Nav/OrderMobileStatus_Nav,InspectionPoint_Nav/Equip_Nav,InspectionPoint_Nav/FuncLoc_Nav&$orderby=InspectionPoint_Nav/OperationNo,InspectionPoint_Nav/EquipNum,InspectionPoint_Nav/FuncLocIntern,InspectionChar"
+			},
+			"_Name": "InspectionCharacteristicSection",
+			"StickyColumn": false,
+			"_Type": "Section.Type.DataTable"
+		}],
+		"_Type": "Control.Type.SectionedTable",
+		"DataSubscriptions": ["InspectionCharacteristics", "InspectionResultValuations", "InspectionCodes"]
+	}],
+	"_Name": "InspectionPointDetails",
+	"_Type": "Page"
+}

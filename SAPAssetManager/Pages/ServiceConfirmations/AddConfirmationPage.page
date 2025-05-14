@@ -1,0 +1,413 @@
+{
+	"_Type": "Page",
+	"_Name": "CreateUpdateServiceConfirmationScreen",
+	"Caption": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/CreateUpdateServiceConfirmationCaption.js",
+	"OnLoaded": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/AddConfirmationScreenLoaded.js",
+	"OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+	"ActionBar": {
+		"Items": [
+			{
+				"Position": "Left",
+				"SystemItem": "Cancel",
+				"Caption": "$(L,add)",
+				"OnPress": "/SAPAssetManager/Rules/Common/CheckForChangesBeforeCancel.js",
+				"Visible": "/SAPAssetManager/Rules/WorkOrders/Complete/IsNotCompleteAction.js"
+			},
+			{
+				"Position": "Right",
+				"Text": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/CreateUpdateServiceConfirmationDoneButtonText.js",
+				"OnPress": "/SAPAssetManager/Actions/ServiceConfirmations/ServiceConfirmationRequired.action"
+			}
+		]
+	},
+	"Controls": [
+		{
+			"_Name": "FormCellContainer",
+			"_Type": "Control.Type.FormCellContainer",
+			"Sections": [
+				{
+					"_Type": "Section.Type.FormCell",
+					"_Name": "FormCellSection1",
+					"Caption": "$(L, indicates_required_fields)",
+					"Controls": [
+						{
+							"_Type": "Control.Type.FormCell.Note",
+							"_Name": "DescriptionNote",
+							"IsAutoResizing": true,
+							"PlaceHolder": "$(L,description)*",
+							"Caption": "$(L,description)*",
+							"Value": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/Data/SetConfirmationDescription.js",
+							"OnValueChange": "/SAPAssetManager/Rules/Common/Validation/FormCellNoteValidation.js"
+						}
+					]
+				},
+				{
+					"_Type": "Section.Type.FormCell",
+					"_Name": "FormCellSection2",
+					"Controls": [
+						{
+							"_Type": "Control.Type.FormCell.ListPicker",
+							"_Name": "ServiceOrderLstPkr",
+							"Caption": "$(L,service_order)*",
+							"AllowMultipleSelection": false,
+							"AllowDefaultValueIfOneItem": false,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": true,
+							"Search": {
+								"Enabled": true,
+								"Delay": 500,
+								"MinimumCharacterThreshold": 3,
+								"Placeholder": "$(L,search)",
+								"BarcodeScanner": true
+							},
+							"IsVisible": "/SAPAssetManager/Rules/Common/IsOnCreate.js",
+							"Value": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/Data/SetServiceOrderLink.js",
+							"IsEditable": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/IsServiceOrderFieldEditable.js",
+							"OnValueChange": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/Handlers/OnServiceOrderValueChanged.js",
+							"PickerItems": {
+								"DisplayValue": "{{#Property:ObjectID}} - {{#Property:Description}}",
+								"ReturnValue": "{@odata.readLink}",
+								"Target": {
+									"EntitySet": "S4ServiceOrders",
+									"Service": "/SAPAssetManager/Services/AssetManager.service",
+									"QueryOptions": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/ServiceOrdersListPickerQueryOptions.js"
+								}
+							}
+						}
+					]
+				},
+				{
+					"_Type": "Section.Type.FormCell",
+					"_Name": "FormCellSection3",
+					"Controls": [
+						{
+							"Caption": "$(L, confirmation_set_final)",
+							"_Type": "Control.Type.FormCell.Switch",
+							"_Name": "IsFinalConfirmation",
+							"Value": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/Data/SetFinalConfirmationValue.js",
+							"OnValueChange": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/Handlers/OnFinalValueChanged.js"
+						}
+					]
+				},
+				{
+					"_Type": "Section.Type.FormCell",
+					"_Name": "FormCellSection4",
+					"Caption": "$(L, categorization)",
+					"Controls": [
+						{
+							"_Type": "Control.Type.FormCell.ListPicker",
+							"_Name": "Category1LstPkr",
+							"Caption": "$(L,category_1)",
+							"AllowMultipleSelection": false,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": true,
+							"Search": {
+								"Enabled": true,
+								"Delay": 500,
+								"MinimumCharacterThreshold": 3,
+								"Placeholder": "$(L,search)"
+							},
+							"Value": "{Category1}",
+							"PickerItems": {
+								"DisplayValue": "{{#Property:CategoryID}} - {{#Property:CategoryDescription}}",
+								"ReturnValue": "{CategoryGuid}",
+								"Target": {
+									"EntitySet": "CategorizationSchemas",
+									"Service": "/SAPAssetManager/Services/AssetManager.service",
+									"QueryOptions": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/Category1QueryOptions.js"
+								}
+							},
+							"OnValueChange": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/OnCategory1ValueChanged.js"
+						},
+						{
+							"_Type": "Control.Type.FormCell.ListPicker",
+							"_Name": "Category2LstPkr",
+							"Caption": "$(L,category_2)",
+							"AllowMultipleSelection": false,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": true,
+							"Search": {
+								"Enabled": true,
+								"Delay": 500,
+								"MinimumCharacterThreshold": 3,
+								"Placeholder": "$(L,search)"
+							},
+							"Value": "{Category2}",
+							"PickerItems": {
+								"DisplayValue": "{{#Property:CategoryID}} - {{#Property:CategoryDescription}}",
+								"ReturnValue": "{CategoryGuid}",
+								"Target": {
+									"EntitySet": "CategorizationSchemas",
+									"Service": "/SAPAssetManager/Services/AssetManager.service",
+									"QueryOptions": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/Category2QueryOptions.js"
+								}
+							},
+							"OnValueChange": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/OnCategory2ValueChanged.js"
+						},
+						{
+							"_Type": "Control.Type.FormCell.ListPicker",
+							"_Name": "Category3LstPkr",
+							"Caption": "$(L,category_3)",
+							"AllowMultipleSelection": false,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": true,
+							"Search": {
+								"Enabled": true,
+								"Delay": 500,
+								"MinimumCharacterThreshold": 3,
+								"Placeholder": "$(L,search)"
+							},
+							"Value": "{Category3}",
+							"PickerItems": {
+								"DisplayValue": "{{#Property:CategoryID}} - {{#Property:CategoryDescription}}",
+								"ReturnValue": "{CategoryGuid}",
+								"Target": {
+									"EntitySet": "CategorizationSchemas",
+									"Service": "/SAPAssetManager/Services/AssetManager.service",
+									"QueryOptions": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/Category3QueryOptions.js"
+								}
+							},
+							"OnValueChange": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/OnCategory3ValueChanged.js"
+						},
+						{
+							"_Type": "Control.Type.FormCell.ListPicker",
+							"_Name": "Category4LstPkr",
+							"Caption": "$(L,category_4)",
+							"AllowMultipleSelection": false,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": true,
+							"Search": {
+								"Enabled": true,
+								"Delay": 500,
+								"MinimumCharacterThreshold": 3,
+								"Placeholder": "$(L,search)"
+							},
+							"Value": "{Category4}",
+							"PickerItems": {
+								"DisplayValue": "{{#Property:CategoryID}} - {{#Property:CategoryDescription}}",
+								"ReturnValue": "{CategoryGuid}",
+								"Target": {
+									"EntitySet": "CategorizationSchemas",
+									"Service": "/SAPAssetManager/Services/AssetManager.service",
+									"QueryOptions": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/Category4QueryOptions.js"
+								}
+							},
+							"OnValueChange": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/OnCategory4ValueChanged.js"
+						}
+					]
+				},
+				{
+					"_Type": "Section.Type.FormCell",
+					"_Name": "FormCellSection5",
+					"Caption": "$(L, reference_object)",
+					"Controls": [
+						{
+							"_Type": "Control.Type.FormCell.ListPicker",
+							"_Name": "ProductIdLstPkr",
+							"Caption": "$(L,product_id)",
+							"AllowMultipleSelection": false,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": true,
+							"Search": {
+								"Enabled": true,
+								"Delay": 500,
+								"MinimumCharacterThreshold": 3,
+								"Placeholder": "$(L,search)"
+							},
+							"OnValueChange": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/Handlers/HierarchyListPickerOnChange.js",
+							"PickerItems": {
+								"DisplayValue": "{{#Property:MaterialNum}} - {{#Property:Description}}",
+								"ReturnValue": "{MaterialNum}",
+								"Target": {
+									"EntitySet": "Materials",
+									"Service": "/SAPAssetManager/Services/AssetManager.service",
+									"QueryOptions": "$orderby=MaterialNum"
+								}
+							}
+						},     
+						{
+							"_Type": "Control.Type.FormCell.Extension",
+							"Module": "extension-HierarchyFramework",
+							"Control": "HierarchyExtension",
+							"Class": "HierarchyExtension",
+							"_Name": "FuncLocHierarchyExtensionControl",
+							"Caption": "$(L,functional_location)",
+							"DataSubscriptions": ["MyFunctionalLocations"],
+							"ExtensionProperties": {
+								"IsPicker": true,
+								"Search": {
+									"Enabled": true,
+									"Delay": 500,
+									"MinimumCharacterThreshold": 3,
+									"Placeholder": "$(L,search)",
+									"BarcodeScanner": true
+								},
+								"PickerProperties": {
+									"OnValueChange": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/Handlers/HierarchyListPickerOnChange.js",
+									"ListFilter": "MyFunctionalLocations",
+									"Caption": "$(L,functional_location)",
+									"AllowMultipleSelection": false,
+									"ItemsPerPage": 50,
+									"CachedItemsToLoad": 20
+								},
+								"HierarchyList": [],
+								"BusinessObjects": [{
+									"Target": {
+										"EntitySet" : "MyFunctionalLocations",
+										"Service" : "/SAPAssetManager/Services/AssetManager.service",
+										"QueryOptions": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/Handlers/FlocHierarchyListPickerQueryOptions.js",
+										"Properties": [],
+										"KeyProperties": []
+									},
+									"Properties":{
+										"ID":"{@odata.readLink}",
+										"ReturnValue" : "{FuncLocIdIntern}",
+										"DisplayValue" : "{FuncLocId} - {FuncLocDesc}",
+										"Title":"{FuncLocDesc}",
+										"Subhead":"{FuncLocId}",
+										"Footnote": "$(L, functional_location)",
+										"ChildCount": "/SAPAssetManager/Rules/HierarchyControl/ChildCountListPicker.js",
+										"Parent": [
+											{
+												"Target": {
+													"EntitySet" : "MyFunctionalLocations",
+													"Service" : "/SAPAssetManager/Services/AssetManager.service",
+													"Properties": [],
+													"KeyProperties": [],
+													"QueryOptions":"$filter=FuncLocIdIntern eq '{SuperiorFuncLocInternId}'&$orderby=FuncLocId"
+												}
+											}
+										],
+										"Children": [
+											{
+												"Target": {
+													"EntitySet" : "MyFunctionalLocations",
+													"Service" : "/SAPAssetManager/Services/AssetManager.service",
+													"Properties": [],
+													"KeyProperties": [],
+													"QueryOptions":"$filter=SuperiorFuncLocInternId eq '{FuncLocIdIntern}'&$orderby=FuncLocId"
+												}
+											}
+										]
+									}
+								}]
+							}
+						},
+						{
+							"_Type": "Control.Type.FormCell.Extension",
+							"Module": "extension-HierarchyFramework",
+							"Control": "HierarchyExtension",
+							"Class": "HierarchyExtension",
+							"_Name": "EquipHierarchyExtensionControl",
+							"Caption": "$(L,equipment)",
+							"DataSubscriptions": ["MyEquipments"],
+							"ExtensionProperties": {
+								"IsPicker": true,
+								"Search": {
+									"Enabled": true,
+									"Delay": 500,
+									"MinimumCharacterThreshold": 3,
+									"Placeholder": "$(L,search)",
+									"BarcodeScanner": true
+								},
+								"PickerProperties": {
+									"OnValueChange": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/Handlers/HierarchyListPickerOnChange.js",
+									"ListFilter": "MyEquipments",
+									"AllowMultipleSelection": false,
+									"Caption": "$(L,equipment)",
+									"ItemsPerPage": 50,
+									"CachedItemsToLoad": 20
+								},
+								"HierarchyList": [],
+								"BusinessObjects": [{
+									"Target": {
+										"EntitySet" : "MyEquipments",
+										"Service" : "/SAPAssetManager/Services/AssetManager.service",
+										"QueryOptions": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/Handlers/EquipmentHierarchyListPickerQueryOptions.js",
+										"Properties": [],
+										"KeyProperties": []
+									},
+									"Properties":{
+										"ID":"{@odata.readLink}",
+										"Title":"{EquipDesc}",
+										"Subhead":"{EquipId}",
+										"Footnote": "$(L, equipment)",
+										"ReturnValue" : "{EquipId}",
+										"DisplayValue" : "{EquipId} - {EquipDesc}",
+										"ChildCount": "/SAPAssetManager/Rules/HierarchyControl/ChildCountListPicker.js",
+										"Parent": [
+											{
+												"Target": {
+													"EntitySet" : "MyEquipments",
+													"Service" : "/SAPAssetManager/Services/AssetManager.service",
+													"Properties": [],
+													"KeyProperties": [],
+													"QueryOptions":"$filter=EquipId eq '{SuperiorEquip}'&$orderby=EquipId"
+												}
+											}
+										],
+										"Children": [
+											{
+												"Target": {
+													"EntitySet" : "MyEquipments",
+													"Service" : "/SAPAssetManager/Services/AssetManager.service",
+													"Properties": [],
+													"KeyProperties": [],
+													"QueryOptions":"$filter=SuperiorEquip eq '{EquipId}'&$orderby=EquipId"
+												}
+											}
+										]
+									}
+								}]
+							}
+						}
+					]
+				},
+				{
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Notes/S4NoteFormCellSection.fragment"
+                },
+				{
+					"_Type": "Section.Type.FormCell",
+					"_Name": "FormCellSection7",
+					"Visible": "/SAPAssetManager/Rules/Common/IsOnCreate.js",
+					"Controls": [
+						{
+							"Caption":"$(L, attachment_description)",
+							"PlaceHolder": "$(L,attachment_description)",
+							"IsEditable": true,
+							"IsVisible": "/SAPAssetManager/Rules/Documents/DocumentsIsVisible.js",
+							"_Name": "AttachmentDescription",
+							"OnValueChange": "/SAPAssetManager/Rules/Common/Validation/FormCellNoteValidation.js",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"_Type": "Fragment",
+							"Fragment": "/SAPAssetManager/Pages/Fragments/Documents/DocumentFormCell.fragment",
+							"Properties": {
+								"Value": "/SAPAssetManager/Rules/Documents/InitializeAttachments.js",
+								"IsVisible": "/SAPAssetManager/Rules/Documents/DocumentsIsVisible.js"
+							}
+						}
+					]
+				},
+				{
+					"_Type": "Section.Type.FormCell",
+					"_Name": "FormCellSection8",
+					"Controls": [
+						{
+							"Title": "$(L,discard)",
+							"OnPress": "/SAPAssetManager/Rules/Common/DiscardAction.js",
+							"IsVisible": "/SAPAssetManager/Rules/Common/IsDiscardButtonVisible.js",
+							"_Type": "Control.Type.FormCell.Button",
+							"ButtonType": "Text",
+							"Semantic": "Tint",
+							"_Name": "DiscardButton",
+							"TextAlignment": "/SAPAssetManager/Rules/Common/Platform/ModalButtonAlign.js"
+						}
+					]
+				}
+			]
+		}
+	]
+}

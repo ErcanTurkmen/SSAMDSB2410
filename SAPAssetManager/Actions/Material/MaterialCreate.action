@@ -1,0 +1,13 @@
+{
+  "_Type": "Action.Type.ODataService.CreateEntity",
+  "Target": {
+    "EntitySet": "Materials",
+    "Service": "/SAPAssetManager/Services/AssetManager.service"
+  },
+  "Properties": {
+    
+  },
+  "Headers": {
+    "Transaction.Ignore": "true"
+  }
+}

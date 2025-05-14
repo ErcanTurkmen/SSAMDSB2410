@@ -1,0 +1,95 @@
+{
+	"Caption": "$(L, map)",
+	"ActionBar": {
+		"Items":[{
+			"Position": "Right",
+			"SystemItem": "Add",
+			"Text": "$(L,add)",
+			"Visible": "/SAPAssetManager/Rules/Maps/GISAddEditEnabled.js",
+			"OnPress": "/SAPAssetManager/Actions/Maps/MapEditModePopover.action",
+			"_Name": "AddGeometry"
+		}]
+	},
+	"Controls": [
+		{
+			"_Type": "Control.Type.Extension",
+			"Module": "extension-MapFramework",
+			"Control": "MapExtension",
+			"Class": "MapExtension",
+			"_Name": "MapExtensionControl",
+			"DataSubscriptions": [
+				"MarkedJobs","MyNotificationHeaders","MyWorkOrderHeaders","MyEquipments","MyFunctionalLocations","Geometries"
+			],
+			"ExtensionProperties": {
+				"ItemsPerPage": 100,
+				"Config": "/SAPAssetManager/Pages/Fragments/Map/MapConfig.fragment",
+				"EditMode": "/SAPAssetManager/Pages/Fragments/Map/MapEditMode.fragment",
+				"TokenAuthentication": {
+					"Action": "/SAPAssetManager/Rules/Extensions/TokenRequest.js"
+				},
+				"MapToolsetIcons": "/SAPAssetManager/Pages/Fragments/Map/MapToolsetIcons.fragment",
+				"SettingsControl": "/SAPAssetManager/Pages/Fragments/Map/MapSettingsControl.fragment",
+				"SearchControl": {
+					"SearchPlaceholder": "$(L, map_search_placeholder)",
+					"SearchFields": [
+						"Title",
+						"Footnote",
+						"Subhead",
+						"Description"
+					],
+					"IsResultTextDisplayed": true,
+					"ResultsPrefix": "$(L, map_search_results_pref)",
+					"ResultsSuffix": "$(L, map_search_results_sufx)",
+					"NearMeFilterName": "$(L, map_search_nearme)",
+					"QuickFilters": [
+ 						{
+ 							"FilterType": "TimeFilter",
+ 							"Type": [
+ 								"Job"
+ 							],
+ 							"Name": "$(L, map_search_wo_due_today)",
+ 							"PeriodInDays": 1,
+ 							"PropertyName": "DueDate"
+ 						},
+ 						{
+ 							"FilterType": "TextFilter",
+ 							"Name": "$(L, map_search_high_priority)",
+ 							"Properties": [
+ 								"SubstatusText"
+ 							],
+ 							"Text": "High"
+ 						}
+ 					]
+				},
+				"BusinessObjects": [
+					"/SAPAssetManager/Pages/Fragments/Map/WorkOrders/MapWorkOrderBusinessObject.fragment",
+					"/SAPAssetManager/Pages/Fragments/Map/Equipments/MapEquipmentBO.fragment",
+					"/SAPAssetManager/Pages/Fragments/Map/FunctionalLocations/MapFunctionalLocationBO.fragment",
+					{
+						"_Type": "Fragment",
+						"Fragment": "/SAPAssetManager/Pages/Fragments/Map/Equipments/MapEquipmentBO.fragment",
+						"Properties": {
+							"Target": {
+								"QueryOptions": "$expand=EquipGeometries/Geometry&$filter=EquipGeometries/any(eg:sap.entityexists(eg/Geometry)) and not sap.entityexists(WorkOrderHeader)"
+							}
+						}
+					},
+					{
+						"_Type": "Fragment",
+						"Fragment": "/SAPAssetManager/Pages/Fragments/Map/FunctionalLocations/MapFunctionalLocationBO.fragment",
+						"Properties": {
+							"Target": {
+								"QueryOptions": "$expand=FuncLocGeometries/Geometry&$filter=FuncLocGeometries/any(fg:sap.entityexists(fg/Geometry)) and not sap.entityexists(WorkOrderHeader)"
+							}
+						}
+					},
+					"/SAPAssetManager/Pages/Fragments/Map/Notifications/MapNotificationsBO.fragment",
+					"/SAPAssetManager/Pages/Fragments/Map/Routes/MapRouteBO.fragment",
+					"/SAPAssetManager/Pages/Fragments/Map/RouteStops/MapRouteStopBO.fragment"
+				]
+			}
+		}
+	],
+	"_Type": "Page",
+	"_Name": "MapExtensionControlPage"
+}

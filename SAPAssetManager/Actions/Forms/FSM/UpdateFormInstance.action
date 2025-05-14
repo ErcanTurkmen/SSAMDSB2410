@@ -1,0 +1,18 @@
+{
+	"_Type": "Action.Type.ODataService.UpdateEntity",
+ 	"Target": {
+ 		"EntitySet": "FSMFormInstances",
+ 		"Service": "/SAPAssetManager/Services/AssetManager.service",
+        "ReadLink": "{@odata.readLink}"
+ 	},
+ 	"Properties": {
+        "Content": "{base64String}",
+		"Closed": "/SAPAssetManager/Rules/Forms/FSM/GetClosedFlagForInstanceUpdate.js"
+ 	},
+	"Headers": {
+		"transaction.omdo_id": "/SAPAssetManager/Rules/Forms/FSM/FSMSmartformsOMDOHeader.js"
+	},
+	"RequestOptions": {
+		"UpdateMode": "Replace"
+	}
+}

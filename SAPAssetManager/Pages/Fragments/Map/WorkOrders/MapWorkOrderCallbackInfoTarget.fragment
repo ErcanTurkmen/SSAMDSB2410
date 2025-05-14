@@ -1,0 +1,7 @@
+{
+    "EntitySet": "MyWorkOrderHeaders",
+    "Service": "/SAPAssetManager/Services/AssetManager.service",
+    "QueryOptions": "$expand=MarkedJob&$filter=OrderId eq '{OrderId}'",
+    "Properties": [],
+    "KeyProperties": []
+}

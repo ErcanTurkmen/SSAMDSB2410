@@ -1,0 +1,57 @@
+{
+	"Caption": "$(L,time_sheets)",
+	"ActionBar": {
+		"Items": [
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment",
+			{
+				"Position": "Right",
+				"SystemItem": "Add",
+				"Caption": "$(L,add)",
+                "OnPress": "/SAPAssetManager/Rules/TimeSheets/Entry/CreateUpdate/TimeSheetEntryCreateNav.js",
+				"Visible": "/SAPAssetManager/Rules/UserAuthorizations/TimeSheets/EnableTimeSheetCreate.js"
+
+			}
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Header": {
+						"UseTopPadding": false
+					},
+					"ObjectCell": {
+						"PreserveIconStackSpacing": true,
+						"Icons": "/SAPAssetManager/Rules/TimeSheets/TimeSheetListIconImages.js",
+						"Title": "/SAPAssetManager/Rules/TimeSheets/Entry/ListView/TimeSheetEntryListViewFormat.js",
+						"Subhead": "/SAPAssetManager/Rules/TimeSheets/Entry/Details/TimeSheetEntryDetailsTotalHoursLabel.js",
+						"StatusText": "/SAPAssetManager/Rules/TimeSheets/Entry/Details/TimeSheetEntryDetailsTotalHoursLabel.js",
+						"SubstatusText": "/SAPAssetManager/Rules/TimeSheets/Entry/Details/TimeSheetEntryDetailsTotalHoursLabel.js",
+						"AccessoryType": "DisclosureIndicator",
+						"OnPress": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/OnPressTimeCaptureSectionToday.js"
+					},
+					"Target": {
+						"EntitySet": "CatsTimesheetOverviewRows",
+						"Service": "/SAPAssetManager/Services/AssetManager.service",
+						"QueryOptions": "/SAPAssetManager/Rules/TimeSheets/Entry/ListView/TimeSheetEntriesListQueryOptions.js"
+					},
+					"_Type": "Section.Type.ObjectTable",
+					"_Name": "TimesheetHeaders"
+				}
+			],
+			"FilterFeedbackBar": {
+                "_Type": "Control.Type.FilterFeedbackBar",
+                "_Name": "FilterFeedback",
+                "ShowAllFilters": false,
+                "FastFilters": "/SAPAssetManager/Rules/TimeSheets/Entry/ListView/TimeSheetFastFiltersItems.js"
+            },
+			"_Type": "Control.Type.SectionedTable",
+			"DataSubscriptions": ["CatsTimesheets","CatsTimesheetOverviewRows"],
+			"_Name": "TimesheetOverviewListSection"
+		}
+	],
+	"_Type": "Page",
+	"_Name": "TimeSheetsListViewPage",
+	"DataSubscriptions": "/SAPAssetManager/Rules/Crew/TimeSheets/TimeSheetEntriesListDataSubscription.js",
+	"OnLoaded": "/SAPAssetManager/Rules/TimeSheets/Entry/ListView/TimeSheetEntriesListViewOnPageLoad.js"
+}

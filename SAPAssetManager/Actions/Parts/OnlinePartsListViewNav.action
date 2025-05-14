@@ -1,0 +1,5 @@
+{
+    "_Type" : "Action.Type.Navigation",
+    "PageToOpen" : "/SAPAssetManager/Pages/Parts/OnlinePartsListView.page",
+    "PageMetadata": "/SAPAssetManager/Rules/Parts/OnlinePartsPageMetadata.js"
+}

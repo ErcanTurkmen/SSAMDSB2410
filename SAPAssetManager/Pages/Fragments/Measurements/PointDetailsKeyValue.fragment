@@ -1,0 +1,34 @@
+{
+    "Header": {
+        "Caption": "$(L,details)"
+    },
+    "KeyAndValues": [
+        {
+            "_Name": "PointDesc",
+            "KeyName": "$(L,description)",
+            "Value": "{PointDesc}"
+        },
+        {
+            "_Name": "CharName",
+            "KeyName": "$(L,characteristic)",
+            "Value": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointDetailsCharacteristic.js"
+        },
+        {
+            "_Name": "LowerRange",
+            "KeyName": "$(L,lower_limit)",
+            "Value": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointDetailsLowerRange.js"
+        },
+        {
+            "_Name": "UpperRange",
+            "KeyName": "$(L,upper_limit)",
+            "Value": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointDetailsUpperRange.js"
+        },
+        {
+            "_Name": "UoM",
+            "KeyName": "$(L,unit_of_measure)",
+            "Value": "{UoM}"
+        }
+    ],
+    "_Type": "Section.Type.KeyValue",
+    "_Name": "MeasuringPointDetailsKeyValueSection"
+}

@@ -1,0 +1,5 @@
+{
+	"PageToOpen": "/SAPAssetManager/Pages/AssetCentral/PDMSIndicatorDetails.page",
+	"_Type": "Action.Type.Navigation",
+	"PageMetadata": "/SAPAssetManager/Rules/AssetCentral/PDMSIndicatorDetailsPageMetadata.js"
+}

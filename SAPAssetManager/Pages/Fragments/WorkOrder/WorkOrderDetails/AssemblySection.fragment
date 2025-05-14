@@ -1,0 +1,23 @@
+{
+    "_Name": "AssemblyList",
+    "_Type": "Section.Type.ObjectTable",
+    "Visible": "/SAPAssetManager/Rules/WorkOrders/Details/AssemblyIsVisible.js",
+    "Header": {
+        "Caption": "$(L,assembly_information)"
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_assembly_information)"
+    },
+    "ObjectCell": {
+        "Title": "{MaterialNum}",
+        "Subhead": "{Description}",
+        "AccessoryType": "DisclosureIndicator",
+        "OnPress" : "/SAPAssetManager/Rules/WorkOrders/AssemblyBOMPageNav.js",
+        "PreserveIconStackSpacing": false
+    },
+    "Target": {
+        "EntitySet" : "Materials",
+        "Service" : "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "/SAPAssetManager/Rules/WorkOrders/Details/WorkOrderDetailsAssemblyQuery.js"
+    }
+}

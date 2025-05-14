@@ -1,0 +1,143 @@
+{
+	"Caption": "$(L,all_documents_list_title)",
+	"OnLoaded": "/SAPAssetManager/Rules/Filter/ListPageWithFilterOnLoaded.js",
+	"ActionBar": {
+		"Items": [
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment",	
+			{
+				"Position": "Right",
+				"Icon": "$(PLT,'',/SAPAssetManager/Images/filter.android.png, '', /SAPAssetManager/Images/filter.android.png)",
+				"Caption": "/SAPAssetManager/Rules/Filter/FilterButtonCaption.js",
+				"OnPress": "/SAPAssetManager/Actions/Inventory/InboundOutbound/InboundOutboundListFilter.action"
+			}
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Header": {
+						"Caption": "/SAPAssetManager/Rules/Inventory/InboundOrOutbound/GetInboundOutboundItemsCount.js"
+					},
+					"EmptySection": {
+						"Caption": "$(L, no_documents_available)"
+					},
+					"ObjectCell": {
+						"AccessoryType": "DisclosureIndicator",
+						"DetailImageIsCircular": false,
+						"OnPress": "/SAPAssetManager/Rules/Inventory/Inbound/InboundNavigateToObject.js",
+						"PreserveIconStackSpacing": true,
+						"StatusText": "/SAPAssetManager/Rules/Inventory/Inbound/GetInboundDocumentStatusText.js",
+						"Subhead": "/SAPAssetManager/Rules/Inventory/Inbound/GetInboundDocumentVendorText.js",
+						"Footnote": "/SAPAssetManager/Rules/Inventory/Inbound/GetInboundDocumentTypeText.js",
+						"SubstatusText": "/SAPAssetManager/Rules/Inventory/Inbound/DocumentItemsCountCaption.js",
+						"Description": "/SAPAssetManager/Rules/Inventory/Inbound/GetInboundDocumentDateText.js",
+						"Title": "/SAPAssetManager/Rules/Inventory/Fetch/GetInventoryObjectId.js",
+						"Icons": "/SAPAssetManager/Rules/Inventory/Inbound/NewlyDownloadedListViewIconImage.js",
+						"AccessoryButtonIcon": "/SAPAssetManager/Rules/Inventory/Inbound/GetAccessoryButtonIcon.js",
+                        "OnAccessoryButtonPress": "/SAPAssetManager/Rules/Inventory/InboundOrOutbound/NavigateToObjectUpdate.js"
+					},
+					"Selection": {
+						"LongPressToEnable": "Multiple",
+						"ExitOnLastDeselect": true,
+						"Mode": "None"
+					},
+					"OnSelectionChanged": "/SAPAssetManager/Rules/Inventory/Discard/OnDocumentSelectedOrUnselected.js",
+					"Search": {
+						"BarcodeScanner": true,
+						"Enabled": true,
+						"MinimumCharacterThreshold": 3,
+						"Placeholder": "$(L,search)",
+						"Delay": 700
+					},
+					"Target": {
+						"EntitySet": "MyInventoryObjects",
+						"QueryOptions": "/SAPAssetManager/Rules/Inventory/InboundOrOutbound/GetInboundOutboundListQuery.js",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					},
+					"DataSubscriptions": [
+						"MaterialDocuments",
+						"PurchaseOrderItems",
+						"PhysicalInventoryDocItems",
+						"StockTransportOrderItems",
+						"InboundDeliveryItems",
+						"OutboundDeliveryItems",
+						"ReservationItems"
+					],
+					"_Name": "SectionObjectTable0",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"FilterFeedbackBar": {
+				"_Type": "Control.Type.FilterFeedbackBar",
+				"_Name": "FilterFeedback",
+				"ShowAllFilters": true,
+				"FastFilters": [
+					{  
+						"_Name": "IBDelivery",
+						"_Type": "Control.Type.FastFilterItem",
+						"FilterType": "Filter",
+						"FilterProperty": "",
+						"CustomQueryGroup": "Inventory",
+						"DisplayValue": "/SAPAssetManager/Rules/Inventory/InboundOrOutbound/InboundDeliveryCaption.js",
+						"ReturnValue": "/SAPAssetManager/Rules/Inventory/InboundOrOutbound/InboundDeliveryFilter.js"
+					},
+					{  
+						"_Name": "OBDelivery",
+						"_Type": "Control.Type.FastFilterItem",
+						"FilterType": "Filter",
+						"FilterProperty": "",
+						"CustomQueryGroup": "Inventory",
+						"DisplayValue": "/SAPAssetManager/Rules/Inventory/InboundOrOutbound/OutboundDeliveryCaption.js",
+						"ReturnValue": "/SAPAssetManager/Rules/Inventory/InboundOrOutbound/OutboundDeliveryFilter.js"
+					},
+					{  
+						"_Name": "PIDelivery",
+						"_Type": "Control.Type.FastFilterItem",
+						"FilterType": "Filter",
+						"FilterProperty": "",
+						"CustomQueryGroup": "Inventory",
+						"DisplayValue": "/SAPAssetManager/Rules/Inventory/InboundOrOutbound/PhysicalInventoryCaption.js",
+						"ReturnValue": "IMObject eq 'PI'"
+					},
+					{  
+						"_Name": "MaterialDocuments",
+						"_Type": "Control.Type.FastFilterItem",
+						"FilterType": "Filter",
+						"FilterProperty": "",
+						"CustomQueryGroup": "Inventory",
+						"DisplayValue": "/SAPAssetManager/Rules/Inventory/InboundOrOutbound/MaterialDocumentCaption.js",
+						"ReturnValue": "IMObject eq 'MDOC'"
+					},
+					{  
+						"_Name": "PRDelivery",
+						"_Type": "Control.Type.FastFilterItem",
+						"FilterType": "Filter",
+						"FilterProperty": "",
+						"CustomQueryGroup": "Inventory",
+						"DisplayValue": "/SAPAssetManager/Rules/Inventory/InboundOrOutbound/PurchaseRequisitionCaption.js",
+						"ReturnValue": "IMObject eq 'PR'"
+					}
+				]
+			},
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"FioriToolbar": {
+		"_Name": "InboundOutboundListFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+		"Items": [
+			{
+				"_Name": "DiscardButton",
+				"_Type": "FioriToolbarItem.Type.Button",
+				"Enabled": false,
+				"Title": "$(L,discard)",
+				"OnPress": "/SAPAssetManager/Rules/Inventory/InboundOutboundObjectDiscard.js"
+			}
+		]
+	},
+	"OnReturning": "/SAPAssetManager/Rules/Inventory/InboundOrOutbound/InboundOutboundListOnReturning.js",
+	"_Name": "InboundOutboundListPage",
+	"_Type": "Page"
+}

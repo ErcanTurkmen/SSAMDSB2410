@@ -1,0 +1,28 @@
+{
+    "Target": {
+        "EntitySet": "GISMapParameters",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "Properties": [],
+        "KeyProperties": []
+    },
+    "ViewConfig": {
+        "UseDynamicLayerDisplayPrefs": true,
+        "EnableUserInteraction": false
+    },
+    "IsESRINamedUserAuthEnabled":"#ApplicationSettings/#Property:Enable.NameUser.Auth",
+    "NamedUserAuth": "/SAPAssetManager/Pages/Fragments/Map/ESRIParamsConfig.fragment",
+    "DefaultViewEnvelope": {
+        "minPoint": {
+            "y": 2801774.86,
+            "x": -13898124.21
+        },
+        "maxPoint": {
+            "y": 6340332.34,
+            "x": -7445653.57
+        },
+        "padding": 10000.0
+    },
+    "BaseMaps": [],
+    "FeatureLayers": [],
+    "Persona": "/SAPAssetManager/Rules/Extensions/GetActivePersona.js"
+}

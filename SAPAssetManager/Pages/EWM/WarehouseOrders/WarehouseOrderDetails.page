@@ -1,0 +1,47 @@
+{
+	"Caption": "$(L, warehouse_order)",
+	"ActionBar": {
+		"Items": [
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment"
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"ObjectHeader": {
+						"HeadlineText": "{WarehouseOrder}",
+						"Subhead": "/SAPAssetManager/Rules/EWM/WarehouseOrder/Details/WarehouseOrderSubhead.js",
+						"BodyText": "/SAPAssetManager/Rules/EWM/WarehouseOrder/Details/WarehouseOrderBodyText.js",
+						"StatusText": "/SAPAssetManager/Rules/EWM/WarehouseOrder/Details/WarehouseOrderStatusText.js",
+						"SubstatusText": "/SAPAssetManager/Rules/EWM/WarehouseOrder/Details/WarehouseOrderSubStatusText.js"
+					},			
+					"_Name": "SectionObjectHeader",
+					"_Type": "Section.Type.ObjectHeader"
+				}
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		},
+		{
+			"Items": [{
+				"_Name": "WarehouserTaskListTab",
+				"Caption": "$(L, ewm_warehouse_tasks)",
+				"PageToOpen" : "/SAPAssetManager/Pages/EWM/WarehouseOrders/WarehouseOrderTaskList.page",
+				"_Type": "Control.Type.TabItem"
+			},
+			{
+				"_Name": "OrderDetailsTab",
+				"Caption": "$(L, order_details)",
+				"PageToOpen" : "/SAPAssetManager/Pages/EWM/WarehouseOrders/WarehouseOrderHeader.page",
+				"PageMetadata": "/SAPAssetManager/Rules/EWM/WarehouseOrder/Details/WarehouseOrderHeaderPageMetadata.js",
+				"_Type": "Control.Type.TabItem"
+			}],
+			"Position": "Top",
+			"_Type": "Control.Type.Tabs",
+			"_Name": "TabsControl"
+		}
+	],
+	"_Name": "WarehouseOrderDetails",
+	"_Type": "Page"
+}

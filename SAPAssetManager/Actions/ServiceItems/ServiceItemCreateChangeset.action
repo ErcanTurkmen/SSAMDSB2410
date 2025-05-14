@@ -1,0 +1,11 @@
+{
+    "Actions": [
+        "/SAPAssetManager/Actions/ServiceItems/ServiceItemCreateUpdateNav.action"
+    ],
+    "OnSuccess": "/SAPAssetManager/Actions/MobileStatus/MobileStatusServiceItemSetReceived.action",
+    "OnFailure" : "/SAPAssetManager/Rules/Common/ChangeSet/ChangeSetOnFailure.js",
+    "Target": {
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "_Type": "Action.Type.ODataService.ChangeSet"
+}

@@ -1,0 +1,12 @@
+{
+    "_Type": "Action.Type.CheckRequiredFields",
+    "ValidationRule": "/SAPAssetManager/Rules/BusinessPartners/S4/AddS4BusinessPartnerPageFieldsValidation.js",
+    "RequiredFields": [
+        "BusinessPartnerListPicker",
+        "BusinessPartnerTypeListPicker"
+    ],
+    "OnFailure": "/SAPAssetManager/Rules/Common/UpdateRequiredFailed.js",
+    "OnSuccess": "/SAPAssetManager/Actions/BusinessPartners/S4/S4BusinessPartnerChangeSet.action",
+    "ShowActivityIndicator": true,
+    "ActivityIndicatorText": "  "
+}

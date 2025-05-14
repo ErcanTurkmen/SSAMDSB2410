@@ -1,0 +1,36 @@
+{
+	"_Type": "Page",
+	"_Name": "OnlineClassificationDetailsPage",
+	"Caption": "/SAPAssetManager/Rules/Classification/ClassificationDetailCaption.js",
+	"Controls": [
+		{
+			"Sections": [
+				{
+                    "ObjectHeader": {
+						"HeadlineText": "{ClassDesc}",
+						"Subhead": "{ClassId}",
+                        "Footnote": "/SAPAssetManager/Rules/Classification/ClassTypeDescription.js"
+                    },
+                    "_Type": "Section.Type.ObjectHeader",
+                    "_Name": "ClassificationObjectHeaderSection"
+				},
+				{
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/Equipment/Classifications/CharacteristicsObjectTable.fragment",
+					"Properties": {
+						"ObjectCell": {
+							"Icons": null,
+							"OnPress": "/SAPAssetManager/Rules/Classification/Characteristics/OnlineCharacteristicValueDetailNav.js",
+							"Subhead": "/SAPAssetManager/Rules/Classification/Characteristics/OnlineCharacteristicDisplayValue.js"
+						},
+						"Target": "/SAPAssetManager/Rules/Classification/Characteristics/OnlineClassificationCharacteristicsTarget.js"
+					}
+				}
+			],
+			"LoadingIndicator": {
+				"Enabled": true
+			},
+            "_Type": "Control.Type.SectionedTable"
+		}
+	]
+}

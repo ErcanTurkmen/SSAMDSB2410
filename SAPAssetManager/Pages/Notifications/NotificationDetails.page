@@ -1,0 +1,306 @@
+{
+    "Caption": "/SAPAssetManager/Rules/Notifications/NotificationHeader.js",
+    "ActionBar": {
+        "_Name": "NotificationDetails",
+        "Items": "/SAPAssetManager/Pages/Fragments/Notification/Details/ActionBarItems.fragment"
+    },
+    "OnLoaded": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsOnPageLoad.js",
+    "OnReturning": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsOnReturning.js",
+    "OnCustomEventDataReceived": "/SAPAssetManager/Rules/Common/OnCustomEventDataReceived.js",
+    "Controls":
+    [{
+        "Sections": [
+            {
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Notification/Details/ObjectHeader.fragment",
+                "Properties": {
+                    "ObjectHeader": {
+                        "DetailImage": "/SAPAssetManager/Rules/OnlineSearch/Notifications/NotificationDetailImage.js"
+                    }
+                }
+            },
+            {
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/QAB/QuickActionBarExtensionSection.fragment",
+                "Properties": {
+                    "ExtensionProperties": {
+                        "Chips": "/SAPAssetManager/Rules/Notifications/Details/NotificationQABChips.js"
+                    },
+                    "DataSubscriptions": ["PMMobileStatuses"]
+                }
+            },
+            {
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/Assets.fragment",
+                "Properties": {
+                    "Target": "/SAPAssetManager/Rules/Notifications/Details/NotificationAssets.js"
+                }
+            },
+            {
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Notification/Details/WorkOrderSection.fragment",
+                "Properties": {
+                    "ObjectCell": {
+                        "DetailImage": "$(PLT, /SAPAssetManager/Images/DetailImages/WO.png, /SAPAssetManager/Images/DetailImages/WO.android.png)"
+                    }
+                }
+            },
+            {
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/NotesObjectSection.fragment",
+                "Properties": {
+                    "Header": {
+                        "Items": [
+                            {
+                                "_Type": "SectionHeaderItem.Type.Label",
+                                "_Name": "NotesSectionHeaderLabel",
+                                "Title": "$(L, notes)",
+                                "Position": "Left"
+                            },
+                            {
+                                "_Type": "SectionHeaderItem.Type.Button",
+                                "_Name": "NotesSectionHeaderAddButton",
+                                "Title": "$(L,add)",
+                                "Position": "Right",
+                                "OnPress": "/SAPAssetManager/Rules/Notes/NoteCreateNav.js",
+                                "Visible": "/SAPAssetManager/Rules/UserAuthorizations/Notifications/EnableNotificationCreateEdit.js",
+                                "Styles": {
+                                    "Button": "HeaderItemButtonText"
+                                }
+                            }
+                        ]
+                    },
+                    "Target": {
+                        "EntitySet": "{{#Property:@odata.readLink}}/HeaderLongText"
+                    },
+                    "DataSubscriptions": ["MyNotifHeaderLongTexts", "PMMobileStatuses"]
+                }
+            },
+            {
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Notification/Details/NotificationDetailsSection.fragment",
+                "Properties": {
+                    "Visible": true
+                }
+            },
+            "/SAPAssetManager/Pages/Fragments/Notification/Details/NotificationMalfunctionDetailsSection.fragment",
+            "/SAPAssetManager/Pages/Fragments/Notification/Details/NotificationItemsHeaderSection.fragment",
+            "/SAPAssetManager/Pages/Fragments/Notification/Details/NotificationItemsSection.fragment",
+            {
+                "_Type": "Section.Type.ObjectCardCollection",
+                "_Name": "TasksObjectCardCollection",
+                "Header": {
+                        "Items": [
+                            {
+                                "_Type": "SectionHeaderItem.Type.Label",
+                                "_Name": "TasksSectionHeaderLabel",
+                                "Title": "$(L, notification_tasks)",
+                                "Position": "Left"
+                            },
+                            {
+                                "_Type": "SectionHeaderItem.Type.Button",
+                                "_Name": "TasksSectionHeaderAddButton",
+                                "Title": "$(L,add)",
+                                "Position": "Right",
+                                "Visible": "/SAPAssetManager/Rules/Notifications/Task/CreateUpdate/EnableNotificationTaskCreate.js",
+                                "OnPress": "/SAPAssetManager/Rules/Notifications/Task/CreateUpdate/NotificationTaskCreateNav.js",
+                                "Styles": {
+                                    "Button": "HeaderItemButtonText"
+                                }
+                            }
+                        ]
+                },
+                "Layout": {
+                    "LayoutType": "HorizontalScroll"
+                },
+                "EmptySection": {
+                    "Caption": "$(L,no_task_available)"
+                },
+                "Card": {
+                    "_Type": "ObjectCardCollection.Type.Card",
+                    "Title": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsTaskListFormat.js",
+                    "Subhead": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsTaskListFormat.js",
+                    "Footnote": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsTaskListFormat.js",
+                    "StatusText" : "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsTaskListFormat.js",
+                    "OnPress" : "/SAPAssetManager/Rules/Notifications/Details/NotificationTaskDetailsNav.js",
+                    "OverflowButtons": [
+                        {
+                            "_Name": "AddNote",
+                            "Title" : "$(L, add_note)",
+                            "OnPress": "/SAPAssetManager/Rules/Parts/PartObjectCardCreateNoteOnPress.js",
+                            "Visible": "/SAPAssetManager/Rules/Notifications/Task/NotificationTaskObjectCardAddNoteVisible.js"
+                        }
+                    ],
+                    "SecondaryAction": {
+                        "Visible": "/SAPAssetManager/Rules/Notifications/Task/NotificationTaskObjectCardSecondaryActionVisible.js",
+                        "Title": "/SAPAssetManager/Rules/Notifications/Task/NotificationTaskCardSecondaryAndPrimaryActionTitle.js",
+                        "OnPress": "/SAPAssetManager/Rules/Notifications/Task/NotificationTaskCardSecondaryAndPrimaryActionOnPress.js"
+                    },
+                    "PrimaryAction": {
+                        "Visible": "/SAPAssetManager/Rules/Notifications/Task/NotificationTaskObjectCardPrimaryActionVisible.js",
+                        "Title": "/SAPAssetManager/Rules/Notifications/Task/NotificationTaskCardSecondaryAndPrimaryActionTitle.js",
+                        "OnPress": "/SAPAssetManager/Rules/Notifications/Task/NotificationTaskCardSecondaryAndPrimaryActionOnPress.js",
+                        "Style": "ObjectCardPrimaryAction"
+                    },
+                    "Styles": {
+                        
+                    }
+                },
+                "Target": {
+                    "EntitySet" : "{{#Property:@odata.id}}/Tasks",
+                    "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                    "QueryOptions": "$top=50&$expand=TaskMobileStatus_Nav,Notification,Notification/NotifMobileStatus_Nav&$orderby=TaskSortNumber asc"
+                },
+                "Footer": {
+                    "Caption": "$(L,see_all)",
+                    "AccessoryType": "DisclosureIndicator",
+                    "FooterStyle": "Attribute",
+                    "AttributeLabel": "/SAPAssetManager/Rules/Notifications/Task/NotificationsTasksCount.js",
+                    "OnPress": "/SAPAssetManager/Actions/Notifications/Task/NotificationTasksListViewNav.action"
+                },
+                "Separators": {
+                    "ControlSeparator": false
+                },
+                "DataSubscriptions": ["PMMobileStatuses", "MyNotificationTasks"]
+            },
+            {
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Notification/Details/NotificationActivitiesSection.fragment",
+                "Properties": {
+                    "ObjectCell": {
+                        "DetailImage": "$(PLT, /SAPAssetManager/Images/DetailImages/Activity.png, /SAPAssetManager/Images/DetailImages/Activity.android.png)"
+                    },
+                    "Header": {
+                        "Items": [
+                            {
+                                "_Type": "SectionHeaderItem.Type.Label",
+                                "_Name": "ActivitiesSectionHeaderLabel",
+                                "Title": "$(L, notification_activities)",
+                                "Position": "Left"
+                            },
+                            {
+                                "_Type": "SectionHeaderItem.Type.Button",
+                                "_Name": "ActivitiesSectionHeaderAddButton",
+                                "Title": "$(L,add)",
+                                "Position": "Right",
+                                "Visible": "/SAPAssetManager/Rules/UserAuthorizations/Notifications/EnableNotificationEdit.js",
+                                "OnPress": "/SAPAssetManager/Rules/Notifications/Activity/CreateUpdate/NotificationActivityCreateNav.js",
+                                "Styles": {
+                                    "Button": "HeaderItemButtonText"
+                                }
+                            }
+                        ]
+                    },
+                    "DataSubscriptions": ["MyNotificationActivities", "PMMobileStatuses"]
+                }
+            },
+            "/SAPAssetManager/Pages/Fragments/Documents/DocumentsSection.fragment",
+            {
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Notification/Details/BusinessPartnersSection.fragment",
+                "Properties": {
+                    "ContactCell": {
+                        "DetailImage": "$(PLT, /SAPAssetManager/Images/DetailImages/Partner.png, /SAPAssetManager/Images/DetailImages/Partner.android.png)"
+                    }
+                }
+            },
+            {
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Details/StatusesGridTable.fragment",
+                "Properties": {
+                    "Header": {
+                        "UseTopPadding": true,
+                        "Caption": "$(L, status)"
+                    }
+                }
+            },
+            {
+                "_Type": "Section.Type.ObjectTable",
+                "_Name": "RelatedWorkOrdersSection",
+                "Header": {
+                    "Caption": "$(L,related_work_orders)"
+                },
+                "EmptySection": {
+                    "Caption": "$(L, no_workorders_available)"
+                },
+                "ObjectCell": {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/History/RelatedWorkOrderObjectCell.fragment",
+                    "Properties": {
+                        "DetailImage": "$(PLT, /SAPAssetManager/Images/DetailImages/WO.png, /SAPAssetManager/Images/DetailImages/WO.android.png)",
+                        "Styles": {
+                            "StatusText":  "/SAPAssetManager/Rules/Priority/WOPriorityStatusStyle.js"
+                        }
+                    }
+                },
+                "Target": {
+                    "EntitySet": "/SAPAssetManager/Rules/WorkOrders/History/WorkOrderHistoryEntitySet.js",
+                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                    "QueryOptions": "$top=2&$filter=ReferenceType eq 'P' or ReferenceType eq 'H'&$expand=HistoryLongText,HistoryPriority&$orderby=Priority,OrderId desc"
+                },
+                "Footer": {
+                    "Caption": "$(L,see_all)",
+                    "AccessoryType": "DisclosureIndicator",
+                    "FooterStyle": "Attribute",
+                    "AttributeLabel": "/SAPAssetManager/Rules/WorkOrders/History/WorkOrderHistoriesCount.js",
+                    "OnPress": "/SAPAssetManager/Actions/WorkOrders/WorkOrderRelatedHistoriesListViewNav.action",
+                    "Visible": "/SAPAssetManager/Rules/Notifications/Details/RelatedWorkOrdersFooterVisible.js"
+                },
+                "Visible": "/SAPAssetManager/Rules/Notifications/Details/WorkOrderHistoriesAreVisible.js"
+            },
+            {
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Notification/Details/SoldToPartySection.fragment",
+                "Properties": {
+                    "ContactCell": {
+                        "DetailImage": "$(PLT, /SAPAssetManager/Images/DetailImages/Partner.png, /SAPAssetManager/Images/DetailImages/Partner.android.png)"
+                    }
+                }
+            },
+            "/SAPAssetManager/Pages/Fragments/Notification/Details/ServiceOrderDetailsSection.fragment",
+            {
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Notification/Details/InspectionLotSection.fragment",
+                "Properties": {
+                    "ObjectCell": {
+                        "DetailImage": "$(PLT, /SAPAssetManager/Images/DetailImages/Inspection.png, /SAPAssetManager/Images/DetailImages/Inspection.android.png)"
+                    }
+                }
+            },
+            "/SAPAssetManager/Pages/Fragments/Forms/SDF/FormObjectTableSection.fragment",
+            "/SAPAssetManager/Pages/Fragments/DigitalSignature/DigitalSignatureGridTable.fragment",
+            {
+                "SimplePropertyCells":
+                [
+                    {
+                        "SimplePropertyCell": {
+                            "_Name": "LinearData",
+                            "AccessoryType": "DisclosureIndicator",
+                            "KeyName": "$(L,linear_data)",
+                            "Value": "",
+                            "OnPress": "/SAPAssetManager/Rules/LAM/LAMNav.js",
+                            "Visible": "/SAPAssetManager/Rules/LAM/LAMVisible.js"
+                        }
+                    }
+                ],
+                "Layout":
+                {
+                    "NumberOfColumns" : 1,
+                    "MinimumInteritemSpacing": "$(PLT,66,0)"
+                },
+                "_Type" : "Section.Type.SimplePropertyCollection",
+                "DataSubscriptions": ["PMMobileStatuses", "LAMObjectData"]
+            }
+        ],
+        "_Type": "Control.Type.SectionedTable",
+        "_Name": "SectionedTable"
+	}],
+    "FioriToolbar": {
+        "_Name": "NotificationDetailsFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Visible": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsToolbarVisibility.js",
+        "Items": "/SAPAssetManager/Rules/Common/DetailsPageToolbar/DetailsPageToolbarItems.js"
+    },
+    "_Type": "Page",
+    "_Name": "NotificationDetailsPage"
+}

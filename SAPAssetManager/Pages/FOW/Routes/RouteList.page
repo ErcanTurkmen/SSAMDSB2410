@@ -1,0 +1,57 @@
+{
+  "Caption": "/SAPAssetManager/Rules/SideDrawer/SideDrawerRoutesCount.js",
+  "OnLoaded": "/SAPAssetManager/Rules/FOW/Routes/ListView/RouteListOnPageLoad.js",
+	"ActionBar":
+	{
+		"Items":
+		[
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment",
+			{
+				"Position": "Right",
+				"Icon": "$(PLT,'',/SAPAssetManager/Images/filter.android.png, '' , /SAPAssetManager/Images/filter.android.png)",
+				"Caption": "/SAPAssetManager/Rules/Filter/FilterButtonCaption.js",
+				"OnPress": "/SAPAssetManager/Actions/FOW/Routes/RouteFilter.action"
+			}
+		]
+	},
+  "Controls": 
+	[{
+		"Sections":
+		[{
+			"Search": {
+				"Enabled" : true,
+				"Delay": 0,
+				"MinimumCharacterThreshold": 0,
+				"Placeholder": "$(L,search)",
+				"BarcodeScanner": true
+			},
+			"Header": {
+		 		"UseTopPadding": false
+    	},
+			"ObjectCell": {
+				"Title": "{Description}",
+				"Subhead": "{RouteID}",
+				"Footnote": "/SAPAssetManager/Rules/FOW/Routes/ListView/RouteListStopCountCaption.js",
+				"StatusText": "/SAPAssetManager/Rules/FOW/Routes/MobileStatusCaption.js",
+				"SubstatusText": "/SAPAssetManager/Rules/FOW/DateTime/RouteDueDate.js",
+				"AccessoryType": "DisclosureIndicator",
+				"OnPress" : "/SAPAssetManager/Rules/FOW/Routes/RouteDetailsNav.js"
+			},
+			"Target": {
+				"EntitySet" : "MyRoutes",
+				"Service" : "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "/SAPAssetManager/Rules/FOW/Routes/ListView/RoutesListViewQueryOption.js"
+			},
+			"_Type" : "Section.Type.ObjectTable",
+			"_Name" : "RoutesListSection"
+		}],
+		"_Type" : "Control.Type.SectionedTable",
+		"_Name" : "SectionedTable"
+	}],
+  "_Type": "Page",
+	"_Name": "RouteListPage",
+	"DataSubscriptions": [
+		"MyRouteStops",
+		"/SAPAssetManager/Services/AssetManager.service"
+	]
+}

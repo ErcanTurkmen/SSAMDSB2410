@@ -1,0 +1,216 @@
+{
+    "Caption": "/SAPAssetManager/Rules/Expense/CreateUpdate/ExpenseCreateUpdatePageCaption.js",
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "_Name": "ExpenseCreate",
+        "Items": [
+            {
+                "Position": "Left",
+                "_Name": "Cancel",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)",
+                "Visible": "/SAPAssetManager/Rules/Expense/CreateUpdate/IsCancelExpenseButtonVisible.js",
+                "OnPress": "/SAPAssetManager/Rules/Expense/CreateUpdate/CheckForChangesOnExpenseCancel.js"
+            },
+            {
+                "Position": "Right",
+                "_Name": "Done",
+                "SystemItem": "$(PLT,'Done','', '', 'Done')",
+                "Text": "/SAPAssetManager/Rules/Common/Platform/DoneText.js",
+                "OnPress": "/SAPAssetManager/Actions/Expense/ExpenseCreateUpdateRequired.action"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "Header": {
+                        "UseTopPadding": false
+                    },
+                    "Controls": [
+                        {
+                            "Caption": "/SAPAssetManager/Rules/Expense/CreateUpdate/FormHandlers/ExpenseOrderFieldCaption.js",
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 3,
+                                "Placeholder": "$(L,search)",
+                                "BarcodeScanner": true
+                            },
+                            "IsPickerDismissedOnSelection": true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "AllowMultipleSelection": false,
+                            "AllowDefaultValueIfOneItem": false,
+                            "PickerItems": {
+                                "DisplayValue" : "{{#Property:OrderId}} - {{#Property:OrderDescription}}",
+                                "ReturnValue" : "{OrderId}",
+                                "Target":
+                                {
+                                    "EntitySet" : "MyWorkOrderHeaders",
+                                    "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions" : "/SAPAssetManager/Rules/Expense/CreateUpdate/ExpenseCreateUpdateOrderQueryOptions.js"
+                                }
+                            },
+                            "Value": "/SAPAssetManager/Rules/ServiceOrders/Mileage/MileageAddEditInitialOrderId.js",
+                            "OnValueChange" : "/SAPAssetManager/Rules/Expense/CreateUpdate/FormHandlers/OnWorkOrderValueChange.js",
+                            "_Type": "Control.Type.FormCell.ListPicker",
+                            "_Name": "WorkOrderLstPkr"
+                        },
+                        {
+                            "Caption": "$(L,operation)*",
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 3,
+                                "Placeholder": "$(L,search)",
+                                "BarcodeScanner": true
+                            },
+                            "AllowMultipleSelection": false,
+                            "IsPickerDismissedOnSelection": true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "AllowDefaultValueIfOneItem": true,
+                            "IsEditable": "/SAPAssetManager/Rules/ServiceOrders/Mileage/MileageAddEditOperationIsEditable.js",
+                            "PickerItems":
+                            {
+                                "DisplayValue" : "{{#Property:OperationNo}} - {{#Property:OperationShortText}}",
+                                "ReturnValue" : "{OperationNo}",
+                                "Target":
+                                {
+                                    "EntitySet" : "MyWorkOrderOperations",
+                                    "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions" : "/SAPAssetManager/Rules/ServiceOrders/Mileage/MileageAddEditOperationQueryOptions.js"
+                                }
+                            },
+                            "OnValueChange": "/SAPAssetManager/Rules/Common/Controls/Handlers/OnServiceOperationValueChange.js",
+                            "Value": "/SAPAssetManager/Rules/ServiceOrders/Mileage/MileageAddEditInitialOperation.js",
+                            "_Type": "Control.Type.FormCell.ListPicker",
+                            "_Name": "OperationLstPkr"
+                        },
+                        {
+                            "Caption": "$(L,work_center)*",
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 3,
+                                "Placeholder": "$(L,search)",
+                                "BarcodeScanner": true
+                            },
+                            "AllowMultipleSelection": false,
+                            "IsPickerDismissedOnSelection": true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "AllowDefaultValueIfOneItem": true,
+                            "PickerItems" :
+                            {
+                                "DisplayValue" : "{ExternalWorkCenterId}",
+                                "ReturnValue" : "{ExternalWorkCenterId}",
+                                "Target":
+                                {
+                                    "EntitySet" : "WorkCenters",
+                                    "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions" : "$orderby=ExternalWorkCenterId"
+                                }
+                            },
+                            "IsEditable": "/SAPAssetManager/Rules/ServiceOrders/Mileage/MileageAddEditIsWorkCenterEditable.js",
+                            "Value": "/SAPAssetManager/Rules/Expense/ExpenseCreateUpdateInitialWorkCenter.js",
+                            "OnValueChange": "/SAPAssetManager/Rules/Expense/ExpenseCreateUpdateWorkCenterOnValueChange.js",
+                            "_Type": "Control.Type.FormCell.ListPicker",
+                            "_Name": "WorkCenterPicker"
+                        }
+                    ]
+                },
+                {
+                    "Controls": [
+                        {
+                            "IsSelectedSectionEnabled": true,
+                            "AllowMultipleSelection": false,
+                            "IsPickerDismissedOnSelection": true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "AllowDefaultValueIfOneItem": true,
+                            "Search": { 
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 3,
+                                "Placeholder": "Search",
+                                "BarcodeScanner": true
+                            },
+                            "Caption": "$(L, expense_type)*",
+                            "Value": "{ActivityType}",
+                            "_Name": "ExpenseTypeLstPkr",
+                            "_Type": "Control.Type.FormCell.ListPicker",
+                            "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js",
+                            "PickerItems": {
+                                "DisplayValue" : "{{#Property:ActivityType}} - {{#Property:ActivityTypeDescription}}",
+                                "ReturnValue" : "{ActivityType}",
+                                "Target":
+                                {
+                                    "EntitySet" : "COActivityTypes",
+                                    "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions" : "/SAPAssetManager/Rules/Expense/CreateUpdate/FormHandlers/ExpenseActivityPickerQueryOptions.js"
+                                }
+                            },
+                            "IsEditable": "/SAPAssetManager/Rules/Expense/ExpenseCreateUpdateIsActivityTypeEditable.js"
+                        },
+                        {
+                            "Value": "$(N,{ActualWork})",
+                            "_Name": "AmountProperty",
+                            "PlaceHolder": "$(N,0.0)",
+                            "Caption": "$(L,amount)*",
+                            "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js",
+                            "_Type": "Control.Type.FormCell.SimpleProperty",
+                            "KeyboardType": "Number"
+                        }
+                    ]
+                },
+                { 
+                    "Controls": [
+                         {
+                            "_Name": "CurrencyProperty",
+                            "Caption": "$(L,currency)",
+                            "IsEditable": false,
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        },
+                        {
+                            "Caption": "$(L,date)",
+                            "Mode" : "Date",
+                            "DateTimeEntryMode" : "date",
+                            "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js",
+                            "_Type": "Control.Type.FormCell.DatePicker",
+                            "_Name": "CreateDatePicker"
+                        },
+                        {
+                            "Value": "{Description}",
+                            "_Name": "CommentProperty",
+                            "PlaceHolder": "$(L,comment)",
+                            "Caption": "$(L,comment)",
+                            "_Type": "Control.Type.FormCell.Note",
+                            "IsAutoResizing": true,
+                            "IsVisible": "/SAPAssetManager/Rules/Expense/CreateUpdate/ExpenseCreateUpdateIsDescriptionVisible.js",
+                            "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js"
+                        }
+                    ]
+                },
+                {
+                    "Controls": [
+                        {
+                            "_Name": "DiscardButton",
+                            "_Type": "Control.Type.FormCell.Button",
+                            "Title": "$(L,discard)",
+                            "ButtonType": "Text",
+                            "Semantic": "Tint",
+                            "OnPress": "/SAPAssetManager/Rules/Common/DiscardAction.js",
+                            "IsVisible": "/SAPAssetManager/Rules/Expense/CreateUpdate/IsDiscardButtonVisible.js",
+                            "TextAlignment": "/SAPAssetManager/Rules/Common/Platform/ModalButtonAlign.js"
+                        }
+                    ]
+                }
+            ],
+            "_Name": "FormCellContainer",
+            "_Type": "Control.Type.FormCellContainer"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "ExpenseCreateUpdatePage",
+    "OnLoaded": "/SAPAssetManager/Rules/Expense/CreateUpdate/ExpenseCreateUpdateOnPageLoaded.js",
+    "OnUnloaded": "/SAPAssetManager/Rules/Expense/CreateUpdate/ExpenseCreateUpdateOnPageUnloaded.js"
+}

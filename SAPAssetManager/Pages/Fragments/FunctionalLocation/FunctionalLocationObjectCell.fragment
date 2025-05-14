@@ -1,0 +1,9 @@
+{
+    "_Type": "Control.Type.ObjectCell",    
+    "Icons": "/SAPAssetManager/Rules/Common/TechnicalObjectListViewIconImages.js",
+	"Title": "/SAPAssetManager/Rules/FunctionalLocation/FunctionalLocationListFormat.js",
+	"Footnote": "/SAPAssetManager/Rules/FunctionalLocation/FunctionalLocationListFormat.js",
+	"Subhead": "/SAPAssetManager/Rules/FunctionalLocation/FunctionalLocationListFormat.js",
+    "AccessoryType": "DisclosureIndicator",
+    "OnPress":"/SAPAssetManager/Actions/FunctionalLocation/FunctionalLocationDetailsNav.action"
+}

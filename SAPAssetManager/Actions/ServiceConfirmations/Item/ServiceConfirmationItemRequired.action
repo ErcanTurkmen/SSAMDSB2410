@@ -1,0 +1,7 @@
+{
+    "_Type": "Action.Type.CheckRequiredFields",
+    "RequiredFields": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/ServiceConfirmationItemRequiredFields.js",
+    "ValidationRule": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/ServiceConfirmationItemCreateUpdateValidation.js",
+    "OnFailure": "/SAPAssetManager/Rules/Common/UpdateRequiredFailed.js",
+    "OnSuccess": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/ServiceConfirmationItemOnCommit.js"
+}

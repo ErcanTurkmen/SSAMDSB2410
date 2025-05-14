@@ -1,0 +1,137 @@
+{
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "Items": [
+            {
+                "Position": "Left",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)",
+                "OnPress": "/SAPAssetManager/Actions/Page/CancelPage.action"
+            },
+            {
+                "Position": "Right",
+                "SystemItem": "/SAPAssetManager/Rules/Filter/FilterSystemItem.js",
+                "Text": "/SAPAssetManager/Rules/Filter/FilterText.js",
+                "OnPress": "/SAPAssetManager/Rules/Filter/ApplyFilterAndSave.js"
+            }
+        ]
+    },
+    "Caption":"$(L,filter)",
+    "Result": "/SAPAssetManager/Rules/ServiceOrders/ListView/Filter/ServiceOrderListFilterResults.js",
+    "OnLoaded": "/SAPAssetManager/Rules/ServiceOrders/ListView/Filter/ServiceOrderFilterOnLoaded.js",
+    "Controls":[
+        {
+            "Sections":[
+                {
+                    "Controls": [{
+                        "_Type": "Fragment",
+                        "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/SortByFilter.fragment",
+                        "Properties": {
+                            "SortByItems": [
+                                {
+                                    "ReturnValue":"Priority",
+                                    "DisplayValue":"$(L,priority)"
+                                },
+                                {
+                                    "ReturnValue":"Description",
+                                    "DisplayValue":"$(L,description)"
+                                },
+                                {
+                                    "ReturnValue":"DueBy",
+                                    "DisplayValue":"$(L,due_date)"
+                                },
+                                {
+                                    "ReturnValue":"ObjectID",
+                                    "DisplayValue":"$(L,serviceorder_id)"
+                                }
+                            ]
+                        }
+                    }]
+                },
+                {
+                    "Controls": [
+                        "/SAPAssetManager/Pages/Fragments/Filter/MobileStatusFilter.fragment",
+                        {
+                            "_Type": "Fragment",
+                            "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/PriorityFilter.fragment",
+                            "Properties": {
+                                "FilterProperty": "/SAPAssetManager/Rules/Priority/ServicePriorities.js"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "Controls": [
+                        {
+                            "_Type": "Control.Type.FormCell.Switch",
+                            "_Name": "RequestStartDateSwitch",
+                            "Caption":"$(L,request_start_date)",
+                            "Value": false,
+                            "OnValueChange": "/SAPAssetManager/Rules/ServiceOrders/ListView/Filter/ServiceRequestFilterDateSwitchChanged.js"
+                        },
+                        {
+                            "_Type": "Control.Type.FormCell.DatePicker",
+                            "_Name": "ReqStartDateFilter",
+                            "Caption": "$(L,date_from)",
+                            "Mode": "Date",
+                            "IsVisible": false,
+                            "OnValueChange": "/SAPAssetManager/Rules/Filter/Validation/CompareStartEndDateComponent.js"
+                        },
+                        {
+                            "_Type": "Control.Type.FormCell.DatePicker",
+                            "_Name": "ReqEndDateFilter",
+                            "Caption": "$(L,date_to)",
+                            "Mode": "Date",
+                            "IsVisible": false,
+                            "OnValueChange": "/SAPAssetManager/Rules/Filter/Validation/CompareStartEndDateComponent.js"
+                        }
+                    ]
+                },
+                {
+                    "Controls": [
+                        {
+                            "_Type": "Control.Type.FormCell.Switch",
+                            "_Name": "DueDateSwitch",
+                            "Caption":"$(L,due_date)",
+                            "Value": false,
+                            "OnValueChange": "/SAPAssetManager/Rules/ServiceOrders/ListView/Filter/ServiceRequestFilterDateSwitchChanged.js"
+                        },
+                        {
+                            "_Type": "Control.Type.FormCell.DatePicker",
+                            "_Name": "DueStartDateFilter",
+                            "Caption": "$(L,date_from)",
+                            "Mode": "Date",
+                            "IsVisible": false,
+                            "OnValueChange": "/SAPAssetManager/Rules/Filter/Validation/CompareStartEndDateComponent.js"
+                        },
+                        {
+                            "_Type": "Control.Type.FormCell.DatePicker",
+                            "_Name": "DueEndDateFilter",
+                            "Caption": "$(L,date_to)",
+                            "Mode": "Date",
+                            "IsVisible": false,
+                            "OnValueChange": "/SAPAssetManager/Rules/Filter/Validation/CompareStartEndDateComponent.js"
+                        }
+                    ]
+                }
+            ],
+            "_Name":"FormCellContainer",
+            "_Type":"Control.Type.FormCellContainer"
+        }
+    ],
+    "FioriToolbar": {
+        "_Name": "ServiceOrderFilterFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Items": [
+            {
+				"_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/ResetFilterToolbarItem.fragment",
+				"Properties": {
+                    "OnPress": "/SAPAssetManager/Rules/WorkOrders/WorkOrderListFilterReset.js"
+				}
+			}
+        ]
+    },
+    "_Type":"Page",
+    "_Name":"ServiceOrderFilterPage"
+}

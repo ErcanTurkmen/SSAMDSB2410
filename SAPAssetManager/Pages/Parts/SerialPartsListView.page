@@ -1,0 +1,35 @@
+{
+    "Caption": "$(L,serial_numbers)",
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "Search": {
+                        "Enabled": true,
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 3,
+                        "Placeholder": "$(L,search)",
+				        "BarcodeScanner": true
+                    },
+                    "EmptySection": {
+                        "Caption": "$(L,no_serial_numbers)"
+                    },
+                    "Header": {
+		 		        "UseTopPadding": false
+    		        },
+                    "ObjectCell": {
+                        "Title": "{ReturnValue}",
+                        "Subhead": "/SAPAssetManager/Rules/Parts/Issue/SerialParts/SerialUUID.js"
+                    },
+                    "Target" : "/SAPAssetManager/Rules/Parts/Issue/SerialParts/SerialNumsListTarget.js",
+                    "_Type": "Section.Type.ObjectTable",
+                    "_Name": "SerialPartsList"
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SerialPartsListSectionedTable"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "SerialPartsListViewPage"
+}

@@ -1,0 +1,18 @@
+[
+    {
+        "Position": "Right",
+        "_Name": "Edit",
+        "SystemItem": "Edit",
+        "Caption": "$(L,edit)",
+        "Visible": "/SAPAssetManager/Rules/UserAuthorizations/WorkOrders/EnableWorkOrderEdit.js",
+        "OnPress": "/SAPAssetManager/Rules/WorkOrders/WorkOrderUpdateNav.js"
+    },
+    {
+        "Position": "Right",
+        "_Name": "Add",
+        "SystemItem": "Add",
+        "Caption": "$(L,add)",
+        "OnPress": "/SAPAssetManager/Actions/WorkOrders/WorkOrderDetailsAddPopover.action",
+        "Visible": "/SAPAssetManager/Rules/WorkOrders/WorkOrderDetailsPopoverIsVisible.js"
+    }
+]

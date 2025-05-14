@@ -1,0 +1,24 @@
+{
+    "_Type": "Action.Type.ODataService.CreateEntity",
+    "Target": {
+        "EntitySet": "S4ServiceOrderPartners",
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "Properties": {
+        "ObjectID": "",
+        "ItemNo": "",
+        "ObjectType": "",
+        "BusinessPartnerID": "",
+        "PrevPartnerNo": "",
+        "PartnerFunction": "",
+        "PrevPartnerFunction": ""
+    },
+    "Headers": {
+        "OfflineOData.RemoveAfterUpload": "true",
+        "OfflineOData.TransactionID": "#Property:ObjectID"
+    },
+    "CreateLinks": [],
+    "OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/CreateEntityFailureMessage.action",
+    "ShowActivityIndicator": true,
+    "ActivityIndicatorText" : " "
+}

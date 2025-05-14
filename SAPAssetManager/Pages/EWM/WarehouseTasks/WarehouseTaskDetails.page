@@ -1,0 +1,209 @@
+{
+	"Caption": "$(L, warehouse_task)",
+	"ActionBar": {
+		"Items": [
+			{
+				"Position": "Right",
+				"Icon": "$(PLT, /SAPAssetManager/Images/edit.png, /SAPAssetManager/Images/edit-accessory.android.png, '', /SAPAssetManager/Images/edit-accessory.android.png)",
+				"IconText": "Task Confirmation",
+				"Caption": "$(L, ewm_confirm_task)",
+				"Visible": true
+			},
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment"
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"ObjectHeader": {
+						"HeadlineText": "{WarehouseTask}",
+						"Subhead": "{Product}",
+						"Footnote": "{WTStatus}"
+					},
+					"_Type": "Section.Type.ObjectHeader",
+					"_Name": "ObjectHeaderSectionTable"
+				},
+				{
+					"_Type": "Section.Type.KeyValue",
+					"_Name": "WarehouseTaskDetails0",
+					"Header": {
+						"Caption": "$(L,item_details)"
+					},
+					"KeyAndValues": [
+						{
+							"_Name": "WarehouseTask",
+							"KeyName": "$(L,warehouse_task_num)",
+							"Value": "$(DV, {WarehouseTask}, '-')"
+						},
+						{
+							"_Name": "WarehouseOrder",
+							"KeyName": "$(L,warehouse_ord_num)",
+							"Value": "$(DV, {WarehouseOrder}, '-')"
+						},
+						{
+							"_Name": "DocumentID",
+							"KeyName": "$(L,document_number)",
+							"Value": "$(DV, {Delivery}, '-')"
+						},
+						{
+							"_Name": "WarehouseNum",
+							"KeyName": "$(L,warehouse_num)",
+							"Value": "$(DV, '/SAPAssetManager/Rules/EWM/Common/WarehouseNumberDescription.js', '-')"
+						},
+						{
+							"_Name": "ActivityArea",
+							"KeyName": "$(L,activity_area)",
+							"Value": "$(DV,{ActivityArea}, '-')"
+						},
+						{
+							"_Name": "ProcCategory",
+							"KeyName": "$(L,process_category)",
+							"Value": "$(DV,{ProcCategory}, '-')"
+						},
+						{
+							"_Name": "ProductDescription",
+							"KeyName": "$(L,product_description)",
+							"Value": "$(DV,'/SAPAssetManager/Rules/EWM/WarehouseTask/ListView/WarehouseTaskTitle.js', '-')"
+						},
+						{
+							"_Name": "Batch",
+							"KeyName": "$(L,batch)",
+							"Value": "$(DV,{Batch},'-')"
+						},
+						{
+							"_Name": "Quantity",
+							"KeyName": "$(L,quantity)",
+							"Value": "$(DV,{Quantity},'-')"
+						},
+						{
+							"_Name": "UoM",
+							"KeyName": "$(L,uom)",
+							"Value": "$(DV,{UoM},'-')"
+						},
+						{
+							"_Name": "LoadingWeight",
+							"KeyName": "$(L, weight)",
+							"Value": "$(DV,{LoadingWeight},'-')"
+						},
+						{
+							"_Name": "WeightUnit",
+							"KeyName": "$(L, weight) $(L,uom)",
+							"Value": "$(DV, '{WeightUnit}','-')"
+						},
+						{
+							"_Name": "LoadingVolume",
+							"KeyName": "$(L, volume)",
+							"Value": "$(DV, {LoadingVolume},'-')"
+						},
+						{
+							"_Name": "VolumeUnit",
+							"KeyName": "$(L, volume) $(L,uom)",
+							"Value": "$(DV,{VolumeUnit},'-')"
+						},
+						{
+							"_Name": "SrceStorType",
+							"KeyName": "$(L,src_stor_type_section)",
+							"Value": "$(DV,{SrceStorType}, '-')/$(DV, {SrcStorSectn},'-')"
+						},
+						{
+							"_Name": "SourceBin",
+							"KeyName": "$(L,source_bin)",
+							"Value": "$(DV,{SourceBin},'-')"
+						},
+						{
+							"_Name": "SourceHU",
+							"KeyName": "$(L,source_hu)",
+							"Value": "$(DV,{SourceHU},'-')"
+						},
+						{
+							"_Name": "DestStorTy",
+							"KeyName": "$(L,dest_stor_type_section)",
+							"Value": "$(DV, {DestStorTy},'-')/$(DV, {DestSection},'-')"
+						},
+						{
+							"_Name": "DestinationBin",
+							"KeyName": "$(L,destination_bin)",
+							"Value": "$(DV,{DestinationBin},'-')"
+						},
+						{
+							"_Name": "DestinationHU",
+							"KeyName": "$(L,destination_hu)",
+							"Value": "$(DV, {DestinationHU},'-')"
+						},
+						{
+							"_Name": "Resource",
+							"KeyName": "$(L,resource)",
+							"Value": "$(DV, {Resource},'-')"
+						},
+						{
+							"_Name": "ExceptionCode",
+							"KeyName": "$(L,exception_handling)",
+							"Value": "$(DV, {ExceptionCode},'-')"
+						},
+						{
+							"_Name": "MovementReason",
+							"KeyName": "$(L, movement_reason)",
+							"Value": "$(DV, {MovementReason},'-')"
+						}
+					],
+					"Target": {
+                        "EntitySet": "{@odata.readLink}",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "$expand=WarehouseTaskSerialNumber_Nav"
+					},
+					"Visible": true,
+					"DataSubscriptions": [
+						"WarehouseTasks"
+					]
+				},
+				{
+					"Header": {
+						"Caption": "$(L,serial_numbers)"
+					},
+					"EmptySection": {
+						"Caption": "$(L,no_serial_numbers)"
+					},
+					"ObjectCell": {
+						"Title": "{SerialNumber}",
+						"PreserveIconStackSpacing": false,
+						"StatusText": "{Product}"
+					},
+					"Target": {
+						"EntitySet": "{@odata.readLink}/WarehouseTaskSerialNumber_Nav",
+						"QueryOptions": "$select=SerialNumber,Product",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					},
+					"Visible": true,
+					"_Type": "Section.Type.ObjectTable",
+					"_Name": "SerialNumbersSection"
+				}
+			],
+			"_Type": "Control.Type.SectionedTable",
+			"_Name": "SectionedTable"
+		}
+	],
+	"ToolBar": {
+		"Controls": [
+			{
+				"_Name": "PreviousTask",
+				"_Type": "Control.Type.ToolbarItem",
+				"Caption": "$(L, previous_item)",
+				"OnPress": "/SAPAssetManager/Rules/EWM/WarehouseTask/Details/OnPressPreviousNextButton.js",
+				"Enabled": "/SAPAssetManager/Rules/EWM/WarehouseTask/Details/IsEnabledPreviousButton.js",
+				"Visible": "/SAPAssetManager/Rules/EWM/WarehouseTask/Details/IsVisiblePreviousNextButton.js"
+			},
+			"/SAPAssetManager/Pages/Fragments/Inventory/FlexibleSpaceToolBar.fragment",
+			{
+				"_Name": "NextTask",
+				"_Type": "Control.Type.ToolbarItem",
+				"Caption": "$(L, next_item)",
+				"OnPress": "/SAPAssetManager/Rules/EWM/WarehouseTask/Details/OnPressPreviousNextButton.js",
+				"Enabled": "/SAPAssetManager/Rules/EWM/WarehouseTask/Details/IsEnabledNextButton.js",
+				"Visible": "/SAPAssetManager/Rules/EWM/WarehouseTask/Details/IsVisiblePreviousNextButton.js"
+			}
+		]
+	},
+	"_Name": "WarehouseTaskDetails",
+	"_Type": "Page"
+}

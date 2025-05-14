@@ -1,0 +1,52 @@
+{
+    "Visible": "/SAPAssetManager/Rules/WorkOrders/Meter/ShowMeterSectionDetails.js",
+    "Header": {
+        "UseTopPadding": false,
+        "Items": [
+            {
+                "_Type": "SectionHeaderItem.Type.Label",
+                "_Name": "MeterLabel",
+                "Title": "$(L,meters)",
+                "Position": "Left"
+            },
+            {
+                "_Type": "SectionHeaderItem.Type.Button",
+                "_Name": "MeterAction",
+                "Title": "/SAPAssetManager/Rules/Meter/MeterSectionQABTextValue.js",
+                "Visible": "/SAPAssetManager/Rules/Meter/MeterSectionQABTextVisible.js",
+                "OnPress": "/SAPAssetManager/Rules/Meter/MeterSectionQABAction.js",
+                "Position": "Right"
+            }
+        ]
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_meter_available)"
+    },
+    "Footer": {
+        "Caption": "$(L,see_all)",
+        "AccessoryType": "DisclosureIndicator",
+        "FooterStyle": "Attribute",
+        "AttributeLabel": "/SAPAssetManager/Rules/WorkOrders/Meter/Details/WorkOrderMetersCount.js",
+        "OnPress": "/SAPAssetManager/Rules/Meter/MeterSeeAllNavAction.js",
+        "Visible": "/SAPAssetManager/Rules/WorkOrders/Meter/Details/MetersListViewFooterVisible.js"
+    },
+    "MaxItemCount": 2,
+    "ObjectCell": {
+		"_Type": "Fragment",
+		"Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/MeterListObjectCell.fragment",
+        "Properties": {
+            "Icons": "/SAPAssetManager/Rules/Meter/Format/MeterObjectCell.js",
+            "AccessoryButtonText": "/SAPAssetManager/Rules/Meter/Format/MeterObjectCell.js",
+            "AccessoryButtonIcon": "/SAPAssetManager/Rules/Meter/Format/MeterObjectCell.js",
+            "OnAccessoryButtonPress": "/SAPAssetManager/Rules/Meter/MeterSectionAccessoryButtonPress.js"
+        }
+	},
+    "Target": {
+        "EntitySet": "/SAPAssetManager/Rules/Meter/MeterSectionInstallUninstallEntitySet.js",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$filter=sap.entityexists(Device_Nav)&$expand=Workorder_Nav/DisconnectActivity_Nav/DisconnectObject_Nav,Installation_Nav,Premise_Nav,Device_Nav/DeviceCategory_Nav/Material_Nav,Device_Nav/RegisterGroup_Nav/Division_Nav,Device_Nav/Equipment_Nav/ObjectStatus_Nav/SystemStatus_Nav,Device_Nav/GoodsMovement_Nav,Device_Nav/DeviceLocation_Nav/FuncLocation_Nav/Address/AddressCommunication,ConnectionObject_Nav/FuncLocation_Nav/Address/AddressCommunication,Device_Nav/DeviceLocation_Nav/Premise_Nav,Workorder_Nav/OrderMobileStatus_Nav,Workorder_Nav/OrderISULinks,Device_Nav/MeterReadings_Nav"
+    },
+    "_Type": "Section.Type.ObjectTable",
+    "_Name": "MeterListSection",
+    "DataSubscriptions": ["OrderISULinks", "Devices", "PMMobileStatuses", "Confirmations"]
+}

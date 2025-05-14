@@ -1,0 +1,31 @@
+{
+    "Type": "OperationalItem",
+    "Title": "$(L, dl_operational_items)",
+    "Legend": "IconOperationalItem",
+    "Target": {
+        "EntitySet": "WCMDocumentItems",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "/SAPAssetManager/Rules/Maps/WCM/OperationalItemBOQueryOptions.js",
+        "Properties": [],
+        "KeyProperties": []
+    },
+    "Enable": true,
+    "ObjectScheme": {
+        "Geometry": "/SAPAssetManager/Rules/Maps/WCM/WCMTechnicalObjectGeometryValue.js",
+        "Layer": "OperationalItem",
+        "Properties": {
+            "ID": "{ObjectNumber}"
+        },
+        "Actions": [],
+        "Symbol": {
+            "marker": "/SAPAssetManager/Rules/Maps/WCM/OperationalItemMapMarker.js",
+            "lineColor": "256F3A",
+            "fillColor": "256F3A33",
+            "lineWidth": 2,
+            "onSelect": {
+                "marker": "/SAPAssetManager/Rules/Maps/WCM/OperationalItemMapMarkerSelected.js",
+                "lineWidth": 4
+            }
+        }
+    }
+}

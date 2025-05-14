@@ -1,0 +1,44 @@
+{
+    "_Type": "Section.Type.KeyValue",
+    "_Name": "OrderDetailsSection",
+    "Header": {
+        "Caption": "$(L,order_details)"
+    },
+    "KeyAndValues": [
+        {
+            "_Name": "Employee.EmployeeName",
+            "KeyName": "$(L,assignedto)",
+            "Value": "/SAPAssetManager/Rules/Supervisor/Assign/WorkOrderAssignedTo.js"
+        },
+        {
+            "_Name": "RequestedStart",
+            "KeyName": "$(L,request_start_date)",
+            "Value": "/SAPAssetManager/Rules/DateTime/RequestStartDate.js"
+        },
+        {
+            "_Name": "Priority.Description",
+            "KeyName": "$(L, priority)",
+            "Value": "{#Property:Priority_Nav/#Property:Description}"
+        },
+        {
+            "_Name": "RequestedEnd",
+            "KeyName": "$(L,request_end_date)",
+            "Value": "/SAPAssetManager/Rules/DateTime/RequestEndDate.js"
+        },
+        {
+            "_Name": "PMMobileStatus.MobileStatus",
+            "KeyName": "$(L, status)",
+            "Value": "/SAPAssetManager/Rules/WorkOrders/ListView/WorkOrdersListViewFormat.js"
+        },
+        {
+            "_Name": "DueBy",
+            "KeyName": "$(L,due_date)",
+            "Value": "/SAPAssetManager/Rules/DateTime/DueDate.js"
+        }
+    ],
+    "Target": {
+        "EntitySet": "{@odata.readLink}",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$select=RequestedStart,RequestedEnd,DueBy,Priority_Nav/Description,Partners_Nav/PartnerFunction,MobileStatus_Nav/MobileStatus&$expand=MobileStatus_Nav,Partners_Nav,Priority_Nav"
+    }
+}

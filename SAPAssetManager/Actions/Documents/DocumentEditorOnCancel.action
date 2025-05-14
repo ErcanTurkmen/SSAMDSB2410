@@ -1,0 +1,7 @@
+{
+    "Title" : "$(L, document_editor)",
+ 	"Message" : "$(L, document_editor_cancel_message)",
+    "OKCaption" : "$(L, discard)",
+    "CancelCaption" : "$(L, cancel)",
+    "_Type" : "Action.Type.Message"
+}

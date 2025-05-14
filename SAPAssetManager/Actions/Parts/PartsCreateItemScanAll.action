@@ -1,0 +1,26 @@
+{
+    "_Type": "Action.Type.ODataService.CreateEntity",
+    "Target": {
+        "EntitySet": "MaterialDocItems",
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "Properties": {
+        "MatDocItem":"/SAPAssetManager/Rules/Parts/Issue/LineItem/PartIssueLineItemLocalID.js",
+        "OrderNumber": "#Property:OrderId",
+        "MovementType": "/SAPAssetManager/Rules/Parts/Issue/LineItem/PartIssueLineItemMovementType.js",
+        "ReservationNumber": "#Property:RequirementNumber",
+        "ReservationItemNumber": "#Property:ItemNumber",
+        "Material": "#Property:MaterialNum",
+        "Plant": "#Property:Plant",
+        "StorageLocation": "#Property:StorageLocation",
+        "EntryQuantity": "/SAPAssetManager/Rules/Parts/BarcodeComputeRemainingQuantity.js",
+        "EntryUOM": "#Property:UnitOfMeasure",
+        "AutoGenerateSerialNumbers": "/SAPAssetManager/Rules/Parts/Issue/LineItem/PartsAutoGenerateSerialScanAll.js"
+    },
+    "Headers": {
+        "OfflineOData.RemoveAfterUpload": "true",
+        "OfflineOData.TransactionID": "#ClientData/#Property:LocalMatDocId"
+    },
+    "CreateLinks": "/SAPAssetManager/Rules/Parts/Issue/CreateUpdate/PartIssueCreateLineItemLinks.js",
+    "OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/CreateEntityFailureMessage.action"
+}

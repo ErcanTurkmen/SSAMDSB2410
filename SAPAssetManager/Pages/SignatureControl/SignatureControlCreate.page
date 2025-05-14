@@ -1,0 +1,46 @@
+{
+    "Caption": "$(L,signature)",
+    "OnBackButtonPressed": "/SAPAssetManager/Rules/SignatureControl/OnSignatureBackButtonPressed.js",
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/SignatureControl/OnSignatureActivityBackPressed.js",
+    "ActionBar": {
+        "Items": {
+            "_Type": "Fragment",
+            "Fragment": "/SAPAssetManager/Pages/Fragments/Signature/SignatureControlCreateActionBar.fragment",
+            "Properties": {
+                "#Name:left": {
+                    "Visible": "/SAPAssetManager/Rules/WorkOrders/Complete/IsNotCompleteAction.js",
+                    "OnPress": "/SAPAssetManager/Rules/SignatureControl/CheckForPermissionBeforeCancel.js"
+                },
+                "#Name:right": {
+                    "OnPress": "/SAPAssetManager/Actions/SignatureControl/Create/SignatureControlRequiredField.action"
+                }
+            }
+        }
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "Header": {
+                        "UseTopPadding": false
+                    },
+                    "Controls": [
+                        {
+                            "_Type": "Fragment",
+                            "Fragment": "/SAPAssetManager/Pages/Fragments/Signature/SignatureControlCreateControl.fragment",
+                            "Properties": {
+                                "Value": "/SAPAssetManager/Rules/SignatureControl/Update/SignatureValue.js",
+                                "WatermarkText": "/SAPAssetManager/Rules/SignatureControl/Create/SignatureWatermarkText.js",
+                                "OnValueChange": "/SAPAssetManager/Rules/SignatureControl/Create/OnValueChange.js"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "_Name": "FormCellContainer",
+            "_Type": "Control.Type.FormCellContainer"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "SignatureControlPage"
+}

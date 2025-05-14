@@ -1,0 +1,7 @@
+import S4ServiceLibrary from '../S4ServiceLibrary';
+
+export default function SericeRequestEditEnabled(context, binding = context.binding) {
+    return S4ServiceLibrary.isServiceObjectCompleted(context, binding).then(isCompleted => {
+        return !isCompleted;
+    });
+}

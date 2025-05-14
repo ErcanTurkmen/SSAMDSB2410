@@ -1,0 +1,58 @@
+{
+    "OnLoaded": "/SAPAssetManager/Rules/Notes/NoteCreateUpdateOnPageLoad.js",
+    "OnUnloaded": "/SAPAssetManager/Rules/Notes/NoteCreateUpdateOnPageUnloaded.js",
+    "Caption": "/SAPAssetManager/Rules/Notes/CreateUpdatePageCaption.js",
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "_Name": "NoteCreate",
+        "Items": [
+            {
+                "Position": "Right",
+                "_Name": "Done",
+                "SystemItem": "$(PLT,'Done','','Done')",
+                "Caption": "$(L,done)",
+                "Text": "/SAPAssetManager/Rules/Common/Platform/DoneText.js",
+                "OnPress": "/SAPAssetManager/Rules/Notes/NoteCreateOnCommit.js"
+            },
+            {
+                "Position": "Left",
+                "_Name": "Cancel",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)",
+                "Visible": "/SAPAssetManager/Rules/WorkOrders/Complete/IsNotCompleteAction.js",
+                "OnPress": "/SAPAssetManager/Rules/Common/CheckForChangesBeforeClose.js"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "Header": {
+                        "Caption" : "/SAPAssetManager/Rules/Notes/NoteCreateUpdateSectionCaption.js",
+                        "UseTopPadding":  "/SAPAssetManager/Rules/ServiceOrders/IsS4ServiceIntegrationNotEnabled.js"
+                    },
+                    "Controls": [
+                        {
+                            "_Type": "Fragment",
+                            "Fragment": "/SAPAssetManager/Pages/Notes/NoteTypeControl.fragment"
+                        },
+                        {
+                            "Caption" : "$(PLT,'',/SAPAssetManager/Rules/Notes/NoteCreateUpdateSectionCaption.js,'', /SAPAssetManager/Rules/Notes/NoteCreateUpdateSectionCaption.js)",
+                            "PlaceHolder": "/SAPAssetManager/Rules/Supervisor/TechnicianRole/NoteFieldCaption.js",
+                            "Value": "",
+                            "_Name": "LongTextNote",
+                            "_Type": "Control.Type.FormCell.Note",
+                            "IsAutoResizing": true
+                        }
+                    ],
+                    "_Type": "Section.Type.FormCell"
+                }
+            ],
+            "_Name": "FormCellContainer",
+            "_Type": "Control.Type.SectionedTable"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "NoteAdd"
+}

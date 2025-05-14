@@ -1,0 +1,21 @@
+{
+    "_Type": "Section.Type.ObjectTable",
+    "Search": {
+        "Enabled": true,
+        "Delay": 500,
+        "MinimumCharacterThreshold": 3,
+        "Placeholder": "$(L,search)"
+    },
+    "ObjectCell": {
+        "PreserveIconStackSpacing": false,
+        "Title": "{Label}",
+        "AccessoryType": "/SAPAssetManager/Rules/QAB/QABSettingsItemAccessoryType.js",
+        "OnPress": "/SAPAssetManager/Rules/QAB/QABSettingsItemOnPress.js",
+        "Styles": {
+            "Title": "QABSettingsObjectCellTitle"
+        }
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_matching_result)"
+    }
+}

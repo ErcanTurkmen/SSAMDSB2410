@@ -1,0 +1,30 @@
+{
+    "Type": "RouteStop",
+    "Title": "$(L, fow_dl_stops)",
+    "Legend": "IconRouteStop",
+    "Target": {
+        "EntitySet": "MyRouteStops",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$expand=Operation/OperationMobileStatus_Nav,FuncLoc/FuncLocGeometries/Geometry,Equipment/EquipGeometries/Geometry,TechObjects&$filter=FuncLoc/FuncLocGeometries/any(fg:sap.entityexists(fg/Geometry)) or Equipment/EquipGeometries/any(eg:sap.entityexists(eg/Geometry))",
+        "Properties": [],
+        "KeyProperties": []
+    },
+    "Enable": "#ClientData/#Property:isFOWRouteEnabled",
+    "ObjectScheme": {
+        "Geometry": "/SAPAssetManager/Rules/Maps/FOW/Stops/StopGeometry.js",
+        "Layer": "RouteStop",
+        "Properties": {
+            "ID": "{RouteID}{StopID}",
+            "RouteID": "{RouteID}",
+            "StopID": "{StopID}"
+        },
+        "Actions": [],
+        "Symbol": {
+            "marker": "MarkerGroup",
+            "Composite": {
+                "Text": "/SAPAssetManager/Rules/Maps/FOW/Stops/StopAssetNumber.js",
+                "TextColor": "FFFFFF"
+            }
+        }
+    }
+}

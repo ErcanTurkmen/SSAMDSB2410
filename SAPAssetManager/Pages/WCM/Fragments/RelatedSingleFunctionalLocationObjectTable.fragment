@@ -1,0 +1,15 @@
+{
+    "Header": {
+        "Caption": "$(L,wcm_functional_location)"
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_functional_location_available)"
+    },
+    "ObjectCell": "/SAPAssetManager/Pages/Fragments/FunctionalLocation/FunctionalLocationObjectCell.fragment",
+    "MaxItemCount": 1,
+    "Target": {
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "_Type": "Section.Type.ObjectTable",
+    "_Name": "FunctionalLocationSection"
+}

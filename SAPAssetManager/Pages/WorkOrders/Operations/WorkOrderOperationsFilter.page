@@ -1,0 +1,279 @@
+{
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "_Name": "OperationsFilter",
+        "Items": [
+            {
+                "Position": "Left",
+                "_Name": "Cancel",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)",
+                "OnPress": "/SAPAssetManager/Actions/Page/CancelPage.action"
+            },
+            {
+                "Position": "Right",
+                "_Name": "Done",
+                "SystemItem": "/SAPAssetManager/Rules/Filter/FilterSystemItem.js",
+                "Text": "/SAPAssetManager/Rules/Filter/FilterText.js",
+                "OnPress": "/SAPAssetManager/Rules/Filter/ApplyFilterAndSave.js"
+            }
+        ]
+    },
+    "Caption":"$(L,filter)",
+    "Result": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationListFilterResults.js",
+    "Controls":
+    [{
+        "Sections":
+        [{
+            "Controls": [{
+				"_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/SortByFilter.fragment",
+				"Properties": {
+                    "SortByItems": [
+                        {
+                            "ReturnValue":"OperationShortText",
+                            "DisplayValue":"$(L,description)",
+                            "Name": "OperationShortText"
+                        },
+                        {
+                            "ReturnValue":"WOHeader/DueDate",
+                            "DisplayValue":"$(L,due_date)",
+                            "Name": "WOHeader/DueDate"
+                        },
+                        {
+                            "ReturnValue":"OrderId",
+                            "DisplayValue":"$(L,workorder_id)",
+                            "Name": "OrderId"
+                        },
+                        {
+                            "ReturnValue":"OperationNo",
+                            "DisplayValue":"$(L,operation)",
+                            "Name": "OperationNo"
+                        },
+                        {
+                            "ReturnValue":"SchedEarliestStartDate desc,SchedEarliestStartTime desc",
+                            "DisplayValue":"$(L,scheduled_earliest_start_date)",
+                            "Name": "SchedEarliestStartDate"
+                        },
+                        {
+                            "ReturnValue":"SchedLatestEndDate desc,SchedLatestEndTime desc",
+                            "DisplayValue":"$(L,scheduled_latest_end_date)",
+                            "Name": "SchedLatestEndDate"
+                        }
+                    ]
+				}
+			}]
+        },
+        {
+            "Controls":
+            [{
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/FilterByFilter.fragment",
+				"Properties": {
+                    "_Name": "MyOperationsFilter",
+                    "FilterProperty":"/SAPAssetManager/Rules/WorkOrders/WorkOrderMyOperationsFilter.js"
+				}
+            },
+            {
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/AssignedToFilterListPkr.fragment",
+				"Properties": {
+                    "_Name": "AssignmentFilter",
+                    "PickerItems": "/SAPAssetManager/Rules/Supervisor/Assign/UserRolesFilterListPickerItems.js",
+                    "FilterProperty": "PersonNum",
+                    "IsVisible" : "/SAPAssetManager/Rules/Supervisor/isSupervisorFeatureEnabled.js"
+				}
+            },
+            {
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/MobileStatusFilter.fragment",
+                "Properties": {
+                    "FilterProperty":"/SAPAssetManager/Rules/WorkOrders/WorkOrderOperationMobileStatusFilter.js"
+                }
+            },
+            {
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/MainWorkCenterFilter.fragment"
+            },
+            {
+                "AllowMultipleSelection":true,
+                "AllowEmptySelection":true,
+                "Caption":"$(L,execuation_stage)",
+                "FilterProperty":"/SAPAssetManager/Rules/WorkOrders/WorkOrderOperationExecuationStageFilter.js",
+                "_Name":"ExecuationStageFilter",
+                "_Type":"Control.Type.FormCell.Filter",
+                "IsEditable":true,
+                "IsVisible" : "/SAPAssetManager/Rules/Common/IsPhaseModelEnabled.js",
+                "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+            },
+            {
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/TypeFilter.fragment",
+				"Properties": {
+                    "Value": "{OrderType}",
+                    "PickerItems": {
+                        "DisplayValue": "{{#Property:OrderType}} - {{#Property:OrderTypeDesc}}",
+                        "ReturnValue": "{OrderType}",
+                        "Target": {
+                            "EntitySet": "OrderTypes",
+                            "Service": "/SAPAssetManager/Services/AssetManager.service",
+                            "QueryOptions": "/SAPAssetManager/Rules/WorkOrders/ListView/WorkOrderTypesPickerItems.js"
+                        }
+                    },
+                    "OnValueChange": "/SAPAssetManager/Rules/WorkOrders/Operations/Filter/WorkOrderOperationsTypeValueChanged.js",
+                    "FilterProperty": "WOHeader/OrderType"
+                }
+            },
+            {
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/PhaseFilter.fragment",
+				"Properties": {
+                    "PickerItems": "/SAPAssetManager/Rules/WorkOrders/WorkOrderOperationPhaseModelFilterPickerItems.js"
+				}
+            },
+            {
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/PhaseControlFilter.fragment",
+				"Properties": {
+                    "PickerItems": {
+                        "DisplayValue": "{PhaseControl} - {Description}",
+                        "ReturnValue": "{PhaseControl}",
+                        "Target": {
+                            "EntitySet": "PhaseControlCodes",
+                            "Service": "/SAPAssetManager/Services/AssetManager.service",
+                            "QueryOptions": "/SAPAssetManager/Rules/WorkOrders/Operations/Filter/PhaseControlCodesQueryOptions.js"
+                        }
+                    }
+				}
+            },
+            "/SAPAssetManager/Pages/Fragments/Filter/PhaseControlKeyFilter.fragment"
+            ]
+        },
+        {
+            "Controls": [
+                {
+                    "_Type": "Control.Type.FormCell.Switch",
+                    "_Name": "ScheduledEarliestStartDateSwitch",
+                    "Caption":"$(L,scheduled_earliest_start_date)",
+                    "Value": false,
+                    "OnValueChange": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationScheduledEarliestStartDateFilter.js"
+                },
+                {
+                    "_Type": "Control.Type.FormCell.DatePicker",
+                    "_Name": "ScheduledEarliestStartDateStartFilter",
+                    "Caption": "$(L,date_from)",
+                    "Mode": "Date",
+                    "IsVisible": false,
+                    "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+                },
+                {
+                    "_Type": "Control.Type.FormCell.DatePicker",
+                    "_Name": "ScheduledEarliestStartDateEndFilter",
+                    "Caption": "$(L,date_to)",
+                    "Mode": "Date",
+                    "IsVisible": false,
+                    "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+                }
+            ]
+        },
+        {
+            "Controls": [
+                {
+                    "_Type": "Control.Type.FormCell.Switch",
+                    "_Name": "ScheduledEarliestEndDateSwitch",
+                    "Caption":"$(L,scheduled_earliest_end_date)",
+                    "Value": false,
+                    "OnValueChange": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationScheduledEarliestEndDateFilter.js"
+                },
+                {
+                    "_Type": "Control.Type.FormCell.DatePicker",
+                    "_Name": "ScheduledEarliestEndDateStartFilter",
+                    "Caption": "$(L,date_from)",
+                    "Mode": "Date",
+                    "IsVisible": false,
+                    "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+                },
+                {
+                    "_Type": "Control.Type.FormCell.DatePicker",
+                    "_Name": "ScheduledEarliestEndDateEndFilter",
+                    "Caption": "$(L,date_to)",
+                    "Mode": "Date",
+                    "IsVisible": false,
+                    "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+                }
+            ]
+        },
+        {
+            "Controls": [
+                {
+                    "_Type": "Control.Type.FormCell.Switch",
+                    "_Name": "ScheduledLatestStartDateSwitch",
+                    "Caption":"$(L,scheduled_latest_start_date)",
+                    "Value": false,
+                    "OnValueChange": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationScheduledLatestStartDateFilter.js"
+                },
+                {
+                    "_Type": "Control.Type.FormCell.DatePicker",
+                    "_Name": "ScheduledLatestStartDateStartFilter",
+                    "Caption": "$(L,date_from)",
+                    "Mode": "Date",
+                    "IsVisible": false,
+                    "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+                },
+                {
+                    "_Type": "Control.Type.FormCell.DatePicker",
+                    "_Name": "ScheduledLatestStartDateEndFilter",
+                    "Caption": "$(L,date_to)",
+                    "Mode": "Date",
+                    "IsVisible": false,
+                    "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+                }
+            ]
+        },
+        {
+            "Controls": [
+                {
+                    "_Type": "Control.Type.FormCell.Switch",
+                    "_Name": "ScheduledLatestEndDateSwitch",
+                    "Caption":"$(L,scheduled_latest_end_date)",
+                    "Value": false,
+                    "OnValueChange": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationScheduledLatestEndDateFilter.js"
+                },
+                {
+                    "_Type": "Control.Type.FormCell.DatePicker",
+                    "_Name": "ScheduledLatestEndDateStartFilter",
+                    "Caption": "$(L,date_from)",
+                    "Mode": "Date",
+                    "IsVisible": false,
+                    "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+                },
+                {
+                    "_Type": "Control.Type.FormCell.DatePicker",
+                    "_Name": "ScheduledLatestEndDateEndFilter",
+                    "Caption": "$(L,date_to)",
+                    "Mode": "Date",
+                    "IsVisible": false,
+                    "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+                }
+            ]
+        }],
+        "_Name":"FormCellContainer",
+        "_Type":"Control.Type.FormCellContainer"
+    }],
+    "FioriToolbar": {
+        "_Name": "OperationFilterFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Items": [
+            {
+				"_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/ResetFilterToolbarItem.fragment",
+				"Properties": {
+                   "OnPress": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationListFilterReset.js"
+				}
+			}
+        ]
+    },
+    "_Type":"Page",
+    "_Name":"WorkOrderOperationsFilterPage",
+    "OnLoaded": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationListFilterOnLoaded.js"
+}

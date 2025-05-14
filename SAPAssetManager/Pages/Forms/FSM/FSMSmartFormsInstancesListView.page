@@ -1,0 +1,69 @@
+{
+	"OnLoaded": "/SAPAssetManager/Rules/Filter/ListPageWithFilterOnLoaded.js",
+	"ActionBar":
+	{
+		"Items":
+		[
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment",
+			{
+			"Position": "Right",
+			"Icon": "$(PLT,'',/SAPAssetManager/Images/filter.android.png, '', /SAPAssetManager/Images/filter.android.png)",
+			"Caption": "/SAPAssetManager/Rules/Filter/FilterButtonCaption.js",
+			"Visible": true,
+            "OnPress": "/SAPAssetManager/Actions/Forms/FSM/FSMFilter.action"
+		    }
+		]
+	},
+	"Controls":
+	[{
+		"Sections":
+		[{
+			"Search":
+			{
+				"Enabled": true,
+				"Delay": 500,
+				"MinimumCharacterThreshold": 3,
+				"Placeholder": "$(L,search)",
+				"BarcodeScanner": true
+			},
+			"Header": {
+				"UseTopPadding": false
+			},
+			"EmptySection": {
+				"Caption": "$(L,no_smartforms)"
+			},
+			"ObjectCell": {
+				"Icons": "/SAPAssetManager/Rules/Forms/FSM/FSMFormListViewIconImages.js",
+                "PreserveIconStackSpacing": true,
+                "AccessoryType": "DisclosureIndicator",
+                "Title": "{{#Property:FSMFormTemplate_Nav/#Property:Name}}",
+                "Subhead": "/SAPAssetManager/Rules/Forms/FSM/FSMFormInstanceSubheadText.js",
+                "Footnote": "/SAPAssetManager/Rules/Forms/FSM/FSMFormInstanceFootnoteText.js",
+				"StatusText": "/SAPAssetManager/Rules/Forms/FSM/FSMFormInstanceStatusText.js",
+				"SubstatusText": "/SAPAssetManager/Rules/Forms/FSM/FSMFormInstanceMandatoryText.js",
+                "OnPress": "/SAPAssetManager/Rules/Forms/FSM/FSMFormPageNavWrapper.js",
+				"Styles": {
+					"SubstatusText": "/SAPAssetManager/Rules/Forms/FSM/MandatoryStatusStyle.js"
+				}
+            },
+			"Target": {
+				"EntitySet": "FSMFormInstances",
+				"Service": "/SAPAssetManager/Services/AssetManager.service",
+				"QueryOptions": "/SAPAssetManager/Rules/Forms/FSM/FSMFormsInstancesListViewQueryOption.js"
+			},
+			"_Name": "SmartformsObjectTable",
+			"_Type": "Section.Type.ObjectTable"
+		}],
+		"FilterFeedbackBar": {
+			"_Type": "Control.Type.FilterFeedbackBar",
+			"_Name": "FilterFeedback",
+			"ShowAllFilters": true,
+			"FastFilters": "/SAPAssetManager/Rules/Forms/FSM/FSMFormsFastFiltersItems.js"
+		},
+		"_Type" : "Control.Type.SectionedTable",
+		"_Name" : "SectionedTable"
+	}],
+	"_Type": "Page",
+	"_Name": "FSMSmartFormsInstancesListViewPage",
+	"DataSubscriptions": ["FSMFormInstances","FSMFormTemplates"]
+}

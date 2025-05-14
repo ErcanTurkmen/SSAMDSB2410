@@ -1,0 +1,6 @@
+{
+    "_Type" : "Action.Type.Filter",
+    "PageToOpen" : "/SAPAssetManager/Pages/Measurements/MeasuringPointsFiltersEDT.page",
+    "Filterable" : "#Page:CreateUpdatePage/#ClientData/#Property:Filterable",
+    "OnSuccess": "/SAPAssetManager/Rules/Measurements/Points/EDT/Filters/MeasuringPointsEDTFiltersOnSuccess.js"
+}

@@ -1,0 +1,11 @@
+{
+    "_Type": "Control.Type.FormCell.Note",
+    "_Name": "LongTextNote",
+    "Caption": "$(L, note)",
+    "PlaceHolder": "$(L,note)",
+    "IsAutoResizing": true,
+    "IsVisible": "/SAPAssetManager/Rules/Common/IsOnCreate.js",
+    "Value": "/SAPAssetManager/Rules/Notes/NotesFieldGetValue.js",
+    "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/FormCellNoteValidation.js",
+    "IsEditable": "/SAPAssetManager/Rules/Notes/Create/IsNoteValueControlEditable.js"
+}

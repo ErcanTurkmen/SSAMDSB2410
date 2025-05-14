@@ -1,0 +1,29 @@
+{
+    "_Type": "Page",
+	"_Name": "OnlineNotificationItemCausesListViewPage",
+	"Caption": "$(L,notification_items_causes)",
+	"OnLoaded": "/SAPAssetManager/Rules/Notifications/Item/Cause/NotificationItemCauseListOnLoad.js",
+	"Controls": [{
+        "_Type" : "Control.Type.SectionedTable",
+		"Sections":[
+            {
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Notification/Items/NotificationItemCausesObjectTable.fragment",
+                "Properties": {
+                    "Search": {
+				        "Enabled": false
+                    },
+                    "ObjectCell": {	
+                        "Icons": [],
+                        "OnPress" : "/SAPAssetManager/Actions/Notifications/Item/OnlineNotificationItemCauseDetailsNav.action"
+                    },
+                    "Target": {
+                        "EntitySet" : "{{#Property:@odata.id}}/ItemCauses",
+                        "Service" : "/SAPAssetManager/Services/OnlineAssetManager.service",
+                        "QueryOptions": "$expand=Item/Notification&$orderby=CauseSortNumber asc"
+                    }
+                }
+            }
+        ]
+	}]
+}

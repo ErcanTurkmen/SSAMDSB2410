@@ -1,0 +1,13 @@
+{
+    "Caption": "/SAPAssetManager/Rules/Classification/ClassificationListViewCaption.js",
+    "Controls": [
+        {
+            "Sections": [
+                "/SAPAssetManager/Pages/Fragments/Equipment/Classifications/ClassificationObjectTable.fragment"
+            ],
+            "_Type": "Control.Type.SectionedTable"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "ClassificationPage"
+}

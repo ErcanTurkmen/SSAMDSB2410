@@ -1,0 +1,26 @@
+{
+    "IsPickerDismissedOnSelection": true,
+    "AllowMultipleSelection": false,
+    "AllowEmptySelection": false,
+    "IsSearchCancelledAfterSelection": true,
+    "Search": {
+        "Enabled": true,
+        "Delay": 500,
+        "MinimumCharacterThreshold": 3,
+        "Placeholder": "Search"
+    },
+    "Caption": "$(L,technician)*",
+    "IsVisible": "/SAPAssetManager/Rules/TimeSheets/CreateUpdate/IsAnotherTechnicianSelectEnabled.js",
+    "Value": "/SAPAssetManager/Rules/TimeSheets/CreateUpdate/TimeSheetCreateUpdatePersonnelNumber.js",
+    "_Name": "ResponciblePersonelNum",
+    "_Type": "Control.Type.FormCell.ListPicker",
+    "PickerItems": {
+        "DisplayValue": "{{#Property:EmployeeName}} - {{#Property:PersonnelNumber}}",
+        "ReturnValue": "{PersonnelNumber}",
+        "Target": {
+            "EntitySet": "Employees",
+            "Service": "/SAPAssetManager/Services/AssetManager.service",
+            "QueryOptions": "$orderby=EmployeeName"
+        }
+    }
+}

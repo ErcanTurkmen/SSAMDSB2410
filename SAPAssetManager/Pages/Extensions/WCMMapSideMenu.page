@@ -1,0 +1,235 @@
+{
+	"Caption": "$(L, map)",
+	"ActionBar": {
+		"Items": [
+			{
+				"Position": "Right",
+				"SystemItem": "Add",
+				"Text": "$(L,add)",
+				"Visible": "/SAPAssetManager/Rules/Maps/GISAddEditEnabled.js",
+				"OnPress": "/SAPAssetManager/Actions/Maps/MapEditModePopover.action",
+				"_Name": "AddGeometry"
+			}
+		]
+	},
+	"Controls": [
+		{
+			"_Type": "Control.Type.Extension",
+			"Module": "extension-MapFramework",
+			"Control": "MapExtension",
+			"Class": "MapExtension",
+			"_Name": "MapExtensionControl",
+			"DataSubscriptions": [
+				"MyEquipments",
+				"MyFunctionalLocations",
+				"Geometries",
+				"PMMobileStatuses",
+				"WCMApplications",
+				"WCMDocumentHeaders",
+				"WCMDocumentItems"
+			],
+			"ExtensionProperties": {
+				"ItemsPerPage": 100,
+				"LifeCycleEntrance": "SideMenu",
+				"Config": "/SAPAssetManager/Pages/Fragments/Map/MapConfig.fragment",
+				"EditMode": "/SAPAssetManager/Pages/Fragments/Map/MapEditMode.fragment",
+				"TokenAuthentication": {
+					"Action": "/SAPAssetManager/Rules/Extensions/TokenRequest.js"
+				},
+				"MapToolsetIcons": "/SAPAssetManager/Pages/Fragments/Map/MapToolsetIcons.fragment",
+				"SettingsControl": "/SAPAssetManager/Pages/Fragments/Map/MapSettingsControl.fragment",
+				"SearchControl": {
+					"SearchPlaceholder": "$(L, map_search_placeholder)",
+					"SearchFields": [
+						"Title",
+						"Footnote",
+						"Subhead",
+						"Description"
+					],
+					"IsResultTextDisplayed": true,
+					"ResultsPrefix": "$(L, map_search_results_pref)",
+					"ResultsSuffix": "$(L, map_search_results_sufx)",
+					"NearMeFilterName": "$(L, map_search_nearme)",
+					"QuickFilters": [
+						{
+							"FilterType": "TimeFilter",
+							"Type": [
+								"LOTOCertificate",
+								"WorkPermit"
+							],
+							"Name": "$(L, map_search_expires_today)",
+							"PeriodInDays": 1,
+							"PropertyName": "DueDate"
+						},
+						{
+							"FilterType": "TextFilter",
+							"Name": "$(L, map_search_high_priority)",
+							"Properties": [
+								"SubstatusText"
+							],
+							"Text": "High"
+						}
+					]
+				},
+				"BusinessObjects": [
+					{
+						"_Type": "Fragment",
+						"Fragment": "/SAPAssetManager/Pages/Fragments/Map/Equipments/MapEquipmentBO.fragment",
+						"Properties": {
+							"Target": {
+								"QueryOptions": "$expand=EquipGeometries/Geometry&$filter=EquipGeometries/any(eg:sap.entityexists(eg/Geometry))"
+							},
+							"Enable": false
+						}
+					},
+					{
+						"_Type": "Fragment",
+						"Fragment": "/SAPAssetManager/Pages/Fragments/Map/FunctionalLocations/MapFunctionalLocationBO.fragment",
+						"Properties": {
+							"Target": {
+								"QueryOptions": "$expand=FuncLocGeometries/Geometry&$filter=FuncLocGeometries/any(fg:sap.entityexists(fg/Geometry))"
+							},
+							"Enable": false
+						}
+					},
+					{
+						"_Type": "Fragment",
+						"Fragment": "/SAPAssetManager/Pages/Fragments/Map/BusinessObjects/WorkPermitBO.fragment",
+						"Properties": {
+							"ObjectScheme": {
+								"Properties": {
+									"Title": "{WorkPermitDescr}",
+									"Subhead": "$(L,wcm_work_permit) {WCMApplication}",
+									"BodyText": "/SAPAssetManager/Rules/WCM/WorkPermitDetails/WorkPermitValidTo.js",
+									"StatusImage": "/SAPAssetManager/Rules/Maps/PriorityBadge.js",
+									"SubstatusText": "/SAPAssetManager/Rules/WCM/Common/PriorityStatusText.js",
+									"Tags": [
+										"/SAPAssetManager/Rules/WCM/WorkPermitDetails/WorkPermitSystemStatusTextOrEmpty.js",
+										"/SAPAssetManager/Rules/WCM/WorkPermitDetails/WorkPermitUsageDescriptionOrEmpty.js"
+									],
+									"Footnote": "/SAPAssetManager/Rules/WCM/WorkPermitDetails/WorkPermitOneLineAddress.js",
+									"Directions": {
+										"ButtonText": "$(L, map_info_panel_directions)"
+									}
+								},
+								"Actions": [
+									{
+										"Title": "$(L, view_workpermit_details)",
+										"Icon": "ActionView",
+										"Type": "View",
+										"CallbackInfo": {
+											"Action": "/SAPAssetManager/Actions/WCM/WorkPermitDetailsNav.action",
+											"Target": {
+												"EntitySet": "WCMApplications",
+												"Service": "/SAPAssetManager/Services/AssetManager.service",
+												"QueryOptions": "$filter=WCMApplication eq '{WCMApplication}'",
+												"Properties": [],
+												"KeyProperties": []
+											}
+										}
+									}
+								]
+							}
+						}
+					},
+					{
+						"_Type": "Fragment",
+						"Fragment": "/SAPAssetManager/Pages/Fragments/Map/BusinessObjects/LOTOCertificateMapBO.fragment",
+						"Properties": {
+							"ObjectScheme": {
+								"Properties": {
+									"Title": "{ShortText}",
+									"Subhead": "$(L,isolation_certificate) {WCMDocument}",
+									"BodyText": "/SAPAssetManager/Rules/WCM/SafetyCertificates/CertificateValidToDateTime.js",
+									"StatusImage": "/SAPAssetManager/Rules/Maps/PriorityBadge.js",
+									"SubstatusText": "/SAPAssetManager/Rules/WCM/Common/PriorityStatusText.js",
+									"Tags": [
+										"/SAPAssetManager/Rules/WCM/SafetyCertificates/Details/SafetyCertificateMobileStatusTextOrEmpty.js",
+										"/SAPAssetManager/Rules/WCM/SafetyCertificates/Details/SafetyCertificateUsageDescriptionOrEmpty.js"
+									],
+									"Footnote": "/SAPAssetManager/Rules/WCM/WorkPermitDetails/WorkPermitOneLineAddress.js",
+									"Directions": {
+										"ButtonText": "$(L, map_info_panel_directions)"
+									}
+								},
+								"Actions": [
+									{
+										"Title": "$(L, view_safety_certificate_details)",
+										"Icon": "ActionView",
+										"Type": "View",
+										"CallbackInfo": {
+											"Action": "/SAPAssetManager/Actions/WCM/SafetyCertificateDetailsNav.action",
+											"Target": {
+												"EntitySet": "WCMDocumentHeaders",
+												"Service": "/SAPAssetManager/Services/AssetManager.service",
+												"QueryOptions": "$filter=WCMDocument eq '{WCMDocument}'",
+												"Properties": [],
+												"KeyProperties": []
+											}
+										}
+									}
+								]
+							}
+						}
+					},
+					{
+						"_Type": "Fragment",
+						"Fragment": "/SAPAssetManager/Pages/Fragments/Map/BusinessObjects/OperationalItemMapBO.fragment",
+						"Properties": {
+							"ObjectScheme": {
+								"Properties": {
+									"Title": "/SAPAssetManager/Rules/WCM/OperationalItems/OperationaItemSequenceDescriptionObjectId.js",
+									"Subhead": "/SAPAssetManager/Rules/WCM/OperationalItems/CertificateIdSequence.js",
+									"Footnote": "/SAPAssetManager/Rules/WCM/OperationalItems/TagNumberOrEmpty.js",
+									"Description": "/SAPAssetManager/Rules/WCM/WorkPermitDetails/WorkPermitOneLineAddress.js",
+									"Tags": [
+										"/SAPAssetManager/Rules/WCM/OperationalItems/Details/OperationalItemMobileStatusTextOrEmpty.js"
+									],
+									"StatusImage": "/SAPAssetManager/Rules/WCM/OperationalItems/TaggedUntaggedIcon.js",
+									"Directions": {
+										"ButtonText": "$(L, map_info_panel_directions)"
+									}
+								},
+								"Actions": [
+									{
+										"Title": "$(L, view_operational_item_details)",
+										"Icon": "ActionView",
+										"Type": "View",
+										"CallbackInfo": {
+											"Action": "/SAPAssetManager/Actions/WCM/OperationalItems/OperationalItemDetailsNav.action",
+											"Target": {
+												"EntitySet": "WCMDocumentItems",
+												"Service": "/SAPAssetManager/Services/AssetManager.service",
+												"QueryOptions": "$expand=WCMDocumentHeaders,WCMDocumentHeaders/WCMDocumentUsages,PMMobileStatus&$filter=ObjectNumber eq '{ObjectNumber}'",
+												"Properties": [],
+												"KeyProperties": []
+											}
+										}
+									},
+									{
+										"Title": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/OperationItemToolBarCaption.js",
+										"Icon": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/SetTaggedUntagButtonMapIcon.js",
+										"IsVisible": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/IsVisibleSetTaggedUntagButton.js",
+										"Type": "View",
+										"CallbackInfo": {
+											"Action": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/SetTaggedWithIsTaggableNav.js",
+											"Target": {
+												"EntitySet": "WCMDocumentItems",
+												"Service": "/SAPAssetManager/Services/AssetManager.service",
+												"QueryOptions": "$expand=WCMDocumentHeaders,WCMDocumentHeaders/WCMDocumentUsages,PMMobileStatus&$filter=ObjectNumber eq '{ObjectNumber}'",
+												"Properties": [],
+												"KeyProperties": []
+											}
+										}
+									}
+								]
+							}
+						}
+					}
+				]
+			}
+		}
+	],
+	"_Type": "Page",
+	"_Name": "WCMMapExtensionSideMenuControlPage"
+}

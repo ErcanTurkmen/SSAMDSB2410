@@ -1,0 +1,39 @@
+{
+	"Caption": "$(L,header)",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"KeyAndValues": [
+						{
+                            "_Name": "VehicleID",
+                            "KeyName": "$(L,fld_vehicle_id)",
+							"Value": "$(DV, {VoyageVehnumber}, '-')"
+                        },
+                        {
+                            "_Name": "VehicleName",
+                            "KeyName": "$(L,fld_vehicle_name)",
+							"Value": "$(DV, {VoyageVehName}, '-')"
+                        },
+                        {
+                            "_Name": "ModeofTransport",
+                            "KeyName": "$(L,fld_mode_of_transport)",
+							"Value": "$(DV, {FldLogsVoyageType_Nav/Description}, '-')"
+                        },
+                        {
+                            "_Name": "CarrierID",
+                            "KeyName": "$(L,fl_supplier)",
+							"Value": "$(DV, {Supplier}, '-')"
+                        }
+					],
+					"_Type": "Section.Type.KeyValue",
+                    "_Name": "KeyValueTable"
+				}
+			],
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"_Name": "VoyagesHeader",
+	"_Type": "Page"
+}

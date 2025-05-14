@@ -1,0 +1,27 @@
+{
+    "Type": "Route",
+    "Title": "$(L, fow_dl_routes)",
+    "Legend": "IconRoute",
+    "Target": {
+        "EntitySet": "MyRoutes",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$expand=Stops,WorkOrder/OrderMobileStatus_Nav,WorkOrder/WOPriority&$filter=Stops/FuncLoc/FuncLocGeometries/any(fg:sap.entityexists(fg/Geometry)) or Stops/Equipment/EquipGeometries/any(eg:sap.entityexists(eg/Geometry))",
+        "Properties": [],
+        "KeyProperties": []
+    },
+    "Enable": "#ClientData/#Property:isFOWRouteEnabled",
+    "ObjectScheme": {
+        "Geometry": "",
+        "Layer": "Route",
+        "Properties": {
+            "ID": "{RouteID}"
+        },
+        "DependsOn": "RouteStop",
+        "Actions": [],
+        "Symbol": {
+            "lineColor": "4BC3F3",
+            "lineWidth": 5,
+            "lineStyle": "solid"
+        }
+    }
+}

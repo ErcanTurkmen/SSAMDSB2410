@@ -1,0 +1,66 @@
+{
+	"_Type": "Page",
+	"_Name": "StockDetailPage",
+	"Caption": "/SAPAssetManager/Rules/Inventory/Stock/StockDescription.js",
+	"ActionBar": {
+	    "_Name": "StockDetailsPage",
+		"Items": [
+			{
+                "Position": "Right",
+                "Icon":"$(PLT,/SAPAssetManager/Images/menuicon.png,/SAPAssetManager/Images/menuicon.android.png, '', /SAPAssetManager/Images/menuicon.png)",
+                "Caption": "$(L,menu)",
+                "OnPress": "/SAPAssetManager/Actions/Inventory/Stock/StockDetailsPopover.action"
+            }
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"ObjectHeader": {
+						"DetailImageIsCircular": false,
+						"HeadlineText": "/SAPAssetManager/Rules/Inventory/Stock/StockNumberAndDescription.js",
+						"Subhead": "/SAPAssetManager/Rules/Inventory/Stock/PlantAndStorageLoc.js",
+                        "Tags": "/SAPAssetManager/Rules/Inventory/Stock/StockUnrestrictedQuantity.js",
+						"PreserveIconStackSpacing": false
+					},
+					"_Name": "SectionObjectHeader",
+					"_Type": "Section.Type.ObjectHeader"
+				}
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		},
+		{
+			"Items": [{
+				"_Name": "StockInfoTab",
+				"Caption": "$(L,res_header)",
+				"PageToOpen" : "/SAPAssetManager/Pages/Inventory/Stock/StockInfo.page",
+				"_Type": "Control.Type.TabItem"
+			},
+			{
+				"_Name": "BatchListTab",
+				"Caption": "/SAPAssetManager/Rules/Inventory/Stock/BatchStockCount.js",
+				"PageToOpen" : "/SAPAssetManager/Pages/Inventory/Stock/BatchStock.page",
+				"_Type": "Control.Type.TabItem"
+			},
+						{
+				"_Name": "ConsignmentListTab",
+				"Caption": "/SAPAssetManager/Rules/Inventory/Stock/ConsignmentStockCount.js",
+				"PageToOpen" : "/SAPAssetManager/Pages/Inventory/Stock/StockConsignment.page",
+				"_Type": "Control.Type.TabItem"
+			},
+            			{
+				"_Name": "ProjectListTab",
+				"Caption": "/SAPAssetManager/Rules/Inventory/Stock/ProjectStockCount.js",
+				"PageToOpen" : "/SAPAssetManager/Pages/Inventory/Stock/ProjectStock.page",
+				"_Type": "Control.Type.TabItem"
+			}          
+            ],
+			"Position": "Top",
+			"SwipeEnabled": false,
+			"_Type": "Control.Type.Tabs",
+			"_Name": "TabsControl"
+  		}
+	]
+}

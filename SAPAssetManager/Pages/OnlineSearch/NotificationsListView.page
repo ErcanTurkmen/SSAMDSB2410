@@ -1,0 +1,60 @@
+{
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"EmptySection": {
+						"Caption": "/SAPAssetManager/Rules/OnlineSearch/EmptySectionCaption.js"
+					},
+					"Header": {
+						"UseTopPadding": true
+					},
+					"ObjectCell": {
+						"_Type": "Fragment",
+        				"Fragment": "/SAPAssetManager/Pages/Fragments/Notification/NotificationObjectCell.fragment",
+						"Properties": {
+							"Icons": "/SAPAssetManager/Rules/OnlineSearch/Notifications/OnlineIndicator.js",
+							"Footnote": "/SAPAssetManager/Rules/OnlineSearch/Notifications/NotificationRequiredEndDate.js",
+    						"StatusText": "/SAPAssetManager/Rules/OnlineSearch/Notifications/NotificationPriority.js",
+   							"SubstatusText": "/SAPAssetManager/Rules/OnlineSearch/Notifications/NotificationSystemStatus.js",
+							"AccessoryButtonIcon": "/SAPAssetManager/Rules/OnlineSearch/Notifications/AccessoryButtonIcon.js",
+							"OnAccessoryButtonPress": "/SAPAssetManager/Rules/OnlineSearch/Download/DownloadToDevice.js",
+							"AccessoryType": "DisclosureIndicator",
+							"OnPress": "/SAPAssetManager/Rules/Notifications/OnlineDetails/NavToNotificationOnlineDetailsPage.js"
+						}
+					},
+					"OnSelectionChanged": "/SAPAssetManager/Rules/OnlineSearch/ListOnSelectionChanged.js",
+					"Selection": {
+						"ExitOnLastDeselect": false
+					},
+					"Target": {
+						"EntitySet": "NotificationHeaders",
+						"Service": "/SAPAssetManager/Services/OnlineAssetManager.service",
+						"QueryOptions" : "/SAPAssetManager/Rules/OnlineSearch/Notifications/NotificationsListViewQueryOptions.js"
+					},
+					"DataPaging": {
+						"PageSize": 30,
+						"ShowLoadingIndicator": true
+					},
+					"Visible": false,
+					"_Type": "Section.Type.ObjectTable"
+				},
+				{
+					"EmptySection": {
+						"Caption": "$(L, empty_search_msg)"
+					},
+					"Header": {
+						"UseTopPadding": true
+					},
+					"Visible": true,
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"_Name": "OnlineSearchNotificationsList",
+	"OnUnloaded": "/SAPAssetManager/Rules/OnlineSearch/Notifications/NotificationListOnUnloaded.js",
+	"_Type": "Page"
+}

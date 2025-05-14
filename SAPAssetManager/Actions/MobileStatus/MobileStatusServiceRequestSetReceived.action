@@ -1,0 +1,37 @@
+{
+	"_Type": "Action.Type.ODataService.CreateEntity",
+	"Headers": {
+    	"OfflineOData.NonMergeable": true,
+		"transaction.omdo_id": "/SAPAssetManager/Rules/MobileStatus/MobileStatusS4TransactionMdoHeader.js"
+	},
+	"Target":{
+		"EntitySet": "PMMobileStatuses",
+		"Service": "/SAPAssetManager/Services/AssetManager.service"
+	},
+	"Properties": {
+		"MobileStatus": "/SAPAssetManager/Rules/MobileStatus/MobileStatusReceived.js",
+		"ObjectType": "/SAPAssetManager/Rules/MobileStatus/MobileStatusServiceRequestObjectType.js",
+		"ObjectKey": "/SAPAssetManager/Rules/MobileStatus/MobileStatusSetReceivedObjectKey.js",
+        "EffectiveTimestamp": "/SAPAssetManager/Rules/DateTime/CurrentDateTime.js",
+		"BusinessObjectType": "/SAPAssetManager/Rules/ServiceOrders/ServiceRequestObjectType.js"
+	},
+	"CreateLinks": [{
+        "Property": "S4ServiceRequest_Nav",
+        "Target": {
+			"EntitySet" : "S4ServiceRequests",
+			"ReadLink": "/SAPAssetManager/Rules/MobileStatus/MobileStatusLocalServiceRequestReadLink.js"
+        }
+      },
+	  {
+		  "Property": "OverallStatusCfg_Nav",
+		  "Target": {
+			  "EntitySet": "EAMOverallStatusConfigs",
+			  "QueryOptions": "/SAPAssetManager/Rules/MobileStatus/ServiceRequestOverallStatusConfigQueryOptions.js"
+		  }
+	  }
+    ],
+	"OnSuccess": "/SAPAssetManager/Rules/Common/ChangeSet/ChangeSetOnSuccess.js",
+	"OnFailure" : "/SAPAssetManager/Rules/Common/ChangeSet/ChangeSetOnFailure.js",
+	"ShowActivityIndicator": true,
+	"ActivityIndicatorText" : " "
+}

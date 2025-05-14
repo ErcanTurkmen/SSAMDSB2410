@@ -1,0 +1,125 @@
+{
+    "ActionBar": {
+        "Items": "/SAPAssetManager/Pages/WCM/Fragments/FilterActionBarItems.fragment"
+    },
+    "Caption": "$(L,filter)",
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "Result": "/SAPAssetManager/Rules/WCM/SafetyCertificates/SafetyCertificatesListViewFilterResults.js",
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "Controls": [
+                        {
+                            "AllowEmptySelection": false,
+                            "Caption": "$(L,sort_by)",
+                            "SortByItems": [
+                                {
+                                    "ReturnValue": "Priority",
+                                    "DisplayValue": "$(L,priority)"
+                                },
+                                {
+                                    "ReturnValue": "ValidToDate",
+                                    "DisplayValue": "$(L,wcm_valid_to)"
+                                },
+                                {
+                                    "ReturnValue": "ShortText",
+                                    "DisplayValue": "$(L,description)"
+                                },
+                                {
+                                    "ReturnValue": "WCMDocument",
+                                    "DisplayValue": "$(L,wcm_safety_certificate_id)"
+                                }
+                            ],
+                            "Label": "$(L, sort_filter_prefix)",
+                            "_Name": "SortFilter",
+                            "_Type": "Control.Type.FormCell.Sorter",
+                            "IsEditable": true,
+                            "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+                        }
+                    ]
+                },
+                {
+                    "Controls": [
+                        "/SAPAssetManager/Pages/WCM/Fragments/AssignedToFilterButtons.fragment"
+                    ]
+                },
+                {
+                    "Controls": [
+                        "/SAPAssetManager/Pages/Fragments/Filter/AssignedToFilterListPkr.fragment"
+                    ]
+                },
+                {
+                    "Controls": [
+                        {
+                            "_Name": "UsageFilter",
+                            "AllowMultipleSelection": true,
+                            "AllowEmptySelection": true,
+                            "Caption": "$(L,wcm_usage_type)",
+                            "_Type": "Control.Type.FormCell.Filter",
+                            "IsEditable": true,
+                            "FilterProperty": "/SAPAssetManager/Rules/WCM/SafetyCertificates/SafetyCertificateUsageFilterPropertyItems.js",
+                            "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+                        }
+                    ]
+                },
+                {
+                    "Controls": [
+                        {
+                            "IsSelectedSectionEnabled": true,
+                            "_Name": "MobileStatusFilter",
+                            "_Type": "Control.Type.FormCell.ListPicker",
+                            "Caption": "$(L,mobile_status)",
+                            "AllowMultipleSelection": true,
+                            "IsPickerDismissedOnSelection": false,
+                            "PickerItems": "/SAPAssetManager/Rules/WCM/SafetyCertificates/SafetyCertificateMobileStatuses.js",
+                            "IsVisible": true,
+                            "FilterProperty": "PMMobileStatus/MobileStatus",
+                            "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+                        },
+                        "/SAPAssetManager/Pages/WCM/Fragments/ApprovalStatusFilter.fragment"
+                    ]
+                },
+                {
+                    "Controls": [{
+                        "_Type": "Fragment",
+                        "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/PriorityFilter.fragment",
+                        "Properties": {
+                            "FilterProperty": "/SAPAssetManager/Rules/WCM/Common/WCMPriorityFilter.js"
+                        }
+                    }]
+                },
+                {
+                    "Controls": [
+                        "/SAPAssetManager/Pages/WCM/Fragments/FunctionalLocationFilter.fragment",
+                        "/SAPAssetManager/Pages/WCM/Fragments/EquipmentFilter.fragment"
+                    ]
+                },
+                {
+                    "Controls": "/SAPAssetManager/Pages/WCM/Fragments/ValidFromFilter.fragment"
+                },
+                {
+                    "Controls": "/SAPAssetManager/Pages/WCM/Fragments/ValidToFilter.fragment"
+                }
+            ],
+            "_Name": "FormCellContainer",
+            "_Type": "Control.Type.FormCellContainer"
+        }
+    ],
+    "FioriToolbar": {
+        "_Name": "SafetyCertificatesFilterFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Items": [
+            {
+				"_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/ResetFilterToolbarItem.fragment",
+				"Properties": {
+                    "OnPress": "/SAPAssetManager/Rules/Filter/FilterResetToDefault.js"
+				}
+			}
+        ]
+    },
+    "_Type": "Page",
+    "_Name": "SafetyCertificatesFilterPage",
+    "OnLoaded": "/SAPAssetManager/Rules/WCM/SafetyCertificates/SafetyCertificatesFilterOnLoaded.js"
+}

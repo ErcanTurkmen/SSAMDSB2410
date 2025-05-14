@@ -1,0 +1,51 @@
+{
+    "Caption": "$(L,sync_error_title)",
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "Items": [
+            {
+                "Position": "Left",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)",
+                "OnPress": "/SAPAssetManager/Actions/Page/ClosePage.action",
+                "Visible": "/SAPAssetManager/Rules/Sync/SyncErrorCloseIsVisible.js"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "KeyAndValues": [
+                        {
+                            "KeyName": "Error",
+                            "Value": "/SAPAssetManager/Rules/Sync/SyncErrorFormat.js"
+                        }
+                    ],
+                    "Layout": {
+                        "NumberOfColumns": 1,
+                        "MinimumInteritemSpacing": "$(PLT,66,0)" 
+                    },
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "ErrorKeyValue"
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable"
+        }],
+		"FioriToolbar": {
+            "_Name": "SyncErrorDetailsFioriToolbar",
+            "_Type": "Control.Type.FioriToolbar",
+			"Items": [
+				{
+					"_Name": "Send",
+					"_Type": "FioriToolbarItem.Type.Button",
+					"Enabled": true,
+					"Title": "$(L,sync)",
+					"OnPress": "/SAPAssetManager/Rules/Sync/SyncFromSyncError.js"
+				}
+			]
+		},
+    "_Type": "Page",
+    "_Name": "ErrorArchiveDetailsAndroidPage"
+}

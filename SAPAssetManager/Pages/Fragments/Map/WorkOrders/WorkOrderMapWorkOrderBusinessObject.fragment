@@ -1,0 +1,25 @@
+{
+    "Type": "Job",
+    "Title": "$(L,workorders)",
+    "Legend": "IconWorkOrder",
+    "Target": {
+        "EntitySet": "MyWorkOrderHeaders",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "/SAPAssetManager/Rules/Maps/WorkOrders/MapWorkOrdersQueryOptions.js"
+    },
+    "Enable": true,
+    "ObjectScheme": {
+        "_Type": "Fragment",
+        "Fragment": "/SAPAssetManager/Pages/Fragments/Map/WorkOrders/WorkOrderBusinessObjectScheme.fragment",
+        "Properties": {
+            "Properties": {
+                "Tags": [
+                    "{OrderType}",
+                    "/SAPAssetManager/Rules/Maps/MapWorkOrderStatus.js"
+                ],
+                "Footnote": "/SAPAssetManager/Rules/Maps/MapWorkOrderDueDate.js"
+            },
+            "Actions": []
+        }
+    }
+}

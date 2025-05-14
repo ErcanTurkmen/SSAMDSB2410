@@ -1,0 +1,11 @@
+{
+    "_Name": "ApprovalStatusFilter",
+    "AllowMultipleSelection": true,
+    "AllowEmptySelection": true,
+    "Caption": "$(L,wcm_approval_status)",
+    "FilterProperty": "/SAPAssetManager/Rules/WCM/Common/ApprovalStatusFilterItems.js",
+    "_Type": "Control.Type.FormCell.Filter",
+    "IsEditable": true,
+    "IsVisible": true,
+    "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+}

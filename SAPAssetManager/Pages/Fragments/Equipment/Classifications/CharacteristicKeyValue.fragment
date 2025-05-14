@@ -1,0 +1,49 @@
+{
+    "Header": {
+        "Caption": "$(L,details)"
+    },
+    "KeyAndValues": [
+        {
+            "_Name": "Characteristic.CharDesc",
+            "KeyName": "$(L,name)",
+            "Value": "/SAPAssetManager/Rules/Classification/Characteristics/CharacteristicValueDisplayCharDescription.js"
+        },
+        {
+            "_Name": "MyEquipClassCharValue.ValueRel|MyFuncLocClassCharValue.ValueRel",
+            "KeyName": "$(L,value)",
+            "Value": "/SAPAssetManager/Rules/Classification/Characteristics/CharacteristicDisplayValueWithoutUOM.js"
+        },
+        {
+            "_Name": "CharValDesc",
+            "KeyName": "$(L,description)",
+            "Value": "/SAPAssetManager/Rules/Classification/Characteristics/CharacteristicValueDisplayCharValueDescription.js"
+        },
+        {
+            "_Name": "Characteristic.UoM",
+            "KeyName": "$(L,uom)",
+            "Value": "/SAPAssetManager/Rules/Classification/Characteristics/CharacteristicValueDisplayCharUOM.js"
+        },
+        {
+            "_Name": "Characteristic.NumofChar",
+            "KeyName": "$(L,characters)",
+            "Value": "/SAPAssetManager/Rules/Classification/Characteristics/CharacteristicValueDisplayCharNumchars.js"
+        },
+        {
+            "_Name": "Characteristic.DataType",
+            "KeyName": "$(L,data_type)",
+            "Value": "/SAPAssetManager/Rules/Classification/Characteristics/CharacteristicValueDisplayCharDatatype.js"
+        },
+        {
+            "_Name": "Characteristic.NumofDecimal",
+            "KeyName": "$(L,decimals)",
+            "Value": "/SAPAssetManager/Rules/Classification/Characteristics/CharacteristicValueDisplayCharDecimals.js"
+        },
+        {
+            "_Name": "Characteristic.EntryRequired",
+            "KeyName": "$(L,required)",
+            "Value": "/SAPAssetManager/Rules/Classification/Characteristics/CharacteristicValueDisplayRequired.js"
+        }
+    ],
+    "_Type": "Section.Type.KeyValue",
+    "_Name": "KeyValueTable"
+}

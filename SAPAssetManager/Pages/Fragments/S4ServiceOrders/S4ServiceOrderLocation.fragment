@@ -1,0 +1,20 @@
+{
+    "Layout": {
+        "NumberOfColumns": 1
+    },
+    "KeyAndValues": [
+        {
+            "KeyName": "",
+            "Value": "/SAPAssetManager/Rules/WorkOrders/WorkOrderLocationFormat.js",
+            "OnPress": "/SAPAssetManager/Rules/WorkOrders/WorkOrderMapNav.js",
+            "LinkColor": "/SAPAssetManager/Rules/Common/LocationNavFormat.js"
+        }
+    ],
+    "Header": {
+        "UseTopPadding": "/SAPAssetManager/Rules/TimelineControl/IsTimelineControlVisible.js",
+        "Caption": "$(L, location)"
+    },
+    "DataSubscriptions": ["Geometries"],
+    "_Type": "Section.Type.KeyValue",
+    "_Name": "LocationSection"
+}

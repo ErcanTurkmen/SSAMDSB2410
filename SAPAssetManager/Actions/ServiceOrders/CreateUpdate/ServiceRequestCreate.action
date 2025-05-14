@@ -1,0 +1,77 @@
+{
+	"_Type": "Action.Type.ODataService.CreateEntity",
+    "Target": {
+        "EntitySet": "S4ServiceRequests",
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "Properties": {
+        "ObjectID": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestLocalID.js",
+		"ObjectType": "/SAPAssetManager/Rules/ServiceOrders/ServiceRequestObjectType.js",
+		"ProcessType": "/SAPAssetManager/Globals/S4Service/ServiceRequestDefaultProcessType.global",
+        "Description": "#Page:ServiceRequestCreateUpdatePage/#Control:DescriptionNote/#Value",
+        "Priority": "#Page:ServiceRequestCreateUpdatePage/#Control:PrioritySeg/#SelectedValue",
+		"Urgency": "#Page:ServiceRequestCreateUpdatePage/#Control:UrgencySeg/#SelectedValue",
+		"Impact": "#Page:ServiceRequestCreateUpdatePage/#Control:ImpactSeg/#SelectedValue",
+		"SalesOrg": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestSalesOrgValue.js",
+		"SalesRespOrg": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestSalesRespOrgValue.js",
+		"SoldToParty": "#Page:ServiceRequestCreateUpdatePage/#Control:SoldToPartyLstPkr/#SelectedValue",
+		"ServiceOrg": "#Page:ServiceRequestCreateUpdatePage/#Control:ServiceOrgLstPkr/#SelectedValue",
+		"ServiceRespOrg": "#Page:ServiceRequestCreateUpdatePage/#Control:ServiceOrgLstPkr/#SelectedValue",
+		"SubjCategory1": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/GetServiceRequestSubjCategory1.js",
+		"SubjCategory2": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/GetServiceRequestSubjCategory2.js",
+		"SubjCategory3": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/GetServiceRequestSubjCategory3.js",
+		"SubjCategory4": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/GetServiceRequestSubjCategory4.js",
+		"ReasonCategory1": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/GetServiceRequestReasonCategory1.js",
+		"ReasonCategory2": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/GetServiceRequestReasonCategory2.js",
+		"ReasonCategory3": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/GetServiceRequestReasonCategory3.js",
+		"ReasonCategory4": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/GetServiceRequestReasonCategory4.js",
+		"SchemaID1": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestSchemaID1Value.js",
+		"SchemaID2": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestSchemaID2Value.js",
+		"CategoryID1": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestCategoryID1Value.js",
+		"CategoryID2": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestCategoryID2Value.js",
+		"SubjectProfile1": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestSubjectProfile1Value.js",
+		"SubjectProfile2": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestSubjectProfile2Value.js",
+		"CatalogType1": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestCatalogType1Value.js",
+		"CatalogType2": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestCatalogType2Value.js",
+		"EmployeeResp": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestEmployeeResponsible.js",
+		"RequestedStart": "/SAPAssetManager/Rules/DateTime/CurrentDateTime.js",
+		"Division": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestDivisionValue.js",
+		"DistributionChannel": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestDistributionChannelValue.js",
+		"CodeGroup1":  "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestCodeGroup1Value.js",
+		"CodeGroup2": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestCodeGroup2Value.js",
+		"Code1": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestCode1Value.js",
+		"Code2": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestCode2Value.js",
+		"SalesOffice": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestSalesOfficeValue.js",
+		"SalesGroup": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestSalesGroupValue.js"
+    },
+    "Headers": {
+        "OfflineOData.RemoveAfterUpload": "true",
+        "OfflineOData.TransactionID": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestLocalID.js"
+    },
+    "CreateLinks": [
+		{
+			"Property": "Priority_Nav",
+			"Target": {
+				"EntitySet": "ServicePriorities",
+				"ReadLink": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestPriorityReadLink.js"
+			}
+		},
+		{
+			"Property": "Urgency_Nav",
+			"Target": {
+				"EntitySet": "ServiceUrgencySet",
+				"ReadLink": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestUrgencyReadLink.js"
+			}
+		},
+		{
+			"Property": "Impact_Nav",
+			"Target": {
+				"EntitySet": "ServiceImpactSet",
+				"ReadLink": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestImpactReadLink.js"
+			}
+		}
+	],
+    "OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/CreateEntityFailureMessage.action",
+    "ShowActivityIndicator": true,
+    "ActivityIndicatorText" : "  "
+} 

@@ -1,0 +1,29 @@
+{
+	"Caption": "$(L,wcm_operational_items)",
+	"ActionBar":
+	{
+		"Items":[
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment",
+			{
+				"Position": "Right",
+				"Icon": "$(PLT,'',/SAPAssetManager/Images/filter.android.png)",
+				"Caption": "/SAPAssetManager/Rules/WCM/Common/SegmentedFilterButtonCaption.js",
+				"OnPress": "/SAPAssetManager/Rules/WCM/OperationalItems/ListView/OperationalItemsListFilterNav.js",
+				"_Name": "FilterButton"
+			}
+		]
+	},
+	"Controls": [
+		{
+			"Items": "/SAPAssetManager/Rules/WCM/OperationalItems/ListView/ConstructOperationalItemsListViewTabs.js",
+			"Position": "Top",
+			"TabStripType": "Segmented",
+			"_Type": "Control.Type.Tabs",
+			"_Name": "TabsControl"
+  		}
+	],
+	"OnLoaded": "/SAPAssetManager/Rules/WCM/OperationalItems/ListView/OperationalItemsListViewOnLoaded.js",
+	"_Name": "OperationalItemsListViewPage",
+	"_Type": "Page",
+	"DataSubscriptions": ["WCMDocumentItems", "WCMDocumentHeaders", "PMMobileStatuses", "/SAPAssetManager/Services/AssetManager.service"]
+}

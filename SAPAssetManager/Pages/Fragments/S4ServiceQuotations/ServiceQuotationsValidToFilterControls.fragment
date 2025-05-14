@@ -1,0 +1,25 @@
+[
+    {
+        "_Type": "Control.Type.FormCell.Switch",
+        "_Name": "ValidToFilterVisibleSwitch",
+        "Caption":"$(L,quotation_valid_to)",
+        "Value": false,
+        "OnValueChange": "/SAPAssetManager/Rules/ServiceQuotations/List/Filter/ServiceQuotationsSwitchFilterChanged.js"
+    },
+    {
+        "_Type": "Control.Type.FormCell.DatePicker",
+        "_Name": "QuotationEndDateTimeStart",
+        "Caption": "$(L,date_from)",
+        "Mode": "Date",
+        "IsVisible": false,
+        "OnValueChange": "/SAPAssetManager/Rules/Filter/Validation/CompareStartEndDateComponent.js"
+    },
+    {
+        "_Type": "Control.Type.FormCell.DatePicker",
+        "_Name": "QuotationEndDateTimeEnd",
+        "Caption": "$(L,date_to)",
+        "Mode": "Date",
+        "IsVisible": false,
+        "OnValueChange": "/SAPAssetManager/Rules/Filter/Validation/CompareStartEndDateComponent.js"
+    }
+]

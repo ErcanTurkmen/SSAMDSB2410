@@ -1,0 +1,59 @@
+{
+    "_Type": "Section.Type.KeyValue",
+    "_Name": "WorkOrderFlightDataSection",
+    "Visible": "/SAPAssetManager/Rules/Defense/WorkOrderFlightDetailsVisible.js",
+    "Header": {
+        "UseTopPadding": "/SAPAssetManager/Rules/WCM/IsNotWCMOperatorClassicLayout.js",
+        "Items": [
+            {
+                "_Type": "SectionHeaderItem.Type.Label",
+                "_Name": "NonVisibleSectionHeaderLabel",
+                "Title": "$(L,flight_data)",
+                "Position": "Left"
+            },
+            {
+                "_Type": "SectionHeaderItem.Type.Button",
+                "_Name": "NonVisibleSectionHeaderButton",
+                "Position": "Right",
+                "OnPress": "/SAPAssetManager/Rules/Defense/FlightLegsNav.js",
+                "Enabled": "true",
+                "Title": "$(L, view_flight_legs)",
+                "Styles": {
+                    "Button": "HeaderItemButtonText"
+                }
+            }
+        ]
+    },
+    "KeyAndValues": [
+        {
+            "_Name": "FlightModel",
+            "KeyName": "$(L,model)",
+            "Value": "/SAPAssetManager/Rules/Defense/Model.js"
+        },
+        {
+            "_Name": "FlightAuthConfig",
+            "KeyName": "$(L,auth_configuration)",
+            "Value": "/SAPAssetManager/Rules/Defense/AuthorizedConfig.js"
+        },
+        {
+            "_Name": "FlightActlConfig",
+            "KeyName": "$(L,actl_configuration)",
+            "Value": "/SAPAssetManager/Rules/Defense/ActualConfig.js"
+        },
+        {
+            "_Name": "FlightDeviation",
+            "KeyName": "$(L,deviation)",
+            "Value": "/SAPAssetManager/Rules/Defense/Deviation.js"
+        },
+        {
+            "_Name": "FlightDeviationReason",
+            "KeyName": "$(L,deviation_reason)",
+            "Value": "/SAPAssetManager/Rules/Defense/DeviationReason.js"
+        }
+    ],
+    "Target": {
+        "EntitySet": "{@odata.readLink}",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "/SAPAssetManager/Rules/Defense/WorkOrderFlightDetailsQueryOptions.js"
+    }
+}

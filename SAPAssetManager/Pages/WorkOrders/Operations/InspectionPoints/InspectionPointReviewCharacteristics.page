@@ -1,0 +1,59 @@
+{
+	"Caption": "$(L,inspection_point)",
+	"Controls":
+	[{
+		"Sections":
+		[{
+			"Header": {
+				"DataTable":
+				{
+					"Items":
+					[{
+						"Text": "$(L,characteristic)",
+						"TextAlignment": "Center"
+					},
+					{
+						"Text": "$(L,value)",
+						"TextAlignment": "Center"
+					},
+					{
+						"Text": "$(L,valuation)",
+						"TextAlignment": "Center"
+					}]
+				}
+			},
+			"Row":
+			{
+				"Layout": {
+                        "ColumnWidth": [300,300,300,-1]
+                },
+				"Items":
+				[{
+					"Text": "{ShortDesc}",
+					"TextAlignment": "Center"
+				},
+				{
+					"Text": "/SAPAssetManager/Rules/InspectionCharacteristics/CodeValue.js",
+					"TextAlignment": "Center"
+				},
+				{
+					"Text": "/SAPAssetManager/Rules/InspectionCharacteristics/ValuationShortText.js",
+					"Style": "/SAPAssetManager/Rules/InspectionCharacteristics/ValuationStyle.js",
+					"TextAlignment": "Center"
+				}]
+			},
+			"Target":
+			{
+				"EntitySet": "{{#Property:@odata.readLink}}/InspectionChar_Nav",
+				"Service": "/SAPAssetManager/Services/AssetManager.service",
+				"QueryOptions": "$expand=InspectionCode_Nav,InspValuation_Nav"
+			},
+			"_Name": "InspectionCharacteristicSection",
+			"StickyColumn": false,
+			"_Type": "Section.Type.DataTable"
+		}],
+		"_Type": "Control.Type.SectionedTable"
+	}],
+	"_Name": "InspectionPointReviewCharacteristicsDetails",
+	"_Type": "Page"
+}

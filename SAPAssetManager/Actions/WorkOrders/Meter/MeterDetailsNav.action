@@ -1,0 +1,5 @@
+{
+    "_Type" : "Action.Type.Navigation",
+    "PageToOpen" : "/SAPAssetManager/Pages/WorkOrders/Meter/MeterDetails.page",
+    "PageMetadata": "/SAPAssetManager/Rules/WorkOrders/Meter/MeterDetailsPageMetadata.js"
+}

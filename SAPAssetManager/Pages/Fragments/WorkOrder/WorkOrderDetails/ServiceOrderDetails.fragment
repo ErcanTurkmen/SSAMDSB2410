@@ -1,0 +1,57 @@
+{
+    "Header":
+    {
+        "Caption": "$(L,serviceorder_details)"
+    },
+    "KeyAndValues":
+        [{
+            "_Name": "ServiceProduct",
+            "KeyName": "$(L,service_product)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceOrderServiceProduct.js"
+        },
+        {
+            "_Name": "Quantity",
+            "KeyName": "$(L,quantity)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceOrderQuantity.js"
+        },
+        {
+            "_Name": "CustomerReference",
+            "KeyName": "$(L,purchase_order)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceOrderPurchaseOrder.js"
+        },
+        {
+            "_Name": "AccountingIndicator",
+            "KeyName": "$(L,account_indicator)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceOrderAccountIndicator.js"
+        },
+        {
+            "_Name": "ContractDesc",
+            "KeyName": "$(L,service_contract)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceOrderServiceContract.js"
+        },
+        {
+            "_Name": "ContractItemNum",
+            "KeyName": "$(L,item)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceOrderItem.js"
+        },
+        {
+            "_Name": "ContractDateFrom",
+            "KeyName": "$(L,contract_start_date)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceOrderStartDate.js"
+        },
+        {
+            "_Name": "ContractDateTo",
+            "KeyName": "$(L,contract_end_date)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceOrderEndDate.js"
+        }
+    ],
+    "Target": {
+        "EntitySet": "{{#Property:@odata.readLink}}/WOSales_Nav",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$expand=WOHeader_Nav"
+    },
+    "Visible": "/SAPAssetManager/Rules/WorkOrders/Details/IsServiceOrder.js",
+    "DataSubscriptions": ["MyWorkOrderHeaders", "MyWorkOrderSales"],
+    "_Type": "Section.Type.KeyValue",
+    "_Name": "ServiceOrderDetailsSection"
+}

@@ -1,0 +1,67 @@
+{
+    "Type": "Route",
+    "DependsOn": "RouteStop",
+    "Title": "$(L, fow_dl_routes)",
+    "Legend": "IconRoute",
+    "Target": {
+        "EntitySet": "MyRoutes",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$expand=Stops,WorkOrder/OrderMobileStatus_Nav,WorkOrder/WOPriority&$filter=Stops/FuncLoc/FuncLocGeometries/any(fg:sap.entityexists(fg/Geometry)) or Stops/Equipment/EquipGeometries/any(eg:sap.entityexists(eg/Geometry))",
+        "Properties": [],
+        "KeyProperties": []
+    },
+    "Enable": "#ClientData/#Property:isFOWRouteEnabled",
+    "ObjectScheme": {
+        "Geometry": "",
+        "Layer": "Route",
+        "Properties": {
+            "ID": "{RouteID}",
+            "Title": "{Description}",
+            "Subhead": "$(L, fow_route_with_route_id, {RouteID})",
+            "StatusImage": "/SAPAssetManager/Rules/Maps/FOW/Routes/RoutePriorityBadge.js",
+            "SubstatusText": "/SAPAssetManager/Rules/Maps/FOW/Routes/RoutePrioritySubstatusText.js",
+            "Tags": [
+                "/SAPAssetManager/Rules/Maps/FOW/Routes/RouteTags.js"
+            ],
+            "BodyText": "/SAPAssetManager/Rules/FOW/Routes/ListView/RouteListStopCountCaption.js",
+            "Footnote": "/SAPAssetManager/Rules/FOW/DateTime/RouteDueDate.js",
+            "FormatRule": "",
+            "DateProperties": {
+                "DueDate": "/SAPAssetManager/Rules/FOW/DateTime/RouteDueDateInDateFormat.js",
+                "DateFormat": "MM-dd-yyyy"
+            },
+            "Directions": {
+                "Enabled": "/SAPAssetManager/Rules/Maps/DirectionsButton/IsDirectionsButtonEnabled.js",
+                "ButtonText": "$(L, map_info_panel_directions)"
+            }
+        },
+        "DependsOn": "RouteStop",
+        "Actions": [
+            {
+                "Title": "$(L, fow_map_view_route_details)",
+                "Icon": "ActionView",
+                "Type": "View",
+                "CallbackInfo": {
+                    "Action": "/SAPAssetManager/Rules/FOW/Routes/RouteDetailsNav.js",
+                    "Target": {
+                        "EntitySet": "MyRoutes",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "/SAPAssetManager/Rules/Maps/FOW/Routes/RouteDetailsMapNavQueryOptions.js",
+                        "Properties": [],
+                        "KeyProperties": []
+                    }
+                }
+            }
+        ],
+        "Symbol": {
+            "lineColor": "70C4F3",
+            "lineWidth": 5,
+            "lineStyle": "solid",
+            "onSelect": {
+                "lineColor": "70C4F3",
+                "lineWidth": 10,
+                "lineStyle": "solid"
+            }
+        }
+    }
+}

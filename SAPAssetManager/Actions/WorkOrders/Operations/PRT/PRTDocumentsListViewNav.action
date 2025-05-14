@@ -1,0 +1,7 @@
+{
+    "_Type" : "Action.Type.Navigation",
+    "PageToOpen" : "/SAPAssetManager/Pages/WorkOrders/Operations/PRT/PRTDocumentsListView.page",
+    "ShowActivityIndicator": true,
+    "ActivityIndicatorText" : "  ",
+    "PageMetadata": "/SAPAssetManager/Rules/Operations/PRT/Documents/PRTDocumentListPageMetadata.js"
+}

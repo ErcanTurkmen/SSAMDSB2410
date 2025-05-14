@@ -1,0 +1,5 @@
+{
+    "_Type" : "Action.Type.Navigation",
+    "PageToOpen" : "/SAPAssetManager/Pages/FunctionalLocation/FunctionalLocationListView.page",
+    "PageMetadata": "/SAPAssetManager/Rules/FunctionalLocation/FunctionalLocationListViewPageMetadata.js"
+}

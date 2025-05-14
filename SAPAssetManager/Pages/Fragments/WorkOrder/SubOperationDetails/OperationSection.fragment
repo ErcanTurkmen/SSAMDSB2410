@@ -1,0 +1,22 @@
+{
+    "Header": {
+        "Caption": "$(L,operation)"
+    },
+    "ObjectCell": {
+        "Icons": "/SAPAssetManager/Rules/Operations/OperationsListViewIconImages.js",
+        "AccessoryType": "DisclosureIndicator",
+        "Title": "{{#Property:OperationShortText}} ({{#Property:OperationNo}})",
+        "Footnote": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderDueDate.js",
+        "OnPress": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/WorkOrderOperationDetailsNav.js",
+        "Subhead": "{OrderId}",
+        "StatusText": "/SAPAssetManager/Rules/MobileStatus/OperationMobileStatus.js"
+    },
+    "Target": {
+        "EntitySet": "{{#Property:@odata.readLink}}/WorkOrderOperation",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsTableQueryOption.js"
+    },
+    "_Name": "OperationsObjectTable",
+    "_Type": "Section.Type.ObjectTable",
+    "DataSubscriptions": ["Confirmations", "PMMobileStatuses", "MyWorkOrderOperations"]
+}

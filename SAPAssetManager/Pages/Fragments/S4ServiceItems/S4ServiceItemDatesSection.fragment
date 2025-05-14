@@ -1,0 +1,24 @@
+{
+    "Header": {
+        "Caption": "$(L,dates)"
+    },
+    "KeyAndValues": [
+        {
+            "_Name": "RequestedStart",
+            "KeyName": "$(L,requested_start)",
+            "Value": "/SAPAssetManager/Rules/DateTime/RequestStartDate.js"
+        },
+        {
+            "_Name": "DueBy",
+            "KeyName": "$(L,due_by)",
+            "Value": "/SAPAssetManager/Rules/DateTime/DueDate.js"
+        },
+        {
+            "_Name": "RequestedEnd",
+            "KeyName": "$(L,requested_end)",
+            "Value": "/SAPAssetManager/Rules/DateTime/RequestEndDate.js"
+        }
+    ],
+    "_Type": "Section.Type.KeyValue",
+    "_Name": "ServiceItemDatesSection"
+}

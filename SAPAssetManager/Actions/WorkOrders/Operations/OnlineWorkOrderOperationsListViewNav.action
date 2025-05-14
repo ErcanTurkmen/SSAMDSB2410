@@ -1,0 +1,5 @@
+{
+    "_Type" : "Action.Type.Navigation",
+    "PageToOpen" : "/SAPAssetManager/Pages/WorkOrders/Operations/OnlineWorkOrderOperationsListView.page",
+    "PageMetadata": "/SAPAssetManager/Rules/WorkOrders/Operations/OnlineWorkOrderOperationListPageMetadata.js"
+}

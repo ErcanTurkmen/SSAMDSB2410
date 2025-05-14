@@ -1,0 +1,16 @@
+{
+    "_Type": "Control.Type.ObjectCell",
+    "PreserveIconStackSpacing": true,
+    "Icons": "/SAPAssetManager/Rules/WCM/WorkPermits/WorkPermitIcons.js",
+    "Title": "{WorkPermitDescr}",
+    "Subhead": "/SAPAssetManager/Rules/WCM/WorkPermits/WorkPermitSubhead.js",
+    "Footnote": "/SAPAssetManager/Rules/WCM/WorkPermits/WorkPermitFootnote.js",
+    "StatusText": "/SAPAssetManager/Rules/WCM/Common/PriorityStatusText.js",
+    "SubstatusText": "/SAPAssetManager/Rules/WCM/Common/SystemStatusText.js",
+    "Styles":
+    {
+        "StatusText":  "/SAPAssetManager/Rules/Priority/WCMPriorityStatusStyle.js"
+    },
+    "AccessoryType": "DisclosureIndicator",
+    "OnPress" : "/SAPAssetManager/Rules/WCM/WorkPermits/WorkPermitDetailsNav.js"
+}

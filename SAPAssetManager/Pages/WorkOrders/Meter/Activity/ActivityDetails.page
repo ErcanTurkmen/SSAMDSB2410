@@ -1,0 +1,69 @@
+{
+    "Caption": "$(L,activity)",
+    "OnLoaded": "/SAPAssetManager/Rules/WorkOrders/Meter/Activity/Details/ActivityDetailsOnPageLoaded.js",
+    "ActionBar": {
+        "_Name": "ActivityDetails",
+        "Items": [
+            {
+                "Position": "Right",
+                "_Name": "Edit",
+                "Text": "$(L, edit)",
+                "OnPress": "/SAPAssetManager/Rules/WorkOrders/Meter/Activity/ActivityUpdateNav.js"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "Header": {
+                        "Caption": "$(L,activity_details)"
+                    },
+                    "KeyAndValues": [
+                        {
+                            "_Name": "ActivityType",
+                            "KeyName": "$(L,type)",
+                            "Value": "{{#Property:DisconnectActivityType_Nav/#Property:ActivityTypeDescription}}"
+                        },
+                        {
+                            "_Name": "ActivityNum",
+                            "KeyName": "$(L,ID)",
+                            "Value": "{{#Property:ActivityNum}}"
+                        },
+                        {
+                            "_Name": "ActivityStatus",
+                            "KeyName": "$(L,status)",
+                            "Value": "/SAPAssetManager/Rules/WorkOrders/Meter/Activity/ActivityDetailsSubhead.js"
+                        },
+                        {
+                            "_Name": "DocNum",
+                            "KeyName": "$(L,document)",
+                            "Value": "{{#Property:DocNum}}"
+                        },
+                        {
+                            "_Name": "ActivityDate",
+                            "KeyName": "$(L,date)",
+                            "Value": "/SAPAssetManager/Rules/WorkOrders/Meter/Activity/Details/ActivityDetailsDate.js"
+                        },
+                        {
+                            "_Name": "ActivityTime",
+                            "KeyName": "$(L,time)",
+                            "Value": "/SAPAssetManager/Rules/WorkOrders/Meter/Activity/Details/ActivityDetailsTime.js"
+                        }
+                    ],
+                    "Target": {
+                        "EntitySet": "{{#Property:@odata.readLink}}",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "$expand=DisconnectActivityType_Nav,DisconnectActivityStatus_Nav"
+                    },
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "KeyValueTable"
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "ActivityDetailsPage"
+}

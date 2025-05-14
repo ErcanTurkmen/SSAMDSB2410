@@ -1,0 +1,10 @@
+{
+    "marker": "/SAPAssetManager/Rules/Maps/Icons/WorkOrderIcon.js",
+    "lineColor": "0070F2",
+    "fillColor": "0070F233",
+    "lineWidth": 2,
+    "onSelect": {
+        "marker": "/SAPAssetManager/Rules/Maps/Icons/SelectedWorkOrderIcon.js",
+        "lineWidth": 4
+    }
+}

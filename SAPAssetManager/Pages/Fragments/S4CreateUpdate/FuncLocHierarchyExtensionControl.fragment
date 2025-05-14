@@ -1,0 +1,70 @@
+{
+    "_Type": "Control.Type.FormCell.Extension",
+    "Module": "extension-HierarchyFramework",
+    "Control": "HierarchyExtension",
+    "Class": "HierarchyExtension",
+    "_Name": "FuncLocHierarchyExtensionControl",
+    "Caption": "$(L,functional_location)",
+    "DataSubscriptions": ["MyFunctionalLocations"],
+    "IsEditable": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/IsRefObjectPickerEditable.js",
+    "ExtensionProperties": {
+        "IsPicker": true,
+        "Search": {
+            "Enabled": true,
+            "Delay": 500,
+            "MinimumCharacterThreshold": 3,
+            "Placeholder": "$(L,search)",
+            "BarcodeScanner": true
+        },
+        "PickerProperties": {
+            "OnLoaded": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderCreateUpdateHierarchyListPickerOnLoaded.js",
+            "OnValueChange": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/OnRefObjectsValueChanged.js",
+            "ListFilter": "MyFunctionalLocations",
+            "Caption": "$(L,functional_location)",
+            "AllowMultipleSelection": false,
+            "ItemsPerPage": 50,
+            "CachedItemsToLoad": 20
+        },
+        "HierarchyList": [],
+        "BusinessObjects": [{
+            "Target": {
+                "EntitySet" : "MyFunctionalLocations",
+                "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                "QueryOptions": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderCreateUpdateControlsQueryOptions.js",
+                "Properties": [],
+                "KeyProperties": []
+            },
+            "Properties":{
+                "ID":"{@odata.readLink}",
+                "Title":"{FuncLocDesc}",
+                "Subhead":"{FuncLocId}",
+                "Footnote": "$(L, functional_location)",
+                "ReturnValue" : "{FuncLocIdIntern}",
+                "DisplayValue" : "{FuncLocId} - {FuncLocDesc}",
+                "ChildCount": "/SAPAssetManager/Rules/HierarchyControl/ChildCountListPicker.js",
+                "Parent": [
+                    {
+                        "Target": {
+                            "EntitySet" : "MyFunctionalLocations",
+                            "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                            "Properties": [],
+                            "KeyProperties": [],
+                            "QueryOptions":"$filter=FuncLocIdIntern eq '{SuperiorFuncLocInternId}'&$orderby=FuncLocId"
+                        }
+                    }
+                ],
+                "Children": [
+                    {
+                        "Target": {
+                            "EntitySet" : "MyFunctionalLocations",
+                            "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                            "Properties": [],
+                            "KeyProperties": [],
+                            "QueryOptions":"$filter=SuperiorFuncLocInternId eq '{FuncLocIdIntern}'&$orderby=FuncLocId"
+                        }
+                    }
+                ]
+            }
+        }]
+    }
+}

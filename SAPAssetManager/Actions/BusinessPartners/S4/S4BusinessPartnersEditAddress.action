@@ -1,0 +1,21 @@
+{
+	"_Type": "Action.Type.ODataService.UpdateEntity",
+	"Target":
+    {
+        "EntitySet" : "/SAPAssetManager/Rules/BusinessPartners/Edit/BusinessPartnerEditAddressEntitySet.js",
+        "Service" : "/SAPAssetManager/Services/AssetManager.service",
+        "ReadLink": "#ClientData/#Property:addressReadLink"
+    },
+    "Properties":
+    {
+        "HouseNumber": "/SAPAssetManager/Rules/BusinessPartners/Edit/BusinessPartnerEditHousePickerValue.js",
+        "Building": "/SAPAssetManager/Rules/BusinessPartners/Edit/BusinessPartnerEditBuildingPickerValue.js",
+        "City": "/SAPAssetManager/Rules/BusinessPartners/Edit/BusinessPartnerEditCityPickerValue.js",
+        "Country": "/SAPAssetManager/Rules/BusinessPartners/Edit/BusinessPartnerEditCountryPickerValue.js",
+        "Floor": "/SAPAssetManager/Rules/BusinessPartners/Edit/BusinessPartnerEditFloorPickerValue.js",
+        "PostalCode": "/SAPAssetManager/Rules/BusinessPartners/Edit/BusinessPartnerEditPostalCodePickerValue.js",
+        "Region": "/SAPAssetManager/Rules/BusinessPartners/Edit/BusinessPartnerEditStatePickerValue.js",
+        "RoomNumber": "/SAPAssetManager/Rules/BusinessPartners/Edit/BusinessPartnerEditRoomNumberPickerValue.js",
+        "Street": "/SAPAssetManager/Rules/BusinessPartners/Edit/BusinessPartnerEditStreetPickerValue.js"
+    }
+}

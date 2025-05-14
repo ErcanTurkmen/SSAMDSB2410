@@ -1,0 +1,15 @@
+{
+	"_Type": "Action.Type.RestService.SendRequest",
+	"Target": {
+		"Service": "/SAPAssetManager/Services/EPDRest.service",
+		"Path": "/SAPAssetManager/Rules/EPD/GetQueryOptions.js",
+		"RequestProperties": {
+			"Method": "GET"
+		}
+	},
+	"ActionResult": {
+		"_Name": "epdResult"
+	},
+	"OnSuccess": "/SAPAssetManager/Rules/EPD/FetchVisualizationsSuccess.js",
+	"OnFailure": "/SAPAssetManager/Rules/EPD/FetchVisualizationsFailure.js"
+}

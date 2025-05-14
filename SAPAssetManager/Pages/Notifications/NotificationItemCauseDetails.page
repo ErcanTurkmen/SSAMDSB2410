@@ -1,0 +1,81 @@
+{
+	"Caption": "/SAPAssetManager/Rules/Notifications/Item/Cause/NotificationItemCauseHeader.js",
+	"OnLoaded": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsOnPageLoad.js",
+	"ActionBar": {
+		"_Name": "NotificationItemCauseDetails",
+		"Items": [
+            {
+                "Position": "Right",
+				"_Name": "Edit",
+                "SystemItem": "Edit",
+				"Caption": "$(L,edit)",
+				"OnPress": "/SAPAssetManager/Rules/Notifications/Item/Cause/NotificationItemCauseUpdateNav.js",
+				"Visible": "/SAPAssetManager/Rules/UserAuthorizations/Notifications/EnableNotificationEdit.js"
+			},
+			{
+                "Position": "Right",
+				"_Name": "Add",
+            	"SystemItem": "Add",
+				"Caption": "$(L,add)",
+                "OnPress": "/SAPAssetManager/Rules/Notifications/Item/Cause/Details/NotificationItemCauseDetailsPopover.js",
+				"Visible": "/SAPAssetManager/Rules/UserAuthorizations/Notifications/EnableNotificationEdit.js"
+            }
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Header": {
+						"Caption": "$(L,notification_item_cause_detail)"
+					},
+					"KeyAndValues": [
+						{
+							"_Name": "CauseText",
+							"KeyName": "$(L,description)",
+							"Value": "{CauseText}"
+						},
+						{
+							"_Name": "CauseSortNumber",
+							"KeyName": "$(L,sort_number)",
+							"Value": "{CauseSortNumber}"
+						},
+						{
+							"_Name": "CauseCodeGroup",
+							"KeyName": "$(L,group)",
+							"Value": "/SAPAssetManager/Rules/Notifications/Cause/NotificationCauseDetailsGroup.js"
+						},
+						{
+							"_Name": "CauseCode",
+							"KeyName": "$(L,code)",
+							"Value": "/SAPAssetManager/Rules/Notifications/Cause/NotificationCauseDetailsCode.js"
+						}
+					],
+					"_Name": "NotificationItemCauseDetailsSection",
+					"_Type": "Section.Type.KeyValue"
+				},
+				{
+                    "SimplePropertyCells":
+                    [{
+                        "SimplePropertyCell": {
+                            "AccessoryType": "DisclosureIndicator",
+                            "KeyName": "$(L,notes)",
+                            "Value": "/SAPAssetManager/Rules/Notes/NotesCount.js",
+                            "OnPress": "/SAPAssetManager/Rules/Notes/NotesViewNav.js"
+                        }
+                    }],
+                    "Layout":
+                    {
+                        "NumberOfColumns" : 1
+                    },
+                    "_Type" : "Section.Type.SimplePropertyCollection"
+                }
+			],
+			"_Type": "Control.Type.SectionedTable",
+			"_Name": "SectionedTable",
+			"DataSubscriptions": ["MyNotifItemCauseLongTexts"]
+		}
+	],
+	"_Type": "Page",
+	"_Name": "NotificationItemCauseDetailsPage"
+}

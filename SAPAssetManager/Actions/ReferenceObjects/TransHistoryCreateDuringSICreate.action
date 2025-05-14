@@ -1,0 +1,16 @@
+{
+    "_Type": "Action.Type.ODataService.CreateEntity",
+    "Target": {
+        "EntitySet": "S4ServiceOrderTranHistories",
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "Properties": {},
+    "Headers": {
+        "OfflineOData.RemoveAfterUpload": "true",
+        "OfflineOData.TransactionID": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/Data/GetServiceItemTransactionID.js"
+    },
+    "CreateLinks": [],
+    "OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/CreateEntityFailureMessage.action",
+    "ShowActivityIndicator": true,
+    "ActivityIndicatorText" : " "
+}

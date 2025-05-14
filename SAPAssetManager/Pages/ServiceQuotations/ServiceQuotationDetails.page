@@ -1,0 +1,254 @@
+{
+    "_Type": "Page",
+    "_Name": "ServiceQuotationDetails",
+    "Caption": "$(L,service_quatation_id,{ObjectID})",
+    "ActionBar": {
+        "Items": [
+            {
+                "Position": "Right",
+                "SystemItem": "Edit",
+                "Caption": "$(L,edit)",
+				"OnPress": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationUpdateNav.js"
+            },
+            {
+                "Position": "Right",
+                "SystemItem": "Add",
+                "Caption": "$(L,add)",
+				"OnPress": "/SAPAssetManager/Actions/ServiceQuotations/ServiceQuotationAddOptions.action"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "_Type": "Control.Type.SectionedTable", 
+            "_Name": "SectionedTable",
+            "Sections": [
+                {
+                    "_Type": "Section.Type.ObjectHeader",
+                    "ObjectHeader": {
+                        "HeadlineText": "{Description}",
+                        "Subhead": "{ObjectID}",
+                        "Footnote": "/SAPAssetManager/Rules/DateTime/ServiceDueByDate.js",
+                        "Tags": ["/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemStatusText.js"],
+                        "DetailImage": "$(PLT, /SAPAssetManager/Images/DetailImages/ServiceQuotation.png, /SAPAssetManager/Images/DetailImages/ServiceQuotation.android.png)",
+                        "StatusText": "{{#Property:Priority_Nav/#Property:Description}}",
+                        "SubstatusText": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemStatusText.js",
+                        "Styles": {
+                            "StatusText": "/SAPAssetManager/Rules/Priority/S4PriorityStatusStyle.js"
+                        }
+                    }
+                },
+                {
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/QAB/QuickActionBarExtensionSection.fragment",
+					"Properties": {
+						"ExtensionProperties": {
+							"Chips": "/SAPAssetManager/Rules/ServiceQuotations/Details/ServiceQuotationQABChips.js"
+						}
+					}
+				},
+                {
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/Equipment/ObjectTableSection.fragment",
+					"Properties": {
+						"MaxItemCount": 3,
+						"ObjectCell": {
+							"Title": "#Property:Equipment_Nav/#Property:EquipDesc",
+							"Subhead": "#Property:EquipID",
+							"StatusText": "#Property:Equipment_Nav/#Property:ObjectStatus_Nav/#Property:SystemStatus_Nav/#Property:StatusText",
+							"Description": "#Property:Equipment_Nav/#Property:TechnicalID",
+							"DetailImage": "$(PLT, /SAPAssetManager/Images/DetailImages/Equipment.png, /SAPAssetManager/Images/DetailImages/Equipment.android.png)"
+						},
+						"Target": {
+							"EntitySet": "{{#Property:@odata.readLink}}/RefObjects_Nav",
+							"QueryOptions": "$orderby=EquipID&$top=3&$expand=Equipment_Nav/ObjectStatus_Nav/SystemStatus_Nav&$filter=sap.entityexists(Equipment_Nav)"
+						},
+						"DataSubscriptions": ["S4ServiceQuotationRefObjs"],
+						"Footer": {
+							"AttributeLabel": "/SAPAssetManager/Rules/Equipment/EquipmentCount.js",
+							"Visible": "/SAPAssetManager/Rules/ServiceOrders/Details/SeeAllIsVisible.js"
+						}
+					}
+				},
+				{
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/FunctionalLocation/FunctionalLocationObjectTable.fragment",
+					"Properties": {
+						"ObjectCell": {
+							"Title": "#Property:FuncLoc_Nav/#Property:FuncLocDesc",
+        					"Subhead": "#Property:FuncLoc_Nav/#Property:FuncLocId",
+							"DetailImage": "$(PLT, /SAPAssetManager/Images/DetailImages/Floc.png, /SAPAssetManager/Images/DetailImages/Floc.android.png)"
+						},
+						"Footer": {
+							"Caption": "$(L,see_all)",
+							"AccessoryType": "DisclosureIndicator",
+							"FooterStyle": "Attribute",
+							"AttributeLabel": "/SAPAssetManager/Rules/FunctionalLocation/FunctionalLocationCount.js",
+							"OnPress": "/SAPAssetManager/Actions/FunctionalLocation/FunctionalLocationsListViewNav.action",
+							"Visible": "/SAPAssetManager/Rules/ServiceOrders/Details/SeeAllIsVisible.js"
+						},
+						"MaxItemCount": 3,
+						"DataSubscriptions": ["S4ServiceQuotationRefObjs"],
+						"Target": {
+							"EntitySet": "{{#Property:@odata.readLink}}/RefObjects_Nav",
+							"QueryOptions": "$orderby=FLocID&$top=3&$expand=FuncLoc_Nav&$filter=sap.entityexists(FuncLoc_Nav)"
+						}
+					}
+				},
+                "/SAPAssetManager/Pages/Fragments/S4ServiceOrders/S4ServiceOrderSoldToParty.fragment",
+                {
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "ServiceQuotationDetailsSection",
+                    "Header": {
+                        "Caption": "$(L,service_details)"
+                    },
+                    "KeyAndValues": [
+                        {
+                            "_Name": "QuotationStartDateTime",
+                            "KeyName": "$(L,quotation_valid_from)",
+                            "Value": "/SAPAssetManager/Rules/ServiceQuotations/Details/QuotationStartDateTime.js"
+                        },
+                        {
+                            "_Name": "TaxAmount",
+                            "KeyName": "$(L,tax_amount)",
+                            "Value": "/SAPAssetManager/Rules/ServiceQuotations/Details/QuotationTaxAmount.js"
+                        },
+                        {
+                            "_Name": "QuotationEndDateTime",
+                            "KeyName": "$(L,quotation_valid_to)",
+                             "Value": "/SAPAssetManager/Rules/ServiceQuotations/Details/QuotationEndDateTime.js"
+                        },
+                        {
+                            "_Name": "Netwoutfreight",
+                            "KeyName": "$(L,net_value_excl_freight)",
+                            "Value": "/SAPAssetManager/Rules/ServiceQuotations/Details/QuotationNetValueWithoutFreight.js"
+                        },
+                        {
+                            "_Name": "NetValue",
+                            "KeyName": "$(L,net_value)",
+                            "Value": "/SAPAssetManager/Rules/ServiceQuotations/Details/QuotationNetValue.js"
+                        },
+                        {
+                            "_Name": "ShipmentCosts",
+                            "KeyName": "$(L,shipment_cost)",
+                            "Value": "/SAPAssetManager/Rules/ServiceQuotations/Details/QuotationShipmentCost.js"
+                        },
+                        {
+                            "_Name": "GrossValue",
+                            "KeyName": "$(L,gross_value)",
+                            "Value": "/SAPAssetManager/Rules/ServiceQuotations/Details/QuotationGrossValue.js"
+                        }
+                    ]
+                },
+                "/SAPAssetManager/Pages/Fragments/S4ServiceOrders/S4ServiceOrderMainRefObject.fragment",
+				"/SAPAssetManager/Pages/Fragments/Documents/DocumentsSection.fragment",
+				{
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/NotesObjectSection.fragment",
+					"Properties": {
+						"Header": {
+							"Items": [
+								{
+									"_Type": "SectionHeaderItem.Type.Label",
+									"_Name": "notes_section_caption",
+									"Title": "$(L,notes)",
+									"Position": "Left"
+								},
+								{
+									"_Name": "add_note_btn_label",
+									"Title": "$(L,add)",
+									"_Type": "SectionHeaderItem.Type.Button",
+									"Position": "Right",
+									"OnPress": "/SAPAssetManager/Rules/Notes/NoteCreateNav.js",
+									"Visible": "/SAPAssetManager/Rules/ServiceOrders/ServiceOrderIsNotCompleted.js",
+									"Styles": {
+										"Button": "HeaderItemButtonText"
+									}
+								}
+							]
+						},
+						"Target": {
+							"EntitySet": "{{#Property:@odata.readLink}}/LongText_Nav"
+						},
+						"ObjectCell": {
+							"Title": "/SAPAssetManager/Rules/Notes/List/NoteType.js",
+							"Subhead": "{TextString}",
+							"AccessoryButtonIcon": "/SAPAssetManager/Rules/Notes/List/NoteAccessoryButtonIcon.js",
+							"OnAccessoryButtonPress": "/SAPAssetManager/Rules/Notes/List/NoteEditNavFromList.js",
+							"Footnote": "/SAPAssetManager/Rules/Notes/List/NoteTime.js",
+							"OnPress": "/SAPAssetManager/Rules/Notes/List/NoteDetailsNavFromList.js",
+							"Styles": {
+								"Title": ""
+							}
+						},
+						"Footer": {
+							"Caption": "$(L,see_all)",
+							"AccessoryType": "DisclosureIndicator",
+							"AttributeLabel": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemNotesCount.js",
+							"FooterStyle": "Attribute",
+							"Visible": "/SAPAssetManager/Rules/ServiceOrders/Details/ServiceOrderNoteSectionFooterIsVisible.js",
+							"OnPress": "/SAPAssetManager/Actions/Notes/NotesListViewNav.action"
+						},
+						"DataSubscriptions": ["S4ServiceQuotationLongTexts"]
+					}
+				},
+                {
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/ServiceOrders/ServiceItemsObjectTable.fragment",
+					"Properties": {
+						"Header": {
+							"UseTopPadding": true,
+							"Caption": "$(L, items)"
+						},
+						"ObjectCell": {
+							"PreserveIconStackSpacing": true,
+							"ContextMenu": {},
+							"Description": "",
+               				"StatusText": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemStatusText.js",
+                        	"Footnote": "/SAPAssetManager/Rules/ServiceQuotations/Items/List/ServiceQuotationItemSoldToPartyName.js",
+                       		"SubstatusText": "/SAPAssetManager/Rules/DateTime/ServiceDueByDate.js", 
+                            "DetailImage": "$(PLT, /SAPAssetManager/Images/DetailImages/ServiceQuotationItem.png, /SAPAssetManager/Images/DetailImages/ServiceQuotation.android.png)",
+							"OnPress": "/SAPAssetManager/Rules/ServiceQuotations/Items/List/ServiceQuotationItemDetailsNav.js"
+						},
+						"MaxItemCount": 2,
+						"Target": {
+							"EntitySet": "{{#Property:@odata.readLink}}/ServiceItems_Nav",
+							"QueryOptions": "$expand=S4ServiceQuotation_Nav/Customer_Nav,MobileStatus_Nav,Document,S4ServiceErrorMessage_Nav&$top=3"
+						},
+						"Footer": {
+							"Caption": "$(L,see_all)",
+							"AccessoryType": "DisclosureIndicator",
+							"AttributeLabel": "/SAPAssetManager/Rules/ServiceQuotations/Details/QuotationItemsByObjectIDCount.js",
+							"FooterStyle": "Attribute",
+							"OnPress": "/SAPAssetManager/Actions/ServiceQuotations/Items/ServiceQuotationItemsListViewNav.action",
+							"Visible": "/SAPAssetManager/Rules/ServiceOrders/Details/SeeAllIsVisible.js"
+						},
+						"DataSubscriptions": [
+							"S4ServiceItems",
+							"PMMobileStatuses",
+							"S4ServiceOrders"
+						]
+					}
+				},
+                "/SAPAssetManager/Pages/Fragments/S4ServiceOrders/S4ServiceOrderCategories.fragment",
+                {
+					"SimplePropertyCells": [
+						{
+							"SimplePropertyCell": "/SAPAssetManager/Pages/Fragments/S4ServiceOrders/S4ServiceOrderSimplePropertyOrgData.fragment"
+						},
+						{
+							"SimplePropertyCell": "/SAPAssetManager/Pages/Fragments/S4Errors/S4ErrorsFacet.fragment"
+						}
+					],
+					"Layout": {
+						"NumberOfColumns": 2,
+						"MinimumInteritemSpacing": "$(PLT,66,0)"
+					},
+					"_Type": "Section.Type.SimplePropertyCollection",
+					"DataSubscriptions": []
+				}
+            ]
+        }
+    ],
+    "DataSubscriptions": ["S4ServiceQuotations", "PMMobileStatuses"]
+}

@@ -1,0 +1,6 @@
+{
+	"_Type": "Action.Type.Navigation",
+	"ModalPage": true,
+	"PageToOpen": "/SAPAssetManager/Pages/Documents/DownloadDocuments.page",
+	"PageMetadata": "/SAPAssetManager/Rules/Documents/DownloadDocuments/GenerateDocumentsPage.js"
+}

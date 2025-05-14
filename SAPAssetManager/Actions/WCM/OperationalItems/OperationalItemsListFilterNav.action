@@ -1,0 +1,8 @@
+{
+    "_Type": "Action.Type.Filter",
+    "PageToOpen": "/SAPAssetManager/Pages/WCM/OperationalItems/OperationalItemsListFilter.page",
+    "Filterable": "/SAPAssetManager/Rules/WCM/Common/GetTabPageFilterable.js",
+    "ActionResult": {
+        "_Name": "filterResult"
+    }
+}

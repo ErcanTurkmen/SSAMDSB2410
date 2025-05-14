@@ -1,0 +1,20 @@
+{
+    "_Type": "Control.Type.FormCell.ListPicker",
+    "_Name": "ServiceNoteTypesListPicker",
+    "Caption": "$(L,note_type)*",
+    "IsVisible": "/SAPAssetManager/Rules/ServiceOrders/IsS4ServiceIntegrationEnabled.js",
+    "IsEditable": "/SAPAssetManager/Rules/Notes/Create/IsNoteTypeControlEditable.js",
+    "IsPickerDismissedOnSelection": true,
+    "AllowDefaultValueIfOneItem": true,
+    "AllowMultipleSelection": false,
+    "Search": {
+        "Enabled": true,
+        "Delay": 500,
+        "MinimumCharacterThreshold": 3,
+        "Placeholder": "$(L,search)",
+        "BarcodeScanner": true
+    },
+    "PickerItems": "/SAPAssetManager/Rules/Notes/Create/NoteTypeControlPickerItems.js",
+    "Value": "{TextID}",
+    "OnValueChange": "/SAPAssetManager/Rules/Notes/Create/OnNoteTypeControlValueChanged.js"
+}

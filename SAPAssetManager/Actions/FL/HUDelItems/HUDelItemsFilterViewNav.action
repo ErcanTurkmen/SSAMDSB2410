@@ -1,0 +1,8 @@
+{
+    "_Type" : "Action.Type.Filter",
+    "PageToOpen" : "/SAPAssetManager/Pages/FL/HUDelItems/HUDelItemsFilter.page",
+    "Filterable" : "#Page:HUDelItemsListPage/#Control:SectionedTable",
+        "ActionResult": {
+        "_Name": "filterResult"
+    }
+}

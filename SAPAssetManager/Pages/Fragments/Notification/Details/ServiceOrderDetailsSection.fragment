@@ -1,0 +1,37 @@
+{
+    "Header":
+    {
+        "Caption": "$(L,serviceorder_details)"
+    },
+    "KeyAndValues":
+        [{
+            "_Name": "CustomerReference",
+            "KeyName": "$(L,purchase_order)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceOrderPurchaseOrder.js"
+        },
+        {
+            "_Name": "ContractDesc",
+            "KeyName": "$(L,service_contract)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceOrderServiceContract.js"
+        },
+        {
+            "_Name": "ContractDateFrom|ContractStartDate",
+            "KeyName": "$(L,start_date)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceOrderStartDate.js"
+        },
+        {
+            "_Name": "ContractDateTo|ContractEndDate",
+            "KeyName": "$(L,end_date)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceOrderEndDate.js"
+        }
+    ],
+    "Target": {
+        "EntitySet": "{{#Property:@odata.readLink}}/Sales_Nav",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": ""
+    },
+    "Visible": "/SAPAssetManager/Rules/Notifications/Service/IsServiceNotification.js",
+    "DataSubscriptions": ["MyNotificationHeaders", "MyNotificationSales"],
+    "_Type": "Section.Type.KeyValue",
+    "_Name": "ServiceNotificationDetailsSection"
+}

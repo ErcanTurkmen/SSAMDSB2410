@@ -1,0 +1,29 @@
+{
+    "Caption": "$(L,measuring_points)",
+    "OnLoaded": "/SAPAssetManager/Rules/Filter/ListPageWithFilterOnLoaded.js",
+    "ActionBar":
+	{
+        "_Name": "MeasuringPointsList",
+		"Items":
+		[
+		{
+			"Position": "Right",
+            "_Name": "Filter",
+			"Icon": "$(PLT,'',/SAPAssetManager/Images/filter.android.png, '', /SAPAssetManager/Images/filter.android.png)",
+			"Caption": "/SAPAssetManager/Rules/Filter/FilterButtonCaption.js",
+            "OnPress": "/SAPAssetManager/Actions/Measurements/MeasuringPointsFilter.action"
+		}]
+	},
+    "Controls": [
+        {
+            "Sections": [
+                "/SAPAssetManager/Pages/Fragments/Measurements/MeasuringPointsObjectTable.fragment"
+            ],
+            "_Type": "Control.Type.SectionedTable",
+			"_Name" : "SectionedTable"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "MeasuringPointsListViewPage",
+    "OnReturning": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointsListViewOnReturning.js"
+}

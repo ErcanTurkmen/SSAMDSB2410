@@ -1,0 +1,12 @@
+{
+"_Type": "Control.Type.ObjectCell",
+"AccessoryType": "DisclosureIndicator",
+"Title": "#Property:ContainerID",
+"Subhead": "/SAPAssetManager/Rules/FL/Packages/PackageSubhead.js",
+"Footnote": "/SAPAssetManager/Rules/FL/Packages/PackageFootnote.js",
+"Description": "/SAPAssetManager/Rules/FL/Packages/PackageDescription.js",
+"StatusText": "#Property:FldLogsContainerStatus_Nav/FldContainerStatusDescription",
+"SubstatusText": "/SAPAssetManager/Rules/FL/Packages/PackageSubstatus.js",
+"AccessoryButtonIcon": "$(PLT, /SAPAssetManager/Images/edit-accessory.ios.png, /SAPAssetManager/Images/edit-accessory.android.png,'',/SAPAssetManager/Images/edit-accessory.ios.png)",
+"OnPress": "/SAPAssetManager/Rules/FL/Packages/Details/PackageDetailsPageNav.js"
+}

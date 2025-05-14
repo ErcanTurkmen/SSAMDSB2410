@@ -1,0 +1,183 @@
+{
+	"OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+	"ActionBar": {
+		"Items": [
+			{
+				"OnPress": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/Count/CheckForChangesBeforeCancel.js",
+				"Position": "Left",
+				"SystemItem": "Cancel",
+				"Caption": "$(L,cancel)"
+			},
+			{
+                "Position": "Right",
+                "SystemItem": "$(PLT,'Done','','','Done')",
+				"Caption": "$(L,done)",
+                "Text": "/SAPAssetManager/Rules/Common/Platform/DoneText.js",
+                "OnPress": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/Count/PhysicalInventoryDocItemUpdatePost.js"
+			}
+		]
+	},
+    "Caption": "$(L,pi_count_title)",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Controls": [
+                        {
+							"Caption": "$(L,material_number)",
+							"IsEditable": false,
+							"Value": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/GetMaterialDescription.js",
+							"_Name": "MaterialNumberSimple",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "$(L,storage_bin)",
+							"IsEditable": false,
+							"KeyboardType": "Default",
+							"Value": "{{#Property:MaterialSLoc_Nav/#Property:StorageBin}}",
+							"_Name": "StorageBinSimple",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+                            "_Type": "Control.Type.FormCell.SimpleProperty",
+                            "_Name": "BatchSimple",
+                            "Caption": "$(L,batch)",
+                            "IsEditable": false,
+							"Value": "{Batch}"
+                        },
+						{
+							"Caption": "$(L,quantity)",
+							"IsEditable": "/SAPAssetManager/Rules/Inventory/Validation/IsQuantityEditable.js",
+							"KeyboardType": "Number",
+							"OnValueChange": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/Count/QuantityOnChange.js",
+							"Value": "/SAPAssetManager/Rules/Inventory/Validation/IsQuantityZero.js",
+							"_Name": "QuantitySimple",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "$(L,uom)",
+							"IsEditable": false,
+							"Value": "{EntryUOM}",
+							"_Name": "UOMSimple",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+                        {
+							"Caption": "$(L,pi_zero_count)",
+							"IsEditable": true,
+							"KeyboardType": "Default",
+							"OnValueChange": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/Count/ZeroCountOnChange.js",
+							"Value": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/Count/GetZeroCount.js",
+							"_Name": "ZeroCountSwitch",
+							"_Type": "Control.Type.FormCell.Switch"
+						},
+						{
+                            "_Type": "Control.Type.FormCell.Button",
+                            "_Name": "SerialNumberAdd",
+                            "Title": "$(L,serial_add_serial_number)",
+                            "OnPress": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/Count/SerialNav.js",
+                            "TextAlignment": "Center",
+							"IsVisible": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/Count/ShowSerialNumberButton.js"
+                        }
+					]
+				},
+                {
+					"Controls": [
+						{
+							"Caption": "$(L,pi_count_document)",
+							"IsEditable": false,
+							"Value": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryDocAndDescription.js",
+							"_Name": "DocumentSimple",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "$(L,item_number)",
+							"IsEditable": false,
+							"Value": "{Item}",
+							"_Name": "ItemNumberSimple",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+                        {
+                            "Caption": "$(L,plant)",
+                            "IsEditable": false,
+                            "KeyboardType": "Default",
+                            "Value": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetPlantName.js",
+                            "_Name": "PlantSimple",
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        },
+						{
+                            "Caption": "$(L,storage_location)",
+                            "IsEditable": false,
+                            "KeyboardType": "Default",
+                            "Value": "{StorLocation}",
+                            "_Name": "StorLocationSimple",
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        },
+						{
+							"_Type": "Control.Type.FormCell.SimpleProperty",
+							"Caption": "$(L,special_stock_indicator)",
+							"IsEditable": false,
+							"Value": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryDocHeaderGetRelatedSpecialStock.js",
+							"_Name": "SpecialStockIndicator"
+						},
+						{
+							"_Type": "Control.Type.FormCell.SimpleProperty",
+							"Caption": "$(L,reservation_item_wbs_element)",
+							"IsEditable": false,
+							"Value": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryDocHeaderGetRelatedWBS.js",
+							"IsVisible": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryDocHeaderIsWBSVisible.js",
+							"_Name": "WBSElement"
+						},
+						{
+							"_Type": "Control.Type.FormCell.SimpleProperty",
+							"Caption": "$(L,vendor)",
+							"IsEditable": false,
+							"Value": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryDocHeaderGetRelatedVendor.js",
+							"IsVisible": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryDocHeaderIsVendorVisible.js",
+							"_Name": "Vendor"
+						},
+						{
+							"Caption": "$(L,stock_type)",
+							"IsEditable": false,
+							"Value": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/GetStockType.js",
+							"_Name": "StockTypeSimple",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						}
+					]
+				},
+				{
+                    "Controls": [
+                        {
+                            "_Name": "DiscardButton",
+                            "_Type": "Control.Type.FormCell.Button",
+                            "Title": "$(L,discard)",
+                            "ButtonType": "Text",
+							"Semantic": "Tint",
+                            "OnPress": "/SAPAssetManager/Rules/Common/DiscardAction.js",
+                            "IsVisible": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/Count/IsDiscardButtonVisibleForPIItem.js",
+                            "TextAlignment": "/SAPAssetManager/Rules/Common/Platform/ModalButtonAlign.js"
+                        }
+                    ]
+                }
+ 			],
+			"_Name": "FormCellContainer",
+			"_Type": "Control.Type.FormCellContainer"
+		}
+	],
+	"FioriToolbar": {
+		"_Name": "PhysicalInventoryCountUpdateFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+		"Items": [
+			{
+				"_Name": "Next",
+				"_Type": "FioriToolbarItem.Type.Button",
+				"Title": "$(L,next)",
+                "OnPress": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/Count/PhysicalInventoryDocItemNextPostWrapper.js",
+				"Visible": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/Count/IsNextButtonVisible.js"
+			}
+		]
+	},
+	"_Name": "PhysicalInventoryCountUpdatePage",
+	"_Type": "Page",
+    "OnLoaded": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/Count/PhysicalInventoryCountUpdateOnPageLoad.js",
+	"OnReturning": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/Count/PhysicalInventoryCountUpdateOnReturning.js"
+}

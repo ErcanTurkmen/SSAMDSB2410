@@ -1,0 +1,80 @@
+{
+    "_Type": "Page",
+    "_Name": "CreatedExpenseListPage",
+    "Caption": "$(L, expense_list)",
+    "OnLoaded": "/SAPAssetManager/Rules/Expense/List/ExpenseListLoaded.js",
+	"OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "_Name": "CreatedExpenseList",
+        "Items": [
+            {
+                "Position": "Left",
+                "_Name": "Cancel",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)",
+                "Visible": "/SAPAssetManager/Rules/WorkOrders/Complete/IsNotCompleteAction.js",
+                "OnPress": "/SAPAssetManager/Rules/Expense/List/ConfirmExpenseListClose.js"
+            },
+            {
+                "Position": "Left",
+                "_Name": "Back",
+                "Text": "$(L,go_back)",
+                "Visible": "/SAPAssetManager/Rules/WorkOrders/Complete/IsCompleteAction.js",
+                "OnPress": "/SAPAssetManager/Rules/WorkOrders/Complete/Expenses/ChangeExpensesFinalize.js"
+            },
+            {
+                "Position": "Right",
+                "_Name": "Edit",
+                "Text": "$(L,edit)",
+                "SystemItem": "$(PLT,'','', '', 'Edit')",
+                "Visible": "/SAPAssetManager/Rules/Expense/List/IsDisplayMode.js",
+                "OnPress": "/SAPAssetManager/Rules/Expense/List/ToggleEditMode.js"
+            },
+            {
+                "Position": "Right",
+                "_Name": "Done",
+                "SystemItem": "$(PLT,'Done','','','Done')",
+                "Caption": "$(L,done)",
+                "Text": "$(L,done)",
+                "Visible": "/SAPAssetManager/Rules/WorkOrders/Complete/Expenses/IsDoneButtonVisible.js",
+                "OnPress": "/SAPAssetManager/Rules/Expense/List/OnDonePress.js"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                "/SAPAssetManager/Pages/Expense/Fragments/ExpenseList.fragment",
+                "/SAPAssetManager/Pages/Expense/Fragments/ExpenseEditList.fragment",
+                {
+                    "_Type": "Section.Type.ButtonTable",
+                    "_Name": "AddAnotherExpenseButton",
+                    "Buttons": [
+                        {
+                            "_Type": "ButtonTable.Type.Button",
+                            "Visible": "/SAPAssetManager/Rules/Expense/List/IsDisplayMode.js",
+                            "Title" : "$(L, add_another_expense)",
+                            "OnPress" : "/SAPAssetManager/Rules/Expense/List/ExpenseCreateAnotherNav.js",
+                            "TextAlignment": "Center"
+                        } 
+                    ]
+                },
+                {
+                    "_Type": "Section.Type.ButtonTable",
+                    "_Name": "RemoveAllExpensesButton",
+                    "Buttons": [
+                        {
+                            "_Type": "ButtonTable.Type.Button",
+                            "Visible": "/SAPAssetManager/Rules/Expense/List/IsDiscardAllVisibile.js",
+                            "Title" : "$(L, delete_all)",
+                            "OnPress" : "/SAPAssetManager/Rules/Expense/List/ExpensesDiscardAll.js",
+                            "TextAlignment": "Center"
+                        } 
+                    ]
+                }
+            ],
+            "_Name": "SectionedTable",
+            "_Type": "Control.Type.SectionedTable"
+        }
+    ]
+}

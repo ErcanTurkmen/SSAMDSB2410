@@ -1,0 +1,47 @@
+{
+    "_Type": "Action.Type.ODataService.UpdateEntity",
+    "Headers": {
+        "OfflineOData.TransactionID": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetHeaderLocalId.js"
+    },
+    "Target":
+    {
+        "EntitySet": "PurchaseRequisitionItems",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "ReadLink": "{@odata.readLink}"
+    },
+    "Properties":
+    {
+        "DocType": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetDocumentType.js",
+        "PurchaseGroup": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetPurchaseGroup.js",
+        "RequisitionDate": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetRequisitionDate.js",
+        "Batch": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetBatch.js",
+        "ItemQuantity": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetQuantity.js",
+        "BaseUOM": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetUom.js",
+        "Plant": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetPlant.js",
+        "StorageLocation":"/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetStorageLocation.js",
+        "Material":"/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetMaterial.js",
+        "ItemCategory": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetItemCategory.js",
+        "DeliveryDate": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetDeliveryDate.js",
+        "ValuationPrice": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetValuationPrice.js",
+        "ValuationPriceUnit": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetValuationPriceUnit.js",
+        "ValuationType": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetValuationType.js",
+        "PurchaseOrg": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetPurchaseOrg.js",
+        "FixedVendor": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetFixedVendor.js",
+        "DesiredVendor": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetDesiredVendor.js",
+        "MaterialGroup": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetMaterialGroup.js",
+        "ShortText": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetMaterialDescription.js",
+        "Requisitioner": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetRequisitioner.js",
+        "Currency": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetCurrency.js"
+    },
+    "UpdateLinks": [
+        {
+            "Property": "PurchaseRequisitionHeader_Nav",
+            "Target": {
+                "EntitySet": "PurchaseRequisitionHeaders",
+                "ReadLink": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetHeaderLink.js"
+            }
+        }
+    ],
+    "OnSuccess": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/AfterCreatePurchaseRequisition.js",
+    "OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/UpdateEntityFailureMessage.action"
+}

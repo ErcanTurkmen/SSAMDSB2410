@@ -1,0 +1,6 @@
+{
+    "_Name": "FlexibleSpaceCenterTbI",
+    "_Type": "Control.Type.ToolbarItem",
+    "SystemItem": "FlexibleSpace",
+    "Visible": "/SAPAssetManager/Rules/Common/IsFlexibleSpaceVisible.js"
+}

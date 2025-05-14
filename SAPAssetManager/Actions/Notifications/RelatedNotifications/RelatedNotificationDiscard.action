@@ -1,0 +1,13 @@
+{
+	"Target":
+	{
+		"EntitySet" : "NotificationHistories",
+		"Service" : "/SAPAssetManager/Services/AssetManager.service",
+		"QueryOptions" : "$filter=sap.islocal() and NotificationNumber eq '{{#Property:NotificationNumber}}' and ReferenceType eq 'P'"
+	},
+	"Headers":
+	{
+        "Transaction.Ignore": "true"
+	},
+    "_Type": "Action.Type.ODataService.DeleteEntity"
+}

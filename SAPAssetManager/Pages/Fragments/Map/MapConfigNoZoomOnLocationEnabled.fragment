@@ -1,0 +1,17 @@
+{
+    "Target": {
+        "EntitySet": "GISMapParameters",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "Properties": [],
+        "KeyProperties": []
+    },
+    "ViewConfig": {
+        "ZoomOnLocationEnabled": false,
+        "UseDynamicLayerDisplayPrefs": true
+    },
+    "BaseMaps": [],
+    "FeatureLayers": [],
+    "Persona": "/SAPAssetManager/Rules/Extensions/GetActivePersona.js",
+    "IsESRINamedUserAuthEnabled":"#ApplicationSettings/#Property:Enable.NameUser.Auth",
+    "NamedUserAuth": "/SAPAssetManager/Pages/Fragments/Map/ESRIParamsConfig.fragment"
+}

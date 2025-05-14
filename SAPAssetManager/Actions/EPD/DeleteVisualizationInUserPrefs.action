@@ -1,0 +1,7 @@
+{
+	"_Type": "Action.Type.ODataService.DeleteEntity",
+	"Target": {
+		"EntitySet": "UserPreferences",
+		"Service": "/SAPAssetManager/Services/AssetManager.service"	
+	}
+}

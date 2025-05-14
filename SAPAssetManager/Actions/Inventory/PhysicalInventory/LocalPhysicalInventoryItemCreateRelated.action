@@ -1,0 +1,23 @@
+    {
+    "_Type": "Action.Type.ODataService.CreateRelatedEntity",
+    "Target":
+    {
+        "EntitySet" : "PhysicalInventoryDocItems",
+        "Service" : "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "Properties":
+    {
+    },
+    "Headers": {
+        "OfflineOData.RemoveAfterUpload": "true",
+        "OfflineOData.TransactionID": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryCreateTransactionID.js"
+    },
+    "ParentLink": {
+        "Property": "PhysicalInventoryDocItem_Nav",
+        "Target": {
+          "EntitySet": "PhysicalInventoryDocHeaders",
+          "ReadLink": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryDocumentReadLink.js"
+        }
+    },
+    "ShowActivityIndicator": true
+}

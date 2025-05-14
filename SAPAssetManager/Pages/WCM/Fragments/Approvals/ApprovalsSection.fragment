@@ -1,0 +1,18 @@
+{
+    "ObjectCell": {
+        "AccessoryType": "DisclosureIndicator",
+        "Icons": "/SAPAssetManager/Rules/WCM/Approvals/ApprovalsSectionIcons.js",
+        "Title": "/SAPAssetManager/Rules/WCM/Approvals/ApprovalsPageCaption.js",
+        "Footnote": "/SAPAssetManager/Rules/WCM/Approvals/ApprovalsSectionFootnote.js",
+        "StatusImage": "/SAPAssetManager/Rules/WCM/Approvals/ApprovalsSectionStatusImage.js",
+        "OnPress": "/SAPAssetManager/Rules/WCM/Approvals/ApprovalsSectionOnPress.js",
+        "DetailImage": "/SAPAssetManager/Rules/WCM/Approvals/ApprovalsDetailImage.js",
+        "Styles": {
+            "Footnote": "/SAPAssetManager/Rules/WCM/Approvals/ApprovalsSectionFootnoteStyles.js"
+        }
+    },
+    "Target": "/SAPAssetManager/Rules/WCM/Approvals/ApprovalsSectionTarget.js",
+    "DataSubscriptions": ["WCMApprovalProcesses"],
+    "_Name": "ApprovalsSection",
+    "_Type": "Section.Type.ObjectTable"
+}

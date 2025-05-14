@@ -1,0 +1,296 @@
+{
+    "Caption": "/SAPAssetManager/Rules/Inventory/Item/ItemCaption.js",
+    "ActionBar": {
+        "Items": [
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsMaterialDetailsNav.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsSetItemEdit.fragment",
+            "/SAPAssetManager/Pages/Fragments/SyncButton.fragment"        
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "ObjectHeader": {
+                        "HeadlineText": "/SAPAssetManager/Rules/Inventory/Common/GetMaterialName.js",
+                        "Tags": "/SAPAssetManager/Rules/Inventory/Item/ItemTags.js",
+                        "Subhead": "/SAPAssetManager/Rules/Inventory/Item/ItemSubHead.js",
+                        "BodyText": "/SAPAssetManager/Rules/Inventory/Item/ItemBodyText.js",
+                        "Footnote": "/SAPAssetManager/Rules/Inventory/Item/ItemFootnote.js"
+                    },
+                    "_Type": "Section.Type.ObjectHeader",
+                    "_Name": "ObjectHeaderSectionTable"
+                },
+                {
+                   "_Type": "Section.Type.KeyValue",
+                    "_Name": "MaterialDocumentDetailsSection0",
+                    "Header": {
+                        "Caption": "$(L,item_details)"
+                    },
+                    "KeyAndValues": [
+                        {
+							"_Name": "MaterialDocument",
+							"KeyName": "$(L,material_document_title)",
+							"Value": "$(DV, {MaterialDocument}, '-')"
+						},
+                        {
+							"_Name": "Item",
+							"KeyName": "$(L,item)",
+							"Value": "$(DV, {ItemNum}, '-')"
+						},
+                        {
+                            "_Name": "MovementType",
+                            "KeyName": "$(L, movement_type)",
+							"Value": "$(DV, '/SAPAssetManager/Rules/Inventory/MaterialDocumentItem/MovementTypeFieldMDI.js', '-')"
+                        },
+                        {
+							"_Name": "SpecialStockInd",
+							"KeyName": "$(L,special_stock_indicator)",
+							"Value": "$(DV,{SpecialStockInd}, '-')"
+						},
+                        {
+							"_Name": "MovementReason",
+							"KeyName": "$(L,movement_reason)",
+							"Value": "$(DV, '/SAPAssetManager/Rules/Inventory/MaterialDocumentItem/MovementReasonFieldMDI.js', '-')"
+						}
+                    ],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js",
+                    "Visible": true,
+                    "DataSubscriptions": ["MaterialDocItems"]
+                },
+                {
+                   "_Type": "Section.Type.KeyValue",
+                    "_Name": "MaterialDocumentDetailsSection1",
+                    "KeyAndValues": [
+                        {
+							"_Name": "PLantSLoc",
+							"KeyName": "$(L,plant_storage_location)",
+							"Value": "$(DV,{PLantSLoc},-)"
+                        },
+                        {
+                            "_Name": "MovePlant",
+                            "KeyName": "$(L, move_plant)",
+                            "Value": "$(DV,{MovePlant},-)"
+                        },
+                        {
+                            "_Name": "MoveStorageLocation",
+                            "KeyName": "$(L, move_storage_location)",
+                            "Value": "$(DV,{MoveStorageLocation},-)"
+                        },
+                        {
+							"_Name": "StorageBin",
+							"KeyName": "$(L,storage_bin)",
+							"Value": "$(DV, '/SAPAssetManager/Rules/Inventory/Validation/GetStorageBin.js', '-')"
+						},
+                        {
+							"_Name": "Material",
+							"KeyName": "$(L,material)",
+							"Value": "$(DV, '/SAPAssetManager/Rules/Inventory/Item/GetMaterial.js', '-')"
+						},
+                        {
+							"_Name": "MaterialDescription",
+							"KeyName": "$(L,material_description)",
+							"Value": "$(DV,{MaterialDesc},'-')"
+						},
+                        {
+                            "_Name": "ItemTextText",
+                            "KeyName": "$(L, item_text_text)",
+                            "Value": "$(DV,{ItemText},-)"
+                        },
+                        {
+							"_Name": "Batch",
+							"KeyName": "$(L,batch)",
+							"Value": "$(DV,{Batch},'-')"
+						},
+                        {
+                            "_Name": "MoveBatch",
+                            "KeyName": "$(L, move_batch)",
+                            "Value": "$(DV,{MoveBatch},-)"
+                        },
+                        {
+                            "_Name": "ValuationType",
+                            "KeyName": "$(L,valuation_type)",
+                            "Value": "$(DV,{ValuationType},-)"
+                        },
+                        {
+                            "_Name": "MoveValuationType",
+                            "KeyName": "$(L, move_valuation_type)",
+                            "Value": "$(DV,{MoveValuationType},-)"
+                        }
+                    ],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js",
+                    "Visible": true,
+                    "DataSubscriptions": ["MaterialDocItems"]
+                },         
+                {
+                   "_Type": "Section.Type.KeyValue",
+                    "_Name": "MaterialDocumentDetailsSection2",
+                    "KeyAndValues": [
+                        {
+                            "_Name": "StockType",
+                            "KeyName": "$(L,stock_type)",
+                            "Value": "$(DV,{StockType},-)"
+                        },
+                        {
+							"_Name": "Quantity",
+							"KeyName": "$(L,quantity)",
+							"Value": "$(DV,{EntryQuantity},'-')"
+						},
+                        {
+							"_Name": "UOM",
+							"KeyName": "$(L,uom)",
+							"Value": "$(DV,{UOM},'-')"
+						},
+                        {
+                            "_Name": "FinalIssue",
+                            "KeyName": "$(L, final_issue)",
+							"Value": "$(DV, '/SAPAssetManager/Rules/Inventory/MaterialDocumentItem/FinalIssueFieldMDI.js', '-')"
+                        },
+                        {
+							"_Name": "AutoGenerateSerialNumbers",
+							"KeyName": "$(L,auto_generate_serial_numbers)",
+							"Value": "$(DV,{AutoGenerateSerialNumbers},'-')"
+						},
+                        {
+                            "_Name": "NumberOfLabels",
+                            "KeyName": "$(L, number_of_labels)",
+                            "Value": "$(DV,{NumOfLabels},-)"
+                        }
+                    ],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js",
+                    "Visible": true,
+                    "DataSubscriptions": ["MaterialDocItems"]
+                },         
+                {
+                   "_Type": "Section.Type.KeyValue",
+                    "_Name": "MaterialDocumentDetailsSection3",
+                    "KeyAndValues": [
+                        {
+                            "_Name": "GoodsRecipient",
+                            "KeyName": "$(L, goods_recipient)",
+                            "Value": "$(DV,{GoodsRecipient},-)"
+                        },
+                        {
+                            "_Name": "UnloadingPoint",
+                            "KeyName": "$(L, unloading_point)",
+                            "Value": "$(DV,{UnloadingPoint},-)"
+                        },
+                        {
+                            "_Name": "GLAccount",
+                            "KeyName": "$(L, gl_account)",
+                            "Value": "$(DV,{GLAccount},-)"
+                        },
+                        {
+                            "_Name": "CostCenter",
+                            "KeyName": "$(L, cost_center)",
+                            "Value": "$(DV,{CostCenter},-)"
+                        },
+                        {
+                            "_Name": "Network",
+                            "KeyName": "$(L,reservation_item_network)",
+                            "Value": "$(DV,{Network},-)"
+                        },
+                        {
+                            "_Name": "NetworkActivity",
+                            "KeyName": "$(L, activity)",
+                            "Value": "$(DV,{NetworkActivity},-)"
+                        },
+                        {
+                            "_Name": "WBSElement",
+                            "KeyName": "$(L, reservation_item_wbs_element)",
+                            "Value": "$(DV,{WBSElement},-)"
+                        },
+                        {
+                            "_Name": "SalesOrder",
+                            "KeyName": "$(L, sales_order)",
+                            "Value": "$(DV,{SalesOrderNumber},-)"
+                        },
+
+                        {
+                            "_Name": "SalesOrderItem",
+                            "KeyName": "$(L, sales_order_item)",
+                            "Value": "$(DV, '/SAPAssetManager/Rules/Inventory/MaterialDocumentItem/SalesOrderItemFieldMDI.js', '-')"
+                        },
+                        {
+							"_Name": "Vendor",
+							"KeyName": "$(L,vendor)",
+							"Value": "$(DV, {Vendor},-)"
+						}
+                    ],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js",
+                    "Visible": true,
+                    "DataSubscriptions": ["MaterialDocItems"]
+                },
+                {
+                   "_Type": "Section.Type.KeyValue",
+                    "_Name": "MaterialDocumentDetailsSection4",
+                    "Header": {
+                        "Caption": "$(L,reference_document)"
+                    },
+                    "KeyAndValues": [
+                        {
+							"_Name": "PurchaseOrder",
+							"KeyName": "$(L,purchase_order)",
+                            "Value": "$(DV, '/SAPAssetManager/Rules/Inventory/MaterialDocumentItem/GetPurchaseOrder.js', '-')"
+						},
+                        {
+							"_Name": "PurchaseOrderItem",
+							"KeyName": "$(L,purchase_order_item)",
+							"Value": "$(DV, '/SAPAssetManager/Rules/Inventory/MaterialDocumentItem/PurchaseOrderItemFieldMDI.js', '-')"
+						},
+                        {
+							"_Name": "ReservationNumber",
+							"KeyName": "$(L,reservation)",
+                            "Value": "$(DV,{ReservationNumber},-)"
+						},
+                        {
+							"_Name": "ReservationItemNumber",
+							"KeyName": "$(L,reservation_item)",
+                            "Value": "$(DV,{ReservationItemNumber},-)"
+						},
+                        {
+							"_Name": "Order",
+							"KeyName": "$(L,reservation_item_order)",
+							"Value": "$(DV, '/SAPAssetManager/Rules/Inventory/MaterialDocumentItem/OrderNumberFieldMDI.js', '-')"
+						},
+                        {
+							"_Name": "OrderItemNumber",
+							"KeyName": "$(L,reservation_item_order) $(L,item)",
+							"Value": "$(DV, '/SAPAssetManager/Rules/Inventory/MaterialDocumentItem/OrderItemNumberFieldMDI.js', '-')"
+						},
+                        {
+							"_Name": "STO",
+							"KeyName": "$(L,stock_transport_order)",
+                            "Value": "$(DV, '/SAPAssetManager/Rules/Inventory/MaterialDocumentItem/GetSTOOrder.js', '-')"
+						},
+                        {
+							"_Name": "STOItem",
+							"KeyName": "$(L,stock_transport_order) $(L,item)",
+                            "Value": "$(DV, '/SAPAssetManager/Rules/Inventory/MaterialDocumentItem/StockTransportOrderItemFieldMDI.js', '-')"
+
+						}
+                    ],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js",
+                    "Visible": true,
+                    "DataSubscriptions": ["MaterialDocItems"]
+                },
+                "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsSerialNumbers.fragment",
+                "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsMaterialDataTable.fragment"
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable"
+        }
+    ],
+    "ToolBar": {
+        "Controls":[
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsPreviousItem.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/FlexibleSpaceToolBar.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsDiscard.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/FlexibleSpaceToolBar.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsNextItem.fragment"
+        ]
+    },
+    "OnReturning": "/SAPAssetManager/Rules/Inventory/Item/ItemPageOnReturning.js",
+    "_Name": "MaterialDocumentItemDetailsPage",
+    "_Type": "Page"
+}

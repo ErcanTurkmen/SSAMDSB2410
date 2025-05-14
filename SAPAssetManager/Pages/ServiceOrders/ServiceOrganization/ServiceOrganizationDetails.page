@@ -1,0 +1,69 @@
+{
+    "Caption": "$(L, organizational_data)",
+    "Controls": [
+        {
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable",
+            "Sections": [
+                {
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "SalesSection", 
+                    "Header": {
+                        "Caption": "$(L, sales)",
+                        "UseTopPadding": true
+                    },
+                    "Layout": {
+                        "NumberOfColumns": 2
+                    },
+                    "KeyAndValues": [
+                        {
+                            "_Name": "SalesRespOrg.ShortDescription",
+                            "KeyName": "$(L, sales_organization_unit)",
+                            "Value": "/SAPAssetManager/Rules/ServiceOrders/Details/OrganizationalData/SalesOrganizationUnitValue.js"
+                        },
+                        {
+                            "_Name": "DistributionChannel",
+                            "KeyName": "$(L, distribution_channel)",
+                            "Value": "/SAPAssetManager/Rules/ServiceOrders/Details/OrganizationalData/SalesDistributionChannelValue.js"
+                        },
+                        {
+                            "_Name": "SalesOrgs.ShortDescription",
+                            "KeyName": "$(L, sales_organization)",
+                            "Value": "/SAPAssetManager/Rules/ServiceOrders/Details/OrganizationalData/SalesOrganizationValue.js"
+                        },
+                        {
+                            "_Name": "Division",
+                            "KeyName": "$(L, division)",
+                            "Value": "/SAPAssetManager/Rules/ServiceOrders/Details/OrganizationalData/SalesDivisionValue.js"
+                        }
+                    ]
+                },
+                {
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "ServiceSection", 
+                    "Header": {
+                        "Caption": "$(L, service)",
+                        "UseTopPadding": true
+                    },
+                    "Layout": {
+                        "NumberOfColumns": 2
+                    },
+                    "KeyAndValues": [
+                        {
+                            "_Name": "ServiceRespOrg.ShortDescription",
+                            "KeyName": "$(L, service_organization_unit)",
+                            "Value": "/SAPAssetManager/Rules/ServiceOrders/Details/OrganizationalData/ServiceOrganizationUnitValue.js"
+                        },
+                        {
+                            "_Name": "ServiceOrg.ShortDescription",
+                            "KeyName": "$(L, service_organization)",
+                            "Value": "/SAPAssetManager/Rules/ServiceOrders/Details/OrganizationalData/ServiceOrganizationValue.js"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "ServiceOrganizationDetails"
+}

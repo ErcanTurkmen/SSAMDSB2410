@@ -1,0 +1,7 @@
+{
+    "Position": "Right",
+    "Icon": "$(PLT,'',/SAPAssetManager/Images/filter.android.png, '' , /SAPAssetManager/Images/filter.android.png )",
+    "Text": "/SAPAssetManager/Rules/Filter/FilterButtonCaption.js",
+    "OnPress":"",
+    "_Name": "FilterButton"
+}

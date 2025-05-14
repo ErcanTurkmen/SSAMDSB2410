@@ -1,0 +1,59 @@
+{
+    "Header": {
+        "Caption": "$(L,equipment_details)"
+    },
+    "KeyAndValues": [
+        {
+            "_Name": "MaintPlant",
+            "KeyName": "$(L,plant)",
+            "Value": "/SAPAssetManager/Rules/FunctionalLocation/FormatPlanningPlant.js"
+        },
+        {
+            "_Name": "WorkCenter.WorkCenterDescr",
+            "KeyName": "$(L,workcenter)",
+            "Value": "/SAPAssetManager/Rules/Equipment/EquipmentWorkCenter.js"
+        },
+        {
+            "_Name": "SuperiorEquip",
+            "KeyName": "$(L,superior_equipment)",
+            "Value": "/SAPAssetManager/Rules/Equipment/EquipmentSuperiorEquipment.js"
+        },
+        {
+            "_Name": "Manufacturer",
+            "KeyName": "$(L,manufacturer)",
+            "Value": "/SAPAssetManager/Rules/Equipment/EquipmentManufacturer.js"
+        },
+        {
+            "_Name": "ModelNum",
+            "KeyName": "$(L,model_number)",
+            "Value": "/SAPAssetManager/Rules/Equipment/EquipmentModelNumber.js"
+        },
+        {
+            "_Name": "ManufPartNo",
+            "KeyName": "$(L,part_number)",
+            "Value": "/SAPAssetManager/Rules/Equipment/EquipmentPartNumber.js"
+        },
+        {
+            "_Name": "ManufSerialNo",
+            "KeyName": "$(L,serial_number)",
+            "Value": "/SAPAssetManager/Rules/Equipment/EquipmentSerialNumber.js"
+        },
+        {
+            "_Name": "InventoryNum",
+            "KeyName": "$(L,inventory_number)",
+            "Value": "/SAPAssetManager/Rules/Equipment/EquipmentInventoryNumber.js"
+        },
+        {
+            "_Name": "PlantSection",
+            "KeyName": "$(L,section)",
+            "Value": "/SAPAssetManager/Rules/Equipment/EquipmentSection.js"
+        },
+        {
+            "_Name": "Room",
+            "KeyName": "$(L,room)",
+            "Value": "/SAPAssetManager/Rules/Equipment/EquipmentRoom.js"
+        }
+    ],
+    "_Type": "Section.Type.KeyValue",
+    "_Name": "KeyValueTable"
+}

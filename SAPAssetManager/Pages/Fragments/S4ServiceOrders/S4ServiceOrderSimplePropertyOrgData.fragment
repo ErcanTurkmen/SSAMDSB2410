@@ -1,0 +1,6 @@
+{
+    "KeyName": "$(L, organizational_data)",
+    "AccessoryType": "DisclosureIndicator",
+    "OnPress": "/SAPAssetManager/Rules/ServiceOrders/Details/OrganizationalData/OrganizationalDataNav.js",
+    "Visible": "/SAPAssetManager/Rules/ServiceOrders/Details/OrganizationalData/IsOrganizationalDataEnabled.js"
+}

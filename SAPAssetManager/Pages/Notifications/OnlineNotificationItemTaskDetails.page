@@ -1,0 +1,44 @@
+{
+	"_Type": "Page",
+	"_Name": "OnlineNotificationItemTaskDetailsPage",
+	"Caption": "/SAPAssetManager/Rules/Notifications/Item/Task/NotificationItemTaskHeader.js",
+	"Controls": [{
+		"Sections": [
+			{
+				"Header": {
+					"Caption" : "$(L,notification_task_detail)"
+				},
+				"KeyAndValues": [{
+					"_Name": "TaskText",
+					"KeyName" : "$(L,description)",
+					"Value" : "{TaskText}"
+				},
+				{
+					"_Name": "TaskSortNumber",
+					"KeyName" : "$(L,sort_number)",
+					"Value" : "{TaskSortNumber}"
+				},
+				{
+					"_Name": "TaskCodeGroup",
+					"KeyName" : "$(L,group)",
+					"Value" : "/SAPAssetManager/Rules/Notifications/Task/Details/NotificationTaskDetailsGroup.js"
+				},
+				{
+					"_Name": "PMMobileStatus.MobileStatus",
+					"KeyName" : "$(L,status)",
+					"Value" : "-"
+				},
+				{
+					"_Name": "TaskCode",
+					"KeyName" : "$(L,code)",
+					"Value" : "/SAPAssetManager/Rules/Notifications/Task/Details/NotificationTaskDetailsCode.js"
+				}],
+				"_Name": "NotificationItemTaskDetailsSection",
+				"_Type" : "Section.Type.KeyValue"
+			},
+			"/SAPAssetManager/Pages/Fragments/Notification/Details/OnlineNotificationNoteFacet.fragment"
+		],
+		"_Type": "Control.Type.SectionedTable",
+		"_Name": "SectionedTable"
+	}]
+}

@@ -1,0 +1,76 @@
+{
+    "_Type": "Page",
+    "_Name": "ServiceQuotationsListViewPage",
+    "Caption": "SAPAssetManager/Rules/SideDrawer/SideDrawerServiceQuotationsCount.js",
+    "OnLoaded": "/SAPAssetManager/Rules/ServiceQuotations/List/ServiceQuotationsOnLoaded.js",
+    "ActionBar": {
+		"Items": [
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment",
+			{
+				"Position": "Right",
+				"SystemItem": "Add",
+				"Caption":"$(L,add)",
+                "OnPress": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationCreateNav.js"
+			},
+            {
+				"_Type": "Fragment",
+				"Fragment": "/SAPAssetManager/Pages/Fragments/FilterButton.fragment",
+				"Properties": {
+					"OnPress": "/SAPAssetManager/Actions/ServiceQuotations/ServiceQuotationsFilter.action"
+				}
+			}
+		]
+	},
+    "Controls": [
+        {
+			"_Type" : "Control.Type.SectionedTable",
+			"_Name" : "SectionedTable",
+            "Sections": [
+				{
+                    "_Type": "Section.Type.ObjectTable",
+                    "_Name": "ServiceQuotations",
+                    "Search": {
+                        "Enabled": true,
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 3,
+                        "Placeholder": "$(L,search)",
+                        "BarcodeScanner": true
+                    },
+                    "Header": {
+                        "UseTopPadding": false
+                    },
+                    "EmptySection": {
+                        "Caption": "$(L, no_service_quotations_available)"
+                    },
+                    "ObjectCell": {
+                        "PreserveIconStackSpacing": true,
+                        "Icons": "/SAPAssetManager/Rules/ServiceOrders/ListView/ServiceOrderListViewIconImages.js",
+                        "Title": "{Description}",
+                        "Subhead": "{ObjectID}",
+                        "Footnote": "/SAPAssetManager/Rules/ServiceQuotations/List/ServiceQuotationSoldToPartyName.js",
+                        "StatusText": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemStatusText.js",
+                        "SubstatusText": "$(DV,'$(D,{QuotationEndDateTime})','$(L,no_valid_to_date)')", 
+                        "AccessoryType": "DisclosureIndicator",
+                        "OnPress": "/SAPAssetManager/Rules/ServiceQuotations/List/ServiceQuotationDetailsNav.js"
+                    },
+                    "Target": {
+                        "EntitySet": "S4ServiceQuotations",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "/SAPAssetManager/Rules/ServiceQuotations/List/ServiceQuotationsListPageQueryOptions.js"
+                    },
+                    "DataSubscriptions": [
+                        "S4ServiceQuotations",
+                        "PMMobileStatuses"
+                    ]
+				}
+			],
+            "Filters": "/SAPAssetManager/Rules/ServiceQuotations/List/ServiceQuotationsListPageDefaultFilters.js",
+			"FilterFeedbackBar": {
+				"_Type": "Control.Type.FilterFeedbackBar",
+				"_Name": "FilterFeedback",
+				"ShowAllFilters": true,
+				"FastFilters": "/SAPAssetManager/Rules/ServiceQuotations/List/ServiceQuotationFastFiltersItems.js"
+			}
+        }
+    ]
+}

@@ -1,0 +1,21 @@
+{
+	"_Type": "Action.Type.ODataService.UpdateEntity",
+	"Properties": {
+ 	},
+	"Target": {
+		"EntitySet" : "WarehouseResources",
+		"Service" : "/SAPAssetManager/Services/OnlineAssetManager.service",
+		"ReadLink": "{@odata.readLink}"
+	},
+
+    "RequestOptions": {
+        "UpdateMode": "Replace"
+    },
+   	"ActionResult":{
+		"_Name": "result"
+	},
+    "OnSuccess": "/SAPAssetManager/Rules/EWM/Resource/SwitchResourceSuccess.js",
+	"OnFailure": "/SAPAssetManager/Actions/EWM/Resource/SwitchResourceFailure.action",
+	"ShowActivityIndicator": true,
+    "ActivityIndicatorText" : "  "
+}

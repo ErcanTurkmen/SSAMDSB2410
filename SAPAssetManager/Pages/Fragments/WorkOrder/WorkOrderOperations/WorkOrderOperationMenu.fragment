@@ -1,0 +1,6 @@
+{
+	"Position": "Right",
+	"Text": "Menu",
+    "Icon": "$(PLT,/SAPAssetManager/Images/menuicon.png,/SAPAssetManager/Images/menuicon.android.png, '', /SAPAssetManager/Images/menuicon.png)",
+	"Visible": "/SAPAssetManager/Rules/OnlineSearch/IsMenuIconOnlineSearchVisible.js"
+}

@@ -1,0 +1,120 @@
+{
+	"OnLoaded":"/SAPAssetManager/Rules/UserProfile/LoadAppInfo.js",
+	"Caption": "$(L,about)",
+	"Controls": [
+		{
+			"Sections": [
+				{
+                    "_Type": "Section.Type.KeyValue",
+		    "_Name": "_appversion",
+                    "Header": {
+                        "UseTopPadding": false,
+						"Caption": "$(L, version_info)"
+                    },
+                    "KeyAndValues": [
+                        {
+							"_Name": "appversion",
+                            "KeyName": "$(L, appversion)",
+							"Value": "/SAPAssetManager/Rules/UserProfile/AppVersionInfo.js"
+                        },
+                        {
+							"_Name": "metadataversion",
+                            "KeyName": "$(L, metadataversion)",
+							"Value": "/SAPAssetManager/Rules/UserProfile/DefintionsVersionInfo.js"
+                        },
+                        {
+							"_Name": "mdkversion",
+                            "KeyName": "$(L, mdkversion)",
+							"Value": "/SAPAssetManager/Rules/UserProfile/MDKVersionInfo.js"
+                        },
+                        {
+							"_Name": "backendappversion",
+                            "KeyName": "$(L, backendappversion)",
+							"Value": "/SAPAssetManager/Rules/UserProfile/BackendAppVersion.js"
+                        }
+                    ],
+					"Layout": {
+						"NumberOfColumns": 1
+					}
+                },
+				{
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "cpms_info",
+                    "Visible": "/SAPAssetManager/Rules/UserProfile/MobileSvcInfoVisibility.js",
+					"Header": {
+            			"UseTopPadding": true,
+						"Caption": "$(L, cpms_info)"
+          			},
+                    "KeyAndValues": [
+                        {
+							"_Name": "appid",
+                            "KeyName": "$(L, appid)",
+							"Value": "#Application/#AppData/MobileServiceAppId"
+                        },
+                        {
+							"_Name": "endpoint",
+                            "KeyName": "$(L, endpoint)",
+							"Value": "#Application/#AppData/MobileServiceEndpoint"
+                        }
+                    ],
+					"Layout": {
+						"NumberOfColumns": 1
+					}
+                },
+				{
+					"_Type": "Section.Type.SimplePropertyCollection",
+					"_Name": "user_info",
+					"Header": {
+            			"UseTopPadding": true,
+						"Caption": "$(L, user_info)"
+          			},
+					"SimplePropertyCells": [
+						{
+							"SimplePropertyCell":{
+								"KeyName": "$(L, userid)",
+								"Value": "#Application/#AppData/UserId",
+								"AccessoryType": "none"
+							}
+						},
+						{
+							"SimplePropertyCell":{
+								"KeyName": "$(L, hrinfo)",
+								"OnPress": "/SAPAssetManager/Actions/UserProfile/UserHRInfoNav.action",
+								"AccessoryType": "DisclosureIndicator",
+								"Visible": "/SAPAssetManager/Rules/UserProfile/HRInfoVisibility.js"
+							}
+						},
+						{
+							"SimplePropertyCell":{
+								"KeyName": "$(L, sysuserinfo)",
+								"OnPress": "/SAPAssetManager/Actions/UserProfile/UserSysInfoNav.action",
+								"AccessoryType": "DisclosureIndicator",
+								"Visible": "/SAPAssetManager/Rules/UserProfile/UserSysInfoVisibility.js"
+							}
+						}
+					],
+					"Layout": {
+            			"NumberOfColumns": 1,
+            			"MinimumInteritemSpacing": "$(PLT,66,0)" 
+          			}
+				},
+				{
+					"_Type": "Section.Type.SimplePropertyCollection",
+					"SimplePropertyCells": [
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "DisclosureIndicator",
+								"KeyName" : "$(L,olsn)",
+                				"OnPress": "/SAPAssetManager/Rules/UserProfile/OpenSourceLink.js"
+							}
+						}
+					]	
+				}
+			],
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"_Name": "About",
+	"_Type": "Page"
+}

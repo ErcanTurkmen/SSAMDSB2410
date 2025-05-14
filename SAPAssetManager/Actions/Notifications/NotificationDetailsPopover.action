@@ -1,0 +1,50 @@
+{
+	"PopoverItems":
+	[{
+		"Title": "$(L,add_item)",
+		"OnPress": "/SAPAssetManager/Rules/Notifications/Item/CreateUpdate/NotificationItemCreateNav.js",
+		"Visible": "/SAPAssetManager/Rules/UserAuthorizations/Notifications/EnableNotificationEdit.js"
+
+	},
+	{
+		"Title": "$(L,add_task)",
+		"OnPress": "/SAPAssetManager/Rules/Notifications/Task/CreateUpdate/NotificationTaskCreateNav.js",
+		"Visible": "/SAPAssetManager/Rules/Notifications/Task/CreateUpdate/EnableNotificationTaskCreate.js"
+	},
+	{
+		"Title": "$(L,add_activity)",
+		"OnPress": "/SAPAssetManager/Rules/Notifications/Activity/CreateUpdate/NotificationActivityCreateNav.js",
+		"Visible": "/SAPAssetManager/Rules/UserAuthorizations/Notifications/EnableNotificationEdit.js"
+	},
+	{
+		"Title": "$(L,add_workorder)",
+		"OnPress": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/WorkOrderCreateFromNotificationNav.js",
+		"Visible": "/SAPAssetManager/Rules/Notifications/Details/NotificationCreateWorkOrderVisible.js"
+	},
+	{
+		"Title" : "$(L, add_note)",
+		"OnPress" : "/SAPAssetManager/Rules/Notes/NoteCreateNav.js",
+		"Visible": "/SAPAssetManager/Rules/UserAuthorizations/Notifications/EnableNotificationEdit.js"
+	},
+	{
+		"Title" : "$(L,add_reminder)",
+		"OnPress" : "/SAPAssetManager/Rules/Reminders/ReminderCreateNav.js",
+		"Visible": "/SAPAssetManager/Rules/UserAuthorizations/Notifications/EnableNotificationEdit.js"
+	},
+	{
+		"Title" : "$(L,add_service_confirmation)",
+		"OnPress" : "/SAPAssetManager/Rules/Confirmations/CreateUpdate/ConfirmationCreateFromNotification.js",
+		"Visible": "/SAPAssetManager/Rules/Notifications/Details/IsConfirmationEnabled.js"
+	},
+	{
+		"Title" : "$(L,add_time_entry)",
+		"OnPress" : "/SAPAssetManager/Rules/TimeSheets/Entry/CreateUpdate/TimeSheetEntryCreateNav.js",
+		"Visible": "/SAPAssetManager/Rules/Notifications/Details/IsTimeSheetEnabled.js"
+	},
+	{
+        "Title" : "$(L,take_readings)",
+        "OnPress" : "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointsDataEntryNavWrapper.js",
+        "Visible" : "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointsTakeReadingsIsVisible.js"
+    }],
+	"_Type": "Action.Type.PopoverMenu"
+}

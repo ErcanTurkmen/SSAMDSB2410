@@ -1,0 +1,136 @@
+{
+	"Caption": "$(L, hierarchy)",
+	"Controls": [
+		{
+			"_Type": "Control.Type.Extension",
+			"Module": "extension-HierarchyFramework",
+			"Control": "HierarchyExtension",
+			"Class": "HierarchyExtension",
+			"_Name": "HierarchyExtensionControl",
+			"DataSubscriptions": [],
+			"ExtensionProperties": {
+				"Root":{},
+				"BusinessObjects": [
+					{
+						"Icon": "$(PLT,/SAPAssetManager/Images/DetailImages/Equipment.light.png,/SAPAssetManager/Images/DetailImages/Equipment.dark.png,/SAPAssetManager/Images/DetailImages/Equipment.android.light.png,/SAPAssetManager/Images/DetailImages/Equipment.android.dark.png)",
+						"Target": {
+							"EntitySet" : "Equipments",
+							"Service" : "/SAPAssetManager/Services/OnlineAssetManager.service",
+							"QueryOptions":"",
+							"Properties": [],
+							"KeyProperties": []
+						},
+						"Properties":{
+							"ID":"{@odata.readLink}",
+							"Title":"{EquipDesc}",
+							"Subhead":"{EquipId}",
+							"Footnote": "$(L, equipment)",
+							"ChildCount": "/SAPAssetManager/Rules/HierarchyControl/ChildCount.js",
+							"Parent": [
+								{
+									"Target": {
+										"EntitySet" : "Equipments",
+										"Service" : "/SAPAssetManager/Services/OnlineAssetManager.service",
+										"Properties": [],
+										"KeyProperties": [],
+										"QueryOptions":"$filter=EquipId eq '{SuperiorEquip}'&$orderby=EquipId"
+									}
+								},
+								{
+									"Target": {
+										"EntitySet" : "FunctionalLocations",
+										"Service" : "/SAPAssetManager/Services/OnlineAssetManager.service",
+										"Properties": [],
+										"KeyProperties": [],
+										"QueryOptions":"$filter=FuncLocIdIntern eq '{FuncLocIdIntern}'&$orderby=FuncLocId"
+									}
+								}
+							],
+							"Children": [
+								{
+									"Target": {
+										"EntitySet" : "Equipments",
+										"Service" : "/SAPAssetManager/Services/OnlineAssetManager.service",
+										"Properties": [],
+										"KeyProperties": [],
+										"QueryOptions":"$filter=SuperiorEquip eq '{EquipId}'&$orderby=EquipId"
+									}
+								}
+							]
+						},
+						"OnPress": {
+							"Action": "/SAPAssetManager/Actions/Equipment/OnlineEquipmentDetailsNav.action",
+							"Target": {
+								"EntitySet": "Equipments",
+								"Service": "/SAPAssetManager/Services/OnlineAssetManager.service",
+								"QueryOptions": "$filter=EquipId eq '{EquipId}'&$expand=SystemStatus,Document,UserStatus,LongText,Class&$orderby=EquipId",
+								"Properties": [],
+								"KeyProperties": []
+							}
+						}
+					  },
+					  {
+						"Icon": "$(PLT,/SAPAssetManager/Images/DetailImages/Floc.light.png,/SAPAssetManager/Images/DetailImages/Floc.dark.png,/SAPAssetManager/Images/DetailImages/Floc.android.light.png,/SAPAssetManager/Images/DetailImages/Floc.android.dark.png)",
+						"Target": {
+							"EntitySet" : "FunctionalLocations",
+							"Service" : "/SAPAssetManager/Services/OnlineAssetManager.service",
+							"QueryOptions":"",
+							"Properties": [],
+							"KeyProperties": []
+						},
+						"Properties":{
+							"ID":"{@odata.readLink}",
+							"Title":"{FuncLocDesc}",
+							"Subhead":"{FuncLocId}",
+							"Footnote": "$(L, functional_location)",
+							"ChildCount": "/SAPAssetManager/Rules/HierarchyControl/ChildCount.js",
+							"Parent": [
+								{
+									"Target": {
+										"EntitySet" : "FunctionalLocations",
+										"Service" : "/SAPAssetManager/Services/OnlineAssetManager.service",
+										"Properties": [],
+										"KeyProperties": [],
+										"QueryOptions":"$filter=FuncLocIdIntern eq '{SuperiorFuncLocInternId}'&$orderby=FuncLocId"
+									}
+								}
+							],
+							"Children": [
+								{
+									"Target": {
+										"EntitySet" : "Equipments",
+										"Service" : "/SAPAssetManager/Services/OnlineAssetManager.service",
+										"Properties": [],
+										"KeyProperties": [],
+										"QueryOptions":"$filter=FuncLocIdIntern eq '{FuncLocIdIntern}' and SuperiorEquip eq ''&$orderby=EquipId"
+									}
+								},
+								{
+									"Target": {
+										"EntitySet" : "FunctionalLocations",
+										"Service" : "/SAPAssetManager/Services/OnlineAssetManager.service",
+										"Properties": [],
+										"KeyProperties": [],
+										"QueryOptions":"$filter=SuperiorFuncLocInternId eq '{FuncLocIdIntern}'&$orderby=FuncLocId"
+									}
+								}
+							]
+						},
+						"OnPress": {
+							"Action": "/SAPAssetManager/Actions/FunctionalLocation/OnlineFunctionalLocationDetailsNav.action",
+							"Target": {
+								"EntitySet": "FunctionalLocations",
+								"Service": "/SAPAssetManager/Services/OnlineAssetManager.service",
+								"QueryOptions": "$filter=FuncLocIdIntern eq '{FuncLocIdIntern}'&$expand=FuncLocSystemStatus,FuncLocUserStatus,FuncLocClass",
+								"Properties": [],
+								"KeyProperties": []
+							}
+						}
+					}
+				]
+			}
+		}
+	],
+	"_Name": "OnlineHierarchyControl",
+	"_Type": "Page"
+}

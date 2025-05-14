@@ -1,0 +1,10 @@
+{
+    "AllowMultipleSelection": true,
+    "AllowEmptySelection": true,
+    "Caption": "$(L,priority)",
+    "FilterProperty": "/SAPAssetManager/Rules/Priority/PriorityFilter.js",
+    "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js",
+    "_Name": "PriorityFilter",
+    "_Type": "Control.Type.FormCell.Filter",
+    "IsEditable": true
+}

@@ -1,0 +1,69 @@
+{
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "Items": [
+            {
+                "Position": "Left",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)",
+                "OnPress": "/SAPAssetManager/Actions/Page/CancelPage.action"
+            },
+            {
+                "Position": "Right",
+                "SystemItem": "/SAPAssetManager/Rules/Filter/FilterSystemItem.js",
+                "Text": "/SAPAssetManager/Rules/Filter/FilterText.js",
+                "OnPress": "/SAPAssetManager/Rules/Filter/ApplyFilterAndSave.js"
+            }
+        ]
+    },
+    "Caption":"$(L,filter)",
+    "Result":
+    [
+        "#Page:RouteFilterPage/#Control:SortFilter/#Value",
+        "#Page:RouteFilterPage/#Control:MobileStatusFilter/#Value"
+    ],
+    "Controls":
+    [{
+        "Sections":
+        [{
+            "Controls": [{
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/SortByFilter.fragment",
+				"Properties": {
+                     "SortByItems": [
+                        {
+                            "ReturnValue":"Description",
+                            "DisplayValue":"$(L,description)"
+                        },
+                        {
+                            "ReturnValue":"RouteID",
+                            "DisplayValue":"$(L,fow_route_id)"
+                        }
+                    ]
+				}
+            }]
+        },
+        {
+            "Controls":
+            [{
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/MobileStatusFilter.fragment",
+				"Properties": {
+                    "FilterProperty": "/SAPAssetManager/Rules/FOW/Routes/MobileStatusFilter.js"
+				}
+            }]
+        }],
+        "_Name":"FormCellContainer",
+        "_Type":"Control.Type.FormCellContainer"
+    }],
+     "FioriToolbar": {
+        "_Name": "RouteFilterFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Items": [
+            "/SAPAssetManager/Pages/Fragments/Filter/ResetFilterToolbarItem.fragment"
+        ]
+    },
+    "_Type":"Page",
+    "_Name":"RouteFilterPage",
+    "OnLoaded": "/SAPAssetManager/Rules/Filter/FilterOnLoaded.js"
+}

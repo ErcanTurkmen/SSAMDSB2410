@@ -1,0 +1,6 @@
+{
+	"PageToOpen": "/SAPAssetManager/Pages/Inventory/IssueOrReceipt/IssueOrReceiptCreateUpdate.page",
+	"_Type": "Action.Type.Navigation",
+    "ModalPage": true,
+	"ModalPageFullscreen": true
+}

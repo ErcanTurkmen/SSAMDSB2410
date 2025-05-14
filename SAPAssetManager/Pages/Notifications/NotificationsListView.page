@@ -1,0 +1,83 @@
+{
+	"Caption": "/SAPAssetManager/Rules/Notifications/ListView/NotificationListSetCaption.js",
+	"OnLoaded": "/SAPAssetManager/Rules/Notifications/ListView/NotificationListOnLoad.js",
+	"OnCustomEventDataReceived": "/SAPAssetManager/Rules/Common/OnCustomEventDataReceived.js",
+	"ActionBar":
+	{
+		"_Name": "NotificationsList",
+		"Items": [
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment",
+			{
+				"Position": "Right",
+				"_Name": "Add",
+				"SystemItem": "Add",
+				"Text": "$(L,add)",
+				"Caption": "$(L,add)",
+				"Visible": "/SAPAssetManager/Rules/UserAuthorizations/Notifications/EnableNotificationCreate.js",
+				"OnPress": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateChangeSetNav.js"
+			},
+			{
+				"_Type": "Fragment",
+				"Fragment": "/SAPAssetManager/Pages/Fragments/FilterButton.fragment",
+				"Properties": {
+					"OnPress": "/SAPAssetManager/Actions/Notifications/NotificationFilter.action"
+				}
+			},
+			{
+				"_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderOperations/WorkOrderOperationMenu.fragment",
+				"Properties": {
+					"OnPress": "/SAPAssetManager/Actions/Notifications/NotificationsPopover.action",
+					"Visible": false
+				}
+			},
+			{
+				"Position": "Right",
+				"Text": "$(L, online_search)",
+				"OnPress": "/SAPAssetManager/Rules/OnlineSearch/Notifications/OnlineSearchFromNotificationsNav.js",
+				"Visible": false
+			}
+		]
+	},
+	"Controls":
+	[{
+		"Sections":
+		[
+		{
+			"_Type": "Fragment",
+			"Fragment": "/SAPAssetManager/Pages/Fragments/Notification/NotificationSection.fragment",
+			"Properties": {
+				"Search":
+				{
+					"Enabled" : "/SAPAssetManager/Rules/Notifications/NotificationsSearchEnabled.js",
+					"Delay": 500,
+					"MinimumCharacterThreshold": 3,
+					"Placeholder": "$(L,search)",
+					"BarcodeScanner": true
+				},
+				"Target":
+				{
+					"EntitySet" : "/SAPAssetManager/Rules/Notifications/NotificationEntitySet.js",
+					"Service" : "/SAPAssetManager/Services/AssetManager.service",
+					"QueryOptions" : "/SAPAssetManager/Rules/Notifications/NotificationsListViewQueryOption.js"
+				},
+				"Header": {
+					"UseTopPadding": false,
+					"Caption": null
+				}
+			}
+        }],
+		"FilterFeedbackBar": {
+			"_Type": "Control.Type.FilterFeedbackBar",
+			"_Name": "FilterFeedback",
+			"ShowAllFilters": true,
+			"FastFilters": "/SAPAssetManager/Rules/Notifications/ListView/NotificationFastFiltersItems.js"
+		},
+		"Filters": "/SAPAssetManager/Rules/Notifications/ListView/MyNotificationFastFilter.js",
+		"_Type" : "Control.Type.SectionedTable",
+		"_Name" : "SectionedTable"
+	}],
+	"_Type": "Page",
+	"_Name": "NotificationsListViewPage",
+	"DataSubscriptions": "/SAPAssetManager/Rules/Common/DataSubscriptions.js"
+}

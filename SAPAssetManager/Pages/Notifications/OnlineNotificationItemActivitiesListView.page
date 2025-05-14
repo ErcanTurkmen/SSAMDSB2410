@@ -1,0 +1,32 @@
+{
+	"_Type": "Page",
+	"_Name": "OnlineNotificationItemActivitiesListView",
+	"Caption": "/SAPAssetManager/Rules/Notifications/OnlineDetails/OnlineNotificationActivitiesPageCaption.js",
+	"Controls": [{
+		"Sections":[
+			{
+				"_Type": "Fragment",
+				"Fragment": "/SAPAssetManager/Pages/Fragments/Notification/Items/NotificationItemActivitiesSection.fragment",
+				"Properties": {
+					"Header": {
+						"Caption": "",
+						"UseTopPadding": false
+					},
+					"ObjectCell": {
+						"Icons": [],
+						"OnPress": "/SAPAssetManager/Actions/Notifications/Item/OnlineNotificationItemActivityDetailsNav.action"
+					},
+					"Target": {
+						"EntitySet": "/SAPAssetManager/Rules/Notifications/OnlineDetails/OnlineNotificationActivitiesEntitySet.js",
+						"Service": "/SAPAssetManager/Services/OnlineAssetManager.service",
+						"QueryOptions": "/SAPAssetManager/Rules/Notifications/OnlineDetails/OnlineNotificationActivitiesQueryOptions.js"
+					},
+					"Footer": {
+						"Visible": false
+					}
+				}
+			}
+		],
+		"_Type" : "Control.Type.SectionedTable"
+	}]
+}

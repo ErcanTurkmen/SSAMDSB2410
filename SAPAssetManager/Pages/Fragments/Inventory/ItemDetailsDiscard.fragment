@@ -1,0 +1,7 @@
+{
+    "_Name": "DiscardButton",
+    "_Type": "Control.Type.ToolbarItem",
+    "Caption": "$(L,discard_item)",
+    "OnPress": "/SAPAssetManager/Rules/Common/DiscardAction.js",
+    "Visible": "/SAPAssetManager/Rules/Inventory/Discard/DiscardButtonVisible.js"
+}

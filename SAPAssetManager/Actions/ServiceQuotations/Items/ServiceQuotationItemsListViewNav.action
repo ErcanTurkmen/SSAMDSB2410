@@ -1,0 +1,7 @@
+{
+    "_Type": "Action.Type.Navigation",
+    "PageToOpen": "/SAPAssetManager/Pages/ServiceQuotations/ServiceQuotationItemsListView.page",
+    "ShowActivityIndicator": true,
+    "ActivityIndicatorText": " ",
+    "PageMetadata": "/SAPAssetManager/Rules/ServiceQuotations/Items/List/ServiceQuotationItemsPageMetadata.js"
+}

@@ -1,0 +1,7 @@
+{
+    "_Type" : "Action.Type.Navigation",
+    "PageToOpen" : "/SAPAssetManager/Pages/TimeSheets/TimeSheetEntryDetails.page",
+    "ShowActivityIndicator": true,
+    "ActivityIndicatorText" : " ",
+    "PageMetadata": "/SAPAssetManager/Rules/TimeSheets/TimeEntryDetailsPageMetadata.js"
+}

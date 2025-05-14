@@ -1,0 +1,10 @@
+{
+	"_Type": "Action.Type.ODataService.CreateEntity",
+	"Target":
+	{
+		"EntitySet" : "NotificationHistories",
+		"Service" : "/SAPAssetManager/Services/AssetManager.service"
+	},
+    "Properties": {},
+	"CreateLinks": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationHistoryLinks.js"
+}

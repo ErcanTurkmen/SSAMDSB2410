@@ -1,0 +1,14 @@
+{
+	"Caption": "/SAPAssetManager/Rules/S4RelatedHistories/S4RelatedHistoriesPageCaption.js",
+	"Controls": [
+		{
+			"_Type": "Control.Type.SectionedTable",
+			"Sections": [
+                "/SAPAssetManager/Pages/Fragments/S4RelatedHistories/S4RelatedHistoriesPreviousSection.fragment",
+				"/SAPAssetManager/Pages/Fragments/S4RelatedHistories/S4RelatedHistoriesPendingSection.fragment"
+			]
+		}
+	],
+	"_Type": "Page",
+	"_Name": "S4RelatedHistoriesListViewPage"
+}

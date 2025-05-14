@@ -1,0 +1,36 @@
+{
+    "_Type": "Action.Type.ODataService.CreateEntity",
+    "Target": {
+        "EntitySet": "S4ServiceOrderRefObjs",
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "Properties": {
+        "ObjectID": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderLocalID.js",
+        "ObjectType": "/SAPAssetManager/Rules/ServiceOrders/ServiceOrderObjectType.js",
+        "ProductID": "#Page:ServiceOrderCreateUpdatePage/#Control:ProductLstPkr/#SelectedValue",
+		"MainObject": "X"
+    },
+    "Headers": {
+        "OfflineOData.RemoveAfterUpload": "true",
+        "OfflineOData.TransactionID": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderLocalID.js"
+    },
+    "CreateLinks": [
+		{
+			"Property": "S4ServiceOrder_Nav",
+			"Target": {
+				"EntitySet": "S4ServiceOrders",
+				"ReadLink": "pending_1"
+			}
+		},
+		{
+			"Property": "Material_Nav",
+			"Target": {
+				"EntitySet": "Materials",
+				"ReadLink": "Materials('{{#Page:ServiceOrderCreateUpdatePage/#Control:ProductLstPkr/#SelectedValue}}')"
+			}
+		}
+	],
+    "OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/CreateEntityFailureMessage.action",
+    "ShowActivityIndicator": true,
+    "ActivityIndicatorText" : " "
+}

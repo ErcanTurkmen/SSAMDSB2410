@@ -1,0 +1,5 @@
+{
+    "_Type" : "Action.Type.Navigation",
+    "PageToOpen" : "/SAPAssetManager/Pages/Parts/BOM/BOMDetails.page",
+    "PageMetadata": "/SAPAssetManager/Rules/Parts/BOM/BOMDetailsPageMetadata.js"
+}

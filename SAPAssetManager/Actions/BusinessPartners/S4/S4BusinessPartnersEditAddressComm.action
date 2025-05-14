@@ -1,0 +1,18 @@
+{
+	"_Type": "Action.Type.ODataService.UpdateEntity",
+	"Target":
+    {
+        "EntitySet" : "/SAPAssetManager/Rules/BusinessPartners/Edit/BusinessPartnerEditAddressCommEntitySet.js",
+        "Service" : "/SAPAssetManager/Services/AssetManager.service",
+        "ReadLink": "#ClientData/#Property:commPropertyReadLink"
+    },
+    "Properties":
+    {
+        "CellPhone": "/SAPAssetManager/Rules/BusinessPartners/Edit/BusinessPartnerEditCellPickerValue.js",
+        "Telephone": "/SAPAssetManager/Rules/BusinessPartners/Edit/BusinessPartnerEditTelephonePickerValue.js",
+        "TelExt": "/SAPAssetManager/Rules/BusinessPartners/Edit/BusinessPartnerEditTelExtPickerValue.js",
+        "Fax": "/SAPAssetManager/Rules/BusinessPartners/Edit/BusinessPartnerEditFaxPickerValue.js",
+		"FaxExt": "/SAPAssetManager/Rules/BusinessPartners/Edit/BusinessPartnerEditFaxExtPickerValue.js",
+        "EMailAddress": "/SAPAssetManager/Rules/BusinessPartners/Edit/BusinessPartnerEditEmailPickerValue.js"
+    }
+}

@@ -1,0 +1,50 @@
+{
+    "_Type": "Section.Type.KeyValue",
+    "_Name": "NotificationDetailsSection",
+    "Visible" : "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsSectionVisible.js",
+    "Header": {
+        "Caption": "$(L,notification_details)"
+    },
+    "KeyAndValues": [
+        {
+            "_Name": "RequiredStartDate[0]",
+            "KeyName": "$(L,required_start_date)",
+            "Value": "/SAPAssetManager/Rules/DateTime/RequiredStartDate.js"
+        },
+        {
+            "_Name": "RequiredEndDate[0]",
+            "KeyName": "$(L,required_end_date)",
+            "Value": "/SAPAssetManager/Rules/DateTime/RequiredEndDate.js"
+        },
+        {
+            "_Name": "PlanningGroup[0]",
+            "KeyName": "$(L,planner_group)",
+            "Value": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsPlannerGroup.js"
+        },
+        {
+            "_Name": "MainWorkCenter[0]",
+            "KeyName": "$(L,main_work_center)",
+            "Value": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsMainWorkCenter.js"
+        },
+        {
+            "_Name": "QMCodeGroup[0]",
+            "KeyName": "$(L,code_group)",
+            "Value": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsQMCodeGroup.js"
+        },
+        {
+            "_Name": "QMCode[0]",
+            "KeyName": "$(L,code)",
+            "Value": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsQMCode.js"
+        },
+        {
+            "_Name": "ReportedBy[0]",
+            "KeyName": "$(L,reported_by)",
+            "Value": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsReportedBy.js"
+        }
+    ],
+    "Target": {
+        "EntitySet": "{@odata.readLink}",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsKeyValueSectionQueryOptions.js"
+    }
+}

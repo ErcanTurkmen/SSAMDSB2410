@@ -1,0 +1,5 @@
+{
+	"PageToOpen": "/SAPAssetManager/Pages/Inventory/PhysicalInventory/PhysicalInventoryItemDetails.page",
+	"_Type": "Action.Type.Navigation",
+	"PageMetadata": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryItemDetailsMetadata.js"
+}

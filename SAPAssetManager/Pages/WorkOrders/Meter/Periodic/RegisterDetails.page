@@ -1,0 +1,126 @@
+{
+    "Caption": "/SAPAssetManager/Rules/WorkOrders/Meter/Register/RegisterCaption.js",
+    "OnLoaded": "/SAPAssetManager/Rules/WorkOrders/Meter/Register/RegisterDetailsOnLoad.js",
+    "ActionBar": {
+        "Items": [
+            {
+                "Position": "Right",
+                "Text": "$(L,take_reading)",
+                "OnPress": "/SAPAssetManager/Rules/Meter/Reading/Periodic/MeterReadingSingleRegister.js"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "ReadingDetails",
+                    "Header": {
+                        "Caption": "$(L,reading_details)"
+                    },
+                    "KeyAndValues": [
+                        {
+                            "_Name": "MeterReadingRecorded",
+                            "KeyName": "$(L,reading)",
+                            "Value": "/SAPAssetManager/Rules/Meter/Format/Periodic/MeterReadingRecorded.js"
+                        },
+                        {
+                            "_Name": "MeterReadingDate",
+                            "KeyName": "$(L,date)",
+                            "Value": "/SAPAssetManager/Rules/Meter/Format/Periodic/MeterReadingDate.js"
+                        },
+                        {
+                            "_Name": "MeterReadingRecorded|PreviousReadingFloat",
+                            "KeyName": "$(L,difference)",
+                            "Value": "/SAPAssetManager/Rules/WorkOrders/Meter/Periodic/RegisterReadingDifference.js"
+                        },
+                        {
+                            "_Name": "MeterReadingTime",
+                            "KeyName": "$(L,time)",
+                            "Value": "/SAPAssetManager/Rules/Meter/Format/Periodic/MeterReadingTime.js"
+                        },
+                        {
+                            "_Name": "DateMaxRead[0]",
+                            "KeyName": "$(L,peak_usage)",
+                            "Value": "/SAPAssetManager/Rules/WorkOrders/Meter/Periodic/RegisterIsMaxPeakUsage.js"
+                        },
+                        {
+                            "_Name": "MeterReaderNote",
+                            "KeyName": "$(L,note)",
+                            "Value": "/SAPAssetManager/Rules/Meter/Format/Periodic/MeterReaderNote.js"
+                        }
+                    ]
+                },
+                {
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "PreviousReadingDetails",
+                    "Header": {
+                        "Caption": "$(L,previous_reading)"
+                    },
+                    "KeyAndValues": [
+                        {
+                            "_Name": "PreviousReadingFloat",
+                            "KeyName": "$(L,reading)",
+                            "Value": "/SAPAssetManager/Rules/Meter/Format/Periodic/PreviousReading.js"
+                        },
+                        {
+                            "_Name": "PreviousReadingDate",
+                            "KeyName": "$(L,date)",
+                            "Value": "/SAPAssetManager/Rules/Meter/Format/Periodic/PreviousReadingDate.js"
+                        },
+                        {
+                            "_Name": "PreviousReadingStatus",
+                            "KeyName": "$(L,status)",
+                            "Value": "/SAPAssetManager/Rules/Meter/Format/Periodic/PreviousReadingStatus.js"
+                        },
+                        {
+                            "_Name": "PreviousReadingTime",
+                            "KeyName": "$(L,time)",
+                            "Value": "/SAPAssetManager/Rules/Meter/Format/Periodic/PreviousReadingTime.js"
+                        },
+                        {
+                            "_Name": "DateMaxRead[1]",
+                            "KeyName": "$(L,peak_usage)",
+                            "Value": "/SAPAssetManager/Rules/WorkOrders/Meter/Periodic/RegisterIsMaxPeakUsage.js"
+                        }
+                    ]
+                },
+                {
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "ErrorAndWaringDetails",
+                    "Header": {
+                        "Caption": "$(L,limit_details)"
+                    },
+                    "KeyAndValues": [
+                        {
+                            "_Name": "MeterReadingLimit.WarningMinLimit",
+                            "KeyName": "$(L,warning_min)",
+                            "Value": "/SAPAssetManager/Rules/Meter/Format/Periodic/WarningMinLimit.js"
+                        },
+                        {
+                            "_Name": "MeterReadingLimit.WarningMaxLimit",
+                            "KeyName": "$(L,warning_max)",
+                            "Value": "/SAPAssetManager/Rules/Meter/Format/Periodic/WarningMaxLimit.js"
+                        },
+                        {
+                            "_Name": "MeterReadingLimit.ErrorMinLimit",
+                            "KeyName": "$(L,error_min)",
+                            "Value": "/SAPAssetManager/Rules/Meter/Format/Periodic/ErrorMinLimit.js"
+                        },
+                        {
+                            "_Name": "MeterReadingLimit.ErrorMaxLimit",
+                            "KeyName": "$(L,error_max)",
+                            "Value": "/SAPAssetManager/Rules/Meter/Format/Periodic/ErrorMaxLimit.js"
+                        }
+                    ]
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "PeriodicRegisterDetailsPage",
+    "DataSubscriptions": ["DeviceMeterReadings", "MeterReadings", "Registers"]
+}

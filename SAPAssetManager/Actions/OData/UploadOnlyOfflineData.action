@@ -1,0 +1,11 @@
+{
+    "Service" : "/SAPAssetManager/Services/AssetManager.service",
+    "_Type": "Action.Type.OfflineOData.Upload",
+    "OnFailure": "/SAPAssetManager/Rules/Sync/OnUploadFailure.js",
+    "ActionResult": {
+       "_Name": "result"
+    },
+    "ShowActivityIndicator": true,
+    "ActivityIndicatorText": "$(L,upload_in_progress)"
+ }
+  

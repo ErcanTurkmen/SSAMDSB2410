@@ -1,0 +1,5 @@
+{
+	"_Type": "Action.Type.Filter",
+	"PageToOpen" : "/SAPAssetManager/Pages/InspectionCharacteristics/Update/InspectionCharacteristicsFDCFilter.page",
+    "Filterable": "#Page:CreateUpdatePage/#ClientData/#Property:Filterable"
+}

@@ -1,0 +1,7 @@
+{
+    "AccessoryType": "DisclosureIndicator",
+    "KeyName": "$(L,related_service_requests)",
+    "Value": "/SAPAssetManager/Rules/S4RelatedHistories/S4RelatedServiceRequestsCount.js",
+    "OnPress": "/SAPAssetManager/Rules/S4RelatedHistories/S4RelatedServiceRequestsListViewNav.js",
+    "Visible": "/SAPAssetManager/Rules/S4RelatedHistories/IsS4Visible.js"
+}

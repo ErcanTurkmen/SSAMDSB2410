@@ -1,0 +1,12 @@
+{
+    "_Type": "Control.Type.ObjectCell",
+    "AccessoryType": "DisclosureIndicator",
+    "PreserveIconStackSpacing": false,
+    "Title": "#Property:WarehouseOrder",
+    "Subhead": "/SAPAssetManager/Rules/EWM/WarehouseOrder/WarehouseOrderSubTitleDetails.js",
+    "Footnote": "/SAPAssetManager/Rules/EWM/WarehouseOrder/WarehouseFooterDetails.js",
+    "Description": "/SAPAssetManager/Rules/EWM/WarehouseOrder/WarehouseOrderDescriptionDetails.js",
+    "StatusText": "/SAPAssetManager/Rules/EWM/WarehouseOrder/WarehouseOrderStatusDetails.js",
+    "SubstatusText": "/SAPAssetManager/Rules/EWM/WarehouseOrder/WarehouseOrderSubStatusDetails.js",
+    "OnPress": "/SAPAssetManager/Rules/EWM/WarehouseOrder/Details/WarehouseOrderDetailsPageNav.js"
+}

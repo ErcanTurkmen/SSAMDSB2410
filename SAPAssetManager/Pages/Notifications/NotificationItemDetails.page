@@ -1,0 +1,138 @@
+{
+	"Caption": "/SAPAssetManager/Rules/Notifications/Item/NotificationItemHeader.js",
+    "OnLoaded": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsOnPageLoad.js",
+	"ActionBar":
+	{
+		"_Name": "NotificationItemDetails",
+		"Items":
+		[
+            {
+                "Position": "Right",
+				"_Name": "Edit",
+                "SystemItem": "Edit",
+				"Caption": "$(L,edit)",
+                "OnPress": "/SAPAssetManager/Rules/Notifications/Item/NotificationItemUpdateNav.js",
+				"Visible": "/SAPAssetManager/Rules/UserAuthorizations/Notifications/EnableNotificationEdit.js"
+            },
+			{
+                "Position": "Right",
+				"_Name": "Add",
+            	"SystemItem": "Add",
+				"Caption": "$(L,add)",
+                "OnPress": "/SAPAssetManager/Rules/Notifications/Item/Details/NotificationItemDetailsPopover.js",
+				"Visible": "/SAPAssetManager/Rules/UserAuthorizations/Notifications/EnableNotificationEdit.js"
+            }
+		]
+	},
+	"Controls":
+	[{
+		"Sections":
+		[
+			"/SAPAssetManager/Pages/Fragments/Notification/Items/NotificationItemDetailsSection.fragment",
+        {
+            "Header": {
+                "Caption": "$(L,inspection_characteristic)"
+            },
+            "ObjectCell": {
+                "Title": "{{#Property:ShortDesc}}",
+				"Subhead": "/SAPAssetManager/Rules/InspectionCharacteristics/GroupValue.js",
+                "StatusText": "/SAPAssetManager/Rules/InspectionCharacteristics/ValuationShortText.js",
+				"Styles":
+				{
+					"StatusText": "/SAPAssetManager/Rules/InspectionCharacteristics/ValuationStyle.js"
+				},
+                "OnPress": "/SAPAssetManager/Actions/WorkOrders/InspectionCharacteristics/InspectionCharacteristicNav.action"
+            },
+            "EmptySection":
+            {
+                "Caption": "$(L, no_inspection_characteristic_available)"
+            },
+            "Target": {
+                "EntitySet": "{{#Property:@odata.readLink}}/InspectionChar_Nav",
+                "Service": "/SAPAssetManager/Services/AssetManager.service",
+                "QueryOptions": "$expand=NotifItems_Nav,InspectionPoint_Nav/WOOperation_Nav,InspectionLot_Nav/WOHeader_Nav,InspectionPoint_Nav/Equip_Nav,InspectionLot_Nav/WOHeader_Nav,InspectionPoint_Nav/FuncLoc_Nav"
+            },
+            "Visible": "/SAPAssetManager/Rules/Notifications/Item/CharacteristicSectionIsVisible.js",
+            "_Type": "Section.Type.ObjectTable",
+            "_Name": "InspectionLotSection"
+        },
+		"/SAPAssetManager/Pages/Fragments/Notification/Items/NotificationItemCausesSection.fragment",
+        "/SAPAssetManager/Pages/Fragments/Notification/Items/NotificationItemTasksSection.fragment",
+		{
+			"Header":
+			{
+				"Caption" : "$(L,notification_items_activities)"
+			},
+			"EmptySection": {
+                "Caption": "$(L,no_item_activities_available)"
+            },
+			"ObjectCell":
+			{
+				"PreserveIconStackSpacing": true,
+				"Icons":"/SAPAssetManager/Rules/Notifications/Item/Cause/NotificationItemCauseTaskActivityIconImages.js",
+				"Title": "/SAPAssetManager/Rules/Notifications/Item/Details/NotificationItemActivityDetailsListFormat.js",
+				"Subhead": "/SAPAssetManager/Rules/Notifications/Item/Details/NotificationItemActivityDetailsListFormat.js",
+				"Footnote" : "/SAPAssetManager/Rules/Notifications/Item/Details/NotificationItemActivityDetailsListFormat.js",
+				"StatusText" : "/SAPAssetManager/Rules/Notifications/Item/Details/NotificationItemActivityDetailsListFormat.js",
+				"AccessoryType" : "disclosureIndicator",
+				"OnPress" : "/SAPAssetManager/Actions/Notifications/Item/NotificationItemActivityDetailsNav.action"
+			},
+            "Target":
+			{
+                "EntitySet" : "{{#Property:@odata.id}}/ItemActivities",
+                "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                "QueryOptions": "$top=2&$expand=Item/Notification&$orderby=ActivitySortNumber asc"
+            },
+            "Footer":
+            {
+                "Caption": "$(L,see_all)",
+                "AccessoryType": "DisclosureIndicator",
+				"FooterStyle": "Attribute",
+                "AttributeLabel": "/SAPAssetManager/Rules/Notifications/Item/Activity/CreateUpdate/NotificationItemActivitiesCount.js",
+                "OnPress": "/SAPAssetManager/Actions/Notifications/NotificationItemActivitiesListViewNav.action"
+            },
+			"_Name" : "NotificationItemActivities",
+            "_Type" : "Section.Type.ObjectTable",
+            "DataSubscriptions": ["PMMobileStatuses", "MyNotificationItemTasks"]
+        },
+        {
+            "SimplePropertyCells":
+            [{
+                "SimplePropertyCell": {
+                    "AccessoryType": "DisclosureIndicator",
+                    "KeyName": "$(L,linear_data)",
+                    "Value": "",
+                    "OnPress": "/SAPAssetManager/Rules/LAM/LAMNav.js",
+                    "Visible": "/SAPAssetManager/Rules/LAM/LAMVisible.js"
+                }
+            }],
+			"Layout":
+			{
+				"NumberOfColumns" : 1
+			},
+            "_Type" : "Section.Type.SimplePropertyCollection"
+        },
+        {
+            "SimplePropertyCells":
+            [{
+                "SimplePropertyCell": {
+                    "AccessoryType": "DisclosureIndicator",
+                    "KeyName": "$(L,notes)",
+                    "Value": "/SAPAssetManager/Rules/Notes/NotesCount.js",
+                    "OnPress": "/SAPAssetManager/Rules/Notes/NotesViewNav.js"
+                }
+            }],
+			"Layout":
+			{
+				"NumberOfColumns" : 1
+			},
+            "_Type" : "Section.Type.SimplePropertyCollection"
+        }],
+		"_Type": "Control.Type.SectionedTable",
+		"_Name": "SectionedTable",
+		"DataSubscriptions": ["Documents", "MyNotifDocuments", "MyNotifHeaderLongTexts","MyNotifItemLongTexts","MyNotifTaskLongTexts","LAMObjectData"]
+	}],
+	"_Type": "Page",
+	"_Name": "NotificationItemDetailsPage",
+	"DataSubscriptions":["MyNotificationItemActivities", "MyNotificationItemCauses", "MyNotificationItemTasks"]
+}

@@ -1,0 +1,10 @@
+{
+    "Actions": ["/SAPAssetManager/Actions/Inventory/PurchaseRequisition/CreatePurchaseRequisitionItem.action"],
+    "Target":
+    {
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "OnSuccess": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/AfterCreatePurchaseRequisition.js",
+    "ShowActivityIndicator": true,
+    "_Type": "Action.Type.ODataService.ChangeSet"
+}

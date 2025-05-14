@@ -1,0 +1,61 @@
+{
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "_Type": "Page",
+    "_Name": "FLFetchOnlineDocuments",
+    "ActionBar":
+    {
+        "Items":
+        [{
+            "_Type": "Fragment",
+            "Fragment": "/SAPAssetManager/Pages/Fragments/CancelButton.fragment",
+            "Properties": {
+                "OnPress": "/SAPAssetManager/Actions/Page/ClosePage.action"
+            }
+        },   
+        {
+            "Position": "Right",
+            "Text": "$(L,download)",
+            "OnPress": "/SAPAssetManager/Rules/FL/Fetch/FLSetDownloadDocumentsVariable.js"
+        }]
+    },
+    "Caption":"$(L,fetch_results)",
+    "Controls":
+    [{
+        "Sections":
+        [{
+            "Header":
+            {
+                "UseTopPadding": false
+            },
+            "EmptySection":
+            {
+                "Caption": "$(L,no_documents_found_on_online_search)"
+            },
+            "Selection":
+            {
+                "Mode": "Multiple",
+                "ExitOnLastDeselect": false
+            },
+            "OnSelectionChanged": "/SAPAssetManager/Rules/FL/Fetch/FLOnDocumentSelectedOrUnSelected.js",
+            "ObjectCell": {
+                "_Type": "Fragment",
+                "Fragment":  "/SAPAssetManager/Pages/Fragments/FL/VoyageCell.fragment",
+                "Properties": {
+                    "StatusText": "/SAPAssetManager/Rules/FL/Voyages/VoyageStatusText.js"
+                }
+            },
+            "Target":
+            {
+                "EntitySet": "FldLogsVoyages",
+                "Service": "/SAPAssetManager/Services/OnlineAssetManager.service",
+                "QueryOptions": "/SAPAssetManager/Rules/FL/Fetch/FLFetchQueryOptions.js"
+            },
+            "_Type": "Section.Type.ObjectTable",
+            "_Name" : "OnlineDocumentsListViewSection"
+            }],
+
+            "_Type": "Control.Type.SectionedTable",
+            "_Name" : "SectionedTable"
+        }
+    ]
+}

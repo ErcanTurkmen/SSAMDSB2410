@@ -1,0 +1,24 @@
+{
+    "_Type": "Section.Type.ObjectTable",
+    "_Name": "ServiceRequestsSection",
+    "Header": {
+        "UseTopPadding": true,
+        "Caption": "$(L, service_request)"
+    },
+    "EmptySection": {
+        "Caption": "$(L, no_service_requests_available)"
+    },
+    "ObjectCell": {
+        "Title": "{S4ServiceRequest_Nav/Description}",
+        "Subhead": "{S4ServiceRequest_Nav/ObjectID}",
+        "SubstatusText": "{S4ServiceRequest_Nav/Priority_Nav/Description}",
+        "StatusText": "/SAPAssetManager/Rules/ServiceOrders/Details/ServiceRequestStatus.js",
+        "Footnote": "/SAPAssetManager/Rules/DateTime/ServiceDueByDate.js",
+        "OnPress": "/SAPAssetManager/Rules/ServiceOrders/ServiceRequests/ServiceRequestsDetailsFromOrderNav.js"
+    },
+    "Target": {
+        "EntitySet": "{@odata.readLink}/TransHistories_Nav",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$expand=S4ServiceRequest_Nav,S4ServiceRequest_Nav/Priority_Nav,S4ServiceRequest_Nav/MobileStatus_Nav&$filter=sap.entityexists(S4ServiceRequest_Nav)"
+    }
+}

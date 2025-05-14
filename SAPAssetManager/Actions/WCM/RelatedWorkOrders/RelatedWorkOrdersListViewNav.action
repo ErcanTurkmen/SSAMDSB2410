@@ -1,0 +1,5 @@
+{
+	"_Type": "Action.Type.Navigation",
+	"PageToOpen": "/SAPAssetManager/Pages/WCM/RelatedWorkOrders/RelatedWorkOrdersListView.page",
+	"PageMetadata": "/SAPAssetManager/Rules/WCM/RelatedWorkOrders/RelatedWorkOrdersPageMetadata.js"
+}

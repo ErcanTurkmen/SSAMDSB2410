@@ -1,0 +1,25 @@
+{
+    "_Type": "Control.Type.FormCell.ListPicker",
+    "_Name": "Category2LstPkr",
+    "Caption": "$(L,category_2)",
+    "AllowMultipleSelection": false,
+    "IsPickerDismissedOnSelection": true,
+    "IsSearchCancelledAfterSelection": true,
+    "Search": {
+        "Enabled": true,
+        "Delay": 500,
+        "MinimumCharacterThreshold": 3,
+        "Placeholder": "$(L,search)"
+    },
+    "Value": "{Category2}",
+    "PickerItems": {
+        "DisplayValue": "{{#Property:CategoryID}} - {{#Property:CategoryDescription}}",
+        "ReturnValue": "{CategoryGuid}",
+        "Target": {
+            "EntitySet": "CategorizationSchemas",
+            "Service": "/SAPAssetManager/Services/AssetManager.service",
+            "QueryOptions": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/Category2QueryOptions.js"
+        }
+    },
+    "OnValueChange": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/OnCategory2ValueChanged.js"
+}

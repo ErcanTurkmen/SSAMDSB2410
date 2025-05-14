@@ -1,0 +1,9 @@
+{
+	"_Type": "Action.Type.ODataService.CreateEntity",
+	"Target":
+	{
+		"EntitySet" : "NotificationHistoryTexts",
+		"Service" : "/SAPAssetManager/Services/AssetManager.service"
+	},
+    "Properties": {}
+}

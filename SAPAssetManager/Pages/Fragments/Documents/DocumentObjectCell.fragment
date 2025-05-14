@@ -1,0 +1,18 @@
+{
+    "PreserveIconStackSpacing": true,
+    "Icons": "/SAPAssetManager/Rules/Documents/DocumentListViewIconImages.js",
+    "ProgressIndicator": "/SAPAssetManager/Rules/Documents/SetIndicatorStateWrapper.js",
+    "DetailImage": "/SAPAssetManager/Rules/Documents/DocumentTypeIcon.js",
+    "DetailImageIsCircular": false,
+    "Title": "/SAPAssetManager/Rules/Documents/DocumentFileName.js",
+    "Subhead": "/SAPAssetManager/Rules/Documents/DocumentDescription.js",
+    "Footnote": "/SAPAssetManager/Rules/Documents/DocumentFileSizeWrapper.js",
+    "OnAccessoryButtonPress": "/SAPAssetManager/Rules/Documents/DownloadOrOpenDocumentWrapper.js",
+    "ContextMenu": {
+        "PerformFirstActionWithFullSwipe": true,
+        "Items":"/SAPAssetManager/Rules/ContextMenuTable.js",
+        "LeadingItems": "/SAPAssetManager/Rules/ContextMenuLeadingItems.js",
+        "TrailingItems": "/SAPAssetManager/Rules/ContextMenuTrailingItems.js"
+    },
+    "_Type": "Control.Type.ObjectCell"
+}

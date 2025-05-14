@@ -1,0 +1,32 @@
+{
+    "Header": {
+        "Caption": "$(L,notification_activities)"
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_activities_available)"
+    },
+    "Footer": {
+        "Caption": "$(L,see_all)",
+        "AccessoryType": "DisclosureIndicator",
+        "FooterStyle": "Attribute",
+        "AttributeLabel": "/SAPAssetManager/Rules/Notifications/Activity/NotificationsActivitiesCount.js",
+        "OnPress": "/SAPAssetManager/Actions/Notifications/NotificationActivitiesListViewNav.action",
+        "Visible": "/SAPAssetManager/Rules/Notifications/Activity/NotificationsActivitiesShouldRenderFooter.js"
+    },
+    "Target": {
+        "EntitySet" : "{{#Property:@odata.id}}/Activities",
+        "Service" : "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$top=2&$expand=Notification&$orderby=ActivitySortNumber asc"
+    },
+    "ObjectCell": {
+        "Icons":"/SAPAssetManager/Rules/Notifications/Activity/NotificationActivityIconImages.js",
+        "AccessoryType": "DisclosureIndicator",
+        "Title": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsActivityListFormat.js",
+        "Subhead": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsActivityListFormat.js",
+        "Footnote": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsActivityListFormat.js",
+        "OnPress": "/SAPAssetManager/Actions/Notifications/Activity/NotificationActivityDetailsNav.action"
+    },
+    "_Name" : "NotificationActivities",
+    "_Type": "Section.Type.ObjectTable",
+    "DataSubscriptions": ["MyNotificationActivities"]
+}

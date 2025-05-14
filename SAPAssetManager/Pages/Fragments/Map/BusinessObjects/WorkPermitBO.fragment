@@ -1,0 +1,36 @@
+{
+    "Type": "WorkPermit",
+    "Title": "$(L, dl_workpermits)",
+    "Legend": "IconWorkPermit",
+    "Target": {
+        "EntitySet": "WCMApplications",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "/SAPAssetManager/Rules/Maps/WCM/WorkPermitBOQueryOptions.js",
+        "Properties": [],
+        "KeyProperties": []
+    },
+    "Enable": true,
+    "ObjectScheme": {
+        "Geometry": "/SAPAssetManager/Rules/Maps/WCM/WCMTechnicalObjectGeometryValue.js",
+        "Layer": "WorkPermit",
+        "Properties": {
+            "ID": "{WCMApplication}",
+            "Priority": "{Priority}",
+            "DateProperties": {
+                "DueDate": "{ValidTo}",
+                "DateFormat": "yyyy-MM-dd"
+            }
+        },
+        "Actions": [],
+        "Symbol": {
+            "marker": "/SAPAssetManager/Rules/Maps/WCM/WorkPermitMapMarker.js",
+            "lineColor": "354A5F",
+            "fillColor": "354A5F33",
+            "lineWidth": 2,
+            "onSelect": {
+                "marker": "/SAPAssetManager/Rules/Maps/WCM/WorkPermitMapMarkerSelected.js",
+                "lineWidth": 4
+            }
+        }
+    }
+}

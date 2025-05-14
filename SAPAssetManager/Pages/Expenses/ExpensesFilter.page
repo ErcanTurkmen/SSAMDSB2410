@@ -1,0 +1,101 @@
+{
+	"Caption": "$(L,filter)",
+	"Result": "/SAPAssetManager/Rules/Expenses/ExpensesListFilterResults.js",
+	"OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+	"ActionBar": {
+		"_Name": "ExpenseFilter",
+        "Items": [
+            {
+                "Position": "Left",
+				"_Name": "Cancel",
+                "SystemItem": "Cancel",
+				"Caption": "$(L,cancel)",
+                "OnPress": "/SAPAssetManager/Actions/Page/CancelPage.action"
+            },
+            {
+                "Position": "Right",
+				"_Name": "Filter",
+                "SystemItem": "/SAPAssetManager/Rules/Filter/FilterSystemItem.js",
+                "Text": "/SAPAssetManager/Rules/Filter/FilterText.js",
+                "OnPress": "/SAPAssetManager/Rules/Filter/ApplyFilterAndSave.js"
+            }
+        ]
+    },
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Controls": [
+						{
+							"_Type": "Fragment",
+							"Fragment": "/SAPAssetManager/Pages/Fragments/Filter/SortByFilter.fragment",
+							"Properties": {
+								"SortByItems": [
+									{
+										"ReturnValue":"StartTimeStamp",
+										"DisplayValue":"$(L,timestamp)"
+									},
+									{
+										"ReturnValue":"OrderID",
+										"DisplayValue":"$(L,service_order_id)"
+									},
+									{
+										"ReturnValue":"ActualWork",
+										"DisplayValue":"$(L,amount)"
+									},
+									{
+										"ReturnValue":"ActivityType",
+										"DisplayValue":"$(L,type)"
+									}
+								]
+							}
+            			}
+					]
+				},
+				{
+					"Controls": [
+						{
+							"_Type": "Fragment",
+							"Fragment": "/SAPAssetManager/Pages/Fragments/Filter/TypeFilter.fragment",
+							"Properties": {
+								"_Name": "ActivityTypeLstPicker",
+								"IsPickerDismissedOnSelection": true,
+								"AllowMultipleSelection": false,
+								"AllowEmptySelection": true,
+								"PickerItems": "/SAPAssetManager/Rules/Expenses/ExpensesActivityTypePicker.js",
+								"FilterProperty": "ActivityType"
+							}
+						}
+					]
+				},
+				{
+					"Controls": [
+						{
+							"Caption": "$(L,service_order)",
+							"IsPickerDismissedOnSelection": true,
+							"AllowMultipleSelection": true,
+							"AllowEmptySelection":true,
+							"PickerItems": "/SAPAssetManager/Rules/Expenses/ExpensesServiceOrderPicker.js",
+							"_Name": "ServiceOrderLstPicker",
+							"_Type": "Control.Type.FormCell.ListPicker",
+							"FilterProperty": "OrderID",
+							"OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+						}
+					]
+				}
+			],
+			"_Name":"FormCellContainer",
+        	"_Type":"Control.Type.FormCellContainer"
+		}
+	],
+	"FioriToolbar": {
+        "_Name": "ExpensesFilterFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Items": [
+            "/SAPAssetManager/Pages/Fragments/Filter/ResetFilterToolbarItem.fragment"
+        ]
+    },
+	"_Name": "ExpensesFilterPage",
+	"_Type": "Page",
+	"OnLoaded": "/SAPAssetManager/Rules/Filter/ExpensesFilterOnLoaded.js"
+}

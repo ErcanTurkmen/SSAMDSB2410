@@ -1,0 +1,5 @@
+{
+	"PageToOpen": "/SAPAssetManager/Pages/EWM/Fetch/FetchDocumentsOnline.page",
+    "_Type": "Action.Type.Navigation",
+    "ModalPage": true
+}

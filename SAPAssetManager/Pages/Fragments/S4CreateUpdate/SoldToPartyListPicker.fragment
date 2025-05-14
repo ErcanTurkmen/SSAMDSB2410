@@ -1,0 +1,26 @@
+{
+   "_Type": "Control.Type.FormCell.ListPicker",
+   "_Name": "SoldToPartyLstPkr",
+   "Caption": "$(L,sold_to_party)*",
+   "AllowMultipleSelection": false,
+   "IsPickerDismissedOnSelection": true,
+   "IsSearchCancelledAfterSelection": true,
+   "Search": {
+       "Enabled": true,
+       "Delay": 500,
+       "MinimumCharacterThreshold": 3,
+       "Placeholder": "$(L,search)"
+   },
+   "Value": "{SoldToParty}",
+   "IsEditable": "/SAPAssetManager/Rules/Common/IsOnCreate.js",
+   "OnValueChange": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/SoldToPartyPickerOnValueChange.js",
+   "PickerItems": {
+       "DisplayValue": "{{#Property:BPNum}} - {{#Property:FirstName}} {{#Property:LastName}} {{#Property:OrgName1}} {{#Property:OrgName2}}",
+       "ReturnValue": "{BPNum}",
+       "Target": {
+           "EntitySet": "S4BusinessPartners",
+           "Service": "/SAPAssetManager/Services/AssetManager.service",
+           "QueryOptions": "$orderby=BPNum"
+       }
+   }
+}

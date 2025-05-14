@@ -1,0 +1,33 @@
+{
+    "Header": {
+        "Caption" : "$(L,notification_items_activities)"
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_item_activities_available)"
+    },
+    "ObjectCell": {
+        "PreserveIconStackSpacing": true,
+        "Icons":"/SAPAssetManager/Rules/Notifications/Item/Cause/NotificationItemCauseTaskActivityIconImages.js",
+        "Title": "/SAPAssetManager/Rules/Notifications/Item/Details/NotificationItemActivityDetailsListFormat.js",
+        "Subhead": "/SAPAssetManager/Rules/Notifications/Item/Details/NotificationItemActivityDetailsListFormat.js",
+        "Footnote" : "/SAPAssetManager/Rules/Notifications/Item/Details/NotificationItemActivityDetailsListFormat.js",
+        "StatusText" : "/SAPAssetManager/Rules/Notifications/Item/Details/NotificationItemActivityDetailsListFormat.js",
+        "AccessoryType" : "disclosureIndicator",
+        "OnPress" : "/SAPAssetManager/Actions/Notifications/Item/NotificationItemActivityDetailsNav.action"
+    },
+    "Target": {
+        "EntitySet" : "{{#Property:@odata.id}}/ItemActivities",
+        "Service" : "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$top=2&$expand=Item/Notification&$orderby=ActivitySortNumber asc"
+    },
+    "Footer": {
+        "Caption": "$(L,see_all)",
+        "AccessoryType": "DisclosureIndicator",
+        "FooterStyle": "Attribute",
+        "AttributeLabel": "/SAPAssetManager/Rules/Notifications/Item/Activity/CreateUpdate/NotificationItemActivitiesCount.js",
+        "OnPress": "/SAPAssetManager/Actions/Notifications/NotificationItemActivitiesListViewNav.action"
+    },
+    "_Name" : "NotificationItemActivities",
+    "_Type" : "Section.Type.ObjectTable",
+    "DataSubscriptions": ["PMMobileStatuses", "MyNotificationItemTasks"]
+}

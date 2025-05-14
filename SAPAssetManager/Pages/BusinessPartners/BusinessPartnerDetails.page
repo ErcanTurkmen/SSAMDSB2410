@@ -1,0 +1,174 @@
+{
+    "Caption": "$(L,business_partner)",
+    "OnReturning": "/SAPAssetManager/Rules/BusinessPartners/BusinessPartnerDetailsOnReturning.js",
+    "OnLoaded": "/SAPAssetManager/Rules/BusinessPartners/Edit/BusinessPartnerEditIsVisible.js",
+    "ActionBar":
+    {
+        "_Name": "BusinessPartnerDetail",
+        "Items":[
+            {
+                "Position": "Right",
+                "_Name": "Edit",
+                "SystemItem": "Edit",
+                "Caption": "$(L,edit)",
+                "OnPress": "/SAPAssetManager/Actions/BusinessPartners/BusinessPartnerEditNav.action"
+            },
+            {
+                "Position": "Right",
+                "_Name": "Add",
+                "SystemItem": "Add",
+                "Caption": "$(L,add)",
+                "OnPress": "/SAPAssetManager/Actions/BusinessPartners/BusinessPartnerAddOptionsPopover.action",
+                "Visible": "/SAPAssetManager/Rules/BusinessPartners/IsBusinessPartnerAddOptionsVisibile.js"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/QAB/QuickActionBarExtensionSection.fragment",
+					"Properties": {
+						"ExtensionProperties": {
+							"Chips": "/SAPAssetManager/Rules/BusinessPartners/BusinessPartnerQABChips.js"
+						},
+                        "Visible": "/SAPAssetManager/Rules/ServiceOrders/IsS4ServiceIntegrationEnabled.js",
+                        "DataSubscriptions": ["S4BusinessPartnerLongTexts"]
+					}
+				},
+                {
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "BusinessPartnerDetails",
+                    "Header": {
+                        "Caption": "$(L,business_partner_detail)",
+                        "UseTopPadding": "/SAPAssetManager/Rules/ServiceOrders/IsS4ServiceIntegrationNotEnabled.js"
+                    },
+                    "KeyAndValues": [
+                        {
+                            "_Name": "Address.Name|AddressAtWork.Name|Employee.Name",
+                            "KeyName": "$(L,name)",
+                            "Value": "/SAPAssetManager/Rules/BusinessPartners/BusinessPartnerName.js"
+                        },
+                        {
+                            "_Name": "PersonNum|ObjectID",
+                            "KeyName": "$(L,partner_id)",
+                            "Value": "/SAPAssetManager/Rules/BusinessPartners/BusinessPartnerId.js"
+                        },
+                        {
+                            "_Name": "PartnerFunction.Description|S4PartnerFunction.Description",
+                            "KeyName": "$(L,partner_type)",
+                            "Value": "/SAPAssetManager/Rules/BusinessPartners/BusinessPartnerType.js"
+                        }
+                    ]
+                },
+                {
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "AddressDetailsSection",
+                    "DataSubscriptions": ["Addresses", "AddressesAtWork", "EmployeeAddresses","AddressCommunications", "AddressesAtWorkComm", "EmployeeCommunications"],
+                    "Header": {
+                        "Caption": "$(L,contact_detail)"
+                    },
+                    "KeyAndValues": [
+                        {
+                            "_Name": "Address.City|AddressAtWork.City|EmployeeAddress.City",
+                            "KeyName": "$(L,address)",
+                            "Value": "/SAPAssetManager/Rules/BusinessPartners/BusinessPartnerAddress.js"
+                        },
+                        {
+                            "_Name": "Address.Building|AddressAtWork.Building|EmployeeAddress.Building",
+                            "KeyName": "$(L,office_location)",
+                            "Value": "/SAPAssetManager/Rules/BusinessPartners/BusinessPartnerOffice.js"
+                        },
+                        {
+                            "_Name": "AddressAtWork.EMail|AddressCommunication.EMail",
+                            "KeyName": "$(L,email)",
+                            "Value": "/SAPAssetManager/Rules/BusinessPartners/BusinessPartnerEmail.js"
+                        },
+                        {
+                            "_Name": "AddressAtWork.TelNumberLong[0]|AddressCommunication.TelNumberLong[0]",
+                            "KeyName": "$(L,phone)",
+                            "Value": "/SAPAssetManager/Rules/BusinessPartners/BusinessPartnerTelephone.js"
+                        },
+                        {
+                            "_Name": "AddressAtWork.TelNumberLong[1]|AddressCommunication.TelNumberLong[1]",
+                            "KeyName": "$(L,mobile)",
+                            "Value": "/SAPAssetManager/Rules/BusinessPartners/BusinessPartnerMobile.js"
+                        },
+                        {
+                            "_Name": "AddressAtWork.TelNumberLong[2]|AddressCommunication.TelNumberLong[2]",
+                            "KeyName": "$(L,fax)",
+                            "Value": "/SAPAssetManager/Rules/BusinessPartners/BusinessPartnerFax.js"
+                        }
+                    ]
+                },
+                {
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/NotesObjectSection.fragment",
+					"Properties": {
+						"Header": {
+							"Items": [
+								{
+									"_Type": "SectionHeaderItem.Type.Label",
+									"_Name": "notes_section_caption",
+									"Title": "$(L,notes)",
+									"Position": "Left"
+								},
+								{
+									"_Name": "add_note_btn_label",
+									"Title": "$(L,add)",
+									"_Type": "SectionHeaderItem.Type.Button",
+									"Position": "Right",
+									"OnPress": "/SAPAssetManager/Rules/BusinessPartners/BusinessPartnerCreateNoteOnPress.js",
+									"Styles": {
+										"Button": "HeaderItemButtonText"
+									},
+                                    "Enabled": "/SAPAssetManager/Rules/BusinessPartners/IsBusinessPartnerAddNoteVisibile.js"
+								}
+							]
+						},
+						"Target": {
+							"EntitySet": "/SAPAssetManager/Rules/Notes/List/NotesListViewEntitySet.js"
+						},
+						"ObjectCell": {
+							"Title": "/SAPAssetManager/Rules/Notes/List/BPNoteType.js",
+							"Subhead": "{TextString}",
+							"AccessoryButtonIcon": "/SAPAssetManager/Rules/Notes/List/NoteAccessoryButtonIcon.js",
+							"OnAccessoryButtonPress": "/SAPAssetManager/Rules/Notes/List/NoteEditNavFromList.js",
+							"Footnote": "/SAPAssetManager/Rules/Notes/List/NoteTime.js",
+							"OnPress": "/SAPAssetManager/Rules/Notes/List/NoteDetailsNavFromList.js",
+							"Styles": {
+								"Title": ""
+							},
+                            "ContextMenu": {
+								"PerformFirstActionWithFullSwipe": true,
+								"Items": [{
+									"_Name": "DiscardNote",
+									"Image": "$(PLT, /SAPAssetManager/Images/reject.png, /SAPAssetManager/Images/reject.android.png)",
+									"Text": "$(L,delete)",
+									"Mode": "Deletion",
+									"OnSwipe": "/SAPAssetManager/Rules/Notes/List/NoteDiscardFromContextMenu.js"
+								}],
+								"TrailingItems": "/SAPAssetManager/Rules/Notes/List/NoteContextMenuLeadingItems.js"
+                            }
+						},
+						"Footer": {
+							"Caption": "$(L,see_all)",
+							"AccessoryType": "DisclosureIndicator",
+							"AttributeLabel": "#Count",
+							"FooterStyle": "Attribute",
+                            "Visible": "/SAPAssetManager/Rules/BusinessPartners/BusinessPartnerNoteSectionFooterIsVisible.js",
+							"OnPress": "/SAPAssetManager/Actions/Notes/BPNotesListViewNav.action"
+						},
+						"DataSubscriptions": ["S4BusinessPartnerLongTexts"],
+                        "Visible": "/SAPAssetManager/Rules/ServiceOrders/IsS4ServiceIntegrationEnabled.js"
+					}
+				}
+                ],
+                "_Type": "Control.Type.SectionedTable",
+                "_Name": "SectionedTable"
+            }
+        ],
+        "_Type": "Page",
+        "_Name": "BusinessPartnerDetailsPage"
+    }

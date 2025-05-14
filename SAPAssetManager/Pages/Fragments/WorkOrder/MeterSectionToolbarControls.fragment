@@ -1,0 +1,17 @@
+[
+    {
+        "_Type": "FioriToolbarItem.Type.Button",
+        "Title": "$(L,discard)",
+        "Enabled": "/SAPAssetManager/Rules/Meter/MeterListDoneEnabled.js",
+        "OnPress": "/SAPAssetManager/Rules/Meter/MeterListDiscardToolbar.js",
+        "Visible": "/SAPAssetManager/Rules/Meter/MeterListDoneVisible.js",
+        "_Name": "NMSDiscard"
+    },
+    {
+        "_Type": "FioriToolbarItem.Type.Button",
+        "Title": "$(L,install_meter)",
+        "OnPress": "/SAPAssetManager/Rules/Meter/MeterListInstallToolbar.js",
+        "Visible": "/SAPAssetManager/Rules/Meter/MeterListMultipleModeDisabled.js",
+        "_Name": "NMSInstallMeter"
+    }
+]

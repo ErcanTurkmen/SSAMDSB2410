@@ -1,0 +1,7 @@
+{
+    "_Type" : "Action.Type.Navigation",
+    "PageToOpen" : "/SAPAssetManager/Pages/WorkOrders/Meter/MetersListViewWithActivity.page",
+    "ShowActivityIndicator" : true,
+    "ActivityIndicatorText" : " ",
+    "PageMetadata": "/SAPAssetManager/Rules/Meter/MeterSectionInstallUninstallPageMetadata.js"
+}

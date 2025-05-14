@@ -1,0 +1,89 @@
+{
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "_Name": "FunctionalLocationFilter",
+        "Items": [
+            {
+                "Position": "Left",
+                "_Name": "Cancel",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)",
+                "OnPress": "/SAPAssetManager/Actions/Page/CancelPage.action"
+            },
+            {
+                "Position": "Right",
+                "_Name": "Done",
+                "SystemItem": "/SAPAssetManager/Rules/Filter/FilterSystemItem.js",
+                "Text": "/SAPAssetManager/Rules/Filter/FilterText.js",
+                "OnPress": "/SAPAssetManager/Rules/Filter/ApplyFilterAndSave.js"
+            }
+        ]
+    },
+    "Caption":"$(L,filter)",
+    "Result": "/SAPAssetManager/Rules/FunctionalLocation/FLOCFilteringResult.js",
+    "Controls":
+    [{
+        "Sections":
+        [{
+            "Controls": [{
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/SortByFilter.fragment",
+				"Properties": {
+                     "SortByItems": [
+                        {
+                            "ReturnValue":"FuncLocId",
+                            "DisplayValue":"$(L,ID)"
+                        },
+                        {
+                            "ReturnValue":"FuncLocDesc",
+                            "DisplayValue":"$(L,description)"
+                        },
+                        {
+                            "ReturnValue":"PlanningPlant",
+                            "DisplayValue":"$(L,plant)"
+                        },
+                        {
+                            "ReturnValue":"WorkCenter_Main_Nav/ExternalWorkCenterId",
+                            "DisplayValue":"$(L,workcenter)"
+                        },
+                        {
+                            "ReturnValue":"Location",
+                            "DisplayValue":"$(L,location)"
+                        }
+                    ]
+				}
+            }]
+        },
+        {
+            "Controls": [
+                "/SAPAssetManager/Pages/Fragments/Filter/WorkCenterFilter.fragment",
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/FilterByFilter.fragment",
+                    "Properties": {
+                        "_Name": "LocalFilter",
+                        "FilterProperty": {
+                            "name": "local",
+                            "values": [{
+                                "DisplayValue": "$(L,is_local)",
+                                "ReturnValue": "true"
+                            }]
+                        }
+                    }
+                }
+            ]
+        }],
+        "_Name":"FormCellContainer",
+        "_Type":"Control.Type.FormCellContainer"
+    }],
+    "FioriToolbar": {
+        "_Name": "FunctionalLocationFilterFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Items": [
+            "/SAPAssetManager/Pages/Fragments/Filter/ResetFilterToolbarItem.fragment"
+        ]
+    },
+    "_Type":"Page",
+    "_Name":"FunctionalLocationFilterPage",
+    "OnLoaded": "/SAPAssetManager/Rules/Filter/FLOCFilterOnLoaded.js"
+}

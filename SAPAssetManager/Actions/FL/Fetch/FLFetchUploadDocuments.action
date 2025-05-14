@@ -1,0 +1,10 @@
+{
+   "Service" : "/SAPAssetManager/Services/AssetManager.service",
+   "_Type": "Action.Type.OfflineOData.Upload",
+   "OnSuccess" : "/SAPAssetManager/Rules/FL/Fetch/FLFetchDownloadDocuments.js",
+   "OnFailure": "/SAPAssetManager/Rules/Sync/OnUploadFailure.js",
+   "ActionResult": {
+      "_Name": "result"
+   },
+   "UploadCategories": ["OnDemandOnly"]
+}

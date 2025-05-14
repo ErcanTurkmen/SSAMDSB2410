@@ -1,0 +1,61 @@
+{
+	"Caption": "$(L,crew_member)",
+    "Controls":
+    [{
+        "Sections":
+        [{
+            "Header":
+            {
+                "Caption": "$(L,crew_member_details)",
+                "UseTopPadding": true
+            },
+            "KeyAndValues":
+            [{
+                "_Name": "Employee.EmployeeName",
+                "KeyName": "$(L,name)",
+                "Value": "{{#Property:Employee/#Property:EmployeeName}}"
+            },
+            {
+                "_Name": "Employee.PersonnelNumber",
+                "KeyName": "$(L,ID)",
+                "Value": "{{#Property:Employee/#Property:PersonnelNumber}}"
+            },
+            {
+                "_Name": "AddressCommunication.Email|AddressAtWorkComm.Email",
+                "KeyName": "$(L,email)",
+                "Value": "/SAPAssetManager/Rules/Crew/Employees/CrewEmployeeEmail.js"
+            },
+            {
+                "_Name": "AddressAtWorkComm.TelNumberLong[0]|AddressCommunication.TelNumberLong[0]",
+                "KeyName": "$(L,phone)",
+                "Value": "/SAPAssetManager/Rules/Crew/Employees/CrewEmployeePhone.js"
+            },
+            {
+                "_Name": "AddressAtWorkComm.TelNumberLong[1]|AddressCommunication.TelNumberLong[1]",
+                "KeyName": "$(L,mobile)",
+                "Value": "/SAPAssetManager/Rules/Crew/Employees/CrewEmployeeMobile.js"
+            }],
+            "Layout": {
+                "NumberOfColumns": 2
+            },
+            "_Name": "CrewMemberDetailsSection",
+            "_Type": "Section.Type.KeyValue"
+        },
+        {
+            "Buttons":
+            [{
+                "_Type": "ButtonTable.Type.Button",
+                "TextAlignment": "Center",
+                "Title": "$(L,remove)",
+                "OnPress": "/SAPAssetManager/Rules/Crew/LineItem/CrewListItemEmployeeRemoval.js",
+                "Style": "ResetRed"
+            }],
+            "_Name": "RemoveButtonSection",
+            "_Type": "Section.Type.ButtonTable"
+        }],
+        "_Name": "CrewMemberDetailsSectionTable",
+        "_Type": "Control.Type.SectionedTable"
+    }],
+	"_Name": "CrewMemberDetails",
+	"_Type": "Page"
+}

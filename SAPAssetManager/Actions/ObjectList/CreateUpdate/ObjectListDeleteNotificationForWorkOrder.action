@@ -1,0 +1,11 @@
+{
+	"_Type": "Action.Type.ODataService.DeleteEntity",
+	"Target": {
+		"EntitySet" : "MyWorkOrderObjectLists",
+		"Service" : "/SAPAssetManager/Services/AssetManager.service",
+		"QueryOptions" : "$filter=NotifNum eq '{{#Property:NotificationNumber}}'"
+	},
+	"Headers": {
+		"OfflineOData.TransactionID": "#Property:NotificationNumber"
+    }
+}

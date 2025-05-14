@@ -1,0 +1,16 @@
+{
+    "Title": "$(L, action_update_workorder)",
+    "Icon": "ActionEdit",
+    "Type": "Update",
+    "IsVisible": "/SAPAssetManager/Rules/UserAuthorizations/WorkOrders/EnableWorkOrderEdit.js",
+    "CallbackInfo": {
+        "Action": "/SAPAssetManager/Rules/WorkOrders/WorkOrderUpdateNav.js",
+        "Target": {
+            "EntitySet": "MyWorkOrderHeaders",
+            "Service": "/SAPAssetManager/Services/AssetManager.service",
+            "QueryOptions": "$expand=Operations/OperationLongText,OrderMobileStatus_Nav,UserTimeEntry_Nav,Equipment,FunctionalLocation,HeaderLongText,WODocuments&$filter=OrderId eq '{OrderId}'",
+            "Properties": [],
+            "KeyProperties": []
+        }
+    }
+}

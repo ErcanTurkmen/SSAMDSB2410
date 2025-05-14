@@ -1,0 +1,21 @@
+{
+  "_Type": "Action.Type.ODataService.UploadMedia",
+  "Target" : {
+    "EntitySet" : "Documents",
+    "Service" : "/SAPAssetManager/Services/AssetManager.service",
+    "ReadLink": "/SAPAssetManager/Rules/Documents/DocumentEditorReadLink.js"
+  },
+  "Headers" : {
+     "slug" : {
+        "ObjectLink": "/SAPAssetManager/Rules/Documents/DocumentEditorObjectLink.js",
+        "FileName": "/SAPAssetManager/Rules/Documents/DocumentEditorFileName.js",
+        "Description": "/SAPAssetManager/Rules/Documents/DocumentEditorDescription.js"
+    },
+    "if-match": "*"
+  },
+  "IsOnlineRequest": false,
+  "ShowActivityIndicator": true,
+  "ActivityIndicatorText" : "  ",
+  "Media":"/SAPAssetManager/Rules/Documents/DocumentEditorMedia.js",
+  "OnFailure": "/SAPAssetManager/Actions/Documents/DocumentEditorUpdateFailure.action"
+}

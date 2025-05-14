@@ -1,0 +1,56 @@
+{
+    "Caption": "{FormName}", 
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/Forms/SDF/FormRunnerOnBackButtonPressed.js",
+    "OnBackButtonPressed": "/SAPAssetManager/Rules/Forms/SDF/FormRunnerOnBackButtonPressed.js",
+    "ActionBar": {
+        "Items": [
+            {
+                "Position": "Left",
+				"Text": "$(L, close)",
+                "OnPress": "/SAPAssetManager/Rules/Forms/SDF/FormRunnerOnBackButtonPressed.js"
+            },
+            {
+                "Position": "Right",
+                "Text": "$(L,save)",
+                "OnPress": "/SAPAssetManager/Rules/Forms/SDF/PressSaveButton.js"
+            },
+            {
+                "Position": "Right",
+                "Text": "$(L,smart_forms_submit)",
+                "OnPress": "/SAPAssetManager/Rules/Forms/SDF/PressCompleteButton.js"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Class": "FormRunner",
+            "Control": "FormRunner",
+            "ExtensionProperties": {
+                "binding": {
+                    "formData": "/SAPAssetManager/Rules/Forms/SDF/FormInstanceData.js",
+                    "fileName": "formload",
+                    "applicationName": "{AppName}",
+                    "formName": "{FormName}",
+                    "formId": "/SAPAssetManager/Rules/Forms/SDF/FormId.js",
+                    "formStatus": "{DynamicFormInstance_Nav/FormStatus}",
+                    "formVersion": "{FormVersion}",
+                    "cacheFormEntries": 3,
+                    "fontSize": "/SAPAssetManager/Rules/Forms/SDF/FontSizeValue.js",
+                    "context": "/SAPAssetManager/Rules/Forms/SDF/InitialContext.js",
+                    "formProperties": {
+                        "readonly": "/SAPAssetManager/Rules/Forms/SDF/IsFormReadOnly.js"
+                    }
+                },
+                "handlers": {
+                    "submissionHandler": "/SAPAssetManager/Rules/Forms/SDF/SubmissionHandler.js",
+                    "formTemplateDataHandler": "/SAPAssetManager/Rules/Forms/SDF/FormTemplateData.js"
+                }
+            },
+            "Module": "extension-SAPDynamicForms",
+            "_Name": "ExtensionControl0",
+            "_Type": "Control.Type.Extension"
+        }
+    ],
+    "_Name": "FormRunner",
+    "_Type": "Page"
+}

@@ -1,0 +1,7 @@
+{
+    "IsInitialOn": false,
+    "IsFullScreen": true,
+    "OnAllowEnterEditMode": "/SAPAssetManager/Rules/Maps/MapAllowEnterEditMode.js",
+    "OnDisallowEnterEditMode": "/SAPAssetManager/Rules/Maps/MapDisallowEnterEditMode.js",
+    "EditModeConfig": {}
+}

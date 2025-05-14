@@ -1,0 +1,44 @@
+{
+    "Header": {
+        "Caption": "$(L,previous_reading)"
+    },
+     "KeyAndValues": [
+        {
+            "_Name": "ReadingValue",
+            "KeyName": "$(L,reading)",
+            "Value": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointDetailsReading.js"
+        },
+        {
+            "_Name": "ReadingDate",
+            "KeyName": "$(L,date)",
+            "Value": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointDetailsReadingDate.js"
+        },
+        {
+            "_Name": "ReadingTime",
+            "KeyName": "$(L,time)",
+            "Value": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointDetailsReadingTime.js"
+        },
+        {
+            "_Name": "ReadBy",
+            "KeyName": "$(L,read_by)",
+            "Value": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointDetailsReadBy.js"
+        },
+        {
+            "_Name": "ValuationCode[1]",
+            "KeyName": "$(L,valuation_code)",
+            "Value": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointDetailsValuation.js"
+        },
+        {
+            "_Name": "CounterReadingDifference|PrevCounterReadingDiff",
+            "KeyName": "$(L,counter_difference)",
+            "Value": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointDetailsDifference.js"
+        }
+    ],
+    "_Type": "Section.Type.KeyValue",
+    "_Name": "KeyValuePairsPrevious",
+    "Target": {
+        "EntitySet": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointDetailsPreviousEntitySet.js",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "/SAPAssetManager/Rules/Measurements/Points/MeasurementDocumentPreviousReadingQuery.js"
+    }
+}

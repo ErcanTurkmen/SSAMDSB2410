@@ -1,0 +1,18 @@
+[
+    {
+        "Position": "Right",
+        "_Name": "Edit",
+        "SystemItem": "Edit",
+        "Caption": "$(L,edit)",
+        "OnPress": "/SAPAssetManager/Rules/Notifications/NotificationUpdateNav.js",
+        "Visible": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsEditVisible.js"
+    },
+    {
+        "Position": "Right",
+        "_Name": "Add",
+        "SystemItem": "Add",
+        "Caption": "$(L,add)",
+        "OnPress": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsPopover.js",
+        "Visible": "/SAPAssetManager/Rules/UserAuthorizations/Notifications/EnableNotificationCreateEdit.js"
+    }
+]

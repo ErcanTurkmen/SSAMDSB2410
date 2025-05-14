@@ -1,0 +1,52 @@
+{
+	"Caption": "{Title}",
+	"OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+	"ActionBar": {
+		"Items": [
+			{
+				"Position": "Left",
+				"SystemItem": "Cancel",
+				"Caption": "$(L,cancel)",
+				"OnPress": "/SAPAssetManager/Actions/Page/ClosePage.action"
+			}
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"_Type": "Section.Type.SimplePropertyCollection",
+					"Header": {
+						"Caption": "$(L,wcm_active)",
+						"UseTopPadding": false
+					},
+					"SimplePropertyCell": {
+						"KeyName": "{Text}",
+						"AccessoryType": "checkmark"
+					},
+					"Target": "{Tags}",
+					"Layout": {
+						"NumberOfColumns": 1
+					}
+				},
+				{
+					"_Type": "Section.Type.SimplePropertyCollection",
+					"Header": {
+						"Caption": "$(L,wcm_inactive)"
+					},
+					"SimplePropertyCell": {
+						"KeyName": "{Text}"
+					},
+					"Target": "{Deselected}",
+					"Layout": {
+						"NumberOfColumns": 1
+					}
+				}
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"_Name": "WorkTypeRequirementModal",
+	"_Type": "Page"
+}

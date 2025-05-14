@@ -1,0 +1,95 @@
+{
+    "Caption": "/SAPAssetManager/Rules/Parts/BOM/BOMDetailsCaption.js",
+    "ActionBar": {
+        "_Name": "BOMDetails",
+        "Items": [
+            {
+                "Position": "Right",
+                "Text": "$(L,add_to)",
+                "OnPress": "/SAPAssetManager/Rules/Parts/CreateUpdate/PartCreateNav.js",
+                "Visible": "/SAPAssetManager/Rules/Parts/CreateUpdate/PartCreateIsVisible.js"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "Header": {
+                        "Caption": "$(L,details)"
+                    },
+                    "KeyAndValues": [
+                        {
+                            "_Name": "ItemText",
+                            "KeyName": "$(L,item_text)",
+                            "Value": "{ItemText2}",
+                            "Visible": "/SAPAssetManager/Rules/Parts/BOM/BOMIsItemText.js"
+                        },
+                        {
+                            "_Name": "Component",
+                            "KeyName": "$(L,part_number)",
+                            "Value": "{Component}",
+                            "Visible": "/SAPAssetManager/Rules/Parts/BOM/BOMIsNotItemText.js"
+                        },
+                        {
+                            "_Name": "reservation",
+                            "KeyName": "$(L,reservation)",
+                            "Value": "-"
+                        },
+                        {
+                            "_Name": "work_center_plant",
+                            "KeyName": "$(L,work_center_plant)",
+                            "Value": "-"
+                        },
+                        {
+                            "_Name": "Quantity",
+                            "KeyName": "$(L,required)",
+                            "Value": "{{#Property:Quantity}} {{#Property:UoM}}"
+                        },
+                        {
+                            "_Name": "withdrawn",
+                            "KeyName": "$(L,withdrawn)",
+                            "Value": "-"
+                        },
+                        {
+                            "_Name": "committed",
+                            "KeyName": "$(L,committed)",
+                            "Value": "-"
+                        },
+                        {
+                            "_Name": "stock_type",
+                            "KeyName": "$(L,stock_type)",
+                            "Value": "-"
+                        },
+                        {
+                            "_Name": "plant",
+                            "KeyName": "$(L,plant)",
+                            "Value": "-"
+                        },
+                        {
+                            "_Name": "storage_location",
+                            "KeyName": "$(L,storage_location)",
+                            "Value": "-"
+                        },
+                        {
+                            "_Name": "batch",
+                            "KeyName": "$(L,batch)",
+                            "Value": "-"
+                        },
+                        {
+                            "_Name": "bin_number",
+                            "KeyName": "$(L,bin_number)",
+                            "Value": "-"
+                        }
+                    ],
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "KeyValuePairs"
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "BOMDetailsPage"
+}

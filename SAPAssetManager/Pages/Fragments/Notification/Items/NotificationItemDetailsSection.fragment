@@ -1,0 +1,78 @@
+{
+    "Header": {
+        "Caption" : "$(L,notification_item)"
+    },
+    "KeyAndValues":
+    [{
+        "_Name": "ItemText",
+        "KeyName" : "$(L,description)",
+        "Value" : "/SAPAssetManager/Rules/Notifications/Item/Details/NotificationItemDetailsDescription.js"
+    },
+    {
+        "_Name": "ItemSortNumber",
+        "KeyName" : "$(L,sort_number)",
+        "Value" : "{ItemSortNumber}"
+    },
+    {
+        "_Name": "ObjectPartCodeGroup[0]",
+        "KeyName" : "$(L,part_group)",
+        "Value" : "/SAPAssetManager/Rules/Notifications/Item/Details/NotificationItemDetailsPartGroup.js",
+        "Visible": "/SAPAssetManager/Rules/ComponentsEnablement/QMComponentIsNotEnabled.js"
+    },
+    {
+        "_Name": "ObjectPart[0]",
+        "KeyName" : "$(L,part)",
+        "Value" : "/SAPAssetManager/Rules/Notifications/Item/Details/NotificationItemDetailsPart.js",
+        "Visible": "/SAPAssetManager/Rules/ComponentsEnablement/QMComponentIsNotEnabled.js"
+    },
+    {
+        "_Name": "CodeGroup[0]",
+        "KeyName" : "$(L,damage_group)",
+        "Value" : "/SAPAssetManager/Rules/Notifications/Item/Details/NotificationItemDetailsDamageGroup.js",
+        "Visible": "/SAPAssetManager/Rules/ComponentsEnablement/QMComponentIsNotEnabled.js"
+    },
+    {
+        "_Name": "DamageCode[0]",
+        "KeyName" : "$(L,damage_details)",
+        "Value" : "/SAPAssetManager/Rules/Notifications/Item/Details/NotificationItemDetailsDamage.js",
+        "Visible": "/SAPAssetManager/Rules/ComponentsEnablement/QMComponentIsNotEnabled.js"
+    },
+    {
+        "_Name": "ObjectPartCodeGroup[1]",
+        "KeyName" : "$(L,code_group)",
+        "Value" : "/SAPAssetManager/Rules/Notifications/Item/Details/NotificationItemDetailsPartGroup.js",
+        "Visible": "/SAPAssetManager/Rules/ComponentsEnablement/IsQMComponentEnabled.js"
+    },
+    {
+        "_Name": "ObjectPart[1]",
+        "KeyName" : "$(L,defect_location)",
+        "Value" : "/SAPAssetManager/Rules/Notifications/Item/Details/NotificationItemDetailsPart.js",
+        "Visible": "/SAPAssetManager/Rules/ComponentsEnablement/IsQMComponentEnabled.js"
+    },
+    {
+        "_Name": "CodeGroup[1]",
+        "KeyName" : "$(L,defect)",
+        "Value" : "/SAPAssetManager/Rules/Notifications/Item/Details/NotificationItemDetailsCodeGroup.js",
+        "Visible": "/SAPAssetManager/Rules/ComponentsEnablement/IsQMComponentEnabled.js"
+    },
+    {
+        "_Name": "DamageCode[1]",
+        "KeyName" : "$(L,defect_type)",
+        "Value" : "/SAPAssetManager/Rules/Notifications/Item/Details/NotificationItemDetailsDamageCode.js",
+        "Visible": "/SAPAssetManager/Rules/ComponentsEnablement/IsQMComponentEnabled.js"
+    },
+    {
+        "_Name": "ItemEquipment",
+        "KeyName" : "$(L,equipment)",
+        "Value" : "/SAPAssetManager/Rules/Notifications/Item/Details/NotificationItemDetailsEquipment.js",
+        "Visible": "/SAPAssetManager/Rules/ComponentsEnablement/IsQMComponentEnabled.js"
+    },
+    {
+        "_Name": "ItemFunctionLocation",
+        "KeyName" : "$(L,functional_location)",
+        "Value" : "/SAPAssetManager/Rules/Notifications/Item/Details/NotificationItemDetailsFunctionLocation.js",
+        "Visible": "/SAPAssetManager/Rules/ComponentsEnablement/IsQMComponentEnabled.js"
+    }],
+    "_Name": "NotificationItemDetailsSection",
+    "_Type" : "Section.Type.KeyValue"
+}

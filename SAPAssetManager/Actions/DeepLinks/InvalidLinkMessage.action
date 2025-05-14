@@ -1,0 +1,6 @@
+{
+	"Message": "",
+	"Title": "$(L, error)",
+	"OKCaption": "$(L,ok)",
+	"_Type": "Action.Type.Message"
+}

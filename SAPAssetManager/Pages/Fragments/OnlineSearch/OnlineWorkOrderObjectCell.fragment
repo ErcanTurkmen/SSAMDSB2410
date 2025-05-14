@@ -1,0 +1,19 @@
+{
+    "_Type": "Control.Type.ObjectCell",                       
+    "Title": "{OrderDescription}",
+    "Icons": "/SAPAssetManager/Rules/OnlineSearch/WorkOrders/OnlineIndicator.js",
+    "Subhead": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationOrderAndPhase.js",
+    "Footnote": "/SAPAssetManager/Rules/DateTime/DueDate.js",
+    "StatusText": "{PriorityDescription}",
+    "SubstatusText": "{SystemStatusDesc}",
+    "Description": "/SAPAssetManager/Rules/OnlineSearch/WorkOrders/WorkOrderListViewDescription.js",
+	"AccessoryButtonIcon": "/SAPAssetManager/Rules/OnlineSearch/WorkOrders/AccessoryButtonIcon.js",
+	"OnAccessoryButtonPress": "/SAPAssetManager/Rules/OnlineSearch/Download/DownloadToDevice.js",
+	"Selected": "/SAPAssetManager/Rules/OnlineSearch/ItemIsSelected.js",
+    "Styles":
+    {                     
+        "StatusText":  "/SAPAssetManager/Rules/Priority/WOPriorityStatusStyle.js",                     
+        "SubstatusText": "/SAPAssetManager/Rules/Supervisor/Reject/RejectedStatusStyle.js"                 
+    },
+    "OnPress": "/SAPAssetManager/Rules/WorkOrders/WorkOrderDetailsNav.js"
+}

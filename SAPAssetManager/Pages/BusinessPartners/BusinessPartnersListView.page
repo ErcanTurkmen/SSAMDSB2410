@@ -1,0 +1,29 @@
+{
+	"Caption": "/SAPAssetManager/Rules/BusinessPartners/BusinessPartnersCaption.js",
+	"ActionBar": {
+		"_Name": "BusinessPartnersListActionBar",
+		"Items": [
+			{
+				"_Name": "S4AddBusinessPartner",
+				"Position": "Right",
+				"SystemItem": "Add",
+				"Caption": "$(L,add)",
+				"Visible": "/SAPAssetManager/Rules/ServiceOrders/IsS4ServiceIntegrationEnabled.js",
+				"OnPress": "/SAPAssetManager/Rules/BusinessPartners/S4/AddS4BusinessPartnerPageNav.js"
+			}
+		]
+	},
+	"Controls": [
+		{
+		    "_Name": "BusinessPartnerList",
+            "_Type": "Control.Type.SectionedTable",
+            "DataSubscriptions": ["Addresses", "AddressesAtWork", "EmployeeAddresses","AddressCommunications", "AddressesAtWorkComm", "EmployeeCommunications", "S4ServiceOrderPartners", "S4ServiceRequestPartners"],
+			"Sections": [
+				"/SAPAssetManager/Pages/Fragments/Partners/BusinessPartnersContactCell.fragment"
+			]
+		}
+	],
+	"DataSubscriptions": ["S4ServiceOrderPartners", "S4ServiceRequestPartners"],
+	"_Type": "Page",
+	"_Name": "BusinessPartnersListViewPage"
+}

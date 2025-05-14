@@ -1,0 +1,6 @@
+{
+    "_Type": "Action.Type.ToastMessage",
+    "Duration": 3,
+    "Message": "$(L, purchase_requisition_created_successfully)",
+    "OnSuccess": "/SAPAssetManager/Actions/Page/ClosePage.action"
+}

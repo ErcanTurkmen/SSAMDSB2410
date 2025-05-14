@@ -1,0 +1,92 @@
+{
+	"Caption": "/SAPAssetManager/Rules/Notifications/Task/NotificationTaskHeader.js",
+	"OnLoaded": "/SAPAssetManager/Rules/Notifications/Task/Details/NotificationTaskDetailsOnPageLoad.js",
+	"ActionBar":
+	{
+		"_Name": "NotificationTaskDetails",
+		"Items":
+		[
+            {
+                "Position": "Right",
+				"_Name": "Edit",
+				"SystemItem": "Edit",
+				"Caption": "$(L,edit)",
+                "OnPress": "/SAPAssetManager/Rules/Notifications/Task/NotificationTaskUpdateNav.js",
+				"Visible": "/SAPAssetManager/Rules/UserAuthorizations/Notifications/EnableNotificationEdit.js"
+            },
+			{
+                "Position": "Right",
+				"_Name": "Add",
+            	"SystemItem": "Add",
+				"Caption": "$(L,add)",
+                "OnPress": "/SAPAssetManager/Rules/Notifications/Task/Details/NotificationTaskDetailsPopover.js",
+				"Visible": "/SAPAssetManager/Rules/UserAuthorizations/Notifications/EnableNotificationEdit.js"
+            }
+        ]
+	},
+	"Controls":
+	[{
+		"Sections":
+		[{
+			"Header":
+			{
+				"Caption" : "$(L,notification_task_detail)"
+			},
+			"KeyAndValues":
+			[{
+				"_Name": "TaskText",
+				"KeyName" : "$(L,description)",
+				"Value" : "{TaskText}"
+			},
+			{
+				"_Name": "TaskSortNumber",
+				"KeyName" : "$(L,sort_number)",
+				"Value" : "{TaskSortNumber}"
+			},
+			{
+				"_Name": "TaskCodeGroup",
+				"KeyName" : "$(L,group)",
+				"Value" : "/SAPAssetManager/Rules/Notifications/Task/Details/NotificationTaskDetailsGroup.js"
+			},
+			{
+				"_Name": "PMMobileStatus.MobileStatus",
+				"KeyName" : "$(L,status)",
+				"Value" : "/SAPAssetManager/Rules/Notifications/Task/Details/NotificationTaskDetailsMobileStatus.js"
+			},
+			{
+				"_Name": "TaskCode",
+				"KeyName" : "$(L,code)",
+				"Value" : "/SAPAssetManager/Rules/Notifications/Task/Details/NotificationTaskDetailsCode.js"
+			}],
+			"_Name": "NotificationTaskDetailsSection",
+			"_Type" : "Section.Type.KeyValue"
+		},
+		{
+            "SimplePropertyCells":
+            [{
+                "SimplePropertyCell": {
+                    "AccessoryType": "DisclosureIndicator",
+                    "KeyName": "$(L,notes)",
+                    "Value": "/SAPAssetManager/Rules/Notes/NotesCount.js",
+                    "OnPress": "/SAPAssetManager/Rules/Notes/NotesViewNav.js"
+                }
+            }],
+			"Layout":
+			{
+				"NumberOfColumns" : 1
+			},
+            "_Type" : "Section.Type.SimplePropertyCollection"
+        }],
+		"_Type": "Control.Type.SectionedTable",
+		"_Name": "SectionedTable",
+		"DataSubscriptions": ["Documents", "MyNotifDocuments", "MyNotifHeaderLongTexts", "MyNotifItemLongTexts", "MyNotifTaskLongTexts", "PMMobileStatuses"]
+	}],
+	"FioriToolbar": {
+        "_Name": "NotificationTaskFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Visible": "/SAPAssetManager/Rules/Notifications/MobileStatus/TaskEnableMobileStatus.js",
+        "Items": "/SAPAssetManager/Rules/Common/DetailsPageToolbar/DetailsPageToolbarItems.js"
+    },
+	"_Type": "Page",
+	"_Name": "NotificationTaskDetailsPage"
+}

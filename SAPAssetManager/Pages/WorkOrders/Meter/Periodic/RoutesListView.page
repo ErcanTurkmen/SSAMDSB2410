@@ -1,0 +1,48 @@
+{
+	"Caption": "$(L,routes)",
+	"ActionBar":
+	{
+		"Items": [
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment"
+		]
+	},
+	"Controls":
+	[{
+		"Sections":
+		[{
+			"Search":
+			{
+				"Enabled" : true,
+				"Delay": 500,
+				"MinimumCharacterThreshold": 3,
+				"Placeholder": "$(L,search_for_meter_reading_unit)",
+				"BarcodeScanner": true
+			},
+			"Header": {
+		 		"UseTopPadding": false
+    		},
+			"EmptySection": {
+                "Caption": "$(L,no_routes_text)"
+            },
+            "ObjectCell": {
+                "Title": "#Property:Description",
+                "Subhead": "#Property:MeterReadingUnit",
+                "Footnote": "/SAPAssetManager/Rules/Meter/Periodic/ConnectionObjectsCountFormatted.js",
+                "AccessoryType": "DisclosureIndicator",
+                "OnPress": "/SAPAssetManager/Actions/Meters/Periodic/RouteDetailsNav.action",
+                "PreserveIconStackSpacing": false
+            },
+            "Target": {
+                "EntitySet": "MeterReadingUnits",
+				"Service": "/SAPAssetManager/Services/AssetManager.service",
+				"QueryOptions": "/SAPAssetManager/Rules/Meter/Periodic/RoutesListQueryOptions.js"
+            },
+			"_Type" : "Section.Type.ObjectTable",
+			"_Name" : "MetersListSection"
+		}],
+		"_Type" : "Control.Type.SectionedTable",
+		"_Name" : "SectionedTable"
+	}],
+	"_Type": "Page",
+	"_Name": "RoutesListViewPage"
+}

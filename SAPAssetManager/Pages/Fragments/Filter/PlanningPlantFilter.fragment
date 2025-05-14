@@ -1,0 +1,25 @@
+{  
+    "_Name": "PlanningPlantLstPkr",
+    "_Type": "Control.Type.FormCell.ListPicker",
+    "Caption": "$(L,planning_plant)",
+    "AllowMultipleSelection": false,
+    "AllowDefaultValueIfOneItem": true,
+    "IsPickerDismissedOnSelection": true,
+    "IsSearchCancelledAfterSelection": true,
+    "Search": {
+        "Enabled": true,
+        "Delay": 500,
+        "MinimumCharacterThreshold": 3,
+        "Placeholder": "$(L,search)"
+    },
+    "PickerItems": {
+        "DisplayValue" : "{{#Property:Plant}} - {{#Property:PlantDescription}}",
+        "ReturnValue": "{Plant}",
+        "Target": {
+            "EntitySet" : "Plants",
+            "Service" : "/SAPAssetManager/Services/AssetManager.service"
+        }
+    },
+    "FilterProperty": "PlanningPlant",
+    "Label": "$(L,planning_plant)"
+}

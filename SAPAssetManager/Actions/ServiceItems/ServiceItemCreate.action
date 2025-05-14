@@ -1,0 +1,24 @@
+{
+    "_Type": "Action.Type.ODataService.CreateEntity",
+    "Target": {
+        "EntitySet": "S4ServiceItems",
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "Properties": {},
+    "Headers": {
+        "OfflineOData.RemoveAfterUpload": "true",
+        "OfflineOData.TransactionID": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/Data/GetServiceItemTransactionID.js"
+    },
+    "CreateLinks": [
+		{
+			"Property": "S4ServiceOrder_Nav",
+			"Target": {
+				"EntitySet": "S4ServiceOrders",
+				"ReadLink": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/Data/GetServiceItemParentLink.js"
+			}
+		}
+    ],
+    "OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/CreateEntityFailureMessage.action",
+    "ShowActivityIndicator": true,
+    "ActivityIndicatorText" : "  "
+}

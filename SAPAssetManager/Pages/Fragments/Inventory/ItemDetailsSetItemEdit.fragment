@@ -1,0 +1,7 @@
+{
+    "Position": "Right",
+    "Icon": "$(PLT, /SAPAssetManager/Images/edit.png, /SAPAssetManager/Images/edit-accessory.android.png, '', /SAPAssetManager/Images/edit-accessory.android.png)",
+    "IconText": "Edit",
+    "OnPress": "/SAPAssetManager/Rules/Inventory/Item/SetItemEdit.js",
+    "Visible": "/SAPAssetManager/Rules/Inventory/Item/SetItemEditVisible.js"
+}

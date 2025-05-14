@@ -1,0 +1,230 @@
+{
+    "Caption": "/SAPAssetManager/Rules/Notifications/NotificationHeader.js",
+    "ActionBar": {
+        "_Name": "NotificationDetails",
+        "Items": "/SAPAssetManager/Pages/Fragments/Notification/Details/ActionBarItems.fragment"
+    },
+    "OnLoaded": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsOnPageLoad.js",
+    "OnReturning": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsOnReturning.js",
+    "Controls":
+    [{
+        "Sections": [
+            "/SAPAssetManager/Pages/Fragments/Notification/Details/ObjectHeader.fragment",
+            {
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/QAB/QuickActionBarExtensionSection.fragment",
+                "Properties": {
+                    "ExtensionProperties": {
+                        "Chips": "/SAPAssetManager/Rules/Notifications/Details/NotificationQABChips.js"
+                    },
+                    "DataSubscriptions": ["PMMobileStatuses"]
+                }
+            },
+            "/SAPAssetManager/Pages/Fragments/Notification/Details/SoldToPartySection.fragment",
+            "/SAPAssetManager/Pages/Fragments/Notification/Details/ServiceOrderDetailsSection.fragment",
+            {
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Details/StatusesGridTable.fragment",
+                "Properties": {
+                    "Header": {
+                        "UseTopPadding": "/SAPAssetManager/Rules/Notifications/Service/IsServiceNotification.js"
+                    }
+                }
+            },
+            "/SAPAssetManager/Pages/Fragments/Notification/Details/NotificationDetailsSection.fragment",
+            "/SAPAssetManager/Pages/Fragments/Notification/Details/NotificationDetailsWithPhaseModelSection.fragment",
+            "/SAPAssetManager/Pages/Fragments/Notification/Details/MalfunctionDetailsSection.fragment",
+            "/SAPAssetManager/Pages/Fragments/Notification/Details/BusinessPartnersSection.fragment",
+            {
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Equipment/ObjectTableSection.fragment",
+                "Properties": {
+                    "Footer": {
+                        "Visible": false
+                    },
+                    "Header": {
+                        "UseTopPadding": true
+                    },
+                    "ObjectCell":
+                    {
+                        "PreserveIconStackSpacing": true,
+                        "AccessoryType": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsEquipmentListFormat.js",
+                        "Title": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsEquipmentListFormat.js",
+                        "Subhead": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsEquipmentListFormat.js",
+                        "StatusText" : "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsEquipmentListFormat.js",
+                        "Description": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsEquipmentListFormat.js"
+                    },
+                    "_Name" : "NotificationEquipment"
+                }
+            },
+            {
+                "Header": {
+                    "Caption": "$(L,functional_location)"
+                },
+                "EmptySection": {
+                    "Caption": "$(L,no_functional_location_available)"
+                },
+                "ObjectCell": {
+                    "PreserveIconStackSpacing": true,
+                    "AccessoryType": "DisclosureIndicator",
+                    "Title": "{FuncLocDesc}",
+                    "Subhead": "{FuncLocId}",
+                    "OnPress": "/SAPAssetManager/Rules/FunctionalLocation/FunctionalLocationDetailsNav.js"
+                },
+                "Target": {
+                    "EntitySet": "{{#Property:@odata.readLink}}/FunctionalLocation",
+                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                    "QueryOptions": "$select=FuncLocId,FuncLocDesc"
+                },
+                "_Type": "Section.Type.ObjectTable",
+                "_Name": "FunctionalLocationSection"
+            },
+            "/SAPAssetManager/Pages/Fragments/Notification/Details/InspectionLotSection.fragment",
+            {
+                "Header":
+                {
+                    "Caption": "$(L,notification_items)"
+                },
+                "EmptySection":
+                {
+                    "Caption": "$(L,no_items_available)"
+                },
+                "Footer":
+                {
+                    "Caption": "$(L,see_all)",
+                    "AccessoryType": "DisclosureIndicator",
+                    "FooterStyle": "Attribute",
+                    "AttributeLabel": "/SAPAssetManager/Rules/Notifications/Item/NotificationItemsCount.js",
+                    "OnPress" : "/SAPAssetManager/Actions/Notifications/Item/NotificationItemsListViewNav.action",
+                    "Visible": "/SAPAssetManager/Rules/Notifications/Item/NotificationItemsShouldRenderFooter.js"
+                },
+                "Target":
+                {
+                    "EntitySet" : "{{#Property:@odata.id}}/Items",
+                    "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                    "QueryOptions": "$top=2&$expand=Notification,Notification/NotifMobileStatus_Nav,Notification/NotifMobileStatus_Nav/OverallStatusCfg_Nav,ItemActivities,ItemCauses,ItemTasks&$orderby=ItemSortNumber asc"
+                },
+                "ObjectCell":
+                {
+                    "PreserveIconStackSpacing": true,
+                    "Icons":"/SAPAssetManager/Rules/Notifications/Item/NotificationItemIconImages.js",
+                    "AccessoryType": "DisclosureIndicator",
+                    "Title": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsItemListFormat.js",
+                    "Subhead": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsItemListFormat.js",
+                    "Footnote": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsItemListFormat.js",
+                    "StatusText" : "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsItemListFormat.js",
+                    "OnPress": "/SAPAssetManager/Actions/Notifications/Item/NotificationItemDetailsNav.action"
+                },
+                "_Name" : "NotificationItems",
+                "_Type": "Section.Type.ObjectTable",
+                "DataSubscriptions": ["MyNotificationItems"]
+            },
+            {
+                "Header":
+                {
+                    "Caption": "$(L,notification_tasks)"
+                },
+                "EmptySection": {
+                    "Caption": "$(L,no_task_available)"
+                },
+                "Footer":
+                {
+                    "Caption": "$(L,see_all)",
+                    "AccessoryType": "DisclosureIndicator",
+                    "FooterStyle": "Attribute",
+                    "AttributeLabel": "/SAPAssetManager/Rules/Notifications/Task/NotificationsTasksCount.js",
+                    "OnPress": "/SAPAssetManager/Actions/Notifications/Task/NotificationTasksListViewNav.action",
+                    "Visible": "/SAPAssetManager/Rules/Notifications/Task/NotificationsTasksShouldRenderFooter.js"
+                },
+                "Target":
+                {
+                    "EntitySet" : "{{#Property:@odata.id}}/Tasks",
+                    "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                    "QueryOptions": "$top=2&$expand=TaskMobileStatus_Nav,Notification,Notification/NotifMobileStatus_Nav&$orderby=TaskSortNumber asc"
+                },
+                "ObjectCell":
+                {
+                    "Icons":"/SAPAssetManager/Rules/Notifications/Task/NotificationTaskIconImages.js",
+                    "AccessoryType": "DisclosureIndicator",
+                    "Title": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsTaskListFormat.js",
+                    "Subhead": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsTaskListFormat.js",
+                    "Footnote": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsTaskListFormat.js",
+                    "StatusText" : "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsTaskListFormat.js",
+                    "OnPress": "/SAPAssetManager/Rules/Notifications/Details/NotificationTaskDetailsNav.js"
+                },
+                "_Name" : "NotificationTasks",
+                "_Type": "Section.Type.ObjectTable",
+                "DataSubscriptions": ["PMMobileStatuses", "MyNotificationTasks"]
+            },
+            "/SAPAssetManager/Pages/Fragments/Notification/Details/NotificationActivitiesSection.fragment",
+            "/SAPAssetManager/Pages/Fragments/Notification/Details/WorkOrderSection.fragment",
+            "/SAPAssetManager/Pages/Fragments/Forms/SDF/FormObjectTableSection.fragment",
+            "/SAPAssetManager/Pages/Fragments/DigitalSignature/DigitalSignatureGridTable.fragment",
+            {
+                "SimplePropertyCells":
+                [{
+
+                    "SimplePropertyCell": "/SAPAssetManager/Pages/Fragments/Documents/DocumentsSimplePropertyCell.fragment"
+
+                },
+                {
+                    "SimplePropertyCell": {
+                        "_Name": "Notes",
+                        "AccessoryType": "DisclosureIndicator",
+                        "KeyName": "$(L,notes)",
+                        "Value": "/SAPAssetManager/Rules/Notes/NotesCount.js",
+                        "OnPress": "/SAPAssetManager/Rules/Notes/NotesViewNav.js"
+                    }
+                },
+                {
+                    "SimplePropertyCell": {
+                        "_Name": "RelatedWorkOrders",
+                        "AccessoryType": "DisclosureIndicator",
+                        "KeyName": "$(L,related_work_orders)",
+                        "Value": "/SAPAssetManager/Rules/WorkOrders/History/WorkOrderHistoriesCount.js",
+                        "OnPress": "/SAPAssetManager/Actions/WorkOrders/WorkOrderRelatedHistoriesListViewNav.action",
+                        "Visible": "/SAPAssetManager/Rules/Notifications/Details/WorkOrderHistoriesAreVisible.js"
+                    }
+                },
+                {
+                    "SimplePropertyCell": {
+                        "_Name": "LinearData",
+                        "AccessoryType": "DisclosureIndicator",
+                        "KeyName": "$(L,linear_data)",
+                        "Value": "",
+                        "OnPress": "/SAPAssetManager/Rules/LAM/LAMNav.js",
+                        "Visible": "/SAPAssetManager/Rules/LAM/LAMVisible.js"
+                    }
+                },
+                {
+                    "SimplePropertyCell": {
+                        "_Name": "BusinessPartners",
+                        "AccessoryType": "DisclosureIndicator",
+                        "KeyName": "$(L,business_partners)",
+                        "Value": "/SAPAssetManager/Rules/BusinessPartners/BusinessPartnersCount.js",
+                        "OnPress": "/SAPAssetManager/Actions/BusinessPartners/BusinessPartnersListViewNav.action",
+                        "Visible": "/SAPAssetManager/Rules/Notifications/Service/IsServiceNotification.js"
+                    }
+                }
+            ],
+                "Layout":
+                {
+                    "NumberOfColumns" : 2,
+                    "MinimumInteritemSpacing": "$(PLT,66,0)"
+                },
+                "_Type" : "Section.Type.SimplePropertyCollection",
+                "DataSubscriptions": ["Documents", "MyNotifDocuments", "MyNotifHeaderLongTexts", "WorkOrderHistories", "PMMobileStatuses", "LAMObjectData"]
+            }
+        ],
+        "_Type": "Control.Type.SectionedTable",
+        "_Name": "SectionedTable"
+	}],
+    "FioriToolbar": {
+        "_Name": "NotificationDetailsFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Visible": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsToolbarVisibility.js",
+        "Items": "/SAPAssetManager/Rules/Common/DetailsPageToolbar/DetailsPageToolbarItems.js"
+    },
+    "_Type": "Page",
+    "_Name": "NotificationDetailsClassicPage"
+}

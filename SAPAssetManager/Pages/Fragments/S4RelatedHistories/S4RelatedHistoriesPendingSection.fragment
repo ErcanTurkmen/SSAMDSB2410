@@ -1,0 +1,25 @@
+{
+    "Header": {
+        "Caption": "/SAPAssetManager/Rules/S4RelatedHistories/S4RelatedHistoriesPendingCaption.js"
+    },
+    "EmptySection": {
+        "Caption": "/SAPAssetManager/Rules/S4RelatedHistories/S4RelatedHistoriesPendingEmptyCaption.js"
+    },
+    "MaxItemCount": 3,
+    "ObjectCell": "/SAPAssetManager/Pages/Fragments/S4RelatedHistories/S4RelatedHistoriesObjectCell.fragment",
+    "Footer": {
+        "Caption": "$(L,see_all)",
+        "AccessoryType": "DisclosureIndicator",
+        "FooterStyle": "Attribute",
+        "AttributeLabel": "/SAPAssetManager/Rules/S4RelatedHistories/S4RelatedHistoryPendingCount.js",
+        "Visible": "/SAPAssetManager/Rules/S4RelatedHistories/S4RelatedHistoryPendingFooterVisible.js",
+        "OnPress": "/SAPAssetManager/Actions/S4RelatedHistories/S4RelatedHistoryPendingListViewNav.action"
+    },
+    "Target": {
+        "EntitySet": "/SAPAssetManager/Rules/S4RelatedHistories/S4RelatedHistoryEntitySet.js",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions":"$filter=ReferenceType eq 'P'&$expand=LongText_Nav&$top=3&$orderby=Priority,ObjectID desc"
+    },
+    "_Name": "S4ObjectPendingListViewSection",
+    "_Type": "Section.Type.ObjectTable"
+}

@@ -1,0 +1,17 @@
+{
+    "Controls": [
+        {
+            "Caption": "/SAPAssetManager/Rules/WCM/OperationalItems/SetTagged/LockNumberCaption.js",
+            "PlaceHolder": "$(L, add_lock_number)",
+            "KeyboardType": "Default",
+            "Value": "{LockNumber}",
+            "OnValueChange": "/SAPAssetManager/Rules/WCM/OperationalItems/SetTagged/LockNumberChanged.js",
+            "IsEditable": "/SAPAssetManager/Rules/WCM/OperationalItems/SetUntagged/IsLockNumberEditable.js",
+            "_Name": "LockNumber",
+            "_Type": "Control.Type.FormCell.SimpleProperty"
+        }
+    ],
+    "Visible": "/SAPAssetManager/Rules/WCM/OperationalItems/SetTagged/IsVisibleLockNumber.js",
+    "_Name": "LockNumberSection",
+    "_Type": "Section.Type.FormCell"
+}

@@ -1,0 +1,29 @@
+{
+	"_Type": "Action.Type.ODataService.CreateEntity",
+	"Headers": {
+		"OfflineOData.RemoveAfterUpload": "true",
+		"Transaction.Ignore": "true"
+	},
+	"Target": {
+		"EntitySet" : "MyInventoryObjects",
+		"Service" : "/SAPAssetManager/Services/AssetManager.service"
+	},
+	"Properties": {
+		"IMObject" : "PR",
+		"ItemCount": "",
+		"ObjectType": "NB",
+		"ObjectDate": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetRequisitionDate.js",
+		"ObjectIdExtn": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetObjectIdExtn.js",
+		"ObjectId": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetHeaderLocalId.js"
+	},
+	"CreateLinks": [
+		{
+			"Property": "PurchaseRequisitionHeader_Nav",
+			"Target": {
+				"EntitySet": "PurchaseRequisitionHeaders",
+				"ReadLink": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetHeaderLink.js"
+			}
+		}
+	],
+	"OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/CreateEntityFailureMessage.action"
+}

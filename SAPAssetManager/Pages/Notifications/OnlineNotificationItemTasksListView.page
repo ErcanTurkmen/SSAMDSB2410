@@ -1,0 +1,29 @@
+{
+	"_Type": "Page",
+	"_Name": "OnlineNotificationItemTasksListViewPage",
+	"Caption":  "/SAPAssetManager/Rules/Notifications/OnlineDetails/OnlineNotificationTasksPageCaption.js",
+	"Controls": [{
+		"_Type" : "Control.Type.SectionedTable",
+		"Sections": [
+			{
+				"_Type": "Fragment",
+				"Fragment": "/SAPAssetManager/Pages/Fragments/Notification/Items/NotificationItemTasksObjectTable.fragment",
+				"Properties": {
+					"Search": {
+						"Enabled": false
+					},
+					"ObjectCell": {
+						"Icons": [],
+						"StatusText": "",
+						"OnPress": "/SAPAssetManager/Actions/Notifications/Item/OnlineNotificationItemTaskDetailsNav.action"
+					},
+					"Target": {
+						"EntitySet": "/SAPAssetManager/Rules/Notifications/OnlineDetails/OnlineNotificationTasksEntitySet.js",
+						"Service": "/SAPAssetManager/Services/OnlineAssetManager.service",
+						"QueryOptions": "/SAPAssetManager/Rules/Notifications/OnlineDetails/OnlineNotificationTasksQueryOptions.js"
+					}
+				}
+			}
+		]
+	}]
+}

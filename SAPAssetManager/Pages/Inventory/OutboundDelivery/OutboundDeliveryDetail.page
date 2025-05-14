@@ -1,0 +1,92 @@
+{
+	"Caption": "$(L,obd_detail_title)",
+	"ActionBar": {
+		"Items": [
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment"
+		]
+	},
+	"Controls": [
+		{
+			"FilterFeedbackBar": {
+				"_Type": "Control.Type.FilterFeedbackBar",
+				"_Name": "FilterFeedback",
+				"ShowAllFilters": true,
+				"FastFilters": [
+					{
+						"_Name": "OpenItems",
+						"_Type": "Control.Type.FastFilterItem",
+						"FilterType": "Filter",
+						"FilterProperty": "",
+						"CustomQueryGroup": "OBD",
+						"DisplayValue": "/SAPAssetManager/Rules/Inventory/OutboundDelivery/GetOutboundDeliveryOpenCaption.js",
+						"ReturnValue": "PickedQuantity ne Quantity"
+					},
+					{
+						"_Name": "IssuedItems",
+						"_Type": "Control.Type.FastFilterItem",
+						"FilterType": "Filter",
+						"FilterProperty": "",
+						"CustomQueryGroup": "OBD",
+						"DisplayValue": "/SAPAssetManager/Rules/Inventory/OutboundDelivery/GetOutboundDeliveryIssuedCaption.js",
+						"ReturnValue": "Quantity gt -2"
+					}
+				]
+			},
+			"Sections": [
+				{
+					"Header": {
+						"Caption": "/SAPAssetManager/Rules/Inventory/OutboundDelivery/GetOutboundDeliveryItemsListCaption.js",
+						"UseTopPadding": true
+					},
+					"EmptySection": {
+						"Caption": "$(L,no_items)"
+					},
+					"Search": {
+						"BarcodeScanner": true,
+						"Enabled": true,
+						"MinimumCharacterThreshold": 2,
+						"Placeholder": "$(L,search)",
+						 "Delay": 500
+					},
+					"ObjectCell": {
+						"AccessoryButtonIcon": "$(PLT, /SAPAssetManager/Images/edit-accessory.ios.png, /SAPAssetManager/Images/edit-accessory.android.png, '', /SAPAssetManager/Images/edit-accessory.android.png)",
+						"Footnote": "/SAPAssetManager/Rules/Inventory/InboundOrOutbound/InboundOutboundFootNote.js",
+						"OnAccessoryButtonPress": "/SAPAssetManager/Rules/Inventory/OutboundDelivery/SetGoodsReceiptOutboundDelivery.js",
+						"PreserveIconStackSpacing": false,
+						"OnPress": "/SAPAssetManager/Rules/Inventory/InboundOrOutbound/InboundOutboundDeliveryItemDetailsQuery.js",
+						"StatusText": "/SAPAssetManager/Rules/Inventory/InboundOrOutbound/GetInboundOrOutboundItemState.js",
+						"SubstatusText": "/SAPAssetManager/Rules/Inventory/InboundOrOutbound/InboundOutboundDeliveryQuantity.js",
+						"Subhead": "/SAPAssetManager/Rules/Inventory/InboundOrOutbound/InboundOutboundDeliverySubhead.js",
+						"Title": "/SAPAssetManager/Rules/Inventory/Common/GetItemTextOrMaterialName.js"
+					},
+					"Target": {
+						"EntitySet": "OutboundDeliveryItems",
+						"QueryOptions": "/SAPAssetManager/Rules/Inventory/OutboundDelivery/GetOutboundDeliveryItemsListQuery.js",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					},
+					"_Name": "SectionObjectTable",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable",
+			"Filters": "/SAPAssetManager/Rules/Inventory/OutboundDelivery/GetOutboundDeliveryPreselectedFilter.js"			
+		}
+	],
+	"FioriToolbar": {
+		"_Name": "OutboundDeliveryDetailFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+		"Items": [
+			{
+				"_Name": "IssuePartTbI",
+				"_Type": "FioriToolbarItem.Type.Button",
+				"Enabled": "/SAPAssetManager/Rules/Inventory/InboundDelivery/GetReceiveButtonStatusInbound.js",
+				"Title": "$(L,issue_all)",
+				"OnPress": "/SAPAssetManager/Rules/Inventory/InboundOrOutbound/InboundOrOutboundDeliveryIssueAllReceiveAll.js"
+			}
+		]
+	},
+	"OnReturning": "/SAPAssetManager/Rules/Inventory/OutboundDelivery/OutboundDeliveryDetailsPageOnReturn.js",
+	"_Name": "OutboundDeliveryDetailPage",
+	"_Type": "Page"
+}

@@ -1,0 +1,23 @@
+{
+	"_Type": "Page",
+	"_Name": "ClassificationDetailsPage",
+	"Caption": "/SAPAssetManager/Rules/Classification/ClassificationDetailCaption.js",
+	"Controls": [
+		{
+			"Sections": [
+				{
+                    "ObjectHeader": {
+						"HeadlineText": "/SAPAssetManager/Rules/Classification/ClassDescription.js",
+						"Subhead": "{ClassId}",
+                        "Footnote": "/SAPAssetManager/Rules/Classification/ClassTypeDescription.js"
+                    },
+                    "_Type": "Section.Type.ObjectHeader",
+                    "_Name": "ClassificationObjectHeaderSection"
+				},
+				"/SAPAssetManager/Pages/Fragments/Equipment/Classifications/CharacteristicsObjectTable.fragment"
+			],
+            "_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"DataSubscriptions": ["MyEquipClassCharValues", "MyFuncLocClassCharValues", "ClassCharacteristicValues"]
+}

@@ -1,0 +1,76 @@
+{
+	"Caption": "{PMCatalogCode/CodeDescription}",
+	"ActionBar": {
+		"Items": [
+			{
+				"Position": "Left",
+				"SystemItem": "Cancel",
+				"Caption": "$(L,cancel)",
+				"OnPress": "/SAPAssetManager/Actions/Page/CancelPage.action"
+			}
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Header": {
+						"Caption": "$(L, 'details')"
+					},
+					"Layout": {
+						"NumberOfColumns": 1
+					},
+					"SimplePropertyCells": [
+						{
+							"SimplePropertyCell": {
+								"KeyName": "$(L, 'wcm_catalog_sort_field')",
+								"Value": "$(DV,{Sortfield},'-')"
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"KeyName": "$(L, 'wcm_catalog_code_group')",
+								"Value": "$(DV,{CodeGroup},'-')"
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"KeyName": "$(L, 'wcm_catalog_groupname')",
+								"Value": "$(DV,{PMCatalogCode/CodeGroupDesc},'-')"
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"KeyName": "$(L, 'wcm_catalog_code')",
+								"Value": "$(DV,{Code},'-')"
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"KeyName": "$(L, 'wcm_catalog_shorttext')",
+								"Value": "$(DV,{ShortText},'-')"
+							}
+						}
+					],
+					"_Type": "Section.Type.SimplePropertyCollection"
+				},
+				{
+					"Header": {
+						"Caption": "$(L, 'notes')"
+					},
+					"KeyAndValues": [
+						{
+							"_Name": "note",
+							"Value": "/SAPAssetManager/Rules/WCM/WCMCatalogs/WCMCatalogNotesValue.js"
+						}
+					],
+					"_Type": "Section.Type.KeyValue"
+				}
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"_Name": "CatalogDetails",
+	"_Type": "Page"
+}

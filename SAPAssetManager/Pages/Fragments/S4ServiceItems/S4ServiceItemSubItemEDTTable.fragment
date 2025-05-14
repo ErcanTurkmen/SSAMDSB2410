@@ -1,0 +1,80 @@
+{
+	"Visible": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceSubItemsEdtTableVisible.js",
+	"Module": "extension-EditableDataTable",
+	"Control": "EditableDataTableViewExtension",
+	"Class": "EditableDataTableViewExtension",
+	"Height": 200,
+	"ExtensionProperties": {
+		"Configuration": {
+			"IsStickyHeaderRow": false,
+			"NumberOfLeadingStickyColumns": 0,
+			"MaxLinesPerRow": 2,
+			"IsCellBackgroundClear": true,
+			"IsReadOnly": true
+		},
+		"Columns": [
+			{
+				"HeaderName": "$(L, item_no)",
+				"PreferredWidth": 130
+			},
+			{
+				"HeaderName": "$(L, parent_item)",
+				"PreferredWidth": 140
+			},
+			{
+				"HeaderName": "$(L, quantity)",
+				"PreferredWidth": 160
+			},
+			{
+				"HeaderName": "$(L, unit)",
+				"PreferredWidth": 160
+			},
+			{
+				"HeaderName": "$(L, product)",
+				"PreferredWidth": 180,
+				"IsDynamicWidth": true
+			},
+			{
+				"HeaderName": "$(L, net_value)",
+				"PreferredWidth": 160
+			},
+			{
+				"HeaderName": "$(L, accounting_indicator)",
+				"PreferredWidth": 250,
+				"IsDynamicWidth": true
+			},
+			{
+				"HeaderName": "",
+				"PreferredWidth": 160
+			},
+			{
+				"HeaderName": "",
+				"PreferredWidth": 160
+			}
+		],
+		"Row": {
+			"Items": "/SAPAssetManager/Pages/Fragments/S4ServiceItems/ServiceItemsEDTItemsReadOnly.fragment"
+		},
+		"Target": {
+			"EntitySet": "S4ServiceItems",
+			"Service": "/SAPAssetManager/Services/AssetManager.service",
+			"QueryOptions": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/SubItem/SubServiceItemQueryOptions.js"
+		}
+	},
+	"Footer": {
+		"Caption": "$(L,see_all)",
+		"AccessoryType": "DisclosureIndicator",
+		"FooterStyle": "Attribute",
+		"AttributeLabel": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/SubItem/SubServiceItemByItemCount.js",
+		"OnPress":  "/SAPAssetManager/Actions/ServiceOrders/ServiceItemsTableViewNav.action",
+		"Visible": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/SubItem/IsSubServiceItemFooterVisible.js"
+	},
+	"EmptySection": {
+		"Caption": "$(L,no_items_available)"
+	},
+	"Header": {
+		"Caption": "$(L, sub_item)"
+	},
+	"_Type": "Section.Type.Extension",
+	"_Name": "ServiceSubItemsTableSection"
+}

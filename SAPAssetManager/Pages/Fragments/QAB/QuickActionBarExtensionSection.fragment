@@ -1,0 +1,21 @@
+{
+    "Module": "extension-QuickActionBarFramework",
+    "Control": "QuickActionBarViewExtension",
+    "Class": "QuickActionBarViewExtension",
+    "Height": "/SAPAssetManager/Rules/QAB/QuickActionBarHeight.js",
+    "ExtensionProperties": {
+        "Chips": [],
+        "OnDataChanged": "/SAPAssetManager/Rules/QAB/QABRedrawExtension.js"
+    },
+    "_Type": "Section.Type.Extension",
+    "_Name": "QuickActionBarExtensionSection",
+    "FooterSeparator": false,
+    "HeaderSeparator": false,
+    "Header": {
+        "UseTopPadding": false
+    },
+    "Footer": {
+        "UseBottomPadding": false
+    },
+    "Visible": true
+}

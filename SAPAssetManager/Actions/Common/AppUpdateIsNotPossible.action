@@ -1,0 +1,7 @@
+{
+	"_Type": "Action.Type.Message",
+	"Title": "$(L, app_update)",
+	"Message": "$(L, app_update_is_not_possible)",
+	"OKCaption": "$(L, ok)",
+	"Animated": true
+}

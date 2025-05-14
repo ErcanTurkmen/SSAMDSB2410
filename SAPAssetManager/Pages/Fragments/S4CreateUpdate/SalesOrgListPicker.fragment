@@ -1,0 +1,30 @@
+{
+   "_Type": "Control.Type.FormCell.ListPicker",
+   "_Name": "SalesOrgLstPkr",
+   "Caption": "$(L,sales_organization_scenario)*",
+   "AllowMultipleSelection": false,
+   "IsPickerDismissedOnSelection": true,
+   "IsSearchCancelledAfterSelection": true,
+   "Search": {
+       "Enabled": true,
+       "Delay": 500,
+       "MinimumCharacterThreshold": 3,
+       "Placeholder": "$(L,search)"
+   },
+   "Value": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderSalesOrgScenarioInitialValue.js",
+   "IsEditable": "/SAPAssetManager/Rules/Common/IsOnCreate.js",
+   "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js",
+   "PickerItems": {
+       "ReturnValue": "{@odata.readLink}",
+       "ObjectCell": {
+           "Title": "{{#Property:SalesOrgShort}}/{{#Property:DistributionChannel}}/{{#Property:Division}}",
+           "Subhead": "{SalesOrgShort}",
+           "Footnote": "{{#Property:DistributionChannel_Nav/#Property:DistributionChannelText}} - {{#Property:Division_Nav/#Property:Description}}"
+       },
+       "Target": {
+           "EntitySet": "S4BPSalesAreas",
+           "Service": "/SAPAssetManager/Services/AssetManager.service",
+           "QueryOptions": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderCreateUpdateControlsQueryOptions.js"
+       }
+   }
+}

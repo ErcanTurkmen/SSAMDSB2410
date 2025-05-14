@@ -1,0 +1,73 @@
+{
+	"Caption": "/SAPAssetManager/Rules/WCM/Approvals/ApprovalsPageCaption.js",
+	"OnReturning": "/SAPAssetManager/Rules/WCM/Approvals/ApprovalsListPageOnReturn.js",
+	"ActionBar": {
+        "Items": [
+            {
+                "Position": "Left",
+                "SystemItem": "Cancel",
+				"Caption": "$(L,cancel)",
+                "OnPress": "/SAPAssetManager/Actions/Page/CancelPage.action"
+            }
+        ]
+    },
+	"Controls": [
+		{
+			"Sections": [
+				{
+                    "ObjectHeader": {
+						"HeadlineText": "/SAPAssetManager/Rules/WCM/Approvals/ApprovalsListHeadlineText.js",
+						"Labels": [
+									{
+										"ImagePosition": "Leading",
+										"Image": "/SAPAssetManager/Rules/WCM/Common/ApprovalStatusIcon.js",
+										"Text": "/SAPAssetManager/Rules/WCM/Common/ApprovalStatusText.js"
+									}
+						]
+                    },
+                    "DataSubscriptions": ["WCMApplications", "WCMApprovalProcesses", "WCMApprovalProcessSegments"],
+                    "_Type": "Section.Type.ObjectHeader",
+                    "_Name": "ApprovalsListViewObjectHeader"
+                },
+				{
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/WCM/Fragments/Approvals/ApprovalsObjectTable.fragment",
+					"Properties": {
+						"_Name": "ReceivedApprovalsListSection",
+						"Header": {
+							"Caption": "$(L,issued)"
+						},
+						"ObjectCell": {
+							"StatusText": "/SAPAssetManager/Rules/WCM/Approvals/ApprovalInfoFormat.js",
+							"SubstatusText": "/SAPAssetManager/Rules/WCM/Approvals/ApprovalInfoFormat.js",
+							"Icons": "/SAPAssetManager/Rules/WCM/Approvals/IssuedApprovalIcons.js"
+						},
+						"Target": "/SAPAssetManager/Rules/WCM/Approvals/ReceivedApprovalsTarget.js"
+					}
+				},
+				{
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/WCM/Fragments/Approvals/ApprovalsObjectTable.fragment",
+					"Properties": {
+						"ObjectCell": {
+							"StatusImage": "/SAPAssetManager/Rules/WCM/Approvals/PendingApprovalStatusImage.js",
+							"Styles": {
+								"Footnote": "MediumPriorityOrange"
+							}
+						},
+						"Header": {
+							"Caption": "$(L,pending)"
+						},
+						"_Name" : "PendingApprovalsListSection",
+						"Target": "/SAPAssetManager/Rules/WCM/Approvals/PendingApprovalsTarget.js"
+					}
+				}
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"DataSubscriptions": ["WCMApprovalProcesses", "WCMApprovalProcessSegments"],
+	"_Name": "ApprovalsListViewPage",
+	"_Type": "Page"
+}

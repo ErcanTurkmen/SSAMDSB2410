@@ -1,0 +1,23 @@
+{
+    "Header": {
+        "UseTopPadding": false
+    },
+    "ObjectCell": {
+        "Title": "/SAPAssetManager/Rules/Classification/ClassDescription.js",
+        "Subhead": "/SAPAssetManager/Rules/Classification/ClassId.js",
+        "AccessoryType": "DisclosureIndicator",
+        "SubstatusText": "/SAPAssetManager/Rules/Classification/ClassTypeDescription.js",
+        "OnPress": "/SAPAssetManager/Actions/Classification/ClassificationDetailsNav.action",
+        "PreserveIconStackSpacing":false
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_classification_available)"
+    },
+    "Target": {
+        "EntitySet": "{{#Property:@odata.readLink}}/Classes",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$expand=ClassDefinition"
+    },    
+    "_Name": "Classification",
+    "_Type": "Section.Type.ObjectTable"
+}

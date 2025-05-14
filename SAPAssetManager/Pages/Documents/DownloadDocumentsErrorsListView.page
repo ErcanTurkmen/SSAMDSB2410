@@ -1,0 +1,67 @@
+{
+	"Caption": "/SAPAssetManager/Rules/Documents/DownloadDocuments/DownloadDocumentsErrorsListViewCaption.js",
+	"ActionBar": {
+        "Items": [
+            {
+                "Position": "Left",
+                "SystemItem": "$(PLT,'','Cancel','','Cancel')",
+				"Text": "$(L, close)",
+				"Caption": "$(L,close)",
+                "OnPress": "/SAPAssetManager/Actions/Page/CancelPage.action"
+            }
+        ]
+    },
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Header": {
+						"UseTopPadding": true
+					},
+					"ObjectCell": {
+						"Title": "/SAPAssetManager/Rules/Documents/DocumentFileName.js",
+						"Subhead": "{errorText}",
+						"PreserveIconStackSpacing": false,
+						"AccessoryType": "DisclosureIndicator",
+						"OnPress": "/SAPAssetManager/Actions/Documents/DownloadDocumentsErrorDetailsNav.action"
+					},
+					"Target": "/SAPAssetManager/Rules/Documents/DownloadDocuments/DownloadDocumentsErrorsTarget.js",
+					"_Type": "Section.Type.ObjectTable"
+				},
+				{
+					"_Type": "Section.Type.ButtonTable",
+                    "Header": {
+                        "UseTopPadding": true
+                    },
+                    "Buttons": [{
+						"_Type": "ButtonTable.Type.Button",
+                        "Title" : "$(L,retry_download)",
+                        "ButtonType": "Text",
+                        "Semantic": "Tint",
+                        "_Name": "RetryDownload",
+                        "TextAlignment": "Center",
+                        "OnPress" : "/SAPAssetManager/Rules/Documents/DownloadDocuments/DownloadDocumentsRetryDownload.js"                      
+                    }],
+					"Visible": "/SAPAssetManager/Rules/Common/IsIOS.js"
+                }
+			],
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"FioriToolbar": {
+        "_Name": "DownloadDocumentsErrorsListViewFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+		"Items": [
+			{
+				"_Name": "RetryDownloadToolbarItem",
+				"_Type": "FioriToolbarItem.Type.Button",
+				"Title": "$(L,retry_download)",
+				"OnPress": "/SAPAssetManager/Rules/Documents/DownloadDocuments/DownloadDocumentsRetryDownload.js"
+			}
+		],
+		"Visible": "/SAPAssetManager/Rules/Common/IsAndroid.js"
+	},
+	"_Name": "DownloadDocumentsErrorsListViewPage",
+	"_Type": "Page"
+}

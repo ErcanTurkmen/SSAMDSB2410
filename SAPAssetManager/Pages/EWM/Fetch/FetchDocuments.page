@@ -1,0 +1,254 @@
+{
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+                "Items": [
+                 {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/CancelButton.fragment",
+                    "Properties": {                  
+                        "OnPress": "/SAPAssetManager/Actions/Page/ClosePage.action"
+                    }
+                },       
+                {
+                "Position": "Right",
+                "Text": "$(L,fetch)",
+                "OnPress": "/SAPAssetManager/Rules/EWM/Search/FetchDocumentsWithActivityIndicator.js"
+                }
+            ]
+        },
+    "Caption":"$(L,fetch_documents)",
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "Controls": [
+						 {
+                            "_Type": "Control.Type.FormCell.ListPicker",
+							 "IsEditable": false,
+                            "_Name": "WarehouseNumberListPicker",
+                            "Caption":"$(L,warehouse)",
+							"Value": "/SAPAssetManager/Rules/EWM/Resource/GetWarehouseNumber.js",
+							 "PickerItems": {
+                                "DisplayValue": "{{#Property:WarehouseNo}} - {{#Property:Description}}",
+                                "ReturnValue": "{WarehouseNo}",
+                                "Target": {
+                                    "EntitySet": "WarehouseNums",
+                                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions": "$orderby=WarehouseNo"
+                                }
+                            }
+
+                        },
+						 {
+                            "AllowEmptySelection": false,
+                            "AllowMultipleSelection": false,
+                            "IsPickerDismissedOnSelection": true,
+                            "Caption": "$(L,document_type_label)",
+                            "PickerItems": "/SAPAssetManager/Rules/EWM/Fetch/GetDocumentTypes.js",
+                            "Value": "/SAPAssetManager/Rules/EWM/Fetch/DefaultDocumentTypes.js",
+                            "_Name": "DocumentTypeListPicker",
+                            "_Type": "Control.Type.FormCell.ListPicker"
+                        }
+					]
+				},
+				{
+					"Controls": [
+					    {
+                            "_Type": "Control.Type.FormCell.SimpleProperty",
+                            "_Name": "WarehouseOrder",
+                            "AlternateInput": "Barcode",
+                            "Caption":"$(L,warehouse_order_number)"	
+                        },
+					    {
+                            "_Name": "QueueListPicker",
+                            "_Type": "Control.Type.FormCell.ListPicker",
+                            "Caption": "$(L,queue)",
+                            "AllowMultipleSelection": false,
+                            "AllowDefaultValueIfOneItem": true,
+                            "IsPickerDismissedOnSelection" : true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "AllowEmptySelection": true,
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 3,
+                                "Placeholder": "$(L,search)",
+                                "BarcodeScanner": true
+                            },
+                            "PickerItems": {
+                                 "ObjectCell": {
+           						 "Title": "{Queue}",
+            					 "Subhead": "{QueueText}",          
+            					 "StatusText": "{WarehouseNo}"
+          						},
+                                "ReturnValue": "{Queue}",
+                                "Target": {
+                                    "EntitySet": "WarehouseOrderQueues",
+                                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions": "$orderby=Queue"
+                                }
+                            }
+                        },
+                        {
+                            "_Name": "ActivityAreaListPicker",
+                            "_Type": "Control.Type.FormCell.ListPicker",
+                            "Caption": "$(L,activity_area)",
+                            "AllowMultipleSelection": false,
+                            "AllowDefaultValueIfOneItem": true,
+                            "IsPickerDismissedOnSelection" : true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "AllowEmptySelection": true,
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 3,
+                                "Placeholder": "$(L,search)",
+                                "BarcodeScanner": true
+                            },
+                            "PickerItems": {
+                                 "ObjectCell": {
+           						 "Title": "{ActivityArea}",
+            					 "Subhead": "{Description}",          
+            					 "StatusText": "{WarehouseNo}"
+          						},
+                                "ReturnValue": "{ActivityArea}",
+                                "Target": {
+                                    "EntitySet": "WarehouseActivityAreas",
+                                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions": "$orderby=ActivityArea"
+                                }
+                            }
+                        },
+                        {
+                            "_Name": "ProcessTypeListPicker",
+                            "_Type": "Control.Type.FormCell.ListPicker",
+                            "Caption": "$(L,warehouse_process_type)",
+                            "AllowMultipleSelection": false,
+                            "AllowDefaultValueIfOneItem": true,
+                            "IsPickerDismissedOnSelection" : true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "AllowEmptySelection": true,
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 3,
+                                "Placeholder": "$(L,search)",
+                                "BarcodeScanner": true
+                            },
+                            "PickerItems": {
+                                 "ObjectCell": {
+           						 "Title": "{WarehouseProcessType}",
+            					 "Subhead": "{WarehouseProcessTypeDescription}",          
+            					 "StatusText": "{WarehouseNo}"
+          						},
+                                "ReturnValue": "{WarehouseProcessType}",
+                                "Target": {
+                                    "EntitySet": "WarehouseProcessTypes",
+                                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions": "$orderby=WarehouseProcessType"
+                                }
+                            }
+                        },
+                        {
+                            "_Name": "CreatedByListPicker",
+                            "_Type": "Control.Type.FormCell.ListPicker",
+                            "Caption": "$(L,ewm_created_by)",
+                            "AllowMultipleSelection": false,
+                            "AllowDefaultValueIfOneItem": true,
+                            "IsPickerDismissedOnSelection" : true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "AllowEmptySelection": true,
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 3,
+                                "Placeholder": "$(L,search)",
+                                "BarcodeScanner": true
+                            },
+                            "PickerItems": {
+                                 "ObjectCell": {
+           						 "Title": "{UserId}",         
+            					 "StatusText": "{UserName}"
+          						},
+                                "ReturnValue": "{UserId}",
+                                "Target": {
+                                    "EntitySet": "SAPUsers",
+                                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions": "$orderby=UserId"
+                                }
+                            }
+                        },        
+                        {
+                            "_Type": "Control.Type.FormCell.Switch",
+                            "_Name": "CreationDateRangeSwitch",
+                            "Caption":"$(L,creation_date)",
+                            "OnValueChange": "/SAPAssetManager/Rules/EWM/Fetch/SetCreationDateRangeVisibility.js",
+                            "Value": false
+                        },
+                        {
+                            "_Type": "Control.Type.FormCell.DatePicker",
+                            "_Name": "CreationStartDate",
+                            "Caption": "$(L,start_date)",
+                            "Mode": "DateTime",
+                            "IsVisible": false
+                        },
+                        {
+                            "_Type": "Control.Type.FormCell.DatePicker",
+                            "_Name": "CreationEndDate",
+                            "Caption": "$(L,end_date)",
+                            "Mode": "DateTime",
+                            "IsVisible": false
+                        },
+                        {
+                            "Caption": "$(L,le_delivery_number)",
+                            "_Name": "DeliveryNumber",
+                            "AlternateInput": "Barcode",
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        },
+                        {
+                            "_Type": "Control.Type.FormCell.Switch",
+                            "_Name": "DateRangeSwitch",
+                            "Caption":"$(L,le_delivery_date)",
+                            "Value": false,
+                            "OnValueChange": "/SAPAssetManager/Rules/EWM/Fetch/SetDateRangeVisibility.js"
+                        },
+                        {
+                            "_Type": "Control.Type.FormCell.DatePicker",
+                            "_Name": "StartDate",
+                            "Caption": "$(L,start_date)",
+                            "Mode": "Date",
+                            "IsVisible": false
+                        },
+                        {
+                            "_Type": "Control.Type.FormCell.DatePicker",
+                            "_Name": "EndDate",
+                            "Caption": "$(L,end_date)",
+                            "Mode": "Date",
+                            "IsVisible": false
+                        }
+                    ]
+                },
+                {
+                    "Controls": [
+                        {
+                            "TextAlignment": "/SAPAssetManager/Rules/Common/Platform/ModalButtonAlign.js",
+                            "ButtonType": "Text",
+                            "Semantic": "Tint",
+                            "Title": "$(L,reset)",
+                            "_Name": "FormCellButton0",
+                            "_Type": "Control.Type.FormCell.Button",
+                            "OnPress": "/SAPAssetManager/Rules/EWM/Fetch/FetchDocumentsResetFields.js",
+                            "Styles": {
+                                "Button": "FetchResetButton"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "_Name": "FormCellContainer",
+            "_Type": "Control.Type.FormCellContainer"
+        }
+    ],
+    "_Type":"Page",
+    "_Name":"EWMFetchDocumentsPage"
+}

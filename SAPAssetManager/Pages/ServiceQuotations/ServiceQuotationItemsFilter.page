@@ -1,0 +1,65 @@
+{
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "Items": "/SAPAssetManager/Pages/Fragments/Filter/FilterActionBarItems.fragment"
+    },
+    "OnLoaded": "/SAPAssetManager/Rules/ServiceQuotations/List/Filter/ServiceQuotationsFilterOnLoaded.js",
+    "Result": "/SAPAssetManager/Rules/ServiceQuotations/List/Filter/ServiceQuotationsFilterResult.js",
+    "Caption":"$(L,filter)",
+    "Controls":[
+        {
+            "Sections":[
+                {
+                    "Controls": [{
+                        "_Type": "Fragment",
+                        "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/SortByFilter.fragment",
+                        "Properties": {
+                            "SortByItems": [
+                                {
+                                    "ReturnValue":"ItemDesc",
+                                    "DisplayValue":"$(L,description)"
+                                },
+                                {
+                                    "ReturnValue":"ObjectID,ItemNo",
+                                    "DisplayValue":"$(L,service_quotation_item_id)"
+                                },
+								{
+                                    "ReturnValue":"QuotationEndDateTime desc",
+                                    "DisplayValue":"$(L,valid_to_date)"
+                                }
+                            ]
+                        }
+                    }]
+                },
+                {
+                    "Controls": [
+                        {
+							"_Type": "Fragment",
+							"Fragment": "/SAPAssetManager/Pages/Fragments/Filter/MobileStatusFilter.fragment",
+							"Properties": {
+								"FilterProperty":"/SAPAssetManager/Rules/ServiceQuotations/List/Filter/ServiceQuotationsMobileStatusFilter.js"
+							}
+            			}
+                    ]
+                },
+                {
+                    "Controls": "/SAPAssetManager/Pages/Fragments/S4ServiceQuotations/ServiceQuotationsValidFromFilterControls.fragment"
+                },
+                {
+                    "Controls": "/SAPAssetManager/Pages/Fragments/S4ServiceQuotations/ServiceQuotationsValidToFilterControls.fragment"
+                }
+            ],
+            "_Name":"FormCellContainer",
+            "_Type":"Control.Type.FormCellContainer"
+        }
+    ],
+    "FioriToolbar": {
+        "_Name": "ServiceOrderFilterFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Items": [
+			"/SAPAssetManager/Pages/Fragments/Filter/ResetFilterToolbarItem.fragment"
+        ]
+    },
+    "_Type":"Page",
+    "_Name":"ServiceQuotationItemsFilterPage"
+}

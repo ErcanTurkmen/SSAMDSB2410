@@ -1,0 +1,26 @@
+{
+	"Caption": "$(L, wcm_involved_parties)",
+	"ActionBar": {
+		"Items": [
+			{
+				"Position": "Left",
+				"SystemItem": "Cancel",
+				"Caption": "$(L,cancel)",
+				"OnPress": "/SAPAssetManager/Actions/Page/ClosePage.action"
+			}
+		]
+	},
+	"Controls": [
+		{
+            "Sections":
+            [{
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/WCM/Fragments/InvolvedPartiesObjectTable.fragment"
+            }],
+            "_Type" : "Control.Type.SectionedTable",
+            "_Name": "SectionedTable"
+        }
+	],
+	"_Name": "InvolvedPartiesModal",
+	"_Type": "Page"
+}

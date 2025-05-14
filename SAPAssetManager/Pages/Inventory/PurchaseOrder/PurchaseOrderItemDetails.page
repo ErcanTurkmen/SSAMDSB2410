@@ -1,0 +1,235 @@
+{
+    "Caption": "/SAPAssetManager/Rules/Inventory/Item/ItemCaption.js",
+    "ActionBar": {
+        "Items": [
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsMaterialDetailsNav.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsSetItemEdit.fragment",
+            "/SAPAssetManager/Pages/Fragments/SyncButton.fragment"        
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "ObjectHeader": {
+                        "HeadlineText": "/SAPAssetManager/Rules/Inventory/Common/GetMaterialName.js",
+                        "Tags": "/SAPAssetManager/Rules/Inventory/Item/ItemTags.js",
+                        "Subhead": "/SAPAssetManager/Rules/Inventory/Item/ItemSubHead.js",
+                        "BodyText": "/SAPAssetManager/Rules/Inventory/Item/ItemBodyText.js",
+                        "Footnote": "/SAPAssetManager/Rules/Inventory/Item/ItemFootnote.js"
+                    },
+                    "_Type": "Section.Type.ObjectHeader",
+                    "_Name": "ObjectHeaderSectionTable"
+                },
+                {
+                   "_Type": "Section.Type.KeyValue",
+                    "_Name": "PurchaseOrderItemDetailsSection0",
+                    "Header": {
+                        "Caption": "$(L,item_details)"
+                    },
+                    "KeyAndValues": [
+                    {
+                        "_Name": "PurchaseOrderId",
+                        "KeyName": "$(L,purchase_order)",
+                        "Value": "$(DV,{PurchaseOrderId},-)"
+                    },
+                    {
+                        "_Name": "ItemNum",
+                        "KeyName": "$(L,item)",
+                        "Value": "$(DV,{ItemNum},-)"
+                    },
+                    {
+                        "_Name": "AcctAssgmtCat",
+                        "KeyName": "$(L,account_assignment_category)",
+                        "Value": "$(DV,{AcctAssgmtCat},-)"
+                    }
+                    ],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js",
+                    "Visible": true,
+                    "DataSubscriptions": ["PurchaseOrderItems"]
+                },
+                {
+                   "_Type": "Section.Type.KeyValue",
+                    "_Name": "PurchaseOrderItemDetailsSection1",
+                    "KeyAndValues": [
+                        {
+                            "_Name": "PlantSLoc",
+                            "KeyName": "$(L,plant_storage_location)",
+                            "Value": "$(DV,{PLantSLoc},-)"
+                        },
+                        {
+                            "_Name": "StorageBin",
+                            "KeyName": "$(L,storage_bin)",
+                            "Value": "$(DV,{StorageBin},-)"
+                        },
+                        {
+                            "_Name": "Material",
+                            "KeyName": "$(L,material)",
+                            "Value": "$(DV,{Material},-)"
+                        },
+                        {
+                            "_Name": "ItemTextText",
+                            "KeyName": "$(L, item_text_text)",
+                            "Value": "$(DV,{ItemText},-)"
+                        },
+                        {
+                            "_Name": "SupplierMaterialNum",
+							"KeyName": "$(L,vendor_material_number)",
+                            "Value": "$(DV,{SupplierMaterialNum},-)"
+                        },
+                        {
+                            "_Name": "Batch",
+                            "KeyName": "$(L,batch)",
+                            "Value": "$(DV,{Batch},-)"
+                        },
+                        {
+                            "_Name": "ValuationType",
+                            "KeyName": "$(L,valuation_type)",
+                            "Value": "$(DV,{ValuationType},-)"
+                        }
+                    ],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js",
+                    "Visible": true,
+                    "DataSubscriptions": ["PurchaseOrderItems"]
+                },         
+                {
+                   "_Type": "Section.Type.KeyValue",
+                    "_Name": "PurchaseOrderItemDetailsSection2",
+                    "KeyAndValues": [
+                        {
+                            "_Name": "OpenQuantity",
+                            "KeyName": "$(L,open_quantity)",
+                            "Value": "$(DV,{OpenQuantity},-)"
+                        },
+                        {
+                            "_Name": "OpenQtyValBlocked",
+                            "KeyName": "$(L,open_quantity_val_blocked)",
+                            "Value": "$(DV,{OpenQtyValBlocked},-)"
+                        },
+                        {
+                            "_Name": "OrderUOM",
+                            "KeyName": "$(L,quantity)",
+                            "Value": "$(DV,{OrderUOM},-)"
+                        },
+                        {
+                            "_Name": "OverDeliveryTol",
+                            "KeyName": "$(L,overdel_tol)",
+                            "Value": "$(DV,{OverDeliveryTolerance},-)"
+                        },
+                        {
+                            "_Name": "UnderDeliveryTol",
+                            "KeyName": "$(L,underdel_tol)",
+                            "Value": "$(DV,{UnderDeliveryTolerance},-)"
+                        },
+                        {
+                            "_Name": "UnlimitedTol",
+                            "KeyName": "$(L,unlimited_tol)",
+                            "Value": "$(DV,{UnlimitedTol},-)"
+                        }
+                    ],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js",
+                    "Visible": true,
+                    "DataSubscriptions": ["PurchaseOrderItems"]
+                },         
+                {
+                   "_Type": "Section.Type.KeyValue",
+                    "_Name": "PurchaseOrderItemDetailsSection3",
+                    "KeyAndValues": [
+                       {
+                            "_Name": "GoodsReceipient",
+                            "KeyName": "$(L,goods_recipient)",
+                            "Value": "$(DV,{GoodsReceipient},-)"
+                        },
+                        {
+                            "_Name": "UnloadingPoint",
+                            "KeyName": "$(L,unloading_point)",
+                            "Value": "$(DV,{UnloadingPoint},-)"
+                        },
+                        {
+                            "_Name": "FinalIssue",
+                            "KeyName": "$(L, final_issue)",
+							"Value": "$(DV, '/SAPAssetManager/Rules/Inventory/MaterialDocumentItem/FinalIssueFieldMDI.js', '-')"
+                        }
+                    ],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js",
+                    "Visible": true,
+                    "DataSubscriptions": ["PurchaseOrderItems"]
+                },         
+                {
+                   "_Type": "Section.Type.KeyValue",
+                    "_Name": "PurchaseOrderItemDetailsSection4",
+                    "KeyAndValues": [
+                        {
+                            "_Name": "GLAccount",
+                            "KeyName": "$(L,gl_account)",
+                            "Value": "$(DV,{GLAccount},-)"
+                        },
+                        {
+                            "_Name": "CostCenter",
+                            "KeyName": "$(L,cost_center)",
+                            "Value": "$(DV,{CostCenter},-)"
+                        },
+                        {
+                            "_Name": "Order",
+                            "KeyName": "$(L,reservation_item_order)",
+                            "Value": "$(DV,{Order},-)"
+                        },
+                        {
+                            "_Name": "WBSElement",
+                            "KeyName": "$(L,reservation_item_wbs_element)",
+                            "Value": "$(DV,{WBSElement},-)"
+                        },
+                        {
+                            "_Name": "Network_NetworkActivity",
+                            "KeyName": "$(L,reservation_item_network)/$(L,activity)",
+                            "Value": "$(DV,{Network},-)/$(DV,{NetworkActivity},-)"
+                        },
+                        {
+                            "_Name": "CRofOrigin",
+                            "KeyName": "$(L, po_item_detail_co_origin)",
+                            "Value": "$(DV,{CRofOrigin},-)"
+                        },
+                        {
+                            "_Name": "RemShelfLife",
+                            "KeyName": "$(L, po_item_detail_shelf_life)",
+                            "Value": "$(DV,{RemShelfLife},-)"
+                        }
+                    ],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js",
+                    "Visible": true,
+                    "DataSubscriptions": ["PurchaseOrderItems"]
+                },         
+                {
+                   "_Type": "Section.Type.KeyValue",
+                    "_Name": "PurchaseOrderItemDetailsSection5",
+                    "KeyAndValues": [
+                        {
+                            "_Name": "note",
+                            "KeyName": "$(L,note)",
+                            "Value": "{LongText}"
+                        }
+                    ],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js",
+                    "Visible": true,
+                    "DataSubscriptions": ["PurchaseOrderItems"]
+                },
+                "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsSerialNumbers.fragment",
+                "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsMaterialDataTable.fragment"
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable"
+        }
+    ],
+    "ToolBar": {
+        "Controls":[
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsPreviousItem.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/FlexibleSpaceToolBar.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsDiscard.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/FlexibleSpaceToolBar.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsNextItem.fragment"
+        ]
+    },
+    "OnReturning": "/SAPAssetManager/Rules/Inventory/Item/ItemPageOnReturning.js",
+    "_Name": "PurchaseOrderItemDetailsPage",
+    "_Type": "Page"
+}

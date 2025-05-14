@@ -1,0 +1,33 @@
+{
+    "_Type": "Section.Type.ObjectTable",
+    "_Name": "ParentItem",
+    "Header": {
+        "UseTopPadding": true,
+        "Caption": "$(L,parent_item)"
+    },
+    "EmptySection": {
+        "Caption": "$(L, no_parent_item_available)"
+    },
+    "ObjectCell": {
+        "DetailImage": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemDetailImage.js",
+        "Icons": "/SAPAssetManager/Rules/ServiceOrders/ListView/ServiceOrderListViewIconImages.js",
+        "Title": "{ItemDesc}",
+        "Subhead": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemSubheadText.js",
+        "AccessoryType": "DisclosureIndicator",
+        "Description": "/SAPAssetManager/Rules/ServiceOrders/Details/ServiceItemProductIdValue.js",
+        "Footnote": "/SAPAssetManager/Rules/DateTime/ServiceDueByDate.js",
+        "StatusText": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemTypeText.js",
+        "SubstatusText": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemStatusText.js",
+        "OnPress": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemDetailsNav.js",
+        "PreserveIconStackSpacing": true
+    },
+    "Target": {
+        "EntitySet": "S4ServiceItems",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ParentItem/ParentServiceItemQueryOptions.js"
+    },
+    "DataSubscriptions": [
+        "S4ServiceItems",
+        "PMMobileStatuses"
+    ]
+}

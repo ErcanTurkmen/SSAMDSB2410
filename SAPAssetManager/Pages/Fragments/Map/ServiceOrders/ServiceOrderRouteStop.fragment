@@ -1,0 +1,89 @@
+{
+    "Type": "RouteStop",
+    "Title": "$(L,fow_dl_service_orders)",
+    "Legend": "ServiceOrder",
+    "Target": {
+        "EntitySet": "MyWorkOrderHeaders",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$expand=WOGeometries/Geometry,OrderMobileStatus_Nav,MarkedJob",
+        "Properties": [],
+        "KeyProperties": []
+    },
+    "Enable": true,
+    "ObjectScheme": {
+        "Geometry": "/SAPAssetManager/Rules/Maps/AddressMapValue.js",
+        "Layer": "RouteStop",
+        "Properties": {
+            "ID": "{OrderId}",
+            "Priority": "{Priority}",
+            "Title": "/SAPAssetManager/Rules/WorkOrders/WorkOrderDescription.js",
+            "Subhead": "$(L,order_x,{OrderId})",
+            "SubstatusText": "/SAPAssetManager/Rules/Maps/PrioritySubstatusText.js",
+            "StatusImage": "/SAPAssetManager/Rules/Maps/PriorityBadge.js",
+            "Tags": [
+                "{OrderType}",
+                "/SAPAssetManager/Rules/Maps/MapWorkOrderStatus.js",
+                "/SAPAssetManager/Rules/Maps/MapWorkOrderDueDate.js"
+            ],
+            "BodyText": "/SAPAssetManager/Rules/Maps/MapWorkOrderWorkCenter.js",
+            "Footnote": "/SAPAssetManager/Rules/Maps/MapWorkOrderAddress.js",
+            "DateProperties": {
+                "DueDate": "{DueDate}",
+                "DateFormat": "yyyy-MM-dd"
+            },
+            "Directions": {
+                "Enabled": "/SAPAssetManager/Rules/Maps/DirectionsButton/IsDirectionsButtonEnabled.js",
+                "ButtonText": "$(L, map_info_panel_directions)"
+            }
+        },
+        "Actions": [
+            {
+                "Title": "$(L, add_service_order)",
+                "Icon": "ActionAdd",
+                "Type": "Create",
+                "IsVisible": "/SAPAssetManager/Rules/UserAuthorizations/WorkOrders/EnableWorkOrderCreate.js",
+                "CallbackInfo": {
+                    "Action": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/WorkOrderCreateNav.js",
+                    "Target": {
+                        "EntitySet": "MyWorkOrderHeaders",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "Properties": [],
+                        "KeyProperties": []
+                    }
+                }
+            },
+            {
+                "Title": "$(L, edit_service_order)",
+                "Icon": "ActionEdit",
+                "Type": "Update",
+                "IsVisible": "/SAPAssetManager/Rules/UserAuthorizations/WorkOrders/EnableWorkOrderEdit.js",
+                "CallbackInfo": {
+                    "Action": "/SAPAssetManager/Rules/WorkOrders/WorkOrderUpdateNav.js",
+                    "Target": {
+                        "EntitySet": "MyWorkOrderHeaders",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "$expand=Operations/OperationLongText,Equipment,FunctionalLocation,HeaderLongText,OrderMobileStatus_Nav,WODocuments&$filter=OrderId eq '{OrderId}'",
+                        "Properties": [],
+                        "KeyProperties": []
+                    }
+                }
+            },
+            {
+                "Title": "$(L,favorite)",
+                "Icon": "/SAPAssetManager/Rules/Maps/MarkFavoriteAction/Icon.js",
+                "Type": "Update",
+                "CallbackInfo": {
+                    "Action": "/SAPAssetManager/Rules/Maps/MarkFavoriteAction/UpdateIsMarked.js",
+                    "Target": {
+                        "EntitySet": "MyWorkOrderHeaders",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "$expand=MarkedJob&$filter=OrderId eq '{OrderId}'",
+                        "Properties": [],
+                        "KeyProperties": []
+                    }
+                }
+            }
+        ],
+        "Symbol": "/SAPAssetManager/Pages/Fragments/Map/WorkOrders/WorkOrderSymbol.fragment"
+    }
+}

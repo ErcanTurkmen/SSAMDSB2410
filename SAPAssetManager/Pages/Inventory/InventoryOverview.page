@@ -1,0 +1,67 @@
+{
+	"Caption": "$(L,app_display_name)",
+	"ActionBar": {
+		"Items": [
+			{
+				"Position": "Right",
+				"Icon":"$(PLT,/SAPAssetManager/Images/fetch.png,/SAPAssetManager/Images/fetch.android.png)",
+				"OnPress": "/SAPAssetManager/Actions/Inventory/Fetch/FetchDocuments.action",
+				"Visible": "/SAPAssetManager/Rules/Common/IsDemoModeDisabled.js"
+			},
+			{
+				"Position": "Right",
+				"SystemItem": "Add",
+				"Caption": "$(L,add)",
+				"OnPress": "/SAPAssetManager/Actions/Inventory/CreateUpdateDelete/CreateDocumentPopover.action"
+			},
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment",
+			{
+				"Position": "Right",
+				"_Name": "AutoSync",
+				"Caption": "$(L,sync)",
+				"IconText": "SyncIcon",
+				"Icon": "$(PLT, /SAPAssetManager/Images/auto-sync.pdf, /SAPAssetManager/Images/auto-sync.android.png, '',  /SAPAssetManager/Images/auto-sync.windows.png)",
+				"OnPress": "/SAPAssetManager/Rules/ApplicationEvents/ApplicationOnSync.js",
+				"Visible": "/SAPAssetManager/Rules/Sync/IsAutoSyncInProgress.js"
+			}
+		]
+	},
+	"Controls": [
+		{
+          "Sections": [
+                {
+				 "ObjectHeader": {
+                        "HeadlineText": "/SAPAssetManager/Rules/Inventory/Fetch/InventoryPlantCaption.js"
+                    },
+                    "_Name": "SectionObjectHeader0",
+                    "_Type": "Section.Type.ObjectHeader"  
+                }
+            ],
+            "_Name": "SectionedTable",   
+            "_Type": "Control.Type.SectionedTable"
+		},
+		{
+			"Items": [{
+				"_Name": "AllDocumentsListTab",
+				"Caption": "$(L, all_documents_label)",
+				"PageToOpen" : "/SAPAssetManager/Pages/Inventory/InboundOutbound/InboundOutboundList.page",
+				"_Type": "Control.Type.TabItem"
+			},
+			{ 
+				"_Name": "RecentListTab", 
+				"OnPress": "/SAPAssetManager/Rules/Inventory/MaterialDocument/RefreshPage.js",
+				"Caption": "$(L,overview_recent)",
+				"PageToOpen" : "/SAPAssetManager/Pages/Inventory/MaterialDocument/MaterialDocumentRecentList.page", 
+				"_Type": "Control.Type.TabItem"
+			}],
+			"Position": "Top",
+			"PreloadTabs": [2],
+			"_Type": "Control.Type.Tabs",
+			"_Name": "TabsControl"
+  		}
+	],
+	"OnLoaded": "/SAPAssetManager/Rules/Inventory/Overview/RefreshOverviewPage.js",
+	"OnReturning": "/SAPAssetManager/Rules/Inventory/Overview/RefreshAllTabsOverviewPage.js",
+	"_Name": "InventoryOverview",
+	"_Type": "Page"
+}

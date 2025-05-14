@@ -1,0 +1,22 @@
+{
+    "Header": {
+        "Caption": "$(L,service_order)"
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_order_available)"
+    },
+    "ObjectCell": {
+        "AccessoryType": "DisclosureIndicator",
+        "Title": "{Description}",
+        "Footnote": "/SAPAssetManager/Rules/DateTime/DueDate.js",
+        "PreserveIconStackSpacing": false,
+        "Subhead": "{ObjectID}",
+        "OnPress": "/SAPAssetManager/Rules/ServiceOrders/ListView/ServiceOrderDetailsNav.js"
+    },
+    "Target": {
+        "EntitySet": "{{#Property:@odata.readLink}}/S4ServiceOrder_Nav",
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "_Type": "Section.Type.ObjectTable",
+    "_Name": "ServiceOrdersListSection"
+}

@@ -1,0 +1,74 @@
+{
+    "Caption": "$(L,edit_note)",
+    "OnLoaded": "/SAPAssetManager/Rules/Notes/NoteOnLoad.js",
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "_Name": "NoteUpdate",
+        "Items": [
+            {
+                "Position": "Right",
+                "_Name": "Done",
+                "SystemItem": "$(PLT,'Done','','','Done')",
+                "Text": "/SAPAssetManager/Rules/Common/Platform/DoneText.js",
+                "OnPress": "/SAPAssetManager/Rules/Notes/Update/NoteUpdateOnCommit.js"
+            },
+            {
+                "Position": "Left",
+                "_Name": "Cancel",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)",
+                "Visible": "/SAPAssetManager/Rules/WorkOrders/Complete/IsNotCompleteAction.js",
+                "OnPress": "/SAPAssetManager/Actions/Page/ClosePage.action"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "Header": {
+                        "Caption" : "/SAPAssetManager/Rules/Notes/NoteCreateUpdateSectionCaption.js",
+                        "UseTopPadding":  "/SAPAssetManager/Rules/ServiceOrders/IsS4ServiceIntegrationNotEnabled.js"
+                    },
+                    "Controls": [
+                        {
+                            "_Type": "Fragment",
+                            "Fragment": "/SAPAssetManager/Pages/Notes/NoteTypeControl.fragment"
+                        },
+                        {
+                            "Caption" : "$(PLT,'',/SAPAssetManager/Rules/Notes/NoteCreateUpdateSectionCaption.js)",
+                            "Value": "/SAPAssetManager/Rules/Notes/Update/NoteUpdateLocalText.js",
+                            "_Name": "LongTextNote",
+                            "_Type": "Control.Type.FormCell.Note",
+                            "IsEditable": true,
+                            "IsAutoResizing": true
+                        }
+                    ],
+                    "_Type": "Section.Type.FormCell"
+                },
+                {
+                    "Controls": [
+                        {
+                            "IsVisible": "/SAPAssetManager/Rules/Notes/Update/IsNoteUpdateDiscardButtonVisible.js",
+                            "Title": "/SAPAssetManager/Rules/Notes/Update/NoteDiscardButtonTitle.js",
+                            "OnPress": "/SAPAssetManager/Rules/Notes/Delete/DiscardNoteAction.js",
+                            "_Type": "Control.Type.FormCell.Button",
+                            "ButtonType": "Text",
+                            "Semantic": "Tint",
+                            "_Name": "DiscardButton",
+                            "Styles": {
+                                "Value": "ObjectCellStyleRed"
+                            },
+                            "TextAlignment": "/SAPAssetManager/Rules/Common/Platform/ModalButtonAlign.js"
+                        }
+                    ],
+                    "_Type": "Section.Type.FormCell"
+                }
+            ],
+            "_Name": "FormCellContainer",
+            "_Type": "Control.Type.SectionedTable"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "NoteUpdate"
+}

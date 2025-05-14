@@ -1,0 +1,27 @@
+{
+    "Type": "Job",
+    "Title": "$(L,workorders)",
+    "Legend": "IconWorkOrder",
+    "Target": {
+        "EntitySet": "MyWorkOrderHeaders",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$expand=WOGeometries/Geometry,OrderMobileStatus_Nav,MarkedJob&$filter=WOGeometries/any(wg:sap.entityexists(wg/Geometry))&$top=10",
+        "Properties": [],
+        "KeyProperties": []
+    },
+    "Enable": true,
+    "ObjectScheme": {
+        "Geometry": "WOGeometries/Geometry/GeometryValue",
+        "Layer": "Job",
+        "Properties": {
+            "ID": "{OrderId}"
+        },
+        "Actions": [],
+        "Symbol": {
+            "marker": "/SAPAssetManager/Rules/Maps/Icons/WorkOrderIcon.js",
+            "lineColor": "0070F2",
+            "fillColor": "0070F233",
+            "lineWidth": 2
+        }
+    }
+}

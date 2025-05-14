@@ -1,0 +1,7 @@
+{
+	"_Type": "Action.Type.Message",
+	"Message": "$(L, issue_item_confirmation_text)",
+	"Title": "$(L, issue_approval)",
+	"OKCaption": "$(L, continue_text)",
+	"CancelCaption": "$(L, cancel)"
+}

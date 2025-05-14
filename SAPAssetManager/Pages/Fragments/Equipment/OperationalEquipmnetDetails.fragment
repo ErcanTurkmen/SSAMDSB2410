@@ -1,0 +1,60 @@
+{
+    "_Type": "Section.Type.KeyValue",
+    "_Name": "OperationalEquipmentDetailsKeyValueTable",
+    "Visible": "/SAPAssetManager/Rules/Equipment/OperationalData/IsEquipmentOperationalDataSectionVisible.js",
+    "Header": {
+        "Caption": "$(L,operational_equipment_details)"
+    },
+    "KeyAndValues": [
+        {
+            "_Name": "MyEquipOpData.Owner",
+            "KeyName": "$(L,owner)",
+            "Value": "/SAPAssetManager/Rules/Equipment/OperationalData/OperationalDataOwner.js"
+        },
+        {
+            "_Name": "MyEquipOpData.Utilizer",
+            "KeyName": "$(L,utilizer)",
+            "Value": "/SAPAssetManager/Rules/Equipment/OperationalData/OperationalDataUtilizer.js"
+        },
+        {
+            "_Name": "MyEquipOpData.TailId",
+            "KeyName": "$(L,tail_id)",
+            "Value": "/SAPAssetManager/Rules/Equipment/OperationalData/OperationalDataTailId.js"
+        },
+        {
+            "_Name": "MyEquipOpData.SiteDescription",
+            "KeyName": "$(L,site)",
+            "Value": "/SAPAssetManager/Rules/Equipment/OperationalData/OperationalDataSite.js"
+        },
+        {
+            "_Name": "MyEquipOpData.FMPO",
+            "KeyName": "$(L,fmpo)",
+            "Value": "/SAPAssetManager/Rules/Equipment/OperationalData/OperationalDataForce.js"
+        },
+        {
+            "_Name": "MyEquipOpData.RIC",
+            "KeyName": "$(L,ric)",
+            "Value": "/SAPAssetManager/Rules/Equipment/OperationalData/OperationalDataRic.js"
+        },
+        {
+            "_Name": "MyEquipOpData.ModelId",
+            "KeyName": "$(L,model_id)",
+            "Value": "/SAPAssetManager/Rules/Equipment/OperationalData/OperationalDataModelId.js"
+        }, 
+        {
+            "_Name": "MyEquipOpData.Remark",
+            "KeyName": "$(L,remark)",
+            "Value": "/SAPAssetManager/Rules/Equipment/OperationalData/OperationalDataRemark.js"
+        },
+        {
+            "_Name": "MyEquipOpData.Setup",
+            "KeyName": "$(L,actl_config_code)",
+            "Value": "/SAPAssetManager/Rules/Equipment/OperationalData/OperationalDataSetup.js"
+        }
+    ],
+    "Target": {
+        "EntitySet": "{@odata.readLink}",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "/SAPAssetManager/Rules/Equipment/OperationalData/OperationalDataQueryOptions.js"
+    }
+}

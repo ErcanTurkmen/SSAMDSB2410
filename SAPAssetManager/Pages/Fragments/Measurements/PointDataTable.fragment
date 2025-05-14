@@ -1,0 +1,71 @@
+{
+    "Header": {
+        "DataTable": {
+            "Items": [
+                {
+                    "Text": "",
+                    "Style": "GridTableHeaderText",
+                    "TextAlignment": "Center"
+                },
+                {
+                    "Text": "$(L, valuation_code)",
+                    "TextAlignment": "Center",
+                    "Style": "GridTableHeaderText"
+                },
+                {
+                    "Text": "$(L, date)",
+                    "TextAlignment": "Center",
+                    "Style": "GridTableHeaderText"
+                },
+                {
+                    "Text": "$(L, time)",
+                    "TextAlignment": "Center",
+                    "Style": "GridTableHeaderText"
+                }
+            ]
+        }
+    },
+    "Row": {
+        "Layout": {
+            "ColumnWidth": [100,200,200,-1]
+        },
+        "Items": [
+            {
+                "Image": "/SAPAssetManager/Rules/Common/DataTableSyncIcon.js",
+                "TextAlignment": "Center"
+            },
+            {
+                "Text": "/SAPAssetManager/Rules/Measurements/ValuationCode.js",
+                "Style": "GridTableRowText",
+                "TextAlignment": "Center"
+            },
+            {
+                "Text": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointHistoryReadingDate.js",
+                "TextAlignment": "Center",
+                "Style": "GridTableRowText"
+            },
+            {
+                "Text": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointHistoryReadingTime.js",
+                "Style": "GridTableRowText",
+                "TextAlignment": "Center"
+            }
+        ],
+        "AccessoryType": "DisclosureIndicator",
+        "OnPress": "/SAPAssetManager/Actions/Measurements/MeasurementDocumentDetailsNav.action"
+    },
+    "Target": {
+        "EntitySet": "MeasurementDocuments",
+        "QueryOptions": "/SAPAssetManager/Rules/Measurements/Document/MeasurementDocsQueryOptions.js",
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "Footer": {
+        "Caption": "$(L,see_all_data)",
+        "AccessoryType": "DisclosureIndicator",
+        "FooterStyle": "Attribute",
+        "AttributeLabel": "/SAPAssetManager/Rules/Measurements/Document/MeasurementDocsCount.js",
+        "OnPress":"/SAPAssetManager/Rules/Measurements/Points/MeasuringPointHistoryListViewNav.js"
+    },
+    "_Type": "Section.Type.DataTable",
+    "StickyColumn": false,
+    "_Name": "MeasurementDocumentsList"
+}

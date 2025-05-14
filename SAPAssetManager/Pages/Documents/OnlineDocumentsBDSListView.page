@@ -1,0 +1,31 @@
+{
+	"Caption": "/SAPAssetManager/Rules/Documents/OnlineDocumentListViewCaption.js",
+	"Controls":
+	[{
+		"Sections":
+		[{
+			"_Type": "Fragment",
+			"Fragment": "/SAPAssetManager/Pages/Fragments/Documents/DocumentObjectTable.fragment",
+			"Properties": {
+				"Search": {
+					"Enabled" : false
+				},
+				"ObjectCell": {
+					"ProgressIndicator": "open",
+                    "OnAccessoryButtonPress": "/SAPAssetManager/Rules/Documents/OpenOnlineDocument.js"
+				},
+				"Target": {
+					"Service" : "/SAPAssetManager/Services/OnlineAssetManager.service",
+					"QueryOptions": ""
+				}
+			}
+		}],
+		"_Type" : "Control.Type.SectionedTable",
+		"_Name": "SectionedTable",
+		"LoadingIndicator": {
+			"Enabled": true
+		}
+	}],
+	"_Type": "Page",
+	"_Name": "OnlineDocumentsListView"
+}

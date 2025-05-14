@@ -1,0 +1,10 @@
+{
+    "_Type": "Control.Type.ObjectCell",        
+    "AccessoryType": "DisclosureIndicator",
+    "Title": "#Property:EquipDesc",
+    "OnPress": "/SAPAssetManager/Rules/Equipment/EquipmentDetailsNav.js",
+    "PreserveIconStackSpacing": false,
+    "Subhead": "#Property:EquipId",
+    "StatusText": "#Property:ObjectStatus_Nav/#Property:SystemStatus_Nav/#Property:StatusText",
+    "Description": "/SAPAssetManager/Rules/Equipment/EquipmentTechnicalObjectId.js"
+}

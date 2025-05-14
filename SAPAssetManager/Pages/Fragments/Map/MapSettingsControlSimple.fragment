@@ -1,0 +1,27 @@
+{
+    "Title": "$(L, settings)",
+    "CloseActionTitle": "$(L, map_settings_close)",
+    "BasemapsTitle": "$(L,bm_title)",
+    "FeatureLayersTitle": "$(L, fl_title)",
+    "DynamicLayersTitle": "$(L, dl_title)",
+    "NearMe": {
+        "DistanceTitle": "$(L, map_nearme_dist_title)",
+        "UnitsTitle": "$(L, map_nearme_unit_title)",
+        "Distances": [
+            0.5,
+            1.0,
+            2.0,
+            5.0
+        ],
+        "Units": [
+            {
+                "Value": "Mi",
+                "Display": "$(L, map_nearme_mi)"
+            },
+            {
+                "Value": "Km",
+                "Display": "$(L, map_nearme_km)"
+            }
+        ]
+    }
+}

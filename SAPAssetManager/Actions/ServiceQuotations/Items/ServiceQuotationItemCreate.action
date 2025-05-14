@@ -1,0 +1,48 @@
+{
+    "_Type": "Action.Type.ODataService.CreateEntity",
+    "Target": {
+        "EntitySet": "S4ServiceQuotationItems",
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "Properties": {
+        "ObjectID": "/SAPAssetManager/Rules/ServiceQuotations/Items/CreateUpdate/Data/GetServiceQuotationLocalID.js", 
+        "ItemNo": "/SAPAssetManager/Rules/ServiceQuotations/Items/CreateUpdate/Data/GetServiceQuotationItemLocalID.js",
+        "ItemObjectType": "/SAPAssetManager/Rules/ServiceQuotations/Items/CreateUpdate/Data/GetServiceQuotationItemType.js",
+        "ItemDesc": "#Control:DescriptionNote/#Value",
+        "ValuationType": "#Control:ValuationTypeLstPkr/#SelectedValue",
+        "AccountingInd": "#Control:AccountIndicatorLstPkr/#SelectedValue",
+        "ProductID": "#Control:ProductIdLstPkr/#SelectedValue",
+        "ItemCategory": "#Control:ItemCategoryLstPkr/#SelectedValue",
+        "ContractID": "#Control:ServiceContractLstPkr/#SelectedValue",
+        "RequestedStart": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/Data/GetServiceItemRequstedStartDate.js",
+        "ObjectType": "/SAPAssetManager/Rules/ServiceOrders/ServiceOrderObjectType.js",
+        "ServiceType": "#Control:ServiceTypeLstPkr/#SelectedValue", 
+        "DurationUOM": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/Data/GetServiceItemDurationUOM.js",
+        "Duration": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/Data/GetServiceItemDuration.js",
+        "QuantityUOM": "#Control:UomSimple/#Value",
+        "Quantity": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/Data/GetServiceItemQunatity.js",
+        "QuotationEndDateTime": "#Control:ValidToDateTimePkr/#Value",
+        "QuotationStartDateTime": "#Control:ValidFromDateTimePkr/#Value",
+        "HigherLvlItem":  "/SAPAssetManager/Rules/ServiceQuotations/Items/CreateUpdate/Data/GetServiceQuotationParentItem.js"
+    },
+    "Headers": {
+        "OfflineOData.RemoveAfterUpload": "true",
+        "OfflineOData.TransactionID": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationLocalID.js"
+    },
+    "CreateLinks": [
+		{
+			"Property": "S4ServiceQuotation_Nav",
+			"Target": {
+				"EntitySet": "S4ServiceQuotations",
+				"ReadLink": "/SAPAssetManager/Rules/ServiceQuotations/Items/CreateUpdate/Data/GetServiceQuotationItemParentLink.js"
+			}
+		}
+    ],
+    "OnSuccess": "/SAPAssetManager/Rules/ServiceQuotations/Items/CreateUpdate/Data/StoreCreatedServiceQuotationItem.js",
+    "OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/CreateEntityFailureMessage.action",
+    "ShowActivityIndicator": true,
+    "ActivityIndicatorText" : "  ",
+    "ActionResult": {
+        "_Name": "ServiceQuotationItem"
+    }
+}

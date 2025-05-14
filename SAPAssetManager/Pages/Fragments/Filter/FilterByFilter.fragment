@@ -1,0 +1,10 @@
+{
+    "AllowMultipleSelection": true,
+    "AllowEmptySelection": true,
+    "IsEditable": true,
+    "Caption": "$(L,filter_by)",
+    "FilterProperty": "",
+    "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js",
+    "_Name": "FilterBy",
+    "_Type": "Control.Type.FormCell.Filter"
+}

@@ -1,0 +1,344 @@
+{
+	"OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "Items": [
+            {
+                "OnPress": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/CloseBulkIssueOrReceipt.js",
+                "Position": "Left",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)"
+            },
+            {
+                "Position": "Right",
+                "Text": "$(L, next)",
+                "OnPress": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/BulkIssueOrReceiptPostWrapper.js"
+            }
+        ]
+    },
+	"Caption": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/GetBulkIssueOrReceiptGenericPageCaption.js",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Header": {"UseTopPadding": false},
+					"Controls": [
+						{
+                            "AllowEmptySelection": false,
+                            "AllowMultipleSelection": false,
+                            "IsPickerDismissedOnSelection": true,
+                            "AllowDefaultValueIfOneItem": true,
+							"IsEditable": true,
+                            "Caption": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/GetMovementTypeMandatoryCaption.js",
+                            "PickerItems": {
+                                "DisplayValue": "{{#Property:MovementType}} - {{#Property:MovementTypeDesc}}",
+                                "ReturnValue": "{MovementType}",
+                                "Target": {
+                                    "EntitySet": "MovementTypes",
+                                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/MovementTypeQueryOptions.js"
+                                }
+                            },
+                            "PickerPrompt": "$(L,select_single_item)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/GetMovementType.js",
+							"OnValueChange": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/OnMovementTypeValueChanged.js",
+                            "_Name": "MovementTypePicker",
+                            "_Type": "Control.Type.FormCell.ListPicker"
+                        },
+						{
+                            "AllowEmptySelection": true,
+                            "AllowMultipleSelection": false,
+                            "IsPickerDismissedOnSelection": true,
+                            "AllowDefaultValueIfOneItem": false,
+                            "Caption": "$(L,special_stock_indicator)",
+                            "IsEditable": true,
+                            "IsSelectedSectionEnabled": false,
+                            "PickerItems": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/SpecialStockListPickerItems.js",
+                            "PickerPrompt": "$(L,select_single_item)",
+                            "OnValueChange": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/OnSpecialStockIndValueChanged.js",
+                            "IsVisible": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/IsSpecialStockIndVisible.js",
+                            "_Name": "SpecialStockIndicatorPicker",
+                            "_Type": "Control.Type.FormCell.ListPicker"
+                        },
+						{
+                            "Caption": "$(L,delivery_note_ref_doc)",
+                            "KeyboardType": "Default",
+                            "OnValueChange": "/SAPAssetManager/Rules/Inventory/Validation/DeliveryNoteValidateLength.js",
+                            "_Name": "DeliveryNoteSimple",
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        },
+						{
+                            "Caption": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/GetPostingDateCaption.js",
+                            "DateTimeEntryMode": "date",
+                            "Mode": "Date",
+                            "_Type": "Control.Type.FormCell.DatePicker",
+                            "_Name": "PostingDate"
+                        }
+					]
+				},
+				{
+					"Controls": [
+						{
+                            "AllowEmptySelection": true,
+                            "AllowMultipleSelection": false,
+                            "IsPickerDismissedOnSelection": true,
+                            "AllowDefaultValueIfOneItem": true,
+                            "Caption": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/PlantFromLabel.js",
+                            "IsEditable": false,
+                            "IsSelectedSectionEnabled": false,
+                            "PickerItems": {
+                                "DisplayValue": "{{#Property:Plant}} - {{#Property:PlantDescription}}",
+                                "ReturnValue": "{Plant}",
+                                "Target": {
+                                    "EntitySet": "Plants",
+                                    "Service": "/SAPAssetManager/Services/AssetManager.service"
+                                }
+                            },
+                            "PickerPrompt": "$(L,select_single_item)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/GetPlantName.js",
+                            "_Name": "PlantSimple",
+                            "_Type": "Control.Type.FormCell.ListPicker"
+                        },
+                        {
+                            "AllowEmptySelection": true,
+                            "AllowMultipleSelection": false,
+                            "IsPickerDismissedOnSelection": true,
+                            "AllowDefaultValueIfOneItem": true,
+                            "Caption": "$(L,storage_location)",
+                            "IsSelectedSectionEnabled": false,
+                            "PickerItems": {
+                                "DisplayValue": "{{#Property:StorageLocation}} - {{#Property:StorageLocationDesc}}",
+                                "ReturnValue": "{StorageLocation}",
+                                "Target": {
+                                    "EntitySet": "StorageLocations",
+                                    "QueryOptions": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/StorageLocationQuery.js",
+                                    "Service": "/SAPAssetManager/Services/AssetManager.service"
+                                }
+                            },
+                            "PickerPrompt": "$(L,select_single_item)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/GetStorageLocation.js",
+                            "OnValueChange": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/OnStorageLocationValueChanged.js",
+                            "_Name": "StorageLocationPicker",
+                            "_Type": "Control.Type.FormCell.ListPicker"
+                        },
+                        {
+                            "AllowEmptySelection": false,
+                            "AllowMultipleSelection": false,
+                            "IsPickerDismissedOnSelection": true,
+                            "AllowDefaultValueIfOneItem": true,
+                            "Caption": "$(L,stock_type)",
+                            "IsEditable": true,
+                            "IsSelectedSectionEnabled": false,
+                            "PickerItems": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/StockTypePickerItems.js",
+                            "PickerPrompt": "$(L,select_single_item)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/GetStockType.js",
+                            "_Name": "StockTypePicker",
+                            "_Type": "Control.Type.FormCell.ListPicker"
+                        }
+					]
+				},
+				{
+					"Controls": [
+						{
+                            "Caption": "$(L, goods_recipient)",
+                            "KeyboardType": "Default",
+                            "Value": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/GetGoodsRecipient.js",
+                            "OnValueChange": "/SAPAssetManager/Rules/Inventory/Validation/GoodsRecipientValidateLength.js",
+                            "_Name": "GoodsRecipientSimple",
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        },
+                        {
+                            "Caption": "$(L,unloading_point)",
+                            "KeyboardType": "Default",
+                            "Value": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/GetUnloadingPoint.js",
+                            "OnValueChange": "/SAPAssetManager/Rules/Inventory/Validation/UnloadingPointValidateLength.js",
+                            "_Name": "UnloadingPointSimple",
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        },
+                        {
+                            "Caption": "$(L,header_text)",
+                            "KeyboardType": "Default",
+                            "OnValueChange": "/SAPAssetManager/Rules/Inventory/Validation/HeaderTextValidateLength.js",
+                            "_Name": "HeaderTextSimple",
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        }
+					]
+				},
+                {
+                    "Controls": [
+                        {
+                            "AllowEmptySelection": true,
+                            "AllowMultipleSelection": false,
+                            "IsPickerDismissedOnSelection": true,
+                            "AllowDefaultValueIfOneItem": true,
+                            "IsVisible": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/IsGLAccountVisible.js",
+                            "IsEditable": false,
+                            "Caption": "$(L,gl_account)",
+                            "IsSelectedSectionEnabled": false,
+                            "IsSearchCancelledAfterSelection": true,
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 1,
+                                "Placeholder": "$(L,search)",
+                                "BarcodeScanner": true
+                            },
+                            "PickerItems": {
+                                           "ObjectCell": {
+                                                         "PreserveIconStackSpacing": false,
+                                                         "Title": "{{#Property:GLAccount}} - {{#Property:GLAccountText}}",
+                                                         "SubstatusText": "{CompanyCode}"
+                                           },
+                                "ReturnValue": "{GLAccount}",
+                                "Target": {
+                                    "EntitySet": "GLAccounts",
+                                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions": "$orderby=GLAccount"
+                                }
+                            },
+                            "PickerPrompt": "$(L,select_single_item)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/GetGLAccount.js",
+                            "_Name": "GLAccountSimple",
+                            "_Type": "Control.Type.FormCell.ListPicker"
+                        },
+                        {
+                            "AllowEmptySelection": true,
+                            "AllowMultipleSelection": false,
+                            "IsPickerDismissedOnSelection": true,
+                            "AllowDefaultValueIfOneItem": true,
+                            "IsVisible": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/IsCostCenterVisible.js",
+                            "Caption": "$(L,reservation_item_cost_center)",
+                            "IsSelectedSectionEnabled": false,
+                            "IsSearchCancelledAfterSelection": true,
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 1,
+                                "Placeholder": "$(L,search)",
+                                "BarcodeScanner": true
+                            },
+                            "IsEditable": false,
+                            "PickerItems": {
+                                           "ObjectCell": {
+                                                         "PreserveIconStackSpacing": false,
+                                                         "Title": "{{#Property:CostCenter}} - {{#Property:Description}}",
+                                                         "SubstatusText": "{CompanyCode}",
+                                                         "Subhead": "{{#Property:COArea}} / {{#Property:CCtrCategory}}"
+                                           },
+                                "ReturnValue": "{CostCenter}",
+                                "Target": {
+                                    "EntitySet": "CostCenters",
+                                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions": "$orderby=CostCenter"
+                                }
+                            },
+                            "PickerPrompt": "$(L,select_single_item)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/GetCostCenter.js",
+                            "_Name": "CostCenterSimple",
+                            "_Type": "Control.Type.FormCell.ListPicker"
+                        },
+                        {
+                            "AllowEmptySelection": true,
+                            "AllowMultipleSelection": false,
+                            "IsPickerDismissedOnSelection": true,
+                            "AllowDefaultValueIfOneItem": false,
+                            "IsSearchCancelledAfterSelection": true,
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 3,
+                                "Placeholder": "$(L,search)",
+								"BarcodeScanner": true
+                            },
+                            "Caption": "$(L,vendor)",
+                            "IsEditable": false,
+                            "IsSelectedSectionEnabled": false,
+                            "PickerItems": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/VendorListPickerItems.js",
+                            "PickerPrompt": "$(L,select_single_item)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/GetVendor.js",
+                            "IsVisible": false,
+                            "_Name": "VendorListPicker",
+                            "_Type": "Control.Type.FormCell.ListPicker"
+                        },
+                        {
+                            "Caption": "$(L,reservation_item_order)",
+                            "IsEditable": false,
+                            "IsVisible": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/IsOrderVisible.js",
+                            "Value": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/GetOrder.js",
+                            "_Name": "OrderSimple",
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        },
+                        {
+                            "Caption": "$(L,reservation_item_network)",
+                            "IsEditable": false,
+                            "Value": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/GetNetwork.js",
+                            "IsVisible": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/IsNetworkVisible.js",
+                            "_Name": "NetworkSimple",
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        },
+                        {
+                            "Caption": "$(L,reservation_item_activity_number)",
+                            "IsEditable": false,
+                            "Value": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/GetActivityNumber.js",
+                            "IsVisible": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/IsNetworkVisible.js",
+                            "_Name": "ActivitySimple",
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        },
+                        {
+                            "Caption": "$(L,reservation_item_wbs_element)",
+                            "IsEditable": false,
+                            "Value": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/GetWBSElement.js",
+                            "IsVisible": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/IsWBSElementVisible.js",
+                            "_Name": "WBSElementSimple",
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        }
+                    ]
+                },
+                {
+                    "Controls": [
+                        {
+                            "Caption":"$(L, attachment_description)",
+                            "PlaceHolder": "$(L,attachment_description)",
+                            "IsEditable": true,
+                            "IsVisible": "/SAPAssetManager/Rules/Documents/DocumentsIsVisible.js",
+                            "_Name": "AttachmentDescription",
+                            "Value": "/SAPAssetManager/Rules/Documents/InitializeAttachmentsDescription.js",
+                            "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/FormCellNoteValidation.js",
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        },
+                        {
+                            "_Type": "Fragment",
+                            "Fragment": "/SAPAssetManager/Pages/Fragments/Documents/DocumentFormCell.fragment",
+                            "Properties": {
+                                "Value": "/SAPAssetManager/Rules/Documents/InitializeAttachments.js",
+                                "OnValueChange": "/SAPAssetManager/Rules/Documents/DocumentEditorAttachmentOnValueChange.js",
+                                "IsVisible": "/SAPAssetManager/Rules/Documents/DocumentsIsVisible.js"
+                            }
+                        },
+                        {
+                            "Caption": "$(L,signatory)",
+                            "IsEditable": true,
+                            "IsVisible": "/SAPAssetManager/Rules/Documents/DocumentsIsVisible.js",
+                            "Value": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/IssueOrReceiptGetSignatory.js",
+                            "OnValueChange": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/IssueOrReceiptSignatoryValue.js",
+                            "_Name": "Signatory",
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        },
+                        {
+                            "_Type": "Fragment",
+                            "Fragment": "/SAPAssetManager/Pages/Fragments/Signature/SignatureControlCreateControl.fragment",
+                             "Properties": {
+                                "WatermarkText": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/IssueOrReceiptSignatureWatermark.js",
+                                "IsVisible": "/SAPAssetManager/Rules/Documents/DocumentsIsVisible.js",
+                                "OnValueChange": "/SAPAssetManager/Rules/SignatureControl/Create/OnValueChange.js"
+                            }      
+                        }
+                    ]
+                }
+			],
+			"_Name": "FormCellContainer",
+            "_Type": "Control.Type.FormCellContainer"
+		}
+	],
+	"_Name": "BulkIssueOrReceiptGenericFieldsCreate",
+	"_Type": "Page"
+}

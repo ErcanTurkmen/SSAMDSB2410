@@ -1,0 +1,67 @@
+{
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "_Name": "MeasuringPointsListFilter",
+        "Items": [
+            {
+                "Position": "Left",
+                "_Name": "Cancel",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)",
+                "OnPress": "/SAPAssetManager/Actions/Page/CancelPage.action"
+            },
+            {
+                "Position": "Right",
+                "_Name": "Done",
+                "SystemItem": "/SAPAssetManager/Rules/Filter/FilterSystemItem.js",
+                "Text": "/SAPAssetManager/Rules/Filter/FilterText.js",
+                "OnPress": "/SAPAssetManager/Rules/Filter/ApplyFilterAndSave.js"
+            }
+        ]
+    },
+    "Caption":"$(L,filter)",
+    "Result":
+    [
+        "#Page:MeasuringPointsListFilterPage/#Control:CounterFilter/#Value",
+        "#Page:MeasuringPointsListFilterPage/#Control:ValCodeFilter/#Value"
+    ],
+    "Controls":
+    [{
+        "Sections":
+        [{
+            "Controls":
+            [{
+                "AllowMultipleSelection":true,
+                "AllowEmptySelection":true,
+                "Caption":"$(L,counter)",
+                "FilterProperty":"/SAPAssetManager/Rules/Measurements/MeasuringPointCounterFilter.js",
+                "_Name":"CounterFilter",
+                "_Type":"Control.Type.FormCell.Filter",
+                "IsEditable":true,
+                "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+            },
+            {
+                "AllowMultipleSelection":true,
+                "AllowEmptySelection":true,
+                "Caption":"$(L,valuation_code)",
+                "FilterProperty":"/SAPAssetManager/Rules/Measurements/MeasuringPointValCodeFilter.js",
+                "_Name":"ValCodeFilter",
+                "_Type":"Control.Type.FormCell.Filter",
+                "IsEditable":true,
+                "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+            }]
+        }],
+        "_Name":"FormCellContainer",
+        "_Type":"Control.Type.FormCellContainer"
+    }],
+    "FioriToolbar": {
+        "_Name": "MeasuringPointsFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Items": [
+            "/SAPAssetManager/Pages/Fragments/Filter/ResetFilterToolbarItem.fragment"
+        ]
+    },
+    "_Type":"Page",
+    "_Name":"MeasuringPointsListFilterPage",
+    "OnLoaded": "/SAPAssetManager/Rules/Filter/FilterOnLoaded.js"
+}

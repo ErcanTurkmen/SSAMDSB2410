@@ -1,0 +1,103 @@
+{
+    "Caption": "$(L,time_entry)",
+    "OnLoaded": "/SAPAssetManager/Rules/TimeSheets/TimeSheetEntryViewOnLoad.js",
+    "ActionBar": {
+        "Items": [
+            {
+                "Position": "Right",
+                "SystemItem": "Edit",
+                "Caption": "$(L,edit)",
+                "OnPress": "/SAPAssetManager/Rules/TimeSheets/TimeSheetEntryEditNav.js"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+					"_Type": "Section.Type.KeyValue",
+                    "_Name": "TimeEntryDetailsSection",
+					"Header": {
+						"Caption": "$(L,time_details)"
+					},
+					"KeyAndValues": [
+						{
+                            "_Name": "Date",
+							"KeyName": "$(L,date)",
+							"Value": "/SAPAssetManager/Rules/TimeSheets/Entry/View/TimeEntryViewDate.js"
+						},
+						{
+                            "_Name": "CatsHours|Hours",
+							"KeyName": "$(L,duration)",
+							"Value": "/SAPAssetManager/Rules/TimeSheets/Entry/View/TimeEntryViewHours.js"
+						},
+						{
+                            "_Name": "Employee.EmployeeName",
+							"KeyName": "$(L,personnel_name)",
+							"Value": "/SAPAssetManager/Rules/TimeSheets/Entry/View/TimeEntryEmployeeName.js"
+						},
+						{
+                            "_Name": "AttendAbsenceType",
+							"KeyName": "$(L,absence_attendance)",
+							"Value": "/SAPAssetManager/Rules/TimeSheets/Entry/View/TimeEntryViewAbsAttCode.js"
+						},
+						{
+                            "_Name": "ActivityType",
+							"KeyName": "$(L,activity_type)",
+							"Value": "/SAPAssetManager/Rules/TimeSheets/Entry/View/TimeEntryViewActivityType.js",
+                            "Visible": "/SAPAssetManager/Rules/UserFeatures/IsPMWorkOrderEnabled.js"
+						},
+                        {
+                            "_Name": "RecOrder",
+                            "KeyName": "$(L,workorder)",
+                            "Value": "/SAPAssetManager/Rules/TimeSheets/Entry/View/TimeEntryViewWorkOrder.js",
+                            "Visible": "/SAPAssetManager/Rules/UserFeatures/IsPMWorkOrderEnabled.js"
+                        },
+                        {
+                            "_Name": "Operation",
+                            "KeyName": "$(L,operation)",
+                            "Value": "/SAPAssetManager/Rules/TimeSheets/Entry/View/TimeEntryViewOperation.js",
+                            "Visible": "/SAPAssetManager/Rules/UserFeatures/IsPMWorkOrderEnabled.js"
+                        },
+                        {
+                            "_Name": "SubOperation",
+                            "KeyName": "$(L,suboperation)",
+                            "Value": "/SAPAssetManager/Rules/TimeSheets/Entry/View/TimeEntryViewSubOperation.js",
+                            "Visible": "/SAPAssetManager/Rules/UserFeatures/IsPMWorkOrderEnabled.js"
+                        },
+                        {
+                            "_Name": "Workcenter",
+                            "KeyName": "$(L,workcenter)",
+                            "Value": "{Workcenter}",
+                            "Visible": "/SAPAssetManager/Rules/UserFeatures/IsPMWorkOrderEnabled.js"
+                        },
+                        {
+                            "_Name": "CostCenter",
+                            "KeyName": "$(L,cost_center)",
+                            "Value": "{CostCenter}"
+                        },
+                        {
+                            "_Name": "wbs",
+                            "KeyName": "$(L,reservation_item_wbs_element)",
+                            "Value": "{WBSElement}"
+                        },
+                        {
+                            "_Name": "Network",
+                            "KeyName": "$(L,reservation_item_network)",
+                            "Value": "{Network}"
+                        },
+                        {
+                            "_Name": "Activity",
+                            "KeyName": "$(L,reservation_item_activity_number)",
+                            "Value": "{Activity}"
+                        }
+                    ]
+				}
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "DataSubscriptions": ["CatsTimesheets","CatsTimesheetOverviewRows"]
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "TimeEntryViewPage"
+}

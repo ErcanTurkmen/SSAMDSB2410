@@ -1,0 +1,37 @@
+{
+	"Caption": "$(L,sdf_section_caption)",
+	"Controls":
+	[{
+		"Sections":
+		[{
+			"Search":
+			{
+				"Enabled" : true,
+				"Delay": 500,
+				"MinimumCharacterThreshold": 3,
+				"Placeholder": "$(L,search)",
+				"BarcodeScanner": true
+			},
+			"Header": {
+				"UseTopPadding": false
+			},
+			"EmptySection": {
+				"Caption": "$(L,sdf_no_forms)"
+			},
+			"ObjectCell": "/SAPAssetManager/Pages/Fragments/Forms/SDF/FormInstanceObjectCell.fragment",
+			"Target":
+			{
+				"EntitySet" : "{{#Property:@odata.readLink}}/DynamicFormLinkage_Nav",
+				"Service" : "/SAPAssetManager/Services/AssetManager.service",
+				"QueryOptions" : "/SAPAssetManager/Rules/Forms/SDF/FormInstanceListQueryOptions.js"
+			},
+			"_Type" : "Section.Type.ObjectTable",
+			"_Name" : "FormsListSection"
+		}],
+		"_Type" : "Control.Type.SectionedTable",
+		"_Name" : "SectionedTable"
+	}],
+	"_Type": "Page",
+	"_Name": "FormListViewPage",
+	"DataSubscriptions": ["DynamicFormInstances"]
+}

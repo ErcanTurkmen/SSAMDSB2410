@@ -1,0 +1,11 @@
+{
+    "AccessoryType": "DisclosureIndicator",
+    "KeyName": "$(L,errors)",
+    "Value": "/SAPAssetManager/Rules/S4Errors/CountS4ObjectErrors.js",
+    "Visible": "/SAPAssetManager/Rules/S4Errors/IsS4ObjectHasErrors.js",
+    "OnPress": "/SAPAssetManager/Actions/ServiceOrders/S4ErrorsListPageNav.action",
+    "Styles": {
+        "KeyName": "ObjectCellStyleRed",
+        "Value": "ObjectCellStyleRed"
+    }
+}

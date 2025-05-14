@@ -1,0 +1,11 @@
+{
+	"PopoverItems": [{
+		"Title": "$(L, filter)",
+		"OnPress": "/SAPAssetManager/Actions/FunctionalLocation/FunctionalLocationFilter.action"
+	},
+	{
+		"Title": "$(L, online_search)",
+		"OnPress": "/SAPAssetManager/Rules/OnlineSearch/FuncLoc/OnlineSearchFromFuncLocNav.js"
+	}],
+	"_Type": "Action.Type.PopoverMenu"
+}

@@ -1,0 +1,17 @@
+{
+  "Caption": "Feedback",
+  "Controls": [
+    {
+      "Module": "extension-GenericWebView",
+      "Control": "NativeScriptWebViewExtension",
+      "Class": "NativeScriptWebViewExtension",
+      "ExtensionProperties": {
+        "Src": "/SAPAssetManager/Globals/Feedback/FeedbackURL.global"
+      },
+      "_Name": "FeedbackWebView",
+      "_Type": "Control.Type.Extension"
+    }
+  ],
+  "_Name": "FeedbackPage",
+  "_Type": "Page"
+}

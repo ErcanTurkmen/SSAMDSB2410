@@ -1,0 +1,100 @@
+{
+    "Caption": "$(L,reading)",
+    "OnLoaded": "/SAPAssetManager/Rules/Measurements/MeasurementDetailsOnPageLoad.js",
+
+    "ActionBar": {
+        "_Name": "ReadingDetails",
+        "Items": [
+            {
+                "Position": "Right",
+                "SystemItem": "Edit",
+                "Caption": "$(L,edit)",
+                "OnPress": "/SAPAssetManager/Rules/Measurements/Document/MeasurementDocumentUpdateNav.js"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "Header": {
+                        "Caption": "$(L,details)"
+                    },
+                    "KeyAndValues": [
+                        {
+                            "_Name": "ReadingValue",
+                            "KeyName": "$(L, reading)",
+                            "Value": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointReading.js"
+                        },
+                        {
+                            "_Name": "ReadingDate",
+                            "KeyName": "$(L, date)",
+                            "Value": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointHistoryReadingDate.js"
+                        },
+                        {
+                            "_Name": "CounterReadingDifference",
+                            "KeyName": "$(L,difference_from_last_reading)",
+                            "Value": "/SAPAssetManager/Rules/Measurements/Points/MeasurementsDocumentsReadingDifference.js"
+                        },
+                        {
+                            "_Name": "ValuationCode",
+                            "KeyName": "$(L, valuation_code)",
+                            "Value": "/SAPAssetManager/Rules/Measurements/ValuationCode.js"
+                        },
+                        {
+                            "_Name": "ReadingTime",
+                            "KeyName": "$(L, time)",
+                            "Value": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointHistoryReadingTime.js"
+                        },
+                        {
+                            "_Name": "ReadBy",
+                            "KeyName": "$(L, read_by)",
+                            "Value": "{ReadBy}"
+                        }
+                        
+                    ],
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "KeyValuePairsCurrent"
+                },
+                {
+                    "SimplePropertyCells": [
+                        {
+                            "SimplePropertyCell": {
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName": "$(L,linear_data)",
+                                "Value": "",
+                                "OnPress": "/SAPAssetManager/Rules/LAM/LAMNav.js",
+                                "Visible": "/SAPAssetManager/Rules/LAM/LAMVisible.js"
+                            }
+                        }
+                    ],
+                    "Layout": {
+                        "NumberOfColumns": 2,
+                        "MinimumInteritemSpacing": "$(PLT,66,0)" 
+                    },
+                    "_Type": "Section.Type.SimplePropertyCollection"
+                },
+                {
+					"_Type": "Section.Type.KeyValue",
+					"_Name": "NotesSection",
+					"Layout": {
+						"NumberOfColumns": 1,
+                        "MinimumInteritemSpacing": "$(PLT,66,0)" 
+					},
+					"KeyAndValues": [
+						{
+                            "_Name": "ShortText",
+							"KeyName": "$(L, notes)",
+							"Value": "/SAPAssetManager/Rules/Measurements/ShortText.js"
+						}
+					]
+				}
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable",
+            "DataSubscriptions": ["LAMObjectData"]
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "MeasuringDocumentDetailsPage"
+}

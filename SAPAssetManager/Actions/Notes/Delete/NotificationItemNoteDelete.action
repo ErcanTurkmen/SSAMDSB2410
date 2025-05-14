@@ -1,0 +1,10 @@
+{
+    "_Type": "Action.Type.OfflineOData.UndoPendingChanges",
+    "Target": {
+        "EntitySet": "/SAPAssetManager/Rules/Notes/NoteGetEntitySet.js",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "EditLink": "/SAPAssetManager/Rules/Notes/NoteReadlink.js"
+    },
+	"OnSuccess": "/SAPAssetManager/Rules/ApplicationEvents/AutoSync/actions/DeleteEntitySuccessMessageWithAutoSave.js",
+    "OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/DeleteEntityFailureMessage.action"
+}

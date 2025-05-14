@@ -1,0 +1,85 @@
+{
+    "Caption": "/SAPAssetManager/Rules/Documents/DocumentEditorCaption.js",
+    "OnLoaded": "/SAPAssetManager/Rules/Documents/DocumentEditorLoaded.js",
+    "OnBackButtonPressed": "/SAPAssetManager/Rules/Documents/DocumentEditorBackButtonPressed.js",
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "_Name": "DocumentEditor",
+        "Items": [
+            {
+                "Position": "Left",
+                "_Name": "Cancel",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)",
+                "Visible": "/SAPAssetManager/Rules/Documents/DocumentEditorCancelVisible.js",
+                "OnPress": "/SAPAssetManager/Rules/Documents/DocumentEditorOnCancel.js"
+            },
+            {
+                "_Name": "EditButton",
+                "Position": "Right",
+                "Icon": "$(PLT, /SAPAssetManager/Images/edit.png, sap-icon://edit, '', /SAPAssetManager/Images/edit.png)",
+                "Caption": "$(L,edit)",
+                "Visible": "/SAPAssetManager/Rules/Documents/DocumentEditorVisible.js",
+                "OnPress": "/SAPAssetManager/Rules/Documents/DocumentEditorEnterEditMode.js"
+            },
+            {
+                "_Name": "CropButton",
+                "Position": "Right",
+                "Icon": "$(PLT, /SAPAssetManager/Images/crop.png, sap-icon://crop, '', /SAPAssetManager/Images/crop.png)",
+                "Caption": "$(L,crop)",
+                "Visible": "/SAPAssetManager/Rules/Documents/DocumentEditorIsImageFormatWrapper.js",
+                "OnPress": "/SAPAssetManager/Rules/Documents/DocumentEditorEnterCropMode.js"
+            },
+            {
+                "_Name": "ResizeButton",
+                "Position": "Right",
+                "Icon": "$(PLT, /SAPAssetManager/Images/resize.png, sap-icon://resize, '', /SAPAssetManager/Images/resize.png)",
+                "Caption": "$(L,resize)",
+                "Visible": "/SAPAssetManager/Rules/Documents/DocumentEditorResizeVisible.js",
+                "OnPress": "/SAPAssetManager/Rules/Documents/DocumentEditorResizeNav.js"
+            },
+            {
+                "_Name": "DoneButton",
+                "Position": "Right",
+                "Icon": "$(PLT,'',sap-icon://accept, '' , 'Done')",
+                "Caption": "$(L,apply)",
+                "Visible": "/SAPAssetManager/Rules/Documents/DoneButtonVisible.js",
+                "OnPress": "/SAPAssetManager/Rules/Documents/DocumentEditorOnDoneButtonPress.js"
+            },
+            {
+                "_Name": "ClearButton",
+                "Position": "Right",
+                "Icon": "$(PLT, /SAPAssetManager/Images/clear.png, sap-icon://clear-all, '', /SAPAssetManager/Images/clear.png)",
+                "Caption": "$(L,clear)",
+                "Visible": false,
+                "OnPress": "/SAPAssetManager/Rules/Documents/DocumentEditorClearAnnotations.js"
+            },
+            {
+                "_Name": "SaveButton",
+                "Position": "Right",
+                "SystemItem": "Save",
+                "Caption": "$(L,save)",
+                "Visible": false,
+                "OnPress": "/SAPAssetManager/Rules/Documents/DocumentEditorSave.js"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "_Type": "Control.Type.Extension",
+            "Module": "extension-DocumentEditor",
+            "Control": "DocumentEditorExtension",
+            "Class": "DocumentEditorExtension",
+            "_Name": "DocumentEditorExtensionControl",
+            "DataSubscriptions": [],
+            "ExtensionProperties": {
+                "Config": {},
+                "FileInfo": "/SAPAssetManager/Rules/Documents/DocumentEditorGetFileInfo.js",
+                "OnSave": "/SAPAssetManager/Rules/Documents/DocumentEditorOnSave.js",
+                "OnDelete": "/SAPAssetManager/Rules/Documents/DocumentEditorOnDelete.js"
+            }
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "DocumentEditorPage"
+}

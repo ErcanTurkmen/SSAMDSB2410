@@ -1,0 +1,14 @@
+{
+    "ObjectHeader": {
+        "HeadlineText": "{{#Property:FuncLocDesc}}",
+        "Subhead": "{{#Property:FuncLocId}}",
+        "StatusText": "/SAPAssetManager/Rules/FunctionalLocation/FunctionalLocationStatus.js",
+        "DetailImage": "/SAPAssetManager/Rules/FunctionalLocation/FunctionaLocationDetailImage.js",
+        "Target": {
+            "EntitySet": "{@odata.readLink}",
+            "Service": "/SAPAssetManager/Services/AssetManager.service"
+        }
+    },
+    "_Name": "FuntionalLocationDescriptionSection",
+    "_Type": "Section.Type.ObjectHeader"
+}

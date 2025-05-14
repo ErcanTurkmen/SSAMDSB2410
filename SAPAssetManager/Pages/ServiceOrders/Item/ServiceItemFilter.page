@@ -1,0 +1,102 @@
+{
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "Items": [
+            {
+                "Position": "Left",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)",
+                "OnPress": "/SAPAssetManager/Actions/Page/CancelPage.action"
+            },
+            {
+                "Position": "Right",
+                "SystemItem": "/SAPAssetManager/Rules/Filter/FilterSystemItem.js",
+                "Text": "/SAPAssetManager/Rules/Filter/FilterText.js",
+                "OnPress": "/SAPAssetManager/Rules/Filter/ApplyFilterAndSave.js"
+            }
+        ]
+    },
+    "Caption":"$(L,filter)",
+    "Result": "/SAPAssetManager/Rules/ServiceOrders/Item/Filter/ServiceItemListFilterResults.js",
+    "OnLoaded":"/SAPAssetManager/Rules/ServiceOrders/Item/Filter/ServiceItemFilterOnLoaded.js",
+    "Controls":[
+        {
+            "Sections": [
+                {
+                    "Controls": [{
+                        "_Type": "Fragment",
+                        "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/SortByFilter.fragment",
+                        "Properties": {
+                            "SortByItems": [
+                                {
+                                    "ReturnValue":"ItemCategory",
+                                    "DisplayValue":"$(L,type)"
+                                },
+                                {
+                                    "ReturnValue":"ProductID",
+                                    "DisplayValue":"$(L,serviceitem_id)"
+                                },
+                                {
+                                    "ReturnValue":"DueBy",
+                                    "DisplayValue":"$(L,due_date)"
+                                }
+                            ]
+                        }
+                    }]
+                },
+                {
+					"Controls": [{
+                        "_Type": "Fragment",
+                        "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/TypeFilter.fragment",
+                        "Properties": {
+                            "_Name": "TypeLstPicker",
+                            "PickerItems": "/SAPAssetManager/Rules/ServiceOrders/Item/Filter/GetItemTypePickerItems.js",
+							"_Type": "Control.Type.FormCell.ListPicker",
+                            "IsPickerDismissedOnSelection": true,
+                            "AllowEmptySelection": true
+                        }
+                    }]
+				},
+                {
+					"Controls": [
+						{
+							"Caption": "$(L, status)",
+							"_Name": "MobileStatusFilter",
+							"IsPickerDismissedOnSelection": true,
+							"AllowMultipleSelection": true,
+							"AllowEmptySelection": true,
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 3,
+                                "Placeholder": "$(L,search)",
+								"BarcodeScanner": true
+                            },
+                            "PickerItems": "/SAPAssetManager/Rules/ServiceOrders/Item/Filter/ServiceItemListStatuses.js",
+							"_Type": "Control.Type.FormCell.ListPicker",
+							"FilterProperty": "MobileStatus_Nav/MobileStatus",
+                            "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+						}
+					]
+				}
+            ],
+            "_Name":"FormCellContainer",
+            "_Type":"Control.Type.FormCellContainer"
+        }
+    ],
+    "FioriToolbar": {
+        "_Name": "ServiceItemFilterFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Items": [
+            {
+				"_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/ResetFilterToolbarItem.fragment",
+				"Properties": {
+                    "OnPress": "/SAPAssetManager/Rules/WorkOrders/WorkOrderListFilterReset.js"
+				}
+			}
+        ]
+    },
+    "_Type":"Page",
+    "_Name":"ServiceItemFilterPage"
+}

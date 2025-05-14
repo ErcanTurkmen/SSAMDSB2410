@@ -1,0 +1,167 @@
+{
+    "Caption": "/SAPAssetManager/Rules/Inventory/Item/ItemCaption.js",
+    "ActionBar": {
+        "Items": [
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsMaterialDetailsNav.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsSetItemEdit.fragment",
+            "/SAPAssetManager/Pages/Fragments/SyncButton.fragment"        
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "ObjectHeader": {
+                        "HeadlineText": "/SAPAssetManager/Rules/Inventory/Common/GetMaterialName.js",
+                        "Tags": "/SAPAssetManager/Rules/Inventory/Item/ItemTags.js",
+                        "Subhead": "/SAPAssetManager/Rules/Inventory/Item/ItemSubHead.js",
+                        "BodyText": "/SAPAssetManager/Rules/Inventory/Item/ItemBodyText.js",
+                        "Footnote": "/SAPAssetManager/Rules/Inventory/Item/ItemFootnote.js"
+                    },
+                    "_Type": "Section.Type.ObjectHeader",
+                    "_Name": "ObjectHeaderSectionTable"
+                },
+                {
+                   "_Type": "Section.Type.KeyValue",
+                    "_Name": "StockTransportItemDetailsSection0",
+                    "Header": {
+                        "Caption": "$(L,item_details)"
+                    },
+                    "KeyAndValues": [
+                        {
+							"_Name": "Item",
+							"KeyName": "$(L,item)",
+                            "Value": "$(DV,{ItemNum},-)"
+						},
+                        {
+                            "_Name": "SupplyPlant",
+                            "KeyName": "$(L,supply_plant)",
+                            "Value": "$(DV,{SupplyPlant},'-')"
+                        }
+                    ],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js",
+                    "Visible": true,
+                    "DataSubscriptions": ["StockTransportOrderItems"]
+                },
+                {
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "StockTransportItemDetailsSection1",
+                    "KeyAndValues": [
+                        {
+							"_Name": "PLant",
+							"KeyName": "$(L,plant)",
+							"Value": "$(DV,{Plant},'-')"
+                        },
+                        {
+							"_Name": "StorageLocation",
+							"KeyName": "$(L,storage_location)",
+							"Value": "$(DV,{StorageLoc},'-')"
+						},
+                        {
+							"_Name": "StorageBin",
+							"KeyName": "$(L,storage_bin)",
+							"Value": "$(DV,{StorageBin},'-')"
+						},
+                        {
+							"_Name": "Material",
+							"KeyName": "$(L,material)",
+							"Value": "$(DV, '/SAPAssetManager/Rules/Inventory/Item/GetMaterial.js', '-')"
+						},
+                        {
+							"_Name": "SupplierMaterialNum",
+							"KeyName": "$(L,vendor_material_number)",
+							"Value": "$(DV, {SupplierMaterialNum}, '-')"
+						},
+                        {
+							"_Name": "MaterialDescription",
+							"KeyName": "$(L,material_description)",
+							"Value": "$(DV,{MaterialDesc},'-')"
+						},
+                        {
+							"_Name": "Batch",
+							"KeyName": "$(L,batch)",
+							"Value": "$(DV,{Batch},'-')"
+						},
+                        {
+							"_Name": "StockType",
+							"KeyName": "$(L,stock_type)",
+							"Value": "$(DV,{StockType},'-')"
+						},
+                        {
+                            "_Name": "ValuationType",
+                            "KeyName": "$(L,valuation_type)",
+                            "Value": "$(DV,{ValuationType},'-')"
+                        }
+                    ],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js",
+                    "Visible": true,
+                    "DataSubscriptions": ["StockTransportOrderItems"]
+                },
+                {
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "StockTransportItemDetailsSection2",
+                    "KeyAndValues": [
+                        {
+							"_Name": "OrderQuantity",
+							"KeyName": "$(L,quantity)",
+							"Value": "$(DV,{OrderQuantity},'-')"
+						},
+                        {
+							"_Name": "IssuedQuantity",
+							"KeyName": "$(L,issued) $(L,quantity)",
+							"Value": "$(DV,{IssuedQuantity},'-')"
+						},
+                        {
+							"_Name": "ReceivedQuantity",
+							"KeyName": "$(L,received_quantity)",
+							"Value": "$(DV,{OrderQuantity},'-')"
+						},
+                        {
+							"_Name": "OrderUOM",
+							"KeyName": "$(L,uom)",
+							"Value": "$(DV,{OrderUOM},'-')"
+						},
+                        {
+							"_Name": "DeliveryDate",
+							"KeyName": "$(L,delivery_date)",
+							"Value": "$(DV,'/SAPAssetManager/Rules/Inventory/Item/GetDeliveryDate.js','-')"
+						}
+                    ],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js",
+                    "Visible": true,
+                    "DataSubscriptions": ["StockTransportOrderItems"]
+                },
+                {
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "StockTransportItemDetailsSection3",
+                    "KeyAndValues": [
+                        {
+							"_Name": "ItemText",
+							"KeyName": "$(L,item_text)",
+							"Value": "$(DV,{ItemText},'-')"
+						}
+                    ],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js",
+                    "Visible": true,
+                    "DataSubscriptions": ["StockTransportOrderItems"]
+                },         
+                "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsSerialNumbers.fragment",
+                "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsMaterialDataTable.fragment"
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable"
+        }
+    ],
+    "ToolBar": {
+        "Controls":[
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsPreviousItem.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/FlexibleSpaceToolBar.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsDiscard.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/FlexibleSpaceToolBar.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsNextItem.fragment"
+        ]
+    },
+    "OnReturning": "/SAPAssetManager/Rules/Inventory/Item/ItemPageOnReturning.js",
+    "_Name": "StockTransportItemDetailsPage",
+    "_Type": "Page"
+}

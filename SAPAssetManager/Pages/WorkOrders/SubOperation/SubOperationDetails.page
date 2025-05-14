@@ -1,0 +1,108 @@
+{
+    "Caption": "/SAPAssetManager/Rules/WorkOrders/SubOperations/WorkOrderSubOperationHeader.js",
+    "OnReturning": "/SAPAssetManager/Rules/SubOperations/SubOperationOnPageReturning.js",
+    "OnCustomEventDataReceived": "/SAPAssetManager/Rules/Common/OnCustomEventDataReceived.js",
+    "ActionBar": {
+        "_Name": "SubOperationDetails",
+        "Items": "/SAPAssetManager/Pages/Fragments/WorkOrder/SubOperationDetails/ActionBarItems.fragment"
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "ObjectHeader": {
+                        "HeadlineText": "$(DV, {OperationShortText}, '-')",
+                        "DetailImage": "$(PLT, /SAPAssetManager/Images/DetailImages/Suboperation.png, /SAPAssetManager/Images/DetailImages/Suboperation.android.png)",
+                        "Tags": "/SAPAssetManager/Rules/SubOperations/SubOperationObjectHeaderTags.js",
+                        "StatusText": "/SAPAssetManager/Rules/SubOperations/SubOperationHeaderPriority.js",
+                        "SubstatusText": "/SAPAssetManager/Rules/SubOperations/SubOperationHeaderSubstatusText.js",
+                        "BodyText": "/SAPAssetManager/Rules/Operations/OperationHeaderEquipmentDescription.js",
+                        "Footnote":  "/SAPAssetManager/Rules/Operations/OperationHeaderFunctionalLocationDescription.js",
+                        "Styles": {
+                            "StatusText":  "/SAPAssetManager/Rules/SubOperations/SubOperationHeaderPriorityStyle.js"
+                        }
+                    },
+                    "_Type": "Section.Type.ObjectHeader",
+                    "_Name": "ObjectHeaderSectionTable",
+                    "DataSubscriptions": ["PMMobileStatuses", "MyWorkOrderSubOperations"]
+                },
+                {
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/QAB/QuickActionBarExtensionSection.fragment",
+					"Properties": {
+						"ExtensionProperties": {
+							"Chips": "/SAPAssetManager/Rules/SubOperations/SubOperationQABChips.js"
+						}
+					}
+				},
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderDetails/ProgressTrackerSectionWorkOrderDetails.fragment",
+                    "Properties": {
+                        "Header": {
+                            "UseTopPadding": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/GetTopPaddingValue.js"
+                        }
+                    }
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/Assets.fragment",
+                    "Properties": {
+                        "Target": "/SAPAssetManager/Rules/SubOperations/SubOperationAssets.js"
+                    }
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/NotesObjectSection.fragment",
+                    "Properties": {
+                        "Target": {
+                            "EntitySet": "{{#Property:@odata.readLink}}/SubOperationLongText"
+                        },
+                        "DataSubscriptions": ["MyWorkOrderSubOpLongTexts"]
+                    }
+                },
+                "/SAPAssetManager/Pages/Fragments/WorkOrder/SubOperationDetails/SubOperationDetails.fragment",
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/SubOperationDetails/OperationSection.fragment",
+                    "Properties": {
+                        "ObjectCell": {
+                            "DetailImage": "$(PLT, /SAPAssetManager/Images/DetailImages/Operation.png, /SAPAssetManager/Images/DetailImages/Operation.android.png)"
+                        }
+                    }
+                },
+                "/SAPAssetManager/Pages/Fragments/Forms/SDF/FormObjectTableSection.fragment",
+                {
+                    "SimplePropertyCells":
+                    [
+                        {
+                            "SimplePropertyCell": {
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName": "$(L,related_notifications)",
+                                "Value": "/SAPAssetManager/Rules/Notifications/RelatedNotifications/RelatedNotificationsCount.js",
+                                "OnPress": "/SAPAssetManager/Actions/Notifications/RelatedNotifications/RelatedNotificationsListViewNav.action"
+                            }
+                        }
+                    ],
+                    "Layout":
+                    {
+                        "NumberOfColumns" : 1,
+                        "MinimumInteritemSpacing": "$(PLT,66,0)"
+                    },
+                    "_Type" : "Section.Type.SimplePropertyCollection",
+                    "DataSubscriptions": ["NotificationHistories"]
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable"
+        }
+    ],
+    "FioriToolbar": {
+        "_Name": "SubOperationFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Visible": "/SAPAssetManager/Rules/Common/DetailsPageToolbar/DetailsPageToolbarVisibility.js",
+        "Items": "/SAPAssetManager/Rules/Common/DetailsPageToolbar/DetailsPageToolbarItems.js"
+    },
+    "_Type": "Page",
+    "_Name": "SubOperationDetailsPage",
+    "DataSubscriptions": ["MyWorkOrderOperations","MyWorkOrderSubOperations","Confirmations","PMMobileStatuses"]
+}

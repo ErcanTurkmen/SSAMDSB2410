@@ -1,0 +1,22 @@
+{
+    "_Type": "Section.Type.ObjectHeader",
+    "_Name": "ServiceOrderHeaderInfo",
+    "ObjectHeader": {
+        "HeadlineText": "{Description}",
+        "BodyText": "{ObjectID}",
+        "Footnote": "/SAPAssetManager/Rules/DateTime/ServiceDueByDate.js",
+        "StatusImage": "/SAPAssetManager/Rules/Common/ChangeSet/ChangeStatusIconRule.js",
+        "StatusText": "#Property:Priority_Nav/#Property:Description",
+        "SubstatusText": "/SAPAssetManager/Rules/WorkOrders/ListView/WorkOrdersListViewFormat.js",
+        "Styles": {
+            "StatusText": "/SAPAssetManager/Rules/Priority/S4PriorityStatusStyle.js"
+        },
+        "Tags": "/SAPAssetManager/Rules/ServiceOrders/Details/ServiceOrderTags.js",
+        "Target": {
+            "EntitySet": "{@odata.readLink}",
+            "Service": "/SAPAssetManager/Services/AssetManager.service",
+            "QueryOptions": "$select=Description,ObjectID,DueBy,Priority,MobileStatus_Nav/MobileStatus&$expand=MobileStatus_Nav,Priority_Nav,S4ServiceErrorMessage_Nav"
+        }
+    },
+    "DataSubscriptions": ["PMMobileStatuses"]
+}

@@ -1,0 +1,9 @@
+{
+    "OnFailure": "/SAPAssetManager/Rules/Common/UpdateRequiredFailed.js",
+    "OnSuccess": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/ServiceItemOnCommit.js",
+    "RequiredFields": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/ServiceItemRequiredFields.js",
+    "ValidationRule": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/ServiceItemValidationRule.js",
+    "_Type": "Action.Type.CheckRequiredFields",
+    "ShowActivityIndicator": true,
+    "ActivityIndicatorText" : "  "
+}

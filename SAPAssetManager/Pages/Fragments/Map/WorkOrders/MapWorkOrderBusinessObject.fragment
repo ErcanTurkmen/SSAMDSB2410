@@ -1,0 +1,36 @@
+{
+    "Type": "Job",
+    "Title": "$(L,workorders)",
+    "Legend": "IconWorkOrder",
+    "Target": {
+        "EntitySet": "MyWorkOrderHeaders",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "/SAPAssetManager/Rules/Maps/WorkOrders/MapWorkOrdersQueryOptions.js",
+        "Properties": [],
+        "KeyProperties": []
+    },
+    "Enable": true,
+    "Actions": [
+        "/SAPAssetManager/Pages/Fragments/Map/WorkOrders/ViewWorkOrder.fragment",
+        {
+            "_Type": "Fragment",
+            "Fragment": "/SAPAssetManager/Pages/Fragments/Map/WorkOrders/CreateWorkOrder.fragment",
+            "Properties": {
+                "IsVisible": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/IsWorkOrderAllowedToCreateFromMap.js"
+            }
+        },
+        "/SAPAssetManager/Pages/Fragments/Map/WorkOrders/UpdateWorkOrder.fragment",
+        "/SAPAssetManager/Pages/Fragments/Map/WorkOrders/FavoriteWorkOrder.fragment",
+        "/SAPAssetManager/Pages/Fragments/Map/WorkOrders/EditWorkOrderGeometry.fragment",
+        "/SAPAssetManager/Pages/Fragments/Map/WorkOrders/DeleteWorkOrderGeometry.fragment"
+    ],
+    "ObjectScheme": {
+        "_Type": "Fragment",
+        "Fragment": "/SAPAssetManager/Pages/Fragments/Map/WorkOrders/WorkOrderBusinessObjectScheme.fragment",
+        "Properties": {
+            "ObjectFilter": {
+                "QueryOptions": "$filter=OrderId eq '{OrderId}'"
+            }
+        }
+    }
+}

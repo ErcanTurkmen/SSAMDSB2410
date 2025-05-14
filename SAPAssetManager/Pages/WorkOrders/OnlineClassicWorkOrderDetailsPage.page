@@ -1,0 +1,182 @@
+{
+    "Caption": "/SAPAssetManager/Rules/WorkOrders/Header/WorkOrderHeader.js",
+    "OnLoaded": "/SAPAssetManager/Rules/WorkOrders/Details/WorkOrderDetailsOnPageLoad.js",
+    "OnReturning": "/SAPAssetManager/Rules/WorkOrders/Details/WorkOrderDetailsOnPageReturning.js",
+    "OnCustomEventDataReceived": "/SAPAssetManager/Rules/Common/OnCustomEventDataReceived.js",
+    "Controls": [
+        {
+            "Sections": [
+                {
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/OnlineSearch/OnlineWorkOrderObjectHeader.fragment",
+                    "Properties": {
+                        "ObjectHeader": {
+                            "DetailImage": "$(PLT, /SAPAssetManager/Images/DetailImages/WO.png, /SAPAssetManager/Images/DetailImages/WO.android.png)",
+                            "Target": {
+                                "EntitySet": "{@odata.readLink}",
+                                "Service": "/SAPAssetManager/Services/OnlineAssetManager.service",
+                                "QueryOptions": "$expand=Partners,Components,Documents,Geometries,LongText,ObjectList,Operations,Sales"
+                            },
+                            "Tags": [
+                                {
+                                    "Text": "$(L,viewing_online_content_only)"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/QAB/QuickActionBarExtensionSection.fragment",
+					"Properties": {
+						"ExtensionProperties": {
+							"Chips": "/SAPAssetManager/Rules/WorkOrders/OnlineWorkOrderQABChips.js"
+						},
+                        "Visible": "/SAPAssetManager/Rules/WorkOrders/Details/WorkOrderQABIsVisible.js"
+					}
+				},
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/Assets.fragment",
+                    "Properties": {
+                        "Target": "/SAPAssetManager/Rules/WorkOrders/Details/WorkOrderAssets.js",
+                        "Header": {
+                            "UseTopPadding": "/SAPAssetManager/Rules/ComponentsEnablement/IsMeterComponentEnabled.js"
+                        }
+                    }
+                },
+                {
+					"_Type": "Section.Type.ObjectCardCollection",
+					"Layout": {
+						"LayoutType": "HorizontalScroll"
+					},
+					"_Name": "OperationsObjectCardCollection",
+					"Header": {
+                        "Items": [
+                            {
+                                "_Type": "SectionHeaderItem.Type.Label",
+                                "_Name": "OperationsSectionHeaderLabel",
+                                "Title": "$(L, operations)",
+                                "Position": "Left"
+                            }
+                        ]
+					},
+					"EmptySection": {
+						"Caption": "$(L,no_operations_available)"
+					},
+					"Card": {
+						"_Type": "ObjectCardCollection.Type.Card",
+						"Title": "{{#Property:OperationShortText}} ({{#Property:OperationNo}})",
+						"Subhead": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsListViewFormat.js",
+						"Footnote": "{OrderId}",
+						"StatusText": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderDueDate.js",
+						"OnPress" : "/SAPAssetManager/Rules/WorkOrders/Operations/Details/WorkOrderOperationDetailsNav.js",
+                        "DetailImage": "$(PLT, /SAPAssetManager/Images/DetailImages/Operation.png, /SAPAssetManager/Images/DetailImages/Operation.android.png)"
+					},
+					"Target":  "/SAPAssetManager/Rules/Operations/OperationsObjectCardCollection/OperationsObjectCardCollectionTarget.js",
+					"Footer": {
+                        "Caption": "$(L,see_all)",
+                        "AccessoryType": "DisclosureIndicator",
+                        "FooterStyle": "Attribute",
+                        "AttributeLabel": "/SAPAssetManager/Rules/WorkOrders/Operations/OnlineWorkOrderOperationsCount.js",
+                        "OnPress": "/SAPAssetManager/Rules/WorkOrders/Operations/OnlineOperationListViewNav.js"
+                    },
+					"Separators": {
+						"ControlSeparator": false
+					},
+					"DataSubscriptions": [
+						"PMMobileStatuses",
+						"Confirmations"
+					]
+				},
+                "/SAPAssetManager/Pages/Fragments/Parts/OnlinePartsObjectCardCollection.fragment",
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/NotesObjectSection.fragment",
+                    "Properties": {
+                        "Target": {
+                            "EntitySet": "{{#Property:@odata.readLink}}/LongText",
+                            "Service": "/SAPAssetManager/Services/OnlineAssetManager.service"
+                        },
+                        "Visible": "/SAPAssetManager/Rules/Common/IsClassicLayoutDisabled.js",
+                        "ObjectCell": {
+                            "OnPress": "/SAPAssetManager/Rules/Notes/OnlineNotesViewNav.js"
+                        }
+                    }
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Documents/DocumentsSection.fragment",
+                    "Properties": {
+                        "#Name:DocumentsSectionHeaderButton": {
+                            "Visible": false
+                        },
+                        "Target": {
+                            "EntitySet": "{@odata.readLink}/Documents",
+                            "Service" : "/SAPAssetManager/Services/OnlineAssetManager.service",
+                            "QueryOptions": "$top=2"
+                        },
+                        "ObjectCell": {
+                            "Icons": null,
+                            "ContextMenu": null,
+                            "ProgressIndicator": "open",
+                            "OnAccessoryButtonPress": "/SAPAssetManager/Rules/Documents/OpenOnlineDocument.js"
+                        },
+                        "Footer": {
+                            "OnPress": "/SAPAssetManager/Actions/Documents/OnlineDocumentsBDSListNav.action"
+                        },
+                        "DataSubscriptions": []
+                    }
+                },
+                "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderDetails/OnlineWorkOrderDetails.fragment",
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Details/OnlineStatusesGridTable.fragment",
+                    "Properties": {
+                        "Target": {
+                            "EntitySet": "{@odata.readLink}",
+                            "Service": "/SAPAssetManager/Services/OnlineAssetManager.service"
+                        },
+                        "Header": {
+                            "UseTopPadding": "/SAPAssetManager/Rules/WorkOrders/Details/GetQabFsmCsTopPaddingValue.js"
+                        }
+                    }
+                },
+                {
+                    "SimplePropertyCells": [
+                        {
+                            "SimplePropertyCell": {
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName": "$(L,business_partners)",
+                                "Value": "/SAPAssetManager/Rules/BusinessPartners/OnlineBusinessPartnersCount.js",
+                                "OnPress": "/SAPAssetManager/Actions/BusinessPartners/OnlineBusinessPartnersListViewNav.action"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName": "$(L,objects)",
+                                "Value": "/SAPAssetManager/Rules/ObjectList/OnlineObjectListCount.js",
+                                "OnPress": "/SAPAssetManager/Actions/ObjectList/OnlineObjectListViewNav.action",
+                                "Visible": true,
+                                "Target": {
+                                    "EntitySet": "{@odata.readLink}/ObjectList",
+                                    "Service" : "/SAPAssetManager/Services/OnlineAssetManager.service"
+                                }
+                            }
+                        }
+                    ],
+                    "Layout": {
+                        "NumberOfColumns": 2,
+                        "MinimumInteritemSpacing": "$(PLT,66,0)"
+                    },
+                    "_Type": "Section.Type.SimplePropertyCollection"
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "OnlineClassicWorkOrderDetails"
+}

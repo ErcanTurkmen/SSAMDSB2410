@@ -1,0 +1,9 @@
+{
+	"_Type": "Action.Type.ODataService.DeleteEntity",
+	"Target": {
+		"EntitySet": "PurchaseRequisitionItems",
+		"Service": "/SAPAssetManager/Services/AssetManager.service",
+		"ReadLink": ""
+	},
+	"OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/DeleteEntityFailureMessage.action"
+}

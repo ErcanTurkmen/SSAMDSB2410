@@ -1,0 +1,10 @@
+{
+    "ObjectHeader": {
+        "HeadlineText": "{ShortText}",
+        "BodyText": "/SAPAssetManager/Rules/WCM/OperationalItems/ListView/OperationalItemsTaggingUntaggingCond.js",
+        "Description": "/SAPAssetManager/Rules/WCM/OperationalItems/SetTagged/SetTaggedRequiredFieldsDescription.js",
+        "StatusText": "/SAPAssetManager/Rules/WCM/OperationalItems/ListView/OperationalItemsTagNumber.js",
+        "StatusPosition": "Inline"
+    },
+    "_Type": "Section.Type.ObjectHeader"
+}

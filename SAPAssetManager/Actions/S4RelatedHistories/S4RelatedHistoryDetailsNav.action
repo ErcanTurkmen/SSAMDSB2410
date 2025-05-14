@@ -1,0 +1,5 @@
+{
+    "_Type": "Action.Type.Navigation",
+    "PageToOpen": "/SAPAssetManager/Pages/S4RelatedHistories/S4RelatedHistoryDetails.page",
+    "PageMetadata": "/SAPAssetManager/Rules/S4RelatedHistories/S4RelatedHistoryDetailsPageMetadata.js"
+}

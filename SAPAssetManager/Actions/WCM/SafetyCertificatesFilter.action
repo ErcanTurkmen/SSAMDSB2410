@@ -1,0 +1,8 @@
+{
+    "_Type" : "Action.Type.Filter",
+    "PageToOpen" : "/SAPAssetManager/Pages/WCM/SafetyCertificates/SafetyCertificatesFilter.page",
+    "Filterable" : "#Page:-Current/#Control:SectionedTable",
+    "ActionResult": {
+        "_Name": "filterResult"
+    }
+}

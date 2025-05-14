@@ -1,0 +1,51 @@
+{
+	"Caption": "$(L, fld_voyages_details)",
+	"ActionBar": {
+		"Items": [
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment"
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"ObjectHeader": {
+						"HeadlineText": "{VoyageNumber}",
+						"Subhead": "/SAPAssetManager/Rules/FL/Voyages/VoyageFootnote.js",
+						"StatusText": "{FldLogsVoyageStatus_Nav/Description}"
+					},			
+					"_Name": "SectionObjectHeader",
+					"_Type": "Section.Type.ObjectHeader"
+				}
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		},
+		{
+			"Items": [{
+				"_Name": "ContainersListTab",
+				"Caption": "$(L, fld_containers)",
+				"PageToOpen" : "/SAPAssetManager/Pages/FL/Containers/ContainersList.page",
+				"_Type": "Control.Type.TabItem"
+			},
+			{
+				"_Name": "PackagesListTab",
+				"Caption": "$(L, fld_packages)",
+				"PageToOpen" : "/SAPAssetManager/Pages/FL/Packages/PackagesList.page",
+				"_Type": "Control.Type.TabItem"
+			},
+			{
+				"_Name": "VoyageHeaderTab",
+				"Caption": "$(L, header)",
+				"PageToOpen" : "/SAPAssetManager/Pages/FL/Voyages/VoyagesHeader.page",
+				"PageMetadata": "/SAPAssetManager/Rules/FL/Voyages/Details/VoyagesHeaderPageMetadata.js",
+				"_Type": "Control.Type.TabItem"
+			}],
+			"Position": "Top",
+			"_Type": "Control.Type.Tabs",
+			"_Name": "TabsControl"
+		}
+	],
+	"_Name": "VoyagesDetailsPage",
+	"_Type": "Page"
+}

@@ -1,0 +1,10 @@
+{
+    "Title": "$(L, action_delete_geometry)",
+    "Icon": "ActionEdit",
+    "Type": "Update",
+    "IsVisible": "/SAPAssetManager/Rules/Maps/IsBusinessObjectLocal.js",
+    "CallbackInfo": {
+        "Action": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/WorkOrderDeleteGeometry.js",
+        "Target": "/SAPAssetManager/Pages/Fragments/Map/WorkOrders/MapWorkOrderCallbackInfoTarget.fragment"
+    }
+}

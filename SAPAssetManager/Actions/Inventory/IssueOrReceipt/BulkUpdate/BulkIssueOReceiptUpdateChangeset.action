@@ -1,0 +1,9 @@
+{
+    "Actions": [
+        "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/BulkIssueOrReceiptPostUpdate.js"
+    ],
+    "Target": {
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "_Type": "Action.Type.ODataService.ChangeSet"
+}

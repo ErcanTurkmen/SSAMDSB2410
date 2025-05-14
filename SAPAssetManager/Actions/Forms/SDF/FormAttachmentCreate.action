@@ -1,0 +1,32 @@
+{
+  "_Type": "Action.Type.ODataService.CreateMedia",
+  "Target": {
+    "EntitySet" : "DynamicFormAttachments",
+    "Service": "/SAPAssetManager/Services/AssetManager.service"
+  },
+  "Properties": {
+    "AppName": "{#Page:FormRunner/#ClientData/AttachmentData/AppName}",
+    "FormName": "{#Page:FormRunner/#ClientData/AttachmentData/FormName}",
+    "FormVersion": "{#Page:FormRunner/#ClientData/AttachmentData/FormVersion}",
+    "FormInstanceID": "{#Page:FormRunner/#ClientData/AttachmentData/FormInstanceID}",
+    "AttachmentID": "{#Page:FormRunner/#ClientData/AttachmentData/AttachmentID}",
+    "MimeType": "{#Page:FormRunner/#ClientData/AttachmentData/MimeType}"
+  },
+  "Headers": {
+    "slug": {
+      "AppName": "{#Page:FormRunner/#ClientData/AttachmentData/AppName}",
+      "FormName": "{#Page:FormRunner/#ClientData/AttachmentData/FormName}",
+      "FormVersion": "{#Page:FormRunner/#ClientData/AttachmentData/FormVersion}",
+      "FormInstanceID": "{#Page:FormRunner/#ClientData/AttachmentData/FormInstanceID}",
+      "AttachmentID": "{#Page:FormRunner/#ClientData/AttachmentData/AttachmentID}",
+      "MimeType": "{#Page:FormRunner/#ClientData/AttachmentData/MimeType}",
+      "ObjectType": "{#Page:FormRunner/#ClientData/AttachmentData/ObjectType}",
+      "ObjectKey": "{#Page:FormRunner/#ClientData/AttachmentData/ObjectKey}",
+      "TechnicalEntityType": "{#Page:FormRunner/#ClientData/AttachmentData/TechnicalEntityType}",
+      "TechnicalEntityKey": "{#Page:FormRunner/#ClientData/AttachmentData/TechnicalEntityKey}"
+    }
+  },
+  "Media": "{#Page:FormRunner/#ClientData/AttachmentData/Media}",
+
+  "OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/CreateEntityFailureMessage.action"
+}

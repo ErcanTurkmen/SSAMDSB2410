@@ -1,0 +1,10 @@
+{
+    "AllowEmptySelection": false,
+    "Caption": "$(L,sort_by)",
+    "Label": "$(L,sort_filter_prefix)",
+    "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js",
+    "SortByItems": [],
+    "_Name": "SortFilter",
+    "_Type": "Control.Type.FormCell.Sorter",
+    "IsEditable": true
+}

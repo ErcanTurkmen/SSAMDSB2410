@@ -1,0 +1,5 @@
+{
+	"PageToOpen": "/SAPAssetManager/Pages/Inventory/InboundOutbound/InboundOutboundDeliveryItemDetails.page",
+	"_Type": "Action.Type.Navigation",
+	"PageMetadata": "/SAPAssetManager/Rules/Inventory/InboundOrOutbound/InboundOutboundDeliveryItemDetailsPageMetadata.js"
+}

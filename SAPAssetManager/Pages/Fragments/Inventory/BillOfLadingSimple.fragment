@@ -1,0 +1,11 @@
+{
+    "Caption": "$(L,bill_of_lading)",
+    "AlternateInput": "Barcode",
+    "IsEditable": true,
+    "IsVisible": "/SAPAssetManager/Rules/Inventory/BillOfLadingVisible.js",
+    "KeyboardType": "Default",
+    "Value": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/GetBillOfLading.js",
+    "OnValueChange": "/SAPAssetManager/Rules/Inventory/Validation/BillOfLadingValidateLength.js",
+    "_Name": "BillOfLadingSimple",
+    "_Type": "Control.Type.FormCell.SimpleProperty"
+}

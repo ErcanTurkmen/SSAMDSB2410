@@ -1,0 +1,16 @@
+{
+	"Header": {
+		"UseTopPadding": true
+	},
+	"ObjectCell": {
+		"_Type": "Fragment",
+		"Fragment": "/SAPAssetManager/Pages/WCM/Fragments/Approvals/ApprovalObjectCell.fragment"
+	},
+	"Target": {
+		"EntitySet": "/SAPAssetManager/Rules/WCM/Approvals/ApprovalsReadLink.js",
+		"Service": "/SAPAssetManager/Services/AssetManager.service"
+	},
+	"Visible": "/SAPAssetManager/Rules/WCM/Approvals/ApprovalsObjectTableVisible.js",
+	"_Type" : "Section.Type.ObjectTable",
+	"DataSubscriptions": ["WCMApprovalProcesses", "WCMApprovalProcessSegments"]
+}

@@ -1,0 +1,76 @@
+{
+"Caption": "$(L,fld_delivery_items_handling_units)",
+"ActionBar": {
+		"Items": [
+			{
+				"_Type": "Fragment",
+				"Fragment": "/SAPAssetManager/Pages/Fragments/FilterButton.fragment",
+				"Properties": {
+					"OnPress": "/SAPAssetManager/Actions/FL/HUDelItems/HUDelItemsFilterViewNav.action"
+				}
+			},
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment"
+		]
+	},
+"Controls": [
+		{
+			"Sections": [
+				{
+					"EmptySection": {
+						"Caption": "$(L,no_delivery_items_handling_units)"
+					},
+					"Header": {
+						"Caption": "/SAPAssetManager/Rules/FL/HUDelItems/ListView/HUDelItemsListCaption.js",
+						"UseTopPadding": false
+					},
+					"ObjectCell": "/SAPAssetManager/Pages/Fragments/FL/HUDelItemsCell.fragment",
+					"Search": {
+						"Enabled" : true,
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 3,
+                        "Placeholder": "$(L,search)",
+                        "BarcodeScanner": true
+					},
+					"Target": {
+						"EntitySet": "FldLogsHuDelItems",
+						"QueryOptions":"/SAPAssetManager/Rules/FL/HUDelItems/ListView/HUDelItemsOnLoadQuery.js",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					},
+					"_Name": "SectionObjectTable",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"FilterFeedbackBar": {
+				"_Type": "Control.Type.FilterFeedbackBar",
+				"_Name": "FilterFeedback",
+				"ShowAllFilters": true,
+				"FastFilters": [
+	        		{ 
+						"_Name": "OpenHUDelItems",
+						"_Type": "Control.Type.FastFilterItem",
+						"FilterType": "Filter",
+						"FilterProperty": "",
+						"CustomQueryGroup": "HUDelItemsList",
+						"DisplayValue": "/SAPAssetManager/Rules/FL/HUDelItems/ListView/HUDelItemsFilterCaptionOpen.js",
+						"ReturnValue": "/SAPAssetManager/Rules/FL/HUDelItems/ListView/HUDelItemsGetReturnValueforOpen.js"
+            		},
+            		{	 
+						"_Name": "ReceivedHUDelItems",
+						"_Type": "Control.Type.FastFilterItem",
+						"FilterType": "Filter",
+						"FilterProperty": "",
+						"CustomQueryGroup": "HUDelItemsList",
+						"DisplayValue": "/SAPAssetManager/Rules/FL/HUDelItems/ListView/HUDelItemsFilterCaptionReceived.js",
+						"ReturnValue": "/SAPAssetManager/Rules/FL/HUDelItems/ListView/HUDelItemsGetReturnValueforReceived.js"       
+            		}
+				]
+			},
+			"Filters": "/SAPAssetManager/Rules/FL/HUDelItems/ListView/GetHUDelItemsPreSelectedFilter.js",
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		}
+],
+	"_Name": "HUDelItemsListPage",
+	"_Type": "Page",
+	"OnLoaded": "/SAPAssetManager/Rules/Filter/ListPageWithFilterOnLoaded.js"
+}

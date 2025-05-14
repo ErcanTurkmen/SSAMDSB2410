@@ -1,0 +1,69 @@
+{
+    "Caption": "/SAPAssetManager/Rules/WorkOrders/SubOperations/WorkOrderSubOperationHeader.js",
+    "OnReturning": "/SAPAssetManager/Rules/SubOperations/SubOperationOnPageReturning.js",
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "ObjectHeader": {
+                        "HeadlineText": "$(DV, {OperationShortText}, '-')",
+                        "DetailImage": "$(PLT, /SAPAssetManager/Images/DetailImages/Suboperation.png, /SAPAssetManager/Images/DetailImages/Suboperation.android.png)",
+                        "Tags": [{"Text": "{ControlKey}"}],
+                        "BodyText": "/SAPAssetManager/Rules/Operations/OperationHeaderEquipmentDescription.js",
+                        "Footnote":  "/SAPAssetManager/Rules/Operations/OperationHeaderFunctionalLocationDescription.js"
+                    },
+                    "_Type": "Section.Type.ObjectHeader",
+                    "_Name": "ObjectHeaderSectionTable",
+                    "DataSubscriptions": ["PMMobileStatuses", "MyWorkOrderSubOperations"]
+                },
+                {
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/QAB/QuickActionBarExtensionSection.fragment",
+					"Properties": {
+						"ExtensionProperties": {
+							"Chips": "/SAPAssetManager/Rules/WorkOrders/OnlineWorkOrderQABChips.js"
+						}
+					}
+				},
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/NotesObjectSection.fragment",
+                    "Properties": {
+                        "Target": {
+                            "EntitySet": "{{#Property:@odata.readLink}}/LongText",
+                            "Service": "/SAPAssetManager/Services/OnlineAssetManager.service"
+                        },
+                        "Visible": "/SAPAssetManager/Rules/Common/IsClassicLayoutDisabled.js",
+                        "ObjectCell": {
+                            "OnPress": "/SAPAssetManager/Rules/Notes/OnlineNotesViewNav.js"
+                        }
+                    }
+                },
+                "/SAPAssetManager/Pages/Fragments/WorkOrder/SubOperationDetails/OnlineSubOperationDetails.fragment",
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/SubOperationDetails/OperationSection.fragment",
+                    "Properties": {
+                        "ObjectCell": {
+                            "Icons": [],
+                            "StatusText": "",
+                            "DetailImage": "$(PLT, /SAPAssetManager/Images/DetailImages/Operation.png, /SAPAssetManager/Images/DetailImages/Operation.android.png)"
+                        },
+                        "Target": {
+                            "EntitySet": "{{#Property:@odata.readLink}}/Operation",
+                            "Service": "/SAPAssetManager/Services/OnlineAssetManager.service",
+                            "QueryOptions": "$expand=Header"
+                        }
+                    }
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "LoadingIndicator": {
+			    "Enabled": true
+		    }
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "SectionedTable",
+    "DataSubscriptions": ["MyWorkOrderOperations","MyWorkOrderSubOperations","Confirmations"]
+}

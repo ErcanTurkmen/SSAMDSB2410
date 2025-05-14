@@ -1,0 +1,147 @@
+{
+    "Caption": "$(L,connection_object)",
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "ObjectHeader": {
+                        "HeadlineText": "/SAPAssetManager/Rules/WorkOrders/Meter/ReferenceObject/Periodic/ConnectionObjectDescription.js",
+                        "BodyText":  "{{#Property:ConnectionObject_Nav/#Property:FuncLocation_Nav/#Property:FuncLocId}}",
+                        "SubstatusText": "{{#Property:ConnectionObject_Nav/#Property:FuncLocation_Nav/#Property:ObjectStatus_Nav/#Property:SystemStatus_Nav/#Property:StatusText}}"
+                    },
+                    "_Type": "Section.Type.ObjectHeader",
+                    "_Name": "ObjectHeaderSectionTable",
+                    "DataSubscriptions": []
+                },
+                {
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "ConnectionObjectDetails",
+                    "Header": {
+                        "Caption": "$(L,connection_object_details)"
+                    },
+                    "KeyAndValues": [
+                        {
+                            "_Name": "MyFunctionalLocation.FuncLocId",
+                            "KeyName": "$(L,ID)",
+                            "Value": "{{#Property:ConnectionObject_Nav/#Property:FuncLocation_Nav/#Property:FuncLocId}}"
+                        },
+                        {
+                            "_Name": "ConnectionObject.Description",
+                            "KeyName": "$(L,description)",
+                            "Value": "/SAPAssetManager/Rules/WorkOrders/Meter/ReferenceObject/Periodic/ConnectionObjectDescription.js"
+                        },
+                        {
+                            "_Name": "Address.Country",
+                            "KeyName": "$(L,location)",
+                            "Value": "/SAPAssetManager/Rules/WorkOrders/Meter/ReferenceObject/ConnectionObjectAddress.js"
+                        },
+                        {
+                            "KeyName": "$(L,time_zone)",
+                            "Value": "-"
+                        },
+                        {
+                            "KeyName": "$(L,mobile_phone)",
+                            "Value": "/SAPAssetManager/Rules/WorkOrders/Meter/ReferenceObject/ConnectionObjectAddressMobilePhone.js"
+                        },
+                        {
+                            "_Name": "PolRegStructElement.PolRegStructElemText",
+                            "KeyName": "$(L,pol_reg_str_el)",
+                            "Value": "/SAPAssetManager/Rules/WorkOrders/Meter/ReferenceObject/Periodic/PolRegStructElement.js"
+                        },
+                        {
+                            "_Name": "ConnectionObject.MaintenancePlant",
+                            "KeyName": "$(L,main_plant)",
+                            "Value": "{{#Property:ConnectionObject_Nav/#Property:MaintenancePlant}}"
+                        },
+                        {
+                            "_Name": "PMAuthorizationGroup.AuthGroupText",
+                            "KeyName": "$(L,authorization_group)",
+                            "Value": "/SAPAssetManager/Rules/WorkOrders/Meter/ReferenceObject/Periodic/AuthorizationGroup.js"
+                        }
+                    ]
+                },
+                {
+                    "Header": {
+                        "Caption": "$(L,meters)"
+                    },
+                    "EmptySection": {
+                        "Caption": "$(L,no_meter_available)"
+                    },
+                    "Footer": {
+                        "Caption": "$(L,see_all)",
+                        "AccessoryType": "DisclosureIndicator",
+                        "FooterStyle": "Attribute",
+                        "AttributeLabel": "/SAPAssetManager/Rules/Meter/Periodic/ConnectionObjectMetersCount.js",
+                        "OnPress": "/SAPAssetManager/Actions/WorkOrders/Meter/Periodic/MetersListViewNav.action"
+                    },
+                    "MaxItemCount": 2,
+                    "ObjectCell": {
+                        "AccessoryType": "DisclosureIndicator",
+                        "Title": "{{#Property:Device_Nav/#Property:Device}} - {{#Property:Device_Nav/#Property:DeviceCategory_Nav/#Property:Description}}",
+                        "Subhead": "/SAPAssetManager/Rules/Meter/Periodic/DeviceLocation.js",
+                        "Footnote": "{{#Property:Device_Nav/#Property:RegisterGroup_Nav/#Property:Division}} - {{#Property:Device_Nav/#Property:RegisterGroup_Nav/#Property:Division_Nav/#Property:Description}}",
+                        "StatusText": "{{#Property:Device_Nav/#Property:Equipment_Nav/#Property:ObjectStatus_Nav/#Property:SystemStatus_Nav/#Property:StatusText}}",
+                        "OnPress": "/SAPAssetManager/Actions/WorkOrders/Meter/Periodic/MeterDetailsNav.action",
+                        "PreserveIconStackSpacing": false
+                    },
+                    "Target": {
+                        "EntitySet": "{{#Property:@odata.readLink}}/StreetRoute_Nav",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "$filter=sap.entityexists(Device_Nav/PeriodicMeterReading_Nav)&$orderby=RouteIndex&$expand=Device_Nav/GoodsMovement_Nav,Device_Nav/DeviceCategory_Nav,Device_Nav/RegisterGroup_Nav/Division_Nav,Device_Nav/Equipment_Nav/ObjectStatus_Nav/SystemStatus_Nav,Device_Nav/ConnectionObject_Nav/FuncLocation_Nav/Address"
+                    },
+                    "_Type": "Section.Type.ObjectTable"
+                },
+                {
+                    "SimplePropertyCells": [
+                        {
+                            "SimplePropertyCell": {
+                                "_Name": "RelatedWorkOrders",
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName": "$(L,related_work_orders)",
+                                "Value": "/SAPAssetManager/Rules/WorkOrders/History/WorkOrderHistoriesCount.js",
+                                "OnPress": "/SAPAssetManager/Rules/Meter/ConnectionObject/Periodic/RelatedWorkOrdersNav.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "_Name": "RelatedNotifications",
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName": "$(L,related_notifications)",
+                                "Value": "/SAPAssetManager/Rules/Notifications/RelatedNotifications/RelatedNotificationsCount.js",
+                                "OnPress": "/SAPAssetManager/Actions/Notifications/RelatedNotifications/RelatedNotificationsListViewNav.action"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "_Name": "Notes",
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName": "$(L,notes)",
+                                "Value": "{{#Property:ConnectionObject_Nav/#Property:ConnectionObjectMRNote_Nav/#Count}}",
+                                "OnPress": "/SAPAssetManager/Actions/WorkOrders/Meter/Periodic/MRNoteDetailsNav.action"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell":
+                            {
+                                "_Name": "BusinessPartners",
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName": "$(L,business_partners)",
+                                "Value": "{{#Property:ConnectionObject_Nav/#Property:FuncLocation_Nav/#Property:Partners/#Count}}",
+                                "OnPress": "/SAPAssetManager/Rules/Meter/ConnectionObject/Periodic/RelatedPartnersNav.js"
+                            }
+                        }
+                    ],
+                    "Layout": {
+                        "NumberOfColumns": 2,
+                        "MinimumInteritemSpacing": 66
+                    },
+                    "_Type": "Section.Type.SimplePropertyCollection"
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "PeriodicConnectionObjectDetailsPage"
+}

@@ -1,0 +1,69 @@
+{
+	"Caption": "Header Page",
+	"ActionBar": {
+		"Items": [
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment"
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+                   "_Type": "Section.Type.KeyValue",
+                    "_Name": "MaterialDocumentHeaderPage",
+                    "KeyAndValues": [
+                        {
+                            "_Name": "DocumentType|DocumentStatus|MaterialDocItem.MovementType",
+                            "KeyName":  "$(L, movement_type)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetFormattadTags.js"
+                        },
+                        {
+                            "_Name": "MaterialDocYear",
+                            "KeyName": "$(L, document_year)",
+                            "Value": "{MaterialDocYear}"
+                        },
+						{
+                            "_Name": "GoodsReceiptIssueNumber",
+                            "KeyName": "$(L, gr_gi_slip)",
+                            "Value": "{GoodsReceiptIssueNumber}"
+						},
+						{
+                            "_Name": "BillOfLading",
+                            "KeyName": "$(L, bill_of_lading)",
+                            "Value": "{BillOfLading}"
+						},
+						{
+                            "_Name": "DocumentDate",
+                            "KeyName": "$(L, document_date)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/Common/GetDocumentDateForInventoryHeader.js"
+						},
+						{
+                            "_Name": "PostingDate",
+                            "KeyName": "$(L, posting_date)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/Common/GetPostingDateForInventoryHeader.js"
+						},
+						{
+                            "_Name": "RefDocumentNumber",
+                            "KeyName": "$(L, delivery_note_ref_doc)",
+                            "Value": "{RefDocumentNumber}"
+						},
+                        { 
+                            "_Name": "UserName",
+                            "KeyName": "$(L, user_name)",
+                            "Value": "{UserName}"
+						},
+						{
+                            "_Name": "HeaderText",
+                            "KeyName": "$(L, header_text)",
+                            "Value": "{HeaderText}"
+						}
+                    ]
+                }
+			],
+            "_Name": "SectionedTable",
+            "_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"_Name": "MaterialDocumentHeaderPage",
+	"_Type": "Page"
+}

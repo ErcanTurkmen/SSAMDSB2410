@@ -1,0 +1,13 @@
+{
+    "_Type": "Action.Type.ODataService.UpdateEntity",
+    "Target": {
+        "EntitySet": "UserPreferences",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+		"ReadLink": "{#ClientData/readLink}"
+    },
+    "Properties": {
+		"PreferenceName": "{#ClientData/preferenceName}",
+		"PreferenceValue": "{#ClientData/preferenceValue}"
+	},
+	"OnSuccess": "/SAPAssetManager/Actions/QAB/QABSettingsUpdatedSuccess.action"
+}

@@ -1,0 +1,7 @@
+{
+	"AccessoryType": "DisclosureIndicator",
+	"KeyName": "$(L,wcm_work_permits)",
+	"Value": "/SAPAssetManager/Rules/WCM/WorkPermits/WorkPermitsCount.js",
+	"OnPress": "/SAPAssetManager/Actions/WCM/WorkPermitsListViewNav.action",
+	"Visible": "/SAPAssetManager/Rules/UserFeatures/IsWCMWorkPermitEnabled.js"
+}

@@ -1,0 +1,71 @@
+{
+	"Caption": "$(L,switch_resource)",
+	"Controls": [
+		{
+			"Sections": [
+				{      
+					"Header": {
+						"UseTopPadding": false,
+						"Caption": "/SAPAssetManager/Rules/EWM/Resource/ResourceListCaption.js"
+					},        
+					"ObjectCell": {
+						"OnAccessoryButtonPress": "/SAPAssetManager/Rules/EWM/Resource/OnResourceButtonPress.js",
+						"PreserveIconStackSpacing": false,	
+						"Description": "/SAPAssetManager/Rules/EWM/Resource/GetClaimedBy.js",
+						"Title": "{Resource}" ,
+						"AccessoryButtonIcon": "/SAPAssetManager/Rules/EWM/Resource/ShowResourceIcon.js"                
+					},
+					"EmptySection": {
+						"Caption": "$(L,no_items)"
+					},
+					"Search": {
+						"BarcodeScanner": true,
+						"Enabled": true,
+						"MinimumCharacterThreshold": 2,
+						"Placeholder": "$(L,search)",
+						 "Delay": 500
+					},
+					"Target": {
+						"EntitySet": "WarehouseResources",
+						"QueryOptions": "/SAPAssetManager/Rules/EWM/Resource/ResourceListQuery.js",
+						"Service": "/SAPAssetManager/Services/OnlineAssetManager.service"
+					},
+					"_Name": "SectionObjectTable0",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"FilterFeedbackBar": {
+				"_Type": "Control.Type.FilterFeedbackBar",
+				"_Name": "FilterFeedback",
+				"ShowAllFilters": true,
+				"FastFilters": [ 
+					{  
+						"_Name": "AvailableResource",
+						"_Type": "Control.Type.FastFilterItem",
+						"FilterType": "Filter",
+						"CustomQueryGroup": "ResourceListQuery",
+						"DisplayValue": "/SAPAssetManager/Rules/EWM/Resource/ResourceAvailableCaption.js",
+						"ReturnValue": "User eq ''"
+				    },
+					{  
+						"_Name": "ClaimedResource",
+						"_Type": "Control.Type.FastFilterItem",
+						"FilterType": "Filter",
+						"CustomQueryGroup": "ResourceListQuery",
+						"DisplayValue": "/SAPAssetManager/Rules/EWM/Resource/ResourceClaimedCaption.js",
+						"ReturnValue": "User ne ''"
+					}
+				]
+			},
+		    "LoadingIndicator": {
+				"Enabled": true,
+				"Text": "$(L,loading)"
+			},
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable",
+			"Filters": "/SAPAssetManager/Rules/EWM/Resource/GetPreselectedFilter.js" 
+		}
+	],
+	"_Name": "ResourceListPage",
+	"_Type": "Page"
+}

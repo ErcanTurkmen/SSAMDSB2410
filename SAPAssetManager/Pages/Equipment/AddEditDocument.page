@@ -1,0 +1,53 @@
+{
+    "Caption": "/SAPAssetManager/Rules/Equipment/AddEditDocumentCaption.js",
+    "OnLoaded": "/SAPAssetManager/Rules/Equipment/AddEditDocumentPageOnLoaded.js",
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "_Name": "EquipmentAddEditDocument",
+        "Items": [
+            "/SAPAssetManager/Pages/Fragments/CancelButton.fragment",
+            {
+                "Position": "Right",
+                "_Name": "Done",
+                "SystemItem":"$(PLT,'Done','','','Done')",
+                "Caption": "$(L,done)",
+                "Text": "/SAPAssetManager/Rules/Common/Platform/DoneText.js",
+                "OnPress": "/SAPAssetManager/Actions/Equipment/AddEditDocument.action"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "Header": {
+                        "UseTopPadding": false
+                    },
+                    "Controls": [
+                        {
+                            "Caption":"$(L, attachment_description)",
+                            "PlaceHolder": "$(L,attachment_description)",
+                            "IsEditable": true,
+                            "IsVisible": true,
+                            "Value": "/SAPAssetManager/Rules/Documents/InitializeAttachmentsDescription.js",
+                            "_Name": "AttachmentDescription",
+                            "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/FormCellNoteValidation.js",
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        },
+                        {
+                            "_Type": "Fragment",
+                            "Fragment": "/SAPAssetManager/Pages/Fragments/Documents/DocumentFormCell.fragment",
+                            "Properties": {
+                                "Value": "/SAPAssetManager/Rules/Documents/InitializeAttachments.js"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "_Name": "FormCellContainer",
+            "_Type": "Control.Type.FormCellContainer"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "AddEditDocumentPage"
+}

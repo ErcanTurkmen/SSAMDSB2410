@@ -1,0 +1,6 @@
+{
+    "CancelPendingActions": false,
+    "OnSuccess": "/SAPAssetManager/Actions/Parts/PartsIssueMessage.action",
+    "DismissModal": "Action.Type.ClosePage.Completed",
+    "_Type": "Action.Type.ClosePage"
+}

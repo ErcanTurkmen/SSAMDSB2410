@@ -1,0 +1,8 @@
+{
+    "_Name": "ResetFilterTbI0",
+    "_Type": "FioriToolbarItem.Type.Button",
+    "Title": "$(L,reset)",
+    "OnPress": "/SAPAssetManager/Rules/Filter/FilterReset.js",
+    "Enabled": "/SAPAssetManager/Rules/Filter/ResetFilterEnabled.js",
+    "TextAlignment": "/SAPAssetManager/Rules/Common/Platform/ModalButtonAlign.js"
+}

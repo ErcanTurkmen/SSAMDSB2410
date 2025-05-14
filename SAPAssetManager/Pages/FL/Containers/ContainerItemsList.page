@@ -1,0 +1,68 @@
+{
+"Caption": "$(L,fld_container_items)",
+"ActionBar": 
+{ 
+	"Items": [
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment"
+		] 
+},
+"Controls": [
+		{
+			"Sections": [
+				{
+					"EmptySection": {
+						"Caption": "$(L,no_fld_container_items)"
+					},
+					"Header": {
+						"Caption": "/SAPAssetManager/Rules/FL/ContainerItems/ContainerItemsCountCaption.js",
+						"UseTopPadding": false
+					},
+					"ObjectCell": "/SAPAssetManager/Pages/Fragments/FL/ContainerItemCell.fragment",
+					"Search": {
+						"Enabled" : true,
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 3,
+                        "Placeholder": "$(L,search)",
+                        "BarcodeScanner": true
+					},
+					"Target": {
+						"EntitySet": "FldLogsContainerItems",
+						"QueryOptions":"/SAPAssetManager/Rules/FL/ContainerItems/ContainerItemsListQueryOptions.js",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					},
+					"_Name": "SectionObjectTable",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"FilterFeedbackBar": { 
+				"_Type": "Control.Type.FilterFeedbackBar",
+				"_Name": "FilterFeedback",
+				"ShowAllFilters": true,
+				"FastFilters": [
+					{ 
+						"_Name": "OpenContainerItems",
+						"_Type": "Control.Type.FastFilterItem",
+						"FilterType": "Filter",
+						"CustomQueryGroup": "ContainerItemsList",
+						"DisplayValue": "/SAPAssetManager/Rules/FL/ContainerItems/ContainerItemsFilterCaptionOpen.js",
+						"ReturnValue": "/SAPAssetManager/Rules/FL/ContainerItems/ContainerItemsReturnValueFilterOpen.js"
+					},
+					{ 
+						"_Name": "ReceivedContainerItems",
+						"_Type": "Control.Type.FastFilterItem",
+						"FilterType": "Filter",
+						"CustomQueryGroup": "ContainerItemsList",
+						"DisplayValue": "/SAPAssetManager/Rules/FL/ContainerItems/ContainerItemsFilterCaptionReceived.js",
+						"ReturnValue": "/SAPAssetManager/Rules/FL/ContainerItems/ContainerItemsReturnValueFilterReceived.js"
+					}
+				]
+			},
+			"Filters": "/SAPAssetManager/Rules/FL/ContainerItems/GetContainerItemsPreSelectedFilter.js",
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"_Name": "ContainerItemsListPage",
+	"_Type": "Page",
+	"OnLoaded": "/SAPAssetManager/Rules/Filter/ListPageWithFilterOnLoaded.js"
+}

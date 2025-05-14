@@ -1,0 +1,79 @@
+{
+	"_Type": "Page",
+	"_Name": "PRTEquipmentDetailsPage",
+	"Caption": "/SAPAssetManager/Rules/Operations/PRT/PRTEquipmentDetailsCaption.js",
+	"ActionBar": {
+		"_Name": "PRTEquipmentDetails",
+        "Items": [
+            {
+                "Position": "Right",
+				"_Name": "Edit",
+                "SystemItem": "Edit",
+				"Caption": "$(L,edit)",
+                "OnPress": "/SAPAssetManager/Rules/WorkOrders/Operations/PRT/PRTEquipmentUpdateNav.js",
+				"Visible": "/SAPAssetManager/Rules/UserAuthorizations/WorkOrders/EnableWorkOrderEdit.js"
+            },
+			{
+                "Position": "Right",
+				"_Name": "Add",
+                "SystemItem": "Add",
+				"Caption": "$(L,add)",
+                "OnPress": "/SAPAssetManager/Actions/WorkOrders/Operations/PRT/PRTAddNotePopover.action"
+            }
+        ]
+    },
+	"Controls": [
+		{
+			"_Type": "Control.Type.SectionedTable",
+			"_Name": "PRTEquipmentDetailsSectionedTable",
+			"Sections": [
+				{
+					"_Type": "Section.Type.KeyValue",
+					"_Name": "PRTEquipmentDetailsSection",
+					"Header": {
+						"Caption": "$(L,equipment_details)"
+					},
+					"KeyAndValues": [
+						{
+							"_Name": "Description",
+							"KeyName": "$(L,description)",
+							"Value": "/SAPAssetManager/Rules/Operations/PRT/PRTDescriptionValue.js"
+						},
+						{
+							"_Name": "UsageValue",
+							"KeyName": "$(L,usage)",
+							"Value": "/SAPAssetManager/Rules/Operations/PRT/PRTUsageValue.js"
+						},
+						{
+							"_Name": "ControlKey",
+							"KeyName": "$(L,control_key)",
+							"Value": "/SAPAssetManager/Rules/Operations/PRT/PRTPlantValue.js"
+						},
+						{
+							"_Name": "ItemNum",
+							"KeyName": "$(L,item_number)",
+							"Value": "/SAPAssetManager/Rules/Operations/PRT/PRTItemValue.js"
+						},{
+							"_Name": "MyEquipSerialNumber.SerialNumber",
+							"KeyName": "$(L,serial_number)",
+							"Value": "/SAPAssetManager/Rules/Operations/PRT/PRTSerialNumberValue.js"
+						}
+					]
+				},
+				{
+                    "SimplePropertyCells": [
+                        {
+                            "SimplePropertyCell": {
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName": "$(L,notes)",
+                                "Value": "/SAPAssetManager/Rules/Notes/NotesCount.js",
+                                "OnPress": "/SAPAssetManager/Rules/Notes/NotesViewNav.js"
+                            }
+                        }
+                    ],
+                    "_Type" : "Section.Type.SimplePropertyCollection"
+                }
+			]
+		}
+	]
+}

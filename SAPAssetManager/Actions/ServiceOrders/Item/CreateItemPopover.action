@@ -1,0 +1,56 @@
+{
+	"PopoverItems": [
+        {
+            "Title": "$(L, add_item)",
+            "Visible": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/IsServiceItemOrderNotCompleted.js",
+            "OnPress": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/CreateServiceItemNav.js"
+        },
+        {
+            "Title": "$(L,add_service_request)",
+            "OnPress": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestCreateNav.js"
+        },
+        {
+            "Title": "$(L, add_confirmation_item)",
+            "Visible": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/AddConfirmationToServiceItemEnabled.js",
+            "OnPress": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/ServiceConfirmationCreateNav.js"
+        },
+        {
+            "Title": "$(L, add_hoc_confirmation_item)",
+            "Visible": false,
+            "OnPress": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/ServiceHocConfirmationCreateUpdateNav.js"
+        },
+        {
+            "Title": "$(L, add_reference_object)",
+            "OnPress": "/SAPAssetManager/Actions/ReferenceObjects/AddReferenceObjectNav.action"
+        },
+        {
+            "Title": "$(L, add_note)",
+            "OnPress": "/SAPAssetManager/Rules/Notes/NoteCreateNav.js",
+            "Visible": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/IsServiceItemOrderNotCompleted.js"
+        },
+        {
+            "Title": "$(L, add_attachment)",
+            "Visible": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/IsServiceItemAddAttachmentVisible.js",
+            "OnPress": "/SAPAssetManager/Rules/Documents/Create/DocumentCreateBDSNav.js"
+        },
+        {
+            "Title": "$(L, generate_service_report)",
+            "Visible": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/IsServiceItemLevel.js",
+            "OnPress": "/SAPAssetManager/Rules/PDF/PDFGenerate.js"
+        },
+        {
+            "Title" : "$(L,add_reminder)",
+            "OnPress" : "/SAPAssetManager/Rules/Reminders/ReminderCreateNav.js",
+            "Visible": "/SAPAssetManager/Rules/ServiceOrders/ServiceOrderIsNotCompleted.js"
+        },
+        {
+            "Title": "$(L, add_service_order)",
+            "OnPress": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderCreateNav.js"
+        },
+        {
+            "Title": "$(L, add_business_partner)",
+            "OnPress": "/SAPAssetManager/Rules/BusinessPartners/S4/AddS4BusinessPartnerPageNav.js"
+        }
+    ],
+	"_Type": "Action.Type.PopoverMenu"
+}

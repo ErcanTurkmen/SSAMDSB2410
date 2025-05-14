@@ -1,0 +1,5 @@
+{
+    "_Type" : "Action.Type.Navigation",
+    "PageToOpen" : "/SAPAssetManager/Pages/FieldService/FieldServiceOverview.page",
+    "ClearHistory": true
+}

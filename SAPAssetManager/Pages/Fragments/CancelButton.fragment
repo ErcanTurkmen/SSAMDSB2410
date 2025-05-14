@@ -1,0 +1,7 @@
+{
+	"Position": "Left",
+	"SystemItem": "Cancel",
+	"Caption":"$(L,cancel)",
+	"OnPress": "/SAPAssetManager/Rules/Common/CheckForChangesBeforeCancel.js",
+	"_Name": "CancelButton"
+} 

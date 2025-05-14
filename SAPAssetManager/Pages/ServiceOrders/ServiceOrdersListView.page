@@ -1,0 +1,59 @@
+{
+    "OnLoaded": "/SAPAssetManager/Rules/Filter/ListPageWithFilterOnLoaded.js",
+    "ActionBar": {
+        "Items": [
+            "/SAPAssetManager/Pages/Fragments/SyncButton.fragment",
+            {
+                "Position": "Right",
+                "SystemItem": "Add",
+                "Caption":"$(L,add)",
+                "Text": "$(L,add)",
+                "Visible": true,
+                "OnPress": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderCreateNav.js"
+            },
+            {
+                "Position": "Right",
+                "Icon": "$(PLT,'',/SAPAssetManager/Images/filter.android.png, '', /SAPAssetManager/Images/filter.android.png)",
+                "Caption": "/SAPAssetManager/Rules/Filter/FilterButtonCaption.js",
+                "Visible": true,
+                "OnPress": "/SAPAssetManager/Actions/ServiceOrders/ServiceOrdersFilter.action"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "_Type" : "Control.Type.SectionedTable",
+            "_Name" : "SectionedTable",
+            "FilterFeedbackBar": {
+                "_Type": "Control.Type.FilterFeedbackBar",
+                "_Name": "FilterFeedback",
+                "ShowAllFilters": true,
+                "FastFilters": "/SAPAssetManager/Rules/ServiceOrders/ListView/ServiceOrderFastFiltersItems.js"
+            },
+            "Sections": [
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/ServiceOrders/ServiceOrdersObjectTable.fragment",
+                    "Properties": {
+                        "Target": {
+                            "QueryOptions": "/SAPAssetManager/Rules/ServiceOrders/ListView/ServiceOrderListViewQueryOptions.js"
+                        },
+                        "ObjectCell": {
+							"PreserveIconStackSpacing": true
+						},
+                        "Search": {
+                            "Enabled": true,
+                            "Delay": 500,
+                            "MinimumCharacterThreshold": 3,
+                            "Placeholder": "$(L,search)",
+                            "BarcodeScanner": true
+                        }
+                    }
+                }
+            ],
+            "Filters": "/SAPAssetManager/Rules/ServiceOrders/GetPreselectedFilter.js"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "ServiceOrdersListViewPage"
+}

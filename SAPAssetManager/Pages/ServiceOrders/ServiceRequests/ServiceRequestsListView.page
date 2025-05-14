@@ -1,0 +1,83 @@
+{
+	"OnLoaded": "/SAPAssetManager/Rules/Filter/ListPageWithFilterOnLoaded.js",
+	"Caption": "/SAPAssetManager/Rules/ServiceOrders/ServiceRequests/ServiceRequestsListViewCaption.js",
+	"ActionBar": {
+		"Items": [
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment",
+            {
+                "Position": "Right",
+                "SystemItem": "Add",
+                "Text": "$(L,add)",
+                "Visible": true,
+				"OnPress": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestCreateNav.js"
+            },
+			{
+				"Position": "Right",
+				"Icon": "$(PLT,'',/SAPAssetManager/Images/filter.android.png)",
+				"Caption": "/SAPAssetManager/Rules/Filter/FilterButtonCaption.js",
+				"OnPress": "/SAPAssetManager/Actions/ServiceOrders/ServiceRequestFilter.action"
+			}
+		]
+	},
+	"Controls": [
+		{
+			"_Type" : "Control.Type.SectionedTable",
+			"_Name" : "SectionedTable",
+            "FilterFeedbackBar": {
+                "_Type": "Control.Type.FilterFeedbackBar",
+                "_Name": "FilterFeedback",
+                "ShowAllFilters": true,
+                "FastFilters": "/SAPAssetManager/Rules/ServiceOrders/ServiceRequests/ServiceRequestsFastFiltersItems.js"
+            },
+			"Sections": [
+				{
+					"_Type" : "Section.Type.ObjectTable",
+					"_Name" : "ServiceRequestsListSection",
+					"Search": {
+						"Enabled": true,
+						"Delay": 500,
+						"MinimumCharacterThreshold": 3,
+						"Placeholder": "$(L,search)",
+						"BarcodeScanner": true
+					},
+					"Header": {
+						"UseTopPadding": false
+					},
+					"EmptySection": {
+						"Caption": "$(L,no_service_requests_available)"
+					},
+					"ObjectCell": {
+						"Icons": "/SAPAssetManager/Rules/ServiceOrders/ListView/ServiceOrderListViewIconImages.js",
+						"Title": "{Description}",
+						"Subhead": "{ObjectID}",
+						"AccessoryType": "DisclosureIndicator",
+						"StatusText": "#Property:Priority_Nav/#Property:Description",
+						"SubstatusText": "/SAPAssetManager/Rules/WorkOrders/ListView/WorkOrdersListViewFormat.js",
+						"Footnote": "/SAPAssetManager/Rules/DateTime/ServiceDueByDate.js",
+						"Styles": {
+							"StatusText": "/SAPAssetManager/Rules/Priority/S4PriorityStatusStyle.js"
+						},
+						"OnPress": "/SAPAssetManager/Rules/ServiceOrders/ListView/ServiceRequestDetailsNav.js",
+						"ContextMenu": {
+							"PerformFirstActionWithFullSwipe": true,
+							"Items":"/SAPAssetManager/Rules/ContextMenuTable.js",
+							"LeadingItems": "/SAPAssetManager/Rules/ContextMenuLeadingItems.js",
+							"TrailingItems": "/SAPAssetManager/Rules/ContextMenuTrailingItems.js"
+						}
+					},
+					"Target": {
+						"EntitySet": "S4ServiceRequests",
+						"QueryOptions": "/SAPAssetManager/Rules/ServiceOrders/ServiceRequests/ServiceRequestsListQueryOptions.js",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					},
+					"DataSubscriptions": [
+						"S4ServiceRequests",
+						"PMMobileStatuses"
+					]
+				}
+			]
+		}
+	],
+	"_Type": "Page",
+	"_Name": "ServiceRequestsListViewPage"
+}

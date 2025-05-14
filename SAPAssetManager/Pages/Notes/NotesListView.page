@@ -1,0 +1,67 @@
+{
+	"Caption": "/SAPAssetManager/Rules/Notes/List/NotesListViewCaption.js",
+	"ActionBar": {
+		"_Name": "NotesListViewActionBar",
+		"Items": [
+			{
+				"Position": "Right",
+				"_Name": "Add",
+				"SystemItem": "Add",
+				"Caption": "$(L,add)",
+				"OnPress": "/SAPAssetManager/Rules/Notes/NoteCreateNav.js",
+				"Visible": "/SAPAssetManager/Rules/Notes/List/IsNotesListCreateVisible.js"
+			}
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/NotesObjectSection.fragment",
+                    "Properties": {
+						"Header": {
+							"UseTopPadding": false,
+							"Caption": ""
+						},
+						"ObjectCell": {
+							"PreserveIconStackSpacing": true,
+							"Icons": "/SAPAssetManager/Rules/Common/ListViewIconImages.js",
+							"Title": "/SAPAssetManager/Rules/Notes/List/NoteType.js",
+							"AccessoryButtonIcon": "/SAPAssetManager/Rules/Notes/List/NoteAccessoryButtonIcon.js",
+							"OnAccessoryButtonPress": "/SAPAssetManager/Rules/Notes/List/NoteEditNavFromList.js",
+							"Subhead": "{TextString}",
+							"Footnote": "/SAPAssetManager/Rules/Notes/List/NoteTime.js",
+							"OnPress": "/SAPAssetManager/Rules/Notes/List/NoteDetailsNavFromList.js",
+							"DetailImage": "",
+							"ContextMenu": {
+								"PerformFirstActionWithFullSwipe": true,
+								"Items": [{
+									"_Name": "DiscardNote",
+									"Image": "$(PLT, /SAPAssetManager/Images/trash.png, /SAPAssetManager/Images/trash.android.png)",
+									"Text": "$(L,delete)",
+									"Mode": "Deletion",
+									"OnSwipe": "/SAPAssetManager/Rules/Notes/List/NoteDiscardFromContextMenu.js"
+								}],
+								"LeadingItems": "/SAPAssetManager/Rules/Notes/List/NoteContextMenuLeadingItems.js"
+                            },
+							"Styles": {
+								"Title": ""
+							}
+						},
+                        "Target": {
+							"EntitySet": "/SAPAssetManager/Rules/Notes/List/NotesListViewEntitySet.js",
+							"QueryOptions": "/SAPAssetManager/Rules/Notes/List/NotesListViewQueryOptions.js"
+						},
+						"MaxItemCount": 0
+                    }
+                }		
+			],
+			"_Name": "SectionedTable",
+			"_Type" : "Control.Type.SectionedTable"
+		}
+	],
+	"DataSubscriptions": ["S4ServiceOrderLongTexts", "S4ServiceRequestLongTexts", "S4ServiceConfirmationLongTexts", "S4ServiceQuotationLongTexts"],
+	"_Type": "Page",
+	"_Name": "NotesListView"
+}

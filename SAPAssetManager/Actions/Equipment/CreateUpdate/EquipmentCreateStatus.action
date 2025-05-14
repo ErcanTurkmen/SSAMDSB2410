@@ -1,0 +1,33 @@
+{
+    "Properties": {
+        "Status": "/SAPAssetManager/Rules/Equipment/CreateUpdate/EqipmentStatus.js",
+        "EquipId": "/SAPAssetManager/Rules/Equipment/CreateUpdate/EqipmentLocalID.js"
+    },
+    "Headers": {
+        "OfflineOData.NonMergeable": true,
+        "OfflineOData.RemoveAfterUpload": "true"
+    },
+    "CreateLinks": [
+        {
+            "Property" : "SystemStatus_Nav",
+            "Target": {
+                "EntitySet" : "SystemStatuses",
+                "ReadLink" : "/SAPAssetManager/Rules/Equipment/CreateUpdate/EqipmentStatusReadLink.js"
+            }
+        },
+        {
+            "Property" : "Equipment_Nav",
+            "Target": {
+                "EntitySet" : "MyEquipments",
+                "ReadLink" : "/SAPAssetManager/Rules/Equipment/CreateUpdate/EqipmentLocalLink.js"
+            }
+        }
+    ],
+    "Target": {
+        "EntitySet": "MyEquipObjectStatuses",
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "_Type": "Action.Type.ODataService.CreateEntity",
+    "OnSuccess": "/SAPAssetManager/Rules/Common/ChangeSet/ChangeSetOnSuccess.js"
+
+}

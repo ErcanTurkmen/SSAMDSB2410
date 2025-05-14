@@ -1,0 +1,13 @@
+{
+    "Caption": "/SAPAssetManager/Rules/Equipment/Warranties/EquipmentWarrantiesListViewCaption.js",
+    "Controls": [
+        {
+            "Sections": [
+               "/SAPAssetManager/Pages/Fragments/Equipment/EquipmentWarrantiesObjectTable.fragment"
+            ],
+            "_Type": "Control.Type.SectionedTable"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "EquipmentWarrantiesPage"
+}

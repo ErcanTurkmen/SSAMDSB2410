@@ -1,0 +1,11 @@
+{
+    "_Type": "Control.Type.FormCell.InlineSignatureCapture",
+    "_Name": "SignatureCaptureFormCell",
+    "Caption": "$(L, add_signature)",
+    "ShowTimestampInImage": true,
+    "ShowXMark": true,
+    "ShowUnderline": true,
+    "WatermarkTextMaxLines": 5,
+    "TimestampFormatter": "MM/dd/yy hh:mm a zzz",
+    "HelperText": "/SAPAssetManager/Rules/SignatureControl/Create/SignatureHelperText.js"
+}

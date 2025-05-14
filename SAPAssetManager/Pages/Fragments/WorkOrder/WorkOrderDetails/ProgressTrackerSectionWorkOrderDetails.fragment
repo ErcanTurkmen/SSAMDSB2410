@@ -1,0 +1,34 @@
+{
+    "_Type": "Section.Type.FormCell",
+    "Visible": "/SAPAssetManager/Rules/TimelineControl/IsTimelineControlVisible.js",
+    "Controls": [
+        {
+            "_Type": "Control.Type.FormCell.Extension",
+            "Module": "extension-ProgressTrackerFramework",
+            "Control": "ProgressTrackerExtension",
+            "Class": "ProgressTrackerExtension",
+            "Height": "/SAPAssetManager/Rules/TimelineControl/ProgressTrackerHeight.js",
+            "ExtensionProperties": {
+                "Config": {
+                    "IsIndexVisible": false,
+                    "IsCompactMode": false,
+                    "IsCentered": true
+                },
+                "InitialSteps": "/SAPAssetManager/Rules/TimelineControl/ProgressTrackerInitialStepsWrapper.js",
+                "OnStepSelected": "",
+                "OnDataChanged": "/SAPAssetManager/Rules/TimelineControl/ProgressTrackerOnDataChanged.js",
+                "IsSelectable": false
+            },
+            "Visible": true,
+            "_Name": "ProgressTrackerExtensionControl",
+            "DataSubscriptions": ["PMMobileStatuses"]
+        }
+    ],
+    "Header": {
+       "UseTopPadding": false
+    },
+    "Footer": {
+        "UseBottomPadding": false
+    },
+    "_Name": "ProgressTrackerExtensionSection"
+}

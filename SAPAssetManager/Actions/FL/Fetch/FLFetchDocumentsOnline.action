@@ -1,0 +1,5 @@
+{
+    "PageToOpen": "/SAPAssetManager/Pages/FL/Fetch/FLFetchDocumentsOnline.page",
+    "_Type": "Action.Type.Navigation",
+    "ModalPage": true
+}

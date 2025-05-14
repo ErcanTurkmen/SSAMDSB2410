@@ -1,0 +1,31 @@
+{
+	"Caption": "/SAPAssetManager/Rules/Notifications/FollowOn/FollowOnNotificationsListCaption.js",
+	"Controls": [
+		{
+			"_Type": "Control.Type.SectionedTable",
+			"Sections": [
+				{
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Notification/FollowOnNotificationsSection.fragment",
+                    "Properties": {
+                        "ObjectCell": {
+							"Description": null,
+                            "OnPress": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsNav.js",
+                            "SubstatusText": "/SAPAssetManager/Rules/Notifications/ListView/NotificationsListViewFormat.js",
+                            "Styles": {
+			                    "StatusText":  "/SAPAssetManager/Rules/Priority/NotificationPriorityStatusStyle.js"
+		                    }
+                        },
+                        "Footer": null,
+						"Header": {
+							"Caption": null
+						}
+                    }
+                }
+			]
+		}
+	],
+	"DataSubscriptions": ["MyNotificationHeaders"],
+	"_Type": "Page",
+	"_Name": "FollowOnNotificationsListViewPage"
+}

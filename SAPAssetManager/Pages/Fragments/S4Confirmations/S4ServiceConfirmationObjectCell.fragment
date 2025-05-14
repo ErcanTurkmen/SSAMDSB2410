@@ -1,0 +1,14 @@
+{
+    "Icons": "/SAPAssetManager/Rules/ServiceOrders/ListView/ServiceOrderListViewIconImages.js",
+    "PreserveIconStackSpacing": true,
+    "Title": "{Description}",
+    "Subhead": "{ObjectID}",
+    "Footnote": "/SAPAssetManager/Rules/Confirmations/Details/GetConfirmationDetailsNetValue.js",
+    "SubstatusText": "/SAPAssetManager/Rules/WorkOrders/ListView/WorkOrdersListViewFormat.js",
+    "StatusText": "/SAPAssetManager/Rules/Confirmations/List/GetObjectFinalStatusLabel.js",
+    "Styles": {
+        "StatusText": "SuccessGreenLabel"
+    },
+    "AccessoryType": "DisclosureIndicator",
+    "OnPress": "/SAPAssetManager/Rules/ServiceConfirmations/ListView/ConfirmationsDetailsNav.js"
+}

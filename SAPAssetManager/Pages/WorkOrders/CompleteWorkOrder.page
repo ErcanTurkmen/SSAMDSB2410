@@ -1,0 +1,238 @@
+{
+    "Caption" : "/SAPAssetManager/Rules/WorkOrders/Complete/CompletePageCaption.js",
+    "OnReturning": "/SAPAssetManager/Rules/WorkOrders/Complete/RedrawCompletePage.js",
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "_Name": "CompleteWorkOrder",
+        "Items": [
+            {
+                "Position": "Left",
+                "_Name": "Cancel",
+                "Text": "$(L,cancel)",
+                "SystemItem": "Cancel",
+                "OnPress": "/SAPAssetManager/Rules/WorkOrders/Complete/CancelCompletePageMessage.js"
+            },
+            {
+                "Position": "Right",
+                "_Name": "Done",
+                "SystemItem": "$(PLT,'Done','', '','Done')",
+                "Caption": "$(L,done)",
+                "OnPress": "/SAPAssetManager/Rules/WorkOrders/Complete/FinalizeCompletePageMessage.js"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "SimplePropertyCells": [
+                        {
+                            "SimplePropertyCell": {
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName" : "$(L,signature)*",
+                                "Visible": "/SAPAssetManager/Rules/WorkOrders/Complete/Signature/SetWOMandatorySignatureVisible.js",
+                                "Value":  "/SAPAssetManager/Rules/WorkOrders/Complete/Signature/SignatureValue.js",
+                                "OnPress": "/SAPAssetManager/Rules/WorkOrders/Complete/Signature/ChangeSignature.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName" : "$(L,field_is_required)",
+                                "Visible": false,
+                                "Styles": {
+                                    "KeyName": "InlineValidationRed"
+                                }
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName" : "$(L,digit_signature)*",
+                                "Value":  "/SAPAssetManager/Rules/WorkOrders/Complete/Signature/DigitalSignatureValue.js",
+                                "Visible": "/SAPAssetManager/Rules/WorkOrders/Complete/Signature/SetWOMandatoryDigitalSignatureVisible.js",
+                                "AccessoryType": "DisclosureIndicator",
+                                "OnPress": "/SAPAssetManager/Rules/WorkOrders/Complete/Signature/ChangeDigitalSignature.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName" : "$(L,field_is_required)",
+                                "Visible": false,
+                                "Styles": {
+                                    "KeyName": "InlineValidationRed"
+                                }
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName" : "$(L,smartforms)*",
+                                "Value": "/SAPAssetManager/Rules/WorkOrders/Complete/Smartforms/SmartformsValue.js",
+                                "Visible": "/SAPAssetManager/Rules/WorkOrders/Complete/Smartforms/IsMandatorySmartFormStepVisible.js",
+                                "OnPress": "/SAPAssetManager/Actions/Forms/FSM/FSMFormsCompletionListNav.action",
+                                "AccessoryType": "DisclosureIndicator"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName" : "$(L,missing_mandatory_smartforms)",
+                                "Visible": false,
+                                "Styles": {
+                                    "KeyName": "InlineValidationRed"
+                                }
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName" : "$(L,sdf_sap_dynamic_forms)*",
+                                "Value": "/SAPAssetManager/Rules/WorkOrders/Complete/SDF/SDFValue.js",
+                                "Visible": "/SAPAssetManager/Rules/WorkOrders/Complete/SDF/SetWOSDFVisible.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName" : "$(L,sdf_mandatory_forms_required)",
+                                "Visible": false,
+                                "Styles": {
+                                    "KeyName": "InlineValidationRed"
+                                }
+                            }
+                        }
+                    ],
+                    "Layout": {
+                        "NumberOfColumns": 1,
+                        "MinimumInteritemSpacing": "$(PLT,66,0)"
+                    },
+                    "Header": {
+                        "UseTopPadding": false,
+                        "Caption": "/SAPAssetManager/Rules/WorkOrders/Complete/RequiredFiledsCaption.js"
+                    },
+                    "_Name": "MandatorySection",
+                    "_Type" : "Section.Type.SimplePropertyCollection"
+                },
+                {
+                    "SimplePropertyCells": [
+                        {
+                            "SimplePropertyCell": {
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName" : "$(L,signature)",
+                                "Visible": "/SAPAssetManager/Rules/WorkOrders/Complete/Signature/SetWOSignatureVisible.js",
+                                "Value":  "/SAPAssetManager/Rules/WorkOrders/Complete/Signature/SignatureValue.js",
+                                "OnPress": "/SAPAssetManager/Rules/WorkOrders/Complete/Signature/ChangeSignature.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName" : "$(L,smartforms)",
+                                "Value": "/SAPAssetManager/Rules/WorkOrders/Complete/Smartforms/SmartformsValue.js",
+                                "Visible": "/SAPAssetManager/Rules/WorkOrders/Complete/Smartforms/IsSmartFormStepVisible.js",
+                                "OnPress": "/SAPAssetManager/Actions/Forms/FSM/FSMFormsCompletionListNav.action",
+                                "AccessoryType": "DisclosureIndicator"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName" : "$(L,confirmation)",
+                                "Value": "/SAPAssetManager/Rules/WorkOrders/Complete/Confirmation/ConfirmationValue.js",
+                                "Visible": "/SAPAssetManager/Rules/WorkOrders/Complete/Confirmation/IsConfirmationtepVisible.js",
+                                "OnPress": "/SAPAssetManager/Rules/WorkOrders/Complete/Confirmation/ChangeConfirmation.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName" : "$(L,time)",
+                                "Value": "/SAPAssetManager/Rules/WorkOrders/Complete/Time/TimeValue.js",
+                                "OnPress": "/SAPAssetManager/Rules/WorkOrders/Complete/Time/ChangeTime.js",
+                                "Visible": "/SAPAssetManager/Rules/Operations/IsTimeStepVisible.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName" : "$(L,expenses_service)",
+                                "Visible": "/SAPAssetManager/Rules/WorkOrders/Complete/Expenses/SetWOExpenseVisible.js",
+                                "Value": "/SAPAssetManager/Rules/WorkOrders/Complete/Expenses/ExpensesValue.js",
+                                "OnPress": "/SAPAssetManager/Rules/WorkOrders/Complete/Expenses/ChangeExpenses.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName" : "$(L,mileage)",
+                                "Visible": "/SAPAssetManager/Rules/WorkOrders/Complete/Mileage/SetWOMileageVisible.js",
+                                "Value": "/SAPAssetManager/Rules/WorkOrders/Complete/Mileage/MileageValue.js",
+                                "OnPress": "/SAPAssetManager/Rules/WorkOrders/Complete/Mileage/ChangeMileage.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName" : "$(L,update_notification)",
+                                "Value": "/SAPAssetManager/Rules/WorkOrders/Complete/Notification/NotificationValue.js",
+                                "Visible": "/SAPAssetManager/Rules/WorkOrders/Complete/Notification/SetWONotificationVisible.js",
+                                "AccessoryType": "DisclosureIndicator",
+                                "OnPress": "/SAPAssetManager/Rules/WorkOrders/Complete/Notification/ChangeNotification.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName" : "$(L,digit_signature)",
+                                "Value":  "/SAPAssetManager/Rules/WorkOrders/Complete/Signature/DigitalSignatureValue.js",
+                                "Visible": "/SAPAssetManager/Rules/WorkOrders/Complete/Signature/SetWODigitalSignatureVisible.js",
+                                "AccessoryType": "DisclosureIndicator",
+                                "OnPress": "/SAPAssetManager/Rules/WorkOrders/Complete/Signature/ChangeDigitalSignature.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName" : "$(L,notes)",
+                                "Value": "/SAPAssetManager/Rules/WorkOrders/Complete/Note/NoteValue.js",
+                                "OnPress": "/SAPAssetManager/Rules/WorkOrders/Complete/Note/ChangeNote.js",
+                                "Visible": "/SAPAssetManager/Rules/WorkOrders/Complete/Note/SetWONoteVisible.js",
+                                "AccessoryType": "DisclosureIndicator"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName" : "$(L,linear_data)",
+                                "Value": "/SAPAssetManager/Rules/WorkOrders/Complete/LAM/LAMValue.js",
+                                "OnPress": "/SAPAssetManager/Rules/WorkOrders/Complete/LAM/ChangeLAM.js",
+                                "Visible": "/SAPAssetManager/Rules/WorkOrders/Complete/LAM/SetWOLAMVisible.js",
+                                "AccessoryType": "DisclosureIndicator"
+                            }
+                        }
+                    ],
+                    "Layout": {
+                        "NumberOfColumns": 1,
+                        "MinimumInteritemSpacing": "$(PLT,66,0)"
+                    },
+                    "Header": {
+                        "UseTopPadding": true
+                    },
+                    "_Name": "OptionalSection",
+                    "_Type" : "Section.Type.SimplePropertyCollection"
+                },
+                {
+                    "Header": {
+                        "UseTopPadding": true
+                    },
+                    "Buttons": [
+                        {
+                            "_Type": "ButtonTable.Type.Button",
+                            "Title" : "$(L,reset)",
+                            "OnPress": "/SAPAssetManager/Rules/WorkOrders/Complete/ResetCompleteScreenFieldsMessage.js",
+                            "Visible": "/SAPAssetManager/Rules/WorkOrders/Complete/ResetButtonVisible.js",
+                            "TextAlignment": "Center",
+                            "_Name": "ResetButton"
+                        }
+                    ],
+                    "_Name": "Buttons",
+                    "_Type": "Section.Type.ButtonTable"
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "CompleteOrderScreen"
+}

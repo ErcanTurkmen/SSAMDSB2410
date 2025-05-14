@@ -1,0 +1,128 @@
+{
+	"OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "Items": [
+            {
+                "Position": "Left",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)",
+                "OnPress": "/SAPAssetManager/Actions/Page/CancelPage.action"
+            },
+            {
+                "Position": "Right",
+                "SystemItem": "/SAPAssetManager/Rules/Filter/FilterSystemItem.js",
+                "Text": "/SAPAssetManager/Rules/Filter/FilterText.js",
+                "OnPress": "/SAPAssetManager/Rules/Inventory/Search/InventorySearchFilterDoneWrapper.js"
+            }
+        ]
+    },
+    "Caption":"$(L,filter)",
+    "Result": "/SAPAssetManager/Rules/Inventory/Search/InventorySearchFilterResults.js",
+    "Controls":
+    [{
+        "Sections":
+        [
+        {
+            "Controls": [{
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/SortByFilter.fragment",
+				"Properties": {
+                     "SortByItems": [
+                        {
+                            "ReturnValue":"ObjectDate,ObjectId",
+                            "DisplayValue":"$(L,date)"
+                        },
+                        {
+                            "ReturnValue":"ObjectId",
+                            "DisplayValue":"$(L,document_number)"
+                        },
+                        {
+                            "ReturnValue":"IMObject,ObjectId",
+                            "DisplayValue":"$(L,document_type)"
+                        }
+                    ]
+				}
+            }]
+        },
+        {
+            "Controls":
+            [
+                {
+                    "_Name": "DocTypeFilter",
+                    "_Type": "Control.Type.FormCell.ListPicker",
+                    "Caption": "$(L,document_type)",
+                    "AllowMultipleSelection": true,
+                    "IsPickerDismissedOnSelection": true,
+                    "IsSearchCancelledAfterSelection": true,
+                    "Search": {
+                        "Enabled": true,
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 3,
+                        "Placeholder": "$(L,search)",
+                        "BarcodeScanner": true
+                    },
+                    "PickerItems": "/SAPAssetManager/Rules/Inventory/Search/DocumentTypeFilterListPickerItems.js",
+                    "FilterProperty": "IMObject",
+                    "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+                }
+            ]
+        },
+        {
+            "Controls": [
+                {
+                    "_Name": "DateCustomPicker",
+                    "_Type": "Control.Type.FormCell.ListPicker",
+                    "Caption": "$(L,due_date)",
+                    "AllowMultipleSelection": false,
+                    "IsPickerDismissedOnSelection": true,
+                    "Search": {
+                        "Enabled": false
+                    },
+                    "PickerItems": "/SAPAssetManager/Rules/Inventory/Search/DueDatePickerItems.js",
+                    "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+                },
+                {
+                    "_Type": "Control.Type.FormCell.Switch",
+                    "_Name": "DueDateSwitch",
+                    "Caption":"$(L,custom_date_range)",
+                    "Value": false,
+                    "OnValueChange": "/SAPAssetManager/Rules/Inventory/Search/DueDateFilterSwitchOnChange.js"
+                },
+                {
+                    "_Type": "Control.Type.FormCell.DatePicker",
+                    "_Name": "DueStartDateFilter",
+                    "Caption": "$(L,date_from)",
+                    "Mode": "Date",
+                    "IsVisible": false,
+                    "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+                },
+                {
+                    "_Type": "Control.Type.FormCell.DatePicker",
+                    "_Name": "DueEndDateFilter",
+                    "Caption": "$(L,date_to)",
+                    "Mode": "Date",
+                    "IsVisible": false,
+                    "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+                }
+            ]
+        }],
+        "_Name":"FormCellContainer",
+        "_Type":"Control.Type.FormCellContainer"
+    }],
+    "FioriToolbar": {
+        "_Name": "InventorySearchFilterFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Items": [
+            {
+				"_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/ResetFilterToolbarItem.fragment",
+				"Properties": {
+                    "OnPress": "/SAPAssetManager/Rules/Inventory/Search/InventorySearchFilterReset.js"
+				}
+			}
+        ]
+    },
+    "_Type":"Page",
+    "_Name":"InventorySearchFilterPage",
+    "OnLoaded": "/SAPAssetManager/Rules/Inventory/Search/InventorySearchFilterOnLoaded.js"
+}

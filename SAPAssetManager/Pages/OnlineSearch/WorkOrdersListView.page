@@ -1,0 +1,56 @@
+{
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"EmptySection": {
+						"Caption": "/SAPAssetManager/Rules/OnlineSearch/EmptySectionCaption.js"
+					},
+					"Header": {
+						"UseTopPadding": true
+					},
+					"ObjectCell": {
+						"_Type": "Fragment",
+        				"Fragment": "/SAPAssetManager/Pages/Fragments/OnlineSearch/OnlineWorkOrderObjectCell.fragment",
+						"ContextMenu": {
+							"PerformFirstActionWithFullSwipe": true,
+							"Items":"/SAPAssetManager/Rules/WorkOrders/WorkOrderObjectCellContextMenuItems.js",
+							"LeadingItems": "/SAPAssetManager/Rules/ContextMenuLeadingItems.js",
+							"TrailingItems": "/SAPAssetManager/Rules/ContextMenuTrailingItems.js"
+						}
+					},
+					"OnSelectionChanged": "/SAPAssetManager/Rules/OnlineSearch/ListOnSelectionChanged.js",
+					"Selection": {
+						"ExitOnLastDeselect": false
+					},
+					"Target": {
+						"EntitySet": "WorkOrderHeaders",
+						"Service": "/SAPAssetManager/Services/OnlineAssetManager.service",
+						"QueryOptions": "/SAPAssetManager/Rules/OnlineSearch/WorkOrders/WorkOrdersListViewQueryOptions.js"
+					},
+					"DataPaging": {
+						"PageSize": 30,
+						"ShowLoadingIndicator": true
+					},
+					"Visible": false,
+					"_Type": "Section.Type.ObjectTable"
+				},
+				{
+					"EmptySection": {
+						"Caption": "$(L, empty_search_msg)"
+					},
+					"Header": {
+						"UseTopPadding": true
+					},
+					"Visible": true,
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"_Name": "OnlineSearchWorkOrdersList",
+	"OnUnloaded": "/SAPAssetManager/Rules/OnlineSearch/WorkOrders/WorkOrdersListOnUnloaded.js",
+	"_Type": "Page"
+}

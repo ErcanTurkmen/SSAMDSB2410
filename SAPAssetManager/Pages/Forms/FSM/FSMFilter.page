@@ -1,0 +1,199 @@
+{
+	"OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+	"ActionBar": {
+        "Items": [
+            {
+                "Position": "Left",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)",
+                "OnPress": "/SAPAssetManager/Actions/Page/CancelPage.action"
+            },
+            {
+                "Position": "Right",
+                "SystemItem": "/SAPAssetManager/Rules/Filter/FilterSystemItem.js",
+                "Text": "/SAPAssetManager/Rules/Filter/FilterText.js",
+                "OnPress": "/SAPAssetManager/Rules/Filter/ApplyFilterAndSave.js"
+            }
+        ]
+    },
+	"Caption": "$(L,filter)",
+	"Result": "/SAPAssetManager/Rules/Forms/FSM/FSMFilteringResult.js",
+	"Controls":
+    [{
+		"Sections":
+        [{
+			"Controls": [{
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/SortByFilter.fragment",
+				"Properties": {
+                    "SortByItems": [
+                        {
+                            "ReturnValue":"FSMFormTemplate_Nav/Name",
+                            "DisplayValue":"$(L,name)"
+                        },
+                        {
+                            "ReturnValue":"Closed",
+                            "DisplayValue":"$(L,status)"
+                        }
+                    ]
+				}
+            }]
+		},
+        {
+            "Controls":
+            [{
+                "_Name": "WorkOrderFilter",
+                "_Type": "Control.Type.FormCell.ListPicker",
+                "Caption": "$(L,workorder)",
+                "AllowMultipleSelection": false,
+                "IsPickerDismissedOnSelection": true,
+                "IsSearchCancelledAfterSelection": true,
+                "Search": {
+                    "Enabled": true,
+                    "Delay": 500,
+                    "MinimumCharacterThreshold": 3,
+                    "Placeholder": "$(L,search)",
+                    "BarcodeScanner": true
+                },
+                "PickerItems": {
+                    "DisplayValue": "{{#Property:OrderId}} - {{#Property:OrderDescription}}",
+                    "ReturnValue": "{OrderId}",
+                    "Target": {
+                        "EntitySet": "MyWorkOrderHeaders",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "/SAPAssetManager/Rules/Forms/FSM/FSMWorkOrderFilterQueryOptions.js"
+                    }
+                },
+                "OnValueChange": "/SAPAssetManager/Rules/Forms/FSM/FSMWorkOrderFilterOnValueChange.js",
+                "IsEditable" : "/SAPAssetManager/Rules/Forms/FSM/FSMWorkOrderFilterIsEditable.js",
+                "IsVisible": "/SAPAssetManager/Rules/ServiceOrders/IsS4ServiceIntegrationNotEnabled.js"
+            },
+            {
+                "_Name": "OperationFilter",
+                "_Type": "Control.Type.FormCell.ListPicker",
+                "Caption": "$(L,operation)",
+                "AllowMultipleSelection": false,
+                "IsPickerDismissedOnSelection": true,
+                "IsSearchCancelledAfterSelection": true,
+                "Search": {
+                    "Enabled": true,
+                    "Delay": 500,
+                    "MinimumCharacterThreshold": 3,
+                    "Placeholder": "$(L,search)",
+                    "BarcodeScanner": true
+                },
+                "PickerItems": {
+                    "DisplayValue": "{{#Property:OperationNo}} - {{#Property:OperationShortText}}",
+                    "ReturnValue": "{OperationNo}",
+                    "Target": {
+                        "EntitySet": "MyWorkOrderOperations",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "/SAPAssetManager/Rules/Forms/FSM/FSMOperationFilterQueryOptions.js"
+                    }
+                },
+                "OnValueChange": "/SAPAssetManager/Rules/Forms/FSM/FSMOperationFilterOnValueChange.js",
+                "IsVisible": "/SAPAssetManager/Rules/ServiceOrders/IsS4ServiceIntegrationNotEnabled.js"
+            }]
+        },
+        {
+            "Controls":
+            [{
+                "_Name": "S4WorkOrderFilter",
+                "_Type": "Control.Type.FormCell.ListPicker",
+                "Caption": "$(L,service_order)",
+                "AllowMultipleSelection": false,
+                "IsPickerDismissedOnSelection": true,
+                "IsSearchCancelledAfterSelection": true,
+                "Search": {
+                    "Enabled": true,
+                    "Delay": 500,
+                    "MinimumCharacterThreshold": 3,
+                    "Placeholder": "$(L,search)",
+                    "BarcodeScanner": true
+                },
+                "PickerItems": {
+                    "DisplayValue": "{{#Property:ObjectID}} - {{#Property:Description}}",
+                    "ReturnValue": "{ObjectID}",
+                    "Target": {
+                        "EntitySet": "S4ServiceOrders",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "/SAPAssetManager/Rules/Forms/FSM/FSMWorkOrderFilterQueryOptions.js"
+                    }
+                },
+                "OnValueChange": "/SAPAssetManager/Rules/Forms/FSM/FSMWorkOrderFilterOnValueChange.js",
+                "IsEditable" : "/SAPAssetManager/Rules/Forms/FSM/FSMWorkOrderFilterIsEditable.js",
+                "IsVisible": "/SAPAssetManager/Rules/ServiceOrders/IsS4ServiceIntegrationEnabled.js"
+            },
+            {
+                "_Name": "S4OperationFilter",
+                "_Type": "Control.Type.FormCell.ListPicker",
+                "Caption": "$(L,serviceitem)",
+                "AllowMultipleSelection": false,
+                "IsPickerDismissedOnSelection": true,
+                "IsSearchCancelledAfterSelection": true,
+                "Search": {
+                    "Enabled": true,
+                    "Delay": 500,
+                    "MinimumCharacterThreshold": 3,
+                    "Placeholder": "$(L,search)",
+                    "BarcodeScanner": true
+                },
+                "PickerItems": {
+                    "DisplayValue": "{{#Property:ItemNo}} - {{#Property:ItemDesc}}",
+                    "ReturnValue": "{ItemNo}",
+                    "Target": {
+                        "EntitySet": "S4ServiceItems",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "/SAPAssetManager/Rules/Forms/FSM/FSMOperationFilterQueryOptions.js"
+                    }
+                },
+                "OnValueChange": "/SAPAssetManager/Rules/Forms/FSM/FSMOperationFilterOnValueChange.js",
+                "IsVisible": "/SAPAssetManager/Rules/ServiceOrders/IsS4ServiceIntegrationEnabled.js"
+            }]
+        },
+        {
+            "Controls":
+            [{
+                "Caption":"$(L,type)",
+                "AllowEmptySelection":true,
+                "AllowMultipleSelection":true,
+                "_Type":"Control.Type.FormCell.Filter",
+                "IsEditable":true,
+                "_Name":"FSMTypeFilter",
+                "FilterProperty":"/SAPAssetManager/Rules/Forms/FSM/FSMTypeFilter.js",
+                "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+            }]
+        },
+        {
+            "Controls":
+            [{
+                "Caption":"$(L,status)",
+                "AllowEmptySelection":true,
+                "AllowMultipleSelection":true,
+                "_Type":"Control.Type.FormCell.Filter",
+                "IsEditable":true,
+                "_Name":"FSMStatusFilter",
+                "FilterProperty":"/SAPAssetManager/Rules/Forms/FSM/FSMStatusFilter.js",
+                "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+            }]
+        }],
+		"_Name": "FormCellContainer",
+		"_Type": "Control.Type.FormCellContainer"
+	}],
+    "FioriToolbar": {
+        "_Name": "FSMFilterFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Items": [
+            {
+				"_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/ResetFilterToolbarItem.fragment",
+				"Properties": {
+                    "OnPress": "/SAPAssetManager/Rules/Forms/FSM/FSMListFilterReset.js"
+				}
+			}
+        ]
+    },
+	"_Name": "FSMFilterPage",
+	"_Type": "Page",
+    "OnLoaded": "/SAPAssetManager/Rules/Forms/FSM/FSMListFilterOnLoaded.js"
+}

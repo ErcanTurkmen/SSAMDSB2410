@@ -1,0 +1,10 @@
+{
+    "Title": "$(L, action_create_workorder)",
+    "Icon": "ActionAdd",
+    "Type": "Create",
+    "IsVisible": "/SAPAssetManager/Rules/UserAuthorizations/WorkOrders/EnableWorkOrderCreate.js",
+    "CallbackInfo": {
+        "Action": "/SAPAssetManager/Rules/WorkOrders/FollowUpWorkOrderCreateNav.js",
+        "Target": "/SAPAssetManager/Pages/Fragments/Map/WorkOrders/MapWorkOrderCallbackInfoTarget.fragment"
+    }
+}

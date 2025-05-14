@@ -1,0 +1,13 @@
+{
+	"PopoverItems": [{
+		"Title": "$(L, filter)",
+		"OnPress": "/SAPAssetManager/Actions/Notifications/NotificationFilter.action",	
+		"Visible": true
+	},
+	{
+		"Title": "$(L, online_search)",
+		"OnPress": "/SAPAssetManager/Rules/OnlineSearch/Notifications/OnlineSearchFromNotificationsNav.js",
+		"Visible": "/SAPAssetManager/Rules/OnlineSearch/IsOnlineSearchEnabled.js"
+	}],
+	"_Type": "Action.Type.PopoverMenu"
+}

@@ -1,0 +1,190 @@
+{
+    "_Type": "Page",
+    "_Name": "ServiceQuotationCreateUpdatePage",
+    "Caption": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationCreateUpdateCaption.js",
+    "OnLoaded": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationCreateUpdateLoaded.js",
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "Items": [
+            "/SAPAssetManager/Pages/Fragments/CancelButton.fragment",
+            {
+                "Position": "Right",
+                "SystemItem": "$(PLT,'Done','','','Done')",
+                "Caption": "$(L,done)",
+                "Text": "/SAPAssetManager/Rules/Common/Platform/DoneText.js",
+                "OnPress": "/SAPAssetManager/Actions/ServiceQuotations/CreateUpdate/ServiceQuotationCreateUpdateRequired.action"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "_Name": "FormCellContainer",
+            "_Type": "Control.Type.SectionedTable",
+            "Sections": [
+                {
+                    "_Type": "Section.Type.FormCell",
+                    "_Name": "DescriptionSection",
+                    "Header": {
+                        "Caption": "$(L, indicates_required_fields)",
+                        "UseTopPadding": false
+                    },
+                    "Controls": [
+                        "/SAPAssetManager/Pages/Fragments/S4CreateUpdate/DescriptionNoteField.fragment"
+                    ]
+                },
+                {
+                    "_Type": "Section.Type.FormCell",
+                    "_Name": "ProcessTypeSection",
+                    "Controls": [
+                        {
+                            "_Type": "Fragment",
+                            "Fragment": "/SAPAssetManager/Pages/Fragments/S4CreateUpdate/ProcessTypeListPicker.fragment",
+                            "Properties": {
+                                "Caption": "$(L,process_type)*",
+                                "IsEditable": false,
+                                "PickerItems": {
+                                    "Target": {
+                                        "QueryOptions": "$filter=TransactionType eq 'SRVQ'"
+                                    }
+                                }
+                            }
+                        }
+                        
+                    ]
+                },
+                {
+                    "_Type": "Section.Type.FormCell",
+                    "_Name": "PrioritySection",
+                    "Controls": [
+                        "/SAPAssetManager/Pages/Fragments/S4CreateUpdate/PrioritySegmentedControl.fragment"
+                    ]
+                },
+                {
+                    "_Type": "Section.Type.FormCell",
+                    "_Name": "ValidFromToDateSection",
+                    "Controls": [
+                        {
+                            "Caption": "$(L,quotation_valid_from)",
+                            "DateTimeEntryMode" : "date",
+                            "Mode" : "Date",
+                            "_Type": "Control.Type.FormCell.DatePicker",
+                            "_Name": "ValidFromDatePicker",
+                            "Value": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/SetServiceQuotationValidFromDateValue.js"
+                        },
+                        {
+                            "Caption": "$(L,quotation_valid_to)",
+                            "DateTimeEntryMode" : "date",
+                            "Mode" : "Date",
+                            "_Type": "Control.Type.FormCell.DatePicker",
+                            "_Name": "ValidToDatePicker",
+                            "Value": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/SetServiceQuotationValidToDateValue.js"
+                        }
+                    ]
+                },
+                {
+                    "_Type": "Section.Type.FormCell",
+                    "_Name": "OrganizationDataSection",
+                    "Header": {  
+                        "Caption": "$(L, organizational_data)"
+                    },
+                    "Controls": [
+                        "/SAPAssetManager/Pages/Fragments/S4CreateUpdate/SoldToPartyListPicker.fragment",
+                        "/SAPAssetManager/Pages/Fragments/S4CreateUpdate/SalesOrgListPicker.fragment",
+                        "/SAPAssetManager/Pages/Fragments/S4CreateUpdate/ServiceOrgListPicker.fragment",
+                        "/SAPAssetManager/Pages/Fragments/S4CreateUpdate/BillToPartyListPicker.fragment"
+                    ]
+                },
+                {
+                    "_Type": "Section.Type.FormCell",
+                    "_Name": "AdditionalInfoSection",
+                    "Controls": [
+                        {
+                            "Caption": "$(L,additional_information)",
+                            "_Name": "AdditionalInfoSwitch",
+                            "_Type": "Control.Type.FormCell.Switch",
+                            "OnValueChange": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationCreateUpdateAdditionalInfoSwitchOnChange.js"
+                        }
+                    ]
+                },
+                {
+                    "_Type": "Section.Type.FormCell",
+                    "_Name": "CategorizationSection",
+                    "Header": {  
+                        "Caption": "$(L, categorization)"
+                    },
+                    "Visible": false,
+                    "Controls": [
+                        "/SAPAssetManager/Pages/Fragments/S4CreateUpdate/Category1ListPicker.fragment",
+                        "/SAPAssetManager/Pages/Fragments/S4CreateUpdate/Category2ListPicker.fragment",
+                        "/SAPAssetManager/Pages/Fragments/S4CreateUpdate/Category3ListPicker.fragment",
+                        "/SAPAssetManager/Pages/Fragments/S4CreateUpdate/Category4ListPicker.fragment"
+                    ]
+                },
+                {
+                    "_Type": "Section.Type.FormCell",
+                    "_Name": "ReferenceObjectSection",
+                    "Header": {  
+                        "Caption": "$(L, main_reference_object)"
+                    },
+                    "Visible": false,
+                    "Controls": [
+                        "/SAPAssetManager/Pages/Fragments/S4CreateUpdate/ProductLstPkr.fragment",
+                        "/SAPAssetManager/Pages/Fragments/S4CreateUpdate/FuncLocHierarchyExtensionControl.fragment",
+                        "/SAPAssetManager/Pages/Fragments/S4CreateUpdate/EquipHierarchyExtensionControl.fragment"
+                    ]
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Notes/S4NoteFormCellSection.fragment",
+                    "Properties": {
+                        "#Name:ServiceNoteTypesListPicker": {
+                            "Caption": "$(L,note_type)"
+                        },
+                        "#Name:LongTextNote": {
+                            "OnValueChange": "/SAPAssetManager/Rules/Notes/Create/OnS4NoteValueChange.js"
+                        }
+                    }
+                },
+                {
+                    "_Type": "Section.Type.FormCell",
+                    "_Name": "AttachmentsSection",
+                    "Controls": [
+                        {
+                            "Caption":"$(L, attachment_description)",
+                            "PlaceHolder": "$(L,attachment_description)",
+                            "IsEditable": true,
+                            "IsVisible": "/SAPAssetManager/Rules/Documents/DocumentsIsVisible.js",
+                            "_Name": "AttachmentDescription",
+                            "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/FormCellNoteValidation.js",
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        },
+                        {
+                            "_Type": "Fragment",
+                            "Fragment": "/SAPAssetManager/Pages/Fragments/Documents/DocumentFormCell.fragment",
+                            "Properties": {
+                                "Value": "/SAPAssetManager/Rules/Documents/InitializeAttachments.js",
+                                "IsVisible": "/SAPAssetManager/Rules/Documents/DocumentsIsVisible.js"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "_Type": "Section.Type.FormCell",
+                    "_Name": "DiscardButtonSection",
+                    "Controls": [
+                        {
+                            "Title": "$(L,discard)",
+                            "OnPress": "/SAPAssetManager/Rules/Common/DiscardAction.js",
+                            "IsVisible": "/SAPAssetManager/Rules/Common/IsDiscardButtonVisible.js",
+                            "_Type": "Control.Type.FormCell.Button",
+                            "ButtonType": "Text",
+                            "Semantic": "Tint",
+                            "_Name": "DiscardButton",
+                            "TextAlignment": "/SAPAssetManager/Rules/Common/Platform/ModalButtonAlign.js"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

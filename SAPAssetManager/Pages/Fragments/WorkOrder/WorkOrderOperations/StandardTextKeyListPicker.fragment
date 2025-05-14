@@ -1,0 +1,12 @@
+
+{
+    "AllowMultipleSelection": false,
+    "IsPickerDismissedOnSelection": true,
+    "Caption": "$(L,standard_text)",
+    "PickerItems": "/SAPAssetManager/Rules/WorkOrders/Operations/CreateUpdate/StandardTextKeyPickerItems.js",
+    "OnValueChange": "/SAPAssetManager/Rules/WorkOrders/Operations/CreateUpdate/StandardTextPickerOnChanged.js",
+    "IsVisible": "/SAPAssetManager/Rules/WorkOrders/Operations/CreateUpdate/StandardTextPickerIsVisible.js",
+    "Value": "{StandardTextKey}",
+    "_Name": "StandardTextKeyListPicker",
+    "_Type": "Control.Type.FormCell.ListPicker"
+}

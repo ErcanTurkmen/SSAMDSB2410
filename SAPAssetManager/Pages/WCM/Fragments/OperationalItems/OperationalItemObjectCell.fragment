@@ -1,0 +1,12 @@
+{
+	"_Type": "Control.Type.ObjectCell",
+	"PreserveIconStackSpacing": true,
+	"AccessoryType": "DisclosureIndicator",
+	"Title": "/SAPAssetManager/Rules/WCM/OperationalItems/OperationaItemSequenceDescriptionObjectId.js",
+	"Subhead": "/SAPAssetManager/Rules/WCM/OperationalItems/ListView/OperationalItemsTagNumber.js",
+	"Footnote": "/SAPAssetManager/Rules/WCM/OperationalItems/ListView/OperationalItemsFootnote.js",
+	"StatusText": "/SAPAssetManager/Rules/WCM/OperationalItems/OperationalItemsStatus.js",
+	"Icons": "/SAPAssetManager/Rules/WCM/OperationalItems/ListView/OperationalItemsIcons.js",
+	"Description": "/SAPAssetManager/Rules/WCM/OperationalItems/ListView/OperationalTaggingUntaggingSequence.js",
+	"OnPress": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/OperationalItemDetailsNav.js"
+}

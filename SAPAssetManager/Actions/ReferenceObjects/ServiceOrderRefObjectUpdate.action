@@ -1,0 +1,23 @@
+{
+    "_Type": "Action.Type.ODataService.UpdateEntity",
+    "Target": {
+        "EntitySet": "S4ServiceOrderRefObjs",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "ReadLink": "{refObjectReadLink}"
+    },
+    "Properties": {
+        "ProductID": "#Page:ServiceOrderCreateUpdatePage/#Control:ProductLstPkr/#SelectedValue",
+        "EquipID": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/EquipIDValue.js",
+        "FLocID": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/FuncLocIDValue.js",
+		"MainObject": "X"
+    },
+    "Headers": {
+        "OfflineOData.TransactionID": "#Property:ObjectID"
+    },
+    "CreateLinks": "/SAPAssetManager/Rules/ReferenceObjects/RefObjectCreateLinks.js",
+    "UpdateLinks": "/SAPAssetManager/Rules/ReferenceObjects/RefObjectUpdateLinks.js",
+    "DeleteLinks": "/SAPAssetManager/Rules/ReferenceObjects/RefObjectDeleteLinks.js",
+    "OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/CreateEntityFailureMessage.action",
+    "ShowActivityIndicator": true,
+    "ActivityIndicatorText" : " "
+}

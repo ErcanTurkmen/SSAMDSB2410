@@ -1,0 +1,74 @@
+{
+    "Header": {
+        "Caption": "$(L,functional_location_details)"
+    },
+    "KeyAndValues": [
+        {
+            "_Name": "FuncLocType",
+            "KeyName": "$(L,category)",
+            "Value": "/SAPAssetManager/Rules/FunctionalLocation/FormatCategory.js"
+        },
+        {
+            "_Name": "EquipObjectType.ObjectTypeDesc",
+            "KeyName": "$(L,type)",
+            "Value": "/SAPAssetManager/Rules/FunctionalLocation/FormatEquipType.js"
+        },
+        {
+            "_Name": "ModelNumber",
+            "KeyName": "$(L,model_no)",
+            "Value": "/SAPAssetManager/Rules/FunctionalLocation/FormatModelNumber.js"
+        },
+        {
+            "_Name": "WorkCenter.WorkCenterDescr",
+            "KeyName": "$(L,workcenter)",
+            "Value": "/SAPAssetManager/Rules/Equipment/EquipmentWorkCenter.js"
+        },
+        {
+            "_Name": "MaintPlant",
+            "KeyName": "$(L,plant)",
+            "Value": "/SAPAssetManager/Rules/FunctionalLocation/FormatPlanningPlant.js"
+        },
+        {
+            "_Name": "Location",
+            "KeyName": "$(L,location)",
+            "Value": "/SAPAssetManager/Rules/FunctionalLocation/FormatLocation.js"
+        },
+        {
+            "_Name": "Room",
+            "KeyName": "$(L,room)",
+            "Value": "/SAPAssetManager/Rules/FunctionalLocation/FormatRoom.js"
+        },
+        {
+            "_Name": "Section",
+            "KeyName": "$(L,section)",
+            "Value": "/SAPAssetManager/Rules/FunctionalLocation/FormatSection.js"
+        },
+        {
+            "_Name": "Manufacturer",
+            "KeyName": "$(L,manufacturer)",
+            "Value": "/SAPAssetManager/Rules/FunctionalLocation/FormatManufacturer.js"
+        },
+        {
+            "_Name": "InventoryNumber",
+            "KeyName": "$(L,inventory_no)",
+            "Value": "/SAPAssetManager/Rules/FunctionalLocation/FormatInventoryNumber.js"
+        },
+        {
+            "_Name": "PartNumber",
+            "KeyName": "$(L,part_no)",
+            "Value": "/SAPAssetManager/Rules/FunctionalLocation/FormatPartNumber.js"
+        },
+        {
+            "_Name": "SerialNumber",
+            "KeyName": "$(L,serial_no)",
+            "Value": "/SAPAssetManager/Rules/FunctionalLocation/FormatSerialNumber.js"
+        },
+        {
+            "_Name": "SuperiorFuncLoc",
+            "KeyName": "$(L,superior_floc)",
+            "Value": "/SAPAssetManager/Rules/FunctionalLocation/FormatSuperiorFLOC.js"
+        }
+    ],
+    "_Type": "Section.Type.KeyValue",
+    "_Name": "KeyValueTable"
+}

@@ -1,0 +1,24 @@
+{
+    "Header": {
+        "Caption": "$(L,current_reading)"
+    },
+    "KeyAndValues": [
+        {
+            "_Name": "RecordedValue",
+            "KeyName": "$(L,reading)",
+            "Value": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointDetailsCurrentReading.js"
+        },
+        {
+            "_Name": "ValuationCode",
+            "KeyName": "$(L,valuation_code)",
+            "Value": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointDetailsCurrentValuation.js"
+        },
+        {
+            "_Name": "ShortText",
+            "KeyName": "$(L,note)",
+            "Value": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointDetailsCurrentShortText.js"
+        }
+    ],
+    "_Type": "Section.Type.KeyValue",
+    "_Name": "KeyValuePairsCurrent"
+}

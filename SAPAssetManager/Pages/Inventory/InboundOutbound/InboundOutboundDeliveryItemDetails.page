@@ -1,0 +1,110 @@
+{
+	"Caption": "/SAPAssetManager/Rules/Inventory/Item/ItemCaption.js",
+    "ActionBar": {
+        "Items": [
+            {
+                "Position": "Right",
+                "Icon": "$(PLT, /SAPAssetManager/Images/edit.png, /SAPAssetManager/Images/edit-accessory.android.png, '', /SAPAssetManager/Images/edit-accessory.android.png)",
+                "IconText": "Edit",
+                "OnPress": "/SAPAssetManager/Rules/Inventory/Item/SetItemEdit.js"
+            },
+            "/SAPAssetManager/Pages/Fragments/SyncButton.fragment"
+        ]
+    },
+	"Controls": [
+		{
+			"Sections": [
+				{
+                    "ObjectHeader": {
+                        "HeadlineText": "/SAPAssetManager/Rules/Inventory/Common/GetMaterialName.js",
+                        "Tags": "/SAPAssetManager/Rules/Inventory/Item/ItemTags.js",
+                        "Subhead": "/SAPAssetManager/Rules/Inventory/Item/ItemSubHead.js"
+                    },
+                    "_Type": "Section.Type.ObjectHeader",
+                    "_Name": "ObjectHeaderSectionTable"
+                },
+				{
+                   "_Type": "Section.Type.KeyValue",
+                    "_Name": "InboundOutboundDeliveryDetailsSection1",
+                    "Header": {
+                        "Caption": "$(L,item_details)"
+                    },
+                    "KeyAndValues": [
+						{
+                            "KeyName": "$(L,item)",
+        					"Value": "$(DV,{ItemNum},-)"
+                        },
+						{
+							"KeyName": "$(L,plant)",
+        					"Value": "$(DV,{PLant},-)"
+						},
+						{
+							"KeyName": "$(L,storage_bin)",
+        					"Value": "$(DV,{StorageBin},-)"
+						},
+						{
+							"KeyName": "$(L,material)",
+							"Value": "$(DV,{Material},-)"
+						},
+						{
+							"KeyName": "$(L,material_description)",
+							"Value": "$(DV,{MaterialDesc},-)"
+						}
+					],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js"
+                },
+				{
+                   "_Type": "Section.Type.KeyValue",
+                    "_Name": "InboundOutboundDeliveryDetailsSection2",
+                    "KeyAndValues": [
+						{
+							"KeyName": "$(L,quantity)/$(L,uom)",
+        					"Value": "$(DV,{QuantityUOM},-)"
+						},
+                        {
+							"KeyName": "$(L,stock_type)",
+        					"Value": "$(DV,{StockType},-)"
+						},
+						{
+							"KeyName": "$(L,batch)",
+        					"Value": "$(DV,{Batch},-)"
+						},
+						{
+							"KeyName": "$(L,valuation_type)",
+        					"Value": "$(DV,{ValuationType},-)"
+						}
+					],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js"
+                },
+				{
+                    "Header": {
+                        "Caption": "$(L,serial_numbers)"
+                    },
+                    "EmptySection": {
+                        "Caption": "$(L,no_serial_numbers)"
+                    },
+                    "ObjectCell": {
+                        "Title": "{SerialNumber}",
+                        "PreserveIconStackSpacing": false,
+                        "StatusText": "{Description}"
+                    },
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemSerialNumbersTarget.js",
+                    "Visible": "/SAPAssetManager/Rules/Inventory/Item/ItemSerialNumbersVisible.js",
+                    "_Type": "Section.Type.ObjectTable",
+                    "_Name": "SerialNumbersSection"
+                }
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"ToolBar": {
+        "Controls":[
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsPreviousItem.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/FlexibleSpaceToolBar.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsNextItem.fragment"
+        ]
+    },
+	"_Name": "InboundOutboundDeliveryItemDetails",
+	"_Type": "Page"
+}

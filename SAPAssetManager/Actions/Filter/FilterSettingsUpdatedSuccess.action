@@ -1,0 +1,8 @@
+{
+  "Animated": true,
+  "Duration": 2,
+  "Message": "$(L,filter_criteria_saved)",
+  "IsIconHidden": false,
+  "MaxNumberOfLines": 3,
+  "_Type": "Action.Type.ToastMessage"
+}

@@ -1,0 +1,11 @@
+{
+	"PopoverItems": [{
+		"Title": "$(L, filter)",
+		"OnPress": "/SAPAssetManager/Actions/Equipment/EquipmentFilter.action"
+	},
+	{
+		"Title": "$(L, online_search)",
+		"OnPress": "/SAPAssetManager/Rules/OnlineSearch/Equipment/OnlineSearchFromEquipmentNav.js"
+	}],
+	"_Type": "Action.Type.PopoverMenu"
+}

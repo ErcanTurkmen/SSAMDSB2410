@@ -1,0 +1,64 @@
+{
+	"_Type": "Page",
+	"_Name": "SelectConfirmationItemPage",
+	"Caption": "$(L, select_confirmation_item)",
+	"OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+	"ActionBar": {
+		"Items": [
+			{
+				"Position": "Left",
+				"SystemItem": "Cancel",
+				"Caption": "$(L,cancel)",
+				"OnPress": "/SAPAssetManager/Rules/Common/CheckForChangesBeforeCancel.js",
+				"Visible": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/IsCancelSelectConfirmationButtonVisible.js"
+			},
+			{
+				"Caption": "$(L, add_hoc_confirmation)",
+				"Position": "Right",
+				"OnPress": "/SAPAssetManager/Actions/ServiceConfirmations/Item/ServiceHocConfirmationItemCreateNav.action",
+				"Visible": false
+			}
+		]
+	},
+	"Controls": [
+		{
+			"_Type": "Control.Type.SectionedTable",
+			"_Name": "SectionedTable",
+			"Sections": [
+				{
+					"_Type": "Section.Type.ObjectTable",
+					"_Name": "ServiceItemsListSection",
+					"DataSubscriptions": ["S4ServiceConfirmationItems"],
+					"Search": {
+						"Enabled": true,
+						"Delay": 500,
+						"MinimumCharacterThreshold": 3,
+						"Placeholder": "$(L,search)",
+						"BarcodeScanner": true
+					},
+					"Header": {
+						"UseTopPadding": false
+					},
+					"EmptySection": {
+						"Caption": "$(L, no_service_items_available)"
+					},
+					"ObjectCell": {
+						"PreserveIconStackSpacing": false,
+						"Title": "{ItemDesc}",
+						"StatusText": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ListView/ServiceConfirmationItemStatusText.js",
+						"SubstatusText": "/SAPAssetManager/Rules/WorkOrders/ListView/WorkOrdersListViewFormat.js",
+						"Subhead": "{ItemNo}",
+						"Footnote": "/SAPAssetManager/Rules/DateTime/ServiceDueByDate.js",
+						"OnPress": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/ServiceConfirmationItemCreateNav.js",
+						"AccessoryType": "DisclosureIndicator"
+					},
+					"Target": {
+						"EntitySet": "S4ServiceItems",
+						"QueryOptions": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ListView/NotCompletedServiceItemsByParentListQueryOptions.js",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					}
+				}
+			]
+		}
+	]
+}

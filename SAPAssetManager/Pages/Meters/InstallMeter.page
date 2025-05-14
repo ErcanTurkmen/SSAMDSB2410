@@ -1,0 +1,436 @@
+{
+	"_Type": "Page",
+	"_Name": "MeterInstallWithEDTPage",
+	"Caption": "/SAPAssetManager/Rules/Meter/CreateUpdate/InstallMeterPageCaption.js",
+	"OnLoaded": "/SAPAssetManager/Rules/Meter/CreateUpdate/InstallMeterPageOnLoaded.js",
+	"OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+	"ActionBar": {
+		"Items": [
+			"/SAPAssetManager/Pages/Fragments/CancelButton.fragment",
+			{
+				"_Name": "RevertMeterButton",
+				"Position": "Right",
+				"Text": "$(L,revert)",
+				"Visible": "/SAPAssetManager/Rules/Meter/CreateUpdate/IsRevertButtonVisible.js",
+				"OnPress": "/SAPAssetManager/Actions/Meters/CreateUpdate/MeterRevertDialog.action"
+			},
+			{
+				"_Name": "SubmitMeterButton",
+				"Position": "Right",
+				"SystemItem": "$(PLT,'Done','')",
+				"Text": "/SAPAssetManager/Rules/Meter/CreateUpdate/InstallMeterDoneButtonText.js",
+				"OnPress": "/SAPAssetManager/Actions/Meters/CreateUpdate/MetersCreateUpdateRequired.action"
+			}
+		]
+	},
+	"Controls": [
+		{
+			"_Name": "FormCellContainer",
+			"_Type": "Control.Type.FormCellContainer",
+			"Sections": [
+				{
+					"Controls": [
+						{
+							"_Type": "Control.Type.FormCell.ListPicker",
+							"_Name": "MeterLstPkr",
+							"Caption": "$(L,meter)*",
+							"Search": {
+								"Enabled": true,
+								"Delay": 500,
+								"MinimumCharacterThreshold": 3,
+								"Placeholder": "",
+								"BarcodeScanner": true
+							},
+							"AllowMultipleSelection": false,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": true,
+							"PickerItems": {
+								"DisplayValue": "{{#Property:Device}} - {{#Property:Equipment_Nav/#Property:EquipDesc}}",
+								"ReturnValue": "{EquipmentNum}",
+								"Target": {
+									"EntitySet": "Devices",
+									"Service": "/SAPAssetManager/Services/AssetManager.service",
+									"QueryOptions": "/SAPAssetManager/Rules/Meter/CreateUpdate/MeterQueryOptions.js"
+								}
+							},
+							"Value": "/SAPAssetManager/Rules/Meter/CreateUpdate/EquipmentNum.js",
+							"OnValueChange": "/SAPAssetManager/Rules/Meter/CreateUpdate/MeterOnValueChange.js",
+							"IsEditable": "/SAPAssetManager/Rules/Meter/CreateUpdate/MeterIsEditable.js"
+						},
+						{
+							"_Type": "Control.Type.FormCell.Extension",
+							"_Name": "EditableDataTableExtensionSection",
+							"Module": "extension-EditableDataTable",
+							"Control": "EditableDataTableViewExtension",
+							"Class": "EditableDataTableViewExtension",
+							"Height": 0,
+							"IsVisible": "/SAPAssetManager/Rules/Meter/CreateUpdate/IsMeterReadingsTableVisible.js",
+							"ExtensionProperties": {
+								"OnCellGetsFocus": "/SAPAssetManager/Rules/Meter/CreateUpdate/HideInstallMeterPageActionButtons.js",
+            					"OnCellLostFocus": "/SAPAssetManager/Rules/Meter/CreateUpdate/DisplayInstallMeterPageActionButtons.js",
+								"Configuration": {
+									"IsStickyHeaderRow": true,
+									"NumberOfLeadingStickyColumns": 0,
+									"MaxLinesPerRow": 2
+								},
+								"Columns": [
+									{
+										"HeaderName": "$(L, register)",
+										"PreferredWidth": 170
+									},
+									{
+										"HeaderName": "$(L, reading)",
+										"PreferredWidth": 200
+									},
+									{
+										"HeaderName": "$(L, set_usage_peak_time)",
+										"PreferredWidth": 170
+									},
+									{
+										"HeaderName": "$(L, usage_peak_time)",
+										"PreferredWidth": 200
+									},
+									{
+										"HeaderName": "$(L, note)",
+										"PreferredWidth": 170
+									}
+								],
+								"Row": {
+									"Items": [
+										{
+											"Type": "Text",
+											"Name": "RegisterNum",
+											"IsMandatory": false,
+											"IsReadOnly": true,
+											"Property": "RegisterNum",
+											"OnValueChange": "",
+											"Parameters": {
+												"Value": "{RegisterNum}"
+											}
+										},
+										"/SAPAssetManager/Rules/Meter/CreateUpdate/MeterReadingValueCell.js",
+										{
+                                            "Type": "Switch",
+                                            "Name": "SetUsagePeakTime",
+                                            "IsMandatory": false,
+                                            "IsReadOnly": false,
+                                            "Property": "SetUsagePeakTime",
+                                            "OnValueChange": "/SAPAssetManager/Rules/Meter/CreateUpdate/UsagePeakTimeSwitchOnValueChange.js",
+                                            "Parameters": {
+                                                "Value": "/SAPAssetManager/Rules/Meter/CreateUpdate/SetUsagePeakTimeSwitchValue.js"
+                                            }
+                                        },
+                                        {
+                                            "Type": "DatePicker",
+                                            "Name": "DateMaxRead",
+                                            "IsMandatory": false,
+                                            "IsReadOnly": "/SAPAssetManager/Rules/Meter/CreateUpdate/IsUsagePeakTimeReadOnly.js",
+                                            "Property": "DateMaxRead",
+                                            "OnValueChange": "",
+                                            "Parameters": {
+                                                "Mode": "DateTime",
+                                                "Value": "/SAPAssetManager/Rules/Meter/CreateUpdate/SetUsagePeakTimeValue.js"
+                                            }
+                                        },
+										{
+											"Type": "ListPicker",
+											"Name": "MeterReaderNote",
+											"IsMandatory": false,
+											"IsReadOnly": false,
+											"Property": "MeterReaderNote",
+											"OnValueChange": "",
+											"Parameters": {
+												"Search": {
+													"Enabled": true,
+													"Delay": 500,
+													"MinimumCharacterThreshold": 3,
+													"Placeholder": "$(L,search)",
+													"BarcodeScanner": true
+												},
+												"ItemsPerPage": 20,
+												"CachedItemsToLoad": 2,
+												"Caption": "$(L,note)",
+												"DisplayValue": "/SAPAssetManager/Rules/Meter/CreateUpdate/SetMeterReadingNotesValue.js",
+												"Value": "/SAPAssetManager/Rules/Meter/CreateUpdate/SetMeterReadingNotesValue.js",
+												"PickerItems": {
+													"DisplayValue": "{NoteID} - {Description}",
+													"ReturnValue": "{NoteID}",
+													"Target": {
+														"EntitySet": "MeterReadingNotes",
+														"Service": "/SAPAssetManager/Services/AssetManager.service",
+														"QueryOptions": "/SAPAssetManager/Rules/Meter/CreateUpdate/MeterReadingNotesQueryOptions.js"
+													}
+												}
+											}
+										}
+									]
+								},
+								"Target": {
+									"EntitySet": "Registers",
+									"Service": "/SAPAssetManager/Services/AssetManager.service",
+									"QueryOptions": "$filter=RegisterNum eq '-1'"
+								}
+							}
+						}
+					]
+				},
+				{
+					"Controls": [
+						{
+							"_Type": "Control.Type.FormCell.ListPicker",
+							"_Name": "ReasonLstPkr",
+							"Caption": "$(L,reason)*",
+							"Search": {
+								"Enabled": true,
+								"Delay": 500,
+								"MinimumCharacterThreshold": 3,
+								"Placeholder": "",
+								"BarcodeScanner": true
+							},
+							"IsEditable": "/SAPAssetManager/Rules/Meter/CreateUpdate/IsMeterDetailsEditable.js",
+							"AllowMultipleSelection": false,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": true,
+							"PickerItems": {
+								"DisplayValue": "{{#Property:ActivityReason}} - {{#Property:Description}}",
+								"ReturnValue": "{ActivityReason}",
+								"Target": {
+									"EntitySet": "ActivityReasons",
+									"Service": "/SAPAssetManager/Services/AssetManager.service",
+									"QueryOptions": "/SAPAssetManager/Rules/Meter/CreateUpdate/MeterActivityReasonQueryOptions.js"
+								}
+							},
+							"Value": "/SAPAssetManager/Rules/Meter/CreateUpdate/InstallMeterReasonValue.js",
+							"IsVisible": "/SAPAssetManager/Rules/Meter/CreateUpdate/IsNotMeterTakeReadingFlow.js",
+							"OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js"
+						}
+					]
+				},
+				{
+					"Controls": [
+						{
+							"_Type": "Control.Type.FormCell.ListPicker",
+							"_Name": "ConnectionLstPkr",
+							"Caption": "$(L,connection)*",
+							"Search": {
+								"Enabled": true,
+								"Delay": 500,
+								"MinimumCharacterThreshold": 3,
+								"Placeholder": "",
+								"BarcodeScanner": true
+							},
+							"AllowMultipleSelection": false,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": true,
+							"PickerItems": {
+								"DisplayValue": "/SAPAssetManager/Rules/Meter/CreateUpdate/MetersCreateUpdateConnectionDisplay.js",
+								"ReturnValue": "{ConnectionObject}",
+								"Target": {
+									"EntitySet": "ConnectionObjects",
+									"Service": "/SAPAssetManager/Services/AssetManager.service",
+									"QueryOptions": "$filter=sap.entityexists(FuncLocation_Nav)&$expand=FuncLocation_Nav/Address"
+								}
+							},
+							"IsVisible": "/SAPAssetManager/Rules/Meter/CreateUpdate/IsConnectionLstPkrVisible.js",
+							"IsEditable": "/SAPAssetManager/Rules/Meter/CreateUpdate/MetersCreateUpdateIsEditable.js",
+							"Value": "#Property:ConnectionObject_Nav/#Property:ConnectionObject",
+							"OnValueChange": "/SAPAssetManager/Rules/Meter/CreateUpdate/ConnectionObjectOnValueChange.js"
+						},
+						{
+							"_Type": "Control.Type.FormCell.ListPicker",
+							"_Name": "DeviceLocationLstPkr",
+							"Caption": "$(L,device_location)",
+							"Search": {
+								"Enabled": true,
+								"Delay": 500,
+								"MinimumCharacterThreshold": 3,
+								"Placeholder": "",
+								"BarcodeScanner": true
+							},
+							"AllowMultipleSelection": false,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": true,
+							"PickerItems": {
+								"DisplayValue": "{{#Property:DeviceLocation}} - {{#Property:Description}}",
+								"ReturnValue": "{DeviceLocation}",
+								"Target": {
+									"EntitySet": "{{#Property:ConnectionObject_Nav/#Property:@odata.readLink}}/DeviceLocations_Nav",
+									"Service": "/SAPAssetManager/Services/AssetManager.service",
+									"QueryOptions": "$expand=FuncLocation_Nav"
+								}
+							},
+							"IsVisible": "/SAPAssetManager/Rules/Meter/CreateUpdate/IsNotMeterTakeReadingFlow.js",
+							"IsEditable": "/SAPAssetManager/Rules/Meter/CreateUpdate/MetersCreateUpdateIsEditable.js",
+							"Value": "#Property:DeviceLocation"
+						},
+						{
+							"_Type": "Control.Type.FormCell.ListPicker",
+							"_Name": "PremiseLstPkr",
+							"Caption": "$(L,premise)",
+							"Search": {
+								"Enabled": true,
+								"Delay": 500,
+								"MinimumCharacterThreshold": 3,
+								"Placeholder": "",
+								"BarcodeScanner": true
+							},
+							"AllowMultipleSelection": false,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": true,
+							"PickerItems": {
+								"DisplayValue": "/SAPAssetManager/Rules/Meter/Format/PremiseDisplay.js",
+								"ReturnValue": "{Premise}",
+								"Target": {
+									"EntitySet": "{{#Property:ConnectionObject_Nav/#Property:@odata.readLink}}/Premises_Nav",
+									"Service": "/SAPAssetManager/Services/AssetManager.service",
+									"QueryOptions": "$orderby=Premise"
+								}
+							},
+							"IsVisible": "/SAPAssetManager/Rules/Meter/CreateUpdate/IsNotMeterTakeReadingFlow.js",
+							"IsEditable": "/SAPAssetManager/Rules/Meter/CreateUpdate/MetersCreateUpdateIsEditable.js",
+							"OnValueChange": "/SAPAssetManager/Rules/Meter/CreateUpdate/MeterPremiseOnValueChange.js",
+							"Value": "#Property:Premise"
+						},
+						{
+							"_Type": "Control.Type.FormCell.ListPicker",
+							"_Name": "InstallationLstPkr",
+							"Caption": "$(L,installation_id)",
+							"Search": {
+								"Enabled": true,
+								"Delay": 500,
+								"MinimumCharacterThreshold": 3,
+								"Placeholder": "",
+								"BarcodeScanner": true
+							},
+							"AllowMultipleSelection": false,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": true,
+							"PickerItems": {
+								"DisplayValue": "{{#Property:Installation}} - {{#Property:InstallationType}}",
+								"ReturnValue": "{Installation}",
+								"Target": {
+									"EntitySet": "Installations",
+									"Service": "/SAPAssetManager/Services/AssetManager.service",
+									"QueryOptions": "$filter=Premise eq '{{#Property:Premise}}'&$orderby=Installation"
+								}
+							},
+							"IsVisible": "/SAPAssetManager/Rules/Meter/CreateUpdate/IsConnectionLstPkrVisible.js",
+							"IsEditable": "/SAPAssetManager/Rules/Meter/CreateUpdate/MetersCreateUpdateIsEditable.js",
+							"Value": "#Property:Installation"
+						},
+						{
+							"_Type": "Control.Type.FormCell.ListPicker",
+							"_Name": "DivisionLstPkr",
+							"Caption": "$(L,division)",
+							"Search": {
+								"Enabled": false
+							},
+							"AllowMultipleSelection": false,
+							"PickerItems": {
+								"DisplayValue": "{{#Property:Division}} - {{#Property:Description}}",
+								"ReturnValue": "{Division}",
+								"Target": {
+									"EntitySet": "Divisions",
+									"Service": "/SAPAssetManager/Services/AssetManager.service"
+								}
+							},
+							"IsVisible": "/SAPAssetManager/Rules/Meter/CreateUpdate/IsNotMeterTakeReadingFlow.js",
+							"IsEditable": false,
+							"Value": "/SAPAssetManager/Rules/Meter/CreateUpdate/MeterUpdateValues.js"
+						}
+					]
+				},
+				{
+					"Controls": [
+						{
+							"_Type": "Control.Type.FormCell.ListPicker",
+							"_Name": "MovementTypeLstPkr",
+							"Caption": "$(L,movement_type)*",
+							"Search": {
+								"Enabled": true,
+								"Delay": 500,
+								"MinimumCharacterThreshold": 3,
+								"Placeholder": "",
+								"BarcodeScanner": true
+							},
+							"IsVisible": false,
+							"IsEditable": "/SAPAssetManager/Rules/Meter/CreateUpdate/IsMeterDetailsEditable.js",
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": true,
+							"AllowMultipleSelection": false,
+							"PickerItems": {
+								"DisplayValue": "{{#Property:MovementType}} - {{#Property:MovementTypeText}}",
+								"ReturnValue": "{MovementType}",
+								"Target": {
+									"EntitySet": "MovementTypeTcodes",
+									"Service": "/SAPAssetManager/Services/AssetManager.service",
+									"QueryOptions": "$orderby=MovementType"
+								}
+							},
+							"Value": "/SAPAssetManager/Rules/Meter/CreateUpdate/MeterCreateUpdateGoodsMovement.js",
+							"OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js"
+						},
+						{
+							"_Type": "Control.Type.FormCell.ListPicker",
+							"_Name": "ReceivingPlantLstPkr",
+							"Caption": "$(L,receiving_plant)*",
+							"Search": {
+								"Enabled": true,
+								"Delay": 500,
+								"MinimumCharacterThreshold": 3,
+								"Placeholder": "",
+								"BarcodeScanner": true
+							},
+							"IsVisible": false,
+							"IsEditable": "/SAPAssetManager/Rules/Meter/CreateUpdate/IsMeterDetailsEditable.js",
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": true,
+							"AllowMultipleSelection": false,
+							"AllowDefaultValueIfOneItem": true,
+							"PickerItems": {
+								"DisplayValue": "{{#Property:Plant}} - {{#Property:PlantDescription}}",
+								"ReturnValue": "{Plant}",
+								"Target": {
+									"EntitySet": "Plants",
+									"Service": "/SAPAssetManager/Services/AssetManager.service",
+									"QueryOptions": "$orderby=Plant"
+								}
+							},
+							"Value": "#Property:Device_Nav/#Property:GoodsMovement_Nav/#First/#Property:Plant",
+							"OnValueChange": "/SAPAssetManager/Rules/Meter/CreateUpdate/MetersReceivingPlantOnValueChange.js"
+						},
+						{
+							"_Type": "Control.Type.FormCell.ListPicker",
+							"_Name": "StorageLocationLstPkr",
+							"Caption": "$(L,storage_location)*",
+							"Search": {
+								"Enabled": true,
+								"Delay": 500,
+								"MinimumCharacterThreshold": 3,
+								"Placeholder": "",
+								"BarcodeScanner": true
+							},
+							"AllowMultipleSelection": false,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": true,
+							"AllowDefaultValueIfOneItem": true,
+							"PickerItems": {
+								"DisplayValue": "{{#Property:Location}} - {{#Property:LocationName}}",
+								"ReturnValue": "{Location}",
+								"Target": {
+									"EntitySet": "Locations",
+									"Service": "/SAPAssetManager/Services/AssetManager.service",
+									"QueryOptions": "$orderby=Location"
+								}
+							},
+							"IsVisible": false,
+							"IsEditable": "/SAPAssetManager/Rules/Meter/CreateUpdate/IsMeterDetailsEditable.js",
+							"Value": "#Property:Device_Nav/#Property:GoodsMovement_Nav/#First/#Property:StorageLocation",
+							"OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js"
+						}
+					]
+				}
+			]
+		}
+	]
+}

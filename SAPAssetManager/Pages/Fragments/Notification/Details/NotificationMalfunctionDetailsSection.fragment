@@ -1,0 +1,42 @@
+{
+    "Header": {
+        "Caption": "$(L,malfunction_details)"
+    },
+    "KeyAndValues": [
+        {
+            "_Name": "MalfunctionStartDateAndTime",
+            "KeyName": "$(L,malfunction_start_date_and_time)",
+            "Value": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsMalfunctionStartDateAndTime.js"
+        },
+        {
+            "_Name": "FailureEffect",
+            "KeyName": "$(L,failure_Effect)",
+            "Value": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsEffect.js",
+            "Visible": "/SAPAssetManager/Rules/Common/IsPhaseModelEnabled.js"
+        },
+        {
+            "_Name": "MalfunctionEndDateAndTime",
+            "KeyName": "$(L,malfunction_end_date_and_time)",
+            "Value": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsMalfunctionEndDateAndTime.js"
+        },
+        {
+            "_Name": "FailureGroupAndMode",
+            "KeyName": "$(L,failure_group_and_mode)",
+            "Value": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsFailureGroupAndMode.js",
+            "Visible": "/SAPAssetManager/Rules/Common/IsPhaseModelEnabled.js"
+        },
+        {
+            "_Name": "BreakdownIndicator",
+            "KeyName": "$(L,breakdown)",
+            "Value": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsBreakdown.js"
+        },
+        {
+            "_Name": "DetectionGroupAndMethod",
+            "KeyName": "$(L,detection_group_and_method)",
+            "Value": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsDetectionGroupAndMethod.js",
+            "Visible": "/SAPAssetManager/Rules/Common/IsPhaseModelEnabled.js"
+        }
+    ],
+    "_Type": "Section.Type.KeyValue",
+    "_Name": "NotificationMalfunctionWithPhaseModelSection"
+}

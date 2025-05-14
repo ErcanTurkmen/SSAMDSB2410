@@ -1,0 +1,9 @@
+{
+    "_Type": "Action.Type.ProgressBanner",
+    "Message": "$(L, making_content_available_offline)",
+	"OnSuccess": "/SAPAssetManager/Rules/OnlineSearch/Download/DownloadOnlineEntity.js",
+	"CompletionMessage": "$(L, content_available_offline)",
+    "CompletionActionLabel": "/SAPAssetManager/Rules/OnlineSearch/Download/CompletionActionLabel.js",
+    "OnCompletionActionLabelPress": "/SAPAssetManager/Rules/OnlineSearch/Download/NavigateToOfflineDetails.js",
+    "DismissBannerOnAction": true
+}

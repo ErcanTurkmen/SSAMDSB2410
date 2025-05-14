@@ -1,0 +1,9 @@
+{
+	"Target":
+	{
+		"EntitySet": "MaterialDocItems",
+		"Service": "/SAPAssetManager/Services/AssetManager.service",
+		"ReadLink": "#Property:Temp_MatDocItemDeleteLink"
+	},
+	"_Type": "Action.Type.ODataService.DeleteEntity"
+}

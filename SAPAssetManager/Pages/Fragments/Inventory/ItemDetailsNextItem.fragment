@@ -1,0 +1,7 @@
+{
+    "_Name": "NextItem",
+    "_Type": "Control.Type.ToolbarItem",
+    "Caption": "$(L, next_item)",
+    "OnPress": "/SAPAssetManager/Rules/Inventory/Item/ItemPreviousNext.js",
+    "Enabled": "/SAPAssetManager/Rules/Inventory/Item/ItemNextEnabled.js"
+}

@@ -1,0 +1,57 @@
+{
+	"OnLoaded": "/SAPAssetManager/Rules/Filter/ListPageWithFilterOnLoaded.js",
+	"ActionBar": {
+		"Items": [
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment",
+			{
+				"Position": "Right",
+				"SystemItem": "Add",
+				"Caption":"$(L,add)",
+				"OnPress": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/CreateServiceItemNav.js"
+			},
+			{
+				"Position": "Right",
+				"Icon": "$(PLT,'',/SAPAssetManager/Images/filter.android.png, '', /SAPAssetManager/Images/filter.android.png)",
+				"Caption": "/SAPAssetManager/Rules/Filter/FilterButtonCaption.js",
+				"OnPress": "/SAPAssetManager/Actions/ServiceOrders/Item/ServiceItemFilter.action"
+			}
+		]
+	},
+	"Controls": [
+		{
+			"_Type" : "Control.Type.SectionedTable",
+			"_Name" : "SectionedTable",
+			"Filters": "/SAPAssetManager/Rules/ServiceOrders/Item/GetPreselectedFilter.js",
+			"Sections": [
+				{
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/ServiceOrders/ServiceItemsObjectTable.fragment",
+					"Properties": {
+						"Search": {
+							"Enabled": true,
+							"Delay": 500,
+							"MinimumCharacterThreshold": 3,
+							"Placeholder": "$(L,search)",
+							"BarcodeScanner": true
+						},
+						"ObjectCell": {
+							"PreserveIconStackSpacing": true
+						},
+						"Target": {
+							"EntitySet": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ListView/ServiceItemsListViewEntitySet.js",
+							"QueryOptions": "/SAPAssetManager/Rules/ServiceOrders/Item/ServiceItemsListQueryOptions.js"
+						}
+					}
+				}
+			],
+			"FilterFeedbackBar": {
+				"_Type": "Control.Type.FilterFeedbackBar",
+				"_Name": "FilterFeedback",
+				"ShowAllFilters": true,
+				"FastFilters": "/SAPAssetManager/Rules/ServiceOrders/Item/GetItemFilters.js"
+			}
+		}
+	],
+	"_Type": "Page",
+	"_Name": "ServiceItemsListViewPage"
+}

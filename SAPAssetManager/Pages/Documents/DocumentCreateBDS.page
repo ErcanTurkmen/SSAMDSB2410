@@ -1,0 +1,42 @@
+{
+	"Caption": "$(L,add_documents)",
+    "OnLoaded": "/SAPAssetManager/Rules/Documents/Create/DocumentCreateBDSOnLoaded.js",
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+	"ActionBar": {
+        "_Name": "DocumentCreateBDS",
+    	"Items": [{
+			"Position": "Right",
+			"SystemItem": "$(PLT,'Done','','','Done')",
+            "Caption": "$(L,done)",
+            "Text": "/SAPAssetManager/Rules/Common/Platform/DoneText.js",
+			"OnPress": "/SAPAssetManager/Rules/Documents/DocumentValidationAndClosePage.js"
+		},
+        "/SAPAssetManager/Pages/Fragments/CancelButton.fragment"
+        ]
+	},
+	 "Controls": [
+        {
+            "Sections": [
+                {
+                    "Controls": [
+                        {
+                            "Caption": "$(L,description)",
+                            "PlaceHolder": "$(L,description)",
+                            "Value": "",
+                            "IsEditable": true,
+                            "IsVisible": true,
+                            "IsAutoResizing": true,
+                            "_Name": "AttachmentDescription",
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        },
+                        "/SAPAssetManager/Pages/Fragments/Documents/DocumentFormCell.fragment"
+                    ]
+                }
+            ],
+            "_Name": "FormCellContainer",
+            "_Type": "Control.Type.FormCellContainer"
+        }
+    ],
+	"_Type": "Page",
+	"_Name": "DocumentCreate"
+}

@@ -1,0 +1,5 @@
+{
+    "_Type": "Action.Type.Navigation",
+    "PageToOpen": "/SAPAssetManager/Pages/ServiceOrders/CreateUpdate/ServiceRequestCreateUpdate.page",
+    "ModalPage": true
+} 

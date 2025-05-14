@@ -1,0 +1,10 @@
+{
+    "lineColor": "4BC3F3",
+    "lineWidth": 5,
+    "lineStyle": "solid",
+    "onSelect": {
+        "lineColor": "4BC3F3",
+        "lineWidth": 10,
+        "lineStyle": "solid"
+    }
+}

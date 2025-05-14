@@ -1,0 +1,13 @@
+{
+    "Title": "/SAPAssetManager/Rules/SideDrawer/SideDrawerLOTOCertificatesCount.js",
+    "OnPress": "/SAPAssetManager/Actions/WCM/LOTOCertificatesListViewNav.action",
+    "_Name": "IsolationCertificates",
+    "ResetIfPressedWhenActive": true,
+    "Image": "$(PLT,/SAPAssetManager/Images/certificates.png,/SAPAssetManager/Images/certificates.android.png)",
+        "Styles": {
+        "SectionItemInactive": "$(PLT,SectionItemActive,SideDrawerItemActive)",
+        "SectionItemActive": "$(PLT,SectionItemActive,SideDrawerItemActive)",
+        "SectionItemOnPress": "$(PLT,SectionItemActive,SideDrawerItemActive)"
+    },
+    "Visible": "/SAPAssetManager/Rules/UserFeatures/IsWCMSafetyCertificateEnabled.js"
+}

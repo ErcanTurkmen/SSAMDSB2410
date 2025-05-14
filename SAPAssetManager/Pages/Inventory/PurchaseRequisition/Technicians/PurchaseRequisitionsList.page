@@ -1,0 +1,61 @@
+{
+	"Caption": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/PurchaseRequisitionListPageTitle.js",
+	"ActionBar": {
+		"_Name": "PurchaseRequisitionsListPageActionBar",
+		"Items":[
+			{
+				"Position": "Right",
+				"_Name": "Add",
+				"SystemItem": "Add",
+				"Caption": "$(L,add)",
+				"OnPress": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/AddPurchaseRequisitionNav.js",
+				"Visible": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Technicians/IsPurchaseRequisitionVisible.js"
+            }
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Header": {
+						"UseTopPadding": false
+					},
+					"EmptySection": {
+						"Caption": "$(L, no_purchase_requisitions)"
+					},
+					"ObjectCell": {
+						"DetailImageIsCircular": false,
+						"OnPress": "/SAPAssetManager/Actions/Inventory/PurchaseRequisition/PurchaseRequisitionDetailsNav.action",
+						"PreserveIconStackSpacing": true,
+						"StatusText": "$(L,open)",
+						"Subhead": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/PurchaseRequisitionObjectCell/PurchaseRequisitionSubhead.js",
+						"Footnote": "$(L,purchase_requisition)",
+						"SubstatusText": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/PurchaseRequisitionObjectCell/PurchaseRequisitionSubstatusText.js",
+						"Description": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/PurchaseRequisitionObjectCell/PurchaseRequisitionDescription.js",
+						"Title": "{PurchaseReqNo}",
+						"Icons": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/PurchaseRequisitionObjectCell/PurchaseRequisitionIcons.js"
+					},
+					"Target": {
+						"EntitySet": "PurchaseRequisitionHeaders",
+						"QueryOptions": "$expand=PurchaseRequisitionLongText_Nav,PurchaseRequisitionItem_Nav/PurchaseRequisitionLongText_Nav",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					},
+					"DataSubscriptions": [
+						"PurchaseRequisitionHeaders",
+						"PurchaseRequisitionItems"
+					],
+					"_Name": "SectionObjectTable0",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"DataSubscriptions": [
+		"PurchaseRequisitionHeaders",
+		"PurchaseRequisitionItems"
+	],
+	"_Name": "PurchaseRequisitionsListPage",
+	"_Type": "Page"
+}

@@ -1,0 +1,16 @@
+{
+    
+    "ObjectCell":"/SAPAssetManager/Pages/WCM/Fragments/InvolvedPartiesObjectCell.fragment",
+    "Target": { 
+        "EntitySet": "WCMApplicationPartners",
+        "Service": "/SAPAssetManager/Services/AssetManager.service", 
+        "QueryOptions": "/SAPAssetManager/Rules/WCM/WorkPermitDetails/InvolvedPartiesQueryOptions.js"
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_involved_parties)",
+        "HidesFooter":true
+    },
+    "Visible": true,
+    "_Name": "InvolvedParties",
+    "_Type": "Section.Type.ObjectTable"
+}

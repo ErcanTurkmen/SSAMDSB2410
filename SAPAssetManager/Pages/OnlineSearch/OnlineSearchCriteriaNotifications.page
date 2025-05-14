@@ -1,0 +1,302 @@
+{
+	"Caption": "$(L,search_criteria_online_search)",
+	"ActionBar": {
+        "Items": [
+            {
+                "Position": "Left",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)",
+                "OnPress": "/SAPAssetManager/Actions/Page/CancelPage.action"
+            },
+            {
+                "Position": "Right",
+                "Text": "$(L,search)",
+                "OnPress": "/SAPAssetManager/Rules/OnlineSearch/SearchCriteria/SearchCriteriaValidation.js"
+            }
+        ]
+    },
+    "Result": "/SAPAssetManager/Rules/OnlineSearch/SearchCriteria/OnlineSearchListFilterResults.js",
+	"Controls": [
+        {
+            "_Name": "FormCellContainer",
+            "_Type": "Control.Type.FormCellContainer",
+            "Sections": [
+                {
+                    "Controls": [
+                        {
+                            "_Type": "Control.Type.FormCell.SimpleProperty",
+                            "_Name": "ID",
+                            "AlternateInput": "Barcode",
+                            "Caption": "$(L,id_barcode)",
+                            "PlaceHolder": "$(L,ID)",
+                            "Value": "/SAPAssetManager/Rules/OnlineSearch/SearchCriteria/SimplePropertyDefaultFilterValue.js"
+                        }
+                    ]
+                },
+                {
+                    "Controls": [
+                        {
+                            "_Type": "Control.Type.FormCell.SimpleProperty",
+                            "_Name": "Description",
+                            "Caption": "$(L,description_contains)",
+                            "PlaceHolder": "$(L,description)",
+                            "Value": "/SAPAssetManager/Rules/OnlineSearch/SearchCriteria/SimplePropertyDefaultFilterValue.js"
+                        }
+                    ]
+                },
+                {
+                    "Controls":
+                        [
+                            {
+                                "_Name": "PriorityListFilter",
+                                "_Type": "Control.Type.FormCell.ListPicker",
+                                "Caption": "$(L,priority)",
+                                "IsPickerDismissedOnSelection": true,
+                                "AllowMultipleSelection": false,
+                                "PickerItems": "/SAPAssetManager/Rules/OnlineSearch/Notifications/PriorityOptions.js",
+                                "FilterProperty": "Priority"
+                            },
+                            {
+                                "_Type": "Fragment",
+                                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/PriorityFilter.fragment",
+                                "Properties": {
+                                    "IsVisible": "/SAPAssetManager/Rules/OnlineSearch/Notifications/PrioritySegmentVisibility.js",
+                                    "FilterProperty": "/SAPAssetManager/Rules/OnlineSearch/Notifications/PriorityOptions.js",
+                                    "AllowMultipleSelection": false
+                                }
+                            },
+                            {  
+                                "_Name": "SystemStatus",
+                                "_Type": "Control.Type.FormCell.ListPicker",
+                                "Caption": "$(L,status)",
+                                "AllowMultipleSelection": true,
+                                "AllowDefaultValueIfOneItem": false,
+                                "IsPickerDismissedOnSelection": true,
+                                "IsSearchCancelledAfterSelection": true,
+                                "PickerItems": {
+                                    "DisplayValue" : "{{#Property:StatusText}}",
+                                    "ReturnValue": "{Status}",
+                                    "Target": {
+                                        "EntitySet" : "SystemStatuses",
+                                        "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                                        "QueryOptions": "/SAPAssetManager/Rules/OnlineSearch/Notifications/FilterQueryOptions.js"
+                                    }
+                                },
+                                "FilterProperty": "SystemStatus"
+                            },
+                            {
+                                "_Type": "Fragment",
+                                "Fragment":  "/SAPAssetManager/Pages/Fragments/Filter/TypeFilter.fragment",
+                                "Properties": {
+                                    "Value": "/SAPAssetManager/Rules/OnlineSearch/Notifications/NotificationTypeLstPkrDefault.js",
+                                    "PickerItems": {
+                                        "DisplayValue": "{{#Property:NotifType}} - {{#Property:Description}}",
+                                        "ReturnValue": "{NotifType}",
+                                        "Target": {
+                                            "EntitySet": "NotificationTypes",
+                                            "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                            "QueryOptions": "/SAPAssetManager/Rules/Notifications/ListView/NotificationTypesListPickerItems.js"
+                                        }
+                                    },
+                                    "FilterProperty": "NotificationType"
+                                }
+                            },
+                            {
+                                "_Type": "Fragment",
+                                "Fragment": "/SAPAssetManager/Pages/WCM/Fragments/FunctionalLocationFilter.fragment",
+                                "Properties": {
+                                    "_Name": "HeaderFunctionLocation",
+                                    "FilterProperty": "HeaderFunctionLocation"
+                                }
+                            },
+                            {
+                                "_Type": "Fragment",
+                                "Fragment": "/SAPAssetManager/Pages/WCM/Fragments/EquipmentFilter.fragment",
+                                "Properties": {
+                                    "_Name": "HeaderEquipment",
+                                    "FilterProperty": "HeaderEquipment",
+                                    "PickerItems": {
+                                    "DisplayValue": "{EquipId} - {EquipDesc}",
+                                    "ReturnValue": "{EquipId}",
+                                        "Target": {
+                                            "EntitySet": "MyEquipments",
+                                            "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                            "QueryOptions": "$orderby=EquipDesc"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "_Type": "Fragment",
+                                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/AssignedToFilterListPkr.fragment",
+                                "Properties": {
+                                    "_Name": "CreatedBy",
+                                    "Caption": "$(L,created_by_label)",
+                                    "PickerItems": {
+                                        "DisplayValue": "{UserId}",
+                                        "ReturnValue": "{UserId}",
+                                        "Target": {
+                                            "EntitySet": "SAPUsers",
+                                            "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                            "QueryOptions": "$orderby=UserId"
+                                        }
+                                    },
+                                    "FilterProperty": "CreatedBy",
+                                    "IsVisible" : true,
+                                    "AllowMultipleSelection": false
+                                }
+                            },
+                            {
+                                "_Type": "Fragment",
+                                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/AssignedToFilterListPkr.fragment",
+                                "Properties": {
+                                    "_Name": "ReportedBy",
+                                    "Caption": "$(L,reported_by)",
+                                    "PickerItems": {
+                                        "DisplayValue": "{UserId}",
+                                        "ReturnValue": "{UserId}",
+                                        "Target": {
+                                            "EntitySet": "SAPUsers",
+                                            "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                            "QueryOptions": "$orderby=UserId"
+                                        }
+                                    },
+                                    "FilterProperty": "ReportedBy",
+                                    "IsVisible" : true,
+                                    "AllowMultipleSelection": false
+                                }
+                            }
+                            ]
+                        },
+                        {
+                            "Controls": [
+                                {
+                                    "_Type": "Control.Type.FormCell.Switch",
+                                    "_Name": "CreatedDateSwitch",
+                                    "Caption":"$(L,created_date_range)",
+                                    "Value": false,
+                                    "OnValueChange": "/SAPAssetManager/Rules/OnlineSearch/Notifications/CreatedDateFilterSwitchOnChange.js"
+                                },
+                                {
+                                    "_Type": "Control.Type.FormCell.DatePicker",
+                                    "_Name": "CreationDate",
+                                    "Caption": "$(L,from_date)",
+                                    "Mode": "Date",
+                                    "IsVisible": false,
+                                    "OnValueChange": "/SAPAssetManager/Rules/Filter/Validation/CompareStartEndDateComponent.js"
+                                },
+                                {
+                                    "_Type": "Control.Type.FormCell.DatePicker",
+                                    "_Name": "CreationDateEnd",
+                                    "Caption": "$(L,to_date)",
+                                    "Mode": "Date",
+                                    "IsVisible": false,
+                                    "OnValueChange": "/SAPAssetManager/Rules/Filter/Validation/CompareStartEndDateComponent.js"
+                                }
+                            ]
+                        },
+                        {
+                            "Controls": [
+                                {
+                                    "_Type": "Control.Type.FormCell.Switch",
+                                    "_Name": "DueDateSwitch",
+                                    "Caption":"$(L,due_date_range)",
+                                    "Value": false,
+                                    "OnValueChange": "/SAPAssetManager/Rules/OnlineSearch/Notifications/DueDateFilterSwitchOnChange.js"
+                                },
+                                {
+                                    "_Type": "Control.Type.FormCell.DatePicker",
+                                    "_Name": "RequiredStartDate",
+                                    "Caption": "$(L,from_date)",
+                                    "Mode": "Date",
+                                    "IsVisible": false,
+                                    "OnValueChange": "/SAPAssetManager/Rules/Filter/Validation/CompareStartEndDateComponent.js"
+                                },
+                                {
+                                    "_Type": "Control.Type.FormCell.DatePicker",
+                                    "_Name": "RequiredEndDate",
+                                    "Caption": "$(L,to_date)",
+                                    "Mode": "Date",
+                                    "IsVisible": false,
+                                    "OnValueChange": "/SAPAssetManager/Rules/Filter/Validation/CompareStartEndDateComponent.js"
+                                }
+                            ]
+                        },
+                        {
+                            "Controls": [
+                                {
+                                    "_Type": "Control.Type.FormCell.Switch",
+                                    "_Name": "MalfunctionDateSwitch",
+                                    "Caption":"$(L,malfunction_date_range)",
+                                    "Value": false,
+                                    "OnValueChange": "/SAPAssetManager/Rules/OnlineSearch/Notifications/MalfanctionDateFilterSwitchOnChange.js"
+                                },
+                                {
+                                    "_Type": "Control.Type.FormCell.DatePicker",
+                                    "_Name": "MalfunctionStartDate",
+                                    "Caption": "$(L,from_date)",
+                                    "Mode": "Date",
+                                    "IsVisible": false,
+                                    "OnValueChange": "/SAPAssetManager/Rules/Filter/Validation/CompareStartEndDateComponent.js"
+                                },
+                                {
+                                    "_Type": "Control.Type.FormCell.DatePicker",
+                                    "_Name": "MalfunctionEndDate",
+                                    "Caption": "$(L,to_date)",
+                                    "Mode": "Date",
+                                    "IsVisible": false,
+                                    "OnValueChange": "/SAPAssetManager/Rules/Filter/Validation/CompareStartEndDateComponent.js"
+                                }
+                            ]
+                        },
+                        {
+                            "Controls": [
+                        {
+                             "_Type": "Fragment",
+                             "Fragment":  "/SAPAssetManager/Pages/Fragments/Filter/PlanningPlantFilter.fragment"
+                        },
+                        {
+                             "_Type": "Fragment",
+                             "Fragment":  "/SAPAssetManager/Pages/Fragments/Filter/PlantSectionFilter.fragment"
+                        },
+                        {
+                            "_Type": "Fragment",
+                            "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/LocationFilter.fragment"
+                        },
+                        {
+                            "_Type": "Fragment",
+                            "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/WorkCenterFilter.fragment",
+                            "Properties": {
+                                "FilterProperty": "/SAPAssetManager/Rules/OnlineSearch/SearchCriteria/WorkCenterFilterPropertyName.js"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "Controls": [{
+                        "_Type": "Fragment",
+                        "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/SortByFilter.fragment",
+                        "Properties": {
+                            "SortByItems": "/SAPAssetManager/Rules/OnlineSearch/SearchCriteria/SortByItems.js"
+                        }
+                    }]
+                }
+            ]
+        }
+    ],
+    "FioriToolbar": {
+        "_Name": "OnlineSearchCriteriaFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Items": [
+            {
+                "_Name": "ResetFilterTbI0",
+                "_Type": "FioriToolbarItem.Type.Button",
+                "Title": "$(L,reset)",
+                "OnPress": "/SAPAssetManager/Rules/OnlineSearch/SearchCriteria/ResetFilter.js"
+            }
+        ]
+    },
+	"_Name": "OnlineSearchCriteriaNotifications",
+	"_Type": "Page",
+    "OnLoaded": "/SAPAssetManager/Rules/OnlineSearch/SearchCriteria/NotificationsFilterOnLoaded.js"
+}

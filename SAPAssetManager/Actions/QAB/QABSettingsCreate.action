@@ -1,0 +1,15 @@
+{
+    "_Type": "Action.Type.ODataService.CreateEntity",
+    "Target": {
+        "EntitySet": "UserPreferences",
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "Properties": {
+        "UserGuid": "/SAPAssetManager/Rules/UserPreferences/UserPreferencesUserGuidOnCreate.js",
+        "RecordId": "/SAPAssetManager/Rules/UserPreferences/UserPreferencesRecordIdOnCreate.js",
+        "PreferenceGroup": "/SAPAssetManager/Globals/QAB/PreferenceGroup.global",
+		"PreferenceName": "{#ClientData/preferenceName}",
+		"PreferenceValue": "{#ClientData/preferenceValue}"
+    },
+	"OnSuccess": "/SAPAssetManager/Actions/QAB/QABSettingsUpdatedSuccess.action"
+}

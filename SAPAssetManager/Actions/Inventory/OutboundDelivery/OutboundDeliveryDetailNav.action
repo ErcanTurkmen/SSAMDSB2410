@@ -1,0 +1,4 @@
+{
+	"PageToOpen": "/SAPAssetManager/Pages/Inventory/OutboundDelivery/OutboundOverview.page",
+	"_Type": "Action.Type.Navigation"
+}

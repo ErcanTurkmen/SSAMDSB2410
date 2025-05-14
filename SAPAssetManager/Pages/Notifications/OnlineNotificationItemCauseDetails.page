@@ -1,0 +1,43 @@
+{
+	"Caption": "/SAPAssetManager/Rules/Notifications/Item/Cause/NotificationItemCauseHeader.js",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Header": {
+						"Caption": "$(L,notification_item_cause_detail)"
+					},
+					"KeyAndValues": [
+						{
+							"_Name": "CauseText",
+							"KeyName": "$(L,description)",
+							"Value": "{CauseText}"
+						},
+						{
+							"_Name": "CauseSortNumber",
+							"KeyName": "$(L,sort_number)",
+							"Value": "{CauseSortNumber}"
+						},
+						{
+							"_Name": "CauseCodeGroup",
+							"KeyName": "$(L,group)",
+							"Value": "/SAPAssetManager/Rules/Notifications/Cause/NotificationCauseDetailsGroup.js"
+						},
+						{
+							"_Name": "CauseCode",
+							"KeyName": "$(L,code)",
+							"Value": "/SAPAssetManager/Rules/Notifications/Cause/NotificationCauseDetailsCode.js"
+						}
+					],
+					"_Name": "NotificationItemCauseDetailsSection",
+					"_Type": "Section.Type.KeyValue"
+				},
+				"/SAPAssetManager/Pages/Fragments/Notification/Details/OnlineNotificationNoteFacet.fragment"
+			],
+			"_Type": "Control.Type.SectionedTable",
+			"_Name": "SectionedTable"
+		}
+	],
+	"_Type": "Page",
+	"_Name": "OnlineNotificationItemCauseDetailsPage"
+}

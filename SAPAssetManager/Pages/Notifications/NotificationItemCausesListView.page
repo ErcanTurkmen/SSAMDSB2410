@@ -1,0 +1,26 @@
+{
+	"Caption": "$(L,notification_items_causes)",
+	"OnLoaded": "/SAPAssetManager/Rules/Notifications/Item/Cause/NotificationItemCauseListOnLoad.js",
+	"OnReturning": "/SAPAssetManager/Rules/Notifications/Item/Cause/NotificationItemCauseListOnReturn.js",
+	"ActionBar": {
+		"_Name": "NotificationItemCausesList",
+		"Items":
+		[{
+			"Position": "Right",
+			"_Name": "Add",
+			"SystemItem": "Add",
+			"Caption": "$(L,add)",
+			"OnPress": "/SAPAssetManager/Rules/Notifications/Item/Cause/CreateUpdate/NotificationItemCauseCreateNav.js",
+			"Visible": "/SAPAssetManager/Rules/UserAuthorizations/Notifications/EnableNotificationEdit.js"
+		}]
+	},
+	"Controls": [{
+		"Sections": [
+			"/SAPAssetManager/Pages/Fragments/Notification/Items/NotificationItemCausesObjectTable.fragment"
+		],
+		"_Type" : "Control.Type.SectionedTable"
+	}],
+	"_Type": "Page",
+	"_Name": "NotificationItemCausesListViewPage",
+	"DataSubscriptions":["MyNotificationItemCauses"]
+}

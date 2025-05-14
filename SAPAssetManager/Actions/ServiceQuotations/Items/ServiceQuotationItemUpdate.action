@@ -1,0 +1,29 @@
+{
+    "_Type": "Action.Type.ODataService.UpdateEntity",
+    "Target": {
+        "EntitySet": "S4ServiceQuotationItems",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "ReadLink": "{@odata.readLink}"
+    },
+    "Properties": {
+        "ItemDesc": "#Control:DescriptionNote/#Value",
+        "ValuationType": "#Control:ValuationTypeLstPkr/#SelectedValue",
+        "ServiceType": "#Control:ServiceTypeLstPkr/#SelectedValue", 
+        "AccountingInd": "#Control:AccountIndicatorLstPkr/#SelectedValue",
+        "RequestedStart": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/Data/GetServiceItemRequstedStartDate.js",
+        "DurationUOM": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/Data/GetServiceItemDurationUOM.js",
+        "Duration": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/Data/GetServiceItemDuration.js",
+        "QuantityUOM": "#Control:UomSimple/#Value",
+        "Quantity": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/Data/GetServiceItemQunatity.js",
+        "QuotationEndDateTime": "#Control:ValidToDateTimePkr/#Value",
+        "QuotationStartDateTime": "#Control:ValidFromDateTimePkr/#Value",
+        "HigherLvlItem": "/SAPAssetManager/Rules/ServiceQuotations/Items/CreateUpdate/Data/GetServiceQuotationParentItem.js"
+    },
+    "Headers": {
+        "OfflineOData.TransactionID": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationLocalID.js"
+    },
+    "OnSuccess": "/SAPAssetManager/Actions/CreateUpdateDelete/UpdateEntitySuccessMessage.action",
+    "OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/UpdateEntityFailureMessage.action",
+    "ShowActivityIndicator": true,
+    "ActivityIndicatorText" : "  "
+}

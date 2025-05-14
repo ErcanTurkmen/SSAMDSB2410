@@ -1,0 +1,31 @@
+{
+    "Search": {
+        "Enabled": false,
+        "Delay": 500,
+        "MinimumCharacterThreshold": 3,
+        "Placeholder": "$(L,search)",
+        "BarcodeScanner": true
+    },
+    "Header": {
+        "UseTopPadding": false
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_workorders_available)"
+    },
+    "ObjectCell": {
+        "_Type": "Fragment",
+        "PreserveIconStackSpacing": false,
+        "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderObjectCell.fragment"
+    },
+    "Footer": {
+        "Caption": "$(L,see_all)",
+        "AccessoryType": "DisclosureIndicator",
+        "FooterStyle": "Attribute",
+        "Visible": false,
+        "OnPress": "/SAPAssetManager/Rules/WCM/RelatedWorkOrders/RelatedWorkOrdersListViewNav.js"
+    },
+    "Visible": "/SAPAssetManager/Rules/UserFeatures/IsWCMWorkOrderEnabled.js",
+	"Target": "/SAPAssetManager/Rules/WCM/RelatedWorkOrders/RelatedWorkOrdersTarget.js",
+    "_Type" : "Section.Type.ObjectTable",
+    "_Name" : "WCMRelatedWorkOrdersTable"
+}

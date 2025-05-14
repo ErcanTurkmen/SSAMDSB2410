@@ -1,0 +1,38 @@
+{
+	"_Type": "Action.Type.ODataService.UpdateEntity",
+	"Target": {
+		"EntitySet": "S4ServiceOrders",
+		"Service": "/SAPAssetManager/Services/AssetManager.service",
+		"ReadLink": "{@odata.readLink}"
+	},
+	"Properties": {
+		"ProcessType": "#Page:ServiceOrderCreateUpdatePage/#Control:ProcessTypeLstPkr/#SelectedValue",
+		"Description": "#Page:ServiceOrderCreateUpdatePage/#Control:DescriptionNote/#Value",
+		"Priority": "#Page:ServiceOrderCreateUpdatePage/#Control:PrioritySeg/#SelectedValue",
+		"DueBy": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderDueByDateValue.js",
+		"Category1": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/GetServiceOrderCategory1.js",
+		"Category2": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/GetServiceOrderCategory2.js",
+		"Category3": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/GetServiceOrderCategory3.js",
+		"Category4": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/GetServiceOrderCategory4.js",
+		"SchemaID": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderSchemaIDValue.js",
+		"CategoryID": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderCategoryIDValue.js",
+		"SubjectProfile": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderSubjectProfileValue.js",
+		"CatalogType": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderCatalogTypeValue.js",
+		"CodeGroup": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderCodeGroupValue.js",
+		"Code": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderCodeValue.js",
+		"RequestedStart": "/SAPAssetManager/Rules/DateTime/CurrentDateTime.js"
+	},
+	"RequestOptions": {
+		"UpdateMode": "Replace"
+	},
+	"Headers": {
+		"OfflineOData.TransactionID": "#Property:ObjectID"
+	},
+	"CreateLinks": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderCreateLinks.js",
+	"UpdateLinks": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderUpdateLinks.js",
+	"DeleteLinks": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderDeleteLinks.js",
+	"OnSuccess": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderUpdateOnSuccess.js",
+	"OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/UpdateEntityFailureMessage.action",
+	"ShowActivityIndicator": true,
+	"ActivityIndicatorText" : "  "
+}

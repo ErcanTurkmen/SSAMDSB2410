@@ -1,0 +1,15 @@
+{
+    "_Type": "Control.Type.ObjectCell",    
+    "Icons": "/SAPAssetManager/Rules/Forms/SDF/FormInstanceObjectCellIconImages.js",    
+    "AccessoryType": "DisclosureIndicator",
+    "Title": "{FormName}",
+    "Subhead": "{AppName}",
+    "Footnote": "$(L,sdf_form_version): $(N,{FormVersion})",
+    "StatusText": "/SAPAssetManager/Rules/Forms/SDF/FormMandatoryText.js",
+    "SubstatusText": "/SAPAssetManager/Rules/Forms/SDF/FormStatus.js",
+    "Styles": {
+        "StatusText":  "/SAPAssetManager/Rules/Forms/SDF/FormMandatoryStyle.js"
+    },
+    "OnPress" : "/SAPAssetManager/Rules/Forms/SDF/FormRunnerNav.js",
+    "PreserveIconStackSpacing": true
+}

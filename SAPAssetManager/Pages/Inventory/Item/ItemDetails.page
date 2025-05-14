@@ -1,0 +1,278 @@
+{
+    "Caption": "/SAPAssetManager/Rules/Inventory/Item/ItemCaption.js",
+    "ActionBar": {
+        "Items": [
+            {
+                "Position": "Right",
+                "Icon": "$(PLT, /SAPAssetManager/Images/edit.png, /SAPAssetManager/Images/edit-accessory.android.png, '', /SAPAssetManager/Images/edit-accessory.android.png)",
+                "IconText": "Edit",
+                "Visible": "/SAPAssetManager/Rules/Inventory/Item/MaterialDocItemEditVisible.js",
+                "OnPress": "/SAPAssetManager/Rules/Inventory/Item/SetItemEdit.js"
+            },
+            {
+                "Position": "Right",
+                "Icon": "$(PLT,/SAPAssetManager/Images/deliverydetails.png,/SAPAssetManager/Images/deliverydetails.android.png, '', /SAPAssetManager/Images/deliverydetails.png)",
+                "OnPress": "/SAPAssetManager/Rules/Inventory/Item/MaterialDetailsNav.js",
+                "Visible": "/SAPAssetManager/Rules/Inventory/Item/MaterialHeaderButtonVisible.js"
+            },
+            "/SAPAssetManager/Pages/Fragments/SyncButton.fragment"
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "ObjectHeader": {
+                        "HeadlineText": "/SAPAssetManager/Rules/Inventory/Common/GetMaterialName.js",
+                        "Tags": "/SAPAssetManager/Rules/Inventory/Item/ItemTags.js",
+                        "Subhead": "/SAPAssetManager/Rules/Inventory/Item/ItemSubHead.js",
+                        "BodyText": "/SAPAssetManager/Rules/Inventory/Item/ItemBodyText.js",
+                        "Footnote": "/SAPAssetManager/Rules/Inventory/Item/ItemFootnote.js"
+                    },
+                    "_Type": "Section.Type.ObjectHeader",
+                    "_Name": "ObjectHeaderSectionTable"
+                },
+                {
+                   "_Type": "Section.Type.KeyValue",
+                    "_Name": "PhysicalInventoryDetailsSection",
+                    "Header": {
+                        "Caption": "$(L,item_details)"
+                    },
+                    "KeyAndValues": [],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js",
+                    "Visible": true,
+                    "DataSubscriptions": ["MaterialDocItems", "PurchaseOrderItems", "PurchaseRequisitionItem", "StockTransportOrderItems", "ReservationItems", "ProductionOrderItems", "ProductionOrderComponents", "InboundDeliveryItems", "OutboundDeliveryItems", "PhysicalInventoryDocItems"]
+                },
+                {
+                   "_Type": "Section.Type.KeyValue",
+                    "_Name": "PurchaseRequisitionDeliveryDetailsSection",
+                    "Header": {
+                        "Caption": "$(L,delivery_details)"
+                    },
+                    "KeyAndValues": [
+                        {
+                            "_Name": "HouseNum|Street",
+                            "KeyName": "$(L,street_house)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/Item/GetStreetHouseName.js"
+                        },
+                        {
+                            "_Name": "PostalCodeCity",
+                            "KeyName": "$(L,postal_code_city)",
+                            "Value": "{PostalCodeCity}"
+                        },
+                        {
+                            "_Name": "Country",
+                            "KeyName": "$(L,country)",
+                            "Value": "{Country}"
+                        },
+                        {
+                            "_Name": "Region",
+                            "KeyName": "$(L,region)",
+                            "Value": "{Region}"
+                        }
+                    ],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js",
+                    "Visible": "/SAPAssetManager/Rules/Inventory/Item/PurchaseRequisitionItemDetailsVisible.js"
+                },
+                {
+                   "_Type": "Section.Type.KeyValue",
+                    "_Name": "PurchaseRequisitionNoteSection",
+                    "Header": {
+                        "Caption": "$(L,note)"
+                    },
+                    "KeyAndValues": [
+                        {
+                            "_Name": "note",
+                            "Value": "{LongText}"
+                        }
+                    ],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js",
+                    "Visible": "/SAPAssetManager/Rules/Inventory/Item/PurchaseRequisitionItemDetailsVisible.js"
+                },
+                {
+                    "Header": {
+                        "Caption": "$(L,serial_numbers)"
+                    },
+                    "EmptySection": {
+                        "Caption": "$(L,no_serial_numbers)"
+                    },
+                    "ObjectCell": {
+                        "Title": "{SerialNumber}",
+                        "PreserveIconStackSpacing": false,
+                        "StatusText": "{Description}"
+                    },
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemSerialNumbersTarget.js",
+                    "Visible": "/SAPAssetManager/Rules/Inventory/Item/ItemSerialNumbersVisible.js",
+                    "_Type": "Section.Type.ObjectTable",
+                    "_Name": "SerialNumbersSection"
+                },
+                {
+                    "Header": {
+                        "Caption": "$(L,account_assignment)"
+                    },
+                    "KeyAndValues": [],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js",
+                    "Visible": "/SAPAssetManager/Rules/Inventory/Item/AcctAssgmtVisible.js",
+                    "DataSubscriptions": ["MaterialDocItems", "PurchaseOrderItems"],
+                     "_Type": "Section.Type.KeyValue",
+                    "_Name": "AccountAssignmentSection"
+                },
+                {
+                   "_Type": "Section.Type.KeyValue",
+                    "_Name": "PurchaseOrderNoteSection",
+                    "Header": {
+                        "Caption": "$(L,note)"
+                    },
+                    "KeyAndValues": [
+                        {
+                            "_Name": "note[1]",
+                            "Value": "{LongText}"
+                        }
+                    ],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js",
+                    "Visible": "/SAPAssetManager/Rules/Inventory/Item/POItemDetailsVisible.js"
+                },
+                {
+                   "_Type": "Section.Type.KeyValue",
+                    "_Name": "STONoteSection",
+                    "Header": {
+                        "Caption": "$(L,note)"
+                    },
+                    "KeyAndValues": [
+                        {
+                            "_Name": "note[2]",
+                            "Value": "{LongText}"
+                        }
+                    ],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js",
+                    "Visible": "/SAPAssetManager/Rules/Inventory/Item/STOItemDetailsVisible.js"
+                },
+                {
+                    "Header": {
+                        "DataTable": {
+                            "Items": [
+                                {
+                                    "Text": "$(L,material_document_title)",
+                                    "TextAlignment": "Center"
+                                },
+                                {
+                                    "Text": "$(L,movement_type)",
+                                    "TextAlignment": "Center"
+                                },
+                                {
+                                    "Text": "$(L,plant)",
+                                    "TextAlignment": "Center"
+                                },
+                                {
+                                    "Text": "$(L,s_loc)",
+                                    "TextAlignment": "Center"
+                                },
+                                {
+                                    "Text": "$(L,material)",
+                                    "TextAlignment": "Center"
+                                },
+                                {
+                                    "Text": "$(L,material_description)",
+                                    "TextAlignment": "Center"
+                                },
+                                {
+                                    "Text": "$(L,bin)",
+                                    "TextAlignment": "Center"
+                                },
+                                {
+                                    "Text": "$(L,batch)",
+                                    "TextAlignment": "Center"
+                                },
+                                {
+                                    "Text": "$(L,valuation_type)",
+                                    "TextAlignment": "Center"
+                                },
+                                {
+                                    "Text": "$(L, quantity)",
+                                    "TextAlignment": "Center"
+                                },
+                                {
+                                    "Text": "$(L, uom)",
+                                    "TextAlignment": "Center"
+                                }
+                            ]
+                        }
+                    },
+                    "Row": {
+                        "Layout": {
+                            "ColumnWidth": [200,100,100,100,150,100,100,100,100,-1]
+                        },
+                        "Items": [
+                            {
+                                "Text": "/SAPAssetManager/Rules/Inventory/Item/MaterialDocumentName.js",
+                                "TextAlignment": "Center"
+                            },
+                            {
+                                "Text": "/SAPAssetManager/Rules/Inventory/Item/GetMovType.js",
+                                "TextAlignment": "Center"
+                            },
+                            {
+                                "Text": "{Plant}",
+                                "TextAlignment": "Center"
+                            },
+                            {
+                                "Text": "{StorageLocation}",
+                                "TextAlignment": "Center"
+                            },
+                            {
+                                "Text": "{Material}",
+                                "TextAlignment": "Center"
+                            },
+                            {
+                                "Text": "/SAPAssetManager/Rules/Inventory/Item/GetMaterialDesc.js",
+                                "TextAlignment": "Center"
+                            },
+                            {
+                                "Text": "{StorageBin}",
+                                "TextAlignment": "Center"
+                            },
+                            {
+                                "Text": "{Batch}",
+                                "TextAlignment": "Center"
+                            },
+                            {
+                                "Text": "{ValuationType}",
+                                "TextAlignment": "Center"
+                            },
+                            {
+                                "Text": "/SAPAssetManager/Rules/Inventory/Item/GridQuantity.js",
+                                "TextAlignment": "Center"
+                            },
+                            {
+                                "Text": "{EntryUOM}",
+                                "TextAlignment": "Center"
+                            }
+                        ],
+                        "OnPress": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/ItemDetailsPage.js"
+                    },
+                    "Visible": "/SAPAssetManager/Rules/Inventory/Item/ItemDataTableVisible.js",
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemMaterialTarget.js",
+                    "_Type": "Section.Type.DataTable",
+                    "StickyColumn": false,
+                    "_Name": "DataTableSection"
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable"
+        }
+    ],
+    "FioriToolbar": {
+		"_Name": "ItemDetailsFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Items": [
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsPreviousItem.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/FlexibleSpaceToolBar.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsDiscard.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/FlexibleSpaceToolBar.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsNextItem.fragment"
+        ]
+    },
+    "OnReturning": "/SAPAssetManager/Rules/Inventory/Item/ItemPageOnReturning.js",
+    "_Name": "ItemDetailsPage",
+    "_Type": "Page"
+}

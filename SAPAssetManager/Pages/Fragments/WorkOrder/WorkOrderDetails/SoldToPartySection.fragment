@@ -1,0 +1,30 @@
+{
+    "Header": {
+        "Caption": "$(L,sold_to_party)"
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_sold_to_party_available)"
+    },
+    "ContactCell": {
+        "Headline": "/SAPAssetManager/Rules/BusinessPartners/BusinessPartnerName.js",
+        "ActivityItems": [
+            {
+                "ActivityType": "Phone",
+                "ActivityValue": "/SAPAssetManager/Rules/BusinessPartners/BusinessPartnerTelephone.js"
+            },
+            {
+                "ActivityType": "Email",
+                "ActivityValue": "/SAPAssetManager/Rules/BusinessPartners/BusinessPartnerEmail.js"
+            }
+        ],
+        "OnPress": "/SAPAssetManager/Rules/Meter/BusinessPartners/BusinessPartnerDetailsViewNav.js"
+    },
+    "Target": {
+        "EntitySet": "{{#Property:@odata.readLink}}/WOPartners",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "/SAPAssetManager/Rules/Meter/BusinessPartners/ServiceDetailsSoldToPartyQueryOptions.js"
+    },
+    "Visible": "/SAPAssetManager/Rules/WorkOrders/Details/SoldToPartySectionIsVisible.js",
+    "_Name": "SoldToPartySection",
+    "_Type": "Section.Type.ContactCell"
+}

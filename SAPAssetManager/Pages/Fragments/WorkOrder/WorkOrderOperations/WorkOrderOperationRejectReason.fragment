@@ -1,0 +1,25 @@
+{
+    "Header": {
+        "Caption": "$(L,reject_reason)",
+        "UseTopPadding": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/GetTopPaddingValue.js"
+    },
+    "ObjectCell": {
+        "PreserveIconStackSpacing": false,
+        "Title": "/SAPAssetManager/Rules/Supervisor/Reject/RejectReasonText.js"
+    },
+    "Target": {
+        "EntitySet": "{{#Property:@odata.readLink}}/WOHeader",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$select=OrderId"
+    },
+    "_Type": "Section.Type.ObjectTable",
+    "_Name": "RejectionReason",
+    "DataSubscriptions": ["PMMobileStatuses"],
+    "Visible": "/SAPAssetManager/Rules/Supervisor/Reject/RejectReasonIsVisible.js",
+    "Footer": {
+        "Caption": "$(L,see_all)",
+        "AccessoryType": "DisclosureIndicator",
+        "OnPress": "/SAPAssetManager/Rules/Notes/NotesViewNav.js",
+        "FooterStyle": "Attribute"
+    }
+}

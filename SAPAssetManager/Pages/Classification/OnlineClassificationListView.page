@@ -1,0 +1,27 @@
+{
+    "Caption": "/SAPAssetManager/Rules/Classification/OnlineClassificationListViewCaption.js",
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Equipment/Classifications/ClassificationObjectTable.fragment",
+                    "Properties": {
+                        "ObjectCell": {
+                            "Title": "{ClassDesc}",
+                            "OnPress": "/SAPAssetManager/Actions/Classification/OnlineClassificationDetailsNav.action"
+                        },
+                        "Target": {
+                            "EntitySet": "ClassDefinitions",
+                            "Service": "/SAPAssetManager/Services/OnlineAssetManager.service",
+                            "QueryOptions": "/SAPAssetManager/Rules/Classification/OnlineClassificationListQueryOptions.js"
+                        }
+                    }
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "OnlineClassificationPage"
+}

@@ -1,0 +1,96 @@
+{
+	"Caption": "$(L,personalization)",
+	"ActionBar":
+    {
+        "Items":
+        [{
+            "Position": "Right",
+			"SystemItem": "$(PLT,'Done','', '','Done')",
+            "Text": "/SAPAssetManager/Rules/Common/Platform/DoneText.js",
+            "OnPress": "/SAPAssetManager/Rules/UserPreferences/UserPreferencesUpdate.js"
+        }]
+    },
+    "Controls": [{
+		"_Name": "FormCellContainer",
+		"_Type": "Control.Type.FormCellContainer",
+		"Sections": [{
+			"Controls":
+			[{
+                "Caption": "$(L, layout)",
+                "Value": "/SAPAssetManager/Rules/UserPreferences/LayoutStyleValue.js",
+                "Segments": [
+					{
+						"DisplayValue": "$(L, New)",
+						"ReturnValue": "new"
+					},
+					{
+						"DisplayValue": "$(L, classic)",
+						"ReturnValue": "classic"
+					}
+				],
+                "_Name": "LayoutSeg",
+                "_Type": "Control.Type.FormCell.SegmentedControl",
+				"IsVisible": "/SAPAssetManager/Rules/UserPreferences/LayoutPersonalization.js"
+			},
+			{
+                "Caption": "$(L, take_readings)",
+                "Value": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointViewInitialValue.js",
+                "Segments": [
+					{
+						"DisplayValue": "$(L, table)",
+						"ReturnValue": "0"
+					},
+					{
+						"DisplayValue": "$(L, list)",
+						"ReturnValue": "1"
+					}
+				],
+                "_Name": "ReadingsScreenSeg",
+                "_Type": "Control.Type.FormCell.SegmentedControl",
+                "IsVisible": "/SAPAssetManager/Rules/UserPreferences/MeasuringPointPersonalization.js"
+			},
+			{
+                "Caption": "/SAPAssetManager/Rules/InspectionCharacteristics/InspectionCharacteristicPersonalizationCaption.js",
+                "Value": "/SAPAssetManager/Rules/InspectionCharacteristics/InspectionCharacteristicViewInitialValue.js",
+                "Segments": [
+					{
+						"DisplayValue": "$(L, table)",
+						"ReturnValue": "0"
+					},
+					{
+						"DisplayValue": "$(L, list)",
+						"ReturnValue": "1"
+					}
+				],
+                "_Name": "CheckListScreenSeg",
+                "_Type": "Control.Type.FormCell.SegmentedControl",
+				"IsVisible": "/SAPAssetManager/Rules/UserPreferences/InspectionCharacteristicsPersonalization.js"
+			},
+			{
+                "Caption": "$(L, persist_filter)",
+                "Value": "/SAPAssetManager/Rules/UserPreferences/PersistFilterSwitchValue.js",
+                "_Name": "FilterSwitch",
+                "_Type": "Control.Type.FormCell.Switch"
+			},
+			{
+                "Caption": "$(L, item_view)",
+                "Value": "/SAPAssetManager/Rules/UserPreferences/ServiceItemViewValue.js",
+                "Segments": [
+					{
+						"DisplayValue": "$(L, table)",
+						"ReturnValue": "0"
+					},
+					{
+						"DisplayValue": "$(L, list)",
+						"ReturnValue": "1"
+					}
+				],
+                "_Name": "ServiceItemsViewSeg",
+                "_Type": "Control.Type.FormCell.SegmentedControl",
+				"IsVisible": "/SAPAssetManager/Rules/UserPreferences/ServiceItemsViewPersonalizationVisible.js"
+			}]
+		}]
+		}],
+	"_Name": "Personalization",
+	"_Type": "Page"
+}

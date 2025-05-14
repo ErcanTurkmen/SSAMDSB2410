@@ -1,0 +1,34 @@
+{
+    "Header": {
+        "Caption": "$(L,categorization)"
+    },
+    "KeyAndValues": [
+        {
+            "_Name": "CategoryID[1]",
+            "KeyName": "$(L,category) 1",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/Details/Category1Value.js"
+        },
+        {
+            "_Name": "CategoryID[2]",
+            "KeyName": "$(L,category) 2",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/Details/Category2Value.js"
+        },
+        {
+            "_Name": "CategoryID[3]",
+            "KeyName": "$(L,category) 3",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/Details/Category3Value.js"
+        },
+        {
+            "_Name": "CategoryID[4]",
+            "KeyName": "$(L,category) 4",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/Details/Category4Value.js"
+        }
+    ],
+    "Target": {
+        "EntitySet": "{@odata.readLink}",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$select=SchemaID,CategoryID,Category1_Nav/CategoryName,Category2_Nav/CategoryName,Category3_Nav/CategoryName,Category4_Nav/CategoryName&$expand=Category1_Nav,Category2_Nav,Category3_Nav,Category4_Nav"
+    },
+    "_Type": "Section.Type.KeyValue",
+    "_Name": "CategorizationSection"
+}

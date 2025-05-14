@@ -1,0 +1,6 @@
+{
+    "OnFailure": "/SAPAssetManager/Rules/Common/UpdateRequiredFailed.js",
+    "OnSuccess": "/SAPAssetManager/Rules/SubOperations/CreateUpdate/SubOperationCreateUpdateOnCommit.js",
+    "RequiredFields": "/SAPAssetManager/Rules/SubOperations/CreateUpdate/SubOperationRequiredFields.js",
+    "_Type": "Action.Type.CheckRequiredFields"
+}

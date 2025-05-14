@@ -1,0 +1,21 @@
+{
+    "_Type": "Action.Type.ODataService.UpdateEntity",
+    "Target": {
+        "EntitySet": "PurchaseRequisitionLongTexts",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "ReadLink": "{ItemNoteLink}"
+    },
+    "Properties": {
+        "NewTextString": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetItemNote.js",
+        "TextString": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetItemNote.js"
+    },
+    "UpdateLinks": [
+        {
+            "Property": "PurchaseRequisitionItem_Nav",
+            "Target": {
+                "EntitySet": "PurchaseRequisitionItems",
+                "ReadLink": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetItemLink.js"
+            }
+        }
+    ]
+}

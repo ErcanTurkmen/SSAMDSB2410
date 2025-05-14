@@ -1,0 +1,68 @@
+{
+	"Caption": "/SAPAssetManager/Rules/Documents/DownloadDocuments/DownloadDocumentsPageCaption.js",
+	"ActionBar": {
+        "Items": [
+            {
+                "Position": "Left",
+                "SystemItem": "Cancel",
+				"Caption": "$(L,cancel)",
+                "OnPress": "/SAPAssetManager/Actions/Page/CancelPage.action"
+            },
+			{
+				"Text": "$(L,deselect_all)",
+				"Caption": "$(L,deselect_all)",
+				"OnPress": "/SAPAssetManager/Rules/Documents/DownloadDocuments/DownloadDocumentsDeselectAll.js",
+				"Visible": "/SAPAssetManager/Rules/Documents/DownloadDocuments/DownloadDocumentsDeselectAllButtonVisible.js",
+				"Position": "Right",
+				"_Name": "DeselectAll"
+			},
+			{
+				"Text": "$(L,select_all)",
+				"Caption": "$(L,select_all)",
+				"OnPress": "/SAPAssetManager/Rules/Documents/DownloadDocuments/DownloadDocumentsSelectAll.js",
+				"Visible": "/SAPAssetManager/Rules/Documents/DownloadDocuments/DownloadDocumentsSelectAllButtonVisible.js",
+				"Position": "Right",
+				"_Name": "SelectAll"
+			}
+        ]
+    },
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Header": {
+						"UseTopPadding": true
+					},
+					"ObjectCells": [
+						{
+							"ObjectCell": {
+								"Title": "$(L, total_size)",
+								"Subhead": "/SAPAssetManager/Rules/Documents/DownloadDocuments/DownloadDocumentsTotalSize.js"
+							}
+						}
+					],
+					"_Name": "TotalSection",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"FioriToolbar": {
+        "_Name": "DownloadDocumentsFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+		"Items": [
+			{
+				"_Name": "DownloadButton",
+				"_Type": "FioriToolbarItem.Type.Button",
+				"Title": "$(L, download)",
+				"OnPress": "/SAPAssetManager/Rules/Documents/DownloadDocuments/DownloadDocumentsOnDownloadPress.js",
+				"ButtonType": "Primary"
+			}
+		]
+	},
+	"OnLoaded": "/SAPAssetManager/Rules/Documents/DownloadDocuments/DownloadDocumentsSelectAll.js",
+	"_Name": "DownloadDocumentsPage",
+	"_Type": "Page"
+}

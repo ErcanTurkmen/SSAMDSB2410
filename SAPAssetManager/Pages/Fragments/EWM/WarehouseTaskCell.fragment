@@ -1,0 +1,12 @@
+{
+    "DetailImageIsCircular": false,
+    "PreserveIconStackSpacing": false,
+    "Title": "/SAPAssetManager/Rules/EWM/WarehouseTask/ListView/WarehouseTaskTitle.js",
+    "Subhead": "/SAPAssetManager/Rules/EWM/WarehouseTask/ListView/WarehouseTaskSubhead.js",
+    "Footnote": "/SAPAssetManager/Rules/EWM/WarehouseTask/ListView/WarehouseTaskFootnote.js",
+    "StatusText": "/SAPAssetManager/Rules/EWM/WarehouseTask/ListView/WarehouseTaskStatusText.js",
+    "SubstatusText": "{Quantity} {UoM}",
+    "Tags": "/SAPAssetManager/Rules/EWM/WarehouseTask/ListView/WarehouseTaskTags.js",
+    "AccessoryButtonIcon": "$(PLT, /SAPAssetManager/Images/edit-accessory.ios.png, /SAPAssetManager/Images/edit-accessory.android.png,'',/SAPAssetManager/Images/edit-accessory.ios.png)",
+    "OnPress": "/SAPAssetManager/Actions/EWM/WarehouseTasks/WarehouseTaskDetailsPageNav.action"
+}

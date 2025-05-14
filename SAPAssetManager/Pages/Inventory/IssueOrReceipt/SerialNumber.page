@@ -1,0 +1,184 @@
+{
+    "ActionBar": {
+        "_Name": "SerialNumberPage",
+		"Items": [
+			{
+                "Position": "Right",
+                "_Name": "Done",
+                "SystemItem": "$(PLT,'Done','','Done')",
+                "Caption": "$(L,done)",
+                "Text": "/SAPAssetManager/Rules/Common/Platform/DoneText.js",
+                "OnPress": "/SAPAssetManager/Rules/Inventory/SerialNumbers/SaveSerialNumbers.js"
+			}
+		]
+	},
+    "Caption": "$(L,serial_number_page)",
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "Controls": [
+                        {
+                            "_Type": "Control.Type.FormCell.SimpleProperty",
+                            "_Name": "ItemNumber",
+                            "Caption": "$(L,item_number)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/SerialNumbers/SerialNumbersItemNumber.js",
+                            "IsVisible": "/SAPAssetManager/Rules/Inventory/SerialNumbers/SerialNumbersItemNumberDateVisible.js",
+                            "IsEditable": false
+                        },
+                        {
+                            "_Type": "Control.Type.FormCell.SimpleProperty",
+                            "_Name": "MaterialBatch",
+                            "Caption": "/SAPAssetManager/Rules/Inventory/SerialNumbers/MaterialBatchCaption.js",
+                            "Value": "/SAPAssetManager/Rules/Inventory/SerialNumbers/SerialNumbersMaterialBatchValue.js",
+                            "IsEditable": false
+                        },
+                        {
+                            "_Type": "Control.Type.FormCell.SimpleProperty",
+                            "_Name": "Date",
+                            "Caption": "$(L,date)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/SerialNumbers/SerialNumbersDate.js",
+                            "IsVisible": "/SAPAssetManager/Rules/Inventory/SerialNumbers/SerialNumbersItemNumberDateVisible.js",
+                            "IsEditable": false
+                        },
+                        {
+                            "Caption": "$(L,po_item_detail_to_confirm)",
+                            "KeyboardType": "Number",
+                            "OnValueChange": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/OnQuantityChange.js",
+                            "Value": "/SAPAssetManager/Rules/Inventory/SerialNumbers/SerialNumberOpenQuantity.js",
+                            "_Name": "QuantitySimple",
+                            "_Type": "Control.Type.FormCell.SimpleProperty",
+                            "IsEditable": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/IsQuantityEditable.js"
+                        },
+                        {
+                            "Caption": "$(L,uom)",
+                            "IsEditable": false,
+                            "Value": "/SAPAssetManager/Rules/Inventory/SerialNumbers/SerialNumberUOM.js",
+                            "_Name": "UOMSimple",
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        },
+                        {
+                            "Caption": "$(L,quantity_baseuom)",
+                            "_Type": "Control.Type.FormCell.SimpleProperty",
+                            "_Name": "BaseQuantityUOM",
+                            "Value": "/SAPAssetManager/Rules/Inventory/SerialNumbers/BaseQuantityUOMValue.js",
+                            "IsVisible": "/SAPAssetManager/Rules/Inventory/SerialNumbers/ShowQuantityInBaseUOM.js",
+                            "IsEditable": false
+                        }
+                    ],
+                    "_Type": "Section.Type.FormCell",
+                    "_Name": "FormCellSection0"
+                },
+                {
+                    "Controls": [
+                        {
+                            "_Type": "Control.Type.FormCell.SimpleProperty",
+                            "_Name": "SerialNum",
+                            "Value": "",
+                            "Caption": "$(L,serial_number)",
+                            "KeyboardType": "Default",
+                            "IsEditable": "/SAPAssetManager/Rules/Inventory/SerialNumbers/SerialNumEditable.js",
+                            "OnValueChange": "/SAPAssetManager/Rules/Inventory/SerialNumbers/OnSerialNumberChange.js"
+                        },
+                        {
+                            "Title": "$(L,manuall_add_serial_number)",
+                            "_Type": "Control.Type.FormCell.Button",
+                            "_Name": "SerialButton",
+                            "ButtonType": "Text",
+                            "Semantic": "Tint",
+                            "TextAlignment": "/SAPAssetManager/Rules/Inventory/Common/SerialNumbersButtonAlignment.js",
+                            "OnPress": "/SAPAssetManager/Rules/Inventory/SerialNumbers/AddMoreSerialNumber.js",
+                            "Enabled":  "/SAPAssetManager/Rules/Inventory/SerialNumbers/SerialNumberEnabled.js"
+                        },
+                        {
+                            "Title": "/SAPAssetManager/Rules/Inventory/SerialNumbers/ScanSerialNumberCaption.js",
+                            "_Type": "Control.Type.FormCell.Button",
+                            "_Name": "ScanButton",
+                            "Image": "sap-icon://bar-code",
+                            "ImagePosition": "Trailing",
+                            "ButtonType": "Text",
+                            "Semantic": "Tint",
+                            "TextAlignment": "/SAPAssetManager/Rules/Inventory/Common/SerialNumbersButtonAlignment.js",
+                            "OnPress": "/SAPAssetManager/Actions/Inventory/SerialNumbers/SerialNumberScan.action"
+                        }
+                    ],
+                    "_Type": "Section.Type.FormCell",
+                    "_Name": "FormCellSection1"
+                },
+                {
+                    "Visible": "/SAPAssetManager/Rules/Common/IsAndroid.js",
+                    "Header": {
+                        "Caption": "/SAPAssetManager/Rules/Inventory/SerialNumbers/SerialNumbersCaption.js"
+                    },
+                    "EmptySection": {
+                        "Caption": "$(L,no_serial_numbers)"
+                    },
+                    "ObjectCell": {
+                        "OnPress": "/SAPAssetManager/Rules/Inventory/SerialNumbers/SerialNumbersSelected.js",
+                        "PreserveIconStackSpacing": false,
+                        "Icons": ["/SAPAssetManager/Rules/Inventory/SerialNumbers/SelectOrUnselectedIconShowAndroid.js"],
+                        "Title": "{SerialNumber}",
+                        "StatusText": "/SAPAssetManager/Rules/Inventory/SerialNumbers/StatusText.js",
+                        "Styles": {
+                            "StatusText": "SerialNumberStatusText"
+                        },
+                        "AccessoryButtonIcon": "/SAPAssetManager/Rules/Inventory/SerialNumbers/ShowRemoveIcon.js",
+                        "OnAccessoryButtonPress": "/SAPAssetManager/Rules/Inventory/SerialNumbers/SerialNumbersDelete.js"
+					},
+                    "Target": "/SAPAssetManager/Rules/Inventory/SerialNumbers/SerialNumbersTarget.js",
+                    "_Name": "SerialNumbersObjectTableAndroid",
+                    "_Type": "Section.Type.ObjectTable"
+                },
+                {
+                    "Visible": "/SAPAssetManager/Rules/Common/IsIOS.js",
+                    "Header": {
+                        "Caption": "/SAPAssetManager/Rules/Inventory/SerialNumbers/SerialNumbersCaption.js"
+                    },
+                    "EmptySection": {
+                        "Caption": "$(L,no_serial_numbers)"
+                    },
+                    "ObjectCell": {
+                        "Title": "/SAPAssetManager/Rules/Inventory/SerialNumbers/SerialNumberTitle.js",
+                        "StatusText": "{Description}",
+                        "AccessoryType": "/SAPAssetManager/Rules/Inventory/SerialNumbers/SerialNumbersCheckMark.js",
+                        "OnPress": "/SAPAssetManager/Rules/Inventory/SerialNumbers/SerialNumbersSelected.js",
+                        "ContextMenu": {
+							"PerformFirstActionWithFullSwipe": true,
+							"Items": [
+								{
+									"_Name": "Delete_Item",
+									"Image": "$(PLT, /SAPAssetManager/Images/trash.png, /SAPAssetManager/Images/trash.android.png, '', /SAPAssetManager/Images/trash.android.png)",
+									"Text": "$(L, delete)",
+									"Mode": "Deletion",
+									"OnSwipe": "/SAPAssetManager/Rules/Inventory/SerialNumbers/SerialNumbersDelete.js"
+								}
+							],
+                            "TrailingItems": "/SAPAssetManager/Rules/Inventory/SerialNumbers/SerialNumbersTrailingItems.js"
+						}
+                    },
+                    "Target": "/SAPAssetManager/Rules/Inventory/SerialNumbers/SerialNumbersTarget.js",
+                    "_Name": "SerialNumbersObjectTable",
+                    "_Type": "Section.Type.ObjectTable"
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable"
+        }
+    ],
+    "FioriToolbar": {
+		"_Name": "SerialNumberFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Items": [
+            {
+                "_Name": "IssuePartTbI",
+                "_Type": "FioriToolbarItem.Type.Button",
+                "Visible" : "/SAPAssetManager/Rules/Inventory/SerialNumbers/AcceptAllEnabled.js",
+                "Title": "$(L,accept_all_serial_numbers)",
+                "OnPress": "/SAPAssetManager/Rules/Inventory/SerialNumbers/AcceptAllSerialNumbers.js",
+                "ButtonType": "Primary"
+            }
+        ]
+    },
+    "_Name": "SerialNumberPage",
+	"_Type": "Page"
+}

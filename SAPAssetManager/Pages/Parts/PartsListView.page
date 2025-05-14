@@ -1,0 +1,70 @@
+{
+    "OnLoaded": "/SAPAssetManager/Rules/Parts/PartsListViewOnLoad.js",
+    "OnReturning": "/SAPAssetManager/Rules/Parts/PartsListOnReturning.js",
+    "OnCustomEventDataReceived": "/SAPAssetManager/Rules/Parts/OnCustomEventDataReceived.js",
+    "Caption": "$(L,parts)",
+    "ActionBar": {
+        "_Name": "PartsListView",
+        "Items": [
+            {
+                "Position": "Right",
+                "_Name": "Add",
+                "SystemItem": "Add",
+                "Caption": "$(L,add)",
+                "OnPress": "/SAPAssetManager/Rules/Parts/CreateUpdate/PartCreateNav.js",
+                "Visible": "/SAPAssetManager/Rules/UserAuthorizations/WorkOrders/EnableWorkOrderEdit.js"
+            },
+            {
+                "Position": "Right",
+                "_Name": "ScanAll",
+                "Text": "$(L,scan_all)",
+                "OnPress":"/SAPAssetManager/Rules/Parts/ScanAllButtonOnPress.js",
+                "Visible": "/SAPAssetManager/Rules/Parts/ScanAllButtonVisibility.js"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "Search": {
+                        "Enabled": "/SAPAssetManager/Rules/Parts/PartsSearchEnabled.js",
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 3,
+                        "Placeholder": "$(L,search)",
+				        "BarcodeScanner": "/SAPAssetManager/Rules/Parts/PartsSearchBarcodeScannerEnabled.js"
+                    },
+                    "EmptySection": {
+                        "Caption": "$(L,no_parts_available)"
+                    },
+                    "Header": {
+		 		        "UseTopPadding": false
+    		        },
+                    "ObjectCell": {
+                        "PreserveIconStackSpacing": true,
+                        "Icons": "/SAPAssetManager/Rules/Parts/PartsItemIconImages.js",
+                        "Title": "/SAPAssetManager/Rules/Parts/PartFieldFormat.js",
+                        "Subhead": "/SAPAssetManager/Rules/Parts/PartFieldFormat.js",
+                        "Footnote": "{{#Property:OperationDesc}} ({{#Property:OperationNo}})",
+                        "Description": "/SAPAssetManager/Rules/Parts/PartFieldFormat.js",
+                        "SubstatusText": "/SAPAssetManager/Rules/Parts/PartFieldFormat.js",
+                        "AccessoryType": "DisclosureIndicator",
+                        "OnPress": "/SAPAssetManager/Actions/Parts/PartDetailsNav.action"
+                    },
+                    "Target": {
+                        "EntitySet": "MyWorkOrderComponents",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "/SAPAssetManager/Rules/Parts/PartsListQueryOptions.js"
+                    },
+                    "_Type": "Section.Type.ObjectTable",
+                    "_Name": "PartsList"
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "PartsListSectionedTable"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "PartsListViewPage",
+    "DataSubscriptions":["MyWorkOrderComponents","MaterialDocuments","MaterialDocItems"]
+}

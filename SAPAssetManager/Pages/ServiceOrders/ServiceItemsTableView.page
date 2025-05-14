@@ -1,0 +1,30 @@
+{
+	"Caption": "$(L, service_order_items)",
+	"OnLoaded": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/EDT/RedrawS4ItemsEDTPage.js",
+	"OnBackButtonPressed": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/EDT/ServiceItemsEDTCheckForChangesBeforeClose.js",
+	"OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+	"ActionBar": {
+		"Items": [
+			{
+				"_Name": "Done",
+				"Position": "Right",
+                "SystemItem": "$(PLT,'Done','','','Done')",
+                "Caption": "$(L,done)",
+                "Text": "/SAPAssetManager/Rules/Common/Platform/DoneText.js",
+				"OnPress": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/EDT/ServiceItemsEDTOnCommit.js",
+				"Visible": false
+			}
+		]
+	},
+	"Controls": [
+		{
+			"_Type" : "Control.Type.SectionedTable",
+			"_Name" : "SectionedTable",
+			"Sections": [
+				"/SAPAssetManager/Pages/Fragments/S4ServiceItems/ServiceItemsTableSection.fragment"
+			]
+		}
+	],
+	"_Type": "Page",
+	"_Name": "ServiceItemsTableViewPage"
+}

@@ -1,0 +1,44 @@
+{
+    "Header": {
+        "Caption": "$(L,follow_on_notifications)",
+        "UseTopPadding": false
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_notifications_available)"
+    },
+    "Search": {
+		"Enabled": true,
+		"Delay": 500,
+		"MinimumCharacterThreshold": 3,
+		"Placeholder": "Search",
+		"BarcodeScanner": true
+	},
+    "ObjectCell": {
+       "Icons":"/SAPAssetManager/Rules/Notifications/ListView/NotificationListViewIconImages.js",
+        "Title": "{NotificationDescription}",
+        "Subhead": "{{#Property:NotificationNumber}} - {{#Property:NotificationType}}",
+        "Footnote": "/SAPAssetManager/Rules/Notifications/ListView/NotificationsListViewFormat.js",
+        "StatusText": "/SAPAssetManager/Rules/Notifications/ListView/NotificationsListViewFormat.js",
+        "SubstatusText": "/SAPAssetManager/Rules/Notifications/ListView/NotificationsListViewFormat.js",
+        "Styles": {
+			"StatusText":  "/SAPAssetManager/Rules/Priority/NotificationPriorityStatusStyle.js"
+		},
+        "AccessoryType": "DisclosureIndicator",
+        "OnPress" : "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsNav.js"
+    },
+    "Footer": {
+        "Caption": "$(L,see_all)",
+        "AccessoryType": "DisclosureIndicator",
+        "FooterStyle": "Attribute",
+        "AttributeLabel": "/SAPAssetManager/Rules/Notifications/FollowOn/FollowOnNotificationsCount.js",
+        "OnPress": "/SAPAssetManager/Actions/Notifications/FollowOn/FollowOnNotificationsListViewNav.action",
+        "Visible": "/SAPAssetManager/Rules/Notifications/FollowOn/FollowOnNotificationsFooterIsVisible.js"
+    },
+    "Target": {
+        "EntitySet" : "MyNotificationHeaders",
+        "Service" : "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions" : "/SAPAssetManager/Rules/Notifications/FollowOn/FollowOnNotificationsQueryOptions.js"
+    },
+    "_Name": "FollowOnNotificationsList",
+    "_Type": "Section.Type.ObjectTable"
+}

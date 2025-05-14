@@ -1,0 +1,94 @@
+{
+	"Caption": "$(L, qab_settings_title)",
+	"OnLoaded": "/SAPAssetManager/Rules/QAB/QABSettingsPageOnLoaded.js",
+	"ActionBar": {
+		"Items": [
+			{
+				"Position": "Left",
+				"SystemItem": "Cancel",
+				"Caption":"$(L,cancel)",
+				"OnPress": "/SAPAssetManager/Actions/Page/ClosePage.action"
+			},
+			{
+				"Position": "Right",
+				"SystemItem":"$(PLT,'Save','','','Save')",
+				"Caption":"$(L,save)",
+				"Text": "$(L, save)",
+				"OnPress": "/SAPAssetManager/Rules/QAB/QABSettingsOnSaveOnPress.js"
+			}
+
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/QAB/QABSettingsSection.fragment",
+					"Properties": {
+						"Header": {
+							"UseTopPadding": false,
+							"Items": [
+								{
+									"_Type": "SectionHeaderItem.Type.Label",
+									"_Name": "VisibleSectionHeaderLabel",
+									"Title": "$(L, qab_settings_visible_title)",
+									"Position": "Left"
+								},
+								{
+									"_Type": "SectionHeaderItem.Type.Button",
+									"_Name": "VisibleSectionHeaderButton",
+									"Position": "Right",
+									"OnPress": "/SAPAssetManager/Rules/QAB/QABSettingsDeselectAllOnPress.js",
+									"Enabled": "/SAPAssetManager/Rules/QAB/QABSettingsSectionHeaderButtonEnabled.js",
+									"Title": "$(L, deselect_all)",
+									"Styles": {
+										"Button": "HeaderItemButtonText"
+									}
+								}
+							]
+						},
+						"Visible": "/SAPAssetManager/Rules/QAB/QABSettingsVisibleSectionIsVisible.js",
+						"Target": "/SAPAssetManager/Rules/QAB/QABSettingsVisibleSectionTarget.js",
+						"_Name": "VISIBLE"
+					}
+				},
+				{
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/QAB/QABSettingsSection.fragment",
+					"Properties": {
+						"Header": {
+							"UseTopPadding": "/SAPAssetManager/Rules/QAB/QABSettingsVisibleSectionIsVisible.js",
+							"Items": [
+								{
+									"_Type": "SectionHeaderItem.Type.Label",
+									"_Name": "NonVisibleSectionHeaderLabel",
+									"Title": "$(L, qab_settings_non_visible_title)",
+									"Position": "Left"
+								},
+								{
+									"_Type": "SectionHeaderItem.Type.Button",
+									"_Name": "NonVisibleSectionHeaderButton",
+									"Position": "Right",
+									"OnPress": "/SAPAssetManager/Rules/QAB/QABSettingsSelectAllOnPress.js",
+									"Enabled": "/SAPAssetManager/Rules/QAB/QABSettingsSectionHeaderButtonEnabled.js",
+									"Title": "$(L, select_all)",
+									"Styles": {
+										"Button": "HeaderItemButtonText"
+									}
+								}
+							]
+						},
+						"Target": "/SAPAssetManager/Rules/QAB/QABSettingsNonVisibleSectionTarget.js",
+						"Visible": "/SAPAssetManager/Rules/QAB/QABSettingsNonVisibleSectionIsVisible.js",
+						"_Name": "NON_VISIBLE"
+					}
+				}
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"_Name": "QABSettingsPage",
+	"_Type": "Page"
+}

@@ -1,0 +1,74 @@
+{
+"Caption": "$(L,fld_packages)",
+"ActionBar": {
+		"Items": [
+            {
+                "Position": "Right",
+                "Icon": "$(PLT,'',/SAPAssetManager/Images/filter.android.png, '' , /SAPAssetManager/Images/filter.android.png)",
+                "Caption": "/SAPAssetManager/Rules/Filter/FilterButtonCaption.js",
+                "OnPress": "/SAPAssetManager/Actions/FL/Packages/PackagesFilterViewNav.action",
+				"_Name": "FilterButton"
+            },
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment"
+		]
+	},
+"Controls": [
+		{
+			"Sections": [
+				{
+					"EmptySection": {
+						"Caption": "$(L,no_fld_packages)"
+					},
+					"Header": {
+						"Caption":"/SAPAssetManager/Rules/FL/Packages/Details/PackageItemsListCaption.js",
+						"UseTopPadding": false
+					},
+					"ObjectCell": "/SAPAssetManager/Pages/Fragments/FL/PackageItemsCell.fragment",
+					"Search": {
+						"Enabled" : true,
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 3,
+                        "Placeholder": "$(L,search)",
+                        "BarcodeScanner": true
+					},
+					"Target": {
+						"EntitySet": "FldLogsPackageItems",
+						"QueryOptions":"/SAPAssetManager/Rules/FL/Packages/PackageItemsOnLoadQuery.js",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					},
+					"_Name": "SectionObjectTable",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"FilterFeedbackBar": {
+				"_Type": "Control.Type.FilterFeedbackBar",
+				"_Name": "FilterFeedback",
+				"ShowAllFilters": true,
+				"FastFilters": [
+	        		{ 
+						"_Name": "ItemsOpen",
+						"_Type": "Control.Type.FastFilterItem",
+						"FilterType": "Filter",
+						"CustomQueryGroup": "PackageItemsList",
+						"DisplayValue": "/SAPAssetManager/Rules/FL/Packages/Details/PackageItemsFilterCaptionOpen.js",
+						"ReturnValue": "/SAPAssetManager/Rules/FL/Packages/Details/GetReturnValueforItemsOpen.js"
+            		},
+            		{	 
+						"_Name": "ItemsReceived",
+						"_Type": "Control.Type.FastFilterItem",
+						"FilterType": "Filter",
+						"CustomQueryGroup": "PackageItemsList",
+						"DisplayValue": "/SAPAssetManager/Rules/FL/Packages/Details/PackageItemsFilterCaptionReceived.js",
+						"ReturnValue": "/SAPAssetManager/Rules/FL/Packages/Details/GetReturnValueforItemsReceived.js"       
+            		}
+				]
+			},
+			"Filters": "/SAPAssetManager/Rules/FL/Packages/Details/GetPackageItemsPreSelectedFilter.js",
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		}
+],
+	"_Name": "PackageItemsListPage",
+	"_Type": "Page",
+	"OnLoaded": "/SAPAssetManager/Rules/Filter/ListPageWithFilterOnLoaded.js"
+}

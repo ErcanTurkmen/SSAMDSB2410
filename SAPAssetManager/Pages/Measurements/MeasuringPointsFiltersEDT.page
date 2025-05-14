@@ -1,0 +1,171 @@
+{
+    "Caption":"$(L,filter)",
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "Result": "/SAPAssetManager/Rules/Measurements/Points/EDT/Filters/MeasuringPointsEDTFilterResult.js",
+    "ActionBar": {
+        "Items": [
+            {
+                "Position": "Left",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)",
+                "OnPress": "/SAPAssetManager/Actions/Page/CancelPage.action"
+            },
+            {
+                "Position": "Right",
+                "SystemItem": "/SAPAssetManager/Rules/Filter/FilterSystemItem.js",
+                "Text": "/SAPAssetManager/Rules/Filter/FilterText.js",
+                "OnPress": "/SAPAssetManager/Actions/Page/ClosePage.action"
+            }
+        ]
+    },    
+    "Controls":[
+        {
+            "Sections": [
+                {
+                    "Controls": [
+                        {
+                            "Caption": "$(L, equipment)",
+                            "_Name": "Equipment",
+                            "_Type": "Control.Type.FormCell.ListPicker",
+                            "IsPickerDismissedOnSelection" : true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "AllowMultipleSelection": true,
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 3,
+                                "Placeholder": "$(L,search)",
+                                "BarcodeScanner": true
+                            },
+                            "IsVisible":"/SAPAssetManager/Rules/Measurements/Points/EDT/Filters/MeasuringPointsEDTFilterIsVisible.js",   
+                            "Value": "/SAPAssetManager/Rules/Measurements/Points/EDT/Filters/MeasuringPointsEDTFiltersDefaultValue.js",
+                            "FilterProperty": "Equipment",
+                            "PickerItems": {
+                                "DisplayValue": "{{#Property:EquipId}} - {{#Property:EquipDesc}}",
+                                "ReturnValue": "{EquipId}",
+                                "Target": {
+                                    "EntitySet": "MyEquipments",
+                                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions": "/SAPAssetManager/Rules/Measurements/Points/EDT/Filters/MeasuringPointsEDTFiltersQueryOptions.js"
+                                }
+                            }
+                        },
+                        {
+                            "Caption": "$(L, functional_location)",
+                            "_Name": "FuncLoc",
+                            "AllowMultipleSelection": true,
+                            "IsPickerDismissedOnSelection" : true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "Value": "/SAPAssetManager/Rules/Measurements/Points/EDT/Filters/MeasuringPointsEDTFiltersDefaultValue.js",
+                            "IsVisible":"/SAPAssetManager/Rules/Measurements/Points/EDT/Filters/MeasuringPointsEDTFilterIsVisible.js",
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 3,
+                                "Placeholder": "$(L,search)",
+                                "BarcodeScanner": true
+                            },
+                            "FilterProperty": "FuncLoc",
+                            "PickerItems": {
+                                "DisplayValue": "{{#Property:FuncLocId}} - {{#Property:FuncLocDesc}}",
+                                "ReturnValue": "{FuncLocIdIntern}",
+                                "Target": {
+                                    "EntitySet": "MyFunctionalLocations",
+                                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions": "/SAPAssetManager/Rules/Measurements/Points/EDT/Filters/MeasuringPointsEDTFiltersQueryOptions.js"
+                                }
+                            },
+                            "_Type": "Control.Type.FormCell.ListPicker"
+                        },
+                        {
+                            "Caption": "$(L, items)",
+                            "_Name": "S4Items",
+                            "IsPickerDismissedOnSelection" : true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "AllowMultipleSelection": true,
+                            "IsVisible":"/SAPAssetManager/Rules/Measurements/Points/EDT/Filters/MeasuringPointsEDTFilterIsVisible.js",   
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 3,
+                                "Placeholder": "$(L,search)",
+                                "BarcodeScanner": true
+                            },
+                            "Value": "/SAPAssetManager/Rules/Measurements/Points/EDT/Filters/MeasuringPointsEDTFiltersDefaultValue.js",
+                            "PickerItems": {
+                                "DisplayValue" : "{{#Property:ItemNo}} - {{#Property:ItemDesc}}",
+                                "ReturnValue" : "{ItemNo}",
+                                "Target": {
+                                    "EntitySet": "S4ServiceItems",
+                                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions": "/SAPAssetManager/Rules/Measurements/Points/EDT/Filters/MeasuringPointsEDTFiltersQueryOptions.js"
+                                }
+                            },
+                            "FilterProperty": "S4Item",
+                            "_Type": "Control.Type.FormCell.ListPicker"
+                        },
+                        {
+                            "Caption": "$(L, operations)",
+                            "_Name": "Operations",
+                            "Value": "/SAPAssetManager/Rules/Measurements/Points/EDT/Filters/MeasuringPointsEDTFiltersDefaultValue.js",
+                            "AllowMultipleSelection": true,
+                            "IsVisible":"/SAPAssetManager/Rules/Measurements/Points/EDT/Filters/MeasuringPointsEDTFilterIsVisible.js",
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 3,
+                                "Placeholder": "$(L,search)",
+                                "BarcodeScanner": true
+                            },
+                            "IsPickerDismissedOnSelection" : true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "FilterProperty": "Operations",
+                            "PickerItems": {
+                                "DisplayValue" : "{{#Property:OperationNo}} - {{#Property:OperationShortText}}",
+                                "ReturnValue" : "{OperationMobileStatus_Nav/ObjectKey}",              
+                                "Target": {
+                                    "EntitySet": "MyWorkOrderOperations",
+                                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions": "/SAPAssetManager/Rules/Measurements/Points/EDT/Filters/MeasuringPointsEDTFiltersQueryOptions.js"
+                                }
+                            },
+                            "_Type": "Control.Type.FormCell.ListPicker"
+                        },
+                        {
+                            "_Type": "Control.Type.FormCell.Switch",
+                            "_Name": "FilterPRT",
+                            "Caption": "$(L,show_only_PRT)",
+                            "Value": "/SAPAssetManager/Rules/Measurements/Points/EDT/Filters/MeasuringPointsEDTFiltersDefaultValue.js",
+                            "IsVisible":"/SAPAssetManager/Rules/Measurements/Points/EDT/Filters/MeasuringPointsEDTFilterIsVisible.js"
+                        },
+                        {
+                            "Caption": "$(L,status)",
+                            "_Name": "FilterSeg",
+                            "AllowMultipleSelection": true,
+                            "IsPickerDismissedOnSelection" : false,
+                            "Value": "/SAPAssetManager/Rules/Measurements/Points/EDT/Filters/MeasuringPointsEDTFiltersDefaultValue.js",
+                            "PickerItems": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointFDCFilterPickerItems.js",
+                            "FilterProperty": "__Status",
+                            "_Type": "Control.Type.FormCell.ListPicker"
+                        }
+                    ]
+                },
+                {
+                    "Controls": [
+                        {
+                            "_Type": "Fragment",
+                            "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/ResetFilterFormCellButton.fragment",
+                            "Properties": {
+                                "OnPress": "/SAPAssetManager/Rules/Measurements/Points/EDT/Filters/MeasuringPointsEDTFiltersReset.js"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "_Name":"FormCellContainer",
+            "_Type":"Control.Type.FormCellContainer"
+        }
+    ],
+    "_Type":"Page",
+    "_Name":"MeasuringPointsFiltersEDT"
+}

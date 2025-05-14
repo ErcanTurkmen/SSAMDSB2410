@@ -1,0 +1,5 @@
+{
+    "_Type": "Action.Type.Message",
+    "Message": "$(L,confirmation_validation_final_confirmation_already_exists_message)",
+    "OKCaption": "$(L,ok)"
+}

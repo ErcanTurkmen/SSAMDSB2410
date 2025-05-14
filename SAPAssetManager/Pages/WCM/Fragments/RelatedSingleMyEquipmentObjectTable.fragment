@@ -1,0 +1,25 @@
+{
+    "Header": {
+        "Caption": "$(L,wcm_equipment)"
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_equipment_available)"
+    },
+    "ObjectCell": {
+        "_Type": "Fragment",
+        "Fragment": "/SAPAssetManager/Pages/Fragments/Equipment/EquipmentObjectCell.fragment",
+        "Properties": {
+            "PreserveIconStackSpacing": true,
+            "Icons": "/SAPAssetManager/Rules/Common/TechnicalObjectListViewIconImages.js",
+            "Title": "{{#Property:EquipDesc}} - {{#Property:MaintPlant}}",
+            "Subhead": "/SAPAssetManager/Rules/Equipment/EquipmentListViewFormat.js",
+            "Footnote": "{EquipId}"
+        }
+    },
+    "MaxItemCount": 1,
+    "Target": {
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "_Type": "Section.Type.ObjectTable",
+    "_Name": "RelatedEquipmentSection"
+}

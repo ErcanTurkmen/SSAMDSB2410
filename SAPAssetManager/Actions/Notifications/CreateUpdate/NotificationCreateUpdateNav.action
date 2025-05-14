@@ -1,0 +1,6 @@
+{
+    "_Type" : "Action.Type.Navigation",
+	"ModalPage" : true,
+    "ModalPageFullscreen": true,
+    "PageToOpen" : "/SAPAssetManager/Pages/Notifications/NotificationCreateUpdate.page"
+}

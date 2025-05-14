@@ -1,0 +1,35 @@
+{
+    "Header": {
+        "Caption": "$(L,malfunction_details)"
+    },
+    "KeyAndValues": [
+        {
+            "_Name": "MalfunctionStartDate",
+            "KeyName": "$(L,malfunction_start_date)",
+            "Value": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsMalfunctionStartDate.js"
+        },
+        {
+            "_Name": "MalfunctionStartTime",
+            "KeyName": "$(L,malfunction_start_time)",
+            "Value": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsMalfunctionStartTime.js"
+        },
+        {
+            "_Name": "MalfunctionEndDate",
+            "KeyName": "$(L,malfunction_end_date)",
+            "Value": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsMalfunctionEndDate.js"
+        },
+        {
+            "_Name": "MalfunctionEndTime",
+            "KeyName": "$(L,malfunction_end_time)",
+            "Value": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsMalfunctionEndTime.js"
+        },
+        {
+            "_Name": "BreakdownIndicator",
+            "KeyName": "$(L,breakdown)",
+            "Value": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsBreakdown.js"
+        }
+    ],
+    "_Type": "Section.Type.KeyValue",
+    "Visible" : "/SAPAssetManager/Rules/Notifications/Service/IsNotServiceNotification.js",
+    "_Name": "NotificationMalfunctionSection"
+}

@@ -1,0 +1,37 @@
+{
+    "Type": "Route",
+    "DependsOn": "RouteStop",
+    "Title": "$(L, fow_dl_routes)",
+    "Legend": "MarkerRoute",
+    "Target": {
+        "EntitySet": "MyWorkOrderHeaders",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "/SAPAssetManager/Rules/WorkOrders/WorkOrderRouteQueryOptions.js",
+        "Properties": [],
+        "KeyProperties": []
+    },
+    "Enable": true,
+    "ObjectScheme": {
+        "Geometry": "",
+        "Layer": "Route",
+        "Properties": {
+            "ID": "/SAPAssetManager/Rules/WorkOrders/WorkOrderRouteID.js",
+            "Title": "/SAPAssetManager/Rules/WorkOrders/WorkOrderRouteTitle.js",
+            "Subhead": "/SAPAssetManager/Rules/FOW/Routes/ListView/RouteListStopCountCaption.js",
+            "StatusImage": "",
+            "SubstatusText": "",
+            "Footnote": "/SAPAssetManager/Rules/FOW/DateTime/RouteDueDate.js",
+            "FormatRule": "",
+            "DateProperties": {
+                "DueDate": "/SAPAssetManager/Rules/FOW/DateTime/RouteDueDateInDateFormat.js",
+                "DateFormat": "MM-dd-yyyy"
+            },
+            "Directions": {
+                "Enabled": "/SAPAssetManager/Rules/Maps/DirectionsButton/IsDirectionsButtonEnabled.js",
+                "ButtonText": "$(L, map_info_panel_directions)"
+            }
+        },
+        "DependsOn": "RouteStop",
+        "Symbol": "/SAPAssetManager/Pages/Fragments/Map/ServiceOrders/RouteSymbol.fragment"
+    }
+}

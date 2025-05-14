@@ -1,0 +1,130 @@
+{
+	"Caption": "$(L, map)",
+	"Controls": [
+		{
+			"_Type": "Control.Type.Extension",
+			"Module": "extension-MapFramework",
+			"Control": "MapExtension",
+			"Class": "MapExtension",
+			"_Name": "MapExtensionControl",
+			"DataSubscriptions": [ 
+				"S4ServiceOrders",
+				"Geometries",
+				"PMMobileStatuses" 
+			],
+			"ExtensionProperties": {
+				"ItemsPerPage": 100,
+				"Config": "/SAPAssetManager/Pages/Fragments/Map/MapConfig.fragment",
+				"EditMode": "/SAPAssetManager/Pages/Fragments/Map/MapEditMode.fragment",
+				"TokenAuthentication": {
+					"Action": "/SAPAssetManager/Rules/Extensions/TokenRequest.js"
+				},
+				"MapToolsetIcons": "/SAPAssetManager/Pages/Fragments/Map/MapToolsetIcons.fragment",
+				"SettingsControl": "/SAPAssetManager/Pages/Fragments/Map/MapSettingsControl.fragment",
+				"SearchControl": {
+					"SearchPlaceholder": "$(L, map_search_placeholder)",
+					"SearchFields": [
+						"Title",
+						"Footnote",
+						"Subhead",
+						"Description"
+					],
+					"IsResultTextDisplayed": true,
+					"ResultsPrefix": "$(L, map_search_results_pref)",
+					"ResultsSuffix": "$(L, map_search_results_sufx)",
+					"NearMeFilterName": "$(L, map_search_nearme)",
+					"QuickFilters": [
+						 {
+							 "FilterType": "TimeFilter",
+							 "Type": [
+								 "Job"
+							 ],
+							 "Name": "$(L, map_search_wo_due_today)",
+							 "PeriodInDays": 1,
+							 "PropertyName": "DueDate"
+						 },
+						 {
+							 "FilterType": "TextFilter",
+							 "Name": "$(L, map_search_high_priority)",
+							 "Properties": [
+								 "SubstatusText"
+							 ],
+							 "Text": "High"
+						 }
+					 ]
+				},
+				"BusinessObjects": [
+					{
+						"_Type": "Fragment",
+						"Fragment": "/SAPAssetManager/Pages/Fragments/Map/ServiceOrders/ServiceOrderRoute.fragment",
+						"Properties": {
+							"Target": {
+								"EntitySet": "S4ServiceOrders",
+								"Service": "/SAPAssetManager/Services/AssetManager.service",
+								"QueryOptions": "/SAPAssetManager/Rules/ServiceOrders/Map/S4OrderRouteQueryOptions.js"
+							}
+						}
+					},
+					{
+						"_Type": "Fragment",
+						"Fragment": "/SAPAssetManager/Pages/Fragments/Map/ServiceOrders/S4ServiceOrderRouteStop.fragment",
+						"Properties": {
+							"ObjectScheme": {
+								"Actions": [
+									{
+										"Title": "$(L, action_view_order)",
+										"Icon": "ActionView",
+										"Type": "View",
+										"CallbackInfo": {
+											"Action": "/SAPAssetManager/Rules/ServiceOrders/ListView/ServiceOrderDetailsNav.js",
+											"Target": {
+												"EntitySet": "S4ServiceOrders",
+												"Service": "/SAPAssetManager/Services/AssetManager.service",
+												"QueryOptions": "$filter=ObjectID eq '{ObjectID}'",
+												"Properties": [],
+												"KeyProperties": []
+											}
+										}
+									},
+									{
+										"Title": "$(L, add_service_order)",
+										"Icon": "ActionAdd",
+										"Type": "Create",
+										"CallbackInfo": {
+											"Action": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderCreateNav.js",
+											"Target": {
+												"EntitySet": "S4ServiceOrders",
+												"Service": "/SAPAssetManager/Services/AssetManager.service",
+												"QueryOptions": "",
+												"Properties": [],
+												"KeyProperties": []
+											}
+										}
+									},
+									{
+										"Title": "$(L, edit_service_order)",
+										"Icon": "ActionEdit",
+										"Type": "Update",
+										"IsVisible": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/SericeOrderEditEnabled.js",
+										"CallbackInfo": {
+											"Action": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/SericeOrderUpdateNav.js",
+											"Target": {
+												"EntitySet": "S4ServiceOrders",
+												"Service": "/SAPAssetManager/Services/AssetManager.service",
+												"QueryOptions": "$filter=ObjectID eq '{ObjectID}'",
+												"Properties": [],
+												"KeyProperties": []
+											}
+										}
+									}
+								]
+							}
+						}
+					}
+				]
+			}
+		}
+	],
+	"_Type": "Page",
+	"_Name": "FSMS4MapExtensionControlPage"
+}

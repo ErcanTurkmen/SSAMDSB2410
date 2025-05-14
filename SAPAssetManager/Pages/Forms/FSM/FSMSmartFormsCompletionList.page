@@ -1,0 +1,45 @@
+{
+    "Caption": "$(L, smartforms)",
+	"ActionBar": {
+		"Items":[]
+	},
+	"Controls": [
+        {
+            "_Type" : "Control.Type.SectionedTable",
+		    "_Name" : "SectionedTable",
+		    "Sections": [
+                {
+                    "Header": {
+                        "UseTopPadding": false
+                    },
+                    "EmptySection": {
+                        "Caption": "$(L,no_smartforms)"
+                    },
+                    "ObjectCell": {
+                        "PreserveIconStackSpacing": false,
+                        "AccessoryType": "DisclosureIndicator",
+                        "Title": "{{#Property:FSMFormTemplate_Nav/#Property:Name}}",
+                        "Subhead": "/SAPAssetManager/Rules/Forms/FSM/FSMFormInstanceSubheadText.js",
+                        "Footnote": "/SAPAssetManager/Rules/Forms/FSM/FSMFormInstanceFootnoteText.js",
+                        "StatusText": "/SAPAssetManager/Rules/Forms/FSM/FSMFormInstanceMandatoryText.js",
+                        "SubstatusText": "/SAPAssetManager/Rules/Forms/FSM/FSMFormInstanceStatusText.js",
+                        "OnPress": "/SAPAssetManager/Rules/Forms/FSM/FSMFormPageNavWrapper.js",
+                        "Styles": {
+                            "StatusText": "/SAPAssetManager/Rules/Forms/FSM/MandatoryStatusStyle.js"
+                        }
+                    },
+                    "Target": {
+                        "EntitySet": "FSMFormInstances",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "/SAPAssetManager/Rules/Forms/FSM/FSMSmartFormsInstancesCompletionQueryOptions.js"
+                    },
+                    "_Name": "SmartformsObjectTable",
+                    "_Type": "Section.Type.ObjectTable"
+                }
+            ]
+	    }
+    ],
+	"_Type": "Page",
+	"_Name": "FSMSmartFormsInstancesCompletionPage",
+	"DataSubscriptions": ["FSMFormInstances","FSMFormTemplates"]
+}

@@ -1,0 +1,39 @@
+{
+    "_Type": "Page",
+    "_Name": "TimelineSectionPage",
+    "Caption": "$(L, legs_for_flight)",
+    "ActionBar":
+    {
+        "Items":
+        [{
+            "Position": "Left",
+            "Caption": "$(L,close)",
+            "OnPress": "/SAPAssetManager/Actions/Page/ClosePage.action"
+        }]
+    },
+    "Controls": [
+        {
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable",
+            "Sections": [
+                {
+                    "_Type": "Section.Type.Timeline",
+                    "_Name": "StaticTimelineSection",
+                    "Visible": true,
+                    "Target": "/SAPAssetManager/Rules/Defense/FlightLegsCellData.js",
+                    "Cell": {
+                        "Headline": "{Headline}",
+                        "Subhead": "{Subhead}",
+                        "Attribute": "{Attribute}",
+                        "Timestamp": "{Timestamp}",
+                        "State": "{State}"
+                    },
+                    "TimestampType": "MonthDayTime",
+                    "EmptySection": {
+						"Caption": "$(L,no_flight_legs)"
+					}
+                }
+            ]
+        }
+    ]
+}

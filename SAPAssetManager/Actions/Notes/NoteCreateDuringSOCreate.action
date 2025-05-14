@@ -1,0 +1,29 @@
+{
+    "_Type": "Action.Type.ODataService.CreateEntity",
+    "Target": {
+        "EntitySet": "S4ServiceOrderLongTexts",
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "Properties": {
+        "ObjectID": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderLocalID.js",
+        "NewTextString": "#Page:ServiceOrderCreateUpdatePage/#Control:LongTextNote/#Value",
+        "TextString": "#Page:ServiceOrderCreateUpdatePage/#Control:LongTextNote/#Value",
+        "TextID": "#Page:ServiceOrderCreateUpdatePage/#Control:ServiceNoteTypesListPicker/#SelectedValue",
+        "LastChangeDate": "/SAPAssetManager/Rules/DateTime/CurrentDateTime.js",
+		"LastChangeTime": "/SAPAssetManager/Rules/DateTime/CurrentTime.js"
+    },
+    "Headers": {
+        "OfflineOData.RemoveAfterUpload": "true",
+        "OfflineOData.TransactionID": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderLocalID.js"
+    },
+    "OnFailure": "/SAPAssetManager/Actions/Notes/NoteCreateFailureMessage.action",
+    "CreateLinks": [
+        {
+			"Property": "S4ServiceOrder_Nav",
+			"Target": {
+				"EntitySet": "S4ServiceOrders",
+				"ReadLink": "pending_1"
+			}
+		}
+    ]
+}

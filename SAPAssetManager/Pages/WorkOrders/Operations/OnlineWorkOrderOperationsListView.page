@@ -1,0 +1,64 @@
+{
+	"Caption": "/SAPAssetManager/Rules/WorkOrders/Operations/OnlineWorkOrderOperationListViewCaption.js",
+    "OnLoaded": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationListViewOnLoad.js",
+    "OnReturning": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationListViewOnReturning.js",
+	"OnUnloaded": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsListOnUnloaded.js",
+	"OnCustomEventDataReceived": "/SAPAssetManager/Rules/Common/OnCustomEventDataReceived.js",
+	"Controls":
+	[{
+		"Sections":
+		[{
+			"Search":
+			{
+				"Enabled" : true,
+				"Delay": 500,
+				"MinimumCharacterThreshold": 3,
+				"Placeholder": "$(L,search)",
+				"BarcodeScanner": true
+			},
+			"Header": {
+		 		"UseTopPadding": false,
+				"Caption": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationListViewSectionCaption.js"
+			},
+			"EmptySection": {
+				"Caption": "$(L,no_operations_available)"
+			},
+			"ObjectCell":
+			{
+				"PreserveIconStackSpacing": true,
+				"Icons": "/SAPAssetManager/Rules/Operations/OperationsListViewIconImages.js",
+				"AccessoryType": "DisclosureIndicator",
+				"Title": "{{#Property:OperationShortText}} ({{#Property:OperationNo}})",
+				"Footnote": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderDueDate.js",
+				"OnPress": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/WorkOrderOperationDetailsNav.js",
+				"Subhead": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationOrderAndPhase.js",
+                "Styles": {
+                    "StatusText": "/SAPAssetManager/Rules/Supervisor/Reject/RejectedStatusStyle.js"
+                },
+                "Description": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsListViewDescription.js"
+			},
+			"Target": {
+				"EntitySet": "/SAPAssetManager/Rules/WorkOrders/Operations/OperationsEntitySet.js",
+				"Service": "/SAPAssetManager/Services/OnlineAssetManager.service"
+			},
+			"_Type" : "Section.Type.ObjectTable",
+			"_Name" : "WorkOrderOperationListSection"
+
+		}],
+		"FilterFeedbackBar": {
+			"_Type": "Control.Type.FilterFeedbackBar",
+			"_Name": "FilterFeedback",
+			"ShowAllFilters": true,
+			"FastFilters": "/SAPAssetManager/Rules/WorkOrders/Operations/Filter/OperationFastFiltersItems.js"
+		},
+		"Filters": "/SAPAssetManager/Rules/WorkOrders/ListView/WorkOrderOperationsListViewDefaultFilters.js",
+		"_Type" : "Control.Type.SectionedTable",
+		"_Name" : "SectionedTable",
+		"LoadingIndicator": {
+			"Enabled": true
+		}
+	}],
+	"_Type": "Page",
+	"_Name": "OnlineWorkOrderOperationsListViewPage",
+	"DataSubscriptions": ["MyWorkOrderOperations", "Confirmations", "Documents", "PMMobileStatuses", "MyWorkOrderOperationLongTexts","UserTimeEntries", "WOOprDocuments_Nav", "WorkOrderTransfers", "/SAPAssetManager/Services/AssetManager.service"]
+}

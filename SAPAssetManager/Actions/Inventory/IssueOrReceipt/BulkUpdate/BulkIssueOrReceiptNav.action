@@ -1,0 +1,6 @@
+{
+	"PageToOpen": "/SAPAssetManager/Pages/Inventory/IssueOrReceipt/BulkUpdate/BulkIssueOrReceiptCreate.page",
+	"_Type": "Action.Type.Navigation",
+	"PageMetadata": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/BulkIssueOrReceiptCreatePageMetadataGenerator.js",
+	"ClearHistory": true
+}

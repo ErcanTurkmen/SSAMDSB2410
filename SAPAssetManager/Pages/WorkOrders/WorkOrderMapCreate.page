@@ -1,0 +1,77 @@
+{
+    "Caption":"$(L, map)",
+   "Controls":[
+      {
+         "_Type":"Control.Type.Extension",
+         "Module": "extension-MapFramework",
+         "Control":"MapExtensionWithContext",
+         "Class":"MapExtensionWithContext",
+         "_Name":"MapExtensionControl",
+         "DataSubscriptions": ["MarkedJob"],
+         "ExtensionProperties": {
+            "Config": "/SAPAssetManager/Pages/Fragments/Map/MapConfigNoZoomOnLocationEnabled.fragment",
+            "EditMode": {
+                "IsInitialOn": true,
+				"InitialParams": {
+					"GeometryValue": "/SAPAssetManager/Rules/Geometries/GeometryValue.js",
+					"EntitySet": "MyWorkOrderHeaders"
+				},
+                "EditModeConfig": {
+                    "EditModePanel": {
+                        "GeometryTypes": ["Point", "Polyline", "Polygon"],
+                        "TitleText": "$(L,action_create_workorder)",
+                        "SaveButtonText": "add",
+                        "Symbol": {
+                            "marker" : "MarkerJob",
+                            "lineColor" : "0070F2",
+                            "fillColor" : "0070F233",
+                            "lineWidth" : 2
+                        }
+                    },
+					"CallbackInfo": {
+						"Action": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/WorkOrderCreateUpdateGeometryPre.js"
+					}
+                }
+            },
+			"TokenAuthentication": {
+				"Action": "/SAPAssetManager/Rules/Extensions/TokenRequest.js"
+			},
+			"MapToolsetIcons": "/SAPAssetManager/Pages/Fragments/Map/MapToolsetIcons.fragment",
+            "SettingsControl": "/SAPAssetManager/Pages/Fragments/Map/WOMapSettingsControl.fragment",
+			"SearchControl": {
+				"SearchPlaceholder": "$(L, map_search_placeholder)",
+				"SearchFields": [
+					"Title", "Footnote", "Subhead", "Description"
+				],
+				"IsResultTextDisplayed": true,
+				"ResultsPrefix": "$(L, map_search_results_pref)",
+				"ResultsSuffix": "$(L, map_search_results_sufx)",
+				"NearMeFilterName": "$(L, map_search_nearme)",
+				"QuickFilters": [{
+						"FilterType": "TimeFilter",
+						"Type": [
+							"Job"
+						],
+						"Name": "$(L, map_search_wo_due_today)",
+						"PeriodInDays": 1,
+						"PropertyName": "DueDate"
+					},
+					{
+						"FilterType": "TextFilter",
+						"Name": "$(L, map_search_high_priority)",
+						"Properties": [
+							"StatusText"
+						],
+						"Text": "High"
+					}
+				]
+            },
+            "BusinessObjects": [
+				"/SAPAssetManager/Pages/Fragments/Map/WorkOrders/WorkOrderMapWorkOrderBusinessObject.fragment"
+            ]
+         }
+      }
+   ],
+   "_Type":"Page",
+   "_Name":"WorkOrderCreateMapDetailsPage"
+}

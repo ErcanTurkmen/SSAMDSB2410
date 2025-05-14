@@ -1,0 +1,113 @@
+{
+	"ActionBar": {
+		"Items": [
+			{
+				"Position": "Right",
+				"SystemItem": "Add",
+				"Caption": "$(L,add)",
+                "OnPress": "/SAPAssetManager/Rules/TimeSheets/Entry/CreateUpdate/TimeSheetEntryCreateNav.js",
+                "Visible": "/SAPAssetManager/Rules/TimeSheets/Entry/CreateUpdate/TimeSheetEntryCreateVisible.js"
+			}
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"_Name": "DataTableSection",
+					"StickyColumn": false,
+                    "_Type": "Section.Type.DataTable",
+                    "Header": {
+						"DataTable": {
+							"Items": [
+								{
+									"Text": "$(L,name)",
+									"TextAlignment": "Center",
+                                    "Style": "GridTableHeaderText"
+								},
+								{
+									"Text": "$(L,abs_att)",
+									"TextAlignment": "Center",
+                                    "Style": "GridTableHeaderText"
+								},
+								{
+									"Text": "$(L,activity_type)",
+									"TextAlignment": "Center",
+                                    "Style": "GridTableHeaderText"
+								},
+								{
+									"Text": "$(L,workorder)",
+									"TextAlignment": "Center",
+                                    "Style": "GridTableHeaderText"
+								},
+								{
+									"Text": "$(L,operation)",
+									"TextAlignment": "Center",
+                                    "Style": "GridTableHeaderText"
+								},
+								{
+									"Text": "$(L,hours)",
+									"TextAlignment": "Center",
+                                    "Style": "GridTableHeaderText"
+								}
+							]
+						}
+					},
+					"Row": {
+						"Layout": {
+                           "ColumnWidth": [200,200,200,200,200,-1]
+                        },
+						"Items": [
+							{
+								"Text" : "#Property:Employee/#Property:EmployeeName",
+								"TextAlignment": "Center"
+							},
+							{
+								"Text": "/SAPAssetManager/Rules/TimeSheets/Entry/View/TimeEntryViewAbsAttCode.js",
+								"TextAlignment": "Center",
+								"Style": "GridTableRowText"
+							},
+							{
+								"Text": "/SAPAssetManager/Rules/TimeSheets/Entry/View/TimeEntryViewActivityType.js",
+								"TextAlignment": "Center",
+								"Style": "GridTableRowText"
+							},
+							{
+								"Text": "/SAPAssetManager/Rules/TimeSheets/Entry/Details/TimeSheetEntryDetailsOrderDescription.js",
+								"TextAlignment": "Center",
+								"Style": "GridTableRowText"
+							},
+							{
+								"Text": "/SAPAssetManager/Rules/TimeSheets/Entry/Details/TimeSheetEntryDetailsOperationShortText.js",
+								"TextAlignment": "Center",
+								"Style": "GridTableRowText"
+							},
+							{
+								"Text": "/SAPAssetManager/Rules/TimeSheets/Entry/View/TimeEntryViewHours.js",
+								"TextAlignment": "Center",
+								"Style": "GridTableRowText"
+							}
+						],
+						"OnPress": "/SAPAssetManager/Actions/TimeSheets/TimeEntryViewNav.action",
+						"AccessoryType": "DisclosureIndicator"
+					},
+					"Footer": {
+						"AttributeLabel": "/SAPAssetManager/Rules/TimeSheets/TimeSheetDetailsTotalHours.js",
+						"AccessoryType": "none",
+                        "FooterStyle": "Attribute"
+                    },
+					"Target": {
+						"EntitySet": "CatsTimesheets",
+						"Service": "/SAPAssetManager/Services/AssetManager.service",
+						"QueryOptions": "/SAPAssetManager/Rules/TimeSheets/TimeSheetEntryDetailsQueryOptions.js"
+					}
+				}
+			],
+			"_Type": "Control.Type.SectionedTable",
+			"_Name": "TimeEntriesSection"
+		}
+	],
+	"_Type": "Page",
+	"_Name": "TimeEntryDetailsPage",
+	"OnLoaded": "/SAPAssetManager/Rules/TimeSheets/Entry/Details/TimeSheetEntryDetailsOnPageLoad.js"
+}

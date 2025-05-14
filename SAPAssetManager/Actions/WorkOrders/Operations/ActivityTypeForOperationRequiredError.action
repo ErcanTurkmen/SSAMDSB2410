@@ -1,0 +1,6 @@
+{
+    "_Type": "Action.Type.Message",
+    "Title": "$(L,validation_error)",
+    "Message" : "/SAPAssetManager/Rules/WorkOrders/Operations/GetFailedOperationsActivityType.js",
+    "OKCaption": "$(L,ok)"
+}

@@ -1,0 +1,8 @@
+{
+	"_Type" : "Action.Type.Filter",
+	"PageToOpen": "/SAPAssetManager/Pages/ServiceOrders/ServiceRequests/ServiceRequestFilter.page",
+	"Filterable": "#Page:ServiceRequestsListViewPage/#Control:SectionedTable",
+	"ActionResult": {
+		"_Name": "filterResult"
+	}
+}

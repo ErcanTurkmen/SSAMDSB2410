@@ -1,0 +1,9 @@
+
+{
+    "_Type": "Action.Type.OpenBarcodeScanner",
+    "OnSuccess": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/Count/BarcodeScanSuccess.js",
+    "OnFailure": "/SAPAssetManager/Rules/Inventory/SerialNumbers/BarcodeScanFailure.js",
+    "ActionResult": {
+        "_Name": "BarcodeScanner"
+    }
+}

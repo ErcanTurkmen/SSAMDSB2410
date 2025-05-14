@@ -1,0 +1,218 @@
+{
+    "Caption": "/SAPAssetManager/Rules/WCM/SafetyCertificates/Details/SafetyCertificateDetailsCaption.js",
+    "OnCustomEventDataReceived": "/SAPAssetManager/Rules/WCM/SafetyCertificates/Details/SafetyCertificatesOnCustomEventDataReceived.js",
+    "OnReturning": "/SAPAssetManager/Rules/WCM/SafetyCertificates/Details/SafetyCertificatesOnReturning.js",
+    "ActionBar": {
+        "Items": [
+            {
+                "_Name": "CertificatePopoverMenuButton",
+                "Position": "Right",
+                "SystemItem": "Add",
+                "Caption": "$(L,add)",
+                "Visible": "/SAPAssetManager/Rules/WCM/SafetyCertificates/Details/IsCertificateAddActionButtonVisible.js",
+                "OnPress": "/SAPAssetManager/Actions/WCM/LotoCertificates/LotoCertificateAddPopover.action"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "ObjectHeader": {
+                        "HeadlineText": "{ShortText}",
+                        "Tags": "/SAPAssetManager/Rules/WCM/SafetyCertificates/Details/SafetyCertificateTags.js",
+                        "Description": "$(DV,'/SAPAssetManager/Rules/WCM/Common/EquipmentOrFunclocDescriptionOrEmpty.js','-')",
+                        "Labels": "/SAPAssetManager/Rules/WCM/Common/ApprovalStatusTextIconLabel.js",
+                        "StatusText": "/SAPAssetManager/Rules/WCM/Common/PriorityStatusText.js",
+                        "DetailImage": "/SAPAssetManager/Rules/WCM/SafetyCertificates/CertificateDetailImage.js",
+                        "Styles": {
+                            "StatusText": "/SAPAssetManager/Rules/Priority/WCMPriorityStatusStyle.js"
+                        }
+                    },
+                    "DataSubscriptions": ["PMMobileStatuses", "WCMDocumentHeaders"],
+                    "_Type": "Section.Type.ObjectHeader",
+                    "_Name": "SafetyCertificatelObjectHeaderSection"
+                },
+                {
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/QAB/QuickActionBarExtensionSection.fragment",
+					"Properties": {
+						"ExtensionProperties": {
+							"Chips": "/SAPAssetManager/Rules/WCM/SafetyCertificates/Details/SafetyCertificateQABChips.js"
+						}
+					}
+				},
+                "/SAPAssetManager/Pages/WCM/Fragments/ProgressTrackerSection.fragment",
+                "/SAPAssetManager/Pages/WCM/Fragments/Approvals/ApprovalsSection.fragment",
+                {
+                    "Header": {
+                        "Caption": "$(L,wcm_operational_items)",
+                        "UseTopPadding": true
+                    },
+                    "EmptySection": {
+                        "Caption": "$(L,no_operational_items_available)"
+                    },
+                    "ObjectCell": {
+                        "_Type": "Fragment",
+                        "Fragment": "/SAPAssetManager/Pages/WCM/Fragments/OperationalItems/OperationalItemObjectCell.fragment",
+                        "Properties": {
+                            "DetailImage": "/SAPAssetManager/Rules/WCM/OperationalItems/OperationalItemDetailImage.js"
+                        }
+                    },
+                    "Target": {
+                        "EntitySet" : "/SAPAssetManager/Rules/WCM/OperationalItems/ListView/OperationalItemsListViewEntitySet.js",
+                        "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "/SAPAssetManager/Rules/WCM/OperationalItems/ListView/OperationalItemsListViewQueryOptions.js"
+                    },
+                    "Footer": {
+                        "Caption": "$(L,see_all)",
+                        "AccessoryType": "DisclosureIndicator",
+                        "AttributeLabel": "/SAPAssetManager/Rules/WCM/OperationalItems/OperationalItemsCount.js",
+                        "FooterStyle": "Attribute",
+                        "OnPress": "/SAPAssetManager/Rules/WCM/OperationalItems/ListView/CertificateRelatedOperationalItemsListViewNav.js",
+                        "Visible": "/SAPAssetManager/Rules/WCM/SafetyCertificates/Details/IsOperationalItemsFooterVisible.js"
+                    },
+                    "_Type" : "Section.Type.ObjectTable",
+                    "Visible": "/SAPAssetManager/Rules/WCM/SafetyCertificates/Details/IsLotoCertificate.js",
+                    "_Name" : "OperationalItemsListSection",
+                    "DataSubscriptions": ["PMMobileStatuses", "WCMDocumentItems"]
+                },
+                {
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "CertificateDetailsSection",
+                    "Header": {
+                        "Caption": "$(L,certificate_details)"
+                    },
+                    "KeyAndValues": [
+                        {
+                            "_Name": "PersonNum",
+                            "KeyName": "$(L,assignedto)",
+                            "Value": "/SAPAssetManager/Rules/WCM/SafetyCertificates/Details/CertificateAssignedToInfoValue.js"
+                        },
+                        {
+                            "_Name": "MainWorkCenter",
+                            "KeyName": "$(L,main_work_center)",
+                            "Value": "/SAPAssetManager/Rules/WorkOrders/Details/WorkOrderDetailsMainWorkCenter.js"
+                        },
+                        {
+                            "_Name": "ValidFromDate",
+                            "KeyName": "$(L,valid_from_to)",
+                            "Value": "/SAPAssetManager/Rules/WCM/SafetyCertificates/Details/SafetyCertificatesValidToFrom.js"
+                        },
+                        {
+                            "_Name": "PlannerGroup",
+                            "KeyName": "$(L,planner_group)",
+                            "Value": "/SAPAssetManager/Rules/WorkOrders/Details/WorkOrderDetailsPlannerGroup.js"
+                        }
+                    ],
+                    "Target": {
+                        "EntitySet": "{@odata.readLink}",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "$select=WorkCenterID,PlanningPlant,PlannerGroup,ValidFromDate,ValidToDate,WCMDocumentPartners/PartnerFunction,WCMDocumentPartners/PersonnelNum,WCMDocumentPartners/Employee_Nav&$expand=WCMDocumentPartners/Employee_Nav"
+                    }
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/WCM/Fragments/RelatedSingleFunctionalLocationObjectTable.fragment",
+                    "Properties": {
+                        "Target": {
+                            "EntitySet": "{{#Property:@odata.readLink}}/MyFunctionalLocations"
+                        },
+                        "Visible": "/SAPAssetManager/Rules/Common/IsClassicLayoutEnabled.js"
+                    }
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/WCM/Fragments/RelatedSingleMyEquipmentObjectTable.fragment",
+                    "Properties": {
+                        "Target": {
+                            "EntitySet": "{{#Property:@odata.readLink}}/MyEquipments"
+                        },
+                        "Visible": "/SAPAssetManager/Rules/Common/IsClassicLayoutEnabled.js"
+                    }
+                },
+                "/SAPAssetManager/Pages/WCM/Fragments/WCMNotesSection.fragment",
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/Assets.fragment",
+                    "Properties": {
+                        "Target": "/SAPAssetManager/Rules/WCM/Common/WCMObjectsAssets.js",
+                        "Header": {
+                            "UseTopPadding": true
+                        },
+                        "Visible": "/SAPAssetManager/Rules/Common/IsClassicLayoutDisabled.js"
+                    }
+                },
+                {
+                    "SimplePropertyCells": [
+                        {
+                            "SimplePropertyCell": {
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName": "$(L,wcm_catalogs)",
+                                "Value": "/SAPAssetManager/Rules/WCM/WCMCatalogs/RelatedCatalogsCount.js",
+                                "OnPress": "/SAPAssetManager/Actions/WCM/WCMCatalogs/WCMCatalogsNav.action"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName": "$(L,workorders)",
+                                "Value": "/SAPAssetManager/Rules/WCM/RelatedWorkOrders/GetRelatedWorkOrdersCount.js",
+                                "OnPress": "/SAPAssetManager/Rules/WCM/RelatedWorkOrders/RelatedWorkOrdersListViewNav.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName": "$(L,work_permits)",
+                                "Value": "/SAPAssetManager/Rules/WCM/SafetyCertificates/Details/WorkPermitsSimplePropertyCellCount.js",
+                                "OnPress": "/SAPAssetManager/Rules/WCM/WorkPermits/CertificateRelatedWorkPermitNav.js",
+                                "Visible": "/SAPAssetManager/Rules/UserFeatures/IsWCMWorkPermitEnabled.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": "/SAPAssetManager/Pages/Fragments/Documents/DocumentsSimplePropertyCell.fragment"
+                        },
+                        {
+                            "_Type": "Fragment",
+                            "Fragment": "/SAPAssetManager/Pages/Fragments/Notes/NotesFacet.fragment",
+                            "Properties": {
+                                "SimplePropertyCell": {
+                                    "Value": "/SAPAssetManager/Rules/WCM/WCMNotes/WCMNotesCount.js",
+                                    "OnPress": "/SAPAssetManager/Rules/WCM/WCMNotes/WCMNotesListNav.js",
+                                    "Visible": "/SAPAssetManager/Rules/Common/IsClassicLayoutEnabled.js"
+                                }
+                            }
+                        }
+                    ],
+                    "Layout": {
+                        "NumberOfColumns": 2,
+                        "MinimumInteritemSpacing": "$(PLT,66,0)"
+                    },
+                    "DataSubscriptions": "/SAPAssetManager/Rules/WCM/SafetyCertificates/Details/CertificateFacetsDataSubscriptions.js",
+                    "_Type": "Section.Type.SimplePropertyCollection",
+                    "_Name": "SimplePropertyCellsSection"
+                }
+            ],
+            "_Name": "SectionedTable",
+            "_Type": "Control.Type.SectionedTable"
+        }
+    ],
+    "FioriToolbar": {
+		"_Name": "SafetyCertificateFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Visible": "/SAPAssetManager/Rules/WCM/SafetyCertificates/SetRevokePrepared/SetRevokePreparedIsVisible.js",
+        "Items": [
+            {
+                "_Name": "SetRevokePrepared",
+                "_Type": "FioriToolbarItem.Type.Button",
+                "Visible": "/SAPAssetManager/Rules/WCM/SafetyCertificates/SetRevokePrepared/SetRevokePreparedIsVisible.js",
+                "Title": "/SAPAssetManager/Rules/WCM/SafetyCertificates/SetRevokePrepared/SetRevokePreparedCaption.js",
+                "OnPress": "/SAPAssetManager/Rules/WCM/SafetyCertificates/SetRevokePrepared/SetRevokePreparedAction.js",
+                "ButtonType": "Primary"
+            }
+        ]
+    },
+    "_Name": "SafetyCertificateDetailsPage",
+    "_Type": "Page"
+}

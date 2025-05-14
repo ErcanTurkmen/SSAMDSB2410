@@ -1,0 +1,20 @@
+{
+	"_Type": "Section.Type.FormCell",
+	"_Name": "ServiceItemQuantitySection",
+	"Controls": [
+		{
+			"_Type": "Control.Type.FormCell.SimpleProperty",
+			"_Name": "UomSimple",
+			"Caption": "$(L,uom)",
+			"Value": "{QuantityUOM}",
+			"IsEditable": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/IsUomEditable.js"
+		},
+		{
+			"_Type": "Control.Type.FormCell.SimpleProperty",
+			"_Name": "QuantitySimple",
+			"Caption": "$(L, quantity)*",
+			"KeyboardType": "Number",
+			"Value": "{Quantity}"
+		}
+	]
+}

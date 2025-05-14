@@ -1,0 +1,866 @@
+{
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "_Name": "NotificationCreateUpdate",
+        "Items": [
+            {
+                "Position": "Left",
+                "_Name": "Cancel",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)",
+                "OnPress": "/SAPAssetManager/Rules/Notifications/CheckForChangesBeforeCancel.js"
+            },
+            {
+                "Position": "Right",
+                "_Name": "Done",
+                "SystemItem": "$(PLT,'Done','', '','Done')",
+                "Text": "/SAPAssetManager/Rules/Common/Platform/DoneText.js",
+                "OnPress": "/SAPAssetManager/Actions/Notifications/CreateUpdate/NotificationCreateUpdateRequired.action"
+            }
+        ]
+    },
+    "OnLoaded": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateOnPageLoad.js",
+    "Controls": [
+        {
+            "Sections":
+            [{
+                "_Type": "Section.Type.FormCell",
+                "_Name": "FormCellSection1",
+                "Header": {
+                    "Caption": "/SAPAssetManager/Rules/Notifications/CreateUpdate/RequiredFieldsMessage.js",
+                    "UseTopPadding": false
+                },
+                "Separators": {
+                    "HeaderSeparator": false
+                },
+                "Controls":
+                [{
+                    "Caption": "/SAPAssetManager/Rules/Notifications/CreateUpdate/DescriptionFieldCaption.js",
+                    "PlaceHolder": "/SAPAssetManager/Rules/Notifications/CreateUpdate/DescriptionFieldCaption.js",
+                    "Value": "{NotificationDescription}",
+                    "IsAutoResizing": true,
+                    "OnValueChange": "/SAPAssetManager/Rules/Notifications/Utils/NotificationDescriptionLengthValidation.js",
+                    "_Name": "NotificationDescription",
+                    "_Type": "Control.Type.FormCell.Note"
+                },
+                {
+                    "Caption": "$(L,follow_on_notification)",
+                    "_Name": "FollowOnSwitch",
+                    "_Type": "Control.Type.FormCell.Switch",
+                    "Value": true,
+                    "IsEditable": true,
+                    "IsVisible": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateFollowOnNotificationIsVisible.js",
+                    "OnValueChange": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateFollowOnNotification.js"
+                },
+                {
+                    "Caption": "$(L,processing_context)",
+                    "Segments": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NPCValues.js",
+                    "Value": "/SAPAssetManager/Rules/Notifications/NotificationNPCDefault.js",
+                    "OnValueChange": "/SAPAssetManager/Rules/Notifications/NotificationNPCValueChanged.js",
+                    "IsEditable": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateIsNPCEditable.js",
+                    "IsVisible": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateIsNPCVisible.js",
+                    "_Name": "NPCSeg",
+                    "_Type": "Control.Type.FormCell.SegmentedControl"
+                },
+                {
+                    "AllowMultipleSelection": false,
+                    "IsPickerDismissedOnSelection": true,
+                    "IsSearchCancelledAfterSelection": true,
+                    "AllowDefaultValueIfOneItem": true,
+                    "Search": {
+                        "Enabled": true,
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 2,
+                        "Placeholder": "$(L,search)",
+                        "BarcodeScanner": true
+                    },
+                    "Caption": "/SAPAssetManager/Rules/Notifications/CreateUpdate/TypeFieldCaption.js",
+                    "Value": "/SAPAssetManager/Rules/Notifications/NotificationTypePkrDefault.js",
+                    "PickerItems": {
+                        "DisplayValue": "{{#Property:NotifType}} - {{#Property:Description}}",
+                        "ReturnValue": "{NotifType}",
+                        "Target": {
+                            "EntitySet": "NotificationTypes",
+                            "Service": "/SAPAssetManager/Services/AssetManager.service",
+                            "QueryOptions": "/SAPAssetManager/Rules/Notifications/ListView/NotificationTypesListPickerItems.js"
+                        }
+                    },
+                    "OnValueChange": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateTypeOnValueChange.js",
+                    "_Name": "TypeLstPkr",
+                    "_Type": "Control.Type.FormCell.ListPicker"
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/OnlineSearch/OnlineEquipmentFormCellField.fragment",
+                    "Properties": {
+                        "IsVisible": "/SAPAssetManager/Rules/Common/IsFromOnlineEquipCreate.js"
+                    }
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/OnlineSearch/OnlineFunctionalLocationFormCellField.fragment"
+                },
+                {
+                    "_Type": "Control.Type.FormCell.Extension",
+                    "Module": "extension-HierarchyFramework",
+                    "Control": "HierarchyExtension",
+                    "Class": "HierarchyExtension",
+                    "_Name": "FuncLocHierarchyExtensionControl",
+                    "Caption": "$(L,functional_location)",
+                    "DataSubscriptions": ["MyFunctionalLocations"],
+                    "IsVisible": "/SAPAssetManager/Rules/Common/IsNotFromOnlineCreate.js",
+                    "ExtensionProperties": {
+                        "IsPicker": true,
+                        "Search": {
+                            "Enabled": true,
+                            "Delay": 500,
+                            "MinimumCharacterThreshold": 3,
+                            "Placeholder": "$(L,search)",
+                            "BarcodeScanner": true
+                        },
+                    "PickerProperties": {
+                        "OnLoaded": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateHierarchyListPickerOnLoaded.js",
+                        "OnValueChange":  "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdatePickerItems.js",
+                        "ListFilter": "MyFunctionalLocations",
+                        "Caption": "$(L,functional_location)",
+                        "AllowMultipleSelection": false,
+                        "ItemsPerPage": 50,
+                        "CachedItemsToLoad": 20
+                    },
+                    "HierarchyList": [],
+                    "BusinessObjects": [{
+                        "Target": {
+                            "EntitySet" : "MyFunctionalLocations",
+                            "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                            "QueryOptions": "/SAPAssetManager/Rules/Notifications/NotificationFLOCFilter.js",
+                            "Properties": [],
+                            "KeyProperties": []
+                        },
+                        "Properties":{
+                            "ID":"{@odata.readLink}",
+                            "Title":"{FuncLocDesc}",
+                            "Subhead":"{FuncLocId}",
+                            "Footnote": "$(L, functional_location)",
+                            "ReturnValue" : "{FuncLocIdIntern}",
+                            "DisplayValue" : "{FuncLocId} - {FuncLocDesc}",
+                            "ChildCount": "/SAPAssetManager/Rules/HierarchyControl/ChildCountListPicker.js",
+                            "Parent": [
+                                {
+                                    "Target": {
+                                        "EntitySet" : "MyFunctionalLocations",
+                                        "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                                        "Properties": [],
+                                        "KeyProperties": [],
+                                        "QueryOptions":"$filter=FuncLocIdIntern eq '{SuperiorFuncLocInternId}'&$orderby=FuncLocId"
+                                    }
+                                }
+                            ],
+                            "Children": [
+                                {
+                                    "Target": {
+                                        "EntitySet" : "MyFunctionalLocations",
+                                        "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                                        "Properties": [],
+                                        "KeyProperties": [],
+                                        "QueryOptions":"$filter=SuperiorFuncLocInternId eq '{FuncLocIdIntern}'&$orderby=FuncLocId"
+                                        }
+                                    }
+                                ]
+                            }
+                        }]
+                    }
+                },
+                {
+                    "_Type": "Control.Type.FormCell.Extension",
+                    "Module": "extension-HierarchyFramework",
+                    "Control": "HierarchyExtension",
+                    "Class": "HierarchyExtension",
+                    "_Name": "EquipHierarchyExtensionControl",
+                    "Caption": "$(L,equipment)",
+                    "DataSubscriptions": ["MyEquipments"],
+                    "IsVisible": "/SAPAssetManager/Rules/Common/IsNotFromOnlineCreate.js",
+                    "ExtensionProperties": {
+                        "IsPicker": true,
+                        "Search": {
+                            "Enabled": true,
+                            "Delay": 500,
+                            "MinimumCharacterThreshold": 3,
+                            "Placeholder": "$(L,search)",
+                            "BarcodeScanner": true
+                        },
+                        "PickerProperties": {
+                            "OnLoaded": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateHierarchyListPickerOnLoaded.js",
+                            "OnValueChange": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdatePickerItems.js",
+                            "ListFilter": "MyEquipments",
+                            "AllowMultipleSelection": false,
+                            "Caption": "$(L,equipment)",
+                            "ItemsPerPage": 50,
+                            "CachedItemsToLoad": 20
+                        },
+                        "HierarchyList": [],
+                        "BusinessObjects": [{
+                            "Target": {
+                                "EntitySet" : "MyEquipments",
+                                "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                                "QueryOptions": "/SAPAssetManager/Rules/Notifications/EquipmentQueryOptions.js",
+                                "Properties": [],
+                                "KeyProperties": []
+                            },
+                            "Properties":{
+                                "ID":"{@odata.readLink}",
+                                "Title":"{EquipDesc}",
+                                "Subhead":"{EquipId}",
+                                "Footnote": "$(L, equipment)",
+                                "ReturnValue" : "{EquipId}",
+                                "DisplayValue" : "{EquipId} - {EquipDesc}",
+                                "ChildCount": "/SAPAssetManager/Rules/HierarchyControl/ChildCountListPicker.js",
+                                "Parent": [
+                                    {
+                                        "Target": {
+                                            "EntitySet" : "MyEquipments",
+                                            "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                                            "Properties": [],
+                                            "KeyProperties": [],
+                                            "QueryOptions":"$filter=EquipId eq '{SuperiorEquip}'&$orderby=EquipId"
+                                        }
+                                    }
+                                ],
+                                "Children": [
+                                    {
+                                        "Target": {
+                                            "EntitySet" : "MyEquipments",
+                                            "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                                            "Properties": [],
+                                            "KeyProperties": [],
+                                            "QueryOptions":"$filter=SuperiorEquip eq '{EquipId}'&$orderby=EquipId"
+                                        }
+                                    }
+                                ]
+                            }
+                        }]
+                    }
+                },
+                {
+                    "_Name": "MainWorkCenterListPicker",
+                    "_Type": "Control.Type.FormCell.ListPicker",
+                    "AllowMultipleSelection": false,
+                    "IsPickerDismissedOnSelection": true,
+                    "AllowDefaultValueIfOneItem": true,
+                    "IsSearchCancelledAfterSelection": true,
+                    "Search": {
+                        "Enabled": true,
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 3,
+                        "Placeholder": "$(L,search)",
+						"BarcodeScanner": true
+                    },
+                    "Caption": "$(L,main_work_center)",
+                    "OnValueChange": "/SAPAssetManager/Rules/Notifications/CreateUpdate/UpdateGroupPickers.js",
+                    "IsEditable": "/SAPAssetManager/Rules/Notifications/NotificationAssignmentPkrsEditable.js",
+                    "Value": "/SAPAssetManager/Rules/Notifications/NotificationMainWorkCenterDefaultPkrDefault.js",
+                    "PickerItems": {
+                        "DisplayValue": "{ExternalWorkCenterId}",
+                        "ReturnValue": "{ExternalWorkCenterId}",
+                        "Target": {
+                            "EntitySet": "WorkCenters",
+                            "Service": "/SAPAssetManager/Services/AssetManager.service",
+                            "QueryOptions": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationMainWorkCenterQueryOptions.js"
+                        }
+                    }
+                },
+                {
+                    "_Name": "PlannerGroupListPicker",
+                    "_Type": "Control.Type.FormCell.ListPicker",
+                    "AllowMultipleSelection": false,
+                    "IsPickerDismissedOnSelection": true,
+                    "AllowDefaultValueIfOneItem": true,
+                    "IsSearchCancelledAfterSelection": true,
+                    "Search": {
+                        "Enabled": true,
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 3,
+                        "Placeholder": "$(L,search)",
+                        "BarcodeScanner": true
+                    },
+                    "Caption": "$(L,planner_group)",
+                    "IsEditable": "/SAPAssetManager/Rules/Notifications/NotificationAssignmentPkrsEditable.js",
+                    "Value": "/SAPAssetManager/Rules/Notifications/NotificationPlannerPkrDefault.js",
+                    "PickerItems": {
+                        "DisplayValue": "{{#Property:PlannerGroup}} - {{#Property:PlannerGroupName}}",
+                        "ReturnValue": "{PlannerGroup}",
+                        "Target": {
+                            "EntitySet": "PlannerGroups",
+                            "Service": "/SAPAssetManager/Services/AssetManager.service",
+                            "QueryOptions": "$orderby=PlannerGroup"
+                        }
+                    }
+                },
+                {
+                    "_Name": "QMCodeGroupListPicker",
+                    "_Type": "Control.Type.FormCell.ListPicker",
+                    "AllowMultipleSelection": false,
+                    "IsPickerDismissedOnSelection": true,
+                    "IsSearchCancelledAfterSelection": true,
+                    "Search": {
+                        "Enabled": true,
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 3,
+                        "Placeholder": "$(L,search)",
+                        "BarcodeScanner": true
+                    },
+                    "Caption": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateCodeGroupCaption.js",
+                    "PickerItems": {
+                        "DisplayValue": "{{#Property:CodeGroup}} - {{#Property:Description}}",
+                        "ReturnValue": "{@odata.readLink}",
+                        "Target": {
+                            "EntitySet": "PMCatalogProfiles",
+                            "Service": "/SAPAssetManager/Services/AssetManager.service",
+                            "QueryOptions": "$orderby=CodeGroup"
+                        }
+                    },
+                    "OnValueChange": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateQMCodeGroupOnValueChange.js"
+                },
+                {
+                    "_Name": "QMCodeListPicker",
+                    "_Type": "Control.Type.FormCell.ListPicker",
+                    "AllowMultipleSelection": false,
+                    "IsPickerDismissedOnSelection": true,
+                    "IsSearchCancelledAfterSelection": true,
+                    "IsEditable": false,
+                    "AllowDefaultValueIfOneItem": true,
+                    "Search": {
+                        "Enabled": true,
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 3,
+                        "Placeholder": "$(L,search)",
+                        "BarcodeScanner": true
+                    },
+                    "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js",
+                    "Caption": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateCodeCaption.js",
+                    "PickerItems": {
+                        "DisplayValue": "{{#Property:Code}} - {{#Property:CodeDescription}}",
+                        "ReturnValue": "{@odata.readLink}",
+                        "Target": {
+                            "EntitySet": "PMCatalogCodes",
+                            "Service": "/SAPAssetManager/Services/AssetManager.service"
+                        }
+                    }
+                },
+                {
+                    "_Name": "DetectionGroupListPicker",
+                    "_Type": "Control.Type.FormCell.ListPicker",
+                    "IsEditable": false,
+                    "AllowMultipleSelection": false,
+                    "IsPickerDismissedOnSelection": true,
+                    "IsSearchCancelledAfterSelection": true,
+                    "IsVisible": "/SAPAssetManager/Rules/Common/IsPhaseModelEnabled.js",
+                    "Value": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateDetectionGroupInitialValue.js",
+                    "Search": {
+                        "Enabled": true,
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 3,
+                        "Placeholder": "$(L,search)",
+                        "BarcodeScanner": true
+                    },
+                    "Caption": "$(L,detection_group)",
+                    "PickerItems": {
+                        "DisplayValue": "{{#Property:DetectionGroup}} - {{#Property:DetectionGroupDesc}}",
+                        "ReturnValue": "{@odata.readLink}",
+                        "Target": {
+                            "EntitySet": "DetectionGroups",
+                            "Service": "/SAPAssetManager/Services/AssetManager.service"
+                        }
+                    },
+                    "OnValueChange": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateDetectionGroupOnValueChange.js"
+                },
+                {
+                    "_Name": "DetectionMethodListPicker",
+                    "_Type": "Control.Type.FormCell.ListPicker",
+                    "AllowMultipleSelection": false,
+                    "IsPickerDismissedOnSelection": true,
+                    "IsSearchCancelledAfterSelection": true,
+                    "IsEditable": false,
+                    "AllowDefaultValueIfOneItem": true,
+                    "IsVisible": "/SAPAssetManager/Rules/Common/IsPhaseModelEnabled.js",
+                    "Value": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateDetectionMethodInitialValue.js",
+                    "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js",
+                    "Search": {
+                        "Enabled": true,
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 3,
+                        "Placeholder": "$(L,search)",
+                        "BarcodeScanner": true
+                    },
+                    "Caption": "$(L,detection_method)",
+                    "PickerItems": {
+                        "DisplayValue": "{{#Property:DetectionCode}} - {{#Property:DetectionCodeDesc}}",
+                        "ReturnValue": "{@odata.readLink}",
+                        "Target": {
+                            "EntitySet": "DetectionCodes",
+                            "Service": "/SAPAssetManager/Services/AssetManager.service"
+                        }
+                    }
+                },
+               
+                {
+                    "Caption": "$(L,breakdown)",
+                    "Value": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateBreakdownValue.js",
+                    "_Name": "BreakdownSwitch",
+                    "_Type": "Control.Type.FormCell.Switch",
+                    "OnValueChange": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateBreakdownOnChange.js"
+                },
+                {
+                    "_Name": "EffectListPicker",
+                    "_Type": "Control.Type.FormCell.ListPicker",
+                    "Value": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateEffectPickerValue.js",
+                    "AllowMultipleSelection": false,
+                    "AllowEmptySelection": false,
+                    "IsPickerDismissedOnSelection": true,
+                    "IsSearchCancelledAfterSelection": true,
+                    "IsEditable": true,
+                    "IsVisible": false,
+                    "Search": {
+                        "Enabled": true,
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 3,
+                        "Placeholder": "$(L,search)",
+                        "BarcodeScanner": true
+                    },
+                    "Caption": "$(L,failure_Effect)",
+                    "PickerItems": {
+                        "DisplayValue": "{{#Property:Effect}} - {{#Property:EffectDescription}}",
+                        "ReturnValue": "{Effect}",
+                        "Target": {
+                            "EntitySet": "Effects",
+                            "Service": "/SAPAssetManager/Services/AssetManager.service",
+                            "QueryOptions": "$orderby=Effect"
+                        }
+                    }
+                },
+                {
+                    "Caption": "$(L,start_date)",
+                    "_Name": "BreakdownStartSwitch",
+                    "_Type": "Control.Type.FormCell.Switch",
+                    "OnValueChange": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateBreakdownStartOnChange.js",
+                    "Value": "{_MalfunctionStartSwitch}",
+                    "IsVisible": false
+                },
+                {
+                    "Caption": "$(L,malfunction_start_date)",
+                    "DateTimeEntryMode" : "date",
+                    "Mode" : "Date",
+                    "_Type": "Control.Type.FormCell.DatePicker",
+                    "_Name": "MalfunctionStartDatePicker",
+                    "Value": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsMalfunctionStartDate.js",
+                    "IsEditable": false,
+                    "IsVisible": false
+                },
+                {
+                    "Caption": "$(L,malfunction_start_time)",
+                    "DateTimeEntryMode" : "time",
+                    "Mode" : "Time",
+                    "_Type": "Control.Type.FormCell.DatePicker",
+                    "_Name": "MalfunctionStartTimePicker",
+                    "Value": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsMalfunctionStartTime.js",
+                    "IsEditable": false,
+                    "IsVisible": false
+                },
+                {
+                    "Caption": "$(L,end_date)",
+                    "_Name": "BreakdownEndSwitch",
+                    "_Type": "Control.Type.FormCell.Switch",
+                    "OnValueChange": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateBreakdownEndOnChange.js",
+                    "Value": "{_MalfunctionEndSwitch}",
+                    "IsVisible": false
+                },
+                {
+                    "Caption": "$(L,malfunction_end_date)",
+                    "DateTimeEntryMode" : "date",
+                    "Mode" : "Date",
+                    "_Type": "Control.Type.FormCell.DatePicker",
+                    "_Name": "MalfunctionEndDatePicker",
+                    "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js",
+                    "Value": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsMalfunctionEndDate.js",
+                    "IsEditable": false,
+                    "IsVisible": false
+                },
+                {
+                    "Caption": "$(L,malfunction_end_time)",
+                    "DateTimeEntryMode" : "time",
+                    "Mode" : "Time",
+                    "_Type": "Control.Type.FormCell.DatePicker",
+                    "_Name": "MalfunctionEndTimePicker",
+                    "Value": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsMalfunctionEndTime.js",
+                    "IsEditable": false,
+                    "IsVisible": false
+                }]
+            },
+            {
+                "_Type": "Section.Type.FormCell",
+                "_Name": "FormCellSection2",
+                "Controls":
+                [{
+                    "Caption": "$(L,priority)",
+                    "Value": "/SAPAssetManager/Rules/Notifications/NotificationPrioritySegDefault.js",
+                    "Segments": "/SAPAssetManager/Rules/Notifications/PriorityListPicker.js",
+                    "OnValueChange":"/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js",
+                    "IsVisible": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdatePriorityVisibility.js",
+                    "_Name": "PrioritySeg",
+                    "_Type": "Control.Type.FormCell.SegmentedControl"
+                },
+                {
+                    "Caption": "$(L,priority)",
+                    "IsPickerDismissedOnSelection": true,
+                    "AllowMultipleSelection": false,
+                    "Value": "/SAPAssetManager/Rules/Notifications/NotificationPrioritySegDefault.js",
+                    "PickerItems": "/SAPAssetManager/Rules/Notifications/PriorityListPicker.js",
+                    "IsVisible": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdatePriorityVisibility.js",
+                    "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js",                    
+                    "_Name": "PriorityLstPkr",
+                    "_Type": "Control.Type.FormCell.ListPicker"
+                },
+                {
+                    "Title": "$(L,assess_priority)",
+                    "ButtonType": "Text",
+                    "Semantic": "Tint",
+                    "OnPress": "/SAPAssetManager/Rules/Notifications/PriorityAssessmentNav.js",
+                    "_Name": "AssessmentBtn",
+                    "_Type": "Control.Type.FormCell.Button"
+                }]
+            },
+            {
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Location/LocationFormCellControl.fragment",
+                "Properties": {
+                    "Controls": [{
+                        "Value": "/SAPAssetManager/Rules/Notifications/NotificationLocationFormat.js"
+                    }]
+                }
+            },
+            {
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Location/LocationFormCellButtons.fragment",
+                "Properties": {
+                    "Buttons": [{
+                        "_Type": "ButtonTable.Type.Button",
+                        "OnPress": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationGetCurrentLocation.js"
+                    },{
+                        "_Type": "ButtonTable.Type.Button",
+                        "OnPress": "/SAPAssetManager/Rules/Notifications/NotificationMapNav.js"
+                    },{
+                        "_Type": "ButtonTable.Type.Button",
+                        "OnPress": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationDeleteGeometry.js",
+                        "Visible": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationDeleteGeometryAllowed.js"
+                    }]
+                }
+            },
+            {
+                "_Type": "Section.Type.FormCell",
+                "_Name": "PartnerPickerSection",
+                "Visible": "/SAPAssetManager/Rules/Notifications/Partners/PartnerPickerSectionVisible.js",
+                "Controls": [
+                    {
+                        "Caption": "/SAPAssetManager/Rules/Notifications/Partners/PartnerCaption.js",
+                        "IsVisible": "/SAPAssetManager/Rules/Notifications/Partners/PartnerPickerVisible.js",
+                        "Value": "/SAPAssetManager/Rules/Notifications/Partners/PartnerValue.js",
+                        "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js",
+                        "IsPickerDismissedOnSelection": true,
+                        "AllowMultipleSelection": false,
+                        "IsSearchCancelledAfterSelection": true,
+                        "DataPaging": {
+                            "PageSize": 50,
+                            "ShowLoadingIndicator": true,
+                            "LoadingIndicatorText": "$(L, loading)"
+                        },
+                        "Search": {
+                            "Enabled": true,
+                            "Delay": 500,
+                            "MinimumCharacterThreshold": 3,
+                            "Placeholder": "$(L,search)"
+                        },
+                        "PickerItems": [],
+                        "_Name": "PartnerPicker1",
+                        "_Type": "Control.Type.FormCell.ListPicker"
+                    },
+                    {
+                        "Caption": "/SAPAssetManager/Rules/Notifications/Partners/PartnerCaption.js",
+                        "IsVisible": "/SAPAssetManager/Rules/Notifications/Partners/PartnerPickerVisible.js",
+                        "Value": "/SAPAssetManager/Rules/Notifications/Partners/PartnerValue.js",
+                        "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js",
+                        "IsPickerDismissedOnSelection": true,
+                        "AllowMultipleSelection": false,
+                        "IsSearchCancelledAfterSelection": true,
+                        "DataPaging": {
+                            "PageSize": 50,
+                            "ShowLoadingIndicator": true,
+                            "LoadingIndicatorText": "$(L, loading)"
+                        },
+                        "Search": {
+                            "Enabled": true,
+                            "Delay": 500,
+                            "MinimumCharacterThreshold": 3,
+                            "Placeholder": "$(L,search)"
+                        },
+                        "PickerItems": [],
+                        "_Name": "PartnerPicker2",
+                        "_Type": "Control.Type.FormCell.ListPicker"
+                    }
+                ]
+            },
+            {
+                "_Type": "Section.Type.FormCell",
+                "_Name": "FormCellSection8",
+                "Controls":
+                [{
+                    "Caption": "$(L, note)",
+                    "PlaceHolder": "$(L,note)",
+                    "MaxNumberOfLines": 0,
+                    "_Name": "LongTextNote",
+                    "Value": "",
+                    "_Type": "Control.Type.FormCell.Note",
+                    "IsVisible": "/SAPAssetManager/Rules/Common/IsOnCreate.js",
+                    "IsEditable": true
+                },
+                {
+                    "Title": "$(L,use_template)",
+                    "ButtonType": "$(PLT, '', 'Normal')",
+                    "OnPress": "/SAPAssetManager/Rules/Notifications/InsertTemplate.js",
+                    "IsVisible": "/SAPAssetManager/Rules/Notifications/CreateUpdate/ShowTemplateButton.js",
+                    "_Name": "UseTemplateBtn",
+                    "_Type": "Control.Type.FormCell.Button"
+                }]
+            },
+            {
+                "_Type": "Section.Type.FormCell",
+                "_Name": "FormCellSection9",
+                "Controls":
+                [{
+                    "Caption":"$(L, attachment_description)",
+                    "PlaceHolder": "$(L,attachment_description)",
+                    "IsEditable": true,
+                    "IsVisible": "/SAPAssetManager/Rules/Documents/DocumentsIsVisible.js",
+                    "_Name": "AttachmentDescription",
+                    "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/FormCellNoteValidation.js",
+                    "_Type": "Control.Type.FormCell.SimpleProperty"
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Documents/DocumentFormCell.fragment",
+                    "Properties": {
+                        "Value": "/SAPAssetManager/Rules/Documents/InitializeAttachments.js",
+                        "OnValueChange": "/SAPAssetManager/Rules/Documents/DocumentEditorAttachmentOnValueChange.js",
+                        "IsVisible": "/SAPAssetManager/Rules/Documents/DocumentsIsVisible.js"
+                    }
+                }]
+            },
+            {
+                "Header": {
+                    "UseTopPadding": true
+                },
+                "Controls": [
+                    {
+                        "Caption": "$(L,select_notification_extra_fields)",
+                        "Value": false,
+                        "_Name": "ShowAdditionalFieldsSwitch",
+                        "_Type": "Control.Type.FormCell.Switch",
+                        "OnValueChange": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateShowFieldsChange.js"
+                    }
+                ],
+                "_Type": "Section.Type.FormCell"
+            },
+            {
+                "Header": {
+                    "Caption": "$(L,create_notification_item)",
+                    "UseTopPadding": true
+                },
+                "_Type": "Section.Type.FormCell",
+                "_Name": "FormCellSection4",
+                "Controls":
+                [{
+                    "PlaceHolder": "$(L,item_description)",
+                    "OnValueChange": "/SAPAssetManager/Rules/Notifications/CreateUpdate/OnCreateNotificationItemDescriptionChanged.js",
+                    "_Name": "ItemDescription",
+                    "_Type": "Control.Type.FormCell.Note"
+                },
+                {
+                    "AllowDefaultValueIfOneItem": false,
+                    "AllowMultipleSelection": false,
+                    "IsPickerDismissedOnSelection": true,
+                    "IsSearchCancelledAfterSelection": true,
+                    "IsEditable": "/SAPAssetManager/Rules/Notifications/CreateUpdate/PartGroupDamageGroupListPickerEditable.js",
+                    "Search":
+                    {
+                        "Enabled": true,
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 3,
+                        "Placeholder": "$(L,search)",
+                        "BarcodeScanner": true
+                    },
+                    "Caption": "$(L,part_group)",
+                    "PickerItems": [],
+                    "OnValueChange" : "/SAPAssetManager/Rules/Notifications/Item/CreateUpdate/NotificationItemCreateUpdatePart.js",
+                    "_Name": "PartGroupLstPkr",
+                    "_Type": "Control.Type.FormCell.ListPicker"
+                },
+                {
+                    "AllowMultipleSelection": false,
+                    "IsPickerDismissedOnSelection": true,
+                    "IsSearchCancelledAfterSelection": true,
+                    "AllowDefaultValueIfOneItem": true,
+                    "Search": {
+                        "Enabled": true,
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 3,
+                        "Placeholder": "$(L,search)",
+                        "BarcodeScanner": true
+                    },
+                    "IsEditable" : false,
+                    "Caption": "$(L,part)",
+                    "OnValueChange": "/SAPAssetManager/Rules/Notifications/CreateUpdate/OnCauseGroupRelatedLstPkrChanged.js",
+                    "PickerItems":
+                    {
+                        "DisplayValue" : "{{#Property:Code}} - {{#Property:CodeDescription}}",
+                        "ReturnValue": "{Code}",
+                        "Target":
+                        {
+                            "EntitySet" : "PMCatalogCodes",
+                            "Service" : "/SAPAssetManager/Services/AssetManager.service"
+                        }
+                    },
+                    "_Name": "PartDetailsLstPkr",
+                    "_Type": "Control.Type.FormCell.ListPicker"
+                },
+                {
+                    "AllowDefaultValueIfOneItem": false,
+                    "AllowMultipleSelection": false,
+                    "IsPickerDismissedOnSelection": true,
+                    "IsSearchCancelledAfterSelection": true,
+                    "IsEditable": "/SAPAssetManager/Rules/Notifications/CreateUpdate/PartGroupDamageGroupListPickerEditable.js",
+                    "Search": {
+                        "Enabled": true,
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 3,
+                        "Placeholder": "$(L,search)",
+                        "BarcodeScanner": true
+                    },
+                    "Caption": "$(L,damage_group)",
+                    "PickerItems": [],
+                    "OnValueChange" : "/SAPAssetManager/Rules/Notifications/Item/CreateUpdate/NotificationItemCreateUpdateDamage.js",
+                    "_Name": "DamageGroupLstPkr",
+                    "_Type": "Control.Type.FormCell.ListPicker"
+                },
+                {
+                    "AllowMultipleSelection": false,
+                    "IsPickerDismissedOnSelection": true,
+                    "IsSearchCancelledAfterSelection": true,
+                    "AllowDefaultValueIfOneItem": true,
+                    "Search": {
+                        "Enabled": true,
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 3,
+                        "Placeholder": "$(L,search)",
+                        "BarcodeScanner": true
+                    },
+                    "IsEditable" : false,
+                    "Caption": "$(L,damage)",
+                    "OnValueChange": "/SAPAssetManager/Rules/Notifications/CreateUpdate/OnCauseGroupRelatedLstPkrChanged.js",
+                    "PickerItems":
+                    {
+                        "DisplayValue" : "{{#Property:Code}} - {{#Property:CodeDescription}}",
+                        "ReturnValue": "{Code}",
+                        "Target":
+                        {
+                            "EntitySet" : "PMCatalogCodes",
+                            "Service" : "/SAPAssetManager/Services/AssetManager.service"
+                        }
+                    },
+                    "_Name": "DamageDetailsLstPkr",
+                    "_Type": "Control.Type.FormCell.ListPicker"
+                }]
+            },
+            {
+                "Header": {
+                    "Caption": "$(L,create_cause_item)",
+                    "UseTopPadding": true
+                },
+                "_Name": "CauseSetupSection",
+                "_Type": "Section.Type.FormCell",
+                "Controls":
+                [{
+                    "PlaceHolder": "$(L,cause_description)",
+                    "IsEditable": false,
+                    "OnValueChange": "/SAPAssetManager/Rules/Notifications/Utils/NotificationDescriptionLengthValidation.js",
+                    "_Name": "CauseDescription",
+                    "_Type": "Control.Type.FormCell.Note"
+                },
+                {
+                    "AllowDefaultValueIfOneItem": false,
+                    "AllowMultipleSelection": false,
+                    "IsPickerDismissedOnSelection": true,
+                    "IsSearchCancelledAfterSelection": true,
+                    "Search": {
+                        "Enabled": true,
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 3,
+                        "Placeholder": "$(L,search)",
+                        "BarcodeScanner": true
+                    },
+                    "IsEditable": false,
+                    "Caption": "$(L,cause_group)",
+                    "Value": "{CauseCodeGroup}",
+                    "PickerItems": [],
+                    "OnValueChange" : "/SAPAssetManager/Rules/Notifications/Item/Cause/CreateUpdate/NotificationItemCauseCreateUpdateCode.js",
+                    "_Name": "CauseGroupLstPkr",
+                    "_Type": "Control.Type.FormCell.ListPicker"
+                },
+                {
+                    "AllowMultipleSelection": false,
+                    "AllowDefaultValueIfOneItem": true,
+                    "IsPickerDismissedOnSelection": true,
+                    "IsSearchCancelledAfterSelection": true,
+                    "IsEditable" : false,
+                    "Search": {
+                        "Enabled": true,
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 3,
+                        "Placeholder": "$(L,search)",
+                        "BarcodeScanner": true
+                    },
+                    "Caption": "$(L,cause_code)",
+                    "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js",
+                    "PickerItems":
+                    {
+                        "DisplayValue" : "{{#Property:Code}} - {{#Property:CodeDescription}}",
+                        "ReturnValue": "{Code}",
+                        "Target":
+                        {
+                            "EntitySet" : "PMCatalogCodes",
+                            "Service" : "/SAPAssetManager/Services/AssetManager.service"
+                        }
+                    },
+                    "_Name": "CodeLstPkr",
+                    "_Type": "Control.Type.FormCell.ListPicker"
+                }]
+            },
+            {
+                "_Type": "Section.Type.FormCell",
+                "_Name": "FormCellSection10",
+                "Controls":
+                [{
+                    "Title": "$(L,discard)",
+                    "OnPress": "/SAPAssetManager/Rules/Common/DiscardAction.js",
+                    "IsVisible": "/SAPAssetManager/Rules/Common/IsDiscardButtonVisible.js",
+                    "_Type": "Control.Type.FormCell.Button",
+                    "ButtonType": "Text", 
+                    "Semantic": "Tint",
+                    "_Name": "DiscardButton",
+                    "TextAlignment": "/SAPAssetManager/Rules/Common/Platform/ModalButtonAlign.js"
+                }]
+            }
+        ],
+        "_Name": "FormCellContainer",
+        "_Type": "Control.Type.SectionedTable"
+    }],
+    "_Type": "Page",
+    "_Name": "NotificationAddPage"
+}

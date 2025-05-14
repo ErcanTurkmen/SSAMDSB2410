@@ -1,0 +1,53 @@
+{
+    	"Caption": "$(L,header)",
+		"ActionBar": {
+		"Items": [
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment"
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [ 
+					{
+           "_Type": "Section.Type.KeyValue",
+            "_Name": "PurchaseOrderHeaderPage",
+            "KeyAndValues": [
+                    {
+                        "_Name": "Vendor",
+                        "KeyName": "$(L,vendor)",
+                        "Value": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetVendorName.js"
+                    },
+                    {
+                        "_Name": "DocumentType",
+                        "KeyName": "$(L,document_type)",
+                        "Value": "{DocumentType}"
+                    }, 
+                    {
+                        "_Name": "DocumentDate",
+                        "KeyName": "$(L,document_date)",
+                        "Value": "/SAPAssetManager/Rules/Inventory/Common/GetDocumentDateForInventoryHeader.js"
+                    }, 
+                    {
+                        "_Name": "DocumentStatus",
+                        "KeyName": "$(L,document_status)",
+                        "Value": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/DisplayPurchaseOrderStatus.js"
+                    }, 
+					{
+                        "_Name": "PurchaseOrderHeaderLongText.TextString",
+                        "KeyName": "$(L,note)",
+                        "Value": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/PurchaseOrderHeaderDescription.js"
+                    }
+                ]
+			}
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	  
+    "DataSubscriptions": ["PurchaseOrderHeaders", "MaterialDocItems","MaterialDocuments","PurchaseOrderItems"],
+	"OnReturning": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/PurchaseOrderDetailsPageOnReturn.js",
+	"_Name": "PurchaseOrderHeader",
+	"_Type": "Page"
+}
+

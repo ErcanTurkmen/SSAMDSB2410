@@ -1,0 +1,30 @@
+{
+	"Caption": "$(L,isolation_certificates)",
+	"ActionBar":
+	{
+		"Items":
+		[
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment",
+			{
+				"_Type": "Fragment",
+				"Fragment": "/SAPAssetManager/Pages/Fragments/FilterButton.fragment",
+				"Properties": {
+					"OnPress": "/SAPAssetManager/Rules/WCM/SafetyCertificates/LOTOCertificates/LOTOCertificatesFilterNav.js",
+					"Text": "/SAPAssetManager/Rules/WCM/Common/SegmentedFilterButtonCaption.js"
+				}
+			}
+		]
+	},
+	"Controls": [
+		{
+			"Items": "/SAPAssetManager/Rules/WCM/SafetyCertificates/LOTOCertificates/ConstructLOTOCertificatesListViewTabs.js",
+			"Position": "Top",
+			"TabStripType": "Segmented",
+			"_Type": "Control.Type.Tabs",
+			"_Name": "TabsControl"
+  		}
+	],
+	"DataSubscriptions": ["WCMDocumentItems", "WCMDocumentHeaders", "PMMobileStatuses", "/SAPAssetManager/Services/AssetManager.service"],
+	"_Type": "Page",
+	"_Name": "LOTOCertificatesListViewPage"
+}

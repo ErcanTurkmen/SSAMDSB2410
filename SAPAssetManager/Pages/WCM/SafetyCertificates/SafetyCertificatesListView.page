@@ -1,0 +1,43 @@
+{
+	"Caption": "$(L,certificates)",
+	"OnLoaded": "/SAPAssetManager/Rules/Filter/ListPageWithFilterOnLoaded.js",
+	"ActionBar":
+	{
+		"Items":
+		[
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment",
+			{
+				"_Type": "Fragment",
+				"Fragment": "/SAPAssetManager/Pages/Fragments/FilterButton.fragment",
+				"Properties": {
+					"OnPress": "/SAPAssetManager/Rules/WCM/SafetyCertificates/OtherCertificatesFilterPageNav.js"
+				}
+			}
+		]
+	},
+	"Controls":
+	[{
+		"Sections": [
+			{
+				"_Type": "Fragment",
+				"Fragment": "/SAPAssetManager/Pages/WCM/Fragments/SafetyCertificatesObjectTable.fragment",
+				"Properties": {
+					"Header": {
+						"Caption": "/SAPAssetManager/Rules/WCM/SafetyCertificates/CertificatesListViewCountCaption.js"
+					}
+				}
+			}
+		],
+		"FilterFeedbackBar": {
+			"_Type": "Control.Type.FilterFeedbackBar",
+			"_Name": "FilterFeedback",
+			"ShowAllFilters": true,
+			"FastFilters": "/SAPAssetManager/Rules/WCM/SafetyCertificates/SafetyCertificatesFastFilters.js"
+		},
+		"Filters": "/SAPAssetManager/Rules/WCM/SafetyCertificates/SafetyCertificatesListViewFilters.js",
+		"_Type" : "Control.Type.SectionedTable",
+		"_Name" : "SectionedTable"
+	}],
+	"_Type": "Page",
+	"_Name": "SafetyCertificatesListViewPage"
+}

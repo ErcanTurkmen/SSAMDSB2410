@@ -1,0 +1,87 @@
+{
+	"Caption": "$(L,app_display_name)",
+	"ActionBar": {
+		"Items": [
+			{
+				"Position": "Right",
+				"Icon":"$(PLT,/SAPAssetManager/Images/fetch.png,/SAPAssetManager/Images/fetch.android.png)",
+				"OnPress": "/SAPAssetManager/Actions/EWM/Fetch/FetchDocuments.action",
+				"Visible": "/SAPAssetManager/Rules/Common/IsDemoModeDisabled.js"
+			},
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment"
+		]
+	},
+	"Controls": [
+		{
+			"_Type": "Control.Type.SectionedTable",
+			"_Name" : "SectionedTable",
+			"Sections": [
+				{
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/QAB/QuickActionBarExtensionSection.fragment",
+					"Properties": {
+						"ExtensionProperties": {
+							"Chips": "/SAPAssetManager/Rules/EWM/OverviewPage/OverviewQABChips.js"
+						}
+					}
+				},
+				{
+					"Header": {
+						"Caption": "$(L,ewm_warehouse_orders)",
+						"UseTopPadding": false
+					},
+					"EmptySection": {
+						"Caption": "$(L,ewm_no_warehouse_orders)"
+					},
+					"MaxItemCount": 2,
+					"ObjectCell": "/SAPAssetManager/Pages/Fragments/EWM/WarehouseOrderCell.fragment",
+					"Target": {
+						"EntitySet": "WarehouseOrders",
+						"QueryOptions":"$expand=WarehouseTask_Nav,WarehouseProcessType_Nav&$top=2",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					},
+					"Footer": {
+						"Caption": "$(L,see_all)",
+						"AccessoryType": "DisclosureIndicator",
+						"AttributeLabel": "",
+						"FooterStyle": "Attribute",
+						"OnPress": "/SAPAssetManager/Rules/EWM/WarehouseOrder/WOListDetailsQuery.js",
+						"Visible": true
+					},
+					"_Name": "EWMWarehouseOrderSection",
+                    "_Type": "Section.Type.ObjectTable"
+				},
+				{
+					"Header": {
+						"Caption": "$(L,ewm_warehouse_tasks)",
+						"UseTopPadding": true
+					},
+					"EmptySection": {
+						"Caption": "$(L,ewm_no_tasks)"
+					},
+					"MaxItemCount": 2,
+					"ObjectCell": "/SAPAssetManager/Pages/Fragments/EWM//WarehouseTaskCell.fragment",
+					"Target": {
+						"EntitySet": "WarehouseTasks",
+						"QueryOptions":"$expand=WarehouseTaskSerialNumber_Nav&$top=2",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					},
+					"Footer": {
+						"Caption": "$(L,see_all)",
+						"AccessoryType": "DisclosureIndicator",
+						"AttributeLabel": "",
+						"FooterStyle": "Attribute",
+						"OnPress": "/SAPAssetManager/Actions/EWM/WarehouseTasks/WarehouseOrdersListViewNav.action",
+						"Visible": true
+					},
+					"_Name": "EWMWarehouseTaskSection",
+                    "_Type": "Section.Type.ObjectTable"
+				}
+			]
+		}
+	],
+	"_Type": "Page",
+	"_Name": "EWMOverviewPage",
+    "OnReturning": "/SAPAssetManager/Rules/EWM/OverviewPage/RefreshOverviewPage.js",
+	"DataSubscriptions": ["/SAPAssetManager/Services/AssetManager.service"]
+}

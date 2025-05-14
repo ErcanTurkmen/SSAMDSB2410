@@ -1,0 +1,38 @@
+{
+    "_Type": "Section.Type.ObjectCardCollection",
+    "_Name": "PartsObjectCardCollection",
+    "Header": {
+        "Caption": "$(L,parts)"
+    },
+    "Layout": {
+        "LayoutType": "HorizontalScroll"
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_parts_available)"
+    },
+    "Card": {
+        "_Type":"Control.Type.ObjectCard",
+        "Title": "/SAPAssetManager/Rules/Parts/PartFieldFormat.js",
+        "Subhead": "/SAPAssetManager/Rules/Parts/PartFieldFormat.js",
+        "Footnote": "/SAPAssetManager/Rules/Parts/PartFieldFormat.js",
+        "StatusText": "/SAPAssetManager/Rules/Parts/PartFieldFormat.js",
+        "OnPress": "/SAPAssetManager/Actions/Parts/OnlinePartDetailsNav.action",
+        "DetailImage": "$(PLT, /SAPAssetManager/Images/DetailImages/Parts.png, /SAPAssetManager/Images/DetailImages/Parts.android.png, '', /SAPAssetManager/Images/DetailImages/Parts.android.png)"
+    },
+    "Target": {
+        "EntitySet": "{@odata.readLink}/Components",
+        "Service": "/SAPAssetManager/Services/OnlineAssetManager.service"
+    },
+    "Footer": {
+        "Caption": "$(L,see_all)",
+        "AccessoryType": "DisclosureIndicator",
+        "AttributeLabel": "#Count",
+        "FooterStyle": "Attribute",
+        "OnPress": "/SAPAssetManager/Actions/Parts/OnlinePartsListViewNav.action"
+    },
+    "Separators": {
+        "ControlSeparator": false
+    },
+    "Visible": "/SAPAssetManager/Rules/Parts/PartObjectCardCollectionIsVisible.js",
+    "DataSubscriptions": ["MyWorkOrderComponents", "MaterialDocuments", "MaterialDocItems"]
+}

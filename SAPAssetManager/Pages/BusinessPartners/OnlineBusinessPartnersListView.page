@@ -1,0 +1,22 @@
+{
+	"Caption": "/SAPAssetManager/Rules/BusinessPartners/OnlineBusinessPartnersCaption.js",
+	"Controls": [
+		{
+            "_Type": "Control.Type.SectionedTable",
+			"LoadingIndicator": {
+				"Enabled": true
+			},
+			"Sections": [
+				{
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/Partners/BusinessPartnersContactCell.fragment",
+					"Properties": {
+						"Target": "/SAPAssetManager/Rules/BusinessPartners/OnlineBusinessPartnersTarget.js"
+					}
+				}	
+			]
+		}
+	],
+	"_Type": "Page",
+	"_Name": "OnlineBusinessPartnersListViewPage"
+}

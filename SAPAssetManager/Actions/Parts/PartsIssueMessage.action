@@ -1,0 +1,4 @@
+{
+    "Message": "$(L,parts_issued)",
+    "_Type": "Action.Type.ToastMessage"
+}

@@ -1,0 +1,25 @@
+{  
+    "_Name": "LocationLstPkr",
+    "_Type": "Control.Type.FormCell.ListPicker",
+    "Caption": "$(L,location)",
+    "AllowMultipleSelection": true,
+    "AllowDefaultValueIfOneItem": false,
+    "IsPickerDismissedOnSelection": true,
+    "IsSearchCancelledAfterSelection": true,
+    "Search": {
+        "Enabled": true,
+        "Delay": 500,
+        "MinimumCharacterThreshold": 3,
+        "Placeholder": "$(L,search)"
+    },
+    "PickerItems": {
+        "DisplayValue" : "{{#Property:Location}} - {{#Property:LocationName}}",
+        "ReturnValue": "{Location}",
+        "Target": {
+            "EntitySet" : "Locations",
+            "Service" : "/SAPAssetManager/Services/AssetManager.service"
+        }
+    },
+    "FilterProperty": "Location",
+    "Label": "$(L,location)"
+}

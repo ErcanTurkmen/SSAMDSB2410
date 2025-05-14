@@ -1,0 +1,9 @@
+{
+"_Type": "Control.Type.ObjectCell",
+"AccessoryType": "DisclosureIndicator",
+"Title": "#Property:VoyageNumber",
+"Subhead": "/SAPAssetManager/Rules/FL/Voyages/VoyageSubhead.js",
+"Footnote": "/SAPAssetManager/Rules/FL/Voyages/VoyageFootnote.js",
+"StatusText": "#Property:FldLogsVoyageStatus_Nav/Description",
+"OnPress": "/SAPAssetManager/Rules/FL/Voyages/Details/VoyageDetailsPageNav.js"
+}

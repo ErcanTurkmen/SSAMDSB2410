@@ -1,0 +1,28 @@
+{
+    "_Type": "Section.Type.ObjectTable",
+    "_Name": "visualization",
+    "Header": {
+        "UseTopPadding": true
+    },
+    "Footer": {
+        "UseBottomPadding": true
+    },
+    "ObjectCells": [{
+        "ObjectCell": {
+            "_Name": "epdcell",
+            "ProgressIndicator": "open",
+            "AccessoryType": "/SAPAssetManager/Rules/EPD/GetAccessoryType.js",
+            "Title": "/SAPAssetManager/Rules/EPD/GetVisualizationName.js",
+            "Subhead": "$(L, product_model_viewer)",
+            "AvatarStack": {
+                "Avatars": [{
+                    "Image": "/SAPAssetManager/Rules/EPD/Thumbnail.js"
+                }],
+                "ImageHasBorder": true
+            },
+            "Visible": true,
+            "OnAccessoryButtonPress": "/SAPAssetManager/Rules/EPD/LaunchPMV.js"
+        }
+    }],
+    "Visible": "/SAPAssetManager/Rules/EPD/IsEPDVisualizationAvailable.js"
+}

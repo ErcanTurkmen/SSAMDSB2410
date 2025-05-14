@@ -1,0 +1,22 @@
+{
+    "Caption": "/SAPAssetManager/Rules/Classification/Characteristics/CharacteristicValueCaption.js",
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Equipment/Classifications/CharacteristicKeyValue.fragment",
+                    "Properties": {
+                        "#Name:MyEquipClassCharValue.ValueRel|MyFuncLocClassCharValue.ValueRel": {
+                            "Value": "/SAPAssetManager/Rules/Classification/Characteristics/OnlineCharacteristicDisplayValueWithoutUOM.js"
+                        }
+                    }
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "OnlineCharacteristicValueDetailsPage"
+}

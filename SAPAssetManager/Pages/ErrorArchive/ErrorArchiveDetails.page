@@ -1,0 +1,72 @@
+{
+    "Caption": "$(L,transactional_error)",
+    "ActionBar": {
+        "_Name": "ErrorArchiveDetails",
+        "Items": [
+            {
+                "Position": "Right",
+                "_Name": "Fix",
+                "Text": "$(L,fix)",
+                "OnPress": "/SAPAssetManager/Rules/ErrorArchive/ErrorArchiveAffectedEntityNav.js",
+                "Visible": "/SAPAssetManager/Rules/ErrorArchive/ErrorArchiveIsVisible.js"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "KeyAndValues": [
+                        {
+                            "_Name": "error",
+                            "KeyName": "$(L,error)",
+                            "Value": "/SAPAssetManager/Rules/ErrorArchive/ErrorArchiveDetailsTitle.js"
+                        },
+                        {
+                            "_Name": "error_details",
+                            "KeyName": "$(L,error_details)",
+                            "Value": "/SAPAssetManager/Rules/ErrorArchive/ErrorArchiveDetailsMessage.js"
+                        },
+                        {
+                            "_Name": "request_body",
+                            "KeyName": "$(L,request_body)",
+                            "Value": "/SAPAssetManager/Rules/ErrorArchive/ErrorArchiveDetailsRequestBody.js"
+                        },
+                        {
+                            "_Name": "RequestURL",
+                            "KeyName": "$(L,request_url)",
+                            "Value": "#Property:ErrorObject/#Property:RequestURL"
+                        },
+                        {
+                            "_Name": "HTTPStatusCode",
+                            "KeyName": "$(L,https_status_code)",
+                            "Value": "#Property:ErrorObject/#Property:HTTPStatusCode"
+                        }
+                    ],
+                    "Layout": {
+                        "NumberOfColumns": 1,
+                        "MinimumInteritemSpacing": "$(PLT,66,0)" 
+                    },
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "Notes"
+                },
+		        {
+                    "Header": {
+                        "UseTopPadding": true
+                    },
+                    "Buttons": [{
+                        "_Type": "ButtonTable.Type.Button",
+                        "Title" : "$(L,discard)",
+                        "Style": "ResetRed",
+                        "OnPress" : "/SAPAssetManager/Rules/Common/DiscardErrorAction.js",
+                        "TextAlignment" : "center"
+                    }],
+                    "_Type": "Section.Type.ButtonTable"
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable"
+        }],
+    "_Type": "Page",
+    "_Name": "ErrorArchiveDetailsPage"
+}

@@ -1,0 +1,27 @@
+{
+    "_Type": "Action.Type.ODataService.CreateEntity",
+    "Target": {
+        "EntitySet": "S4BusinessPartnerLongTexts",
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "Properties": {
+        "NewTextString": "#Control:LongTextNote/#Value",
+        "TextString": "#Control:LongTextNote/#Value",
+        "TextID": "#Control:ServiceNoteTypesListPicker/#SelectedValue",
+        "LastChangeDate": "/SAPAssetManager/Rules/DateTime/CurrentDateTime.js",
+		"LastChangeTime": "/SAPAssetManager/Rules/DateTime/CurrentTime.js"
+    },
+    "Headers": {
+        "OfflineOData.RemoveAfterUpload": "true"
+    },
+    "OnFailure": "/SAPAssetManager/Actions/Notes/NoteCreateFailureMessage.action",
+    "CreateLinks": [
+        {
+			"Property": "S4BusinessPartner_Nav",
+			"Target": {
+				"EntitySet": "S4BusinessPartners",
+				"ReadLink": "#Control:BusinessPartnerListPicker/#SelectedValue"
+			}
+		}
+    ]
+}

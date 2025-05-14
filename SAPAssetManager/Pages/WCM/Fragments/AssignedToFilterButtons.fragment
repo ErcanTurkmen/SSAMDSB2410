@@ -1,0 +1,10 @@
+{
+    "_Name": "AssignedToFilterButtons",
+    "AllowMultipleSelection": true,
+    "AllowEmptySelection": true,
+    "Caption": "$(L, assignedto)",
+    "_Type": "Control.Type.FormCell.Filter",
+    "IsVisible": "/SAPAssetManager/Rules/WCM/Common/AssignedToButtonFilterVisible.js",
+    "FilterProperty": "/SAPAssetManager/Rules/WCM/Common/AssignedToFilterButtonsKeyValue.js",
+    "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+}

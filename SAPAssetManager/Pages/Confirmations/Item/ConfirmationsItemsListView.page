@@ -1,0 +1,28 @@
+{
+	"Caption": "$(L, confirmation_items)",
+	"Controls": [
+        {
+            "Sections":[
+				{
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Confirmations/ServiceConfirmationItem/ServiceConfirmationItemObjectTableSection.fragment",
+                    "Properties": {
+                        "Footer": {
+                            "Visible": false
+                        },
+                        "Target": {
+                            "QueryOptions": "/SAPAssetManager/Rules/Confirmations/Item/GetConfirmationItemListViewQueryOptions.js"
+                        },
+						"Search": {
+							"Enabled": true
+						}
+                    }
+                }
+			],
+            "_Type" : "Control.Type.SectionedTable",
+            "_Name" : "SectionedTable"
+        }
+    ],
+	"_Name": "ConfirmationsItemsListViewPage",
+	"_Type": "Page"
+}

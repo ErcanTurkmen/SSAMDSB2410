@@ -1,0 +1,40 @@
+{
+    "_Type": "Section.Type.KeyValue",
+    "_Name": "OnlineWorkOrderOperationDetailsSection",
+    "Header": {
+        "Caption": "$(L,details)",
+        "UseTopPadding": "/SAPAssetManager/Rules/WCM/IsNotWCMOperatorClassicLayout.js"
+    },
+    "KeyAndValues": [
+        {
+            "_Name": "Employee.EmployeeName",
+            "KeyName": "$(L,assignedto)",
+            "Value": "/SAPAssetManager/Rules/Supervisor/Assign/WorkOrderAssignedTo.js"
+        },
+        {
+            "_Name": "PlannerGroup",
+            "KeyName": "$(L,planner_group)",
+            "Value": "/SAPAssetManager/Rules/WorkOrders/Details/WorkOrderDetailsPlannerGroup.js"
+        },
+        {
+            "_Name": "MainWorkCenter",
+            "KeyName": "$(L,main_work_center)",
+            "Value": "/SAPAssetManager/Rules/WorkOrders/Details/WorkOrderDetailsMainWorkCenter.js"
+        },
+        {
+            "_Name": "RequestStartDate",
+            "KeyName": "$(L,request_start_date)",
+            "Value": "/SAPAssetManager/Rules/DateTime/RequestStartDate.js"
+        },
+        {
+            "_Name": "DueDate",
+            "KeyName": "$(L,due_date)",
+            "Value": "/SAPAssetManager/Rules/DateTime/DueDate.js"
+        }
+    ],
+    "Target": {
+        "EntitySet": "{@odata.readLink}",
+        "Service" : "/SAPAssetManager/Services/OnlineAssetManager.service",
+        "QueryOptions": "$expand=Partners,Components,Documents,Geometries,LongText,ObjectList,Operations,Sales"
+    }
+}

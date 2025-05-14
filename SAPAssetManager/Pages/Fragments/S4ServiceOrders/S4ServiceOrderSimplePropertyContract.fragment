@@ -1,0 +1,6 @@
+{
+    "KeyName": "$(L, service_contract)",
+    "AccessoryType": "DisclosureIndicator",
+    "OnPress": "/SAPAssetManager/Rules/ServiceOrders/ServiceContracts/ServiceContractDetailsNav.js",
+    "Visible": "/SAPAssetManager/Rules/ServiceOrders/ServiceContracts/IsServiceContractVisible.js"
+}

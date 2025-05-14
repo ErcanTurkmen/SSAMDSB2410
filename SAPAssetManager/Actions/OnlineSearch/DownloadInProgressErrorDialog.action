@@ -1,0 +1,6 @@
+{
+    "_Type": "Action.Type.Message",
+    "Title": "$(L,download_progress)",
+    "Message": "$(L,try_again_after_download_completed)",
+    "OKCaption": "$(L,ok)"
+}

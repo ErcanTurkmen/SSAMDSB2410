@@ -1,0 +1,14 @@
+{
+    "PopoverItems": 
+    [{
+        "Title": "$(L,save)",
+        "OnPress": "/SAPAssetManager/Rules/Documents/DocumentEditorOverwrite.js",
+        "Visible" : true
+    },
+    {
+        "Title": "$(L,save_as)",
+        "OnPress": "/SAPAssetManager/Actions/Documents/DocumentEditorSaveAsNav.action",
+        "Visible" : "/SAPAssetManager/Rules/Documents/IsSaveAsVisible.js"
+    }],
+    "_Type": "Action.Type.PopoverMenu"
+}

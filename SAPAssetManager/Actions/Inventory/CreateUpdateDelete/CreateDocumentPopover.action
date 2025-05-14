@@ -1,0 +1,30 @@
+{
+	"PopoverItems": [
+        {
+            "Title": "$(L, add_goods_issue)",
+            "OnPress": "/SAPAssetManager/Rules/Inventory/Stock/SetAdhocGoodsIssue.js",
+            "Visible": "/SAPAssetManager/Rules/Inventory/Overview/IsGoodsIssueVisible.js"
+        },
+        {
+            "Title": "$(L, add_goods_receipt)",
+            "OnPress": "/SAPAssetManager/Rules/Inventory/Stock/SetAdhocGoodsReceipt.js",
+            "Visible": "/SAPAssetManager/Rules/Inventory/Overview/IsGoodsReceiptVisible.js"
+        },
+        {
+            "Title": "$(L, add_stock_transfer)",
+            "OnPress": "/SAPAssetManager/Rules/Inventory/Stock/SetAdhocStockTransfer.js",
+            "Visible": "/SAPAssetManager/Rules/Inventory/Overview/IsStockTransferVisible.js"
+        },
+        {
+            "Title": "$(L, add_physical_inventory)",
+            "OnPress": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/SetPhysicalInventoryCreate.js",
+            "Visible": "/SAPAssetManager/Rules/Inventory/Overview/IsPhysicalInvVisible.js"
+        },
+        {
+            "Title": "$(L, add_purchase_requisition)",
+            "OnPress": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/AddPurchaseRequisitionNav.js",
+            "Visible": "/SAPAssetManager/Rules/Inventory/Overview/IsPurchaseReqVisible.js"
+        }
+    ],
+	"_Type": "Action.Type.PopoverMenu"
+}

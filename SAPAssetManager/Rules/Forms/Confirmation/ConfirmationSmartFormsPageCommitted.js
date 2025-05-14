@@ -1,0 +1,3 @@
+import SmartFormsConfirmationLibrary from '../SmartFormsConfirmationLibrary';
+
+export default SmartFormsConfirmationLibrary.onSmartFormsConfirmationPageCommitted;

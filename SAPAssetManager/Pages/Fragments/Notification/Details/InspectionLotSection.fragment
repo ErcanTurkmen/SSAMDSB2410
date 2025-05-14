@@ -1,0 +1,24 @@
+{
+    "Header": {
+        "Caption": "$(L,inspection_lot)"
+    },
+    "ObjectCell": {
+        "AccessoryType": "DisclosureIndicator",
+        "Title": "{{#Property:ShortDesc}}",
+        "Subhead": "{{#Property:InspectionLot}}",
+        "Footnote": "/SAPAssetManager/Rules/WorkOrders/InspectionLot/InspectionLotDetailsInspectionEndDate.js",
+        "OnPress": "/SAPAssetManager/Actions/WorkOrders/InspectionLot/InspectionLotDetails.action"
+    },
+    "EmptySection":
+    {
+        "Caption": "$(L, no_inspection_lot_available)"
+    },
+    "Target": {
+        "EntitySet": "{{#Property:@odata.readLink}}/InspectionLot_Nav",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$expand=InspectionPoints_Nav,InspectionChars_Nav,InspValuation_Nav,InspectionCode_Nav,WOHeader_Nav/OrderMobileStatus_Nav"
+    },
+    "Visible": "/SAPAssetManager/Rules/Notifications/LotSectionIsVisible.js",
+    "_Type": "Section.Type.ObjectTable",
+    "_Name": "InspectionLotSection"
+}

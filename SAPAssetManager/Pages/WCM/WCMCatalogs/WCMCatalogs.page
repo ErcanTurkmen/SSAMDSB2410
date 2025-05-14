@@ -1,0 +1,13 @@
+{
+	"Caption": "$(L,wcm_catalogs)",
+	"Controls": [
+		{
+			"Items": "/SAPAssetManager/Rules/WCM/WCMCatalogs/ConstructSafetyJobAnalysisTabPage.js",
+			"Position": "Top",
+			"_Type": "Control.Type.Tabs",
+			"_Name": "TabsControl"
+  		}
+	],
+	"_Name": "WCMCatalogs",
+	"_Type": "Page"
+}

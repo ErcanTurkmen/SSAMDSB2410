@@ -1,0 +1,42 @@
+{
+    "Caption": "$(L,point_details)",
+    "OnLoaded": "/SAPAssetManager/Rules/Measurements/PointDetailsOnPageLoad.js",
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Measurements/PointDataTable.fragment",
+                    "Properties": {
+                        "Target": {
+                            "EntitySet": "MeasurementDocuments",
+                            "Service": "/SAPAssetManager/Services/OnlineAssetManager.service",
+                            "QueryOptions": "$top=10&$filter=Point eq '{{#Property:Point}}'&$orderby=ReadingTimestamp desc"
+                        },
+                        "Footer": {
+                            "AttributeLabel": "/SAPAssetManager/Rules/Measurements/Document/OnlineMeasurementDocsCount.js",
+                            "OnPress": "/SAPAssetManager/Rules/Measurements/Points/OnlineMeasuringPointHistoryListViewNav.js"
+                        }
+                    }
+                },
+                "/SAPAssetManager/Pages/Fragments/Measurements/PointDetailsKeyValue.fragment",
+                "/SAPAssetManager/Pages/Fragments/Measurements/PointCurrentReading.fragment",
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Measurements/PointPrevReading.fragment",
+                    "Properties": {
+                        "Target": {
+                            "EntitySet": "MeasurementDocuments",
+                            "Service": "/SAPAssetManager/Services/OnlineAssetManager.service",
+                            "QueryOptions": "$filter=Point eq '{{#Property:Point}}'&$orderby=ReadingTimestamp desc&$top=1"
+                        }
+                    }
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "OnlineMeasuringPointwithValuationDetailsPage"
+}

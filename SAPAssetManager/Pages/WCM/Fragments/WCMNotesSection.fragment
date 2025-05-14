@@ -1,0 +1,38 @@
+{
+    "Search": {
+        "Enabled": false
+    },
+    "Header": {
+        "Caption": "$(L,notes)"
+ 	},
+    "EmptySection": {
+        "Caption": "$(L,no_notes)"
+    },
+    "ObjectCell": {
+        "PreserveIconStackSpacing": false,
+        "DetailImage": "$(PLT, /SAPAssetManager/Images/DetailImages/Note.png, /SAPAssetManager/Images/DetailImages/Note.android.png)",
+        "Title": "/SAPAssetManager/Rules/WCM/WCMNotes/WCMNoteTypeCaption.js",
+        "Footnote": "{TextString}",
+        "AccessoryType": "DisclosureIndicator",
+        "OnPress": "/SAPAssetManager/Rules/WCM/WCMNotes/WCMNoteDetailsNavFromSection.js"
+    },
+    "Target": {
+        "EntitySet": "/SAPAssetManager/Rules/WCM/WCMNotes/WCMNotesEntitySet.js",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$filter=TextString ne ''"
+    },
+    "MaxItemCount": 2,
+    "Footer": {
+        "Caption": "$(L,see_all)",
+        "AccessoryType": "DisclosureIndicator",
+        "AttributeLabel": "/SAPAssetManager/Rules/WCM/WCMNotes/WCMNotesCount.js",
+        "FooterStyle": "Attribute",
+        "Visible": "/SAPAssetManager/Rules/WCM/WCMNotes/WCMNotesSectionFooterVisible.js",
+        "OnPress": "/SAPAssetManager/Rules/WCM/WCMNotes/WCMNotesListNav.js"
+    },
+    "Visible": "/SAPAssetManager/Rules/Common/IsClassicLayoutDisabled.js",
+    "_Name": "WCMNotesSection",
+    "_Type": "Section.Type.ObjectTable",
+    "DataSubscriptions": "/SAPAssetManager/Rules/WCM/WCMNotes/WCMNotesListDataSubscritions.js"
+}
+

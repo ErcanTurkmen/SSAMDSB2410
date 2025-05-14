@@ -1,0 +1,9 @@
+
+{
+    "_Type": "Control.Type.FormCell.SegmentedControl",
+    "_Name": "ChangeExistingDescriptionSegmented",
+    "Caption": "$(L,change_existing_description)",
+    "Segments": "/SAPAssetManager/Rules/WorkOrders/Operations/CreateUpdate/ChangeExistingDescriptionPickerItems.js",
+    "IsVisible": false,
+    "OnValueChange": "/SAPAssetManager/Rules/WorkOrders/Operations/CreateUpdate/STKExistingPickerOnChanged.js"
+}

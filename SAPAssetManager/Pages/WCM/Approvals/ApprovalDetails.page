@@ -1,0 +1,69 @@
+{
+	"Caption": "/SAPAssetManager/Rules/WCM/Approvals/ApprovalTitle.js",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"DataSubscriptions": ["WCMApprovalProcesses", "WCMApprovalProcessSegments"],
+					"Header": {
+						"Caption": "$(L, 'details')"
+					},
+					"Layout": {
+						"NumberOfColumns": 1
+					},
+					"SimplePropertyCells": [
+						{
+							"SimplePropertyCell": {
+								"KeyName": "$(L, 'description')",
+								"Value": "/SAPAssetManager/Rules/WCM/Approvals/ApprovalTitle.js"
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"KeyName": "$(L, 'category')",
+								"Value": "/SAPAssetManager/Rules/WCM/Approvals/ApprovalSubhead.js"
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"KeyName": "$(L, 'status')",
+								"Value": "/SAPAssetManager/Rules/WCM/Approvals/ApprovalStatus.js"
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"KeyName": "$(L, 'issued_by')",
+								"Value": "/SAPAssetManager/Rules/WCM/Approvals/ApprovalIssuedByPerson.js"
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"KeyName": "$(L, 'issue_date')",
+								"Value": "/SAPAssetManager/Rules/WCM/Approvals/ApprovalIssueDate.js"
+							}
+						}
+					],
+					"_Type": "Section.Type.SimplePropertyCollection"
+				}
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"FioriToolbar": {
+		"_Name": "ApprovalDetailsFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+		"Visible": "/SAPAssetManager/Rules/WCM/Approvals/ApprovalCanBeIssued.js",
+		"Items": [
+            {
+                "_Name": "IssueApproval",
+                "_Type": "FioriToolbarItem.Type.Button",
+                "Title": "$(L, 'issue_approval')",
+                "OnPress": "/SAPAssetManager/Rules/WCM/Approvals/IssueApprovalOnPress.js",
+                "ButtonType": "Primary"
+            }
+		]
+	},
+	"_Name": "ApprovalDetailsPage",
+	"_Type": "Page"
+}

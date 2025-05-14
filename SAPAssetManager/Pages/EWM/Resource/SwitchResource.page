@@ -1,0 +1,42 @@
+{
+    "Caption": "$(L,switch_resource)",
+    "ActionBar": {
+		"Items": [
+			{
+				"Position": "Right",
+				"_Name": "ReleaseResource",
+				"Caption": "$(L,release)",
+				"OnPress": "/SAPAssetManager/Rules/EWM/Resource/OnResourceButtonPress.js",
+                "Visible": "/SAPAssetManager/Rules/EWM/Resource/ResourceReleaseVisible.js"
+			}
+		]
+	},
+    "Controls": [
+        {
+          "Sections": [
+                {
+                 "ObjectHeader": {
+                        "HeadlineText": "/SAPAssetManager/Rules/EWM/Resource/GetResource.js",
+                        "Subhead": "/SAPAssetManager/Rules/EWM/Resource/GetWarehouseNumber.js"
+                    },
+                    "_Name": "SectionObjectHeader0",
+                    "_Type": "Section.Type.ObjectHeader"  
+                }
+            ],
+            "_Name": "SectionedTable",   
+            "_Type": "Control.Type.SectionedTable"
+        },
+        {
+            "Items": [{
+                "_Name": "SwitchResourceTab",
+                "PageToOpen" : "/SAPAssetManager/Pages/EWM/Resource/ResourceList.page",
+                "_Type": "Control.Type.TabItem"
+            }],
+            "Position": "Top",
+            "_Type": "Control.Type.Tabs",
+            "_Name": "TabsControl"
+        }
+    ],
+    "_Name": "SwitchResourcePage",
+    "_Type": "Page"
+}

@@ -1,0 +1,68 @@
+{
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "_Type": "Page",
+    "_Name": "EWMFetchOnlineDocumentsPage",
+    "ActionBar":
+    {
+        "Items":
+        [
+            {
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/CancelButton.fragment",
+                "Properties": {
+                     "OnPress": "/SAPAssetManager/Actions/Page/ClosePage.action"
+                }
+            },   
+            {
+                "Position": "Right",
+                "Text": "/SAPAssetManager/Rules/EWM/Fetch/SetFetchText.js",
+                "OnPress": "/SAPAssetManager/Rules/EWM/Fetch/SetDownloadDocumentsVariable.js"
+            }
+        ]
+    },
+    "Caption":"$(L,app_display_name)",
+    "Controls":
+    [{
+        "Sections":
+        [{
+            "Header":
+            {
+                "UseTopPadding": false
+            },
+            "EmptySection":
+            {
+                "Caption": "$(L,no_documents_found_on_online_search)"
+            },
+            "Selection":
+            {
+                "Mode": "Multiple",
+                "ExitOnLastDeselect": false
+            },
+            "OnSelectionChanged": "/SAPAssetManager/Rules/EWM/Fetch/OnDocumentSelectedOrUnSelected.js",
+            "ObjectCell":
+            {
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/EWM/WarehouseOrderCell.fragment",
+                "Properties": {
+                     "PreserveIconStackSpacing": false,
+                     "Footnote": "/SAPAssetManager/Rules/EWM/WarehouseOrder/GetWarehouseProcessType.js",
+                     "SubstatusText": "/SAPAssetManager/Rules/EWM/WarehouseOrder/GetWarehouseTaskcount.js",
+                     "AccessoryType": null,
+                     "OnPress": null
+                }
+            },
+            "Target":
+            {
+                "EntitySet": "WarehouseOrders",
+                "Service": "/SAPAssetManager/Services/OnlineAssetManager.service",
+                "QueryOptions": "/SAPAssetManager/Rules/EWM/Fetch/EWMQueryOptions.js"
+            },
+            "_Type": "Section.Type.ObjectTable",
+            "_Name" : "OnlineDocumentsListViewSection"
+            }],
+
+            "_Type": "Control.Type.SectionedTable",
+            "_Name" : "SectionedTable"
+        }
+    ]
+}

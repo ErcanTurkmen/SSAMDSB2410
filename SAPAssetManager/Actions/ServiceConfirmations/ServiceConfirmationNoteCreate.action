@@ -1,0 +1,28 @@
+{
+    "_Type": "Action.Type.ODataService.CreateEntity",
+    "Target": {
+        "EntitySet": "S4ServiceConfirmationLongTexts",
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "Properties": {
+        "ObjectID": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/Data/GetServiceConfirmationLocalID.js",
+        "NewTextString": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/Data/GetNoteValue.js",
+        "TextString": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/Data/GetNoteValue.js",
+        "TextID": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/Data/GetNoteType.js",
+        "LastChangeDate": "/SAPAssetManager/Rules/DateTime/CurrentDateTime.js",
+		"LastChangeTime": "/SAPAssetManager/Rules/DateTime/CurrentTime.js"
+    },
+    "Headers": {
+        "OfflineOData.RemoveAfterUpload": "true",
+        "OfflineOData.TransactionID": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/Data/GetServiceConfirmationLocalID.js"
+    },
+    "CreateLinks": [
+        {
+            "Property": "S4ServiceConfirmation_Nav",
+            "Target": {
+                "EntitySet": "S4ServiceConfirmations",
+                "ReadLink": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/GetServiceConfirmationLink.js"
+            }
+        }
+    ]
+}

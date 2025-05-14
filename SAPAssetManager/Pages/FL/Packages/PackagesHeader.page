@@ -1,0 +1,54 @@
+{
+    "Caption": "$(L,header)",
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "KeyAndValues": [
+                        {
+                            "_Name": "DispatchPeriod",
+                            "KeyName": "$(L,fld_dispatch_period)",
+                            "Value": "/SAPAssetManager/Rules/FL/Packages/Details/PackageHeaderDate.js"
+                        },
+                        {
+                            "_Name": "PackagingSourcePlant",
+                            "KeyName": "$(L,fld_packaging_source_plant)",
+                            "Value": "/SAPAssetManager/Rules/FL/Packages/Details/PackageHeaderSrcPlant.js"
+                        },
+                        {
+                            "_Name": "SourcePlant",
+                            "KeyName": "$(L,fld_source_plant)",
+                            "Value": "/SAPAssetManager/Rules/FL/Packages/Details/PackageHeaderPackagingSrcPlant.js"
+                        },
+                        {
+                            "_Name": "PackagingDestPlant",
+                            "KeyName": "$(L,fld_pckg_dest_plant)",
+                            "Value": "/SAPAssetManager/Rules/FL/Packages/Details/PackageHeaderPackagingDestPlant.js"
+                        },
+                        {
+                            "_Name": "ShippingPoint",
+                            "KeyName": "$(L,fld_shipping_point)",
+                            "Value": "$(DV, {ShippingPoint}, '-')"
+                        },
+                        {
+                            "_Name": "ReceivingPoint",
+                            "KeyName": "$(L,fld_receiving_point)",
+                            "Value": "$(DV, {ReceivingPoint}, '-')"
+                        },
+                        {
+                            "_Name": "VoyageNumber",
+                            "KeyName": "$(L,fl_voyage_number)",
+                            "Value": "$(DV, {VoyageNumber}, '-')"
+                        }
+                    ],
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "KeyValueTable"
+                }
+            ],
+            "_Name": "SectionedTable0",
+            "_Type": "Control.Type.SectionedTable"
+        }
+    ],
+    "_Name": "PackagesHeader",
+    "_Type": "Page"
+}

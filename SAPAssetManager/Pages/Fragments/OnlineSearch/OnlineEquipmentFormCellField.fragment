@@ -1,0 +1,9 @@
+{
+    "_Type": "Control.Type.FormCell.SimpleProperty",
+    "_Name": "OnlineEquipControl",
+    "Caption": "$(L,equipment)",
+    "PlaceHolder": "$(L,equipment)",
+    "Value": "{{#Property:HeaderEquipment}} - {{#Property:HeaderEquipmentDesc}}",
+    "Enabled": false,
+    "IsVisible": false
+}

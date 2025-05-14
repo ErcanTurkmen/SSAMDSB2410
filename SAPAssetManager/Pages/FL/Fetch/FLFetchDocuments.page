@@ -1,0 +1,201 @@
+{
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "Items": [
+            {
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/CancelButton.fragment",
+                "Properties": {                  
+                    "OnPress": "/SAPAssetManager/Actions/Page/ClosePage.action"
+                }
+            },
+            {
+                "Position": "Right",
+                "Text": "$(L,fetch)",
+                "OnPress": "/SAPAssetManager/Rules/FL/Search/FLFetchDocumentsWithActivityIndicator.js"
+            }
+        ]
+    },
+    "Caption":"$(L,fetch_documents)",
+    "Controls": [
+        {
+            "Sections": [
+                {
+					"_Name": "FetchDefaultSection",
+					"_Type": "Section.Type.FormCell",
+                    "Controls": [
+                        {
+                            "AllowEmptySelection": false,
+                            "AllowMultipleSelection": false,
+                            "IsPickerDismissedOnSelection": true,
+                            "Caption": "$(L,document_type_label)",
+                            "PickerItems": "/SAPAssetManager/Rules/FL/Fetch/FLDocumentTypes.js",
+                            "Value": "/SAPAssetManager/Rules/FL/Fetch/FLDefaultDocumentTypes.js",
+							"OnValueChange": "/SAPAssetManager/Rules/FL/Fetch/FLDocumentTypesOnValueChanged.js",
+                            "_Name": "DocumentTypeListPicker",
+                            "_Type": "Control.Type.FormCell.ListPicker"
+                        },
+                        {
+                            "_Name": "PlantListPicker",
+                            "_Type": "Control.Type.FormCell.ListPicker",
+                            "Caption": "$(L,to_plant)",
+                            "AllowMultipleSelection": false,
+                            "AllowDefaultValueIfOneItem": true,
+                            "IsPickerDismissedOnSelection" : true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "AllowEmptySelection": false,
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 3,
+                                "Placeholder": "$(L,search)",
+                                "BarcodeScanner": true
+                            },
+                            "Value": "/SAPAssetManager/Rules/FL/Fetch/FLSetDefaultPlant.js",
+                            "PickerItems": {
+                                "DisplayValue": "{{#Property:Plant}} - {{#Property:PlantName}}",
+                                "ReturnValue": "{Plant}",
+                                "Target": {
+                                    "EntitySet": "FldLogsPlants",
+                                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions": "$orderby=Plant"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+					"_Name": "FetchVoyagesSection",
+					"_Type": "Section.Type.FormCell",
+                    "Controls": [
+                        {
+                            "_Type": "Control.Type.FormCell.SimpleProperty",
+                            "_Name": "VoyageNumber",
+                            "AlternateInput": "Barcode",
+                            "Caption":"$(L,fl_voyage_number)"
+                        },
+                        {
+                            "_Name": "VoyageStatus",
+                            "_Type": "Control.Type.FormCell.ListPicker",
+                            "Caption": "$(L,fl_voyage_status)",
+                            "AllowMultipleSelection": false,
+                            "IsPickerDismissedOnSelection": true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 3,
+                                "Placeholder": "$(L,search)",
+                                "BarcodeScanner": true
+                            },
+                            "PickerItems": "/SAPAssetManager/Rules/FL/Fetch/VoyageStatusPickerItems.js"
+                        },
+                        {
+                            "_Name": "ModeOfTransport",
+                            "_Type": "Control.Type.FormCell.ListPicker",
+                            "Caption": "$(L,fl_mode_of_transport)",
+                            "AllowMultipleSelection": false,
+                            "IsPickerDismissedOnSelection": true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 3,
+                                "Placeholder": "$(L,search)",
+                                "BarcodeScanner": true
+                            },
+                            "PickerItems": {
+                                "DisplayValue": "{{#Property:Description}}",
+                                "ReturnValue": "{VoyageTypeCode}",
+                                "Target": {
+                                    "EntitySet": "FldLogsVoyageTypeCodes",
+                                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions": "$orderby=Description"
+                                }
+                            }
+                        },
+                        {
+                            "_Type": "Control.Type.FormCell.Switch",
+                            "_Name": "PADateSwitch",
+                            "Caption":"$(L,planned_arrival_date)",
+                            "Value": false,
+                            "OnValueChange": "/SAPAssetManager/Rules/FL/Voyages/VoyagePADateFilter.js"
+                        },
+                        {
+                            "_Type": "Control.Type.FormCell.DatePicker",
+                            "_Name": "StartDateFilter",
+                            "Caption": "$(L,date_from)",
+                            "Mode": "Date",
+                            "IsVisible": false
+                        },
+                        {
+                            "_Type": "Control.Type.FormCell.DatePicker",
+                            "_Name": "EndDateFilter",
+                            "Caption": "$(L,date_to)",
+                            "Mode": "Date",
+                            "IsVisible": false
+                        },
+                        {
+                            "_Type": "Control.Type.FormCell.SimpleProperty",
+                            "_Name": "ReceivingPoint",
+                            "AlternateInput": "Barcode",
+                            "Caption":"$(L,receiving_point)"
+                        },
+                        {
+                            "_Name": "FromPlant",
+                            "_Type": "Control.Type.FormCell.ListPicker",
+                            "Caption": "$(L,from_plant)",
+                            "AllowMultipleSelection": false,
+                            "IsPickerDismissedOnSelection" : true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 3,
+                                "Placeholder": "$(L,search)",
+                                "BarcodeScanner": true
+                            },
+                            "PickerItems": {
+                                "DisplayValue": "{{#Property:Plant}} - {{#Property:PlantName}}",
+                                "ReturnValue": "{Plant}",
+                                "Target": {
+                                    "EntitySet": "FldLogsPlants",
+                                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions": "$orderby=Plant"
+                                }
+                            }
+                        },
+                        {
+                            "_Type": "Control.Type.FormCell.SimpleProperty",
+                            "_Name": "ShippingPoint",
+                            "AlternateInput": "Barcode",
+                            "Caption":"$(L,fl_shipping_point)"
+                        }
+                    ]
+                },
+                {
+					"_Name": "FetchResetSection",
+					"_Type": "Section.Type.FormCell",
+                    "Controls": [
+                        {
+                            "TextAlignment": "/SAPAssetManager/Rules/Common/Platform/ModalButtonAlign.js",
+                            "ButtonType": "Text",
+                            "Semantic": "Tint",
+                            "Title": "$(L,reset)",
+                            "_Name": "FormCellButton0",
+                            "_Type": "Control.Type.FormCell.Button",
+                            "OnPress": "/SAPAssetManager/Rules/FL/Fetch/FLFetchDocumentsResetFields.js",
+                            "Styles": {
+                                "Button": "FetchResetButton"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "_Name": "SectionedTable",
+            "_Type": "Control.Type.SectionedTable"
+        }
+    ],
+    "_Type":"Page",
+	"_Name":"FLFetchDocuments"
+}

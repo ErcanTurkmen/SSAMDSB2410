@@ -1,0 +1,144 @@
+{
+    "Caption": "/SAPAssetManager/Rules/Inventory/Item/ItemCaption.js",
+    "ActionBar": {
+        "Items": [
+            {
+                "Position": "Right",
+                "Icon": "$(PLT, /SAPAssetManager/Images/edit.png, /SAPAssetManager/Images/edit-accessory.android.png, '', /SAPAssetManager/Images/edit-accessory.android.png)",
+                "IconText": "Edit",
+                "OnPress": "/SAPAssetManager/Rules/Inventory/Item/SetItemEdit.js"
+            },
+            "/SAPAssetManager/Pages/Fragments/SyncButton.fragment"
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "ObjectHeader": {
+                        "HeadlineText": "/SAPAssetManager/Rules/Inventory/Common/GetMaterialName.js",
+                        "Tags": "/SAPAssetManager/Rules/Inventory/Item/ItemTags.js",
+                        "Subhead": "/SAPAssetManager/Rules/Inventory/Item/ItemSubHead.js"
+                    },
+                    "_Type": "Section.Type.ObjectHeader",
+                    "_Name": "ObjectHeaderSectionTable"
+                },
+                {
+                   "_Type": "Section.Type.KeyValue",
+                    "_Name": "ReservationItemProductionOrderComponentDetailsSection1",
+                    "Header": {
+                        "Caption": "$(L,item_details)"
+                    },
+                    "KeyAndValues": [	
+                        {
+                            "KeyName": "$(L,item)",
+                            "Value": "$(DV,{ItemNum},-)"
+                        },
+                        {
+                            "KeyName": "$(L, reservation_item_order)",
+                            "Value": "$(DV,{OrderId},-)"
+                        },
+                        {
+                            "KeyName": "$(L, reservation_item_cost_center)",
+                            "Value": "$(DV,{CostCenter},-)"
+                        },
+                        {   
+                            "KeyName": "$(L, gl_account)",
+                            "Value": "$(DV,{GLAccount},-)"
+                        },
+                        {
+                            "KeyName": "$(L, reservation_item_network)",
+                            "Value": "$(DV,{NetworkActivity},-)"
+                        },
+                        {  
+                            "KeyName": "$(L, reservation_item_wbs_element)",
+                            "Value": "$(DV,{WBSElement},-)"
+                        }
+                    ],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js"
+                },
+                {
+                   "_Type": "Section.Type.KeyValue",
+                    "_Name": "ReservationItemProductionOrderComponentDetailsSection2",
+                    "KeyAndValues": [	
+                        {
+                            "KeyName": "$(L,movement_type)",
+                            "Value": "$(DV,{MovementType},-)"
+                        },
+                        {
+                            "KeyName": "$(L,plant_storage_location)",
+                            "Value": "$(DV,{PLantSLoc},-)"
+                        },
+                        {
+                            "KeyName": "$(L,storage_bin)",
+                            "Value": "$(DV,{StorageBin},-)"
+                        },
+                        { 
+                            "KeyName": "$(L,material)",
+                            "Value": "$(DV,{Material},-)"
+                        },
+                        {
+                            "KeyName": "$(L,material_description)",
+                            "Value": "$(DV,{MaterialDesc},-)"
+                        },
+                        {
+                           "KeyName": "$(L,stock_type)",
+                           "Value": "$(DV,{StockType},-)"
+                        },
+                        {
+                            "KeyName": "$(L,batch)",
+                            "Value": "$(DV,{Batch},-)"
+                        },
+                        {
+                            "KeyName": "$(L,valuation_type)",
+                            "Value": "$(DV,{ValuationType},-)"
+                        }
+                    ],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js"
+                },
+                {
+                   "_Type": "Section.Type.KeyValue",
+                    "_Name": "ReservationItemProductionOrderComponentDetailsSection3",
+                    "KeyAndValues": [	
+                        {
+                            "KeyName": "$(L,requirement_date)",
+                            "Value": "$(DV,'/SAPAssetManager/Rules/Inventory/Item/GetRequirementDate.js','-')"
+                        },
+                        {
+                            "KeyName": "$(L,quantity)",
+                            "Value": "$(DV,{QuantityUOM},-)"
+                        }
+                    ],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js"
+                },
+                {
+                   "_Type": "Section.Type.KeyValue",
+                    "_Name": "ReservationItemProductionOrderComponentDetailsSection4",
+                    "KeyAndValues": [
+                        {
+                            "KeyName": "$(L, goods_recipient)",
+                            "Value": "$(DV,{GoodsRecipient},-)"
+                        },
+                        {
+                            "KeyName": "$(L, unloading_point)",
+                            "Value": "$(DV,{UnloadingPoint},-)"
+                        }
+                    ],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js"
+                },
+                "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsMaterialDataTable.fragment"
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable"
+        }
+    ],
+    "ToolBar": {
+        "Controls":[
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsPreviousItem.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/FlexibleSpaceToolBar.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsNextItem.fragment"
+        ]
+    },
+    "_Name": "ReservationItemProductionOrderComponentDetailsPage",
+    "_Type": "Page"
+}

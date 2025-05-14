@@ -1,0 +1,13 @@
+{
+    "Title": "/SAPAssetManager/Rules/SideDrawer/SideDrawerOperationalItemsCount.js",
+    "OnPress": "/SAPAssetManager/Rules/WCM/OperationalItems/ListView/OperationalItemsListViewNav.js",
+    "_Name": "OperationalItems",
+    "ResetIfPressedWhenActive": true,
+    "Image": "$(PLT,/SAPAssetManager/Images/operationalitems.png,/SAPAssetManager/Images/operationalitems.android.png)",
+        "Styles": {
+        "SectionItemInactive": "$(PLT,SectionItemActive,SideDrawerItemActive)",
+        "SectionItemActive": "$(PLT,SectionItemActive,SideDrawerItemActive)",
+        "SectionItemOnPress": "$(PLT,SectionItemActive,SideDrawerItemActive)"
+    },
+    "Visible": "/SAPAssetManager/Rules/UserFeatures/IsWCMSafetyCertificateEnabled.js"
+}

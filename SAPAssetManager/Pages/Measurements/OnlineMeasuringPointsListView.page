@@ -1,0 +1,23 @@
+{
+    "Caption": "/SAPAssetManager/Rules/Measurements/Points/OnlineMeasuringPointsCaptions.js",
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Measurements/MeasuringPointsObjectTable.fragment",
+                    "Properties": {
+                        "Target": "/SAPAssetManager/Rules/Measurements/Points/OnlineMeasuringPointsTarget.js",
+                        "ObjectCell": {
+                            "OnPress": "/SAPAssetManager/Rules/Measurements/Points/OnlineMeasuringPointDetailsNav.js"
+                        }
+                    }
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable",
+			"_Name" : "SectionedTable"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "OnlineMeasuringPointsListViewPage"
+}

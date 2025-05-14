@@ -1,0 +1,16 @@
+{
+    "AccessoryType": "DisclosureIndicator",
+    "Title": "{ShortText}",
+    "Icons":"/SAPAssetManager/Rules/WCM/SafetyCertificates/SafetyCertificatesIcons.js",
+    "OnPress": "/SAPAssetManager/Rules/WCM/SafetyCertificates/Details/CertificateDetailsNav.js",
+    "PreserveIconStackSpacing": false,
+    "Subhead": "{WCMDocument}",
+    "Footnote": "/SAPAssetManager/Rules/WCM/Common/EquipmentOrFunclocDescriptionOrEmpty.js",
+    "StatusText": "/SAPAssetManager/Rules/WCM/Common/PriorityStatusText.js",
+    "SubstatusText": "$(DV, '/SAPAssetManager/Rules/WCM/SafetyCertificates/Details/SafetyCertificateMobileStatusTextOrEmpty.js', '-')",
+    "Styles":
+    {
+        "StatusText":  "/SAPAssetManager/Rules/Priority/WCMPriorityStatusStyle.js"
+    },
+    "_Type": "Control.Type.ObjectCell"
+}

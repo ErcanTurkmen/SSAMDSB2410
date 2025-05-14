@@ -1,0 +1,8 @@
+{
+    "_Type": "Action.Type.Message",
+    "Title": "$(L, revert_meter)",
+    "Message": "$(L, revert_confirmation_message,{Device_Nav/Device})",
+    "OKCaption": "$(L, revert)",
+    "CancelCaption": "$(L,cancel)",
+    "OnOK": "/SAPAssetManager/Rules/Meter/CreateUpdate/RevertMeter.js"
+}

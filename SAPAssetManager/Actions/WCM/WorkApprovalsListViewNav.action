@@ -1,0 +1,6 @@
+{
+	"_Type": "Action.Type.Navigation",
+    "PageToOpen" : "/SAPAssetManager/Pages/WCM/WorkApprovals/WorkApprovalsListView.page",
+    "ShowActivityIndicator" : true,
+    "PageMetadata": "/SAPAssetManager/Rules/WCM/WorkApprovals/List/WorkApprovalsPageMetadata.js"
+}

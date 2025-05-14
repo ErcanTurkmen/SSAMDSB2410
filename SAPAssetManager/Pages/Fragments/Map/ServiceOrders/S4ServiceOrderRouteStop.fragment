@@ -1,0 +1,74 @@
+{
+    "Type": "RouteStop",
+    "Title": "$(L,fow_dl_service_orders)",
+    "Legend": "ServiceOrder",
+    "Enable": true,
+    "Target": {
+        "EntitySet": "S4ServiceOrders",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "/SAPAssetManager/Rules/Maps/S4MapQueryOptions.js",
+        "Properties": [],
+        "KeyProperties": []
+    },
+    "ObjectScheme": {
+        "Geometry": "/SAPAssetManager/Rules/Maps/AddressMapValue.js",
+        "Layer": "RouteStop",
+        "Properties": {
+            "ID": "/SAPAssetManager/Rules/WorkOrders/WorkOrderRouteIDStopID.js",
+            "RouteID": "/SAPAssetManager/Rules/WorkOrders/WorkOrderRouteID.js",
+            "StopID": "{ObjectID}",
+            "Priority": "{Priority}",
+            "Title": "{Description}",
+            "Subhead": "$(L,order_x,{ObjectID})",
+            "SubstatusText": "/SAPAssetManager/Rules/Maps/PrioritySubstatusText.js",
+            "StatusImage": "/SAPAssetManager/Rules/Maps/PriorityBadge.js",
+            "Tags": [
+                "/SAPAssetManager/Rules/Maps/MapWorkOrderStatus.js",
+                "/SAPAssetManager/Rules/Maps/MapWorkOrderDueDate.js"
+            ],
+            "Description": "",
+            "DateProperties": {
+                "DueDate": "{DueBy}",
+                "DateFormat": "yyyy-MM-dd"
+            },
+            "Directions": {
+                "Enabled": "/SAPAssetManager/Rules/Maps/DirectionsButton/IsDirectionsButtonEnabled.js",
+                "ButtonText": "$(L, map_info_panel_directions)"
+            }
+        },
+        "Actions": [
+            {
+                "Title": "$(L, add_service_order)",
+                "Icon": "ActionAdd",
+                "Type": "Create",
+                "CallbackInfo": {
+                    "Action": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderCreateNav.js",
+                    "Target": {
+                        "EntitySet": "S4ServiceOrders",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "",
+                        "Properties": [],
+                        "KeyProperties": []
+                    }
+                }
+            },
+            {
+                "Title": "$(L, edit_service_order)",
+                "Icon": "ActionEdit",
+                "Type": "Update",
+                "IsVisible": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/SericeOrderEditEnabled.js",
+                "CallbackInfo": {
+                    "Action": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/SericeOrderUpdateNav.js",
+                    "Target": {
+                        "EntitySet": "S4ServiceOrders",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "$filter=ObjectID eq '{ObjectID}'",
+                        "Properties": [],
+                        "KeyProperties": []
+                    }
+                }
+            }
+        ],
+        "Symbol": "/SAPAssetManager/Pages/Fragments/Map/WorkOrders/WorkOrderSymbol.fragment"
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "ObjectHeader": {
+        "HeadlineText": "/SAPAssetManager/Rules/WorkOrders/WorkOrderDescription.js",
+        "Tags": "/SAPAssetManager/Rules/WorkOrders/Details/WorkOrderDetailsObjectHeaderTags.js",
+        "BodyText": "/SAPAssetManager/Rules/WorkOrders/Header/WorkOrderHeaderEquipmentDescription.js",
+        "Footnote":  "/SAPAssetManager/Rules/WorkOrders/Header/WorkOrderHeaderFunctionLocationDescription.js",
+        "StatusImage": "/SAPAssetManager/Rules/Common/ChangeSet/ChangeStatusIconRule.js",
+        "SubstatusText": "/SAPAssetManager/Rules/WorkOrders/WorkOrderPriorityFormat.js",
+        "Styles": {
+            "KPITintColor": "ObjectHeaderKPITintColor",
+            "KPICaptionStyle": "ObjectHeaderKPICaption",
+            "SubstatusText":  "/SAPAssetManager/Rules/Priority/WOPriorityStatusStyle.js"
+        },
+        "Target": {
+            "EntitySet": "{@odata.readLink}",
+            "Service": "/SAPAssetManager/Services/AssetManager.service",
+            "QueryOptions": "$expand=OrderMobileStatus_Nav,Equipment,FunctionalLocation,Equipment/MeasuringPoints,Equipment/MeasuringPoints/MeasurementDocs,MarkedJob,WOPriority,UserTimeEntry_Nav&$orderby=OrderId,ObjectKey,Priority"
+        }
+    },
+    "_Type": "Section.Type.ObjectHeader",
+    "_Name": "ObjectHeaderSectionTable",
+    "DataSubscriptions": ["PMMobileStatuses","Confirmations", "MyWorkOrderOperations", "MeasurementDocuments","UserPreferences"]
+}

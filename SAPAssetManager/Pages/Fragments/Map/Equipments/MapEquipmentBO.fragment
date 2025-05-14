@@ -1,0 +1,141 @@
+{
+    "Type": "Equipment",
+    "Title": "$(L, dl_equip)",
+    "Legend": "IconEquipment",
+    "Target": {
+        "EntitySet": "MyEquipments",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$expand=EquipGeometries/Geometry&$filter=EquipGeometries/any(eg:sap.entityexists(eg/Geometry)) and sap.entityexists(WorkOrderHeader)",
+        "Properties": [],
+        "KeyProperties": []
+    },
+    "Enable": true,
+    "Actions": [
+        {
+            "Title": "$(L, action_view_equip)",
+            "Icon": "ActionView",
+            "Type": "View",
+            "CallbackInfo": {
+                "Action": "/SAPAssetManager/Actions/Equipment/EquipmentDetailsNav.action",
+                "Target": {
+                    "EntitySet": "MyEquipments",
+                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                    "QueryOptions": "$filter=EquipId eq '{EquipId}'&$expand=MeasuringPoints,MeasuringPoints/MeasurementDocs,EquipDocuments,WorkOrderHeader,FunctionalLocation,SystemStatuses_Nav/SystemStatus_Nav,UserStatuses_Nav/UserStatus_Nav",
+                    "Properties": [],
+                    "KeyProperties": []
+                }
+            }
+        },
+        {
+            "Title": "$(L, take_reading)",
+            "Icon": "ActionAdd",
+            "Type": "View",
+            "IsVisible": "/SAPAssetManager/Rules/Equipment/EquipmentTakeReadingIsVisible.js",
+            "CallbackInfo": {
+                "Action": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointsDataEntryNavWrapper.js",
+                "Target": {
+                    "EntitySet": "MyEquipments",
+                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                    "QueryOptions": "$filter=EquipId eq '{EquipId}'&$expand=MeasuringPoints,MeasuringPoints/MeasurementDocs,EquipDocuments,WorkOrderHeader,FunctionalLocation",
+                    "Properties": [],
+                    "KeyProperties": []
+                }
+            }
+        },
+        {
+            "Title": "$(L, add_workorder)",
+            "Icon": "ActionAdd",
+            "Type": "View",
+            "IsVisible": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/IsWorkOrderAllowedToCreateFromMap.js",
+            "CallbackInfo": {
+                "Action": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/WorkOrderCreateNav.js",
+                "Target": {
+                    "EntitySet": "MyEquipments",
+                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                    "QueryOptions": "$filter=EquipId eq '{EquipId}'",
+                    "Properties": [],
+                    "KeyProperties": []
+                }
+            }
+        },
+        {
+            "Title": "$(L, add_notification)",
+            "Icon": "ActionAdd",
+            "Type": "View",
+            "IsVisible": "/SAPAssetManager/Rules/UserAuthorizations/Notifications/EnableNotificationCreate.js",
+            "CallbackInfo": {
+                "Action": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateChangeSetNav.js",
+                "Target": {
+                    "EntitySet": "MyEquipments",
+                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                    "QueryOptions": "$filter=EquipId eq '{EquipId}'",
+                    "Properties": [],
+                    "KeyProperties": []
+                }
+            }
+        },
+        {
+            "Title": "$(L, action_edit_geometry)",
+            "Icon": "ActionEdit",
+            "Type": "Update",
+            "IsVisible": "/SAPAssetManager/Rules/Maps/IsBusinessObjectLocal.js",
+            "CallbackInfo": {
+                "Action": "/SAPAssetManager/Rules/Maps/MapEquipmentUpdate.js",
+                "Target": {
+                    "EntitySet": "MyEquipments",
+                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                    "QueryOptions": "$filter=EquipId eq '{EquipId}'",
+                    "Properties": [],
+                    "KeyProperties": []
+                }
+            }
+        },
+        {
+            "Title": "$(L, action_delete_geometry)",
+            "Icon": "ActionEdit",
+            "Type": "Update",
+            "IsVisible": "/SAPAssetManager/Rules/Maps/IsBusinessObjectLocal.js",
+            "CallbackInfo": {
+                "Action": "/SAPAssetManager/Rules/Equipment/CreateUpdate/EquipmentDeleteGeometry.js",
+                "Target": {
+                    "EntitySet": "MyEquipments",
+                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                    "QueryOptions": "$filter=EquipId eq '{EquipId}'",
+                    "Properties": [],
+                    "KeyProperties": []
+                }
+            }
+        }
+    ],
+    "ObjectScheme": {
+        "Geometry": "EquipGeometries/Geometry/GeometryValue",
+        "Layer": "Equipment",
+        "Properties": {
+            "ID": "{EquipId}",
+            "Title": "{EquipDesc}",
+            "Subhead": "$(L, equipment_x, {EquipId})",
+            "Tags": [
+                "{EquipType}",
+                "{EquipCategory}"
+            ],
+            "BodyText": "/SAPAssetManager/Rules/Maps/MapEquipWorkCenter.js",
+            "Directions": {
+                "Enabled": "/SAPAssetManager/Rules/Maps/DirectionsButton/IsDirectionsButtonEnabled.js",
+                "ButtonText": "$(L, map_info_panel_directions)"
+            }
+        },
+        "ObjectFilter": {
+            "QueryOptions": "$filter=EquipId eq '{EquipId}'"
+        },
+        "Symbol": {
+            "marker": "/SAPAssetManager/Rules/Maps/Icons/EquipmentIcon.js",
+            "lineColor": "A100C2",
+            "fillColor": "A100C233",
+            "lineWidth": 2,
+            "onSelect": {
+                "marker": "/SAPAssetManager/Rules/Maps/Icons/SelectedEquipmentIcon.js",
+                "lineWidth": 4
+            }
+        }
+    }
+}

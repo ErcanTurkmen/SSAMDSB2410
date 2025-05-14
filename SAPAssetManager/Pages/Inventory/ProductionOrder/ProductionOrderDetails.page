@@ -1,0 +1,62 @@
+{
+	"Caption": "$(L, production_order_label)",
+	"ActionBar": {
+		"Items": [
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment"
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"ObjectHeader": {
+						"DetailImageIsCircular": false,
+						"PreserveIconStackSpacing": false,
+						"HeadlineText": "{OrderId}"
+					},
+					"_Name": "SectionObjectHeader",
+					"_Type": "Section.Type.ObjectHeader"
+				}
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		},
+		{
+			"Items": [{
+				"_Name": "ComponentsListTab",
+				"Caption": "$(L, components)",
+				"PageToOpen" : "/SAPAssetManager/Pages/Inventory/ProductionOrder/ProductionOrderComponentsList.page",
+				"_Type": "Control.Type.TabItem"
+			},
+			{
+				"_Name": "ItemsListTab",
+				"Caption": "$(L, items)",
+				"PageToOpen" : "/SAPAssetManager/Pages/Inventory/ProductionOrder/ProductionOrderItemsList.page",
+				"_Type": "Control.Type.TabItem"
+			},
+			{
+				"_Name": "MaterialDocumentsListTab",
+				"Caption": "$(L, material_list_title_no_count)",
+				"PageToOpen" : "/SAPAssetManager/Pages/Inventory/PurchaseOrder/POMaterialDocItemsList.page",
+				"_Type": "Control.Type.TabItem"
+
+			},
+			{
+				"_Name": "ProductionOrderHeaderTab",
+				"Caption": "$(L, prod_ord_header)",
+				"PageToOpen" : "/SAPAssetManager/Pages/Inventory/ProductionOrder/ProductionOrderHeader.page",
+				"PageMetadata": "/SAPAssetManager/Rules/Inventory/ProductionOrderHeaderPageMetadata.js",
+				"_Type": "Control.Type.TabItem"
+
+			}],
+			"Position": "Top",
+			"_Type": "Control.Type.Tabs",
+			"_Name": "TabsControl"
+  		}
+	],
+	"DataSubscriptions": ["ProductionOrderHeaders", "MaterialDocItems","MaterialDocuments","ProductionOrderItems","ProductionOrderComponents","ProductionOrderTexts"],
+	"OnLoaded": "/SAPAssetManager/Rules/Inventory/Common/RefreshSoftInputModeConfig.js",
+	"OnReturning": "/SAPAssetManager/Rules/Inventory/ProductionOrder/ProductionOrderDetailsPageOnReturn.js",
+	"_Name": "ProductionOrderDetails",
+	"_Type": "Page"
+}

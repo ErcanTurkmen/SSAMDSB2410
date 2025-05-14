@@ -1,0 +1,58 @@
+{ 
+"Caption": "$(L,res_header)",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"KeyAndValues": [
+                        {
+                            "_Name": "ReservationDate",
+                            "KeyName": "$(L,reservation_date)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/Common/GetDocumentDateForInventoryHeader.js"
+                        },
+                        {
+                            "_Name": "DocumentStatus",
+                            "KeyName": "$(L,status)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/Reservation/GetReservationStatus.js"
+                        },
+                        {
+                            "_Name": "ReservationItem.MovementType",
+                            "KeyName": "$(L,movement_type)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/Reservation/GetMovType.js"
+                        },
+                        {
+                            "_Name": "CostCenter",
+                            "KeyName": "$(L,cost_center)",
+                            "Value": "{CostCenter}"
+                        },
+                        {
+                            "_Name": "WBSElement",
+                            "KeyName": "$(L,project)",
+                            "Value": "{WBSElement}"
+                        },
+                        {
+                            "_Name": "OrderId",
+                            "KeyName": "$(L,order_id)",
+                            "Value": "{OrderId}"
+                        },
+                        {
+                            "_Name": "Network",
+                            "KeyName": "$(L,reservation_item_network)",
+                            "Value": "{Network}"
+                        }	
+				],
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "KeyValueTable"
+				}														
+			],
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+    ],        
+"_Name": "ReservationHeaderPage",
+"_Type": "Page"
+}

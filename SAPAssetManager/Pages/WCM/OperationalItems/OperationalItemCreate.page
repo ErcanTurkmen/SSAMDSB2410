@@ -1,0 +1,284 @@
+{
+	"Caption": "$(L, add_operational_item)",
+	"OnActivityBackPressed": "/SAPAssetManager/Rules/WCM/OperationalItems/Create/AndroidBackButtonPressed.js",
+	"ActionBar": {
+		"Items": [
+			{
+				"Position": "Left",
+				"SystemItem": "Cancel",
+				"Caption": "$(L,cancel)",
+				"OnPress": "/SAPAssetManager/Rules/WCM/OperationalItems/Create/CancelPressed.js"
+			},
+			{
+				"Position": "Right",
+				"SystemItem": "$(PLT,'Done','', '','Done')",
+				"Text": "/SAPAssetManager/Rules/Common/Platform/DoneText.js",
+				"OnPress": "/SAPAssetManager/Rules/WCM/OperationalItems/Create/OperationalItemCreate.js"
+			}
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"_Type":"Section.Type.FormCell",
+					"_Name": "FormCellSection",
+					"Controls": [
+						{
+							"_Type": "Control.Type.FormCell.SegmentedControl",
+							"_Name": "ItemCategoryControl",
+							"Caption": "$(L,item_category) *",
+							"Segments": "/SAPAssetManager/Rules/WCM/OperationalItems/Create/ItemCategoryValues.js",
+							"OnValueChange": "/SAPAssetManager/Rules/WCM/OperationalItems/Create/ItemCategoryControlChanged.js",
+							"Value": "$(DV,{item.ItemCategoryCC}, '')"
+						},
+						{
+							"_Type": "Control.Type.FormCell.ListPicker",
+							"_Name": "TechnicalObjectControl",
+							"Caption": "$(L,wcm_technical_object) *",
+							"IsVisible": "{isEdit}",
+							"AllowMultipleSelection": false,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": true,
+							"Search": {
+								"Enabled": true,
+								"Delay": 500,
+								"MinimumCharacterThreshold": 3,
+								"Placeholder": "$(L,search)",
+								"BarcodeScanner": true
+							},
+							"PickerItems": {
+								"DisplayValue": "{EquipDesc} ({EquipId})",
+								"ReturnValue": "{EquipId}",
+								"Target": {
+									"EntitySet": "MyEquipments",
+									"Service": "/SAPAssetManager/Services/AssetManager.service",
+									"QueryOptions": "$orderby=EquipDesc"
+								}
+							},
+							"OnValueChange": "/SAPAssetManager/Rules/WCM/OperationalItems/Create/TechnicalObjectControlChanged.js",
+							"Value": "$(DV,{item.TechObject}, '')"
+						},
+						{
+							"_Type": "Control.Type.FormCell.SimpleProperty",
+							"_Name": "CommentDescriptionControl",
+							"Caption": "$(L,description) *",
+							"PlaceHolder": "$(L,description)",
+							"IsVisible": "{isEdit}",
+							"OnValueChange": "/SAPAssetManager/Rules/WCM/OperationalItems/Create/ValidateControlOnChange.js",
+							"Value": "$(DV,{item.ShortText}, '')"
+						},
+						{
+							"_Type": "Control.Type.FormCell.SimpleProperty",
+							"_Name": "CommentTaggingSequenceNote",
+							"Caption": "$(L,tag_sequence)",
+							"PlaceHolder": "$(L,tag_sequence)",
+							"IsVisible": "{isEdit}",
+							"KeyboardType": "Number",
+							"OnValueChange": "/SAPAssetManager/Rules/WCM/OperationalItems/Create/ValidateControlOnChange.js",
+							"Value": "$(DV,{item.TagSequence}, '')"
+						},
+						{
+							"_Type": "Control.Type.FormCell.SimpleProperty",
+							"_Name": "CommentUntaggingSequenceNote",
+							"Caption": "$(L,untag_sequence)",
+							"PlaceHolder": "$(L,untag_sequence)",
+							"IsVisible": "{isEdit}",
+							"KeyboardType": "Number",
+							"OnValueChange": "/SAPAssetManager/Rules/WCM/OperationalItems/Create/ValidateControlOnChange.js",
+							"Value": "$(DV,{item.UntSequence}, '')"
+						},
+						{
+							"_Type": "Control.Type.FormCell.SimpleProperty",
+							"_Name": "WOMasterDataTechnicalObjectNameControl",
+							"Caption": "$(L,wcm_technical_object_name) *",
+							"PlaceHolder": "$(L,wcm_technical_object_name)",
+							"IsVisible": "{isEdit}",
+							"OnValueChange": "/SAPAssetManager/Rules/WCM/OperationalItems/Create/WOMasterDataTechnicalObjectNameControlChange.js",
+							"Value": "$(DV,{item.TechObject}, '')"
+						},
+						{
+							"_Type": "Control.Type.FormCell.SimpleProperty",
+							"_Name": "SwitchingLocationControl",
+							"Caption": "$(L,switching_location)",
+							"PlaceHolder": "$(L,switching_location)",
+							"IsVisible": "{isEdit}",
+							"OnValueChange": "/SAPAssetManager/Rules/WCM/OperationalItems/Create/ValidateControlOnChange.js",
+							"Value": "$(DV,{item.SwitchingLoc}, '')"
+						},
+						{
+							"_Type": "Control.Type.FormCell.SimpleProperty",
+							"_Name": "PhysicalLocationControl",
+							"Caption": "$(L,physical_location)",
+							"PlaceHolder": "$(L,physical_location)",
+							"IsVisible": "{isEdit}",
+							"OnValueChange": "/SAPAssetManager/Rules/WCM/OperationalItems/Create/ValidateControlOnChange.js",
+							"Value": "$(DV,{item.Location}, '')"
+						}
+					]
+				},
+				{
+					"_Type":"Section.Type.FormCell",
+					"_Name": "OperationalGroupFormCellSection",
+					"Visible": "{isEdit}",
+					"Controls": [
+						{
+							"_Type": "Control.Type.FormCell.SegmentedControl",
+							"_Name": "OperationalGroupControl",
+							"Caption": "$(L,operational_group) *",
+							"Segments": "/SAPAssetManager/Rules/WCM/OperationalItems/Create/OperationalGroupControlValues.js",
+							"OnValueChange": "/SAPAssetManager/Rules/WCM/OperationalItems/Create/OperationalGroupControlChanged.js",
+							"Value": "$(DV,{item.OpGroup}, '')"
+						}
+					]
+				},
+				{
+					"_Type":"Section.Type.FormCell",
+					"_Name": "TaggingConditionSection",
+					"Visible": "{isEdit}",
+					"Controls": [
+						{
+							"_Type": "Control.Type.FormCell.ListPicker",
+							"_Name": "TaggingConditionPicker",
+							"Caption": "$(L,tag_condition) *",
+							"AllowMultipleSelection": false,
+							"AllowEmptySelection": false,
+							"IsPickerDismissedOnSelection": true,
+							"PickerItems": "/SAPAssetManager/Rules/WCM/OperationalItems/Create/TaggingConditionPickerItems.js",
+							"OnValueChange": "/SAPAssetManager/Rules/WCM/OperationalItems/Create/TaggingConditionPickerChanged.js",
+							"Value": "$(DV,{item.TaggingCond}, '')"
+						},
+						{
+							"_Type": "Control.Type.FormCell.ListPicker",
+							"_Name": "TaggingTypeControl",
+							"Caption": "$(L, tag_type)",
+							"AllowMultipleSelection": false,
+							"AllowEmptySelection": false,
+							"IsPickerDismissedOnSelection": true,
+							"IsEditable": false,
+							"IsVisible": false,
+							"PickerItems": "/SAPAssetManager/Rules/WCM/OperationalItems/Create/TagUntagConditionTypeValues.js",
+							"Value": "$(DV,{item.TaggingType}, '')"
+						},
+						{
+							"_Type": "Control.Type.FormCell.SimpleProperty",
+							"_Name": "TaggingSequenceNote",
+							"Caption": "$(L,tag_sequence)",
+							"PlaceHolder": "$(L,tag_sequence)",
+							"KeyboardType": "Number",
+							"OnValueChange": "/SAPAssetManager/Rules/WCM/OperationalItems/Create/ValidateControlOnChange.js",
+							"Value": "$(DV,{item.TagSequence}, '')"
+						},
+						{
+							"_Type": "Control.Type.FormCell.Note",
+							"_Name": "TaggingCommentNote",
+							"Caption": "$(L,tagging_comment)",
+							"MinNumberOfLines": 2,
+							"PlaceHolder": "$(L,tagging_comment)",
+							"OnValueChange": "/SAPAssetManager/Rules/WCM/OperationalItems/Create/ValidateControlOnChange.js",
+							"Value": "$(DV,{item.TaggingComment}, '')"
+						},
+						{
+							"_Type": "Control.Type.FormCell.Switch",
+							"_Name": "TagRequiredSlider",
+							"Caption": "$(L,tag_required)",
+							"IsEditable": false,
+							"Value": "$(DV,{item.TagRequired}, '')"
+						},
+						{
+							"_Type": "Control.Type.FormCell.SimpleProperty",
+							"_Name": "LockNote",
+							"Caption": "$(L,lock)",
+							"PlaceHolder": "$(L,lock)",
+							"OnValueChange": "/SAPAssetManager/Rules/WCM/OperationalItems/Create/ValidateControlOnChange.js",
+							"Value": "$(DV,{item.LockNumber}, '')"
+						}
+					]
+				},
+				{
+					"_Type":"Section.Type.FormCell",
+					"_Name": "UntaggingConditionSection",
+					"Visible": "{isEdit}",
+					"Controls": [
+						{
+							"_Type": "Control.Type.FormCell.ListPicker",
+							"_Name": "UntaggingConditionPicker",
+							"Caption": "$(L,untag_condition)",
+							"AllowMultipleSelection": false,
+							"AllowEmptySelection": false,
+							"IsPickerDismissedOnSelection": true,
+							"IsEditable": false,
+							"PickerItems": [],
+							"Value": "$(DV,{item.UntagCond}, '')"
+						},
+						{
+							"_Type": "Control.Type.FormCell.ListPicker",
+							"_Name": "UntaggingTypeControl",
+							"Caption": "$(L, untag_type)",
+							"AllowMultipleSelection": false,
+							"AllowEmptySelection": false,
+							"IsPickerDismissedOnSelection": true,
+							"IsEditable": false,
+							"IsVisible": false,
+							"PickerItems": "/SAPAssetManager/Rules/WCM/OperationalItems/Create/TagUntagConditionTypeValues.js",
+							"Value": "$(DV,{item.UntaggingType}, '')"
+						},
+						{
+							"_Type": "Control.Type.FormCell.SimpleProperty",
+							"_Name": "UntaggingSequenceNote",
+							"Caption": "$(L,untag_sequence)",
+							"PlaceHolder": "$(L,untag_sequence)",
+							"KeyboardType": "Number",
+							"OnValueChange": "/SAPAssetManager/Rules/WCM/OperationalItems/Create/ValidateControlOnChange.js",
+							"Value": "$(DV,{item.UntSequence}, '')"
+						},
+						{
+							"_Type": "Control.Type.FormCell.Note",
+							"_Name": "UntaggingCommentNote",
+							"Caption": "$(L,untagging_comment)",
+							"PlaceHolder": "$(L,untagging_comment)",
+							"MinNumberOfLines": 2,
+							"OnValueChange": "/SAPAssetManager/Rules/WCM/OperationalItems/Create/ValidateControlOnChange.js",
+							"Value": "$(DV,{item.UntagComment}, '')"
+						}
+					]
+				},
+				{
+					"_Type":"Section.Type.FormCell",
+					"_Name": "BlockingSection",
+					"Visible": "{isEdit}",
+					"Controls": [
+						{
+							"_Type": "Control.Type.FormCell.ListPicker",
+							"_Name": "BlockingTypePicker",
+							"Caption": "$(L,blocking_type)",
+							"AllowMultipleSelection": false,
+							"AllowEmptySelection": true,
+							"IsPickerDismissedOnSelection": true,
+							"PickerItems": {
+								"DisplayValue": "{BlockingType} - {BlockingTypeText}",
+								"ReturnValue": "{BlockingType}",
+								"Target": {
+									"EntitySet": "WCMPhysicalBlockingTypes",
+									"Service": "/SAPAssetManager/Services/AssetManager.service",
+									"QueryOptions": "$filter=PlanningPlant eq '{{#Property:PlanningPlant}}'&$orderby=BlockingType"
+								}
+							},
+							"Value": "$(DV,{item.BlockingType}, '')"
+						},
+						{
+							"_Type": "Control.Type.FormCell.Switch",
+							"_Name": "PhysicalBlockingRequiredSwitch",
+							"Caption": "$(L,phys_blocking_req)",
+							"Value": "$(DV,{item.PhysBlocking}, '')"
+						}
+					]
+				}
+			],
+			"_Name": "FormCellContainer",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"_Name": "OperationalItemCreate",
+	"_Type": "Page"
+}

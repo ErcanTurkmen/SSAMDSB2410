@@ -1,0 +1,28 @@
+{
+    "Geometry": "WOGeometries/Geometry/GeometryValue",
+    "Layer": "Job",
+    "Properties": {
+        "ID": "{OrderId}",
+        "Priority": "{Priority}",
+        "Title": "/SAPAssetManager/Rules/WorkOrders/WorkOrderDescription.js",
+        "Subhead": "$(L,workorder_x,{OrderId})",
+        "StatusImage": "/SAPAssetManager/Rules/Maps/PriorityBadge.js",
+        "SubstatusText": "/SAPAssetManager/Rules/Maps/PrioritySubstatusText.js",
+        "Tags": [
+            "{OrderType}",
+            "/SAPAssetManager/Rules/Maps/MapWorkOrderStatus.js",
+            "/SAPAssetManager/Rules/Maps/MapWorkOrderDueDate.js"
+        ],
+        "BodyText": "/SAPAssetManager/Rules/Maps/MapWorkOrderWorkCenter.js",
+        "Footnote": "/SAPAssetManager/Rules/Maps/MapWorkOrderAddress.js",
+        "DateProperties": {
+            "DueDate": "{DueDate}",
+            "DateFormat": "yyyy-MM-dd"
+        },
+        "Directions": {
+            "Enabled": "/SAPAssetManager/Rules/Maps/DirectionsButton/IsDirectionsButtonEnabled.js",
+            "ButtonText": "$(L, map_info_panel_directions)"
+        }
+    },
+    "Symbol": "/SAPAssetManager/Pages/Fragments/Map/WorkOrders/WorkOrderSymbol.fragment"
+}

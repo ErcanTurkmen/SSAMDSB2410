@@ -1,0 +1,9 @@
+{
+   "_Type": "Control.Type.FormCell.Note",
+   "_Name": "DescriptionNote",
+   "IsAutoResizing": true,
+   "PlaceHolder": "$(L,description)*",
+   "Caption": "$(L,description)*",
+   "Value": "{Description}",
+   "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js"                        
+}

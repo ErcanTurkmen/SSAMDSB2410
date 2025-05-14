@@ -1,0 +1,5 @@
+{
+	"_Type": "Action.Type.Filter",
+	"PageToOpen": "/SAPAssetManager/Pages/OnlineSearch/OnlineSearchCriteriaWorkOrders.page",
+	"Filterable": "#Page:OnlineSearchWorkOrdersList/#Control:SectionedTable"
+}

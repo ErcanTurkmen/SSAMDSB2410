@@ -1,0 +1,5 @@
+{
+	"PageToOpen": "/SAPAssetManager/Pages/Inventory/PurchaseOrder/PurchaseOrderItemDetails.page",
+	"_Type": "Action.Type.Navigation",
+	"PageMetadata": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/PurchaseOrderItemDetailsMetadata.js"
+}

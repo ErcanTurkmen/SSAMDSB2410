@@ -1,0 +1,14 @@
+{
+	"PopoverItems": [
+		{
+			"Title": "$(L, add_notification)",
+			"Visible": "/SAPAssetManager/Rules/UserAuthorizations/Notifications/EnableNotificationCreate.js",
+			"OnPress": "/SAPAssetManager/Rules/WCM/QAB/WCMQABCreateNotification.js"
+		},
+		{
+			"Title": "$(L, issue_approvals)",
+			"OnPress": "/SAPAssetManager/Actions/WCM/Approvals/ApprovalsListViewNav.action"
+		}
+	],
+	"_Type": "Action.Type.PopoverMenu"
+}

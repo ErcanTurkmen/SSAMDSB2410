@@ -1,0 +1,56 @@
+{
+	"Caption": "$(L,ibd_detail_title)",
+	"ActionBar": {
+		"Items": [
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment",
+			{
+				"Position": "Right",
+				"_Name": "AutoSync",
+				"Caption": "$(L,sync)",
+				"IconText": "SyncIcon",
+				"Icon": "$(PLT, /SAPAssetManager/Images/auto-sync.pdf, /SAPAssetManager/Images/auto-sync.android.png, '', /SAPAssetManager/Images/auto-sync.windows.png)",
+				"OnPress": "/SAPAssetManager/Rules/ApplicationEvents/ApplicationOnSync.js",
+				"Visible": "/SAPAssetManager/Rules/Sync/IsAutoSyncInProgress.js"
+			}
+		]
+	},
+	"Controls": [ 
+		{
+			"Sections": [
+				{
+					"ObjectHeader": {
+						"DetailImageIsCircular": false,
+						"PreserveIconStackSpacing": false,
+						"HeadlineText": "{DeliveryNum}"
+					},
+					"_Name": "SectionObjectHeader",
+					"_Type": "Section.Type.ObjectHeader"
+				}],
+		"_Name": "SectionedTable",
+        "_Type": "Control.Type.SectionedTable"
+        },
+		{
+			"Items": [{
+				"_Name": "AllDocumentsListTab",
+				"Caption": "Items",
+				"PageToOpen" : "/SAPAssetManager/Pages/Inventory/Inbound/InboundDeliveryDetail.page",
+				"_Type": "Control.Type.TabItem"
+			},
+			{ 
+				"_Name": "IBDHeader", 
+				"Caption": "Header",
+				"PageMetadata": "/SAPAssetManager/Rules/Inventory/InboundDeliveryHeaderPageMetadata.js",
+				"PageToOpen" : "/SAPAssetManager/Pages/Inventory/Inbound/InboundDeliveryHeader.page", 
+				"_Type": "Control.Type.TabItem"
+			}],
+			"Position": "Top",
+			"PreloadTabs": [2],
+			"_Type": "Control.Type.Tabs",
+			"_Name": "TabsControl"
+  		}
+	],
+	"OnLoaded": "/SAPAssetManager/Rules/Inventory/Overview/RefreshOverviewPage.js",
+	"OnReturning": "/SAPAssetManager/Rules/Inventory/Overview/RefreshAllTabsOverviewPage.js",
+	"_Name": "InboundOverview",
+	"_Type": "Page"
+}

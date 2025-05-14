@@ -1,0 +1,6 @@
+{
+    "_Type": "Action.Type.Message",
+    "Title": "$(L,auto_complete_cancel_error_title)",
+    "Message": "$(L,auto_complete_cancel_error_message)",
+    "OKCaption": "$(L,ok)"
+}

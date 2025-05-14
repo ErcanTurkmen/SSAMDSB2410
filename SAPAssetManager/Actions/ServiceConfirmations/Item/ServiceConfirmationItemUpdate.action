@@ -1,0 +1,18 @@
+{
+    "_Type": "Action.Type.ODataService.UpdateEntity",
+    "Target": {
+        "EntitySet": "S4ServiceConfirmationItems",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "ReadLink": "{@odata.editLink}"
+    },
+    "Properties": {},
+    "Headers": {
+        "OfflineOData.TransactionID": "/SAPAssetManager/Rules/ServiceConfirmations/CreateUpdate/Data/GetServiceConfirmationItemLocalID.js"
+    },
+    "RequestOptions": {
+		"UpdateMode": "Replace"
+	},
+    "OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/UpdateEntityFailureMessage.action",
+    "ShowActivityIndicator": true,
+    "ActivityIndicatorText" : "  "
+}

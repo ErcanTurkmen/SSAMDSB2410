@@ -1,0 +1,318 @@
+{
+    "Caption": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/Caption.js",
+    "OnCustomEventDataReceived": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/OperationalItemDetailsOnCustomEventDataReceived.js",
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "ObjectHeader": {
+                        "HeadlineText": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/ShortText.js",
+                        "StatusText": "/SAPAssetManager/Rules/WCM/OperationalItems/ListView/OperationalItemsTagNumber.js",
+                        "DetailImage": "/SAPAssetManager/Rules/WCM/OperationalItems/OperationalItemDetailImage.js",
+                        "Tags": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/TagTitle.js"
+                    },
+                    "DataSubscriptions": [
+                        "PMMobileStatuses"
+					],
+                    "_Type": "Section.Type.ObjectHeader",
+                    "_Name": "SafetyCertificatelObjectHeaderSection"
+                },
+                {
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/QAB/QuickActionBarExtensionSection.fragment",
+					"Properties": {
+						"ExtensionProperties": {
+							"Chips": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/OperationalItemQABChips.js"
+						},
+                        "Visible": "/SAPAssetManager/Rules/WCM/QAB/WCMQABDetailsPageIsVisible.js"
+					}
+				},
+                "/SAPAssetManager/Pages/WCM/Fragments/ProgressTrackerSection.fragment",
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/WCM/Fragments/RelatedSafetyCertificateObjectTable.fragment",
+                    "Properties": {
+                        "Target": {
+							"EntitySet" : "{{#Property:@odata.readLink}}/WCMDocumentHeaders",
+							"Service" : "/SAPAssetManager/Services/AssetManager.service"
+						},
+                        "ObjectCell": {
+                            "DetailImage": "/SAPAssetManager/Rules/WCM/SafetyCertificates/CertificateDetailImage.js"
+                        },
+                        "Footer":null
+                    }
+                },
+                {
+                    "_Type": "Section.Type.SimplePropertyCollection",
+                    "Header": {
+                        "Caption": "$(L,item) & $(L,location)"
+                    },
+                    "Layout": {
+                        "NumberOfColumns": 1
+                    },
+                    "SimplePropertyCells": [
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName": "$(L,assignedto)",
+                                "Value" : "$(DV,'/SAPAssetManager/Rules/WCM/OperationalItems/Details/OperationalItemAssignedToInfoValue.js','-')"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName" : "$(L, item_number)",
+                                "Value" : "/SAPAssetManager/Rules/WCM/OperationalItems/Details/ItemNumber.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName" : "$(L,item_category)",
+                                "Value" : "/SAPAssetManager/Rules/WCM/OperationalItems/Details/ItemCategory.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName" : "$(L,operational_group)",
+                                "Value" : "/SAPAssetManager/Rules/WCM/OperationalItems/Details/OperationalGroup.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName" : "$(L,location_number)",
+                                "Value" : "$(DV,'/SAPAssetManager/Rules/WCM/OperationalItems/Details/Location.js','-')"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName" : "$(L,location_description)",
+                                "Value" : "/SAPAssetManager/Rules/WCM/OperationalItems/Details/ShortText.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName" : "$(L,physical_location)",
+                                "Value" : "$(DV,{Location},'-')"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName" : "$(L,switching_location)",
+                                "Value" : "/SAPAssetManager/Rules/WCM/OperationalItems/Details/SwitchingLocation.js"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "_Type": "Section.Type.SimplePropertyCollection",
+                    "Header": {
+                        "Caption": "$(L,tag_untag)"
+                    },
+                    "Layout": {
+                        "NumberOfColumns": 1
+                    },
+                    "SimplePropertyCells": [
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName": "$(L,tag_condition)",
+                                "Value": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/TaggingCondition.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName": "$(L,tag_type)",
+                                "Value": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/TaggingType.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName": "$(L,tag_sequence)",
+                                "Value": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/TaggingSequence.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName": "$(L,untag_condition)",
+                                "Value": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/UntaggingCondition.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName": "$(L,untag_type)",
+                                "Value": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/UntaggingType.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName": "$(L,untag_sequence)",
+                                "Value": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/UntaggingSequence.js"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "_Type": "Section.Type.SimplePropertyCollection",
+                    "Header": {
+                        "Caption": "$(L,blocking_caption)"
+                    },
+                    "Layout": {
+                        "NumberOfColumns": 1
+                    },
+                    "SimplePropertyCells": [
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName": "$(L,blocking_type)",
+                                "Value": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/BlockingType.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName": "$(L,phys_blocking_req)",
+                                "Value": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/PhysBlockRequired.js"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "_Type": "Section.Type.SimplePropertyCollection",
+                    "Header": {
+                        "Caption": "$(L,lock_tag_caption)"
+                    },
+                    "Layout": {
+                        "NumberOfColumns": 1
+                    },
+                    "SimplePropertyCells": [
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName": "$(L,lock)",
+                                "Value": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/LockNumber.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName": "$(L,tag_required)",
+                                "Value": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/TagRequired.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName": "$(L,tag)",
+                                "Value": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/Tag.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName": "$(L,print_format)",
+                                "Value": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/PrintFormat.js"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "_Type": "Section.Type.SimplePropertyCollection",
+                    "Header": {
+                        "Caption": "$(L,comments)"
+                    },
+                    "Layout": {
+                        "NumberOfColumns": 1
+                    },
+                    "SimplePropertyCells": [
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName": "$(L,tagging_comment)",
+                                "Value": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/TaggingComment.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "KeyName": "$(L,untagging_comment)",
+                                "Value": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/UntaggingComment.js"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Documents/DocumentObjectTable.fragment",
+                    "Properties": {
+                        "Header": {
+                            "Caption": "$(L,documents)",
+                            "UseTopPadding": true
+                        },
+                        "Search": {
+                            "Enabled": false
+                        },
+                        "MaxItemCount": 2,
+                        "Footer": {
+                            "Caption": "$(L,see_all)",
+                            "AccessoryType": "DisclosureIndicator",
+                            "FooterStyle": "Attribute",
+                            "AttributeLabel": "/SAPAssetManager/Rules/Documents/Count/DocumentsBDSCount.js",
+                            "OnPress": "/SAPAssetManager/Actions/Documents/DocumentsBDSListNav.action",
+                            "Visible": "/SAPAssetManager/Rules/Documents/Count/DocumentsBDSShouldRenderFooter.js"
+                        },
+                        "DataSubscriptions": [
+                            "WCMDocumentItemAttachments",
+                            "Documents"
+                        ]
+                    }
+                },
+                "/SAPAssetManager/Pages/WCM/Fragments/WCMNotesSection.fragment",
+                {
+                    "_Type": "Section.Type.SimplePropertyCollection",
+                    "Layout": {
+                        "NumberOfColumns": 1
+                    },
+                    "Visible": "/SAPAssetManager/Rules/Common/IsClassicLayoutEnabled.js",
+                    "SimplePropertyCells": [
+                        {
+                            "_Type": "Fragment",
+                            "Fragment": "/SAPAssetManager/Pages/Fragments/Notes/NotesFacet.fragment",
+                            "Properties": {
+                                "SimplePropertyCell": {
+                                    "Value": "/SAPAssetManager/Rules/WCM/WCMNotes/WCMNotesCount.js",
+                                    "OnPress": "/SAPAssetManager/Rules/WCM/WCMNotes/WCMNotesListNav.js"
+                                }
+                            }
+                        }
+                    ]
+                }
+            ],
+            "DataSubscriptions": [
+                "PMMobileStatuses"
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable"
+        }
+    ],
+    "FioriToolbar": {
+        "_Name": "OperationalItemDetailsFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Items": [
+            {
+                "_Name": "SetTaggedUntagged",
+                "_Type": "FioriToolbarItem.Type.Button",
+                "Visible": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/IsVisibleSetTaggedUntagButton.js",
+                "Title": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/OperationItemToolBarCaption.js",
+                "OnPress": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/SetTaggedNav.js",
+                "ButtonType": "Primary"
+            },
+            {
+                "_Name": "NextItem",
+                "_Type": "FioriToolbarItem.Type.Button",
+                "Title": "$(L, next)",
+                "OnPress": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/NextButtonOnPress.js",
+                "Enabled": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/IsNextButtonEnabled.js",
+                "ButtonType": "Text"
+            },
+            {
+                "_Name": "PreviousItem",
+                "_Type": "FioriToolbarItem.Type.Button",
+                "Title": "$(L, previous)",
+                "OnPress": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/PrevButtonOnPress.js",
+                "Enabled": "/SAPAssetManager/Rules/WCM/OperationalItems/Details/IsPrevButtonEnabled.js",
+                "ButtonType": "Text"
+            }
+        ]
+    },
+    "_Name": "OperationalItemDetailsPage",
+    "_Type": "Page"
+}

@@ -1,0 +1,67 @@
+{
+	"Caption": "$(L,pi_detail_title)",
+	"ActionBar": {
+		"Items": [
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment"
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"ObjectHeader": {
+						"HeadlineText": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryDocAndDescription.js"
+					},
+					"_Name": "SectionObjectHeader0",
+					"_Type": "Section.Type.ObjectHeader"
+				}
+			],
+			"_Name": "SectionedTable1",
+			"_Type": "Control.Type.SectionedTable"
+		},
+		{
+			"Items": [{
+				"_Name": "ItemsListTab",
+				"Caption": "$(L, items)",
+				"PageToOpen" : "/SAPAssetManager/Pages/Inventory/PhysicalInventory/PhysicalInventoryItemsList.page",
+				"_Type": "Control.Type.TabItem",
+				"OnPress": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryDetailsItemsOnPress.js"
+			},
+			{ 
+				"_Name": "ItemsCountedListTab", 
+				"Caption": "$(L,pi_header)",
+				"PageToOpen" : "/SAPAssetManager/Pages/Inventory/PhysicalInventory/PhysicalInventoryHeader.page",
+				"PageMetadata":  "/SAPAssetManager/Rules/Inventory/PhysicalInventoryHeaderPageMetadata.js",
+				"_Type": "Control.Type.TabItem"			
+			}],
+			"Position": "Top",
+			"_Type": "Control.Type.Tabs",
+			"_Name": "TabsControl"
+  		}
+	],
+	"FioriToolbar": {
+		"_Name": "PhysicalInventoryDetailsFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Items": [
+            {
+                "_Name": "AddItem",
+                "_Type": "FioriToolbarItem.Type.Button",
+                "Enabled" : "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryReadLinkIsLocal.js",
+                "Title": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryDocHeaderAddItemCaption.js",
+                "OnPress": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryItemCreateFromDetailsNavWrapper.js"
+            },
+            {
+                "_Name": "Discard",
+                "_Type": "FioriToolbarItem.Type.Button",
+                "Enabled" : "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryReadLinkIsLocal.js",
+                "Title": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryDocHeaderDiscardCaption.js",
+                "OnPress": "/SAPAssetManager/Rules/Common/DiscardAction.js"
+			}
+        ]
+    },
+    "DataSubscriptions": ["PhysicalInventoryDocItems","PhysicalInventoryDocHeaders"],
+	"OnLoaded": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryDetailsOnLoaded.js",
+	"OnReturning": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryDetailsOnReturning.js",
+	"_Name": "PhysicalInventoryDetailsPage",
+	"_Type": "Page"
+}

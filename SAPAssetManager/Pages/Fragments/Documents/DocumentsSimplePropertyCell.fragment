@@ -1,0 +1,7 @@
+{
+	"AccessoryType": "DisclosureIndicator",
+	"KeyName": "$(L,documents)",
+	"Value": "/SAPAssetManager/Rules/Documents/Count/DocumentsBDSCount.js",
+	"OnPress": "/SAPAssetManager/Actions/Documents/DocumentsBDSListNav.action",
+	"Visible": "/SAPAssetManager/Rules/Documents/DocumentsIsVisible.js"							
+}

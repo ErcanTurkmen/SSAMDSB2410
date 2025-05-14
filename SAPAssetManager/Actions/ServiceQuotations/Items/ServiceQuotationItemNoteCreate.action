@@ -1,0 +1,29 @@
+{
+    "_Type": "Action.Type.ODataService.CreateEntity",
+    "Target": {
+        "EntitySet": "S4ServiceQuotationLongTexts",
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "Properties": {
+        "ObjectID": "/SAPAssetManager/Rules/ServiceQuotations/Items/CreateUpdate/Data/GetServiceQuotationItemObjectID.js",
+        "ItemNo": "/SAPAssetManager/Rules/ServiceQuotations/Items/CreateUpdate/Data/GetServiceQuotationItemLocalID.js",
+        "NewTextString": "#Control:LongTextNote/#Value",
+        "TextString": "#Control:LongTextNote/#Value",
+        "TextID": "#Control:ServiceNoteTypesListPicker/#SelectedValue",
+        "LastChangeDate": "/SAPAssetManager/Rules/DateTime/CurrentDateTime.js",
+		"LastChangeTime": "/SAPAssetManager/Rules/DateTime/CurrentTime.js"
+    },
+    "Headers": {
+        "OfflineOData.RemoveAfterUpload": "true",
+        "OfflineOData.TransactionID": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationLocalID.js"
+    },
+    "CreateLinks": [
+        {
+            "Property": "S4ServiceQuotItem_QuotText_Nav",
+            "Target": {
+                "EntitySet": "S4ServiceQuotationItems",
+                "ReadLink": "/SAPAssetManager/Rules/ServiceQuotations/Items/CreateUpdate/Data/GetServiceQuotationItemLink.js"
+            }
+        }
+    ]
+}

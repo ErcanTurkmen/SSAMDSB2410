@@ -1,0 +1,47 @@
+{
+	"_Type": "Action.Type.ODataService.CreateEntity",
+    "Target": {
+        "EntitySet": "S4ServiceOrders",
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "Properties": {
+        "ObjectID": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderLocalID.js",
+		"ObjectType": "/SAPAssetManager/Rules/ServiceOrders/ServiceOrderObjectType.js",
+		"ProcessType": "#Page:ServiceOrderCreateUpdatePage/#Control:ProcessTypeLstPkr/#SelectedValue",
+        "Description": "#Page:ServiceOrderCreateUpdatePage/#Control:DescriptionNote/#Value",
+        "Priority": "#Page:ServiceOrderCreateUpdatePage/#Control:PrioritySeg/#SelectedValue",
+		"DueBy": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderDueByDateValue.js",
+		"SoldToParty": "#Page:ServiceOrderCreateUpdatePage/#Control:SoldToPartyLstPkr/#SelectedValue",
+		"SalesOrg": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderSalesOrgValue.js",
+		"SalesRespOrg": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderSalesRespOrgValue.js",
+		"ServiceOrg": "#Page:ServiceOrderCreateUpdatePage/#Control:ServiceOrgLstPkr/#SelectedValue",
+		"ServiceRespOrg": "#Page:ServiceOrderCreateUpdatePage/#Control:ServiceOrgLstPkr/#SelectedValue",
+		"BillToParty": "#Page:ServiceOrderCreateUpdatePage/#Control:BillToPartyLstPkr/#SelectedValue",
+		"Category1": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/GetServiceOrderCategory1.js",
+		"Category2": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/GetServiceOrderCategory2.js",
+		"Category3": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/GetServiceOrderCategory3.js",
+		"Category4": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/GetServiceOrderCategory4.js",
+		"SchemaID": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderSchemaIDValue.js",
+		"CategoryID": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderCategoryIDValue.js",
+		"SubjectProfile": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderSubjectProfileValue.js",
+		"CatalogType": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderCatalogTypeValue.js",
+		"CodeGroup": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderCodeGroupValue.js",
+		"Code": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderCodeValue.js",
+		"RequestedStart": "/SAPAssetManager/Rules/DateTime/CurrentDateTime.js",
+		"Division": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderDivisionValue.js",
+		"DistributionChannel": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderDistributionChannelValue.js",
+		"SalesOffice": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderSalesOfficeValue.js",
+		"SalesGroup": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderSalesGroupValue.js"
+    },
+    "Headers": {
+        "OfflineOData.RemoveAfterUpload": "true",
+        "OfflineOData.TransactionID": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderLocalID.js"
+    },
+    "CreateLinks": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderCreateLinks.js",
+    "OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/CreateEntityFailureMessage.action",
+    "ShowActivityIndicator": true,
+    "ActivityIndicatorText" : "  ",
+    "ActionResult" : {
+		"_Name" : "ServiceOrderCreateResult"
+	}
+}

@@ -1,0 +1,45 @@
+{
+    "_Type": "Action.Type.ODataService.UpdateEntity",
+    "Target": {
+        "EntitySet": "S4ServiceRequests",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "ReadLink": "{@odata.readLink}"
+    },
+    "Properties": {
+        "Description": "#Page:ServiceRequestCreateUpdatePage/#Control:DescriptionNote/#Value",
+        "Priority": "#Page:ServiceRequestCreateUpdatePage/#Control:PrioritySeg/#SelectedValue",
+		"Urgency": "#Page:ServiceRequestCreateUpdatePage/#Control:UrgencySeg/#SelectedValue",
+		"Impact": "#Page:ServiceRequestCreateUpdatePage/#Control:ImpactSeg/#SelectedValue",
+		"SubjCategory1": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/GetServiceRequestSubjCategory1.js",
+		"SubjCategory2": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/GetServiceRequestSubjCategory2.js",
+		"SubjCategory3": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/GetServiceRequestSubjCategory3.js",
+		"SubjCategory4": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/GetServiceRequestSubjCategory4.js",
+		"ReasonCategory1": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/GetServiceRequestReasonCategory1.js",
+		"ReasonCategory2": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/GetServiceRequestReasonCategory2.js",
+		"ReasonCategory3": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/GetServiceRequestReasonCategory3.js",
+		"ReasonCategory4": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/GetServiceRequestReasonCategory4.js",
+		"SchemaID1": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestSchemaID1Value.js",
+		"SchemaID2": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestSchemaID2Value.js",
+		"CategoryID1": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestCategoryID1Value.js",
+		"CategoryID2": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestCategoryID2Value.js",
+		"SubjectProfile1": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestSubjectProfile1Value.js",
+		"SubjectProfile2": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestSubjectProfile2Value.js",
+		"CatalogType1": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestCatalogType1Value.js",
+		"CatalogType2": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestCatalogType2Value.js",
+		"CodeGroup1":  "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestCodeGroup1Value.js",
+		"CodeGroup2": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestCodeGroup2Value.js",
+		"Code1": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestCode1Value.js",
+		"Code2": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestCode2Value.js"
+    },
+	"RequestOptions": {
+		"UpdateMode": "Replace"
+	},
+    "Headers": {
+        "OfflineOData.TransactionID": "#Property:ObjectID"
+    },
+    "UpdateLinks": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestUpdateLinks.js",
+	"OnSuccess": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestUpdateOnSuccess.js",
+    "OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/UpdateEntityFailureMessage.action",
+    "ShowActivityIndicator": true,
+    "ActivityIndicatorText" : "  "
+}

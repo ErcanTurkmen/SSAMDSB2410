@@ -1,0 +1,77 @@
+{
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "_Name": "SubOperationFilter",
+        "Items": [
+            {
+                "Position": "Left",
+                "_Name": "Cancel",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)",
+                "OnPress": "/SAPAssetManager/Actions/Page/CancelPage.action"
+            },
+            {
+                "Position": "Right",
+                "_Name": "Filter",
+                "SystemItem": "/SAPAssetManager/Rules/Filter/FilterSystemItem.js",
+                "Text": "/SAPAssetManager/Rules/Filter/FilterText.js",
+                "OnPress": "/SAPAssetManager/Rules/Filter/ApplyFilterAndSave.js"
+            }
+        ]
+    },
+    "Caption":"$(L,filter)",
+    "Result": "/SAPAssetManager/Rules/WorkOrders/SubOperationsListFilterResults.js",
+    "Controls":
+    [{
+        "Sections":
+        [{
+            "Controls": [{
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/SortByFilter.fragment",
+				"Properties": {
+                    "SortByItems": [
+                        {
+                            "ReturnValue":"OperationShortText",
+                            "DisplayValue":"$(L,description)"
+                        },
+                        {
+                            "ReturnValue":"SubOperationNo",
+                            "DisplayValue":"$(L,suboperation)"
+                        }
+                    ]
+				}
+            }]
+        },
+        {
+            "Controls":
+            [{
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/FilterByFilter.fragment",
+				"Properties": {
+                    "_Name": "MySubOperationsFilter",
+                    "AllowMultipleSelection": false,
+                    "FilterProperty": "/SAPAssetManager/Rules/WorkOrders/WorkOrderMySubOperationsFilter.js"
+				}
+            },
+            {
+                "_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/MobileStatusFilter.fragment",
+                "Properties": {
+                    "FilterProperty":"/SAPAssetManager/Rules/WorkOrders/WorkOrderSubOperationMobileStatusFilter.js"
+                }
+            }]
+        }],
+        "_Name": "FormCellContainer",
+        "_Type": "Control.Type.FormCellContainer"
+    }],
+    "FioriToolbar": {
+        "_Name": "SubOperationFilterFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Items": [
+            "/SAPAssetManager/Pages/Fragments/Filter/ResetFilterToolbarItem.fragment"
+        ]
+    },
+    "_Type": "Page",
+    "_Name": "SubOperationsFilterPage",
+    "OnLoaded": "/SAPAssetManager/Rules/WorkOrders/SubOperationFilterOnLoaded.js"
+}

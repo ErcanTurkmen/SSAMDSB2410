@@ -1,0 +1,19 @@
+{
+    "Icons":"/SAPAssetManager/Rules/Notifications/ListView/NotificationListViewIconImages.js",
+    "Title": "{NotificationDescription}",
+    "Subhead": "/SAPAssetManager/Rules/Notifications/ListView/NotificationNumberAndPhase.js",
+    "Footnote": "/SAPAssetManager/Rules/Notifications/ListView/NotificationsListViewFormat.js",
+    "StatusText": "/SAPAssetManager/Rules/Notifications/ListView/NotificationsListViewFormat.js",
+    "SubstatusText": "/SAPAssetManager/Rules/Notifications/ListView/NotificationsListViewFormat.js",
+    "Styles": {
+		"StatusText":  "/SAPAssetManager/Rules/Priority/NotificationPriorityStatusStyle.js"
+	},
+    "AccessoryType": "DisclosureIndicator",
+    "OnPress" : "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsNav.js",
+    "ContextMenu": {
+        "PerformFirstActionWithFullSwipe": true,
+        "Items":"/SAPAssetManager/Rules/ContextMenuTable.js",
+        "LeadingItems": "/SAPAssetManager/Rules/ContextMenuLeadingItems.js",
+        "TrailingItems": "/SAPAssetManager/Rules/ContextMenuTrailingItems.js"
+    }
+}

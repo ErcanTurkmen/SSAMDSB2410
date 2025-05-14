@@ -1,0 +1,60 @@
+{
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"EmptySection": {
+						"Caption": "/SAPAssetManager/Rules/OnlineSearch/EmptySectionCaption.js"
+					},
+					"Header": {
+						"UseTopPadding": true
+					},
+					"ObjectCell": {
+						"_Type": "Fragment",
+        				"Fragment": "/SAPAssetManager/Pages/Fragments/Equipment/EquipmentObjectCell.fragment",
+						"Properties": {
+							"Subhead": "/SAPAssetManager/Rules/OnlineSearch/PlantWorkCenterValue.js",
+							"Footnote": "{EquipId}",
+							"Icons": "/SAPAssetManager/Rules/OnlineSearch/Equipment/OnlineIndicator.js",
+							"AccessoryButtonIcon": "/SAPAssetManager/Rules/OnlineSearch/Equipment/AccessoryButtonIcon.js",
+							"AccessoryType": "none",
+							"OnAccessoryButtonPress": "/SAPAssetManager/Rules/OnlineSearch/Download/DownloadToDevice.js",
+							"OnPress": "/SAPAssetManager/Rules/OnlineSearch/Equipment/OnlineSearchEquipmentDetailsNav.js",
+							"Selected": "/SAPAssetManager/Rules/OnlineSearch/ItemIsSelected.js"
+						}
+					},
+					"OnSelectionChanged": "/SAPAssetManager/Rules/OnlineSearch/ListOnSelectionChanged.js",
+					"Selection": {
+						"ExitOnLastDeselect": false
+					},
+					"Target": {
+						"EntitySet": "Equipments",
+						"Service": "/SAPAssetManager/Services/OnlineAssetManager.service",
+						"QueryOptions": "/SAPAssetManager/Rules/OnlineSearch/Equipment/EquipmentListViewQueryOptions.js"
+					},
+					"DataPaging": {
+						"PageSize": 30,
+						"ShowLoadingIndicator": true
+					},
+					"Visible": false,
+					"_Type": "Section.Type.ObjectTable"
+				},
+				{
+					"EmptySection": {
+						"Caption": "$(L, empty_search_msg)"
+					},
+					"Header": {
+						"UseTopPadding": true
+					},
+					"Visible": true,
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"_Name": "OnlineSearchEquipmentList",
+	"OnUnloaded": "/SAPAssetManager/Rules/OnlineSearch/Equipment/EquipmentListOnUnloaded.js",
+	"_Type": "Page"
+}

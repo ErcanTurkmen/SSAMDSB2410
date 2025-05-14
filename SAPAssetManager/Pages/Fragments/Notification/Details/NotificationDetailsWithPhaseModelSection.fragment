@@ -1,0 +1,65 @@
+{
+    "_Type": "Section.Type.KeyValue",
+    "_Name": "NotificationDetailsSectionPhaseModel",
+    "Visible": "/SAPAssetManager/Rules/Common/IsPhaseModelEnabled.js",
+    "Header": {
+        "Caption": "$(L,notification_details)"
+    },
+    "KeyAndValues": [
+        {
+            "_Name": "RequiredStartDate[1]",
+            "KeyName": "$(L,required_start_date)",
+            "Value": "/SAPAssetManager/Rules/DateTime/RequiredStartDate.js"
+        },
+        {
+            "_Name": "RequiredEndDate[1]",
+            "KeyName": "$(L,required_end_date)",
+            "Value": "/SAPAssetManager/Rules/DateTime/RequiredEndDate.js"
+        },
+        {
+            "_Name": "PlanningGroup[1]",
+            "KeyName": "$(L,planner_group)",
+            "Value": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsPlannerGroup.js"
+        },
+        {
+            "_Name": "MainWorkCenter[1]",
+            "KeyName": "$(L,main_work_center)",
+            "Value": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsMainWorkCenter.js"
+        },
+        {
+            "_Name": "ReportedBy[1]",
+            "KeyName": "$(L,reported_by)",
+            "Value": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsReportedBy.js"
+        },
+        {
+            "_Name": "Effect.Effect",
+            "KeyName": "$(L,failure_Effect)",
+            "Value": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsEffect.js"
+        },
+        {
+            "_Name": "QMCodeGroup[1]",
+            "KeyName": "$(L,failure_mode_group)",
+            "Value": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsQMCodeGroup.js"
+        },
+        {
+            "_Name": "QMCode[1]",
+            "KeyName": "$(L,failure_mode)",
+            "Value": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsQMCode.js"
+        },
+        {
+            "_Name": "DetectionGroup.DetectionGroup",
+            "KeyName": "$(L,detection_group)",
+            "Value": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsDetectionGroup.js"
+        },
+        {
+            "_Name": "DetectionCode.DetectionCode",
+            "KeyName": "$(L,detection_method)",
+            "Value": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsDetectionMethod.js"
+        }
+    ],
+    "Target": {
+        "EntitySet": "{@odata.readLink}",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsKeyValueSectionQueryOptions.js"
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "OnFailure": "/SAPAssetManager/Rules/Common/UpdateRequiredFailed.js",
+    "OnSuccess": "/SAPAssetManager/Rules/Expense/CreateUpdate/ExpenseCreateUpdateOnCommit.js",
+    "RequiredFields": [
+        "ExpenseTypeLstPkr",
+        "WorkCenterPicker",
+        "WorkOrderLstPkr",
+        "OperationLstPkr",
+        "AmountProperty"
+    ],
+    "_Type": "Action.Type.CheckRequiredFields",
+    "ShowActivityIndicator": true,
+    "ActivityIndicatorText" : "  ",
+    "ValidationRule": "/SAPAssetManager/Rules/Expense/CreateUpdate/ExpenseCreateUpdateValidation.js"
+}

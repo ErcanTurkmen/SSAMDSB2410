@@ -1,0 +1,65 @@
+{
+    "Caption": "$(L, map)",
+    "Controls": [
+        {
+            "_Type": "Control.Type.Extension",
+            "Module": "extension-MapFramework",
+            "Control": "MapExtensionWithContext",
+            "Class": "MapExtensionWithContext",
+            "_Name": "MapExtensionControl",
+            "DataSubscriptions": [
+                "MarkedJob"
+            ],
+            "ExtensionProperties": {
+                "Config": "/SAPAssetManager/Pages/Fragments/Map/MapConfigNoZoomOnLocationEnabled.fragment",
+                "EditMode": {
+                    "IsInitialOn": false,
+                    "IsFullScreen": true
+                },
+                "TokenAuthentication": {
+                    "Action": "/SAPAssetManager/Rules/Extensions/TokenRequest.js"
+                },
+				"MapToolsetIcons": "/SAPAssetManager/Pages/Fragments/Map/MapToolsetIcons.fragment",
+                "SettingsControl": "/SAPAssetManager/Pages/Fragments/Map/WOMapSettingsControl.fragment",
+                "SearchControl": {
+                    "SearchPlaceholder": "$(L, map_search_placeholder)",
+                    "SearchFields": [
+                        "Title",
+                        "Footnote",
+                        "Subhead",
+                        "Description"
+                    ],
+                    "IsResultTextDisplayed": true,
+                    "ResultsPrefix": "$(L, map_search_results_pref)",
+                    "ResultsSuffix": "$(L, map_search_results_sufx)",
+                    "NearMeFilterName": "$(L, map_search_nearme)",
+                    "QuickFilters": [
+                        {
+                            "FilterType": "TimeFilter",
+                            "Type": [
+                                "Job"
+                            ],
+                            "Name": "$(L, map_search_wo_due_today)",
+                            "PeriodInDays": 1,
+                            "PropertyName": "DueDate"
+                        },
+                        {
+                            "FilterType": "TextFilter",
+                            "Name": "$(L, map_search_high_priority)",
+                            "Properties": [
+                                "StatusText"
+                            ],
+                            "Text": "High"
+                        }
+                    ]
+                },
+                "BusinessObjects": [
+                    "/SAPAssetManager/Pages/Fragments/Map/ServiceOrders/ServiceOrderRoute.fragment",
+					"/SAPAssetManager/Pages/Fragments/Map/ServiceOrders/ServiceOrderRouteStop.fragment"
+                ]
+            }
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "FSMWOMapExtensionControlPage"
+}

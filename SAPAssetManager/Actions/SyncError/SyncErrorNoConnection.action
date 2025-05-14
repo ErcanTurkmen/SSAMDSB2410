@@ -1,0 +1,8 @@
+
+{
+  "_Type" : "Action.Type.BannerMessage",
+  "Message" : "$(L, network_error)",
+  "Duration": 0,
+  "Animated": true,
+  "DismissBannerOnAction": true
+}

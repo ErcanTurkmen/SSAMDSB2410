@@ -1,0 +1,9 @@
+{
+    "Title": "$(L,favorite)",
+    "Icon": "/SAPAssetManager/Rules/Maps/MarkFavoriteAction/Icon.js",
+    "Type": "Update",
+    "CallbackInfo": {
+        "Action": "/SAPAssetManager/Rules/Maps/MarkFavoriteAction/UpdateIsMarked.js",
+        "Target": "/SAPAssetManager/Pages/Fragments/Map/WorkOrders/MapWorkOrderCallbackInfoTarget.fragment"
+    }
+}

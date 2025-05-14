@@ -1,0 +1,111 @@
+{
+	"_Type": "Section.Type.FormCell",
+	"_Name": "CategorizationFormSection",
+	"Caption": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/CategorizationCaption.js",
+	"Controls": [
+		{
+			"_Type": "Control.Type.FormCell.ListPicker",
+			"_Name": "Category1LstPkr",
+			"Caption": "$(L,category_1)",
+			"AllowMultipleSelection": false,
+			"IsPickerDismissedOnSelection": true,
+			"IsSearchCancelledAfterSelection": true,
+			"Search": {
+				"Enabled": true,
+				"Delay": 500,
+				"MinimumCharacterThreshold": 3,
+				"Placeholder": "$(L,search)"
+			},
+			"Value": "{Category1}",
+			"PickerItems": {
+				"DisplayValue": "{{#Property:CategoryID}} - {{#Property:CategoryDescription}}",
+				"ReturnValue": "{CategoryGuid}",
+				"Target": {
+					"EntitySet": "CategorizationSchemas",
+					"Service": "/SAPAssetManager/Services/AssetManager.service",
+					"QueryOptions": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/Category1QueryOptions.js"
+				}
+			},
+			"IsVisible": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/IsNotTravelExpenceMode.js",
+			"OnValueChange": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/OnCategory1ValueChanged.js"
+		},
+		{
+			"_Type": "Control.Type.FormCell.ListPicker",
+			"_Name": "Category2LstPkr",
+			"Caption": "$(L,category_2)",
+			"AllowMultipleSelection": false,
+			"IsPickerDismissedOnSelection": true,
+			"IsSearchCancelledAfterSelection": true,
+			"Search": {
+				"Enabled": true,
+				"Delay": 500,
+				"MinimumCharacterThreshold": 3,
+				"Placeholder": "$(L,search)"
+			},
+			"Value": "{Category2}",
+			"PickerItems": {
+				"DisplayValue": "{{#Property:CategoryID}} - {{#Property:CategoryDescription}}",
+				"ReturnValue": "{CategoryGuid}",
+				"Target": {
+					"EntitySet": "CategorizationSchemas",
+					"Service": "/SAPAssetManager/Services/AssetManager.service",
+					"QueryOptions": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/Category2QueryOptions.js"
+				}
+			},
+			"IsVisible": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/IsNotTravelExpenceMode.js",
+			"OnValueChange": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/OnCategory2ValueChanged.js"
+		},
+		{
+			"_Type": "Control.Type.FormCell.ListPicker",
+			"_Name": "Category3LstPkr",
+			"Caption": "$(L,category_3)",
+			"AllowMultipleSelection": false,
+			"IsPickerDismissedOnSelection": true,
+			"IsSearchCancelledAfterSelection": true,
+			"Search": {
+				"Enabled": true,
+				"Delay": 500,
+				"MinimumCharacterThreshold": 3,
+				"Placeholder": "$(L,search)"
+			},
+			"Value": "{Category3}",
+			"PickerItems": {
+				"DisplayValue": "{{#Property:CategoryID}} - {{#Property:CategoryDescription}}",
+				"ReturnValue": "{CategoryGuid}",
+				"Target": {
+					"EntitySet": "CategorizationSchemas",
+					"Service": "/SAPAssetManager/Services/AssetManager.service",
+					"QueryOptions": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/Category3QueryOptions.js"
+				}
+			},
+			"IsVisible": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/IsNotTravelExpenceMode.js",
+			"OnValueChange": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/OnCategory3ValueChanged.js"
+		},
+		{
+			"_Type": "Control.Type.FormCell.ListPicker",
+			"_Name": "Category4LstPkr",
+			"Caption": "$(L,category_4)",
+			"AllowMultipleSelection": false,
+			"IsPickerDismissedOnSelection": true,
+			"IsSearchCancelledAfterSelection": true,
+			"Search": {
+				"Enabled": true,
+				"Delay": 500,
+				"MinimumCharacterThreshold": 3,
+				"Placeholder": "$(L,search)"
+			},
+			"Value": "{Category4}",
+			"PickerItems": {
+				"DisplayValue": "{{#Property:CategoryID}} - {{#Property:CategoryDescription}}",
+				"ReturnValue": "{CategoryGuid}",
+				"Target": {
+					"EntitySet": "CategorizationSchemas",
+					"Service": "/SAPAssetManager/Services/AssetManager.service",
+					"QueryOptions": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/Category4QueryOptions.js"
+				}
+			},
+			"IsVisible": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/IsNotTravelExpenceMode.js",
+			"OnValueChange": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/OnCategory4ValueChanged.js"
+		}
+	]
+}

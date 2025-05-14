@@ -1,0 +1,83 @@
+[
+    {
+        "Type": "Text",
+        "IsMandatory": false,
+        "IsReadOnly": true,
+        "Property": "ItemNo",
+        "OnValueChange": "",
+        "Parameters": {
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemItemNoReadOnlyValue.js"
+        }
+    },
+    "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/EDT/ServiceItemsEDTParentItemField.js",
+    {
+        "Type": "Number",
+        "IsMandatory": true,
+        "Name": "Quantity",
+        "Property": "Quantity",
+        "OnValueChange": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/EDT/ServiceItemsEDTCellOnValueChange.js",
+        "Parameters": {
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/EDT/ServiceItemEDTQuantityValue.js"
+        }
+    },
+    "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/EDT/ServiceItemsEDTMaterialUOMsListPicker.js",
+    {
+        "Type": "Text",
+        "IsMandatory": false,
+        "IsReadOnly": true,
+        "Property": "Product",
+        "OnValueChange": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/EDT/ServiceItemsEDTCellOnValueChange.js",
+        "Parameters": {
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemProductDescriptionValue.js"
+        }
+    },
+    {
+        "Type": "Text",
+        "IsMandatory": false,
+        "IsReadOnly": true,
+        "Property": "NetValue",
+        "OnValueChange": "",
+        "Parameters": {
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemNetValue.js"
+        }
+    },
+    {
+        "Type": "ListPicker",
+		"Name": "AccountingInd",
+		"IsMandatory": false,
+		"Property": "AccountingInd",
+        "OnValueChange": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/EDT/ServiceItemsEDTCellOnValueChange.js",
+		"Parameters": {
+            "Search": {
+                "Enabled": true,
+                "Delay": 500,
+                "MinimumCharacterThreshold": 3,
+                "Placeholder": "$(L, search)"
+            },
+            "Caption": "$(L, account_indicator)",
+            "Value": "{AccountingInd}",
+            "DisplayValue": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemAccountingIndicatorValue.js",
+            "PickerItems": {
+                "DisplayValue": "{AcctIndicator} - {AcctIndicatorDesc}",
+                "ReturnValue": "{AcctIndicator}",
+                "Target": {
+                    "EntitySet": "AcctIndicators",
+                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                    "QueryOptions": "$orderby=AcctIndicator"
+                }
+            }
+		}
+    },
+    {
+        "Type": "Button",
+        "IsMandatory": false,
+        "IsReadOnly": false,
+        "Property": "",
+        "Parameters": {
+            "Value": "$(L, details)",
+            "Action": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemDetailsNav.js",
+            "Style": "Secondary"
+        }
+    },
+    "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/SubItem/SubItemDiscardButton.js"
+]

@@ -1,0 +1,28 @@
+{
+  "_Type": "Action.Type.ODataService.CreateMedia",
+  "Target" : {
+    "EntitySet" : "Documents",
+    "Service" : "/SAPAssetManager/Services/AssetManager.service"
+  },
+  "Headers" : {
+     "slug" : {
+        "ObjectLink": "/SAPAssetManager/Rules/WCM/OperationalItems/SignatureAttachment/SignatureObjectLink.js",
+        "ObjectKey": "/SAPAssetManager/Rules/SignatureControl/Create/SignatureObjectKeyForHeader.js",
+        "FileName": "/SAPAssetManager/Rules/WCM/OperationalItems/SignatureAttachment/SignatureOnCreateFileName.js",
+        "Description": "$(L,isolation_signature)"
+    }
+  },
+  "Properties" : {
+    "ObjectLink": "/SAPAssetManager/Rules/WCM/OperationalItems/SignatureAttachment/SignatureObjectLink.js",
+    "ObjectKey": "/SAPAssetManager/Rules/Documents/DocumentTransactionID.js",
+    "FileName": "/SAPAssetManager/Rules/WCM/OperationalItems/SignatureAttachment/SignatureOnCreateFileName.js",
+    "Description": "$(L,isolation_signature)",
+    "MimeType": "/SAPAssetManager/Rules/SignatureControl/Create/SignatreOnCreateMimeType.js"
+  },
+  "Media": "#Control:SignatureCaptureFormCell/#Value",
+  "OnSuccess": "/SAPAssetManager/Rules/WCM/OperationalItems/SignatureAttachment/SignatureOnCreateSuccess.js",
+  "OnFailure": "/SAPAssetManager/Rules/SignatureControl/Create/SignatureCreateOnFailure.js",
+  "ActionResult": {
+    "_Name": "SignatureResult"
+  }
+}

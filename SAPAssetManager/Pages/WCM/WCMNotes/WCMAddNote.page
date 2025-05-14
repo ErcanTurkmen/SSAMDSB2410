@@ -1,0 +1,55 @@
+{
+	"Caption": "$(L, add_note)",
+	"OnLoaded": "/SAPAssetManager/Rules/WCM/WCMNotes/WCMAddNotePageOnLoaded.js",
+	"ActionBar": {
+		"Items": [
+			"/SAPAssetManager/Pages/Fragments/CancelButton.fragment",
+			{
+				"_Type": "Fragment",
+				"Fragment": "/SAPAssetManager/Pages/Fragments/DoneButton.fragment",
+				"Properties": {
+					"OnPress": "/SAPAssetManager/Rules/WCM/WCMNotes/WCMNoteOnCreate.js"	
+				}
+			}
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Controls": [
+						{
+							"AllowEmptySelection": false,
+							"Caption": "Note type",
+							"SortByItems": "/SAPAssetManager/Rules/WCM/WCMNotes/WCMNotesSortByItems.js",
+							"_Name": "NoteType",
+							"_Type": "Control.Type.FormCell.Sorter"
+						}
+					],
+					"Visible": "/SAPAssetManager/Rules/WCM/WCMNotes/NoteTypeSelectionIsVisible.js",
+					"_Type": "Section.Type.FormCell"
+				},
+				{
+					"Header": {
+						"Caption": "/SAPAssetManager/Rules/WCM/WCMNotes/WCMNoteSectionCaption.js"
+					},
+                    "Controls": [
+                        {
+							"PlaceHolder": "$(L, note)",
+							"Value": "",
+                            "IsEditable": true,
+                            "IsAutoResizing": true,
+							"_Name": "LongTextNote",
+                            "_Type": "Control.Type.FormCell.Note"
+                        }
+                    ],
+					"_Type": "Section.Type.FormCell"
+                }
+			],
+			"_Name": "FormCellContainer",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"_Name": "WCMAddNotePage",
+	"_Type": "Page"
+}

@@ -1,0 +1,89 @@
+{
+	"Caption": "/SAPAssetManager/Rules/Notifications/Item/Activity/NotificationItemActivityHeader.js",
+	"OnLoaded": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsOnPageLoad.js",
+	"ActionBar": {
+		"_Name": "NotificationItemActivityDetails",
+		"Items":
+		[
+            {
+                "Position": "Right",
+				"_Name": "Edit",
+                "SystemItem": "Edit",
+				"Caption": "$(L,edit)",
+				"OnPress": "/SAPAssetManager/Rules/Notifications/Item/Activity/CreateUpdate/NotificationItemActivityCreateUpdateNav.js",
+				"Visible": "/SAPAssetManager/Rules/UserAuthorizations/Notifications/EnableNotificationEdit.js"
+
+            },
+			{
+                "Position": "Right",
+				"_Name": "Add",
+            	"SystemItem": "Add",
+				"Caption": "$(L,add)",
+                "OnPress": "/SAPAssetManager/Rules/Notifications/Item/Activity/Details/NotificationItemActivityDetailsPopover.js",
+				"Visible": "/SAPAssetManager/Rules/UserAuthorizations/Notifications/EnableNotificationEdit.js"
+
+            }
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Header": {
+						"Caption": "$(L,notification_item_activities_details)"
+					},
+					"KeyAndValues": [
+						{
+							"_Name": "ActivityText",
+							"KeyName": "$(L,description)",
+							"Value": "{ActivityText}"
+						},
+						{
+							"_Name": "ActivitySortNumber",
+							"KeyName": "$(L,sort_number)",
+							"Value": "{ActivitySortNumber}"
+						},
+						{
+							"_Name": "ActivityCodeGroup",
+							"KeyName": "$(L,group)",
+							"Value": "/SAPAssetManager/Rules/Notifications/Activity/Details/NotificationActivityDetailsGroup.js"
+						},
+						{
+							"_Name": "ActivityCode",
+							"KeyName": "$(L,code)",
+							"Value": "/SAPAssetManager/Rules/Notifications/Activity/Details/NotificationActivityDetailsCode.js"
+						}
+					],
+					"_Name": "NotificationItemActivityDetailsSection",
+					"_Type": "Section.Type.KeyValue"
+				},
+				{
+                    "SimplePropertyCells":
+                    [{
+                        "SimplePropertyCell": {
+                            "AccessoryType": "DisclosureIndicator",
+                            "KeyName": "$(L,notes)",
+                            "Value": "/SAPAssetManager/Rules/Notes/NotesCount.js",
+                            "OnPress": "/SAPAssetManager/Rules/Notes/NotesViewNav.js"
+                        }
+                    }],
+                    "Layout":
+                    {
+                        "NumberOfColumns" : 1
+                    },
+                    "_Type" : "Section.Type.SimplePropertyCollection"
+                }
+			],
+			"_Type": "Control.Type.SectionedTable",
+			"_Name": "SectionedTable",
+			"DataSubscriptions": ["MyNotifItemActivityLongTexts"]
+		}
+	],
+	"FioriToolbar": {
+        "_Name": "NotificationItemActivityDetailsFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+		"Items": []
+	},
+	"_Type": "Page",
+	"_Name": "NotificationItemActivityDetailsPage"
+}

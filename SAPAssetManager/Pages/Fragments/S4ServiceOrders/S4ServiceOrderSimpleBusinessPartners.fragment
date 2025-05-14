@@ -1,0 +1,6 @@
+{
+    "AccessoryType": "DisclosureIndicator",
+    "KeyName": "$(L,business_partners)",
+    "Value": "/SAPAssetManager/Rules/BusinessPartners/BusinessPartnersCount.js",
+    "OnPress": "/SAPAssetManager/Actions/BusinessPartners/BusinessPartnersListViewNav.action"
+}

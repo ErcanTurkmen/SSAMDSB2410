@@ -1,0 +1,73 @@
+{
+	"Caption": "$(L,meters)",
+	"OnCustomEventDataReceived": "/SAPAssetManager/Rules/Common/OnCustomEventDataReceived.js",
+	"ActionBar": {
+		"Items": [
+			{
+				"_Name": "SelectToRemove",
+				"Position": "Right",
+				"Text": "$(L,select)",
+				"OnPress": "/SAPAssetManager/Rules/Meter/MeterListSelectPressed.js",
+				"Visible": "/SAPAssetManager/Rules/Meter/MeterListSelectVisible.js"
+			},
+			{
+				"_Name": "DoneSelect",
+				"Position": "Right",
+				"Text": "$(L,done)",
+				"OnPress": "/SAPAssetManager/Rules/Meter/MeterListSelectPressed.js",
+				"Visible": "/SAPAssetManager/Rules/Meter/MeterListDoneVisible.js"
+			}
+		]
+	},
+	"Controls":
+	[{
+		"Sections":
+		[{
+			"Search":
+			{
+				"Enabled" : true,
+				"Delay": 500,
+				"MinimumCharacterThreshold": 3,
+				"Placeholder": "$(L,search_for_meter)",
+				"BarcodeScanner": true
+			},
+			"Header": {
+		 		"UseTopPadding": false
+    		},
+			"ObjectCell": {
+				"_Type": "Fragment",
+				"Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/MeterListObjectCell.fragment",
+				"Properties": {
+					"Icons": "/SAPAssetManager/Rules/Meter/Format/MeterObjectCell.js",
+					"AccessoryButtonText": "/SAPAssetManager/Rules/Meter/MeterObjectCellOnSelectionMode.js",
+					"AccessoryButtonIcon": "/SAPAssetManager/Rules/Meter/MeterObjectCellOnSelectionMode.js",
+					"OnAccessoryButtonPress": "/SAPAssetManager/Rules/Meter/MeterSectionAccessoryButtonPress.js"
+				}
+			},
+			"OnSelectionModeChanged": "/SAPAssetManager/Rules/Meter/MeterListRedrawPageItems.js",
+			"OnSelectionChanged": "/SAPAssetManager/Rules/Meter/MeterListSelectionChanged.js",
+			"Selection": {
+                "ExitOnLastDeselect": false,
+				"LongPressToEnable": "Multiple",
+                "Mode": "None"
+			},
+			"Target": {
+				"EntitySet": "/SAPAssetManager/Rules/Meter/MetersListViewEntitySet.js",
+				"Service": "/SAPAssetManager/Services/AssetManager.service",
+				"QueryOptions": "/SAPAssetManager/Rules/Meter/MetersListViewQueryOptions.js"
+			},
+			"_Type" : "Section.Type.ObjectTable",
+			"_Name" : "MetersListSection"
+		}],
+		"_Type" : "Control.Type.SectionedTable",
+		"_Name" : "SectionedTable"
+	}],
+	"FioriToolbar": {
+        "_Name": "MetersListViewFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+		"Items": "/SAPAssetManager/Pages/Fragments/WorkOrder/MeterSectionToolbarControls.fragment"
+	},
+	"_Type": "Page",
+	"_Name": "MetersListViewPage",
+	"DataSubscriptions": ["OrderISULinks", "Devices"]
+}

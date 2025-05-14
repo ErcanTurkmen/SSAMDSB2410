@@ -1,0 +1,103 @@
+{
+	"Caption": "$(L,material_document_title)",
+	"ActionBar": {
+		"Items": [
+			{
+                "Position": "Right",
+                "SystemItem": "Add",
+				"Caption": "$(L,add)",
+                "Visible": "/SAPAssetManager/Rules/Inventory/MaterialDocument/EnableItemsScreen.js",
+                "OnPress": "/SAPAssetManager/Rules/Inventory/MaterialDocument/OpenMaterialDocumentItemsScreen.js"
+            },
+            {
+                "Position": "Right",
+                "SystemItem": "Edit",
+				"Caption": "$(L,edit)",
+                "Visible": "/SAPAssetManager/Rules/Inventory/MaterialDocument/EnableMaterialDocumentEditable.js",
+                "OnPress": "/SAPAssetManager/Actions/Inventory/MaterialDocument/MaterialDocumentUpdateNav.action"
+            },
+			{
+				"Position": "Right",
+				"Caption": "$(L,sync)",
+				"Icon":"$(PLT,/SAPAssetManager/Images/sync.pdf,/SAPAssetManager/Images/sync.android.png, '', /SAPAssetManager/Images/sync.png)",
+				"OnPress": "/SAPAssetManager/Rules/ApplicationEvents/ApplicationOnSync.js"
+			}
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"ObjectHeader": {
+						"DetailImageIsCircular": false,
+						"HeadlineText": "{MaterialDocNumber}",
+						"PreserveIconStackSpacing": false
+					},
+					"_Name": "SectionObjectHeader",
+					"_Type": "Section.Type.ObjectHeader"
+				}
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		},
+		{
+			"Items": [			{
+				"_Name": "MaterialDocumentHeaderTab",
+				"Caption": "$(L, header)",
+				"PageToOpen" : "/SAPAssetManager/Pages/Inventory/MaterialDocument/MaterialDocumentHeader.page",
+				"PageMetadata": "/SAPAssetManager/Rules/Inventory/MaterialDocumentHeaderPageMetadata.js",
+				"_Type": "Control.Type.TabItem"
+
+			},
+			{
+				"_Name": "MaterialItemsListTab",
+				"Caption": "$(L, items)",
+				"PageToOpen" : "/SAPAssetManager/Pages/Inventory/MaterialDocument/MaterialDocItemsList.page",
+				"_Type": "Control.Type.TabItem"
+			},
+			{
+				"_Name": "MaterialReversalListTab",
+				"Caption": "$(L, reversal_label)",
+				"PageToOpen" : "/SAPAssetManager/Pages/Inventory/MaterialDocument/MaterialDocReversalList.page",
+				"_Type": "Control.Type.TabItem"
+
+			},
+			{
+				"_Name": "MaterialAttachmentListTab",
+				"Caption": "$(L, attachments)",
+				"PageToOpen" : "/SAPAssetManager/Pages/Inventory/MaterialDocument/MaterialDocumentAttachmentList.page",
+				"_Type": "Control.Type.TabItem"
+
+			}],
+			"Position": "Top",
+			"_Type": "Control.Type.Tabs",
+			"_Name": "TabsControl"
+  		}
+	],
+	"FioriToolbar": {
+		"_Name": "MaterialDocumentDetailsIMFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+		"Items": [
+			{
+                "_Name": "NextItem",
+                "_Type": "FioriToolbarItem.Type.Button",
+                "Title": "$(L, delete)",
+                "Visible": "/SAPAssetManager/Rules/Inventory/MaterialDocument/EnableMaterialDocumentEditable.js",
+				"OnPress": "/SAPAssetManager/Rules/Inventory/MaterialDocument/RemoveCreatedMaterialDocuments.js"
+            },
+			{
+                "_Name": "ReverseAll",
+                "_Type": "FioriToolbarItem.Type.Button",
+                "Title": "$(L, cancel_all)",
+                "Visible": "/SAPAssetManager/Rules/Inventory/MaterialDocument/CancelAllMatDocVisible.js",
+				"Enabled": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/BulkMatDocReverseIsAllowed.js",
+				"OnPress": "/SAPAssetManager/Rules/Inventory/InboundOrOutbound/NavigateToObjectUpdate.js"
+            }
+        ]
+    },
+	"DataSubscriptions": ["MyInventoryObjects", "MaterialDocItems", "MaterialDocuments"],
+	"OnLoaded": "/SAPAssetManager/Rules/Inventory/Common/RefreshSoftInputModeConfig.js",
+	"OnReturning": "/SAPAssetManager/Rules/Inventory/MaterialDocument/MDocDetailsPageOnReturn.js",
+	"_Name": "MaterialDocumentDetailsIMPage",
+	"_Type": "Page"
+}

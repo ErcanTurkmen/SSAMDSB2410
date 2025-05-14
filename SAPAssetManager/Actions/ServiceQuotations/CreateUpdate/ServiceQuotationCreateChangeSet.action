@@ -1,0 +1,21 @@
+{
+    "Actions": [
+        "/SAPAssetManager/Actions/ServiceQuotations/CreateUpdate/ServiceQuotationCreate.action",
+        "/SAPAssetManager/Rules/ServiceQuotations/Items/CreateUpdate/OnCreateServiceQuotationItem.js",
+        "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/OnCreateServiceQuotationNote.js",
+        "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/OnCreateServiceQuotationDocuments.js",
+        "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/OnCreateServiceQuotationPartners.js",
+        "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/OnCreateServiceQuotationReferenceObjects.js",
+        "/SAPAssetManager/Rules/ServiceQuotations/Items/CreateUpdate/OnCreateServiceQuotationItemNote.js",
+        "/SAPAssetManager/Rules/ServiceQuotations/Items/CreateUpdate/OnCreateServiceQuotationItemDocuments.js",
+        "/SAPAssetManager/Rules/ServiceQuotations/Items/CreateUpdate/OnCreateServiceQuotationItemPartners.js",
+	    "/SAPAssetManager/Rules/ServiceQuotations/Items/CreateUpdate/OnCreateServiceQuotationItemServiceContract.js",
+        "/SAPAssetManager/Rules/ServiceQuotations/Items/CreateUpdate/OnCreateServiceQuotationItemServiceContractItem.js"
+    ],
+    "OnSuccess": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationChangeSetOnSuccess.js",
+    "OnFailure" : "/SAPAssetManager/Rules/Common/ChangeSet/ChangeSetOnFailure.js",
+    "Target": {
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "_Type": "Action.Type.ODataService.ChangeSet"
+}

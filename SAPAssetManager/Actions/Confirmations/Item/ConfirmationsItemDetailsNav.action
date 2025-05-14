@@ -1,0 +1,5 @@
+{
+	"_Type": "Action.Type.Navigation",
+	"PageToOpen": "/SAPAssetManager/Pages/Confirmations/Item/ConfirmationsItemDetails.page",
+	"PageMetadata": "/SAPAssetManager/Rules/Confirmations/Item/ConfirmationsItemDetailsPageMetadata.js"
+}

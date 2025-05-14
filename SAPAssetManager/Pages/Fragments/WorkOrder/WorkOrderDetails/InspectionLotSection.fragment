@@ -1,0 +1,30 @@
+{
+    "Header": {
+        "Caption": "$(L, inspection_lot)"
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_inspection_lot_available)"
+    },
+    "Footer": {
+        "Caption": "$(L,hierarchy)",
+        "AccessoryType": "DisclosureIndicator",
+        "FooterStyle": "Attribute",
+        "OnPress": "/SAPAssetManager/Rules/WorkOrders/InspectionLotOperationHierarchyNav.js"
+    },
+    "ObjectCell": {
+        "AccessoryType": "DisclosureIndicator",
+        "Title": "{{#Property:ShortDesc}}",
+        "Subhead": "{{#Property:InspectionLot}}",
+        "Footnote": "/SAPAssetManager/Rules/WorkOrders/InspectionLot/InspectionLotDetailsInspectionEndDate.js",
+        "OnPress": "/SAPAssetManager/Actions/WorkOrders/InspectionLot/InspectionLotDetails.action"
+    },
+    "Target":
+    {
+        "EntitySet": "{{#Property:@odata.readLink}}/InspectionLot_Nav",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "/SAPAssetManager/Rules/WorkOrders/InspectionLot/InspectionLotQueryOptions.js"
+    },
+    "_Name": "InspectionLotSection",
+    "Visible": "/SAPAssetManager/Rules/WorkOrders/InspectionLot/IsInspectionLotEnabled.js",
+    "_Type": "Section.Type.ObjectTable"
+}

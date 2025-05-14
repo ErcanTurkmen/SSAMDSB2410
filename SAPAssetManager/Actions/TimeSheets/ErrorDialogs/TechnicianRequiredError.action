@@ -1,0 +1,6 @@
+{
+    "_Type": "Action.Type.Message",
+    "Title": "$(L,validation_error)",
+    "Message": "$(L,validation_technician_not_empty)",
+    "OKCaption": "$(L,ok)"
+}

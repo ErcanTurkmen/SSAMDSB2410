@@ -1,0 +1,129 @@
+{
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "Items": [
+            {
+				"_Type": "Fragment",
+				"Fragment": "/SAPAssetManager/Pages/Fragments/CancelButton.fragment",
+				"Properties": {
+					"OnPress": "/SAPAssetManager/Actions/Page/CancelPage.action"
+				}
+			},
+            {
+				"_Type": "Fragment",
+				"Fragment": "/SAPAssetManager/Pages/Fragments/FilterButton.fragment",
+				"Properties": {
+					"OnPress": "/SAPAssetManager/Rules/Filter/ApplyFilterAndSave.js",
+                    "SystemItem": "/SAPAssetManager/Rules/Filter/FilterSystemItem.js",
+                    "Text": "/SAPAssetManager/Rules/Filter/FilterText.js"
+				}
+			}
+        ]
+    },
+    "Caption":"$(L,filter)",
+    "Result": "/SAPAssetManager/Rules/FL/HUDelItems/ListView/HUDelItemsSearchFilterResults.js",
+    "Controls":
+    [{
+        "Sections":
+        [
+            {
+                "Controls": [{
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/SortByFilter.fragment",
+                    "Properties": {
+                        "SortByItems": [
+                            {
+                                "ReturnValue":"Material",
+                                "DisplayValue":"$(L,material)"
+                            },
+                            {
+                                "ReturnValue":"ReferenceDocNumber",
+                                "DisplayValue":"$(L,reference_doc_number)"
+                            },
+                            {
+                                "ReturnValue":"HandlingUnitID",
+                                "DisplayValue":"$(L,hudelitem_id)"
+                            },
+                            {
+                                "ReturnValue":"ShippingPoint",
+                                "DisplayValue":"$(L,fl_shipping_point)"
+                            }
+                        ]
+                    }
+                }]
+            },
+            {
+                "Caption": "$(L,filter_by)",
+                "Controls":
+                [
+                {
+                    "_Name": "MaterialFilter",
+                    "_Type": "Control.Type.FormCell.ListPicker",
+                    "Caption": "$(L,material)",
+                    "IsPickerDismissedOnSelection": true,
+                    "IsSearchCancelledAfterSelection": true,
+                    "Search": {
+                        "Enabled": true,
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 3,
+                        "Placeholder": "$(L,search)",
+                        "BarcodeScanner": true
+                    },
+                    "PickerItems": "/SAPAssetManager/Rules/FL/HUDelItems/ListView/MaterialIDPickerItems.js",
+                    "FilterProperty": "Material",
+                    "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+                },
+                {
+                    "_Name": "HandlingUnitIDFilter",
+                    "_Type": "Control.Type.FormCell.ListPicker",
+                    "Caption": "$(L,hudelitem_id)",
+                    "IsPickerDismissedOnSelection": true,
+                    "IsSearchCancelledAfterSelection": true,
+                    "Search": {
+                        "Enabled": true,
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 3,
+                        "Placeholder": "$(L,search)",
+                        "BarcodeScanner": true
+                    },
+                    "PickerItems": "/SAPAssetManager/Rules/FL/HUDelItems/ListView/HandlingUnitIDPickerItems.js",
+                    "FilterProperty": "HandlingUnitID",
+                    "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+                },
+                        {
+                    "_Name": "ReferenceDocNumberFilter",
+                    "_Type": "Control.Type.FormCell.ListPicker",
+                    "Caption": "$(L,reference_doc_number)",
+                    "IsPickerDismissedOnSelection": true,
+                    "IsSearchCancelledAfterSelection": true,
+                    "Search": {
+                        "Enabled": true,
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 3,
+                        "Placeholder": "$(L,search)",
+                        "BarcodeScanner": true
+                    },
+                    "PickerItems": "/SAPAssetManager/Rules/FL/HUDelItems/ListView/ReferenceDocNumberPickerItems.js",
+                    "FilterProperty": "ReferenceDocNumber",
+                    "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+                }
+                ]
+            }
+        ],
+        "_Name":"FormCellContainer",
+        "_Type":"Control.Type.FormCellContainer"
+    }],
+    "FioriToolbar": {
+        "_Name": "ContainersSearchFilterFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Items": [
+            {
+				"_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/ResetFilterToolbarItem.fragment"
+			}
+        ]
+    },
+    "_Type":"Page",
+    "_Name":"HUDelItemsFilterPage",
+    "OnLoaded": "/SAPAssetManager/Rules/FL/HUDelItems/ListView/HUDelItemsSearchFilterOnLoaded.js"
+}

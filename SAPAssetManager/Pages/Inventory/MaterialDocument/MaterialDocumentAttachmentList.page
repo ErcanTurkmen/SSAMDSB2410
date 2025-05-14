@@ -1,0 +1,36 @@
+{
+	"Caption": "$(L,documents)",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"EmptySection": {
+						"Caption": "$(L,no_related_document)"
+					},
+					"Header": {
+						"UseTopPadding": false
+					},
+					"ObjectCell": {
+						"_Type": "Fragment",
+						"Fragment": "/SAPAssetManager/Pages/Fragments/Documents/DocumentObjectCell.fragment",
+						"Properties": {
+							"Subhead": ""
+						}
+    				},
+					"Target": {
+						"EntitySet": "/SAPAssetManager/Rules/Documents/DocumentsBDSListEntitySet.js",
+                        "QueryOptions": "/SAPAssetManager/Rules/Documents/DocumentsBDSQueryOptions.js",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					},
+					"_Name": "AttachmentSection",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"OnReturning": "/SAPAssetManager/Rules/Inventory/MaterialDocument/MDocAttachmentDetailsPageOnReturn.js",
+	"_Name": "MaterialDocumentAttachmentListPage",
+	"_Type": "Page"
+}

@@ -1,0 +1,15 @@
+{
+    "ObjectHeader": {
+        "HeadlineText": "/SAPAssetManager/Rules/WorkOrders/WorkOrderDescription.js",
+        "Tags": "/SAPAssetManager/Rules/WorkOrders/Details/WorkOrderDetailsObjectHeaderTags.js",
+        "StatusImage": "/SAPAssetManager/Rules/Common/ChangeSet/ChangeStatusIconRule.js",
+        "SubstatusText": "/SAPAssetManager/Rules/WorkOrders/WorkOrderPriorityFormat.js",
+        "Styles": {
+            "KPITintColor": "ObjectHeaderKPITintColor",
+            "KPICaptionStyle": "ObjectHeaderKPICaption",
+            "SubstatusText":  "/SAPAssetManager/Rules/Priority/WOPriorityStatusStyle.js"
+        }
+    },
+    "_Type": "Section.Type.ObjectHeader",
+    "_Name": "ObjectHeaderSectionTable"
+}

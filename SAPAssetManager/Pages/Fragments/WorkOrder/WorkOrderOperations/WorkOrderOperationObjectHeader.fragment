@@ -1,0 +1,16 @@
+{
+    "ObjectHeader": {
+        "HeadlineText": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/WorkOrderOperationShortText.js",
+        "Tags": "/SAPAssetManager/Rules/Operations/OperationDetailsObjectHeaderTags.js",
+        "BodyText": "/SAPAssetManager/Rules/Operations/OperationHeaderEquipmentDescription.js",
+        "Footnote":  "/SAPAssetManager/Rules/Operations/OperationHeaderFunctionalLocationDescription.js",
+        "Target": {
+            "EntitySet": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/BindingReadlink.js",
+            "Service": "/SAPAssetManager/Services/AssetManager.service",
+            "QueryOptions": "$expand=OperationMobileStatus_Nav/OverallStatusCfg_Nav,WOHeader,WOHeader/OrderMobileStatus_Nav,WOHeader/WOPriority"
+        }
+    },
+    "_Type": "Section.Type.ObjectHeader",
+    "_Name": "ObjectHeaderSectionTable",
+    "DataSubscriptions": ["PMMobileStatuses", "Confirmations", "MyWorkOrderOperations", "MeasurementDocuments", "UserPreferences", "UserTimeEntries"]
+}

@@ -1,0 +1,21 @@
+{
+    "SimplePropertyCells": [
+        {
+            "SimplePropertyCell": {
+                "KeyName": "$(L, notification_items)",
+                "Styles": {
+                    "KeyName": "KeyNameAsHeaderCaption"
+                }
+            }
+        }
+    ],
+    "Footer": {
+        "UseBottomPadding": false
+    },
+    "Separators": {
+        "HeaderSeparator": true,
+        "FooterSeparator": true,
+        "BottomSectionSeparator": true
+    },
+    "_Type": "Section.Type.SimplePropertyCollection"
+}

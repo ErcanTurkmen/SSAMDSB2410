@@ -1,0 +1,99 @@
+{
+	"Caption": "$(L,service_item_transfer)",
+    "OnLoaded": "/SAPAssetManager/Rules/ErrorArchive/HideCancelForErrorArchiveFix.js",
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "Items": [
+            {
+                "Position": "Left",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)",
+                "OnPress": "/SAPAssetManager/Actions/Page/CancelPage.action"
+            },
+            {
+                "Position": "Right",
+                "Text": "$(L,transfer)",
+                "OnPress": "/SAPAssetManager/Actions/WorkOrders/MobileStatus/TransferPageRequiredFields.action"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+					"Caption": "$(L,required_fields)",
+                    "Controls": [
+                        {
+                            "Caption": "$(L,service_order)",
+                            "IsEditable": false,
+                            "Value": "{ObjectID}",
+                            "_Name": "ServiceOrderNumber",
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        },
+						{
+							"Caption": "$(L,item) ID",
+							"IsEditable": false,
+							"Value": "{ItemNo}",
+							"_Name": "ServiceItemNumber",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+                        {
+                            "AllowMultipleSelection": false,
+                            "Caption": "$(L,reason)*",
+                            "Value": "{TransferReason}",
+                            "IsEditable": true,
+                            "IsSelectedSectionEnabled": false,
+                            "IsPickerDismissedOnSelection": true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "AllowDefaultValueIfOneItem": true,
+                            "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js",
+                            "PickerItems": "/SAPAssetManager/Rules/MobileStatus/ReasonCodes.js",
+                            "Search":
+                            {
+                                "Enabled": true
+                            },
+                            "_Name": "TransferReasonLstPkr",
+                            "_Type": "Control.Type.FormCell.ListPicker"
+                        },
+                        {
+                            "AllowMultipleSelection": false,
+                            "Caption": "$(L,transfer_to)*",
+                            "IsEditable": true,
+                            "Value": "/SAPAssetManager/Rules/WorkOrders/ListView/TransferToUpdate.js",
+                            "IsSelectedSectionEnabled": false,
+                            "IsPickerDismissedOnSelection": true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "AllowDefaultValueIfOneItem": true,
+                            "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js",
+                            "PickerItems": "/SAPAssetManager/Rules/WorkOrders/ListView/TransferToListItems.js",
+                            "Search":
+                            {
+                                "Enabled": true
+                            },
+                            "_Name": "TransferToLstPkr",
+                            "_Type": "Control.Type.FormCell.ListPicker"
+                        }
+                    ]
+                },
+                {
+                    "Controls": [
+                        {
+                            "IsAutoResizing": false,
+                            "IsEditable": true,
+                            "IsVisible": false,
+                            "Value": "{HeaderNotes}",
+                            "_Name": "TransferNote",
+                            "Caption": "$(L,notes)",
+                            "PlaceHolder": "$(L,notes)",
+                            "_Type": "Control.Type.FormCell.Note"
+                        }
+                    ]
+                }
+            ],
+            "_Name": "FormCellContainer",
+            "_Type": "Control.Type.FormCellContainer"
+        }
+    ],
+	"_Name": "ServiceItemTransferPage",
+	"_Type": "Page"
+}

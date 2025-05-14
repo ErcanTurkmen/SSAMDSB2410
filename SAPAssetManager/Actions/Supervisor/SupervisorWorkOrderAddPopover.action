@@ -1,0 +1,19 @@
+{
+	"PopoverItems":
+	[{
+		"Title": "$(L,workorders_assign)",
+		"Visible": "/SAPAssetManager/Rules/Supervisor/SupervisorRole/IsSupervisorSectionVisibleForWO.js",
+		"OnPress": "/SAPAssetManager/Rules/Supervisor/Assign/WorkOrderAssignNav.js"
+	},
+	{
+		"Title": "$(L,filter)",
+		"Visible": true,
+		"OnPress": "/SAPAssetManager/Actions/WorkOrders/WorkOrderFilter.action"
+	},
+	{
+		"Title": "$(L, online_search)",
+		"OnPress": "/SAPAssetManager/Rules/OnlineSearch/WorkOrders/OnlineSearchFromWorkOrdersNav.js",
+		"Visible": false
+	}],
+	"_Type": "Action.Type.PopoverMenu"
+}

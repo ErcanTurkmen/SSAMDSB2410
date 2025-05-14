@@ -1,0 +1,28 @@
+{
+    "Caption": "$(L, phase_control)",
+    "_Name": "PhaseControlFilter",
+    "Value": "#Page:-Previous/#ClientData/#Property:phaseControlFilterValue",
+    "AllowMultipleSelection": true,
+    "IsSelectedSectionEnabled": true,
+    "IsVisible":"/SAPAssetManager/Rules/Common/IsPhaseModelEnabled.js",
+    "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js",
+    "Search": {
+        "Enabled": true,
+        "Delay": 500,
+        "MinimumCharacterThreshold": 3,
+        "Placeholder": "$(L,search)",
+        "BarcodeScanner": true
+    },
+    "IsPickerDismissedOnSelection" : true,
+    "IsSearchCancelledAfterSelection": true,
+    "PickerItems": {
+        "DisplayValue": "{PhaseControl} - {Description}",
+        "ReturnValue": "{PhaseControl}",
+        "Target": {
+        "EntitySet": "PhaseControlCodes",
+            "Service": "/SAPAssetManager/Services/AssetManager.service",
+            "QueryOptions": "/SAPAssetManager/Rules/WorkOrders/ListView/WOPhaseControlCodesQueryOptions.js"
+        }
+    },
+    "_Type": "Control.Type.FormCell.ListPicker"
+}

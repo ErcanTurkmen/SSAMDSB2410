@@ -1,0 +1,15 @@
+{
+    "ObjectHeader": {
+        "HeadlineText": "/SAPAssetManager/Rules/Equipment/EquipmentDetailViewFormat.js",
+        "BodyText": "/SAPAssetManager/Rules/Equipment/EquipmentDetailViewFormat.js",
+        "SubstatusText": "/SAPAssetManager/Rules/Equipment/EquipmentDetailViewFormat.js",
+        "Footnote": "/SAPAssetManager/Rules/Equipment/EquipmentTechnicalObjectId.js",
+        "DetailImage": "/SAPAssetManager/Rules/Equipment/EquipmentDetailImage.js",
+        "Tags": [
+            "{EquipType}",
+            "{EquipCategory}"
+        ]
+    },
+    "_Type": "Section.Type.ObjectHeader",
+    "_Name": "EquipmentObjectHeaderSection"
+}

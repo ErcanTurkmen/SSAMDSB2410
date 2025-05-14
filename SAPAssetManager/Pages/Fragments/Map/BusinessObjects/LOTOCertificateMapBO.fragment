@@ -1,0 +1,36 @@
+{
+    "Type": "LOTOCertificate",
+    "Title": "$(L, dl_safety_certificates)",
+    "Legend": "IconSafetyCertificate",
+    "Target": {
+        "EntitySet": "WCMDocumentHeaders",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "/SAPAssetManager/Rules/Maps/WCM/CertificateBOQueryOptions.js",
+        "Properties": [],
+        "KeyProperties": []
+    },
+    "Enable": true,
+    "ObjectScheme": {
+        "Geometry": "/SAPAssetManager/Rules/Maps/WCM/WCMTechnicalObjectGeometryValue.js",
+        "Layer": "LOTOCertificate",
+        "Properties": {
+            "ID": "{WCMDocument}",
+            "Priority": "{Priority}",
+            "DateProperties": {
+                "DueDate": "{ValidToDate}",
+                "DateFormat": "yyyy-MM-dd"
+            }
+        },
+        "Actions": [],
+        "Symbol": {
+            "marker": "/SAPAssetManager/Rules/Maps/WCM/CertificateMapMarker.js",
+            "lineColor": "DF1278",
+            "fillColor": "DF127833",
+            "lineWidth": 2,
+            "onSelect": {
+                "marker": "/SAPAssetManager/Rules/Maps/WCM/CertificateMapMarkerSelected.js",
+                "lineWidth": 4
+            }
+        }
+    }
+}

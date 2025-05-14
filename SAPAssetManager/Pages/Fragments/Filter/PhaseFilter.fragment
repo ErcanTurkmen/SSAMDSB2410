@@ -1,0 +1,18 @@
+{
+    "_Name": "PhaseFilter",
+    "_Type": "Control.Type.FormCell.ListPicker",
+    "Caption": "$(L,phase)",
+    "AllowMultipleSelection": true,
+    "IsPickerDismissedOnSelection": false,
+    "IsSearchCancelledAfterSelection": true,
+    "Search": {
+        "Enabled": true,
+        "Delay": 500,
+        "MinimumCharacterThreshold": 3,
+        "Placeholder": "$(L,search)",
+        "BarcodeScanner": true
+    },
+    "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js",
+    "PickerItems": "",
+    "IsVisible": false
+}

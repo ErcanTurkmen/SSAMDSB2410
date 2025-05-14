@@ -1,0 +1,16 @@
+{
+    "_Type": "Control.Type.FormCell.ListPicker",
+    "IsSelectedSectionEnabled": true,
+    "AllowMultipleSelection": true,
+    "IsPickerDismissedOnSelection": false,
+    "PickerItems": {
+        "DisplayValue": "{PropertyLabel}",
+        "ReturnValue": "{PropertyName}",
+        "Target": {
+            "EntitySet": "WCMWorkReqTexts",
+            "Service": "/SAPAssetManager/Services/AssetManager.service",
+            "QueryOptions": "/SAPAssetManager/Rules/WCM/WorkPermitFilter/WCMRequirementFilterQueryOptions.js"
+        },
+        "IsEditable": true
+    }
+}

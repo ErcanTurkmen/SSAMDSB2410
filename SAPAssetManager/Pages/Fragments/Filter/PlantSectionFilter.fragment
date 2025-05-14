@@ -1,0 +1,7 @@
+{
+    "_Type": "Control.Type.FormCell.SimpleProperty",
+    "_Name": "PlantSection",
+    "Caption": "$(L,plant_section)",
+    "PlaceHolder": "$(L,plant_section)",
+    "Value": "/SAPAssetManager/Rules/OnlineSearch/SearchCriteria/SimplePropertyDefaultFilterValue.js"
+}

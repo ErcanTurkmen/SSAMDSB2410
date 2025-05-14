@@ -1,0 +1,14 @@
+{
+    "PreserveIconStackSpacing": true,
+    "Title": "{#Property:InspectionLot_Nav/#Property:ShortDesc}",
+    "Subhead": "{#Property:InspectionLot_Nav/#Property:InspectionLot}",
+    "Footnote": "/SAPAssetManager/Rules/WorkOrders/InspectionLot/InspectionLotEndDate.js",
+    "StatusText": "/SAPAssetManager/Rules/WorkOrders/InspectionLot/InspectionLotValuation.js",
+    "SubstatusText": "/SAPAssetManager/Rules/WorkOrders/InspectionLot/InspectionLotStatus.js",
+    "Styles": {
+        "StatusText": "/SAPAssetManager/Rules/WorkOrders/InspectionLot/InspectionLotValuationStyle.js"
+    },
+    "OnPress": "/SAPAssetManager/Actions/WorkOrders/InspectionLot/CheckListDetails.action",
+    "AccessoryType": "/SAPAssetManager/Rules/WorkOrders/InspectionLot/InspectionLotAccessoryType.js",
+    "OnAccessoryButtonPress": "/SAPAssetManager/Rules/InspectionCharacteristics/InspectionCharacteristicsDynamicPageNavWrapper.js"
+}

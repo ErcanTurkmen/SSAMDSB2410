@@ -1,0 +1,13 @@
+{
+	"Caption": "$(L, notes)",
+	"Controls": [
+		{
+			"Sections": [],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"DataSubscriptions": "/SAPAssetManager/Rules/WCM/WCMNotes/WCMNotesListDataSubscritions.js",
+	"_Name": "WCMNotesListPage",
+	"_Type": "Page"
+}

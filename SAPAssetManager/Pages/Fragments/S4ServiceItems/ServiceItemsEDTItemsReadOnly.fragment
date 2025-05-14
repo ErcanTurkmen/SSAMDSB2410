@@ -1,0 +1,62 @@
+[
+    {
+        "Type": "Text",
+        "Property": "ItemNo",
+        "Parameters": {
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemItemNoReadOnlyValue.js"
+        }
+    },
+    {
+        "Type": "Text",
+        "Property": "HigherLvlItem",
+        "Parameters": {
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemParentItemReadOnlyValue.js"
+        }
+    },
+    {
+        "Type": "Text",
+        "Property": "Quantity",
+        "Parameters": {
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemQuantityValue.js"
+        }
+    },
+    {
+        "Type": "Text",
+        "Property": "QuantityUOM",
+        "Parameters": {
+            "Value": "{QuantityUOM}"
+        }
+    },
+    {
+        "Type": "Text",
+        "Property": "Product",
+        "Parameters": {
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemProductDescriptionValue.js"
+        }
+    },
+    {
+        "Type": "Text",
+        "Property": "NetValue",
+        "Parameters": {
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemNetValue.js"
+        }
+    },
+    {
+        "Type": "Text",
+		"Property": "AccountingInd",
+		"Parameters": {
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemAccountingIndicatorValue.js"
+		}
+    },
+    {
+        "Type": "Button",
+        "Property": "",
+        "IsReadOnly": false,
+        "Parameters": {
+            "Value": "$(L, details)",
+            "Action": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemDetailsNav.js",
+            "Style": "Secondary"
+        }
+    },
+    "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/SubItem/SubItemDiscardButton.js"
+]

@@ -1,0 +1,179 @@
+{
+    "Caption": "$(L,issue_part)",
+    "OnLoaded": "/SAPAssetManager/Rules/Parts/Issue/CreateUpdate/PartIssueCreateUpdateOnPageLoad.js",
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "_Name": "PartIssueCreateUpdate",
+        "Items": [
+            {
+                "Position": "Left",
+                "_Name": "Cancel",
+                "SystemItem": "Cancel",
+                "Caption":"$(L,cancel)",
+                "OnPress": "/SAPAssetManager/Actions/Page/CancelPage.action"
+            },
+            {
+                "Position": "Right",
+                "_Name": "Done",
+                "SystemItem": "$(PLT,'Done','','','Done')",
+                "Caption": "$(L,done)",
+                "Text": "/SAPAssetManager/Rules/Common/Platform/DoneText.js",
+                "OnPress": "/SAPAssetManager/Rules/Parts/Issue/CreateUpdate/PartIssueCreateUpdateOnCommit.js"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "Header": {
+                        "UseTopPadding": false
+                    },
+                    "Controls": [
+                        {
+                            "Caption": "$(L,plant)",
+                            "PlaceHolder": "",
+                            "Value": "",
+                            "_Name": "PlantSim",
+                            "ReadOnly": true,
+                            "IsEditable": false,
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        },
+                        {
+                            "Caption": "$(L,part)",
+                            "PlaceHolder": "",
+                            "Value": "",
+                            "_Name": "MaterialSim",
+                            "ReadOnly": true,
+                            "IsEditable": false,
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        },
+                         {
+                            "Caption": "$(L,movement_type)",
+                            "PlaceHolder": "",
+                            "Value": "{MovementType}",
+                            "_Name": "MovementTypeSim",
+                            "ReadOnly": true,
+                            "IsEditable": false,
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        }
+                    ]
+                },
+                {
+                    "Controls": [
+                        {
+                            "AllowMultipleSelection": false,
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 3,
+                                "Placeholder": "$(L,search)",
+				                "BarcodeScanner": true
+                            },
+                            "Caption": "$(L,storage_location)",
+                            "PlaceHolder": "",
+                            "Value": "{StorageLocation}",
+                            "_Name": "StorageLocationLstPkr",
+                            "_Type": "Control.Type.FormCell.ListPicker",
+                            "IsPickerDismissedOnSelection": true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "OnValueChange":"/SAPAssetManager/Rules/Parts/StorageLocationOnValueChange.js",
+                            "PickerItems": {
+                                "DisplayValue": "{{#Property:StorageLocation}} - {{#Property:StorageLocationDesc}}",
+                                "ReturnValue": "{StorageLocation}",
+                                "Target": {
+                                    "EntitySet": "MaterialSLocs",
+                                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions": "$filter=MaterialNum eq '{{#Property:MaterialNum}}' and Plant eq '{{#Property:Plant}}'"
+                                }
+                            }
+                        },
+                        {
+                            "_Type": "Control.Type.FormCell.Switch",
+                            "_Name": "AutoGenerateSerialNumberSwitch",
+                            "Caption": "$(L,auto_generate_serial_numbers)",
+                            "OnValueChange":"/SAPAssetManager/Rules/Parts/AutoSerializedSwitch.js",
+                            "IsVisible": "/SAPAssetManager/Rules/Parts/Issue/SerialParts/SerialPartsAreAllowed.js"
+                        },
+                        {
+                            "Caption": "$(L,serial_number)",
+                            "PlaceHolder": "",
+                            "Value": "$(L,auto_generate)",
+                            "_Name": "AutoGenerateSingleProperty",
+                            "IsEditable": false,
+                            "IsVisible":false,
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        },
+                        {
+                            "_Name": "SerialNumLstPkr",
+                            "_Type": "Control.Type.FormCell.ListPicker",
+                            "Caption": "$(L,serial_number)",
+                            "Search":
+                            {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 3,
+                                "Placeholder": "$(L,search)",
+                                "BarcodeScanner": true
+                            },
+                            "IsVisible": "/SAPAssetManager/Rules/Parts/Issue/SerialParts/SerialPartsAreAllowed.js",
+                            "IsPickerDismissedOnSelection" : true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "AllowMultipleSelection": true,
+                            "OnValueChange":"/SAPAssetManager/Rules/Parts/SerialNumberListPicker.js",
+                            "PickerItems":
+                            {
+                                "ObjectCell":
+                                {
+                                    "Title": "{SerialNumber}",
+                                    "Subhead": "/SAPAssetManager/Rules/Parts/Issue/SerialParts/SerialUUID.js"
+                                },
+                                "ReturnValue": "{SerialNumber}",
+                                "Target":
+                                {
+                                    "EntitySet": "{{#Property:@odata.readLink}}/Material/SerialNumbers",
+                                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions": "/SAPAssetManager/Rules/Parts/Issue/SerialParts/SerialNumberIssueQueryOptions.js"
+                                }
+                            }
+                        },
+                        {
+                            "Caption": "$(L,quantity)",
+                            "Value": "",
+                            "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js",
+                            "_Name": "QuantitySim",
+                            "_Type": "Control.Type.FormCell.SimpleProperty",
+                            "IsEditable": true,
+                            "KeyboardType": "Number"
+                        },
+                        {
+                            "Caption": "$(L,uom)",
+                            "Value": "{UnitOfEntry}",
+                            "_Name": "UOMSim",
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        },
+                        "/SAPAssetManager/Pages/Fragments/Parts/PartBatchPicker.fragment",
+                        {
+                            "AllowEmptySelection": true,
+                            "AllowMultipleSelection": false,
+                            "IsPickerDismissedOnSelection": true,
+                            "IsSelectedSectionEnabled": false,
+                            "AllowDefaultValueIfOneItem": true,
+                            "Caption": "$(L, valuation_type)",
+                            "IsVisible": "/SAPAssetManager/Rules/Inventory/Validation/ShowValuationTypeField.js",
+                            "Value": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/Valuations/GetValuationType.js",
+                            "PickerItems": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/Valuations/ValuationPickerItems.js",
+                            "IsEditable": true,
+                            "_Name": "ValuationTypePicker",
+                            "_Type": "Control.Type.FormCell.ListPicker"
+                        }
+                    ]
+                }
+            ],
+            "_Name": "FormCellContainer",
+            "_Type": "Control.Type.FormCellContainer"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "PartIssueCreateUpdatePage"
+}

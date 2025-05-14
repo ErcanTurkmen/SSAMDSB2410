@@ -1,0 +1,33 @@
+{
+    "Header": {
+        "Caption": "$(L,sdf_section_caption)"
+    },
+    "EmptySection": {
+        "Caption": "$(L,sdf_no_forms)"
+    },
+    "ObjectCell": {
+        "_Type": "Fragment",
+        "Fragment": "/SAPAssetManager/Pages/Fragments/Forms/SDF/FormInstanceObjectCell.fragment",
+        "Properties": {
+            "DetailImage": "/SAPAssetManager/Rules/Forms/SmartFormsDetailImage.js"
+        }
+    },
+    "Footer": {
+        "Caption": "$(L,see_all)",
+        "AccessoryType": "DisclosureIndicator",
+        "FooterStyle": "Attribute",
+        "AttributeLabel": "/SAPAssetManager/Rules/Forms/SDF/FormInstanceCount.js",
+        "OnPress": "/SAPAssetManager/Actions/Forms/SDF/ListViewNav.action",
+        "Visible": "/SAPAssetManager/Rules/Forms/SDF/FooterIsVisible.js"
+    },
+    "Target": {
+        "EntitySet": "{{#Property:@odata.readLink}}/DynamicFormLinkage_Nav",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions" : "/SAPAssetManager/Rules/Forms/SDF/FormInstanceListQueryOptions.js"
+    },
+    "MaxItemCount": 2,
+    "Visible": "/SAPAssetManager/Rules/Forms/SDF/SDFIsFeatureEnabled.js",
+    "_Type": "Section.Type.ObjectTable",
+    "_Name": "SDFSection",
+    "DataSubscriptions": ["DynamicFormInstances"]
+}

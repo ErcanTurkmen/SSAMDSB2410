@@ -1,0 +1,28 @@
+
+{
+    "_Type": "Control.Type.FormCell.ListPicker",
+    "_Name": "BatchNumberLstPkr",
+    "Caption": "$(L,batch_number)",
+    "Value" : "/SAPAssetManager/Rules/Parts/CreateUpdate/PartBatchNumberValues.js",
+    "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js",
+    "AllowDefaultValueIfOneItem": false,
+    "AllowMultipleSelection": false,
+    "IsPickerDismissedOnSelection": true,
+    "Search": {
+        "Enabled": true,
+        "Delay": 500,
+        "MinimumCharacterThreshold": 3,
+        "Placeholder": "$(L,search)",
+        "BarcodeScanner": true
+    },
+    "PickerItems": {
+        "DisplayValue": "{{#Property:Batch}}",
+        "ReturnValue": "{Batch}",
+        "Target": {
+            "EntitySet": "MaterialBatches",
+            "Service": "/SAPAssetManager/Services/AssetManager.service",
+            "QueryOptions": "/SAPAssetManager/Rules/Parts/CreateUpdate/PartBatchNumberQueryOptions.js"
+        }
+    },
+    "IsVisible": "/SAPAssetManager/Rules/Parts/CreateUpdate/BatchPickerVisible.js"
+}

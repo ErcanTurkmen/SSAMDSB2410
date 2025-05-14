@@ -1,0 +1,52 @@
+
+{
+    "Caption": "/SAPAssetManager/Rules/Confirmations/OverviewListView/FormattedPostingDate.js",
+    "ActionBar": {
+        "_Name": "ConfirmationsListView",
+		"Items": [
+            {
+                "Position": "Right",
+                "_Name": "Add",
+                "SystemItem": "Add",
+                "Caption": "$(L,add)",
+                "OnPress": "/SAPAssetManager/Rules/Confirmations/CreateUpdate/ConfirmationCreateWithPostingDate.js",
+                "Visible": "/SAPAssetManager/Rules/Confirmations/CreateUpdate/ConfirmationEntryCreateVisible.js"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections":
+            [{
+                "Header": {
+                     "UseTopPadding": false
+                },
+                "ObjectCell": {
+                    "PreserveIconStackSpacing": true,
+                    "Icons": "/SAPAssetManager/Rules/Confirmations/ListView/WorkOrderConfirmationsIconSet.js",
+                    "Title": "/SAPAssetManager/Rules/WorkOrders/WorkOrderDescription.js",
+                    "Subhead": "/SAPAssetManager/Rules/Confirmations/ConfirmationGetTargetDuration.js",
+                    "StatusText": "/SAPAssetManager/Rules/Confirmations/ConfirmationGetTargetDuration.js",
+                    "SubstatusText": "/SAPAssetManager/Rules/Confirmations/ConfirmationGetTargetDuration.js",
+                    "Footnote": "{OrderId}",
+                    "AccessoryType": "DisclosureIndicator",
+                    "OnPress": "/SAPAssetManager/Rules/Confirmations/ListView/WorkOrderConfirmationsNav.js"
+                },
+                "Target": {
+                    "EntitySet": "MyWorkOrderHeaders",
+                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                    "QueryOptions": "/SAPAssetManager/Rules/Confirmations/ConfirmationsQueryOptions.js"
+                },
+                "_Type" : "Section.Type.ObjectTable",
+                "_Name" : "WorkOrdersListSection"
+            }],
+            "_Type" : "Control.Type.SectionedTable",
+            "_Name" : "SectionedTable",
+            "DataSubscriptions": [
+                "MyWorkOrderHeaders", "Confirmations"
+            ]
+        }
+    ],
+    "_Type": "Page",
+	"_Name": "ConfirmationsListViewPage"
+}

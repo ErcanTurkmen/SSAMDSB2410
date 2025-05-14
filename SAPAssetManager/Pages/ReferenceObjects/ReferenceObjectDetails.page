@@ -1,0 +1,102 @@
+{
+    "Caption": "$(L,reference_objects)",
+    "ActionBar": {
+		"Items": [
+			{
+				"Position": "Right",
+				"SystemItem": "Add",
+				"Caption": "$(L,add)",
+                "Visible": "/SAPAssetManager/Rules/ServiceOrders/IsS4ServiceIntegrationEnabled.js",
+                "OnPress": "/SAPAssetManager/Actions/ReferenceObjects/AddReferenceObjectNav.action"
+			}
+		]
+	},
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "_Name": "ProductssObjSection",
+                    "_Type": "Section.Type.ObjectTable",
+                    "Header": {
+                        "Caption": "$(L, products)"
+                    },
+                    "ObjectCell": {
+                        "Icons": "/SAPAssetManager/Rules/ReferenceObjects/RefObjectsIcons.js",
+                        "PreserveIconStackSpacing": false,
+                        "Title": "{Material_Nav/Description}",
+                        "Subhead": "{ProductID}",
+                        "Footnote": "/SAPAssetManager/Rules/ReferenceObjects/MainRefObjectFlagValue.js",
+                        "AccessoryButtonIcon": "/SAPAssetManager/Rules/ReferenceObjects/LocalRefObjectDeleteIcon.js",
+                        "OnAccessoryButtonPress": "/SAPAssetManager/Rules/ReferenceObjects/LocalRefObjectDeleteIconPress.js",
+                        "DetailImage": "/SAPAssetManager/Rules/Product/ProductDetailImage.js"
+                    },
+                    "EmptySection": {
+                        "Caption": "$(L, no_product_details_available)"
+                    },
+                    "Target": {
+                        "EntitySet": "/SAPAssetManager/Rules/ReferenceObjects/ReferenceObjectsEntitySet.js",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "$filter=sap.entityexists(Material_Nav)&$expand=Material_Nav&$orderby=MainObject desc"
+                    }
+                },
+                {
+                    "_Name": "EquipmentsObjSection",
+                    "_Type": "Section.Type.ObjectTable",
+                    "Header": {
+                        "Caption": "$(L, equipment_mult)"
+                    },
+                    "ObjectCell": {
+                        "Icons": "/SAPAssetManager/Rules/ReferenceObjects/RefObjectsIcons.js",
+                        "PreserveIconStackSpacing": false,
+                        "Title": "/SAPAssetManager/Rules/ReferenceObjects/EquipDescriptionValue.js",
+                        "Subhead": "{EquipID}",
+                        "Footnote": "/SAPAssetManager/Rules/ReferenceObjects/MainRefObjectFlagValue.js",
+                        "OnPress": "/SAPAssetManager/Rules/Equipment/EquipmentDetailsNav.js",
+                        "AccessoryButtonIcon": "/SAPAssetManager/Rules/ReferenceObjects/LocalRefObjectDeleteIcon.js",
+                        "OnAccessoryButtonPress": "/SAPAssetManager/Rules/ReferenceObjects/LocalRefObjectDeleteIconPress.js",
+                        "DetailImage": "/SAPAssetManager/Rules/Equipment/EquipmentDetailImage.js"
+                    },
+                    "EmptySection": {
+                        "Caption": "$(L, no_equipment_details_available)"
+                    },
+                    "Target": {
+                        "EntitySet": "/SAPAssetManager/Rules/ReferenceObjects/ReferenceObjectsEntitySet.js",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "/SAPAssetManager/Rules/ReferenceObjects/EquipReferenceObjectsQueryOptions.js"
+                    }
+                },
+                {
+                    "_Name": "FLocsObjSection",
+                    "_Type": "Section.Type.ObjectTable",
+                    "Header": {
+                        "Caption": "$(L, functional_locations)"
+                    },
+                    "ObjectCell": {
+                        "Icons": "/SAPAssetManager/Rules/ReferenceObjects/RefObjectsIcons.js",
+                        "PreserveIconStackSpacing": false,
+                        "Title": "/SAPAssetManager/Rules/ReferenceObjects/FLocDescriptionValue.js",
+                        "Subhead": "/SAPAssetManager/Rules/ReferenceObjects/FLocIDValue.js",
+                        "Footnote": "/SAPAssetManager/Rules/ReferenceObjects/MainRefObjectFlagValue.js",
+                        "OnPress": "/SAPAssetManager/Rules/FunctionalLocation/FunctionalLocationDetailsNav.js",
+                        "AccessoryButtonIcon": "/SAPAssetManager/Rules/ReferenceObjects/LocalRefObjectDeleteIcon.js",
+                        "OnAccessoryButtonPress": "/SAPAssetManager/Rules/ReferenceObjects/LocalRefObjectDeleteIconPress.js",
+                        "DetailImage": "/SAPAssetManager/Rules/FunctionalLocation/FunctionaLocationDetailImage.js"
+                    },
+                    "EmptySection": {
+                        "Caption": "$(L, no_functional_location_details_available)"
+                    },
+                    "Target": {
+                        "EntitySet": "/SAPAssetManager/Rules/ReferenceObjects/ReferenceObjectsEntitySet.js",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "/SAPAssetManager/Rules/ReferenceObjects/FLocReferenceObjectsQueryOptions.js"
+                    }
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable"
+        }
+    ],
+    "DataSubscriptions": ["S4ServiceOrderRefObjs", "S4ServiceQuotationRefObjs"],
+    "_Type": "Page",
+    "_Name": "ReferenceObjectsDetailsPage"
+}

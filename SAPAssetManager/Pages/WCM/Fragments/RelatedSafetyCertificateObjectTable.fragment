@@ -1,0 +1,22 @@
+{
+    "Header": {
+        "Caption": "$(L,wcm_certificate)"
+    },
+    "EmptySection": {
+        "Caption": "$(L,wcm_no_certificates)"
+    },
+    "ObjectCell": "/SAPAssetManager/Pages/WCM/Fragments/SafetyCertificateObjectCell.fragment",
+    "MaxItemCount": 2,
+    "Target": "/SAPAssetManager/Rules/WCM/WorkPermitDetails/RelatedCertificatesData.js",
+    "Footer": {
+        "Caption": "$(L,see_all)",
+        "AccessoryType": "DisclosureIndicator",
+        "FooterStyle": "Attribute",
+        "AttributeLabel": "/SAPAssetManager/Rules/WCM/WorkPermitDetails/GetRelatedCertificatesCount.js",
+        "OnPress": "/SAPAssetManager/Actions/WCM/SafetyCertificatesListViewNav.action",
+        "Visible": "/SAPAssetManager/Rules/WCM/WorkPermitDetails/HasMoreThanTwoRelatedCertificate.js"
+    },
+    "Visible": "/SAPAssetManager/Rules/UserFeatures/IsWCMSafetyCertificateEnabled.js",
+    "_Type": "Section.Type.ObjectTable",
+    "_Name": "SafetyCertificateSection"
+}

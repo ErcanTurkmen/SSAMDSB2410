@@ -1,0 +1,6 @@
+{
+    "Message": "$(L,document_editor_update_failure_message)",
+    "Duration": 2,
+    "Animated": true,
+    "_Type": "Action.Type.BannerMessage"
+}

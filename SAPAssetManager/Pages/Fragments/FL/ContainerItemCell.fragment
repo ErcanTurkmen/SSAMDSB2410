@@ -1,0 +1,11 @@
+{
+    "_Type": "Control.Type.ObjectCell",
+    "AccessoryType": "DisclosureIndicator",
+    "Title": "{Material}",
+    "Subhead": "{ReferenceDocNumber}",
+    "Footnote": "/SAPAssetManager/Rules/FL/ContainerItems/ContainerItemsFootnote.js",
+    "Description": "{ShippingPoint}",
+    "StatusText": "#Property:FldLogsContainerItemStatus_Nav/FldContainerItemStatusDesc",
+    "SubstatusText": "/SAPAssetManager/Rules/FL/ContainerItems/ContainerItemsQuantity.js",
+    "AccessoryButtonIcon": "$(PLT, /SAPAssetManager/Images/edit-accessory.ios.png, /SAPAssetManager/Images/edit-accessory.android.png,'',/SAPAssetManager/Images/edit-accessory.ios.png)"
+}

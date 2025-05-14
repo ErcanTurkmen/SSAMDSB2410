@@ -1,0 +1,158 @@
+{
+	"_Type": "Section.Type.FormCell",
+	"_Name": "ProductDetailsFormSection",
+	"Controls": [
+		{
+			"_Type": "Control.Type.FormCell.ListPicker",
+			"_Name": "ProductIdLstPkr",
+			"Caption": "$(L,product_id)*",
+			"AllowMultipleSelection": false,
+			"IsPickerDismissedOnSelection": true,
+			"IsSearchCancelledAfterSelection": true,
+			"Search": {
+				"Enabled": true,
+				"Delay": 500,
+				"MinimumCharacterThreshold": 3,
+				"Placeholder": "$(L,search)"
+			},
+			"Value": "{ProductID}",
+			"IsVisible": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/IsNotTravelExpenceMode.js",
+			"IsEditable": "/SAPAssetManager/Rules/Common/IsOnCreate.js",
+			"OnValueChange": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/OnProductIdValueChanged.js",
+			"PickerItems": {
+				"DisplayValue": "{{#Property:MaterialNum}} - {{#Property:Description}}",
+				"ReturnValue": "{MaterialNum}",
+				"Target": {
+					"EntitySet": "Materials",
+					"Service": "/SAPAssetManager/Services/AssetManager.service",
+					"QueryOptions": "$orderby=MaterialNum"
+				}
+			}
+		},
+		{
+			"_Type": "Control.Type.FormCell.ListPicker",
+			"_Name": "ItemCategoryLstPkr",
+			"Caption": "$(L,item_category)*",
+			"AllowMultipleSelection": false,
+			"IsPickerDismissedOnSelection": true,
+			"IsSearchCancelledAfterSelection": true,
+			"Search": {
+				"Enabled": true,
+				"Delay": 500,
+				"MinimumCharacterThreshold": 3,
+				"Placeholder": "$(L,search)"
+			},
+			"IsEditable": false,
+			"Value": "{ItemCategory}",
+			"IsVisible": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/IsNotTravelExpenceMode.js",
+			"OnValueChange": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/OnItemCategoryValueChanged.js",
+			"PickerItems": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/ItemCategoryPickerItems.js"
+		},
+		{
+			"_Type": "Control.Type.FormCell.ListPicker",
+			"_Name": "ServiceTypeLstPkr",
+			"Caption": "$(L,service_type)",
+			"AllowMultipleSelection": false,
+			"AllowDefaultValueIfOneItem": false,
+			"IsPickerDismissedOnSelection": true,
+			"IsSearchCancelledAfterSelection": true,
+			"Search": {
+				"Enabled": true,
+				"Delay": 500,
+				"MinimumCharacterThreshold": 3,
+				"Placeholder": "$(L,search)",
+				"BarcodeScanner": true
+			},
+			"IsVisible": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/IsServiceItem.js",
+			"Value": "{ServiceType}",
+			"PickerItems": {
+				"DisplayValue": "{{#Property:ServiceType}} - {{#Property:ShortDescription}}",
+				"ReturnValue": "{ServiceType}",
+				"Target": {
+					"EntitySet": "ServiceTypes",
+					"Service": "/SAPAssetManager/Services/AssetManager.service"
+				}
+			}
+		},
+		{
+			"_Type": "Control.Type.FormCell.ListPicker",
+			"_Name": "ValuationTypeLstPkr",
+			"Caption": "$(L, valuation_type)",
+			"AllowEmptySelection": true,
+			"AllowMultipleSelection": false,
+			"IsPickerDismissedOnSelection": true,
+			"IsSelectedSectionEnabled": false,
+			"AllowDefaultValueIfOneItem": true,
+			"Search": {
+				"Enabled": true,
+				"Delay": 500,
+				"MinimumCharacterThreshold": 3,
+				"Placeholder": "$(L,search)",
+				"BarcodeScanner": true
+			},
+			"IsVisible": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/IsServiceItem.js",
+			"Value": "{ValuationType}",
+			"PickerItems": {
+				"DisplayValue": "{Description}",
+				"ReturnValue": "{ValuationType}",
+				"Target": {
+					"EntitySet": "ServiceValuationTypes",
+					"Service": "/SAPAssetManager/Services/AssetManager.service",
+					"QueryOptions": "$orderby=ValuationType"
+				}
+			}
+		},
+		{
+			"_Type": "Control.Type.FormCell.ListPicker",
+			"_Name": "ServiceContractLstPkr",
+			"Caption": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/GetSITravelExpenceRequiredLabel.js",
+			"AllowMultipleSelection": false,
+			"IsPickerDismissedOnSelection": true,
+			"IsSearchCancelledAfterSelection": true,
+			"Search": {
+				"Enabled": true,
+				"Delay": 500,
+				"MinimumCharacterThreshold": 3,
+				"Placeholder": "$(L,search)"
+			},
+			"Value": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/GetSIServiceContractValue.js",
+			"OnValueChange": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/OnServiceContractChanged.js",
+			"IsEditable": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/IsServiceContractEditable.js",
+			"PickerItems": {
+				"DisplayValue": "{{#Property:ObjectID}} - {{#Property:Description}}",
+				"ReturnValue": "{ObjectID}",
+				"Target": {
+					"EntitySet": "S4ServiceContracts",
+					"Service": "/SAPAssetManager/Services/AssetManager.service",
+					"QueryOptions": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/ServiceContractQuery.js"
+				}
+			}
+		},
+		{
+			"_Type": "Control.Type.FormCell.ListPicker",
+			"_Name": "ServiceContractItemLstPkr",
+			"Caption": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/GetSIServiceContractItemCaption.js",
+			"AllowMultipleSelection": false,
+			"IsPickerDismissedOnSelection": true,
+			"IsSearchCancelledAfterSelection": true,
+			"AllowDefaultValueIfOneItem": true,
+			"Search": {
+				"Enabled": true,
+				"Delay": 500,
+				"MinimumCharacterThreshold": 3,
+				"Placeholder": "$(L,search)"
+			},
+			"Value": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/GetSIServiceContractItemValue.js",
+			"IsEditable": false,
+			"PickerItems": {
+				"DisplayValue": "{{#Property:ItemNo}} - {{#Property:ItemDesc}}",
+				"ReturnValue": "{ItemNo}",
+				"Target": {
+					"EntitySet": "S4ServiceContractItems",
+					"Service": "/SAPAssetManager/Services/AssetManager.service",
+					"QueryOptions": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/ServiceContractItemQuery.js"
+				}
+			}
+		}
+	]
+}

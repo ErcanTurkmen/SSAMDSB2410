@@ -1,0 +1,18 @@
+{
+    "_Type": "Action.Type.ODataService.UpdateEntity",
+    "Target": {
+        "EntitySet": "DynamicFormInstances",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "ReadLink": "{#Page:FormRunner/#ClientData/FormData/readLink}"
+    },
+    "Properties": {
+        "Content": "{#Page:FormRunner/#ClientData/FormData/Data}",
+        "FormStatus": "{#Page:FormRunner/#ClientData/FormData/Status}"
+    },
+	"RequestOptions": {
+		"UpdateMode": "Replace",
+        "UnmodifiableRequest": true
+	},
+    "OnSuccess": "/SAPAssetManager/Rules/Forms/SDF/FormUpdateCloseOnCompleted.js",
+    "OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/UpdateEntityFailureMessage.action"
+}

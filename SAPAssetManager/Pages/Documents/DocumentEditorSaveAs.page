@@ -1,0 +1,46 @@
+{
+	"Caption": "$(L,save_as)",
+	"ActionBar": {
+        "_Name": "DocumentEditorSaveAs",
+    	"Items": [{
+			"Position": "Right",
+            "_Name": "Save",
+            "Text": "$(L,save)",
+			"OnPress": "/SAPAssetManager/Rules/Documents/DocumentEditorSaveAs.js"
+		}]
+	},
+	 "Controls": [
+        {
+            "Sections": [
+                {
+                    "Controls": [
+                        {
+                            "Caption":"$(L,file_name)",
+                            "PlaceHolder": "",
+                            "Value": "/SAPAssetManager/Rules/Documents/DocumentEditorSaveAsFileName.js",
+                            "IsEditable": true,
+                            "IsVisible": true,
+                            "IsAutoResizing": true,
+                            "_Name": "FileName",
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        },
+                        {
+                            "Caption":"$(L,description)",
+                            "PlaceHolder": "",
+                            "Value": "/SAPAssetManager/Rules/Documents/DocumentEditorSaveAsDescription.js",
+                            "IsEditable": true,
+                            "IsVisible": true,
+                            "IsAutoResizing": true,
+                            "_Name": "Description",
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        }
+                    ]
+                }
+            ],
+            "_Name": "FormCellContainer",
+            "_Type": "Control.Type.FormCellContainer"
+        }
+    ],
+	"_Type": "Page",
+	"_Name": "DocumentEditorSaveAsPage"
+}

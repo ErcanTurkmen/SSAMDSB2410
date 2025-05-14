@@ -1,0 +1,20 @@
+{ 
+    "_Type": "Action.Type.PopoverMenu",
+    "PopoverItems": [
+        {
+            "Title": "$(L, add_service_order)",
+            "OnPress": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderCreateNav.js",
+            "Visible": "/SAPAssetManager/Rules/BusinessPartners/IsBusinessPartnerAddOrderOrRequestVisibile.js"
+        },
+        {
+            "Title": "$(L,add_service_request)",
+            "OnPress": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestCreateNav.js",
+            "Visible": "/SAPAssetManager/Rules/BusinessPartners/IsBusinessPartnerAddOrderOrRequestVisibile.js"
+        },
+        {
+            "Title" : "$(L, add_note)",
+            "OnPress" : "/SAPAssetManager/Rules/BusinessPartners/BusinessPartnerCreateNoteOnPress.js",
+            "Visible": "/SAPAssetManager/Rules/BusinessPartners/IsBusinessPartnerAddNoteVisibile.js"
+        }
+    ]
+}

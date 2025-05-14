@@ -1,0 +1,118 @@
+{
+	"OnLoaded": "/SAPAssetManager/Rules/Filter/ListPageWithFilterOnLoaded.js",
+	"OnCustomEventDataReceived": "/SAPAssetManager/Rules/Common/OnCustomEventDataReceived.js",
+	"ActionBar": {
+	    "_Name": "StockLookUpList",
+		"Items": [
+			{
+				"Position": "Right",
+				"Text":"$(L, search_online)",
+				"OnPress": "/SAPAssetManager/Actions/Inventory/Stock/SearchStockOnlineNav.action",
+				"Visible": "/SAPAssetManager/Rules/Inventory/Stock/EnableOnlineSearch.js",
+				"_Name": "search_online"
+			},
+			{
+				"Position": "Right",
+				"Text":"$(L, search_offline)",
+				"OnPress": "/SAPAssetManager/Rules/Inventory/Stock/SearchStockNav.js",
+				"Visible": false,
+				"_Name": "search_offline"
+			},
+			{
+				"Position": "Right",
+				"Icon":"$(PLT,/SAPAssetManager/Images/menuicon.png,/SAPAssetManager/Images/menuicon.android.png, '', /SAPAssetManager/Images/menuicon.png)",
+				"Text": "$(L,menu)",
+				"OnPress": "/SAPAssetManager/Actions/Inventory/Stock/VehicleStockPopover.action",
+				"Visible": "/SAPAssetManager/Rules/SideDrawer/EnableMultipleTechnician.js"
+			},
+            {
+                "Position": "Right",
+                "Icon": "$(PLT,'',/SAPAssetManager/Images/filter.android.png, '' , /SAPAssetManager/Images/filter.android.png)",
+                "Caption": "/SAPAssetManager/Rules/Filter/FilterButtonCaption.js",
+                "OnPress": "/SAPAssetManager/Rules/Inventory/Stock/BeforeStockSearchFilterNav.js",
+				"Visible": "/SAPAssetManager/Rules/Inventory/Stock/StockFilterIsVisible.js",
+				"_Name": "FilterButton"
+            }
+		]
+	},
+    "Controls":
+	[{
+		"Sections":
+		[{
+			"Search":
+			{
+				"Enabled" : true,
+				"Delay": 500,
+				"MinimumCharacterThreshold": 1,
+				"Placeholder": "$(L,search)",
+				"BarcodeScanner": true
+			},
+			"DataPaging": {
+				"PageSize": 50,
+				"ShowLoadingIndicator": true,
+				"LoadingIndicatorText": "$(L, loading)"
+			},
+			"Header": {
+		 		"UseTopPadding": false,
+				"Caption": "/SAPAssetManager/Rules/Inventory/Stock/StockOfflineHeaderCaption.js"
+			},
+			"EmptySection": {
+                "Caption": "$(L,no_im_materials_available)",
+				"FooterVisible": false
+            },
+			"ObjectCell": {
+				"PreserveIconStackSpacing": true,
+				"AccessoryType": "DisclosureIndicator",
+                "DetailImageIsCircular": false,
+				"Title": "{{#Property:MaterialNum}} - {{#Property:Material/#Property:Description}}",
+				"Subhead": "{{#Property:Plant}}/{{#Property:StorageLocation}}",
+				"Footnote": "{{#Property:Material/#Property:ManufacturerPartNum}}",
+				"Description": "{{#Property:StorageBin}}",
+				"StatusText" : "/SAPAssetManager/Rules/Inventory/Stock/StockUnrestrictedQuantity.js",
+				"OnPress": "/SAPAssetManager/Actions/Inventory/Stock/StockDetailsNav.action"
+			},
+			"Target": {
+				"EntitySet": "MaterialSLocs",
+				"Service": "/SAPAssetManager/Services/AssetManager.service",
+				"QueryOptions": "/SAPAssetManager/Rules/Inventory/Stock/MaterialsSearchQueryOptions.js"
+			},
+			"Visible": true,
+			"_Type" : "Section.Type.ObjectTable",
+			"_Name" : "StocksListOfflineSection"
+		},
+		{
+			"Header": {
+		 		"UseTopPadding": false,
+				"Caption": "$(L,online_stock)"
+			},
+			"EmptySection": {
+                "Caption": "$(L,no_im_materials_available)",
+				"FooterVisible": false
+            },
+			"ObjectCell": {
+				"PreserveIconStackSpacing": true,
+				"AccessoryType": "DisclosureIndicator",
+                "DetailImageIsCircular": false,
+				"Title": "{{#Property:MaterialNum}} - {{#Property:Material/#Property:Description}}",
+                "Subhead": "{{#Property:Plant}}/{{#Property:StorageLocation}}",
+				"Footnote": "{{#Property:Material/#Property:ManufacturerPartNum}}",
+				"Description": "{{#Property:StorageBin}}",
+				"StatusText" : "/SAPAssetManager/Rules/Inventory/Stock/StockUnrestrictedQuantity.js",
+				"OnPress": "/SAPAssetManager/Actions/Inventory/Stock/StockDetailsNav.action"
+			},
+			"Target": {
+				"EntitySet": "MaterialSLocs",
+				"Service": "/SAPAssetManager/Services/OnlineAssetManager.service",
+				"QueryOptions": "/SAPAssetManager/Rules/Inventory/Stock/MaterialsQueryOptions.js"
+			},
+			"Visible": false,
+			"_Type" : "Section.Type.ObjectTable",
+			"_Name" : "StocksListOnlineSection"
+		}],
+		"_Type" : "Control.Type.SectionedTable",
+		"_Name" : "SectionedTable"
+	}],
+    "_Type": "Page",
+    "_Name": "StockListViewPage",
+	"Caption": "/SAPAssetManager/Rules/SideDrawer/SideDrawerStockLookUp.js"
+}

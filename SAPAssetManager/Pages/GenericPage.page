@@ -1,0 +1,36 @@
+{
+    "ActionBar": {
+        "Items": [
+            {
+                "Position": "Left",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections":
+            [{
+                "_Type": "Section.Type.FormCell",
+                "_Name": "FormCellSection1",
+                "Controls":
+                [{
+                    "Caption": "$(L,testing)",
+                    "Value": "Testing 123",
+                    "IsAutoResizing": true,
+                    "_Name": "TestControl",
+                    "_Type": "Control.Type.FormCell.SimpleProperty"
+                }]
+            }
+        ],
+        "_Name": "FormCellContainer",
+        "_Type": "Control.Type.SectionedTable"
+    }],
+    "FioriToolbar": {
+        "_Type": "Control.Type.FioriToolbar",
+        "_Name": "FioriToolbar"
+    },
+    "_Type": "Page",
+    "_Name": "CreateUpdatePage"
+}

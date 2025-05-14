@@ -1,0 +1,15 @@
+{
+    "Service": "/SAPAssetManager/Services/AssetManager.service",
+    "StoreName": "SAMStore",
+    "StoreEncryptionKey": "SAPTest123",
+    "_Type": "Action.Type.OfflineOData.Download",
+    "OnSuccess": "/SAPAssetManager/Actions/Inventory/Fetch/DocumentDownloadSuccess.action",
+    "OnFailure": "/SAPAssetManager/Rules/Inventory/Fetch/FetchDocumentsErrorMessage.js",
+    "ActionResult": {
+       "_Name": "result"
+    },
+    "DefiningRequests": [{
+        "Name": "",
+        "Query": ""
+    }]
+}

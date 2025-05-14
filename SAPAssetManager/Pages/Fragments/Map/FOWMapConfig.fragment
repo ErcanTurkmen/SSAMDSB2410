@@ -1,0 +1,22 @@
+{
+    "Target": {
+        "EntitySet": "GISMapParameters",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "Properties": [],
+        "KeyProperties": []
+    },
+    "ViewConfig": {
+        "UseDynamicLayerDisplayPrefs": false,
+        "EnableCurrentLocation": true,
+        "EnableNearMe": false,
+        "EnableDynamicLayers": false,
+        "EnableFeatureLayers": false,
+        "EnableBaseMaps": true,
+        "ZoomOnLocationEnabled": false
+    },
+    "BaseMaps": [],
+    "FeatureLayers": [],
+    "Persona": "/SAPAssetManager/Rules/Extensions/GetActivePersona.js",
+    "IsESRINamedUserAuthEnabled":"#ApplicationSettings/#Property:Enable.NameUser.Auth",
+    "NamedUserAuth": "/SAPAssetManager/Pages/Fragments/Map/ESRIParamsConfig.fragment"
+}

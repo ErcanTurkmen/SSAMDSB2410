@@ -1,0 +1,8 @@
+{
+	"SimplePropertyCell": {
+		"AccessoryType": "DisclosureIndicator",
+		"KeyName": "$(L,notes)",
+		"Value": "/SAPAssetManager/Rules/Notes/NotesCount.js",
+		"OnPress": "/SAPAssetManager/Rules/Notes/NotesViewNav.js"
+	}
+}

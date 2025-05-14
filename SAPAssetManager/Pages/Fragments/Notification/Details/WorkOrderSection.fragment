@@ -1,0 +1,28 @@
+{
+    "Header": {
+        "Caption": "$(L,workorder)"
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_workorders_available)"
+    },
+    "ObjectCell": {
+        "Title": "{OrderDescription}",
+        "Subhead": "{OrderId}",
+        "Footnote": "/SAPAssetManager/Rules/DateTime/DueDate.js",
+        "StatusText": "#Property:WOPriority/#Property:PriorityDescription",
+        "SubstatusText": "/SAPAssetManager/Rules/WorkOrders/ListView/WorkOrdersListViewFormat.js",
+        "AccessoryType": "DisclosureIndicator",
+        "OnPress" : "/SAPAssetManager/Rules/WorkOrders/WorkOrderDetailsNav.js",
+        "Styles": {
+            "StatusText":  "/SAPAssetManager/Rules/Priority/WOPriorityStatusStyle.js"
+        }
+    },
+    "Target": {
+        "EntitySet" : "{{#Property:@odata.id}}/WOHeader_Nav",
+        "Service" : "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "/SAPAssetManager/Rules/WorkOrders/ListView/WorkOrdersListViewQueryOption.js"
+    },
+    "_Name" : "NotificationWorkOrder",
+    "_Type": "Section.Type.ObjectTable",
+    "DataSubscriptions": ["MyWorkOrderHeaders"]
+}

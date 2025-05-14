@@ -1,0 +1,12 @@
+{
+    "AccessoryType": "DisclosureIndicator",
+    "Title": "{ShortText}",
+    "Icons":"/SAPAssetManager/Rules/WCM/WorkApprovals/List/WorkApprovalsIcons.js",
+    "OnPress": "/SAPAssetManager/Rules/WCM/WorkApprovals/Details/WorkApprovalDetailsNav.js",
+    "PreserveIconStackSpacing": true,
+    "Subhead": "{WCMApproval}",
+    "Footnote": "/SAPAssetManager/Rules/WCM/WorkApprovals/List/WorkApprovalsFormat.js",
+    "StatusText": "/SAPAssetManager/Rules/WCM/WorkApprovals/List/WorkApprovalsFormat.js",
+    "_Type": "Control.Type.ObjectCell"
+}
+

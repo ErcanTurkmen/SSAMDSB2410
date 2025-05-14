@@ -1,0 +1,6 @@
+{
+	"_Type": "Action.Type.Message",
+	"Title": "$(L, personalization_updated)",
+	"Message": "$(L, personalization_updated_message)",
+	"OKCaption": "$(L, ok)"
+}

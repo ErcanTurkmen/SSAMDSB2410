@@ -1,0 +1,71 @@
+{
+	"Caption": "Header Page",
+	"ActionBar": {
+		"Items": [
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment"
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+                   "_Type": "Section.Type.KeyValue",
+                    "_Name": "OutboundDeliveryHeaderPage",
+                    "KeyAndValues": [
+                       {
+                            "_Name": "Vendor",
+                            "KeyName": "$(L,vendor)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetVendorName.js"
+                        },
+                        {
+                            "_Name": "MyInventoryObject.ObjectDate",
+                            "KeyName": "$(L,delivery_date)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/Common/GetDocumentDateForInventoryHeader.js"
+                        },
+						{
+                            "_Name": "DeliveryType",
+                            "KeyName": "$(L,delivery_type)",
+                            "Value": "{DeliveryType}"
+						},
+						{
+                            "_Name": "DeliveryPriority",
+                            "KeyName": "$(L,delivery_priority)",
+                            "Value": "{DeliveryPriority}"
+						},
+						{
+                            "_Name": "DocumentCategory",
+                            "KeyName": "$(L,document_category)",
+                            "Value": "{DocumentCategory}"
+						},
+						{
+                            "_Name": "OverallStatus",
+                            "KeyName": "$(L,overall_status)",
+                            "Value": "{OverallStatus}"
+						},
+						{
+                            "_Name": "ShippingPoint",
+                            "KeyName": "$(L,receiving_point)",
+                            "Value": "{ShippingPoint}"
+						},
+						{
+                            "_Name": "ReceivingPlant",
+                            "KeyName": "$(L,receiving_plant)",
+                            "Value": "{ReceivingPlant}"
+						},
+						{
+                            "_Name": "TotalWeight",
+                            "KeyName": "$(L,weight)",
+                            "Value": "{TotalWeight} {WeightUnit}"
+                        }
+                    ]
+                }
+			],
+            "_Name": "SectionedTable",
+            "_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"DataSubscriptions": ["OnDemandObjects", "MaterialDocuments"],
+	"OnReturning": "/SAPAssetManager/Rules/Inventory/InboundDelivery/InboundDeliveryDetailsPageOnReturn.js",
+	"_Name": "InboundDeliveryHeaderPage",
+	"_Type": "Page"
+}

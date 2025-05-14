@@ -1,0 +1,16 @@
+{
+    "_Type": "Action.Type.ODataService.CreateEntity",
+    "Target": {
+        "EntitySet" : "S4ServiceOrderPartners",
+        "Service" : "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "Properties": {
+        "ObjectID": "{ObjectID}",
+        "HeaderID": "{ObjectID}",
+        "ItemNo": "{ItemNo}"
+    },
+    "Headers": {
+        "OfflineOData.RemoveAfterUpload": "true"
+    },
+    "CreateLinks": "/SAPAssetManager/Rules/BusinessPartners/S4/S4BusinessPartnerLinks.js"
+}

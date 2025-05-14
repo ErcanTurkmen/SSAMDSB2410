@@ -1,0 +1,30 @@
+{
+    "_Type": "Section.Type.FormCell",
+    "Controls": [
+        {
+            "_Type": "Control.Type.FormCell.Extension",
+            "Module": "extension-ProgressTrackerFramework",
+            "Control": "ProgressTrackerExtension",
+            "Class": "ProgressTrackerExtension",
+            "Height": "/SAPAssetManager/Rules/TimelineControl/ProgressTrackerHeight.js",
+            "ExtensionProperties": {
+                "Config": {
+                    "IsIndexVisible": false,
+                    "IsCompactMode": false,
+                    "IsCentered": true
+                },
+                "InitialSteps": "/SAPAssetManager/Rules/WCM/Common/WCMActivityTrackerStatusStepsData.js",
+                "OnDataChanged": "/SAPAssetManager/Rules/WCM/Common/WCMActivityTrackerReset.js",
+                "IsSelectable": false
+            },
+            "Visible": true,
+            "_Name": "ProgressTrackerExtensionControl",
+            "DataSubscriptions": ["PMMobileStatuses"]
+        }
+    ],
+    "_Name": "ProgressTrackerExtensionSection",
+    "Header": {
+        "Caption": "$(L,activity)",
+        "UseTopPadding": "/SAPAssetManager/Rules/WCM/Common/WCMActivityTrackerUseTopPadding.js"
+    }
+}

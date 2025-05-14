@@ -1,0 +1,51 @@
+{
+	"Caption": "$(L, issue_approval)",
+	"OnBackButtonPressed": "/SAPAssetManager/Rules/WCM/Approvals/IssueApprovalOnBackButtonPressed.js",
+	"OnActivityBackPressed": "/SAPAssetManager/Rules/WCM/Approvals/IssueApprovalOnBackButtonPressed.js",
+	"OnLoaded": "/SAPAssetManager/Rules/WCM/Approvals/IssueApprovalOnLoaded.js",
+	"ActionBar": {
+		"Items": [
+			{
+				"_Type": "Fragment",
+				"Fragment": "/SAPAssetManager/Pages/Fragments/DoneButton.fragment",
+				"Properties": {
+					"OnPress": "/SAPAssetManager/Actions/WCM/Approvals/IssueApprovalRequiredFields.action",
+					"Text": "$(L, done)"
+				}
+			}
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"ObjectHeader": {
+						"HeadlineText": "/SAPAssetManager/Rules/WCM/Approvals/ApprovalTitle.js",
+						"BodyText": "/SAPAssetManager/Rules/WCM/Approvals/ApprovalSubhead.js",
+						"Description": "$(L, required_fields)"
+    				},
+					"_Type": "Section.Type.ObjectHeader"
+				},
+				{
+					"Controls": [
+						{
+                            "_Type": "Fragment",
+                            "Fragment": "/SAPAssetManager/Pages/Fragments/Signature/SignatureControlCreateControl.fragment",
+                            "Properties": {
+                                "WatermarkText": "/SAPAssetManager/Rules/WCM/Approvals/IssueApprovalSignatureWatermarkText.js",
+								"Caption": "/SAPAssetManager/Rules/WCM/Common/SignatureCaption.js",
+								"OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js"
+                            }
+                        }
+					],
+					"_Name": "SignatureCaptureSection",
+					"_Type": "Section.Type.FormCell"
+				}
+			],
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"_Name": "IssueApproval",
+	"_Type": "Page"
+}

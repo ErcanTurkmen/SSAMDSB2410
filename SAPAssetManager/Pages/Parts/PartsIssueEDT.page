@@ -1,0 +1,119 @@
+{
+    "Caption": "/SAPAssetManager/Rules/Parts/PartsIssueEDTCaption.js",
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "_Name": "PartsIssueActionBar",
+        "Items": [
+            {
+                "Position": "Left",
+                "_Name": "Cancel",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)",
+                "OnPress": "/SAPAssetManager/Rules/Common/CheckForChangesBeforeClose.js"
+            },
+            {
+                "_Name": "SaveButton",
+                "Position": "Right",
+                "SystemItem": "Save",
+                "Caption": "$(L,save)",
+                "Visible": true,
+                "OnPress": "/SAPAssetManager/Rules/Parts/PartsIssueEDTSave.js"
+            }
+        ]
+    },
+    "Controls": [
+		{
+            "_Type": "Control.Type.Extension",
+            "_Name": "EditableDataTableExtensionSection",
+            "Module": "extension-EditableDataTable",
+            "Control": "EditableDataTableViewExtension",
+            "Class": "EditableDataTableViewExtension",
+            "IsVisible": true,
+            "ExtensionProperties": {
+                "OnCellGetsFocus": "/SAPAssetManager/Rules/Parts/PartsIssueEDTOnCellGetFocus.js",
+                "OnCellLostFocus": "/SAPAssetManager/Rules/Parts/PartsIssueEDTOnCellLostFocus.js",
+                "OnLoaded": "/SAPAssetManager/Rules/Parts/PartsIssueEDTOnLoaded.js",
+                "Configuration": {
+                    "IsStickyHeaderRow": true,
+                    "NumberOfLeadingStickyColumns": 0,
+                    "MaxLinesPerRow": 2
+                },
+                "Columns": [
+                    {
+                        "HeaderName": "$(L, parts_name)",
+                        "PreferredWidth": 200,
+                        "IsDynamicWidth": true
+                    },
+                    {
+                        "HeaderName": "$(L, quantity)",
+                        "PreferredWidth": 150
+                    },
+                    {
+                        "HeaderName": "$(L, uom)",
+                        "PreferredWidth": 120
+                    },
+                    {
+                        "HeaderName": "",
+                        "PreferredWidth": 80
+                    }
+                ],
+                "Row": {
+                    "Items": [
+                        {
+                            "Type": "Text",
+                            "Name": "PartsName",
+                            "IsMandatory": false,
+                            "IsReadOnly": true,
+                            "Property": "PartsName",
+                            "OnValueChange": "",
+                            "Parameters": {
+                                "Value": "/SAPAssetManager/Rules/Parts/PartsIssueEDTPartsNameValue.js"
+                            }
+                        },
+                        {
+                            "Type": "Number",
+                            "Name": "Quantity",
+                            "IsMandatory": true,
+                            "IsReadOnly": false,
+                            "Property": "Quantity",
+                            "OnValueChange": "/SAPAssetManager/Rules/Parts/PartsIssueEDTQuantityValueChange.js",
+                            "Parameters": {
+                                "Value": "/SAPAssetManager/Rules/Parts/PartsIssueEDTQuantityValue.js"
+                            }
+                        },
+                        {
+                            "Type": "Text",
+                            "Name": "UOM",
+                            "IsMandatory": false,
+                            "IsReadOnly": true,
+                            "Property": "UnitOfEntry",
+                            "OnValueChange": "",
+                            "Parameters": {
+                                "Value": "{UnitOfEntry}"
+                            }
+                        },
+                        {
+                            "Type": "Button",
+                            "Name": "Delete",
+                            "IsMandatory": false,
+                            "IsReadOnly": false,
+                            "Property": "Delete",
+                            "Parameters": {
+                                "Icon": "$(PLT,/SAPAssetManager/Images/disconnected.light.png,/SAPAssetManager/Images/disconnected.dark.png,/SAPAssetManager/Images/disconnected.android.light.png,/SAPAssetManager/Images/disconnected.android.dark.png)",
+                                "Action": "/SAPAssetManager/Rules/Parts/PartsIssueEDTOnDelete.js",
+                                "Style": "Tertiary"
+                            }
+                        }
+                    ]
+                },
+                "Target": {
+                    "EntitySet": "MyWorkOrderComponents",
+                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                    "QueryOptions": "/SAPAssetManager/Rules/Parts/PartsIssueEDTQueryOptions.js"
+                }
+            }
+		}
+    ],
+    "_Type": "Page",
+    "_Name": "PartsIssueEDTPage"
+}

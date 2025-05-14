@@ -1,0 +1,23 @@
+{
+    "Header": {
+        "UseTopPadding": false
+    },
+    "ObjectCell": {
+        "Title": "{WarrantyTypeDesc}",
+        "Description": "{WarrantyDesc}",
+        "Subhead": "/SAPAssetManager/Rules/Equipment/Warranties/EquipmentWarrantiesNumber.js",
+        "Footnote": "/SAPAssetManager/Rules/Equipment/Warranties/EquipmentWarrantiesFormattedDate.js",
+        "AccessoryType": "DisclosureIndicator",
+        "OnPress": "/SAPAssetManager/Actions/Equipment/Warranties/EquipmentWarrantiesDetailsNav.action",
+        "PreserveIconStackSpacing":false
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_warranties_available)"
+    },
+    "Target": {
+        "EntitySet": "{{#Property:@odata.readLink}}/Warranties",
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },    
+    "_Name": "EquipmentWarranties",
+    "_Type": "Section.Type.ObjectTable"
+}

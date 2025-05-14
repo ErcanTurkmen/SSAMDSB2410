@@ -1,0 +1,10 @@
+{
+    "AllowMultipleSelection": true,
+    "AllowEmptySelection": true,
+    "Caption": "$(L,mobile_status)",
+    "FilterProperty": "/SAPAssetManager/Rules/WorkOrders/WorkOrderMobileStatusFilter.js",
+    "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js",
+    "_Name": "MobileStatusFilter",
+    "_Type": "Control.Type.FormCell.Filter",
+    "IsEditable": true
+}

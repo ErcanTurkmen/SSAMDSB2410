@@ -1,0 +1,155 @@
+{
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "_Name": "MeasuringPointFilter",
+        "Items": [
+            {
+                "Position": "Left",
+                "_Name": "Cancel",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)",
+                "OnPress": "/SAPAssetManager/Actions/Page/CancelPage.action"
+            },
+            {
+                "Position": "Right",
+                "_Name": "Done",
+                "SystemItem": "/SAPAssetManager/Rules/Filter/FilterSystemItem.js",
+                "Text": "/SAPAssetManager/Rules/Filter/FilterText.js",
+                "OnPress": "/SAPAssetManager/Actions/Page/ClosePage.action"
+            }
+        ]
+    },
+    "Caption":"$(L,filter)",
+    "Result": "/SAPAssetManager/Rules/Measurements/MeasuringPointFilterResult.js",
+    "OnLoaded": "/SAPAssetManager/Rules/Measurements/MeasuringPointFilterRepopulate.js",
+    "Controls":
+    [{
+        "Sections":
+        [{
+            "Controls":
+            [{
+                "Caption": "$(L, equipment)",
+                "_Name": "Equipment",
+                "AllowMultipleSelection": false,
+                "Search": {
+                    "Enabled": true,
+                    "Delay": 500,
+                    "MinimumCharacterThreshold": 3,
+                    "Placeholder": "$(L,search)",
+                    "BarcodeScanner": true
+                },
+                "IsPickerDismissedOnSelection" : true,
+                "IsSearchCancelledAfterSelection": true,
+                "PickerItems": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointFDCFilterEquipFlocArray.js",
+                "OnValueChange": "/SAPAssetManager/Rules/Measurements/MeasuringPointFilterSaveValues.js",
+                "FilterProperty": "Equipment",
+                "_Type": "Control.Type.FormCell.ListPicker"
+            },
+            {
+                "Caption": "$(L, functional_location)",
+                "_Name": "FuncLoc",
+                "AllowMultipleSelection": false,
+                "Search": {
+                    "Enabled": true,
+                    "Delay": 500,
+                    "MinimumCharacterThreshold": 3,
+                    "Placeholder": "$(L,search)",
+                    "BarcodeScanner": true
+                },
+                "IsPickerDismissedOnSelection" : true,
+                "IsSearchCancelledAfterSelection": true,
+                "PickerItems": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointFDCFilterEquipFlocArray.js",
+                "OnValueChange": "/SAPAssetManager/Rules/Measurements/MeasuringPointFilterSaveValues.js",
+                "FilterProperty": "FunctionalLocation",
+                "_Type": "Control.Type.FormCell.ListPicker"
+            },
+            {
+                "Caption": "$(L, items)",
+                "_Name": "S4Items",
+                "AllowMultipleSelection": true,
+                "IsVisible":"/SAPAssetManager/Rules/Measurements/Points/MeasuringPointFDCFilterListIsVisible.js",
+                "OnValueChange": "/SAPAssetManager/Rules/Measurements/MeasuringPointFilterSaveValues.js",
+                "Search": {
+                    "Enabled": true,
+                    "Delay": 500,
+                    "MinimumCharacterThreshold": 3,
+                    "Placeholder": "$(L,search)",
+                    "BarcodeScanner": true
+                },
+                "IsPickerDismissedOnSelection" : true,
+                "IsSearchCancelledAfterSelection": true,
+                "PickerItems": {
+                    "DisplayValue" : "{{#Property:ItemNo}} - {{#Property:ItemDesc}}",
+                    "ReturnValue" : "{ItemNo}",
+                    "Target": {
+                        "EntitySet": "{{#Property:@odata.readLink}}/ServiceItems_Nav",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "$orderby=ItemNo"
+                    }
+                },
+                "FilterProperty": "S4Item",
+                "_Type": "Control.Type.FormCell.ListPicker"
+            },
+            {
+                "Caption": "$(L, operations)",
+                "_Name": "Operations",
+                "AllowMultipleSelection": true,
+                "IsVisible":"/SAPAssetManager/Rules/Measurements/Points/MeasuringPointFDCFilterListIsVisible.js",
+                "OnValueChange": "/SAPAssetManager/Rules/Measurements/MeasuringPointFilterSaveValues.js",
+                "Search": {
+                    "Enabled": true,
+                    "Delay": 500,
+                    "MinimumCharacterThreshold": 3,
+                    "Placeholder": "$(L,search)",
+                    "BarcodeScanner": true
+                },
+                "IsPickerDismissedOnSelection" : true,
+                "IsSearchCancelledAfterSelection": true,
+                "PickerItems": {
+                    "DisplayValue" : "{{#Property:OperationNo}} - {{#Property:OperationShortText}}",
+                    "ReturnValue" : "{OperationNo}",
+                    "Target": {
+                        "EntitySet": "{{#Property:@odata.readLink}}/Operations",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "$orderby=OperationNo"
+                    }
+                },
+                "FilterProperty": "Operation",
+                "_Type": "Control.Type.FormCell.ListPicker"
+            },
+            {
+                "_Type": "Control.Type.FormCell.Switch",
+                "_Name": "FilterPRT",
+                "Caption": "$(L,show_only_PRT)",
+                "IsVisible":"/SAPAssetManager/Rules/Measurements/Points/MeasuringPointFDCFilterListIsVisible.js",
+                "OnValueChange": "/SAPAssetManager/Rules/Measurements/MeasuringPointFilterSaveValues.js",
+                "IsEditable": true
+            },
+            {
+                "Caption": "$(L,status)",
+                "_Name": "FilterSeg",
+                "AllowMultipleSelection": true,
+                "IsPickerDismissedOnSelection" : false,
+                "PickerItems": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointFDCFilterPickerItems.js",
+                "OnValueChange": "/SAPAssetManager/Rules/Measurements/MeasuringPointFilterSaveValues.js",
+                "FilterProperty": "__Status",
+                "_Type": "Control.Type.FormCell.ListPicker"
+            }]
+        },
+        {
+            "Controls": [
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/ResetFilterFormCellButton.fragment",
+                    "Properties": {
+                        "OnPress": "/SAPAssetManager/Rules/Measurements/MeasuringPointFilterReset.js"
+                    }
+                }
+            ]
+        }],
+        "_Name":"FormCellContainer",
+        "_Type":"Control.Type.FormCellContainer"
+    }],
+    "_Type":"Page",
+    "_Name":"MeasuringPointFilterPage"
+}

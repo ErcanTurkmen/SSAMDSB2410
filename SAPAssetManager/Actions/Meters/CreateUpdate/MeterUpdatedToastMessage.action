@@ -1,0 +1,10 @@
+{
+  "Animated": true,
+  "Duration": 2,
+  "Message": "",
+  "Icon": "",
+  "IsIconHidden": true,
+  "MaxNumberOfLines": 1,
+  "_Type": "Action.Type.ToastMessage",
+  "OnSuccess": "/SAPAssetManager/Actions/Page/ClosePage.action"
+}

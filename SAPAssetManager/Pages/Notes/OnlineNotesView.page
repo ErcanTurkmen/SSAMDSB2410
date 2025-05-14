@@ -1,0 +1,28 @@
+{
+	"Caption": "$(L, notes)",
+	"Controls":
+	[{
+		"Sections":
+		[{
+            "KeyAndValues": [
+                {
+					"_Name": "note",
+                    "KeyName": "",
+                    "Value": "/SAPAssetManager/Rules/Notes/OnlineNoteViewValue.js"
+                }
+            ],
+            "Layout": {
+                "NumberOfColumns": 1,
+                "MinimumInteritemSpacing": "$(PLT,66,0)" 
+            },
+            "_Type": "Section.Type.KeyValue",
+            "_Name": "Notes"
+        }],
+		"_Type" : "Control.Type.SectionedTable",
+        "LoadingIndicator": {
+			"Enabled": true
+		}
+	}],
+	"_Type": "Page",
+	"_Name": "OnlineNotesView"
+}

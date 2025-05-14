@@ -1,0 +1,10 @@
+{
+    "_Type": "Control.Type.ObjectCell",
+    "AccessoryType": "DisclosureIndicator",
+    "Title": "/SAPAssetManager/Rules/Meter/Format/MeterObjectCell.js",
+    "Subhead": "/SAPAssetManager/Rules/Meter/Format/MeterObjectCell.js",
+    "Footnote": "/SAPAssetManager/Rules/Meter/Format/MeterObjectCell.js",
+    "StatusText": "/SAPAssetManager/Rules/Meter/Format/MeterObjectCell.js",
+    "OnPress": "/SAPAssetManager/Actions/WorkOrders/Meter/MeterDetailsNav.action",
+    "PreserveIconStackSpacing": false
+}

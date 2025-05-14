@@ -1,0 +1,64 @@
+{
+    "_Type": "Section.Type.KeyValue",
+    "_Name": "WorkOrderSubOperationDetailsSection",
+    "Header": {
+        "Caption": "$(L,suboperation_details)"
+    },
+    "KeyAndValues": [
+        {
+            "_Name": "OperationShortText",
+            "KeyName": "$(L,description)",
+            "Value": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/WorkOrderOperationShortText.js"
+        },
+        {
+            "_Name": "ControlKey",
+            "KeyName": "$(L,control_key)",
+            "Value": "{ControlKey}"
+        },
+        {
+            "_Name": "MainWorkCenterPlant",
+            "KeyName": "$(L,work_center_plant)",
+            "Value": "{MainWorkCenterPlant}"
+        },
+        {
+            "_Name": "MainWorkCenter",
+            "KeyName": "$(L,work_center)",
+            "Value": "{MainWorkCenter}"
+        },
+        {
+            "_Name": "OperationFunctionLocation",
+            "KeyName": "$(L,functional_location)",
+            "Value": "#Property:FunctionalLocationSubOperation/#Property:FuncLocDesc"
+        },
+        {
+            "_Name": "NumberOfCapacities",
+            "KeyName": "$(L,number_of_capacities)",
+            "Value": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/OperationNumberOfCapacities.js"
+        },
+        {
+            "_Name": "Duration",
+            "KeyName": "$(L,duration_per_tech)",
+            "Value": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/OperationDuration.js"
+        },
+        {
+            "_Name": "DurationUOM",
+            "KeyName": "$(L,duration_uom)",
+            "Value": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/OperationDurationUOM.js"
+        },
+        {
+            "_Name": "Work",
+            "KeyName": "$(L,work)",
+            "Value": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/OperationWork.js"
+        },
+        {
+            "_Name": "WorkUnit",
+            "KeyName": "$(L,work_unit)",
+            "Value": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/OperationWorkUnit.js"
+        }
+    ],
+    "Target": {
+        "EntitySet": "{@odata.readLink}",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$select=OperationShortText,ControlKey,MainWorkCenterPlant,MainWorkCenter,FunctionalLocationSubOperation/FuncLocDesc,Work,WorkUnit,NumberOfCapacities,Duration,DurationUOM&$expand=FunctionalLocationSubOperation"
+    }
+}

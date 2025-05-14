@@ -1,0 +1,59 @@
+{
+    "_Name": "NotificationItemsDataTable",
+    "StickyColumn": false,
+    "_Type": "Section.Type.DataTable",
+    "EmptySection": {
+        "Caption": "$(L, no_items_available)"
+    },
+    "Separators": {
+        "HeaderSeparator": false
+    },
+    "Header": {
+        "UseTopPadding": false,
+        "DataTable": {
+            "Items": [
+                {
+                    "Text": "$(L,item_description)"
+                },
+                {
+                    "Text": "$(L,part_group_and_code_label)"
+                },
+                {
+                    "Text": "$(L,damage_group_and_code_label)"
+                }
+            ]
+        }
+    },
+    "Row": {
+        "Layout": {
+            "ColumnWidth": [300, 250, 350]
+        },
+        "Items": [
+            {
+                "Text": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsItemDescriptionDataTable.js"
+            },
+            {
+                "Text": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsItemPartCodeDataTable.js"
+            },
+            {
+                "Text": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsItemDamageCodeDataTable.js"
+            }
+        ],
+        "AccessoryType": "DisclosureIndicator",
+        "OnPress": "/SAPAssetManager/Actions/Notifications/Item/NotificationItemDetailsNav.action"
+    },
+    "Footer": {
+        "Caption": "$(L,see_all)",
+        "AccessoryType": "DisclosureIndicator",
+        "FooterStyle": "Attribute",
+        "AttributeLabel": "/SAPAssetManager/Rules/Notifications/Item/NotificationItemsCount.js",
+        "OnPress" : "/SAPAssetManager/Actions/Notifications/Item/NotificationItemsListViewNav.action",
+        "Visible": "/SAPAssetManager/Rules/Notifications/Item/NotificationItemsShouldRenderFooter.js"
+    },
+    "Target": {
+        "EntitySet" : "{{#Property:@odata.id}}/Items",
+        "Service" : "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$top=4&$expand=Notification,Notification/NotifMobileStatus_Nav,Notification/NotifMobileStatus_Nav/OverallStatusCfg_Nav,ItemActivities,ItemCauses,ItemTasks&$orderby=ItemSortNumber asc"
+    },
+    "DataSubscriptions": ["MyNotificationItems"]
+}

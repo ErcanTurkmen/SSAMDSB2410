@@ -1,0 +1,14 @@
+{
+	"_Type": "Action.Type.ODataService.UpdateEntity",
+	"Target": {
+        "EntitySet": "WCMDocumentItems",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "ReadLink": "{@odata.readLink}"
+    },
+	"Headers": {
+        "OfflineOData.TransactionID": "{ObjectNumber}"
+    },
+	"Properties": {},
+	"ShowActivityIndicator": true,
+	"ActivityIndicatorText": " "
+}

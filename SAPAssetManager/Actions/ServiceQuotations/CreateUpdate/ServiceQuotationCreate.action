@@ -1,0 +1,49 @@
+{
+	"_Type": "Action.Type.ODataService.CreateEntity",
+    "Target": {
+        "EntitySet": "S4ServiceQuotations",
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "Properties": {
+        "ObjectID": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationLocalID.js",
+		"ObjectType": "/SAPAssetManager/Rules/ServiceOrders/ServiceOrderObjectType.js",
+		"ProcessType": "#Page:ServiceQuotationCreateUpdatePage/#Control:ProcessTypeLstPkr/#SelectedValue",
+        "Description": "#Page:ServiceQuotationCreateUpdatePage/#Control:DescriptionNote/#Value",
+        "Priority": "#Page:ServiceQuotationCreateUpdatePage/#Control:PrioritySeg/#SelectedValue",
+		"QuotationStartDateTime": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationValidFromDateValue.js",
+		"QuotationEndDateTime": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationValidToDateValue.js",
+		"SoldToParty": "#Page:ServiceQuotationCreateUpdatePage/#Control:SoldToPartyLstPkr/#SelectedValue",
+		"SalesOrg": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationSalesOrgValue.js",
+		"SalesRespOrg": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationSalesRespOrgValue.js",
+		"ServiceOrg": "#Page:ServiceQuotationCreateUpdatePage/#Control:ServiceOrgLstPkr/#SelectedValue",
+		"ServiceRespOrg": "#Page:ServiceQuotationCreateUpdatePage/#Control:ServiceOrgLstPkr/#SelectedValue",
+		"BillToParty": "#Page:ServiceQuotationCreateUpdatePage/#Control:BillToPartyLstPkr/#SelectedValue",
+		"Category1": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/GetServiceQuotationCategory1.js",
+		"Category2": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/GetServiceQuotationCategory2.js",
+		"Category3": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/GetServiceQuotationCategory3.js",
+		"Category4": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/GetServiceQuotationCategory4.js",
+		"SchemaID": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationSchemaIDValue.js",
+		"CategoryID": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationCategoryIDValue.js",
+		"SubjectProfile": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationSubjectProfileValue.js",
+		"CatalogType": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationCatalogTypeValue.js",
+		"CodeGroup": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationCodeGroupValue.js",
+		"Code": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationCodeValue.js",
+		"RequestedStart": "/SAPAssetManager/Rules/DateTime/CurrentDateTime.js",
+		"Division": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationDivisionValue.js",
+		"DistributionChannel": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationDistributionChannelValue.js",
+		"SalesOffice": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationSalesOfficeValue.js",
+		"SalesGroup": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationSalesGroupValue.js"
+    },
+    "Headers": {
+        "OfflineOData.RemoveAfterUpload": "true",
+        "OfflineOData.TransactionID": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationLocalID.js"
+    },
+	"OnSuccess": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/StoreCreatedServiceQuotation.js",
+    "CreateLinks": "/SAPAssetManager/Rules/ServiceQuotations/CreateUpdate/ServiceQuotationCreateLinks.js",
+    "OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/CreateEntityFailureMessage.action",
+    "ShowActivityIndicator": true,
+    "ActivityIndicatorText" : "  ",
+    "ActionResult" : {
+		"_Name" : "ServiceQuotationCreateResult"
+	}
+}

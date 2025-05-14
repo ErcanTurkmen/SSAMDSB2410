@@ -1,0 +1,11 @@
+{
+	"_Type": "Action.Type.ODataService.UpdateEntity",
+	"Target": {
+		"EntitySet": "UserPreferences",
+		"Service": "/SAPAssetManager/Services/AssetManager.service",
+		"ReadLink": "#ClientData/#Property:VISReadlink"
+	},
+	"Properties": {
+        "PreferenceValue": "#ClientData/#Property:VIS"
+	}
+}

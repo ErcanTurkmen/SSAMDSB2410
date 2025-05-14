@@ -1,0 +1,6 @@
+{
+    "Position": "Right",
+    "Icon": "$(PLT,/SAPAssetManager/Images/deliverydetails.png,/SAPAssetManager/Images/deliverydetails.android.png, '', /SAPAssetManager/Images/deliverydetails.png)",
+    "OnPress": "/SAPAssetManager/Rules/Inventory/Item/MaterialDetailsNav.js",
+    "Visible": "/SAPAssetManager/Rules/Inventory/Item/MaterialHeaderButtonVisible.js"
+}

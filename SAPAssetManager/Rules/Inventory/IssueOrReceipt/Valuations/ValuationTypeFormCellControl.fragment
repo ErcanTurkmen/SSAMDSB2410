@@ -1,0 +1,19 @@
+{
+    "_Type": "Control.Type.FormCell.ListPicker",
+    "_Name": "ValuationTypePicker",
+    "Caption": "$(L,valuation_type)",
+    "AllowDefaultValueIfOneItem": true,
+    "AllowMultipleSelection": false,
+    "IsPickerDismissedOnSelection" : true,
+    "IsSelectedSectionEnabled": false,
+    "PickerItems": {
+        "DisplayValue": "{{#Property:ValuationType}}",
+        "ReturnValue": "{ValuationType}",
+        "Target": {
+            "EntitySet": "MaterialValuations",
+            "Service": "/SAPAssetManager/Services/AssetManager.service",
+            "QueryOptions": ""
+        }
+    },
+    "Value": "{ValuationType}"
+}

@@ -1,0 +1,70 @@
+{
+    "_Type": "Section.Type.KeyValue",
+    "_Name": "MeterDetails",
+    "Header": {
+        "Caption": "$(L,meter_details)"
+    },
+    "KeyAndValues": [
+        {
+            "_Name": "MyEquipment.Manufacturer",
+            "KeyName": "$(L,manufacturer)",
+            "Value": "/SAPAssetManager/Rules/Meter/Details/ManufacturerDisplay.js"
+        },
+        {
+            "_Name": "RegisterGroup.RegisterInfo",
+            "KeyName": "$(L,register_group)",
+            "Value": "/SAPAssetManager/Rules/Meter/Details/RegisterGroupDisplay.js"
+        },
+        {
+            "_Name": "Device.DeviceCategory",
+            "KeyName": "$(L,device)",
+            "Value": "/SAPAssetManager/Rules/Meter/Details/DeviceDisplay.js"
+        },
+        {
+            "_Name": "Installation",
+            "KeyName": "$(L,installation_id)",
+            "Value": "/SAPAssetManager/Rules/Meter/Details/InstallationDisplay.js"
+        },
+        {
+            "_Name": "MovementTypeTcode.MovementType",
+            "KeyName": "$(L,movement_type)",
+            "Value": "/SAPAssetManager/Rules/Meter/Details/MovementTypeDisplay.js"
+        },
+        {
+            "_Name": "Plant.Plant",
+            "KeyName": "$(L,receiving_plant)",
+            "Value": "/SAPAssetManager/Rules/Meter/Details/ReceivingPlantDisplay.js"
+        },
+        {
+            "_Name": "StorageLocation.StorageLocation",
+            "KeyName": "$(L,storage_location)",
+            "Value": "/SAPAssetManager/Rules/Meter/Details/StorageLocationDisplay.js"
+        },
+        {
+            "_Name": "MyEquipment.CostCenter",
+            "KeyName": "$(L,cost_center)",
+            "Value": "/SAPAssetManager/Rules/Meter/Details/CostCenterDisplay.js"
+        },
+        {
+            "_Name": "Device.ActivityReason",
+            "KeyName": "$(L,reason)",
+            "Value": "/SAPAssetManager/Rules/Meter/Details/ReasonDisplay.js"
+        },
+        {
+            "_Name": "Device.ActivityDate",
+            "KeyName": "$(L,date)",
+            "Value": "/SAPAssetManager/Rules/Meter/Details/DateDisplay.js"
+        },
+        {
+            "_Name": "Device.Installation",
+            "KeyName": "$(L,Point_Of_Delivery)",
+            "Value": "/SAPAssetManager/Rules/Meter/Details/PointOfDelivery.js"
+        }
+    ],
+    "Target":
+    {
+        "EntitySet": "/SAPAssetManager/Rules/Meter/ActivityFix.js",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "/SAPAssetManager/Rules/Meter/ActivityQueryOptsFix.js"
+    }
+}

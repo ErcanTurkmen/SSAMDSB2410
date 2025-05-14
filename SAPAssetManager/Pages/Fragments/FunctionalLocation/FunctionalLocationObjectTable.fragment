@@ -1,0 +1,21 @@
+{
+    "Header": {
+        "Caption": "$(L,functional_location)"
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_functional_location_available)"
+    },
+    "ObjectCell": {
+        "AccessoryType": "DisclosureIndicator",
+        "Title": "{FuncLocDesc}",
+        "Subhead": "{FuncLocId}",
+        "OnPress":"/SAPAssetManager/Rules/FunctionalLocation/FunctionalLocationDetailsNav.js",
+        "PreserveIconStackSpacing": false
+    },
+    "Target": {
+        "EntitySet": "MyFunctionalLocations",
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "_Type": "Section.Type.ObjectTable",
+    "_Name": "FunctionalLocationSection"
+}

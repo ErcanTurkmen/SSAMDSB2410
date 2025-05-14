@@ -1,0 +1,70 @@
+{
+    "_Type": "Section.Type.KeyValue",
+    "_Name": "ServiceItemDetailsSection",
+    "Header": {
+        "Caption": "$(L,item_details)",
+        "UseTopPadding": false
+    },
+    "KeyAndValues": [
+        {
+            "_Name": "ItemDesc",
+            "KeyName": "$(L,description)",
+            "Value": "{ItemDesc}"
+        },
+        {
+            "_Name": "ProductID",
+            "KeyName": "$(L,product_id_label)",
+            "Value": "{ProductID}"
+        },
+        {
+            "_Name": "DurationUOM",
+            "KeyName": "$(L,unit)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemUnitValue.js",
+            "Visible": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/IsServiceItemCategory.js"
+        },
+        {
+            "_Name": "Amount",
+            "KeyName": "$(L,amount)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemAmountValue.js",
+            "Visible": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/IsNonServiceItemCategory.js"
+        },
+        {
+            "_Name": "Material.Description",
+            "KeyName": "$(L,product_description)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemProductDescriptionValue.js"
+        },
+        {
+            "_Name": "Quantity",
+            "KeyName": "$(L,quantity)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemQuantityValue.js"
+        },
+        {
+            "_Name": "Duration",
+            "KeyName": "$(L,planned_duration)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemDurationValue.js",
+            "Visible": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/IsServiceItemCategory.js"
+        },
+        {
+            "_Name": "PMMobileStatus.MobileStatus",
+            "KeyName": "$(L,status)",
+            "Value": "/SAPAssetManager/Rules/WorkOrders/ListView/WorkOrdersListViewFormat.js"
+        },
+        {
+            "_Name": "QuantityUOM",
+            "KeyName": "$(L,unit)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemUnitValue.js",
+            "Visible": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/IsNonServiceItemCategory.js"
+        },
+        {
+            "_Name": "ServiceType",
+            "KeyName": "$(L,service_type)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemServiceTypeValue.js",
+            "Visible": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/IsServiceItemCategory.js"
+        },
+        {
+            "_Name": "NetValue",
+            "KeyName": "$(L,net_value)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemNetValue.js"
+        }
+    ]
+}

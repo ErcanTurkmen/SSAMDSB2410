@@ -1,0 +1,206 @@
+{
+    "_Type": "Page",
+    "_Name": "OnlineWorkOrderOperationDetailsWithObjectCards",
+    "Caption": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationHeader.js",
+    "OnReturning": "/SAPAssetManager/Rules/Operations/WorkOrderOperationDetailsOnReturning.js",
+    "OnLoaded": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/WorkOrderOperationDetailsOnPageLoad.js",
+    "Controls": [
+        {
+            "Sections": [
+                    {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderOperations/WorkOrderOperationObjectHeader.fragment",
+                    "Properties": {
+                        "ObjectHeader": {
+                            "DetailImage": "$(PLT, /SAPAssetManager/Images/DetailImages/Operation.png, /SAPAssetManager/Images/DetailImages/Operation.android.png)",
+                            "StatusText": "/SAPAssetManager/Rules/Operations/OperationHeaderPriority.js",
+                            "Styles": {
+                                "StatusText":  "/SAPAssetManager/Rules/Operations/OperationHeaderPriorityColor.js"
+                            },
+                            "HeadlineText": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/WorkOrderOperationShortText.js",
+                            "Tags": [
+                                {
+                                    "Text": "{ControlKey}"
+                                }
+                            ],
+                            "BodyText": "/SAPAssetManager/Rules/Operations/OperationHeaderEquipmentDescription.js",
+                            "Footnote":  "/SAPAssetManager/Rules/Operations/OperationHeaderFunctionalLocationDescription.js",
+                            "Target": {
+                                "EntitySet": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/BindingReadlink.js",
+                                "Service": "/SAPAssetManager/Services/OnlineAssetManager.service",
+                                "QueryOptions": "$expand=CapacityRequirements,Components,Documents,Header,LongText,ObjectList,SubOperations,Tools"
+                            }
+                        }
+                    }
+                },
+                {
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/QAB/QuickActionBarExtensionSection.fragment",
+					"Properties": {
+						"ExtensionProperties": {
+							"Chips": "/SAPAssetManager/Rules/WorkOrders/OnlineWorkOrderQABChips.js"
+						}
+					}
+				},
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/Assets.fragment",
+                    "Properties": {
+                        "Target": "/SAPAssetManager/Rules/WorkOrders/Details/WorkOrderAssets.js",
+                        "Header": {
+                            "UseTopPadding": "/SAPAssetManager/Rules/ComponentsEnablement/IsMeterComponentEnabled.js"
+                        }
+                    }
+                },
+                {
+					"_Type": "Section.Type.ObjectCardCollection",
+					"Visible": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/SubOperationObjectCard/SubOperationsCardCollectionIsVisible.js",
+					"Layout": {
+						"LayoutType": "HorizontalScroll"
+					},
+					"_Name": "SubOperationsCardCollection",
+					"Header": {
+                        "Items": [
+                            {
+                                "_Type": "SectionHeaderItem.Type.Label",
+                                "_Name": "SuboperationsSectionHeaderLabel",
+                                "Title": "$(L,sub_operations)",
+                                "Position": "Left"
+                            }
+                        ]
+					},
+					"EmptySection": {
+						"Caption": "$(L,no_sub_operations_available)"
+					},
+					"Card": {
+						"_Type":"Control.Type.ObjectCard",
+						"Title": "{OperationShortText} ({OperationNo})",
+						"Subhead": "{SubOperationNo}",
+						"Footnote": "{OrderId}",
+                        "DetailImage": "$(PLT, /SAPAssetManager/Images/DetailImages/Suboperation.png, /SAPAssetManager/Images/DetailImages/Suboperation.android.png)",
+						"OnPress" : "/SAPAssetManager/Rules/SubOperations/SubOperationDetailsNav.js",
+                        "_Name": "SubOperationObjectCard"
+					},
+                    "Target": {
+                        "EntitySet": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/SubOperationObjectCard/OperationRelatedSuboperations.js",
+                        "Service": "/SAPAssetManager/Services/OnlineAssetManager.service",
+                        "QueryOptions": "$expand=Operation,LongText"
+                    },
+					"Separators": {
+						"ControlSeparator": false
+					},
+                    "Footer": {
+                        "_Name": "SubOperationsCardCollectionFooter",
+                        "Caption": "$(L,see_all)",
+                        "AccessoryType": "DisclosureIndicator",
+                        "FooterStyle": "Attribute",
+                        "AttributeLabel": "#Count",
+                        "Visible": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/SubOperationObjectCard/RelatedSuboperationFooterVisible.js",
+                        "OnPress": "/SAPAssetManager/Rules/WorkOrders/SubOperations/SubOperationsListViewFromOperationNav.js"
+                    }
+				},
+                "/SAPAssetManager/Pages/Fragments/Parts/OnlinePartsObjectCardCollection.fragment",
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/NotesObjectSection.fragment",
+                    "Properties": {
+                        "Target": {
+                            "EntitySet": "{{#Property:@odata.readLink}}/LongText",
+                            "Service": "/SAPAssetManager/Services/OnlineAssetManager.service"
+                        },
+                        "Visible": "/SAPAssetManager/Rules/Common/IsClassicLayoutDisabled.js",
+                        "ObjectCell": {
+                            "OnPress": "/SAPAssetManager/Rules/Notes/OnlineNotesViewNav.js"
+                        }
+                    }
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Notification/Details/WorkOrderSection.fragment",
+                    "Properties": {
+                        "ObjectCell": {
+                            "DetailImage": "/SAPAssetManager/Rules/WorkOrders/WorkOrderDetailImage.js"
+                        },
+                        "Target": {
+                            "EntitySet": "WorkOrderHeaders",
+                            "Service": "/SAPAssetManager/Services/OnlineAssetManager.service",
+                            "QueryOptions": "$filter=OrderId eq '{OrderId}'"
+                        }
+                    }
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Documents/DocumentsSection.fragment",
+                    "Properties": {
+                        "#Name:DocumentsSectionHeaderButton": {
+                            "Visible": false
+                        },
+                        "Target": {
+                            "EntitySet": "{@odata.readLink}/Documents",
+                            "Service" : "/SAPAssetManager/Services/OnlineAssetManager.service",
+                            "QueryOptions": "$top=2"
+                        },
+                        "ObjectCell": {
+                            "Icons": null,
+                            "ContextMenu": null,
+                            "ProgressIndicator": "open",
+                            "OnAccessoryButtonPress": "/SAPAssetManager/Rules/Documents/OpenOnlineDocument.js"
+                        },
+                        "Footer": {
+                            "OnPress": "/SAPAssetManager/Actions/Documents/OnlineDocumentsBDSListNav.action"
+                        },
+                        "DataSubscriptions": []
+                    }
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderOperations/WorkOrderOperationDetailsSection.fragment",
+                    "Properties": {
+                        "Target": {
+                            "EntitySet": "{@odata.readLink}",
+                            "Service" : "/SAPAssetManager/Services/OnlineAssetManager.service",
+                            "QueryOptions": "$expand=CapacityRequirements,Components,Documents,Header,LongText,ObjectList,SubOperations,Tools"
+                        }
+                    }
+                },
+                {
+                    "_Type" : "Section.Type.SimplePropertyCollection",
+                    "SimplePropertyCells": [
+                    {
+                        "SimplePropertyCell":
+                        {
+                            "AccessoryType": "DisclosureIndicator",
+                            "KeyName": "$(L,prt)",
+                            "Value": "/SAPAssetManager/Rules/Operations/PRT/PRTTotalCount.js",
+                            "OnPress": "/SAPAssetManager/Actions/WorkOrders/Operations/PRT/PRTListViewNav.action",
+                            "Visible": "/SAPAssetManager/Rules/Operations/PRT/PRTIsVisible.js"
+                        }
+                    },
+                    {
+                        "SimplePropertyCell": {
+                            "AccessoryType": "DisclosureIndicator",
+                            "KeyName": "$(L,objects)",
+                            "Value": "/SAPAssetManager/Rules/ObjectList/OnlineObjectListCount.js",
+                            "OnPress": "/SAPAssetManager/Actions/ObjectList/OnlineObjectListViewNav.action",
+                            "Visible": true,
+                            "Target": {
+                                "EntitySet": "{@odata.readLink}/ObjectList",
+                                "Service" : "/SAPAssetManager/Services/OnlineAssetManager.service"
+                            }
+                        }
+                    }
+                ],
+                    "Layout":
+                    {
+                        "NumberOfColumns": 2
+                    }
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable",
+            "LoadingIndicator": {
+			    "Enabled": true
+		    }
+        }
+    ]
+}

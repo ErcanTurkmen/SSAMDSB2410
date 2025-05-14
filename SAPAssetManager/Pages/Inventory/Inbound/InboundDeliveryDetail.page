@@ -1,0 +1,89 @@
+{
+	"Caption": "$(L,ibd_detail_title)",
+	"ActionBar": {
+		"Items": [
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment"
+		]
+	},
+	"Controls": [
+		{
+			"FilterFeedbackBar": {
+				"_Type": "Control.Type.FilterFeedbackBar",
+				"_Name": "FilterFeedback",
+				"ShowAllFilters": true,
+				"FastFilters": [
+					{
+						"_Name": "OpenIBD",
+						"_Type": "Control.Type.FastFilterItem",
+						"FilterType": "Filter",
+						"FilterProperty": "",
+						"CustomQueryGroup": "IBD",
+						"DisplayValue": "/SAPAssetManager/Rules/Inventory/InboundDelivery/GetInboundDeliveryOpenCaption.js",
+						"ReturnValue": "PickedQuantity ne Quantity"
+					},
+					{
+						"_Name": "ReceivedIBD",
+						"_Type": "Control.Type.FastFilterItem",
+						"FilterType": "Filter",
+						"FilterProperty": "",
+						"CustomQueryGroup": "IBD",
+						"DisplayValue": "/SAPAssetManager/Rules/Inventory/InboundDelivery/GetInboundDeliveryReceivedCaption.js",
+						"ReturnValue": "Quantity gt -2"
+					}
+				]
+			},
+			"Sections": [
+				{
+					"Header": {
+						"Caption": "/SAPAssetManager/Rules/Inventory/InboundDelivery/GetInboundDeliveryItemsListCaption.js",
+						"UseTopPadding": true
+					},
+					"Search": {
+						"BarcodeScanner": true,
+						"Enabled": true,
+						"MinimumCharacterThreshold": 2,
+						"Placeholder": "$(L,search)",
+						 "Delay": 500
+					},
+					"ObjectCell": {
+						"AccessoryButtonIcon": "$(PLT, /SAPAssetManager/Images/edit-accessory.ios.png, /SAPAssetManager/Images/edit-accessory.android.png, '', /SAPAssetManager/Images/edit-accessory.android.png)",
+						"Footnote": "/SAPAssetManager/Rules/Inventory/InboundOrOutbound/InboundOutboundFootNote.js",
+						"OnAccessoryButtonPress": "/SAPAssetManager/Rules/Inventory/InboundDelivery/SetGoodsReceiptInboundDelivery.js",
+						"PreserveIconStackSpacing": false,
+						"OnPress": "/SAPAssetManager/Rules/Inventory/InboundOrOutbound/InboundOutboundDeliveryItemDetailsQuery.js",
+						"StatusText": "/SAPAssetManager/Rules/Inventory/InboundOrOutbound/GetInboundOrOutboundItemState.js",
+						"SubstatusText": "/SAPAssetManager/Rules/Inventory/InboundOrOutbound/InboundOutboundDeliveryQuantity.js",
+						"Subhead": "/SAPAssetManager/Rules/Inventory/InboundOrOutbound/InboundOutboundDeliverySubhead.js",
+						"Title": "/SAPAssetManager/Rules/Inventory/Common/GetItemTextOrMaterialName.js"
+					},
+					"Target": {
+						"EntitySet": "InboundDeliveryItems",
+						"QueryOptions": "/SAPAssetManager/Rules/Inventory/InboundDelivery/GetInboundDeliveryItemsListQuery.js",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					},
+					"_Name": "SectionObjectTable",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable",
+			"Filters": "/SAPAssetManager/Rules/Inventory/InboundDelivery/GetInboundDeliveryPreselectedFilter.js"
+		}
+	],
+	"FioriToolbar": {
+		"_Name": "InboundDeliveryDetailFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+		"Items": [
+			{
+				"_Name": "IssuePartTbI",
+				"_Type": "FioriToolbarItem.Type.Button",
+				"Enabled": "/SAPAssetManager/Rules/Inventory/InboundDelivery/GetReceiveButtonStatusInbound.js",
+				"Title": "$(L,receive_all)",
+				"OnPress": "/SAPAssetManager/Rules/Inventory/InboundOrOutbound/InboundOrOutboundDeliveryIssueAllReceiveAll.js"
+			}
+		]
+	},
+	"OnReturning": "/SAPAssetManager/Rules/Inventory/InboundDelivery/InboundDeliveryDetailsPageOnReturn.js",
+	"_Name": "InboundDeliveryDetailPage",
+	"_Type": "Page"
+}

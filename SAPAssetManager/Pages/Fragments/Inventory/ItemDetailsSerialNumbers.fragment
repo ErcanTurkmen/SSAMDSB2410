@@ -1,0 +1,17 @@
+{
+    "Header": {
+        "Caption": "$(L,serial_numbers)"
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_serial_numbers)"
+    },
+    "ObjectCell": {
+        "Title": "{SerialNumber}",
+        "PreserveIconStackSpacing": false,
+        "StatusText": "{Description}"
+    },
+    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemSerialNumbersTarget.js",
+    "Visible": "/SAPAssetManager/Rules/Inventory/Item/ItemSerialNumbersVisible.js",
+    "_Type": "Section.Type.ObjectTable",
+    "_Name": "SerialNumbersSection"
+}

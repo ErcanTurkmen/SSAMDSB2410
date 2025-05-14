@@ -1,0 +1,24 @@
+{
+    "Caption": "$(L,measuring_point_reading_history)",
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Measurements/PointHistoryDataTable.fragment",
+                    "Properties": {
+                        "Target": {
+                            "EntitySet": "MeasurementDocuments",
+                            "QueryOptions": "/SAPAssetManager/Rules/Measurements/Document/OnlineMeasurementDocsQueryOptions.js",
+                            "Service": "/SAPAssetManager/Services/OnlineAssetManager.service"
+                        }
+                    }
+                }
+                  
+            ],
+            "_Type": "Control.Type.SectionedTable"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "OnlineMeasuringPointHistoryListViewPage"
+}

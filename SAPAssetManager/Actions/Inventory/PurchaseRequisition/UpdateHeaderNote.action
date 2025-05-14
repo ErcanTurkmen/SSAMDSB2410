@@ -1,0 +1,15 @@
+{
+    "_Type": "Action.Type.ODataService.UpdateEntity",
+    "Headers": {
+        "OfflineOData.TransactionID": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetHeaderLocalId.js"
+    },
+    "Target": {
+        "EntitySet": "PurchaseRequisitionLongTexts",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "ReadLink": "{HeaderNoteLink}"
+    },
+    "Properties": {
+        "NewTextString": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetHeaderNote.js",
+        "TextString": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetHeaderNote.js"
+    }
+}

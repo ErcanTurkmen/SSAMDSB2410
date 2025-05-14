@@ -1,0 +1,297 @@
+{
+    "_Type": "Page",
+    "_Name": "CreateUpdateServiceItemScreen",
+    "Caption": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/CreateUpdateServiceItemCaption.js",
+    "OnLoaded": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/CreateUpdateServiceItemPageLoaded.js",
+	"OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "Items": [
+            {
+                "Position": "Left",
+                "SystemItem": "Cancel",
+                "Caption":"$(L,cancel)",
+                "OnPress": "/SAPAssetManager/Rules/Common/CheckForChangesBeforeCancel.js",
+                "Visible": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/ServiceItemCreateUpdateIsCancelButtonVisible.js"
+            },
+            {
+                "Position": "Right",
+                "SystemItem": "$(PLT,'Done','','','Done')",
+                "Caption": "$(L,done)",
+                "Text": "/SAPAssetManager/Rules/Common/Platform/DoneText.js",
+                "OnPress": "/SAPAssetManager/Actions/ServiceItems/ServiceItemRequired.action"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "_Name": "FormCellContainer",
+            "_Type": "Control.Type.FormCellContainer",
+            "Sections": [
+                {
+                    "_Type": "Section.Type.FormCell",
+                    "_Name": "FormCellSection1",
+                    "Caption": "$(L, indicates_required_fields)",
+                    "Header": {
+                        "UseTopPadding": false
+                    },
+                    "Controls": [
+                        {
+                            "_Type": "Control.Type.FormCell.Note",
+                            "_Name": "DescriptionNote",
+                            "IsAutoResizing": true,
+                            "PlaceHolder": "$(L,description)",
+                            "Caption": "$(L,description)*",
+                            "Value": "{ItemDesc}",
+                            "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/FormCellNoteValidation.js"
+                        },
+                        {
+                            "_Type": "Control.Type.FormCell.ListPicker",
+                            "_Name": "ServiceOrderLstPkr",
+                            "Caption": "$(L,service_order)*",
+                            "AllowMultipleSelection": false,
+                            "AllowDefaultValueIfOneItem": false,
+                            "IsPickerDismissedOnSelection": true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 3,
+                                "Placeholder": "$(L,search)",
+								"BarcodeScanner": true
+                            },
+                            "IsEditable": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/IsServiceOrderFieldEditable.js",
+                            "Value": "{ObjectID}",
+                            "PickerItems": {
+                                "DisplayValue": "{{#Property:ObjectID}} - {{#Property:Description}}",
+                                "ReturnValue": "{ObjectID}",
+                                "Target": {
+                                    "EntitySet": "S4ServiceOrders",
+                                    "Service": "/SAPAssetManager/Services/AssetManager.service"
+                                }
+                            },
+                            "OnValueChange": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/ServiceOrderValueChanged.js",
+                            "IsVisible": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/IsItemCreateFromServiceItemsList.js"
+                        }
+                    ]
+                },
+                {
+                    "_Type": "Section.Type.FormCell",
+                    "_Name": "FormCellSection2",
+                    "Controls": [
+                        {
+                            "_Type": "Control.Type.FormCell.ListPicker",
+                            "_Name": "AccountIndicatorLstPkr",
+                            "Caption": "$(L,account_indicator)",
+                            "AllowMultipleSelection": false,
+                            "IsPickerDismissedOnSelection": true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 3,
+                                "Placeholder": "$(L,search)"
+                            },
+                            "Value": "{AccountingInd}",
+                            "PickerItems": {
+                                "DisplayValue": "{{#Property:AcctIndicator}} - {{#Property:AcctIndicatorDesc}}",
+                                "ReturnValue": "{AcctIndicator}",
+                                "Target": {
+                                    "EntitySet": "AcctIndicators",
+                                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions": "$orderby=AcctIndicator"
+                                }
+                            }
+                        },
+                        {
+                            "_Type": "Control.Type.FormCell.ListPicker",
+                            "_Name": "ParentItemLstPkr",
+                            "Caption": "$(L,parent_item)",
+                            "AllowMultipleSelection": false,
+                            "IsPickerDismissedOnSelection": true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "IsEditable": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/IsParentItemPickerEditable.js",
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 3,
+                                "Placeholder": "$(L,search)"
+                            },
+                            "Value": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/Data/SetParentItemPickerValue.js",
+                            "PickerItems": {
+                                "DisplayValue": "{{#Property:ItemNo}} - {{#Property:ItemDesc}}",
+                                "ReturnValue": "{ItemNo}",
+                                "Target": {
+                                    "EntitySet": "S4ServiceItems",
+                                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/ParentItemPickerQueryOptions.js"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/ServiceOrders/CreateUpdate/ProductDetailsFormSection.fragment"
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/ServiceOrders/CreateUpdate/CategorizationFormSection.fragment"
+                },
+                {
+                    "_Type": "Section.Type.FormCell",
+                    "_Name": "FormCellSection5",
+                    "Controls": [
+                        {
+							"_Type": "Control.Type.FormCell.DatePicker",
+							"_Name": "StartDatePkr",
+							"Value": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/Data/SetServiceItemStartDateTime.js",
+							"Caption": "$(L, date)",
+							"Mode" : "Date",
+                            "IsVisible": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/IsServiceItem.js"
+						},
+                        {
+							"_Type": "Control.Type.FormCell.DatePicker",
+							"_Name": "StartTimePkr",
+							"Value": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/Data/SetServiceItemStartDateTime.js",
+							"Caption": "$(L, start_time)",
+							"Mode": "Time",
+                            "IsVisible": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/IsServiceItem.js"
+						},
+                        {
+                            "_Type": "Control.Type.FormCell.ListPicker",
+                            "_Name": "TimeUnitLstPkr",
+                            "Caption": "$(L,time_unit)",
+                            "AllowMultipleSelection": false,
+                            "IsPickerDismissedOnSelection": true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "Value": "{DurationUOM}",
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 3,
+                                "Placeholder": "$(L,search)"
+                            },
+                            "PickerItems": {
+                                "DisplayValue": "{{#Property:UoM}} - {{#Property:Description}}",
+                                "ReturnValue": "{UoM}",
+                                "Target": {
+                                    "EntitySet": "UsageUoMs",
+                                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions": "$filter=Dimension eq 'TIME'"
+                                }
+                            },
+                            "IsVisible": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/IsServiceItem.js",
+                            "IsEditable": false
+                        },
+                        {
+                            "_Type": "Control.Type.FormCell.SimpleProperty",
+                            "_Name": "PlannedDurationSimple",
+							"Caption": "$(L, planned_duration)",
+							"KeyboardType": "Number",
+							"Value": "{Duration}",
+                            "IsVisible": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/IsServiceItem.js",
+                            "OnValueChange": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/OnDurationValueChanged.js"
+						} 
+                    ]
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/ServiceOrders/CreateUpdate/ServiceItemQuantitySection.fragment"
+                },
+                {
+                    "_Type": "Section.Type.FormCell",
+                    "_Name": "FormCellSection7",
+                    "Controls": [
+                        {
+                            "_Type": "Control.Type.FormCell.ListPicker",
+                            "_Name": "CurrencyLstPkr",
+                            "Caption": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/GetSITravelExpenceRequiredLabel.js",
+                            "AllowMultipleSelection": false,
+                            "IsPickerDismissedOnSelection": true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "Value": "{Currency}",
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 3,
+                                "Placeholder": "$(L,search)"
+                            },
+                            "PickerItems": {
+								"DisplayValue": "{{#Property:WAERS}} - {{#Property:KTEXT}}",
+								"ReturnValue": "{WAERS}",
+								"Target": {
+									"EntitySet": "Currencies",
+									"Service": "/SAPAssetManager/Services/AssetManager.service",
+									"QueryOptions": "$orderby=WAERS"
+								}
+							},
+                            "IsEditable":  "/SAPAssetManager/Rules/Common/IsOnCreate.js",
+                            "IsVisible": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/IsNonServiceItem.js"
+                        },
+                        {
+                            "_Type": "Control.Type.FormCell.SimpleProperty",
+                            "_Name": "AmountProperty",
+							"Caption": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/GetSITravelExpenceRequiredLabel.js",
+							"KeyboardType": "Number",
+							"Value": "{Amount}",
+                            "IsEditable":  "/SAPAssetManager/Rules/Common/IsOnCreate.js",
+                            "IsVisible": "/SAPAssetManager/Rules/ServiceItems/CreateUpdate/IsNonServiceItem.js"
+						}
+                    ]
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Notes/S4NoteFormCellSection.fragment",
+                    "Properties": {
+                        "#Name:ServiceNoteTypesListPicker": {
+                            "Caption": "$(L,note_type)"
+                        },
+                        "#Name:LongTextNote": {
+                            "OnValueChange": "/SAPAssetManager/Rules/Notes/Create/OnS4NoteValueChange.js"
+                        }
+                    }
+                },
+                {
+                    "_Type": "Section.Type.FormCell",
+                    "_Name": "FormCellSection9",
+                    "Visible": "/SAPAssetManager/Rules/Common/IsOnCreate.js",
+                    "Controls": [
+                        {
+                            "Caption":"$(L, attachment_description)",
+                            "PlaceHolder": "$(L,attachment_description)",
+                            "IsEditable": true,
+                            "IsVisible": "/SAPAssetManager/Rules/Documents/DocumentsIsVisible.js",
+                            "_Name": "AttachmentDescription",
+                            "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/FormCellNoteValidation.js",
+                            "_Type": "Control.Type.FormCell.SimpleProperty"
+                        },
+                        {
+                            "_Type": "Fragment",
+                            "Fragment": "/SAPAssetManager/Pages/Fragments/Documents/DocumentFormCell.fragment",
+                            "Properties": {
+                                "Value": "/SAPAssetManager/Rules/Documents/InitializeAttachments.js",
+                                "IsVisible": "/SAPAssetManager/Rules/Documents/DocumentsIsVisible.js"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "_Type": "Section.Type.FormCell",
+                    "_Name": "FormCellSection10",
+                    "Controls": [
+                        {
+                            "Title": "$(L,discard)",
+                            "OnPress": "/SAPAssetManager/Rules/Common/DiscardAction.js",
+                            "IsVisible": "/SAPAssetManager/Rules/Common/IsDiscardButtonVisible.js",
+                            "_Type": "Control.Type.FormCell.Button",
+                            "ButtonType": "Text",
+                            "Semantic": "Tint",
+                            "_Name": "DiscardButton",
+                            "TextAlignment": "/SAPAssetManager/Rules/Common/Platform/ModalButtonAlign.js"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

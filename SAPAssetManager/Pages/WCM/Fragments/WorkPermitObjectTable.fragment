@@ -1,0 +1,32 @@
+{
+    "Search": {
+		"Enabled" : "/SAPAssetManager/Rules/WCM/WorkPermits/WorkPermitsSearchEnabled.js",
+		"Delay": 500,
+		"MinimumCharacterThreshold": 3,
+		"Placeholder": "$(L,search)",
+		"BarcodeScanner": true
+	},
+	"Header": {
+		"UseTopPadding": false
+	},
+	"EmptySection": {
+		"Caption": "$(L,wcm_no_work_permits)"
+	},
+	"ObjectCell": "/SAPAssetManager/Pages/WCM/Fragments/WorkPermitObjectCell.fragment",
+	"Target": {
+		"EntitySet" : "/SAPAssetManager/Rules/WCM/WorkPermits/RelatedWorkPermits.js",
+		"Service" : "/SAPAssetManager/Services/AssetManager.service",
+		"QueryOptions": "/SAPAssetManager/Rules/WCM/WorkPermits/WorkPermitsListViewQueryOption.js"
+	},
+	"Footer": {
+		"Caption": "$(L,see_all)",
+		"AccessoryType": "DisclosureIndicator",
+		"AttributeLabel": "/SAPAssetManager/Rules/WCM/WorkPermits/WorkPermitsCount.js",
+		"FooterStyle": "Attribute",
+		"OnPress": "/SAPAssetManager/Actions/WCM/WorkPermitsListViewNav.action",
+		"Visible": false
+	},
+    "Visible": "/SAPAssetManager/Rules/UserFeatures/IsWCMWorkPermitEnabled.js",
+	"_Type" : "Section.Type.ObjectTable",
+	"_Name" : "WorkPermitsListSection"
+}

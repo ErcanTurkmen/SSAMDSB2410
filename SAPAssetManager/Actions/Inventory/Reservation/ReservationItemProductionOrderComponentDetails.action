@@ -1,0 +1,5 @@
+{
+	"PageToOpen": "/SAPAssetManager/Pages/Inventory/Reservation/ReservationItemProductionOrderComponentDetails.page",
+	"_Type": "Action.Type.Navigation",
+	"PageMetadata": "/SAPAssetManager/Rules/Inventory/Reservation/ReservationItemProductionOrderComponentDetailsMetadata..js"
+}

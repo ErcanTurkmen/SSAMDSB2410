@@ -1,0 +1,221 @@
+{
+	"Caption": "$(L,search_criteria_online_search)",
+	"ActionBar": {
+        "Items": [
+            {
+                "Position": "Left",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)",
+                "OnPress": "/SAPAssetManager/Actions/Page/CancelPage.action"
+            },
+            {
+                "Position": "Right",
+                "Text": "$(L,search)",
+                "OnPress": "/SAPAssetManager/Rules/OnlineSearch/SearchCriteria/SearchCriteriaValidation.js"
+            }
+        ]
+    },
+    "Result": "/SAPAssetManager/Rules/OnlineSearch/SearchCriteria/OnlineSearchListFilterResults.js",
+	"Controls": [
+        {
+            "_Name": "FormCellContainer",
+            "_Type": "Control.Type.FormCellContainer",
+            "Sections": [
+                {
+                    "Controls": [
+                        {
+                            "_Type": "Control.Type.FormCell.SimpleProperty",
+                            "_Name": "ID",
+                            "AlternateInput": "Barcode",
+                            "Caption": "$(L,id_barcode)",
+                            "PlaceHolder": "$(L,ID)",
+                            "Value": "/SAPAssetManager/Rules/OnlineSearch/SearchCriteria/SimplePropertyDefaultFilterValue.js"
+                        }
+                    ]
+                },
+                {
+                    "Controls": [
+                        {
+                            "_Type": "Control.Type.FormCell.SimpleProperty",
+                            "_Name": "Description",
+                            "Caption": "$(L,description_contains)",
+                            "PlaceHolder": "$(L,description)",
+                            "Value": "/SAPAssetManager/Rules/OnlineSearch/SearchCriteria/SimplePropertyDefaultFilterValue.js"
+                        }
+                    ]
+                },
+                {
+                    "Controls": [
+                        {
+                            "AllowMultipleSelection": true,
+                            "AllowEmptySelection": true,
+                            "Caption": "$(L,status)",
+                            "FilterProperty": "/SAPAssetManager/Rules/OnlineSearch/SearchCriteria/StatusFilterOptions.js",
+                            "_Name": "StatusFilter",
+                            "_Type": "Control.Type.FormCell.Filter",
+                            "IsEditable": true,
+                            "Label": "$(L,status)"
+                        }
+                    ]
+                },
+                {
+                    "Controls": [
+                        {
+                            "AllowMultipleSelection": false,
+                            "AllowEmptySelection": true,
+                            "Caption": "$(L,person_responsible)",
+                            "FilterProperty": "/SAPAssetManager/Rules/OnlineSearch/SearchCriteria/AssignedToFilterButtons.js",
+                            "_Name": "AssignFilterButtons",
+                            "_Type": "Control.Type.FormCell.Filter",
+                            "IsEditable": true,
+                            "Label": "$(L,assignedto)",
+                            "OnValueChange": "/SAPAssetManager/Rules/OnlineSearch/SearchCriteria/AssignSegmentChange.js"
+                        },
+						{
+                            "_Type": "Fragment",
+                            "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/AssignedToFilterListPkr.fragment",
+                            "Properties": {
+                                "_Name": "AssignedToPicker",
+                                "PickerItems": {
+                                    "DisplayValue": "{EmployeeName}",
+                                    "ReturnValue": "{PersonnelNumber}",
+                                    "Target": {
+                                        "EntitySet": "Employees",
+                                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                        "QueryOptions": "$orderby=EmployeeName"
+                                    }
+                                },
+                                "FilterProperty": "AssignedTo",
+                                "IsVisible": false,
+                                "AllowMultipleSelection": false
+                            }
+						}
+                        ]
+                    },
+                    {
+                    "Controls": [
+                            {
+                                "_Type": "Fragment",
+                                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/TypeFilter.fragment",
+                                "Properties": {
+                                    "Value": "{OrderType}",
+                                    "PickerItems": {
+                                        "DisplayValue": "{{#Property:OrderType}} - {{#Property:OrderTypeDesc}}",
+                                        "ReturnValue": "{OrderType}",
+                                        "Target": {
+                                            "EntitySet": "OrderTypes",
+                                            "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                            "QueryOptions": "/SAPAssetManager/Rules/WorkOrders/ListView/WorkOrderTypesPickerItems.js"
+                                        }
+                                    },
+                                    "OnValueChange": "/SAPAssetManager/Rules/WorkOrders/ListView/WorkOrderTypeValueChanged.js",
+                                    "FilterProperty": "OrderType"
+                                }
+                            },
+                            {
+                                "_Type": "Fragment",
+                                "Fragment": "/SAPAssetManager/Pages/WCM/Fragments/FunctionalLocationFilter.fragment",
+                                "Properties": {
+                                    "_Name": "HeaderFunctionLocation",
+                                    "FilterProperty": "HeaderFunctionLocation"
+                                }
+                            },
+                            {
+                                "_Type": "Fragment",
+                                "Fragment": "/SAPAssetManager/Pages/WCM/Fragments/EquipmentFilter.fragment",
+                                "Properties": {
+                                    "_Name": "HeaderEquipment",
+                                    "FilterProperty": "HeaderEquipment",
+                                    "PickerItems": {
+                                        "DisplayValue": "{EquipId} - {EquipDesc}",
+                                        "ReturnValue": "{EquipId}",
+                                        "Target": {
+                                            "EntitySet": "MyEquipments",
+                                            "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                            "QueryOptions": "$orderby=EquipDesc"
+                                        }
+                                    }
+                                }
+                            }
+                            ]
+                        },
+                        {
+                            "Controls": 
+                            [
+                                {
+                                    "_Type": "Control.Type.FormCell.Switch",
+                                    "_Name": "StartDateSwitch",
+                                    "Caption":"$(L,start_date_range)",
+                                    "Value": false,
+                                    "OnValueChange": "/SAPAssetManager/Rules/OnlineSearch/WorkOrders/StartDateFilterSwitchOnChange.js"
+                                },
+                                {
+                                    "_Type": "Control.Type.FormCell.DatePicker",
+                                    "_Name": "StartDateFilter",
+                                    "Caption": "$(L,from_date)",
+                                    "Mode": "Date",
+                                    "IsVisible": false,
+                                    "OnValueChange": "/SAPAssetManager/Rules/Filter/Validation/CompareStartEndDateComponent.js"
+                                },
+                                {
+                                    "_Type": "Control.Type.FormCell.DatePicker",
+                                    "_Name": "EndDateFilter",
+                                    "Caption": "$(L,to_date)",
+                                    "Mode": "Date",
+                                    "IsVisible": false,
+                                    "OnValueChange": "/SAPAssetManager/Rules/Filter/Validation/CompareStartEndDateComponent.js"
+                                }
+                            ]
+                        },
+                        {
+                            "Controls": [
+                        {
+                             "_Type": "Fragment",
+                             "Fragment":  "/SAPAssetManager/Pages/Fragments/Filter/PlanningPlantFilter.fragment"
+                        },
+                        {
+                             "_Type": "Fragment",
+                             "Fragment":  "/SAPAssetManager/Pages/Fragments/Filter/PlantSectionFilter.fragment"
+                        },
+                        {
+                            "_Type": "Fragment",
+                            "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/LocationFilter.fragment"
+                        },
+                        {
+                            "_Type": "Fragment",
+                            "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/WorkCenterFilter.fragment",
+                            "Properties": {
+                                "FilterProperty": "/SAPAssetManager/Rules/OnlineSearch/SearchCriteria/WorkCenterFilterPropertyName.js"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "Controls": [{
+                        "_Type": "Fragment",
+                        "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/SortByFilter.fragment",
+                        "Properties": {
+                            "AllowEmptySelection": true,
+                            "SortByItems": "/SAPAssetManager/Rules/OnlineSearch/SearchCriteria/SortByItems.js"
+                        }
+                    }]
+                }
+            ]
+        }
+    ],
+    "FioriToolbar": {
+        "_Name": "OnlineSearchCriteriaFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Items": [
+            {
+                "_Name": "ResetFilterTbI0",
+                "_Type": "FioriToolbarItem.Type.Button",
+                "Title": "$(L,reset)",
+                "OnPress": "/SAPAssetManager/Rules/OnlineSearch/SearchCriteria/ResetFilter.js"
+            }
+        ]
+    },
+	"_Name": "OnlineSearchCriteriaWorkOrders",
+	"_Type": "Page",
+    "OnLoaded": "/SAPAssetManager/Rules/OnlineSearch/SearchCriteria/WorkOrderFilterOnLoaded.js"
+}

@@ -1,0 +1,27 @@
+{
+    "EmptySection": {
+        "Caption": "$(L,no_notes)"
+    },
+    "ObjectCell": {
+        "PreserveIconStackSpacing": false,
+        "Icons": "/SAPAssetManager/Rules/Parts/PartsItemIconImages.js",
+        "DetailImage": "$(PLT, /SAPAssetManager/Images/DetailImages/Note.png, /SAPAssetManager/Images/DetailImages/Note.android.png, '', /SAPAssetManager/Images/DetailImages/Note.android.png)",
+        "Title": "{TextString}",
+        "AccessoryType": "DisclosureIndicator",
+        "Styles": {
+            "Title": "QABSettingsObjectCellTitle"
+        },
+        "OnPress": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/OperationNotesNav.js"
+    },
+    "Header": {
+        "Caption": "$(L,notes)"
+    },
+    "Target": {
+        "EntitySet": "{@odata.readLink}/OperationLongText",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$filter=TextString ne ''"
+    },
+    "MaxItemCount": 2,
+    "_Type": "Section.Type.ObjectTable",
+    "_Name": "NotesList"
+}

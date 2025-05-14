@@ -1,0 +1,48 @@
+{
+	"Caption": "/SAPAssetManager/Rules/ErrorArchive/ErrorArchiveCount.js",
+	"OnReturning": "/SAPAssetManager/Rules/ErrorArchive/ErrorArchiveOnReturn.js",
+	"OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+	"ActionBar": {
+        "_Name": "ErrorsArchive",
+        "Items": [
+            {
+                "Position": "Left",
+                "_Name": "Cancel",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)",
+                "Visible": "/SAPAssetManager/Rules/Sync/SyncErrorCloseIsVisible.js",
+                "OnPress": "/SAPAssetManager/Actions/Page/ClosePage.action"
+            }
+        ]
+    },
+	"Controls":
+	[{
+		"Sections":[
+		{
+			"_Type": "Fragment",
+			"Fragment": "/SAPAssetManager/Pages/Fragments/ErrorArchive/ErrorArchiveSection.fragment"
+
+		},
+		{
+          "_Type": "Section.Type.ButtonTable",
+          "Header": {
+             "UseTopPadding": true
+           },
+          "Buttons": [
+            {
+              "_Type": "ButtonTable.Type.Button",
+              "Title" : "$(L,discard_all)",
+              "Style": "ResetRed",
+              "OnPress" : "/SAPAssetManager/Rules/Common/DiscardAllErrorsAction.js",
+			        "Visible": "/SAPAssetManager/Rules/Common/IsDiscardAllErrorsButtonVisible.js",
+              "TextAlignment" : "center"
+            }
+          ]
+		}],
+		"_Type" : "Control.Type.SectionedTable",
+		"_Name" : "ErrorArchiveSection"
+	}],
+	"_Type": "Page",
+	"_Name": "ErrorsArchivePage",
+	"DataSubscriptions": ["ErrorArchive"]
+}

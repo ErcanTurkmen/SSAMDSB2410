@@ -1,0 +1,86 @@
+{
+    "Caption": "/SAPAssetManager/Rules/WorkOrders/SubOperations/SubOperationsListViewCaption.js",
+	"OnLoaded": "/SAPAssetManager/Rules/WorkOrders/SubOperations/WorkOrderSubOperationListViewOnLoaded.js",
+    "OnReturning": "/SAPAssetManager/Rules/WorkOrders/SubOperations/SubOperationListViewOnReturning.js",
+    "OnCustomEventDataReceived": "/SAPAssetManager/Rules/Common/OnCustomEventDataReceived.js",
+    "ActionBar": {
+        "_Name": "SubOperationsList",
+        "Items": [
+            "/SAPAssetManager/Pages/Fragments/SyncButton.fragment",
+            {
+                "Position": "Right",
+                "_Name": "Add",
+                "SystemItem": "Add",
+                "Text": "$(L,add)",
+                "Visible": "/SAPAssetManager/Rules/UserAuthorizations/WorkOrders/EnableSubOperation.js",
+                "OnPress": "/SAPAssetManager/Rules/SubOperations/CreateUpdate/SubOperationCreateNav.js"
+            },
+            {
+                "Position": "Right",
+                "_Name": "Filter",
+                "Icon": "$(PLT,'',/SAPAssetManager/Images/filter.android.png, '', /SAPAssetManager/Images/filter.android.png)",
+                "Caption": "/SAPAssetManager/Rules/Filter/FilterButtonCaption.js",
+                "OnPress": "/SAPAssetManager/Actions/WorkOrders/SubOperations/SubOperationsFilter.action"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "Search": {
+                        "Enabled": true,
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 3,
+                        "Placeholder": "$(L,search)",
+                        "BarcodeScanner": true
+                    },
+                    "Header": {
+                         "UseTopPadding": false
+                    },
+                    "EmptySection": {
+                        "Caption": "$(L,no_suboperation)"
+                    },
+                    "ObjectCell": 
+                    {   
+                        "PreserveIconStackSpacing": true,
+                        "Icons": "/SAPAssetManager/Rules/SubOperations/SubOperationsListViewIconImages.js",
+                        "AccessoryType": "DisclosureIndicator",
+                        "Title": "{{#Property:OperationShortText}} ({{#Property:OperationNo}})",
+                        "StatusText": "/SAPAssetManager/Rules/MobileStatus/SubOperationMobileStatus.js",
+                        "Subhead": "{SubOperationNo}",
+                        "Footnote": "{OrderId}",
+                        "OnPress": "/SAPAssetManager/Rules/SubOperations/SubOperationDetailsNav.js",
+                        "SubstatusText": "/SAPAssetManager/Rules/SubOperations/SubOperationsListViewFormat.js",
+                        "ContextMenu": {
+					        "PerformFirstActionWithFullSwipe": true,
+					        "Items":"/SAPAssetManager/Rules/SubOperations/WorkOrderSubOperationObjectCellContextMenuItems.js",
+					        "LeadingItems": "/SAPAssetManager/Rules/ContextMenuLeadingItems.js",
+					        "TrailingItems": "/SAPAssetManager/Rules/ContextMenuTrailingItems.js"
+				        }
+                    },
+                    "Target": {
+                        "EntitySet": "/SAPAssetManager/Rules/WorkOrders/SubOperations/SubOperationsEntitySet.js",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "/SAPAssetManager/Rules/SubOperations/SubOperationsListViewQueryOption.js"
+                    },
+                    "_Type": "Section.Type.ObjectTable",
+                    "_Name": "WorkOrderSubOperationListSection"
+                }
+            ],
+            "FilterFeedbackBar": {
+                "_Type": "Control.Type.FilterFeedbackBar",
+                "_Name": "FilterFeedback",
+                "ShowAllFilters": true,
+                "FastFilters": "/SAPAssetManager/Rules/WorkOrders/SubOperations/SubOperationFastFiltersItems.js"
+            },
+            "Filters": "/SAPAssetManager/Rules/WorkOrders/ListView/WorkOrderSubOperationsListViewDefaultFilters.js",
+            "_Type": "Control.Type.SectionedTable",
+            "_Name" : "SectionedTable"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "SubOperationsListViewPage",
+    "DataSubscriptions": ["MyWorkOrderSubOperations", "MyWorkOrderSubOpLongTexts", "PMMobileStatuses", "Confirmations","/SAPAssetManager/Services/AssetManager.service"]
+
+}

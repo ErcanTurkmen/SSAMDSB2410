@@ -1,0 +1,25 @@
+{
+    "Caption": "/SAPAssetManager/Rules/Equipment/Warranties/OnlineEquipmentWarrantiesListViewCaption.js",
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Equipment/EquipmentWarrantiesObjectTable.fragment",
+                    "Properties": {
+                        "Target": {
+                            "EntitySet": "{{#Property:@odata.readLink}}/Warranty",
+                            "Service": "/SAPAssetManager/Services/OnlineAssetManager.service"
+                        },
+                        "ObjectCell": {
+                            "OnPress": "/SAPAssetManager/Actions/Equipment/Warranties/OnlineEquipmentWarrantiesDetailsNav.action"
+                        }
+                    }
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "OnlineEquipmentWarrantiesPage"
+}

@@ -1,0 +1,28 @@
+{
+	"Caption": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/GetBulkIssueOrReceiptGenericPageCaption.js",
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+	"ActionBar": {
+        "Items": [
+            {
+                "OnPress": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/CloseBulkIssueOrReceipt.js",
+                "Position": "Left",
+                "SystemItem": "Cancel"
+            },
+            {
+                "_Name": "SaveButton",
+                "Position": "Right",
+                "Text": "$(L, save)",
+                "OnPress": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/BulkIssueOrReceiptPost.js"
+            }
+        ]
+    },
+	"Controls": [
+		{
+			"Sections": [],
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"_Name": "BulkIssueOrReceiptCreate",
+	"_Type": "Page"
+}

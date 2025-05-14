@@ -1,0 +1,169 @@
+{
+    "Caption": "/SAPAssetManager/Rules/Inventory/Item/ItemCaption.js",
+    "ActionBar": {
+        "Items": [
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsMaterialDetailsNav.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsSetItemEdit.fragment",
+            "/SAPAssetManager/Pages/Fragments/SyncButton.fragment"        
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "ObjectHeader": {
+                        "HeadlineText": "/SAPAssetManager/Rules/Inventory/Common/GetMaterialName.js",
+                        "Tags": "/SAPAssetManager/Rules/Inventory/Item/ItemTags.js",
+                        "Subhead": "/SAPAssetManager/Rules/Inventory/Item/ItemSubHead.js",
+                        "BodyText": "/SAPAssetManager/Rules/Inventory/Item/ItemBodyText.js",
+                        "Footnote": "/SAPAssetManager/Rules/Inventory/Item/ItemFootnote.js"
+                    },
+                    "_Type": "Section.Type.ObjectHeader",
+                    "_Name": "ObjectHeaderSectionTable"
+                },
+                {
+                   "_Type": "Section.Type.KeyValue",
+                    "_Name": "PurchaseRequisitionItemDetailsSection",
+                    "Header": {
+                        "Caption": "$(L,item_details)"
+                    },
+                    "KeyAndValues": [
+                        {
+                            "_Name": "PRGroupOrg",
+                            "KeyName": "$(L,pr_group)",
+                            "Value": "$(DV,{PRGroupOrg},-)"
+                        },
+                        {
+                            "_Name": "Requisitioner",
+                            "KeyName": "$(L,requested_by)",
+                            "Value": "$(DV,{Requisitioner},-)"
+                        },
+                        {
+                            "_Name": "PlantName",
+                            "KeyName": "$(L,plant)",
+                            "Value": "$(DV,{PlantName},-)"
+                        },
+                        {
+                            "_Name": "SlocName",
+                            "KeyName": "$(L,storage_location)",
+                            "Value": "$(DV,{SlocName},-)"
+                        },
+                        {
+                            "_Name": "QuantityUOM",
+                            "KeyName": "$(L,quantity)",
+                            "Value": "$(DV,{QuantityUOM},-)"
+                        },
+                        {
+                            "_Name": "PriceDetails",
+                            "KeyName": "$(L,price_unit_currency)",
+                            "Value": "$(DV,{PriceDetails},-)"
+                        },
+                        {
+                            "_Name": "AccountAssignmentCategory",
+                            "KeyName": "$(L,account_assignment_category)",
+                            "Value": "$(DV,'/SAPAssetManager/Rules/Inventory/Item/GetAccountAssignmentCategory.js','-')"
+                        },
+                        {
+                            "_Name": "Batch",
+                            "KeyName": "$(L,batch_number)",
+                            "Value": "$(DV,{Batch},-)"
+                        },
+                        {
+                            "_Name": "StorageBin",
+                            "KeyName": "$(L,storage_bin)",
+                            "Value": "$(DV,{StorageBin},-)"
+                        },
+                        {
+                            "_Name": "ValuationType",
+                            "KeyName": "$(L,valuation_type)",
+                            "Value": "$(DV,{ValuationType},-)"
+                        },
+                        {
+                            "_Name": "ItemCategory",
+                            "KeyName": "$(L,item_category)",
+                            "Value": "$(DV,'/SAPAssetManager/Rules/Inventory/Item/GetItemCategory.js','-')"
+                        },
+                        {
+                            "_Name": "FixedVendor",
+                            "KeyName": "$(L,fixed_vendor)",
+                            "Value": "$(DV,'/SAPAssetManager/Rules/Inventory/Item/GetFixedVendor.js','-')"
+                        },
+                        {
+                            "_Name": "DeliveryDate",
+                            "KeyName": "$(L,delivery_date)",
+                            "Value": "$(DV,'/SAPAssetManager/Rules/Inventory/Item/GetDeliveryDate.js','-')"
+                        },
+                        {
+                            "_Name": "DesiredSupplier",
+                            "KeyName": "$(L,desired_supplier)",
+                            "Value": "$(DV,'/SAPAssetManager/Rules/Inventory/Item/GetDesiredVendor.js','-')"
+                        }
+                    ],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js",
+                    "Visible": true,
+                    "DataSubscriptions": ["PurchaseRequisitionItems"]
+                },
+                {                   
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "PurchaseRequisitionDeliveryDetailsSection",
+                    "Header": {
+                        "Caption": "$(L,delivery_details)"
+                    },
+                    "KeyAndValues": [
+                        {
+                            "_Name": "HouseNum|Street",
+                            "KeyName": "$(L,street_house)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/Item/GetStreetHouseName.js"
+                        },
+                        {
+                            "_Name": "PostalCodeCity",
+                            "KeyName": "$(L,postal_code_city)",
+                            "Value": "{PostalCodeCity}"
+                        },
+                        {
+                            "_Name": "Country",
+                            "KeyName": "$(L,country)",
+                            "Value": "{Country}"
+                        },
+                        {
+                            "_Name": "Region",
+                            "KeyName": "$(L,region)",
+                            "Value": "{Region}"
+                        }
+                    ],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js",
+                    "Visible": true
+                },
+                {
+                   "_Type": "Section.Type.KeyValue",
+                    "_Name": "PurchaseRequisitionNoteSection",
+                    "Header": {
+                        "Caption": "$(L,note)"
+                    },
+                    "KeyAndValues": [
+                        {
+                            "_Name": "note",
+                            "Value": "{LongText}"
+                        }
+                    ],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js",
+                    "Visible": true
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable"
+        }
+    ],
+    "ToolBar": {
+        "Controls":[
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsPreviousItem.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/FlexibleSpaceToolBar.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsDiscard.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/FlexibleSpaceToolBar.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsNextItem.fragment"
+        ]
+    },
+    "OnReturning": "/SAPAssetManager/Rules/Inventory/Item/ItemPageOnReturning.js",
+    "_Name": "PurchaseRequisitionItemDetailsPage",
+    "_Type": "Page"
+}

@@ -1,0 +1,25 @@
+{
+    "Header": {
+        "Caption": "/SAPAssetManager/Rules/S4RelatedHistories/S4RelatedHistoriesRecentCaption.js"
+    },
+    "EmptySection": {
+        "Caption": "/SAPAssetManager/Rules/S4RelatedHistories/S4RelatedHistoriesRecentEmptyCaption.js"
+    },
+    "MaxItemCount": 3,
+    "ObjectCell": "/SAPAssetManager/Pages/Fragments/S4RelatedHistories/S4RelatedHistoriesObjectCell.fragment",
+    "Footer": {
+        "Caption": "$(L,see_all)",
+        "AccessoryType": "DisclosureIndicator",
+        "FooterStyle": "Attribute",
+        "AttributeLabel": "/SAPAssetManager/Rules/S4RelatedHistories/S4RelatedHistoryRecentCount.js",
+        "Visible": "/SAPAssetManager/Rules/S4RelatedHistories/S4RelatedHistoryRecentFooterVisible.js",
+        "OnPress": "/SAPAssetManager/Actions/S4RelatedHistories/S4RelatedHistoryRecentListViewNav.action"
+    },
+    "Target": {
+        "EntitySet": "/SAPAssetManager/Rules/S4RelatedHistories/S4RelatedHistoryEntitySet.js",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions":"$filter=ReferenceType eq 'H'&$expand=LongText_Nav&$top=3&$orderby=Priority,ObjectID desc"
+    },
+    "_Name": "S4ObjectHistoryListViewSection",
+    "_Type": "Section.Type.ObjectTable"
+}

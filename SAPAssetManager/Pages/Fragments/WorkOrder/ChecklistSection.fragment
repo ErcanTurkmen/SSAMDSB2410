@@ -1,0 +1,26 @@
+{
+    "Header": {
+        "Caption": "$(L,checklists)"
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_checklists_available)"
+    },
+    "Footer": {
+        "Caption": "$(L,see_all)",
+        "AccessoryType": "DisclosureIndicator",
+        "FooterStyle": "Attribute",
+        "AttributeLabel": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationInspectionLotCount.js",
+        "OnPress": "/SAPAssetManager/Actions/WorkOrders/InspectionLot/InspectionLotListViewNav.action",
+        "Visible": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationInspectionLotShouldRenderFooter.js"
+    },
+    "MaxItemCount": 2,
+    "ObjectCell": "/SAPAssetManager/Pages/Fragments/WorkOrder/ChecklistObjectCell.fragment",
+    "Target": {
+        "EntitySet": "{{#Property:@odata.readLink}}/EAMChecklist_Nav",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$expand=InspectionLot_Nav&$orderby=OrderId&$top=2"
+    },
+    "_Name": "ChecklistsObjectTable",
+    "_Type": "Section.Type.ObjectTable",
+    "Visible": "/SAPAssetManager/Rules/WorkOrders/InspectionLot/IsCheckListEnabled.js"
+}

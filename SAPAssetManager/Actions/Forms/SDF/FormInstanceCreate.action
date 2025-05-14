@@ -1,0 +1,17 @@
+{
+    "_Type": "Action.Type.ODataService.CreateEntity",
+    "Target": {
+        "EntitySet": "DynamicFormInstances",
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "Properties": {
+        "Content": "{#Page:FormRunner/#ClientData/FormData/Data}",
+        "FormInstanceID": "/SAPAssetManager/Rules/Forms/SDF/FormGuidCreate.js",
+        "FormVersion": "{FormVersion}",
+        "FormName": "{FormName}",
+        "AppName": "{AppName}",
+        "FormStatus": "{#Page:FormRunner/#ClientData/FormData/Status}"
+    },
+    "OnSuccess": "/SAPAssetManager/Rules/Forms/SDF/FormCreateCloseOnCompleted.js",
+    "OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/CreateEntityFailureMessage.action"
+}

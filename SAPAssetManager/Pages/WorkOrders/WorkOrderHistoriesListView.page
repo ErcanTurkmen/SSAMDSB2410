@@ -1,0 +1,32 @@
+{
+	"Caption": "/SAPAssetManager/Rules/WorkOrders/History/WorkOrderHistoryListViewCaption.js",
+	"Controls": [
+		{
+			"_Type": "Control.Type.SectionedTable",
+			"Sections": [
+				{
+					"_Name": "WorkorderHistoryListViewSection",
+					"_Type": "Section.Type.ObjectTable",
+					"ObjectCell": "/SAPAssetManager/Pages/Fragments/WorkOrder/History/RelatedWorkOrderObjectCell.fragment",
+					"Target": {
+						"EntitySet": "/SAPAssetManager/Rules/WorkOrders/History/WorkOrderHistoryEntitySet.js",
+						"Service": "/SAPAssetManager/Services/AssetManager.service",
+						"QueryOptions":"/SAPAssetManager/Rules/WorkOrders/History/WorkOrderHistoryListViewQueryOptions.js"
+					},
+					"Search": {
+						"Enabled": true,
+						"Delay": 500,
+						"MinimumCharacterThreshold": 3,
+						"Placeholder": "$(L,search)",
+						"BarcodeScanner": true
+					},
+					"Header": {
+		 				"UseTopPadding": false
+    				}
+				}
+			]
+		}
+	],
+	"_Type": "Page",
+	"_Name": "WorkOrderHistoriesListViewPage"
+}

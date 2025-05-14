@@ -1,0 +1,5 @@
+{
+    "_Type" : "Action.Type.Navigation",
+    "PageToOpen" : "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsPageToOpen.js",
+    "PageMetadata": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsPageMetadata.js"
+}

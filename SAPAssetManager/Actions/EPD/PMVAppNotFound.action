@@ -1,0 +1,8 @@
+{
+	"_Type": "Action.Type.Message",
+	"Title": "$(L, application_not_found)",
+	"Message": "$(L, download_app)",
+	"OKCaption": "$(L, download)",
+	"CancelCaption": "$(L, cancel)",
+	"OnOK": "/SAPAssetManager/Rules/EPD/LaunchAppStore.js"
+}

@@ -1,0 +1,55 @@
+{
+    "Header": {
+        "Items": [
+                {
+                    "_Type": "SectionHeaderItem.Type.Label",
+                    "_Name": "DocumentsSectionHeaderLabel",
+                    "Title": "$(L, documents)",
+                    "Position": "Left"
+                },
+                {
+                    "_Type": "SectionHeaderItem.Type.Button",
+                    "_Name": "DocumentsSectionHeaderButton",
+                    "Position": "Right",
+                    "Title": "$(L, add)",
+                    "Visible": "/SAPAssetManager/Rules/Documents/DocumentsSectionAddNewVisible.js",
+                    "OnPress": "/SAPAssetManager/Rules/Documents/Create/DocumentCreateBDSNav.js",
+                    "Styles": {
+                        "Button": "HeaderItemButtonText"
+                    }
+                }
+        ]
+    },
+	"EmptySection": {
+		"Caption": "$(L,no_documents_available)"
+	},
+    "Search": {
+        "Enabled" : false
+    },
+	"ObjectCell": {
+        "_Type": "Fragment",
+        "Fragment": "/SAPAssetManager/Pages/Fragments/Documents/DocumentObjectCell.fragment",
+        "Properties": {
+            "DetailImage": "/SAPAssetManager/Rules/Documents/DocumentDetailImage.js",
+            "PreserveIconStackSpacing": false
+        }
+    },
+    "Target": {
+        "EntitySet" : "/SAPAssetManager/Rules/Documents/DocumentsBDSListEntitySet.js",
+        "Service" : "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "/SAPAssetManager/Rules/Documents/DocumentsSectionQueryOptions.js"
+    },
+    "MaxItemCount": 2,
+    "Footer": {
+        "Caption": "$(L,see_all)",
+        "AccessoryType": "DisclosureIndicator",
+        "FooterStyle": "Attribute",
+        "AttributeLabel": "/SAPAssetManager/Rules/Documents/Count/DocumentsBDSCount.js",
+        "OnPress": "/SAPAssetManager/Actions/Documents/DocumentsBDSListNav.action",
+        "Visible": "/SAPAssetManager/Rules/Documents/Count/DocumentsBDSShouldRenderFooter.js"
+    },
+    "Visible": "/SAPAssetManager/Rules/Documents/DocumentsIsVisible.js",
+    "DataSubscriptions": ["Documents","MyFuncLocDocuments","MyEquipDocuments","MyWorkOrderDocuments","MyNotifDocuments", "S4ServiceOrderDocuments", "S4ServiceConfirmationDocuments","S4ServiceRequestDocuments", "S4ServiceQuotationDocuments"],
+	"_Type" : "Section.Type.ObjectTable",
+	"_Name": "DocumentSection"
+}

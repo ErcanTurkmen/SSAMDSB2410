@@ -1,0 +1,8 @@
+{
+	"Target": {
+		"EntitySet": "/SAPAssetManager/Globals/EmptyString.global",
+		"Service": "/SAPAssetManager/Services/AssetManager.service"
+	},
+	"ActionResult": {"_Name": "ReadResult"},
+	"_Type": "Action.Type.ODataService.Read"
+}

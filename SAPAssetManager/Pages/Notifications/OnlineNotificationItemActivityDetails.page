@@ -1,0 +1,43 @@
+{
+	"_Type": "Page",
+	"_Name": "OnlineNotificationItemActivityDetailsPage",
+	"Caption": "/SAPAssetManager/Rules/Notifications/Item/Activity/NotificationItemActivityHeader.js",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Header": {
+						"Caption": "$(L,notification_item_activities_details)"
+					},
+					"KeyAndValues": [
+						{
+							"_Name": "ActivityText",
+							"KeyName": "$(L,description)",
+							"Value": "{ActivityText}"
+						},
+						{
+							"_Name": "ActivitySortNumber",
+							"KeyName": "$(L,sort_number)",
+							"Value": "{ActivitySortNumber}"
+						},
+						{
+							"_Name": "ActivityCodeGroup",
+							"KeyName": "$(L,group)",
+							"Value": "/SAPAssetManager/Rules/Notifications/Activity/Details/NotificationActivityDetailsGroup.js"
+						},
+						{
+							"_Name": "ActivityCode",
+							"KeyName": "$(L,code)",
+							"Value": "/SAPAssetManager/Rules/Notifications/Activity/Details/NotificationActivityDetailsCode.js"
+						}
+					],
+					"_Name": "NotificationItemActivityDetailsSection",
+					"_Type": "Section.Type.KeyValue"
+				},
+				"/SAPAssetManager/Pages/Fragments/Notification/Details/OnlineNotificationNoteFacet.fragment"
+			],
+			"_Type": "Control.Type.SectionedTable",
+			"_Name": "SectionedTable"
+		}
+	]
+}

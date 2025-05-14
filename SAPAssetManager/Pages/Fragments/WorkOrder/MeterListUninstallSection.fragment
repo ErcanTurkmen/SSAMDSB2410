@@ -1,0 +1,82 @@
+{
+    "Visible": "/SAPAssetManager/Rules/WorkOrders/Meter/ShowMeterSectionDetails.js",
+	"Module": "extension-EditableDataTable",
+	"Control": "EditableDataTableViewExtension",
+	"Class": "EditableDataTableViewExtension",
+    "Height": 215,
+    "ExtensionProperties": {
+        "Configuration": {
+            "IsStickyHeaderRow": false,
+            "NumberOfLeadingStickyColumns": 0,
+            "MaxLinesPerRow": 2,
+            "IsReadOnly": true,
+	    "IsCellBackgroundClear": true
+        },
+        "Columns": [
+            {
+                "HeaderName": "$(L, meters)",
+                "PreferredWidth": 250,
+                "IsDynamicWidth": true
+            },
+            {
+                "HeaderName": "$(L, status)",
+                "PreferredWidth": 170
+            },
+            {
+                "HeaderName": "$(L, action)",
+                "PreferredWidth": 170
+            }
+        ],
+        "Row": {
+            "Items": [
+                {
+                    "Type": "Text",
+                    "IsMandatory": false,
+                    "Property": "Meter",
+                    "OnValueChange": "",
+                    "Parameters": {
+                        "Value": "/SAPAssetManager/Rules/WorkOrders/Meter/MeterTitle.js"
+                    }
+                },
+                {
+                    "Type": "Text",
+                    "IsMandatory": false,
+                    "Property": "Status",
+                    "OnValueChange": "",
+                    "Parameters": {
+                        "Value": "/SAPAssetManager/Rules/WorkOrders/Meter/MeterStatus.js"
+                    }
+                },
+                {
+                    "Type": "Button",
+                    "IsMandatory": false,
+                    "IsReadOnly": false,
+                    "Property": "",
+                    "Parameters": {
+                        "Value": "/SAPAssetManager/Rules/WorkOrders/Meter/MeterAccessoryUninstallButton.js",
+                        "Action": "/SAPAssetManager/Rules/Meter/MeterSectionAccessoryButtonPress.js",
+                        "Style": "Secondary"
+                    }
+                }
+            ]
+        },
+        "Target": {
+            "EntitySet": "/SAPAssetManager/Rules/Meter/MeterSectionInstallUninstallEntitySet.js",
+            "Service": "/SAPAssetManager/Services/AssetManager.service",
+            "QueryOptions": "$top=2&$filter=sap.entityexists(Device_Nav)&$expand=Workorder_Nav/DisconnectActivity_Nav/DisconnectObject_Nav,Installation_Nav,Premise_Nav,Device_Nav/DeviceCategory_Nav/Material_Nav,Device_Nav/RegisterGroup_Nav/Division_Nav,Device_Nav/Equipment_Nav/ObjectStatus_Nav/SystemStatus_Nav,Device_Nav/GoodsMovement_Nav,Device_Nav/DeviceLocation_Nav/FuncLocation_Nav/Address/AddressCommunication,ConnectionObject_Nav/FuncLocation_Nav/Address/AddressCommunication,Device_Nav/DeviceLocation_Nav/Premise_Nav,Workorder_Nav/OrderMobileStatus_Nav,Workorder_Nav/OrderISULinks,Device_Nav/MeterReadings_Nav"
+        }
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_meter_available)"
+    },
+    "Footer": {
+        "Caption": "$(L,see_all)",
+        "AccessoryType": "DisclosureIndicator",
+        "FooterStyle": "Attribute",
+        "AttributeLabel": "/SAPAssetManager/Rules/WorkOrders/Meter/Details/WorkOrderMetersCount.js",
+        "OnPress": "/SAPAssetManager/Rules/Meter/MeterSeeAllNavAction.js",
+        "Visible": "/SAPAssetManager/Rules/WorkOrders/Meter/Details/MetersListViewFooterVisible.js"
+    },
+	"_Type": "Section.Type.Extension",
+	"_Name": "MeterListUninstallSection"
+}

@@ -1,0 +1,87 @@
+{
+	"Caption": "$(L,pi_header)",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"KeyAndValues": [
+                        {
+                            "_Name": "Plant",
+                            "KeyName": "$(L,plant)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/GetPlantDescription.js"
+                        },
+						{
+                            "_Name": "StorLocation",
+                            "KeyName": "$(L,storage_location)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/GetStorageLocationDescription.js"
+                        },
+                        {
+                            "_Name": "SpecialStock",
+                            "KeyName": "$(L,special_stock_indicator)",
+                            "Value": "$(DV, '/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryDocHeaderGetRelatedSpecialStock.js', '')"
+                        },
+                        {
+                            "_Name": "Vendor",
+                            "KeyName": "$(L,vendor)",
+                            "Value": "$(DV, '/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryDocHeaderGetRelatedVendor.js', '')"
+                        },
+                        {
+                            "_Name": "WBSElement",
+                            "KeyName": "$(L,reservation_item_wbs_element)",
+                            "Value": "$(DV, '/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryDocHeaderGetRelatedWBS.js', '')"
+                        },
+                        {
+                            "_Name": "PlanCountdate",
+                            "KeyName": "$(L,planned_count_date)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/GetPlannedCountdateForInventoryHeader.js"
+                        },
+						{
+                            "_Name": "CountDate",
+                            "KeyName": "$(L,count_date)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/GetCountdateForInventoryHeader.js"
+                        },
+						{
+                            "KeyName": "$(L,count_status)",
+                            "Value": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/GetCountStatusForInventoryHeader.js"
+                        },
+						{
+                            "_Name": "PhysInvNo",
+                            "KeyName": "$(L,pi_number)",
+                            "Value": "{{#Property:PhysInvNo}}"
+                        },
+						{
+                            "_Name": "Physinventref",
+                            "KeyName": "$(L,pi_reference)",
+                            "Value": "{{#Property:Physinventref}}"
+                        },
+						{
+                            "_Name": "GroupingType",
+                            "KeyName": "$(L,pi_group_type)",
+                            "Value": "{{#Property:GroupingType}}"
+                        },
+						{
+                            "_Name": "GroupingCriteria",
+                            "KeyName": "$(L,pi_group_criteria)",
+                            "Value": "{{#Property:GroupingCriteria}}"
+                        },
+						{
+                            "_Name": "Description",
+                            "KeyName": "$(L,description)",
+                            "Value": "{{#Property:Description}}"
+                        }
+					],
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "KeyValueTable"
+				}
+			],
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"_Name": "PhysicalInventoryHeader",
+	"_Type": "Page"
+}

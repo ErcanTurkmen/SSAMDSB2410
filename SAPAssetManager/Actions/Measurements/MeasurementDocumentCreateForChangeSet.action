@@ -1,0 +1,17 @@
+{
+    "_Type": "Action.Type.ODataService.CreateEntity",
+    "Target": {
+        "EntitySet": "MeasurementDocuments",
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "Properties": {
+    },
+    "Headers": {
+        "OfflineOData.RemoveAfterUpload": "true",
+        "OfflineOData.TransactionID": "/SAPAssetManager/Rules/Measurements/Document/MeasurementDocumentMeasurementDocNumWithChangeSetIncrement.js"
+    },
+    "CreateLinks": "/SAPAssetManager/Rules/Measurements/Document/MeasurementDocumentFDCCreateLinks.js",
+    "OnSuccess": "/SAPAssetManager/Rules/Measurements/Document/MeasurementDocumentCreateOnSuccess.js",
+    "OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/CreateEntityFailureMessage.action",
+    "ValidationRule": "/SAPAssetManager/Rules/Measurements/Document/MeasurementDocumentCreateUpdateValidation.js"
+}

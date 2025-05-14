@@ -1,0 +1,183 @@
+{
+	"Caption": "/SAPAssetManager/Rules/Meter/Format/MeterEDTCaption.js",
+    "OnReturning": "/SAPAssetManager/Rules/WorkOrders/Meter/MetersWithActivityListOnReturning.js",
+	"ActionBar": {},
+	"Controls":
+	[{
+		"Sections":
+		[{
+    		"Module": "extension-EditableDataTable",
+    		"Control": "EditableDataTableViewExtension",
+    		"Class": "EditableDataTableViewExtension",
+    		"Height": 600,
+    		"ExtensionProperties": {
+        		"Configuration": {
+            		"NumberOfLeadingStickyColumns": 0,
+            		"IsStickyHeaderRow": true,
+            		"MaxLinesPerRow": 2,
+            		"IsHeaderRowVisible": true,
+                    "IsSelectionModeEnabled": false,
+                    "IsSelectionColumnAlwaysVisible": false
+        		},
+        		"Columns": [
+            		{
+                        "HeaderName": "$(L, meter)",
+                        "PreferredWidth": 160,
+                        "IsDynamicWidth": true
+                    },
+                    {
+                        "HeaderName": "$(L, reason)*",
+                        "PreferredWidth": 160
+                    },
+                    {
+                        "HeaderName": "$(L, action)",
+                        "PreferredWidth": 200
+                    },
+                    {
+                        "HeaderName": "$(L, status)",
+                        "PreferredWidth": 160
+                    },
+                    {
+                        "HeaderName": "$(L, device)",
+                        "PreferredWidth": 160
+                    },
+                    {
+                        "HeaderName": "$(L, premise)",
+                        "PreferredWidth": 160
+                    }
+                ],
+                "Row": {
+                    "Items": [
+                        {
+                            "_Name": "Meters",
+                            "Type": "Text",
+                            "Parameters": {
+                                "Value": "/SAPAssetManager/Rules/Meter/Format/MeterEDTName.js"
+                            }
+                        },
+                        {
+                            "_Name": "Reasons",
+                            "Type": "ListPicker",
+                            "IsReadOnly": false,
+                            "OnValueChange": "/SAPAssetManager/Rules/Meter/Format/MeterEDTReasonOnValueChange.js",
+                            "Parameters": {
+                                "Search": {
+                                    "Enabled": true,
+                                    "Delay": 500,
+                                    "MinimumCharacterThreshold": 3,
+                                    "Placeholder": "$(L,search)",
+                                    "BarcodeScanner": true
+                                },
+                                "ItemsPerPage": 50,
+                                "CachedItemsToLoad": 20,
+                                "Caption": "$(L, reason)",
+                                "Value": "/SAPAssetManager/Rules/Meter/Format/MeterEDTReasonValue.js",
+                                "PickerItems": {
+                                    "DisplayValue": "/SAPAssetManager/Rules/Meter/Format/MeterEDTReasonDisplayValue.js",
+                                    "ReturnValue": "{ActivityReason}",
+                                    "Target": {
+                                        "EntitySet": "ActivityReasons",
+                                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                        "QueryOptions": "$filter=PermitForRemoval eq 'X'&$orderby=ActivityReason asc"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "_Name": "Action",
+                            "Type": "Button",
+                            "IsReadOnly": false,
+                            "Parameters": {
+                                "Value": "/SAPAssetManager/Rules/WorkOrders/Meter/MeterAccessoryUninstallButton.js",
+                                "Action": "/SAPAssetManager/Rules/Meter/MeterSectionAccessoryButtonPress.js",
+                                "Style": "Secondary"
+                            }
+                        },
+                        {
+                            "_Name": "Status",
+                            "Type": "Text",
+                            "Parameters": {
+                                "Value": "/SAPAssetManager/Rules/Meter/Format/MeterEDTStatus.js"
+                            }
+                        },
+                        {
+                            "_Name": "Device",
+                            "Type": "ListPicker",
+                            "IsReadOnly": false,
+                            "OnValueChange": "/SAPAssetManager/Rules/Meter/Format/MeterEDTDeviceOnValueChange.js",
+                            "Parameters": {
+                                "Search": {
+                                    "Enabled": true,
+                                    "Delay": 500,
+                                    "MinimumCharacterThreshold": 3,
+                                    "Placeholder": "$(L,search)",
+                                    "BarcodeScanner": true
+                                },
+                                "ItemsPerPage": 50,
+                                "CachedItemsToLoad": 20,
+                                "Caption": "$(L, device)",
+                                "Value": "{EquipmentNum}",
+                                "DisplayValue": "/SAPAssetManager/Rules/Meter/Format/MeterEDTDeviceDisplayValue.js",
+                                "PickerItems": {
+                                    "DisplayValue": "{Device}",
+                                    "ReturnValue": "{EquipmentNum}",
+                                    "Target": {
+                                        "EntitySet": "Devices",
+                                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                        "QueryOptions": "/SAPAssetManager/Rules/Meter/Format/MeterEDTDeviceQuery.js"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "_Name": "Premise",
+                            "Type": "ListPicker",
+                            "IsReadOnly": false,
+                            "OnValueChange": "/SAPAssetManager/Rules/Meter/Format/MeterEDTPremiseOnValueChange.js",
+                            "Parameters": {
+                                "Search": {
+                                    "Enabled": true,
+                                    "Delay": 500,
+                                    "MinimumCharacterThreshold": 3,
+                                    "Placeholder": "$(L,search)",
+                                    "BarcodeScanner": true
+                                },
+                                "ItemsPerPage": 50,
+                                "CachedItemsToLoad": 20,
+                                "Caption": "$(L, premise)",
+                                "Value": "{Premise}",
+                                "DisplayValue": "/SAPAssetManager/Rules/Meter/Format/MeterEDTPremiseDisplayValue.js",
+                                "PickerItems": {
+                                    "DisplayValue": "{Premise}",
+                                    "ReturnValue": "{Premise}",
+                                    "Target": {
+                                        "EntitySet": "Premises",
+                                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                        "QueryOptions": "/SAPAssetManager/Rules/Meter/Format/MeterEDTPremiseQuery.js"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                "Target": {
+                    "EntitySet": "/SAPAssetManager/Rules/Meter/MeterSectionInstallUninstallEntitySet.js",
+                    "Service": "/SAPAssetManager/Services/AssetManager.service",
+                    "QueryOptions": "/SAPAssetManager/Rules/Meter/MeterSectionInstallUninstallQueryOptions.js"
+                },
+                "OnLoaded": "",
+                "OnCellGetsFocus": "",
+                "OnCellLostFocus": "",
+                "OnSelectedRowsChange": ""
+            },
+            "_Type": "Section.Type.Extension",
+            "_Name": "EditableDataTableExtensionSection",
+            "Visible": true
+        }],
+        "_Type" : "Control.Type.SectionedTable",
+        "_Name" : "SectionedTable"
+    }],
+    "_Type": "Page",
+    "_Name": "MetersWithActivityListViewPage",
+    "DataSubscriptions": []
+}

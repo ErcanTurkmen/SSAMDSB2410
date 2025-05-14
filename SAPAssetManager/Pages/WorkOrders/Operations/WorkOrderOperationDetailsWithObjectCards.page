@@ -1,0 +1,268 @@
+{
+    "Caption": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationHeader.js",
+    "OnLoaded": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/WorkOrderOperationDetailsOnPageLoad.js",
+    "OnReturning": "/SAPAssetManager/Rules/Operations/WorkOrderOperationDetailsOnReturning.js",
+    "OnCustomEventDataReceived": "/SAPAssetManager/Rules/Common/OnCustomEventDataReceived.js",
+    "ActionBar": {
+        "Items": "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderOperations/WorkOrderOperationActionbarItems.fragment"
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderOperations/WorkOrderOperationObjectHeader.fragment",
+                    "Properties": {
+                        "ObjectHeader": {
+                            "DetailImage": "$(PLT, /SAPAssetManager/Images/DetailImages/Operation.png, /SAPAssetManager/Images/DetailImages/Operation.android.png)",
+                            "StatusText": "/SAPAssetManager/Rules/Operations/OperationHeaderPriority.js",
+                            "Styles": {
+                                "StatusText":  "/SAPAssetManager/Rules/Operations/OperationHeaderPriorityColor.js"
+                            },
+                            "SubstatusText": "/SAPAssetManager/Rules/Operations/OperationHeaderSubStatusText.js"
+                        }
+                    }
+                },
+                {
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/QAB/QuickActionBarExtensionSection.fragment",
+					"Properties": {
+						"ExtensionProperties": {
+							"Chips": "/SAPAssetManager/Rules/Operations/WorkOrderOperationQABChips.js"
+						},
+                        "DataSubscriptions": ["PMMobileStatuses"]
+					}
+				},
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderDetails/ProgressTrackerSectionWorkOrderDetails.fragment",
+                    "Properties": {
+                        "Header": {
+                            "UseTopPadding": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/GetTopPaddingValue.js"
+                        }
+                    }
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/MeterListSection.fragment",
+                    "Properties": {
+                        "Header": {
+                            "UseTopPadding": false
+                        }
+                    }
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/MeterListUninstallSection.fragment",
+                    "Properties": {
+                        "Header": {
+                            "UseTopPadding": false
+                        }
+                    }
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/MeterDisconnectSection.fragment",
+                    "Properties": {
+                        "Header": {
+                            "UseTopPadding": false
+                        }
+                    }
+                },
+                "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderDetails/ActivityObjectSection.fragment",
+                "/SAPAssetManager/Pages/Fragments/WorkOrder/Assets.fragment",
+				{
+					"_Type": "Section.Type.ObjectCardCollection",
+					"Visible": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/SubOperationObjectCard/SubOperationsCardCollectionIsVisible.js",
+					"Layout": {
+						"LayoutType": "HorizontalScroll"
+					},
+					"_Name": "SubOperationsCardCollection",
+					"Header": {
+                        "Items": [
+                            {
+                                "_Type": "SectionHeaderItem.Type.Label",
+                                "_Name": "SuboperationsSectionHeaderLabel",
+                                "Title": "$(L,sub_operations)",
+                                "Position": "Left"
+                            },
+                            {
+                                "_Type": "SectionHeaderItem.Type.Button",
+                                "_Name": "SuboperationsIssueAll",
+                                "Title": "$(L,confirm_all)",
+                                "Position": "Right",
+                                "OnPress": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/SubOperationObjectCard/SubOperationsConfirmAllOnPress.js",
+                                "Visible": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/SubOperationObjectCard/SubOperationsConfirmAllVisible.js",
+                                "Styles": {
+                                    "Button": "HeaderItemButtonText"
+                                }
+                            }
+                        ]
+					},
+					"EmptySection": {
+						"Caption": "$(L,no_sub_operations_available)"
+					},
+					"Card": {
+						"_Type": "ObjectCardCollection.Type.Card",
+						"Title": "{OperationShortText} ({OperationNo})",
+						"Subhead": "{SubOperationNo}",
+						"Footnote": "{OrderId}",
+                        "DetailImage": "$(PLT, /SAPAssetManager/Images/DetailImages/Suboperation.png, /SAPAssetManager/Images/DetailImages/Suboperation.android.png)",
+						"StatusText": "/SAPAssetManager/Rules/MobileStatus/SubOperationMobileStatus.js",
+						"OnPress" : "/SAPAssetManager/Rules/SubOperations/SubOperationDetailsNav.js",
+                        "_Name": "SubOperationObjectCard",
+						"OverflowButtons": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/SubOperationObjectCard/SubOperationOverflowButtons.js",
+                        "PrimaryAction": {
+                            "_Name": "Primary Button",
+                            "Title": "/SAPAssetManager/Rules/OverviewPage/MyWorkSection/ObjectCardPrimaryButtonTitle.js",
+                            "Visible": "/SAPAssetManager/Rules/OverviewPage/MyWorkSection/ObjectCardPrimaryButtonVisible.js",
+                            "OnPress": "/SAPAssetManager/Rules/OverviewPage/MyWorkSection/ObjectCardPrimaryButtonOnPress.js"
+                        },
+                        "SecondaryAction": {
+                            "_Name": "Secondary Button",
+                            "Title": "/SAPAssetManager/Rules/OverviewPage/MyWorkSection/ObjectCardSecondaryButtonTitle.js",
+                            "Visible": "/SAPAssetManager/Rules/OverviewPage/MyWorkSection/ObjectCardSecondaryButtonVisible.js",
+                            "OnPress": "/SAPAssetManager/Rules/OverviewPage/MyWorkSection/ObjectCardSecondaryButtonOnPress.js",
+                            "Style": "ObjectCardPrimaryAction"
+                        }
+					},
+                    "Target": {
+                        "EntitySet": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/SubOperationObjectCard/OperationRelatedSuboperations.js",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "/SAPAssetManager/Rules/SubOperations/SubOperationsListViewQueryOption.js"
+                    },
+					"Separators": {
+						"ControlSeparator": false
+					},
+                    "Footer": {
+                        "_Name": "SubOperationsCardCollectionFooter",
+                        "Caption": "$(L,see_all)",
+                        "AccessoryType": "DisclosureIndicator",
+                        "FooterStyle": "Attribute",
+                        "AttributeLabel": "/SAPAssetManager/Rules/WorkOrders/SubOperations/WorkOrderSubOperationsCount.js",
+                        "Visible": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/SubOperationObjectCard/RelatedSuboperationFooterVisible.js",
+                        "OnPress": "/SAPAssetManager/Rules/WorkOrders/SubOperations/SubOperationsListViewFromOperationNav.js"
+                    },
+					"DataSubscriptions": [
+						"MyWorkOrderOperations",
+                        "MyWorkOrderSubOperations",
+                        "PMMobileStatuses"
+					]
+				},
+                "/SAPAssetManager/Pages/Fragments/Parts/PartsObjectCardCollection.fragment",
+                "/SAPAssetManager/Pages/Fragments/WorkOrder/NotesObjectSection.fragment",
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/ChecklistSection.fragment",
+                    "Properties": {
+                        "ObjectCell": {
+                            "DetailImage": "$(PLT, /SAPAssetManager/Images/DetailImages/Checklist_Smartform.png, /SAPAssetManager/Images/DetailImages/Checklist_Smartform.android.png)"
+                        }
+                    }
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderOperations/WorkOrderOperationWorkOrderListSection.fragment",
+                    "Properties": {
+                        "ObjectCell": {
+                           "DetailImage": "$(PLT, /SAPAssetManager/Images/DetailImages/WO.png, /SAPAssetManager/Images/DetailImages/WO.android.png)"
+                        }
+                    }
+                },
+                "/SAPAssetManager/Pages/Fragments/Forms/FSM/FormInstanceObjectTableOperation.fragment",
+                "/SAPAssetManager/Pages/Fragments/Documents/DocumentsSection.fragment",
+                "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderOperations/WorkOrderOperationDetailsSection.fragment",
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Details/StatusesGridTable.fragment",
+                    "Properties": {
+                        "Header": {
+                            "Caption": "$(L,status)"
+                        }
+                    }
+                },
+                "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderOperations/WorkOrderOperationRejectReason.fragment",
+                "/SAPAssetManager/Pages/Fragments/DigitalSignature/DigitalSignatureGridTable.fragment",
+                "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderOperations/WorkOrderOperationInspectionPoints.fragment",
+                "/SAPAssetManager/Pages/Fragments/Forms/SDF/FormObjectTableSection.fragment",
+                "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderOperations/WorkOrderOperationPhaseControl.fragment",
+                {
+                    "SimplePropertyCells": [
+                    {
+                        "SimplePropertyCell":
+                        {
+                            "AccessoryType": "DisclosureIndicator",
+                            "KeyName": "$(L,prt)",
+                            "Value": "/SAPAssetManager/Rules/Operations/PRT/PRTTotalCount.js",
+                            "OnPress": "/SAPAssetManager/Actions/WorkOrders/Operations/PRT/PRTListViewNav.action",
+                            "Visible": "/SAPAssetManager/Rules/Operations/PRT/PRTIsVisible.js"
+                        }
+                    },
+                    {
+                        "SimplePropertyCell": {
+                            "AccessoryType": "DisclosureIndicator",
+                            "KeyName": "$(L,objects)",
+                            "Value": "/SAPAssetManager/Rules/ObjectList/ObjectListsCount.js",
+                            "OnPress": "/SAPAssetManager/Actions/ObjectList/ObjectListViewNav.action",
+                            "Visible": "/SAPAssetManager/Rules/ObjectList/ObjectListsExists.js"
+                        }
+                    },
+                    {
+                        "SimplePropertyCell": {
+                            "AccessoryType": "DisclosureIndicator",
+                            "KeyName": "$(L,expenses_service)",
+                            "Value": "/SAPAssetManager/Rules/Expenses/ExpensesCount.js",
+                            "OnPress": "/SAPAssetManager/Actions/Expenses/ExpensesListView.action",
+                            "Visible": "/SAPAssetManager/Rules/ServiceOrders/Expenses/ExpensesVisible.js"
+                        }
+                    },
+                    {
+                        "SimplePropertyCell": {
+                            "AccessoryType": "DisclosureIndicator",
+                            "KeyName": "$(L,mileage)",
+                            "Value": "/SAPAssetManager/Rules/ServiceOrders/Mileage/MileageCount.js",
+                            "OnPress": "/SAPAssetManager/Actions/ServiceOrders/Mileage/MileageListViewNav.action",
+                            "Visible": "/SAPAssetManager/Rules/ServiceOrders/Mileage/MileageIsEnabled.js"
+                        }
+                    },
+                    {
+                        "SimplePropertyCell": {
+                            "AccessoryType": "DisclosureIndicator",
+                            "KeyName": "$(L,related_notifications)",
+                            "Value": "/SAPAssetManager/Rules/Notifications/RelatedNotifications/RelatedNotificationsCount.js",
+                            "OnPress": "/SAPAssetManager/Actions/Notifications/RelatedNotifications/RelatedNotificationsListViewNav.action",
+                            "Visible": "/SAPAssetManager/Rules/WorkOrders/Details/RelatedNotificationsAreVisible.js"
+                        }
+                    },
+                    {
+                        "SimplePropertyCell": {
+                            "AccessoryType": "DisclosureIndicator",
+                            "KeyName": "$(L,linear_data)",
+                            "Value": "",
+                            "OnPress": "/SAPAssetManager/Rules/LAM/LAMNav.js",
+                            "Visible": "/SAPAssetManager/Rules/LAM/LAMVisible.js"
+                        }
+                    }
+                ],
+                    "Layout":
+                    {
+                        "NumberOfColumns": 2
+                    },
+                    "_Type" : "Section.Type.SimplePropertyCollection",
+                    "DataSubscriptions": ["MyWorkOrderOperationLongTexts", "MyWorkOrderTools", "MyWorkOrderComponents", "MyWorkOrderObjectLists", "Employees", "Documents"]
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable"
+        }
+    ],
+    "FioriToolbar": {
+        "_Name": "OperationWithObjectCardsFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Visible": "/SAPAssetManager/Rules/Common/DetailsPageToolbar/DetailsPageToolbarVisibility.js",
+        "Items": "/SAPAssetManager/Rules/Common/DetailsPageToolbar/DetailsPageToolbarItems.js"
+    },
+    "_Type": "Page",
+    "_Name": "WorkOrderOperationDetailsWithObjectCards",
+    "DataSubscriptions": ["Confirmations","MyWorkOrderSubOperations","MyWorkOrderObjectLists","MyWorkOrderOperations","UserPreferences", "Employees"]
+}

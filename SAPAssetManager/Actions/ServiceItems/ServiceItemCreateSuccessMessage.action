@@ -1,0 +1,9 @@
+{
+    "_Type": "Action.Type.ToastMessage",
+    "Icon": "",
+    "Message": "$(L, item_successfully_created)",
+    "IsIconHidden": false,
+    "MaxNumberOfLines": 2,
+    "Duration": 3,
+    "Animated": true
+}

@@ -1,0 +1,320 @@
+{
+    "Caption": "/SAPAssetManager/Rules/WorkOrders/Header/WorkOrderHeader.js",
+    "OnLoaded": "/SAPAssetManager/Rules/WorkOrders/Details/WorkOrderDetailsOnPageLoad.js",
+    "OnReturning": "/SAPAssetManager/Rules/WorkOrders/Details/WorkOrderDetailsOnPageReturning.js",
+    "OnCustomEventDataReceived": "/SAPAssetManager/Rules/Common/OnCustomEventDataReceived.js",
+    "ActionBar": {
+        "_Name": "WorkOrderDetails",
+        "Items": "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderDetails/ActionBarItems.fragment"
+    },
+    "Controls": [
+        {
+            "Sections": [
+                "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderDetails/ObjectHeader.fragment",
+                {
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/QAB/QuickActionBarExtensionSection.fragment",
+					"Properties": {
+						"ExtensionProperties": {
+							"Chips": "/SAPAssetManager/Rules/WorkOrders/Details/WorkOrderQABChips.js"
+						},
+                        "Visible": "/SAPAssetManager/Rules/WorkOrders/Details/WorkOrderQABIsVisible.js"
+					}
+				},
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderDetails/ProgressTrackerSectionWorkOrderDetails.fragment",
+                    "Properties": {
+                        "Header": {
+                            "UseTopPadding": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/GetTopPaddingValue.js"
+                        }
+                    }
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderDetails/DisapprovalReasonSection.fragment",
+                    "Properties": {
+                        "Header": {
+                            "UseTopPadding": "/SAPAssetManager/Rules/WorkOrders/Details/GetQabFsmCsTopPaddingValue.js"
+                        }
+                    }
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Details/StatusesGridTable.fragment",
+                    "Properties": {
+                        "Header": {
+                            "UseTopPadding": "/SAPAssetManager/Rules/WorkOrders/Details/GetQabFsmCsTopPaddingValue.js"
+                        }
+                    }
+                },
+                "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderDetails/WorkOrderDetails.fragment",
+                "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderDetails/ServiceOrderDetails.fragment",
+                "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderDetails/WorkOrderFlightData.fragment",
+                "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderDetails/SoldToPartySection.fragment",
+                {
+                    "Header": {
+                        "Caption": "$(L,operations)"
+                    },
+                    "EmptySection": {
+                        "Caption": "$(L,no_operations_available)"
+                    },
+                    "Footer": {
+                        "Caption": "$(L,see_all)",
+                        "AccessoryType": "DisclosureIndicator",
+                        "FooterStyle": "Attribute",
+                        "AttributeLabel": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsCount.js",
+                        "OnPress": "/SAPAssetManager/Rules/WorkOrders/Operations/OperationsListViewWithResetFiltersNav.js",
+                        "Visible": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsShouldRenderFooter.js"
+                    },
+                    "MaxItemCount": 2,
+                    "ObjectCell": {
+                        "Icons": "/SAPAssetManager/Rules/Operations/OperationsListViewIconImages.js",
+                        "AccessoryType": "DisclosureIndicator",
+                        "Title": "{{#Property:OperationShortText}} ({{#Property:OperationNo}})",
+                        "Footnote": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderDueDate.js",
+                        "OnPress": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/WorkOrderOperationDetailsNav.js",
+                        "Subhead": "{OrderId}",
+                        "StatusText": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsListViewFormat.js"
+                    },
+                    "Target": {
+                        "EntitySet": "{{#Property:@odata.readLink}}/Operations",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsTableQueryOption.js"
+                    },
+                    "_Name": "OperationsObjectTable",
+                    "_Type": "Section.Type.ObjectTable",
+                    "DataSubscriptions": ["Confirmations", "PMMobileStatuses"]
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/WCM/Fragments/WorkPermitObjectTable.fragment",
+                    "Properties": {
+                        "Header": {
+                            "Caption": "$(L,wcm_work_permits)",
+                            "UseTopPadding": true
+                        },
+                        "Search": {
+                            "Enabled": false
+                        },
+                        "MaxItemCount": 2,
+                        "Footer": {
+                            "Visible": "/SAPAssetManager/Rules/WorkOrders/WorkPermitsSeeAllVisible.js",
+                            "OnPress":"/SAPAssetManager/Rules/WCM/WorkPermits/WorkOrderRelatedWorkPermitNav.js"
+                        }
+                    }
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/WCM/Fragments/WorkApprovalsObjectTable.fragment",
+                    "Properties": {
+                        "Header": {
+                            "Caption": "$(L,wcm_work_approvals)",
+                            "UseTopPadding": true
+                        },
+                        "Search": {
+                            "Enabled": false
+                        },
+                        "MaxItemCount": 1,
+                        "Target": {
+                            "EntitySet": "WCMApprovals",
+                            "Service": "/SAPAssetManager/Services/AssetManager.service",
+                            "QueryOptions":"/SAPAssetManager/Rules/WorkOrders/WorkApprovalsQueryOptions.js"
+                        }
+                    }
+                },
+                "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderDetails/ChecklistsSection.fragment",
+                "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderDetails/InspectionLotSection.fragment",
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Equipment/ObjectTableSection.fragment",
+                    "Properties": {
+                        "Footer": {
+                            "Visible": false
+                        },
+                        "Header": {
+                            "UseTopPadding": true
+                        },
+                        "Search": {
+                            "Enabled": false
+                        },
+                        "MaxItemCount": 2,
+                        "Target": {
+                            "EntitySet": "MyEquipments",
+                            "QueryOptions": "$orderby=EquipId&$top=2&$filter=EquipId eq '{{#Property:HeaderEquipment}}'"
+                        },
+                        "Visible": "/SAPAssetManager/Rules/WorkOrders/Details/IsTechObjectVisible.js",
+                        "_Name": "EquipmentsObjectTable"
+                    }
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/FunctionalLocation/FunctionalLocationObjectTable.fragment",
+                    "Properties": {
+                        "MaxItemCount": 2,
+                        "Target": {
+                            "QueryOptions": "$orderby=FuncLocIdIntern&$top=2&$filter=FuncLocIdIntern eq '{{#Property:HeaderFunctionLocation}}'"
+                        },
+                        "Visible": "/SAPAssetManager/Rules/WorkOrders/Details/IsTechObjectVisible.js"
+                    }
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Notification/NotificationSection.fragment",
+                    "Properties": {
+                        "ObjectCell": {
+                            "PreserveIconStackSpacing": false
+                        },
+                        "Target": {
+                            "EntitySet" : "{{#Property:@odata.readLink}}/Notification",
+                            "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                            "QueryOptions" : "/SAPAssetManager/Rules/Notifications/NotificationsListViewQueryOption.js"
+                        }
+                    }
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Notification/FollowOnNotificationsSection.fragment",
+                    "Properties": {
+                        "ObjectCell": {
+                            "Description": null,
+                            "OnPress": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsNav.js",
+                            "SubstatusText": "/SAPAssetManager/Rules/Notifications/ListView/NotificationsListViewFormat.js",
+                            "Styles": {
+                                "StatusText":  "/SAPAssetManager/Rules/Priority/NotificationPriorityStatusStyle.js"
+                            }
+                        },
+                        "Header": {
+                            "UseTopPadding": true
+                        },
+                        "Search": null,
+                        "MaxItemCount": 1,
+                        "Visible": "/SAPAssetManager/Rules/Notifications/FollowOn/FollowOnNotificationsIsVisible.js"
+                    }
+                },
+                "/SAPAssetManager/Pages/Fragments/Forms/SDF/FormObjectTableSection.fragment",
+                "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderDetails/FollowOnWorkOrdersSection.fragment",
+                "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderDetails/AssemblySection.fragment",
+                "/SAPAssetManager/Pages/Fragments/DigitalSignature/DigitalSignatureGridTable.fragment",
+                "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderDetails/MeterListSection.fragment",
+                "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderDetails/MeterWithDisconnectionListSection.fragment",
+                "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderDetails/ConnectionObjectSection.fragment",
+                "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderDetails/ActivityObjectSection.fragment",
+                "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderDetails/PhaseControlDataTable.fragment",
+                {
+                    "SimplePropertyCells": [
+                        {
+                            "SimplePropertyCell": {
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName": "$(L,related_notifications)",
+                                "Value": "/SAPAssetManager/Rules/Notifications/RelatedNotifications/RelatedNotificationsCount.js",
+                                "OnPress": "/SAPAssetManager/Actions/Notifications/RelatedNotifications/RelatedNotificationsListViewNav.action",
+                                "Visible": "/SAPAssetManager/Rules/WorkOrders/Details/RelatedNotificationsAreVisible.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName": "$(L,parts)",
+                                "Value": "/SAPAssetManager/Rules/Parts/PartsCount.js",
+                                "OnPress": "/SAPAssetManager/Actions/Parts/PartsListViewNav.action",
+                                "Visible": "/SAPAssetManager/Rules/WCM/IsNotWCMOperator.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": "/SAPAssetManager/Pages/Fragments/Documents/DocumentsSimplePropertyCell.fragment"
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName": "$(L,notes)",
+                                "Value": "/SAPAssetManager/Rules/Notes/NotesCount.js",
+                                "OnPress": "/SAPAssetManager/Rules/Notes/NotesViewNav.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName": "$(L,expenses_service)",
+                                "Value": "/SAPAssetManager/Rules/Expenses/ExpensesCount.js",
+                                "OnPress": "/SAPAssetManager/Actions/Expenses/ExpensesListView.action",
+                                "Visible": "/SAPAssetManager/Rules/ServiceOrders/Expenses/ExpensesVisible.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName": "$(L,mileage)",
+                                "Value": "/SAPAssetManager/Rules/ServiceOrders/Mileage/MileageCount.js",
+                                "OnPress": "/SAPAssetManager/Actions/ServiceOrders/Mileage/MileageListViewNav.action",
+                                "Visible": "/SAPAssetManager/Rules/ServiceOrders/Mileage/MileageIsEnabled.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "Visible": "/SAPAssetManager/Rules/WorkOrders/Meter/Details/HideDisconnectSection.js",
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName": "$(L,related_activities)",
+                                "Value": "/SAPAssetManager/Rules/WorkOrders/Meter/RelatedActivitiesCount.js",
+                                "OnPress": "/SAPAssetManager/Rules/WorkOrders/Meter/RelatedActivitiesNav.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName": "$(L,business_partners)",
+                                "Value": "/SAPAssetManager/Rules/BusinessPartners/BusinessPartnersCount.js",
+                                "OnPress": "/SAPAssetManager/Actions/BusinessPartners/BusinessPartnersListViewNav.action",
+                                "Visible": "/SAPAssetManager/Rules/WorkOrders/Details/IsBusinessPartnersFacetVisible.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "AccessoryType": "/SAPAssetManager/Rules/WorkOrders/Details/Confirmations/ConfirmationsSectionAccessory.js",
+                                "KeyName": "/SAPAssetManager/Rules/WorkOrders/Details/Confirmations/ConfirmationsSectionTitle.js",
+                                "Value": "/SAPAssetManager/Rules/WorkOrders/Details/Confirmations/ConfirmationsSectionCount.js",
+                                "OnPress": "/SAPAssetManager/Rules/WorkOrders/Details/Confirmations/ConfirmationsSectionOnPress.js",
+                                "Visible":"/SAPAssetManager/Rules/Confirmations/ConfirmationsIsEnabled.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName": "$(L,objects)",
+                                "Value": "/SAPAssetManager/Rules/ObjectList/ObjectListsCount.js",
+                                "OnPress": "/SAPAssetManager/Actions/ObjectList/ObjectListViewNav.action",
+                                "Visible": "/SAPAssetManager/Rules/ObjectList/ObjectListsExists.js"
+                            }
+                        },
+                        {
+                            "SimplePropertyCell": {
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName": "$(L,linear_data)",
+                                "Value": "",
+                                "OnPress": "/SAPAssetManager/Rules/LAM/LAMNav.js",
+                                "Visible": "/SAPAssetManager/Rules/LAM/LAMVisible.js"
+                            }
+                        }
+                    ],
+                    "Layout": {
+                        "NumberOfColumns": 2,
+                        "MinimumInteritemSpacing": "$(PLT,66,0)"
+                    },
+                    "_Type": "Section.Type.SimplePropertyCollection",
+                    "DataSubscriptions": ["MyWorkOrderComponents", "Documents", "Confirmations", "MyWorkOrderObjectLists"]
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable"
+        }
+    ],
+    "FioriToolbar": {
+        "_Name": "WorkOrderFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Visible": "/SAPAssetManager/Rules/Common/DetailsPageToolbar/DetailsPageToolbarVisibility.js",
+        "Items": "/SAPAssetManager/Rules/Common/DetailsPageToolbar/DetailsPageToolbarItems.js"
+    },
+    "_Type": "Page",
+    "_Name": "WorkOrderDetailsPage",
+    "DataSubscriptions": ["MyWorkOrderOperations","MyWorkOrderDocuments", "EAMChecklistLinks", "InspectionLots", "InspectionCharacteristics"]
+}

@@ -1,0 +1,28 @@
+{
+    "Header": {
+    	"UseTopPadding": false
+    },
+    "Module": "extension-MapFramework",
+    "Control": "MapViewExtension",
+    "Class": "MapViewExtension",
+    "Height": 240,
+    "ExtensionProperties": {
+		"Config": "/SAPAssetManager/Pages/Fragments/Map/MapConfigNoUserInteraction.fragment",
+    	"TokenAuthentication": {
+    		"Action": "/SAPAssetManager/Rules/Extensions/TokenRequest.js"
+    	},
+    	"MapToolsetIcons": [],
+    	"BusinessObjects": [
+			"/SAPAssetManager/Pages/Fragments/Map/BusinessObjects/EquipmentBO.fragment",
+			"/SAPAssetManager/Pages/Fragments/Map/BusinessObjects/FunctionalLocation.fragment",
+			"/SAPAssetManager/Pages/Fragments/Map/BusinessObjects/NotificationBO.fragment",
+			"/SAPAssetManager/Pages/Fragments/Map/BusinessObjects/JobBO.fragment",
+			"/SAPAssetManager/Pages/Fragments/Map/BusinessObjects/RouteBO.fragment",
+			"/SAPAssetManager/Pages/Fragments/Map/BusinessObjects/RouteStopBO.fragment"
+    	]
+    },
+    "OnPress": "/SAPAssetManager/Rules/Maps/BeforeMTOverviewMapNav.js",
+    "_Type": "Section.Type.Extension",
+	"_Name": "MapExtensionSection",
+    "Visible": "/SAPAssetManager/Rules/Maps/IsGISEnabled.js"
+}

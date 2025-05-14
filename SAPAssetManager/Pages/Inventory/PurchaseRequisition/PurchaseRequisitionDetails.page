@@ -1,0 +1,77 @@
+{
+	"Caption": "$(L, purchase_requisition)",
+	"ActionBar": {
+		"Items": [
+			{
+				"Position": "Right",
+				"_Name": "Sync",
+				"Caption": "$(L, sync)",
+				"IconText": "SyncIcon",
+				"Icon": "/SAPAssetManager/Rules/Sync/SyncIcon.js",
+				"OnPress": "/SAPAssetManager/Rules/ApplicationEvents/ApplicationOnSync.js"
+			}
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"ObjectHeader": {
+						"DetailImageIsCircular": false,
+						"PreserveIconStackSpacing": false,
+						"HeadlineText": "{PurchaseReqNo}",
+						"SubstatusText": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Handlers/PurchaseRequisitionItemsCountCaption.js",
+						"Tags": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/PurchaseRequisitionFromattedTags.js",
+						"Description": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/PurchaseRequisitionHeaderLongText.js",
+						"BodyText": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/PurchaseRequisitionDateCaption.js"
+					},
+					"_Name": "SectionObjectHeader",
+					"_Type": "Section.Type.ObjectHeader"
+				}
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		},
+		{
+			"Items": [{
+				"_Name": "ItemsListTab",
+				"Caption": "$(L, items)",
+				"PageToOpen" : "/SAPAssetManager/Pages/Inventory/PurchaseRequisition/PurchaseRequisitionItemsList.page",
+				"_Type": "Control.Type.TabItem"
+			}],
+			"Position": "Top",
+			"_Type": "Control.Type.Tabs",
+			"_Name": "TabsControl"
+		  }
+	],
+	"FioriToolbar": {
+		"_Name": "PurchaseRequisitionDetailsFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+		"Items": [
+			{
+				"_Name": "AddItem",
+				"_Type": "FioriToolbarItem.Type.Button",
+				"Enabled": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/ItemAllowEdit.js",
+				"Title": "$(L, add_another_item)",
+				"ButtonType": "Primary",
+				"OnPress": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/AddPurchaseRequisitionItemNav.js"
+			},
+			{
+				"_Name": "Discard",
+				"_Type": "FioriToolbarItem.Type.Button",
+				"Enabled": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/ItemAllowEdit.js",
+				"Title": "$(L, discard)",
+				"ButtonType": "Secondary",
+				"Semantic": "Negative",
+				"OnPress": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/DiscardPurchaseRequisition.js"
+			}
+		]
+	},
+	"DataSubscriptions": [
+		"PurchaseRequisitionHeaders",
+		"PurchaseRequisitionItems"
+	],
+	"OnLoaded": "/SAPAssetManager/Rules/Inventory/Common/RefreshSoftInputModeConfig.js",
+	"_Name": "PurchaseRequisitionDetails",
+	"_Type": "Page"
+}

@@ -1,0 +1,16 @@
+{
+    "PopoverItems":
+    [
+        {
+            "Title": "$(L, add_operational_item)",
+            "OnPress": "/SAPAssetManager/Rules/WCM/OperationalItems/Create/OperationalItemCreateNav.js",
+            "Visible": "/SAPAssetManager/Rules/WCM/SafetyCertificates/Details/IsLotoCertificate.js"
+        },
+        {
+            "Title": "$(L, add_notification)",
+            "OnPress": "/SAPAssetManager/Rules/WCM/QAB/WCMQABCreateNotification.js",
+            "Visible": "/SAPAssetManager/Rules/UserAuthorizations/Notifications/EnableNotificationCreate.js"
+        }
+    ],
+    "_Type": "Action.Type.PopoverMenu"
+}

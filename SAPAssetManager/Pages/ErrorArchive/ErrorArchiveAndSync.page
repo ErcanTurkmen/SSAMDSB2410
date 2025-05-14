@@ -1,0 +1,106 @@
+{
+	"Caption": "/SAPAssetManager/Rules/SideDrawer/SideDrawerErrorCount.js",
+	"OnReturning": "/SAPAssetManager/Rules/ErrorArchive/ErrorArchiveAndSyncOnReturn.js",
+	"OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+	"ActionBar": {
+		"_Name": "ErrorArchiveAndSync",
+        "Items": [
+            {
+                "Position": "Left",
+				"_Name": "Cancel",
+                "SystemItem": "Cancel",
+				"Caption": "$(L,cancel)",
+                "OnPress": "/SAPAssetManager/Actions/Page/ClosePage.action"
+            }
+        ]
+    },
+	"Controls":
+	[{
+		"Sections":[
+		{
+			"_Type": "Fragment",
+			"Fragment": "/SAPAssetManager/Pages/Fragments/ErrorArchive/ErrorArchiveSection.fragment",
+			"Properties": {
+				"EmptySection":
+            	{
+                	"Caption": "$(L,no_transactional_errors)"
+            	},
+				"Footer": {
+                	"Caption": "$(L,see_all)",
+                	"AccessoryType": "DisclosureIndicator",
+                	"FooterStyle": "Attribute",
+                	"AttributeLabel": "/SAPAssetManager/Rules/ErrorArchive/SyncErrorsCount.js",
+                	"OnPress": "/SAPAssetManager/Rules/ErrorArchive/ErrorArchiveAllNav.js"
+            	},
+				"MaxItemCount": 3,
+				"Visible": "/SAPAssetManager/Rules/Common/IsDiscardAllErrorsButtonVisible.js"
+			}
+		},
+		{
+            "KeyAndValues": [
+                {
+					"_Name": "transactional_errors",
+                    "KeyName": "$(L,transactional_errors)",
+                    "Value": "$(L,no_transactional_errors)"
+                }
+            ],
+            "Layout": {
+                "NumberOfColumns": 1,
+                "MinimumInteritemSpacing": "$(PLT,66,0)"
+                },
+            "_Type": "Section.Type.KeyValue",
+            "_Name": "NoTranErrorKeyValue",
+			"Visible": "/SAPAssetManager/Rules/Common/IsNotDiscardAllErrorsButtonVisible.js"
+        },
+		{
+            "KeyAndValues": [
+                {
+					"_Name": "sync_errors",
+                    "KeyName": "$(L,sync_errors)",
+                    "Value": "$(L,no_sync_errors)"
+                }
+            ],
+            "Layout": {
+                "NumberOfColumns": 1,
+                "MinimumInteritemSpacing": "$(PLT,66,0)"
+                },
+            "_Type": "Section.Type.KeyValue",
+            "_Name": "NoSyncErrorKeyValue",
+			"Visible": "/SAPAssetManager/Rules/Sync/IsNotSyncErrorsExists.js"
+        },
+		{
+			"Search":
+			{
+				"Enabled" : true,
+				"Delay": 500,
+				"MinimumCharacterThreshold": 3,
+				"Placeholder": "$(L,search)"
+			},
+			"Header": {
+                 "Caption": "$(L,sync_errors)"
+    		},
+			"EmptySection":
+            {
+                "Caption": "$(L,no_sync_errors)"
+            },
+			"ObjectCell":
+			{
+        		"AccessoryType": "DisclosureIndicator",
+				"Title":  "/SAPAssetManager/Rules/Sync/SyncErrorFormat.js",
+				"Subhead": "/SAPAssetManager/Rules/Sync/SyncErrorFormat.js",
+                "Description":"/SAPAssetManager/Rules/Sync/SyncErrorFormat.js",
+				"OnPress" : "/SAPAssetManager/Rules/Sync/SyncErrorDetailsNav.js",
+				"PreserveIconStackSpacing":false
+			},
+			"Target":"/SAPAssetManager/Rules/Sync/SyncErrorTarget.js",
+			"_Type" : "Section.Type.ObjectTable",
+			"_Name" : "SyncErrorObjectTable",
+			"Visible": "/SAPAssetManager/Rules/Sync/IsSyncErrorsExists.js"
+		}],
+		"_Type" : "Control.Type.SectionedTable",
+		"_Name" : "ErrorArchiveSection"
+	}],
+	"_Type": "Page",
+	"_Name": "ErrorArchiveAndSync",
+	"DataSubscriptions": ["ErrorArchive"]
+}

@@ -1,0 +1,159 @@
+{
+    "Caption": "/SAPAssetManager/Rules/Parts/PartDescription.js",
+    "OnLoaded": "/SAPAssetManager/Rules/Parts/Details/PartDetailsOnPageLoad.js",
+    "OnReturning": "/SAPAssetManager/Rules/Parts/Details/PartDetailsOnReturning.js",
+    "OnCustomEventDataReceived": "/SAPAssetManager/Rules/Common/OnCustomEventDataReceived.js",
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "Header": {
+                        "Caption": "$(L,details)"
+                    },
+                    "KeyAndValues": [
+                        {
+                            "_Name": "MaterialNum",
+                            "KeyName": "$(L,part_number)",
+                            "Value": "{MaterialNum}"
+                        },
+                        {
+                            "_Name": "RequirementNumber",
+                            "KeyName": "$(L,reservation)",
+                            "Value": "{RequirementNumber}"
+                        },
+                        {
+                            "_Name": "Plant",
+                            "KeyName": "$(L,work_center_plant)",
+                            "Value": "{Plant}"
+                        },
+                        {
+                            "_Name": "QuantityUnE",
+                            "KeyName": "$(L,required)",
+                            "Value": "/SAPAssetManager/Rules/Parts/PartRequiredQty.js"
+                        },
+                        {
+                            "_Name": "WithdrawnQuantity",
+                            "KeyName": "$(L,withdrawn)",
+                            "Value": "/SAPAssetManager/Rules/Parts/PartWithdrawnQty.js"
+                        },
+                        {
+                            "_Name": "CommittedQuantity",
+                            "KeyName": "$(L,committed)",
+                            "Value": "/SAPAssetManager/Rules/Parts/PartCommittedQty.js"
+                        },
+                        {
+                            "_Name": "ItemCategory",
+                            "KeyName": "$(L,stock_type)",
+                            "Value": "/SAPAssetManager/Rules/Parts/PartStockType.js"
+                        },
+                        {
+                            "_Name": "Plant.PlantDescription",
+                            "KeyName": "$(L,plant)",
+                            "Value": "/SAPAssetManager/Rules/Parts/PartPlant.js"
+                        },
+                        {
+                            "_Name": "StorageLocation",
+                            "KeyName": "$(L,storage_location)",
+                            "Value": "/SAPAssetManager/Rules/Parts/PartLocation.js"
+                        },
+                        {
+                            "_Name": "MaterialSLoc.BatchIndicator",
+                            "KeyName": "$(L,batch)",
+                            "Value": "/SAPAssetManager/Rules/Parts/PartBatch.js"
+                        },
+                        {
+                            "_Name": "MaterialSLoc.StorageBin",
+                            "KeyName": "$(L,bin_number)",
+                            "Value": "/SAPAssetManager/Rules/Parts/PartBinNumber.js"
+                        },
+                        {
+                            "_Name": "MaterialSLoc.ManufacturerPartNumber",
+                            "KeyName": "$(L,mpn)",
+                            "Value": "/SAPAssetManager/Rules/Parts/PartManufacturerPartNumber.js",
+                            "Visible": "/SAPAssetManager/Rules/Defense/isDefenseEnabled.js"
+                        },
+                        {
+                            "_Name": "MaterialSLoc.LongManufacturerPartNumber",
+                            "KeyName": "$(L,lmpn)",
+                            "Value": "/SAPAssetManager/Rules/Parts/PartLongManufacturerPartNumber.js",
+                            "Visible": "/SAPAssetManager/Rules/Defense/isDefenseEnabled.js"
+                        },
+                        {
+                            "_Name": "MaterialSLoc.NATOStockNumber",
+                            "KeyName": "$(L,nsn)",
+                            "Value": "/SAPAssetManager/Rules/Parts/PartNATOStockNumber.js",
+                            "Visible": "/SAPAssetManager/Rules/Defense/isDefenseEnabled.js"
+                        }
+                    ],
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "KeyValuePairs"
+                },
+                {
+					"_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/EPDVisualization/EPDVisualization.fragment"
+				},
+                {
+                    "Header": {
+                        "Caption": "$(L,related_operation)"
+                    },
+                    "ObjectCell": {
+                        "AccessoryType": "DisclosureIndicator",
+                        "OnPress": "/SAPAssetManager/Rules/WorkOrders/Operations/PartsToOperationDetailsNav.js",
+                        "Title": "{{#Property:OperationShortText}}",
+                        "Subhead": "{{#Property:OperationNo}}",
+                        "Footnote": "{{#Property:ControlKey}}",
+                        "PreserveIconStackSpacing": false
+                    },
+                    "Target": "/SAPAssetManager/Rules/Parts/OnlinePartDetailsTarget.js",
+                    "_Type": "Section.Type.ObjectTable",
+                    "_Name": "OnlineRelatedStep"
+                },
+                {
+                    "SimplePropertyCells":
+                    [{
+                        "SimplePropertyCell": {
+                            "AccessoryType": "DisclosureIndicator",
+                            "KeyName": "$(L,notes)",
+                            "Value": "/SAPAssetManager/Rules/Notes/NotesCount.js",
+                            "OnPress": "/SAPAssetManager/Rules/Notes/OnlineNotesViewNav.js",
+                            "Target": {
+                                "EntitySet": "{{#Property:@odata.readLink}}/LongText",
+                                "Service": "/SAPAssetManager/Services/OnlineAssetManager.service"
+                            }
+                        }
+                    }],
+                    "Layout":
+                    {
+                        "NumberOfColumns" : 1
+                    },
+                    "_Type" : "Section.Type.SimplePropertyCollection"
+                },{
+                    "SimplePropertyCells":
+                    [{
+                        "SimplePropertyCell": {
+                            "AccessoryType": "DisclosureIndicator",
+                            "KeyName": "$(L,serial_numbers)",
+                            "Value": "/SAPAssetManager/Rules/Parts/Issue/SerialParts/SerialNumbersCount.js",
+                            "OnPress": "/SAPAssetManager/Rules/Parts/Issue/SerialParts/SerialNumbersListView.js",
+                            "Visible": "/SAPAssetManager/Rules/Parts/Issue/SerialParts/SerialPartsAreAllowed.js"
+                        }
+                    }],
+                    "Layout":
+                    {
+                        "NumberOfColumns" : 1
+                    },
+                    "_Type" : "Section.Type.SimplePropertyCollection"
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable",
+            "LoadingIndicator": {
+				"Enabled": true
+			}
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "OnlinePartDetailsPage",
+    "DataSubscriptions": ["MaterialDocItems"]
+
+}

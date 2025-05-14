@@ -1,0 +1,121 @@
+{
+    "_Type": "Page",
+    "_Name": "AddS4BusinessPartnerPage",
+    "OnLoaded": "/SAPAssetManager/Rules/BusinessPartners/BusinessPartnerEditOnPageLoaded.js",
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "Caption": "$(L,add_business_partner)",
+    "ActionBar": {
+        "_Name": "AddS4BusinessPartnerActionBar",
+        "Items": [
+            "/SAPAssetManager/Pages/Fragments/CancelButton.fragment",
+            {
+                "_Type": "Fragment",
+				"Fragment": "/SAPAssetManager/Pages/Fragments/DoneButton.fragment",
+				"Properties": {
+					"OnPress": "/SAPAssetManager/Actions/BusinessPartners/S4/AddS4BusinessPartnerPageFieldsValidation.action"
+				}
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "_Type": "Section.Type.FormCell",
+                    "_Name": "BusinessPartnerDetailsSection",
+                    "Caption": "$(L, indicates_required_fields)",
+                    "Controls": [
+                        {
+                            "_Name": "BusinessPartnerListPicker",
+                            "_Type": "Control.Type.FormCell.ListPicker",
+                            "Caption": "$(L,business_partner)*",
+                            "AllowMultipleSelection": false,
+                            "AllowDefaultValueIfOneItem": true,
+                            "IsPickerDismissedOnSelection": true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 3,
+                                "Placeholder": "$(L,search)",
+								"BarcodeScanner": true
+                            },
+                            "PickerItems": {
+                                "DisplayValue" : "{{#Property:BPNum}} - {{#Property:FirstName}} {{#Property:LastName}}",
+                                "ReturnValue" : "{@odata.readLink}",
+                                "Target":
+                                {
+                                    "EntitySet" : "S4BusinessPartners",
+                                    "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions" : "$orderby=BPNum"
+                                }
+                            },
+                            "OnValueChange": "/SAPAssetManager/Rules/BusinessPartners/S4/S4BusinessPartnerFieldValueChanged.js"
+                        },
+                        {
+                            "_Name": "BusinessPartnerTypeListPicker",
+                            "_Type": "Control.Type.FormCell.ListPicker",
+                            "Caption": "$(L,partner_type)*",
+                            "AllowMultipleSelection": false,
+                            "AllowDefaultValueIfOneItem": true,
+                            "IsPickerDismissedOnSelection": true,
+                            "IsSearchCancelledAfterSelection": true,
+                            "Search": {
+                                "Enabled": true,
+                                "Delay": 500,
+                                "MinimumCharacterThreshold": 3,
+                                "Placeholder": "$(L,search)",
+								"BarcodeScanner": true
+                            },
+                            "PickerItems": {
+                                "DisplayValue" : "{Description}",
+                                "ReturnValue" : "{@odata.readLink}",
+                                "Target":
+                                {
+                                    "EntitySet" : "S4PartnerFunctions",
+                                    "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions" : "/SAPAssetManager/Rules/BusinessPartners/S4/S4PartnerFunctionsQueryOptions.js"
+                                }
+                            },
+                            "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js"
+                        }
+                    ] 
+                },
+                {
+                    "_Type": "Section.Type.FormCell",
+                    "_Name": "NoteSection",
+                    "Controls": [  
+                        {
+                            "_Type": "Fragment",
+                            "Fragment": "/SAPAssetManager/Pages/Notes/NoteTypeControl.fragment",
+                            "Properties": {
+                                "Caption": "$(L,note_type)",
+                                "Value": "",
+                                "AllowDefaultValueIfOneItem": false,
+                                "PickerItems": {
+                                    "DisplayValue": "{Description}",
+                                    "ReturnValue": "{TextType}",
+                                    "Target": {
+                                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                        "EntitySet": "BPNoteTypes",
+                                        "QueryOptions": "$orderby=TextType"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "_Type": "Fragment",
+                            "Fragment": "/SAPAssetManager/Pages/Notes/NoteValueControl.fragment",
+                            "Properties": {
+                                "OnValueChange": "/SAPAssetManager/Rules/Notes/Create/OnS4NoteValueChange.js",
+                                "Value": ""
+                            }
+                        }
+                    ]
+                }
+            ],
+            "_Name": "FormCellContainer",
+            "_Type": "Control.Type.FormCellContainer"
+        }
+    ]
+}

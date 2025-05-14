@@ -1,0 +1,6 @@
+{
+    "_Name": "Download",
+    "Position": "Right",
+    "Caption": "$(L, download)",
+    "OnPress": "/SAPAssetManager/Rules/OnlineSearch/Download/DownloadToDevice.js"
+}

@@ -1,0 +1,45 @@
+{
+	"Caption": "$(L,work_permits)",
+	"OnLoaded": "/SAPAssetManager/Rules/Filter/ListPageWithFilterOnLoaded.js",
+	"ActionBar":
+	{
+		"Items":
+		[
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment",
+			{
+				"_Type": "Fragment",
+				"Fragment": "/SAPAssetManager/Pages/Fragments/FilterButton.fragment",
+				"Properties": {
+					"OnPress": "/SAPAssetManager/Rules/WCM/WorkPermits/WorkPermitsFilterPageNav.js"
+				}
+			}
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/WCM/Fragments/WorkPermitObjectTable.fragment",
+                    "Properties": {
+                        "Header": {
+                            "Caption": "/SAPAssetManager/Rules/WCM/WorkPermits/WorkPermitsCaption.js"
+                        }
+                    }
+				}
+			],
+			"FilterFeedbackBar": {
+				"_Type": "Control.Type.FilterFeedbackBar",
+				"_Name": "FilterFeedback",
+				"FastFilters": "/SAPAssetManager/Rules/WCM/WorkPermits/WorkPermitsFastFilters.js",
+				"ShowAllFilters": true
+			},
+			"Filters": "/SAPAssetManager/Rules/WCM/WorkPermits/WorkPermitListViewFilters.js",
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"_Name": "WorkPermitsListViewPage",
+	"_Type": "Page",
+	"DataSubscriptions": ["WCMApplications", "WCMDocumentHeaders", "WCMDocumentItems", "MyEquipments", "MyFunctionalLocations", "/SAPAssetManager/Services/AssetManager.service"]
+}

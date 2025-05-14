@@ -1,0 +1,75 @@
+{
+    "Header":
+    {
+        "DataTable":
+        {
+            "Items":
+            [{
+                "Text": "$(L, phase_control)",
+                "TextAlignment": "left"
+            },
+            {
+                "Text": "$(L, description)",
+                "TextAlignment": "left"
+            },
+            {
+                "Text": "$(L, control_key)",
+                "TextAlignment": "left"
+            },
+            {
+                "Text": "$(L, process_phase)",
+                "TextAlignment": "left"
+            },
+            {
+                "Text": "$(L, process_subphase)",
+                "TextAlignment": "left"
+            },
+            {
+                "Text": "$(L, status)",
+                "TextAlignment": "left"
+            }]
+        }
+    },
+    "Row":
+    {
+        "Layout": {
+            "ColumnWidth": [200,250,200,200,200,-1]
+        },
+        "Items":
+        [{
+            "Text": "{{#Property:PhaseControl}}",
+            "TextAlignment": "left"
+        },
+        {
+            "Text": "{{#Property:Description}}",
+            "TextAlignment": "left"
+        },
+        {
+            "Text": "/SAPAssetManager/Rules/WorkOrders/PhaseControl/DescriptionValue.js",
+            "TextAlignment": "left"
+        },
+        {
+            "Text": "/SAPAssetManager/Rules/WorkOrders/PhaseControl/ProcessPhase.js",
+            "TextAlignment": "left"
+        },
+        {
+            "Text": "/SAPAssetManager/Rules/WorkOrders/PhaseControl/ProcessSubphase.js",
+            "TextAlignment": "left"
+        },
+        {
+            "Text": "/SAPAssetManager/Rules/WorkOrders/PhaseControl/StatusValue.js",
+            "TextAlignment": "left"
+        }],
+        "AccessoryType": "DisclosureIndicator"
+    },
+    "Visible": "/SAPAssetManager/Rules/WorkOrders/PhaseControl/PhaseControlVisible.js",
+    "Target":
+    {
+        "EntitySet": "{@odata.readLink}/PhaseControl_Nav",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$expand=PhaseControlKey_Nav&$filter=IsActive eq 'X'"
+    },
+    "_Name": "PhaseControlDataTable",
+    "StickyColumn": false,
+    "_Type": "Section.Type.DataTable"
+}

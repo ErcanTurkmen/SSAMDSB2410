@@ -1,0 +1,74 @@
+{
+    "Visible": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemTableViewVisible.js",
+	"Module": "extension-EditableDataTable",
+	"Control": "EditableDataTableViewExtension",
+	"Class": "EditableDataTableViewExtension",
+    "Height": 600,
+    "ExtensionProperties": {
+        "Configuration": {
+            "IsStickyHeaderRow": false,
+            "NumberOfLeadingStickyColumns": 0,
+            "MaxLinesPerRow": 2,
+	        "IsCellBackgroundClear": true
+        },
+        "Columns": [
+            {
+                "HeaderName": "$(L, item_no)",
+                "PreferredWidth": 130
+            },
+            {
+                "HeaderName": "$(L, parent_item)",
+                "PreferredWidth": 140
+            },
+            {
+                "HeaderName": "$(L, quantity)",
+                "PreferredWidth": 160
+            },
+            {
+                "HeaderName": "$(L, unit)",
+                "PreferredWidth": 160
+            },
+            {
+                "HeaderName": "$(L, product)",
+                "PreferredWidth": 180,
+                "IsDynamicWidth": true
+            },
+            {
+                "HeaderName": "$(L, net_value)",
+                "PreferredWidth": 160
+            },
+            {
+                "HeaderName": "$(L, accounting_indicator)",
+                "PreferredWidth": 250,
+                "IsDynamicWidth": true
+            },
+            {
+                "HeaderName": "",
+                "PreferredWidth": 160
+            },
+            {
+                "HeaderName": "",
+                "PreferredWidth": 160
+            }
+        ],
+        "Row": {
+            "Items": "/SAPAssetManager/Pages/Fragments/S4ServiceItems/ServiceItemsEDTItemsEditable.fragment"
+        },
+        "Target": {
+            "EntitySet": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/EDT/ServiceItemTableEntitySet.js",
+            "Service": "/SAPAssetManager/Services/AssetManager.service",
+		    "QueryOptions": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/EDT/ServiceItemTableQueryOptions.js"
+        }
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_items_available)"
+    },
+    "Header": {
+	    "Caption": "$(L, items)"
+    },
+    "DataSubscriptions": [
+		"S4ServiceItems"
+	],
+	"_Type": "Section.Type.Extension",
+	"_Name": "ServiceItemsTableSection"
+}

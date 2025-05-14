@@ -1,0 +1,40 @@
+{
+    "Header": {
+        "Caption": "$(L,smart_forms)"
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_smartforms)"
+    },
+    "Footer": {
+        "Caption": "$(L,see_all)",
+        "AccessoryType": "DisclosureIndicator",
+        "FooterStyle": "Attribute",
+        "AttributeLabel": "/SAPAssetManager/Rules/Forms/FSM/OperationFormInstancesCount.js",
+        "OnPress": "/SAPAssetManager/Rules/Forms/FSM/FSMFormsInstancesListViewNav.js",
+        "Visible": "/SAPAssetManager/Rules/Forms/FSM/FSMFormsListFooterVisible.js"
+    },
+    "MaxItemCount": 2,
+    "ObjectCell": {
+        "Icons": "/SAPAssetManager/Rules/Forms/FSM/FSMFormListViewIconImages.js",
+        "PreserveIconStackSpacing": true,
+        "AccessoryType": "DisclosureIndicator",
+        "Title": "{{#Property:FSMFormTemplate_Nav/#Property:Name}}",
+        "Subhead": "/SAPAssetManager/Rules/Forms/FSM/FSMFormInstanceSubheadText.js",
+        "Footnote": "/SAPAssetManager/Rules/Forms/FSM/FSMFormInstanceFootnoteText.js",
+        "StatusText": "/SAPAssetManager/Rules/Forms/FSM/FSMFormInstanceStatusText.js",
+        "SubstatusText": "/SAPAssetManager/Rules/Forms/FSM/FSMFormInstanceMandatoryText.js",
+        "OnPress": "/SAPAssetManager/Rules/Forms/FSM/FSMFormPageNavWrapper.js",
+        "DetailImage": "/SAPAssetManager/Rules/Forms/SmartFormsDetailImage.js",
+        "Styles": {
+            "SubstatusText": "/SAPAssetManager/Rules/Forms/FSM/MandatoryStatusStyle.js"
+        }
+    },
+    "Target": {
+        "EntitySet": "FSMFormInstances",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "/SAPAssetManager/Rules/Forms/FSM/FSMFormsInstancesListViewQueryOption.js"
+    },
+    "_Name": "SmartformsObjectTable",
+    "_Type": "Section.Type.ObjectTable",
+    "Visible": "/SAPAssetManager/Rules/Forms/FSM/SmartFormsFeatureIsEnabled.js"
+}

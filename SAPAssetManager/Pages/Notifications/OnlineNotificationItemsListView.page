@@ -1,0 +1,31 @@
+{
+	"Caption": "$(L,notification_items)",
+	"OnLoaded": "/SAPAssetManager/Rules/Notifications/ListView/NotificationsItemListViewOnLoad.js",
+	"Controls": [
+		{
+			"_Type" : "Control.Type.SectionedTable",
+			"Sections": [
+				{
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/Notification/Items/NotificationItemsObjectTable.fragment",
+					"Properties": {
+						"Search": {
+							"Enabled": false
+						},
+						"ObjectCell": {
+							"Icons": [],
+							"OnPress": "/SAPAssetManager/Actions/Notifications/Item/OnlineNotificationItemDetailsNav.action"
+						},
+						"Target": {
+							"EntitySet": "{{#Property:@odata.id}}/Items",
+							"Service": "/SAPAssetManager/Services/OnlineAssetManager.service",
+							"QueryOptions": "$expand=Notification&$orderby=ItemSortNumber asc"
+						}
+					}
+				}
+			]
+		}
+	],
+	"_Type": "Page",
+	"_Name": "OnlineNotificationItemsListViewPage"
+}

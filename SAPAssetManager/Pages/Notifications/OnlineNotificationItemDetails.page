@@ -1,0 +1,69 @@
+{
+	"_Type": "Page",
+	"_Name": "OnlineNotificationItemDetailsPage",
+	"Caption": "/SAPAssetManager/Rules/Notifications/Item/NotificationItemHeader.js",
+	"Controls": [
+		{
+			"_Type": "Control.Type.SectionedTable",
+			"_Name": "SectionedTable",
+			"Sections": [
+				"/SAPAssetManager/Pages/Fragments/Notification/Items/NotificationItemDetailsSection.fragment",
+				{
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/Notification/Items/NotificationItemCausesSection.fragment",
+					"Properties": {
+						"ObjectCell": {
+							"Icons": [],
+							"OnPress": "/SAPAssetManager/Actions/Notifications/Item/OnlineNotificationItemCauseDetailsNav.action"
+						},
+						"Target": {
+							"EntitySet": "{{#Property:@odata.id}}/ItemCauses",
+							"Service": "/SAPAssetManager/Services/OnlineAssetManager.service",
+							"QueryOptions": "$top=2&$expand=Item/Notification&$orderby=CauseSortNumber asc"
+						},
+						"Footer": {
+							"OnPress": "/SAPAssetManager/Actions/Notifications/Item/OnlineNotificationItemCausesListViewNav.action"
+						}
+					}
+				},
+				{
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/Notification/Items/NotificationItemTasksSection.fragment",
+					"Properties": {
+						"ObjectCell": {
+							"Icons": [],
+							"StatusText": "",
+							"OnPress": "/SAPAssetManager/Actions/Notifications/Item/OnlineNotificationItemTaskDetailsNav.action"
+						},
+						"Target": {
+							"EntitySet": "{{#Property:@odata.id}}/ItemTasks",
+							"Service": "/SAPAssetManager/Services/OnlineAssetManager.service",
+							"QueryOptions": "$top=2&$expand=Item/Notification&$orderby=TaskSortNumber asc"
+						},
+						"Footer": {
+							"OnPress": "/SAPAssetManager/Actions/Notifications/Item/OnlineNotificationItemTasksListViewNav.action"
+						}
+					}
+				},
+				{
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/Notification/Items/NotificationItemActivitiesSection.fragment",
+					"Properties": {
+						"ObjectCell": {
+							"Icons": [],
+							"OnPress": "/SAPAssetManager/Actions/Notifications/Item/OnlineNotificationItemActivityDetailsNav.action"
+						},
+						"Target": {
+							"EntitySet": "{{#Property:@odata.id}}/ItemActivities",
+							"Service": "/SAPAssetManager/Services/OnlineAssetManager.service"
+						},
+						"Footer": {
+							"OnPress": "/SAPAssetManager/Actions/Notifications/OnlineNotificationItemActivitiesListViewNav.action"
+						}
+					}
+				},
+        		"/SAPAssetManager/Pages/Fragments/Notification/Details/OnlineNotificationNoteFacet.fragment"
+			]
+		}
+	]
+}

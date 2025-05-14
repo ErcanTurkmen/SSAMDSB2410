@@ -1,0 +1,67 @@
+{
+    "_Type": "Page",
+    "_Name": "ReminderCreateUpdatePage",
+    "OnLoaded": "/SAPAssetManager/Rules/Reminders/ReminderCreateUpdateOnPageLoad.js",
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "_Name": "ReminderCreateUpdate",
+        "Items": [
+            "/SAPAssetManager/Pages/Fragments/CancelButton.fragment",
+            {
+                "Position": "Right",
+                "_Name": "Done",
+                "SystemItem": "$(PLT,'Done','','','Done')",
+                "Caption": "$(L,done)",
+                "Text": "/SAPAssetManager/Rules/Common/Platform/DoneText.js",
+                "OnPress": "/SAPAssetManager/Rules/Reminders/ReminderCreateUpdateOnCommit.js"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "Header": {
+                        "UseTopPadding": false
+                    },
+                    "Controls": [
+                        {
+                            "Caption":"$(L,name)",
+                            "PlaceHolder": "$(L,name)",
+                            "Value": "",
+                            "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js",
+                            "_Name": "Name",
+                            "_Type": "Control.Type.FormCell.Title",
+                            "IsEditable": true
+                        },
+                        {
+                            "PlaceHolder": "$(L,description)",
+                            "Value": "",
+                            "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js",
+                            "IsAutoResizing": true,
+                            "_Name": "Description",
+                            "_Type": "Control.Type.FormCell.Note",
+                            "Caption": "$(L,description)"
+                        }
+                    ]
+                },
+                 {
+                    "Controls": [
+                        {
+                            "Title": "$(L,delete)",
+                            "OnPress": "/SAPAssetManager/Rules/Reminders/ReminderDelete.js",
+                            "IsVisible": "/SAPAssetManager/Rules/Reminders/ReminderCreateUpdateDeleteIsEnabled.js",
+                            "_Type": "Control.Type.FormCell.Button",
+                            "ButtonType": "Text",
+                            "Semantic": "Tint",
+                            "_Name": "DiscardButton",
+                            "TextAlignment": "/SAPAssetManager/Rules/Common/Platform/ModalButtonAlign.js"
+                        }
+                    ]
+                }
+            ],
+            "_Name": "FormCellContainer",
+            "_Type": "Control.Type.FormCellContainer"
+        }
+    ]
+}

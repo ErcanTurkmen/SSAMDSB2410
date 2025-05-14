@@ -1,0 +1,8 @@
+{
+
+    "Message": "$(L,document_download_fail_server)",
+    "Duration": 2,
+    "Animated": true,
+    "Semantic": "Negative",
+    "_Type": "Action.Type.BannerMessage"
+}

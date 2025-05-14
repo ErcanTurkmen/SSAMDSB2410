@@ -1,0 +1,169 @@
+{
+	"Caption": "$(L,app_display_name)",
+	"OnLoaded": "/SAPAssetManager/Rules/OverviewPage/OverviewOnPageLoad.js",
+	"OnReturning": "/SAPAssetManager/Rules/OverviewPage/OverviewMTOnPageReturning.js",
+	"ActionBar": {
+		"Items": [
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment",
+			{
+				"Position": "Right",
+				"_Name": "AutoSync",
+				"Caption": "AutoSync",
+				"IconText": "SyncIcon",
+				"Icon": "$(PLT, /SAPAssetManager/Images/auto-sync.pdf, /SAPAssetManager/Images/auto-sync.android.png,'',/SAPAssetManager/Images/auto-sync.windows.png)",
+				"OnPress": "/SAPAssetManager/Rules/ApplicationEvents/ApplicationOnSync.js",
+				"Visible": "/SAPAssetManager/Rules/Sync/IsAutoSyncInProgress.js"
+			}
+		]
+	},
+	"Controls": [
+		{
+			"_Type": "Control.Type.SectionedTable",
+			"_Name": "SectionedTable",
+			"Sections": [
+				{
+                    "_Type": "Section.Type.KPIHeader",
+                    "_Name": "KPIHeader",
+                    "Visible": true,
+                    "KPIHeader": {
+                        "KPIItems": [
+                            {
+                                "MetricItems": [
+                                    {
+                                    "Value": "/SAPAssetManager/Rules/Notifications/NotificationsCountOnOverviewPage.js"
+                                    }
+                                ],
+                                "OnPress": "/SAPAssetManager/Rules/Notifications/NotificationsListViewOverviewNav.js",
+                                "CaptionLabel": "$(L, notifications)"
+                            },
+							{
+                                "MetricItems": [
+                                    {
+                                        "Value": "/SAPAssetManager/Rules/OverviewPage/KPI/InProgressCount.js"
+                                    }
+                                ],
+                                "OnPress": "/SAPAssetManager/Rules/Notifications/StartedNotificationsListViewNav.js",
+                                "CaptionLabel": "$(L, kpi_in_progress)"
+                            },
+                            {
+
+                                "MetricItems": [
+                                    {
+                                         "Value": "/SAPAssetManager/Rules/OverviewPage/KPI/TimeCount.js"
+                                    }
+                                ],
+                                "OnPress": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/OnPressTimeCaptureSectionToday.js",
+                                "CaptionLabel": "$(L, kpi_hours)"
+                            }
+                        ]
+                    },
+                    "DataSubscriptions" : [
+                        "PMMobileStatuses", "Confirmations", "CatsTimesheets", "ConfirmationOverviewRows", "CatsTimesheetOverviewRows"
+                    ]
+                },
+				{
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/QAB/QuickActionBarExtensionSection.fragment",
+					"Properties": {
+						"ExtensionProperties": {
+							"Chips": "/SAPAssetManager/Rules/OverviewPage/OverviewQABChips.js"
+						},
+						"Visible": "/SAPAssetManager/Rules/OverviewPage/IsQABSectionVisible.js"
+					}
+				},
+				{
+					"_Type": "Section.Type.ObjectCollection",
+					"Layout": {
+						"NumberOfColumns": 2,
+						"MinimumInteritemSpacing": "$(PLT,66,0)"
+					},
+					"_Name": "MyNotificationSection",
+					"Header": {
+						"Caption": "$(L,my_notifications_filter)"
+					},
+					"EmptySection": {
+						"Caption": "$(L,no_notifications_available)"
+					},
+					"Visible": true,
+					"MaxItemCount": 4,
+					"ObjectCell": {
+						"Title": "#Property:NotificationDescription",
+						"Subhead": "{NotificationNumber}",
+                        "Footnote": "/SAPAssetManager/Rules/Notifications/ListView/NotificationsListViewFormat.js",
+                        "SubstatusText": "/SAPAssetManager/Rules/Notifications/ListView/NotificationsListViewFormat.js",
+                        "Styles": {
+                            "SubstatusText": "/SAPAssetManager/Rules/Priority/NotificationPriorityStatusStyle.js"
+                        },
+						"AccessoryType": "DisclosureIndicator",
+						"OnPress": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsNav.js",
+						"PreserveIconStackSpacing": false
+					},
+					"Target": {
+						"EntitySet": "MyNotificationHeaders",
+						"Service": "/SAPAssetManager/Services/AssetManager.service",
+						"QueryOptions": "/SAPAssetManager/Rules/Notifications/MyNotificationSectionQueryOptions.js"
+					},
+					"Footer": {
+						"Caption": "$(L,see_all)",
+						"AccessoryType": "DisclosureIndicator",
+						"AttributeLabel": "/SAPAssetManager/Rules/Notifications/MyNotificationsCount.js",
+						"FooterStyle": "Attribute",
+						"OnPress": "/SAPAssetManager/Rules/Notifications/MyNotificationsListViewNav.js"
+					},
+					"DataSubscriptions": [
+						"MyNotificationHeaders",
+						"PMMobileStatuses"
+					]
+				},
+				"/SAPAssetManager/Pages/Fragments/TimeCapture/TimeCaptureSection.fragment",
+                {
+					"SimplePropertyCells": [
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "DisclosureIndicator",
+								"KeyName": "$(L,notifications)",
+								"Value": "/SAPAssetManager/Rules/Notifications/NotificationsTotalCount.js",
+								"OnPress": "/SAPAssetManager/Rules/Notifications/NotificationsListViewNav.js"
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "DisclosureIndicator",
+								"KeyName": "$(L,equipment)",
+								"Value": "/SAPAssetManager/Rules/Equipment/EquipmentCount.js",
+								"OnPress": "/SAPAssetManager/Rules/Equipment/EquipmentListViewNav.js"
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "DisclosureIndicator",
+								"KeyName": "$(L,functional_locations)",
+								"Value": "/SAPAssetManager/Rules/FunctionalLocation/FunctionalLocationCount.js",
+								"OnPress": "/SAPAssetManager/Rules/FunctionalLocation/FunctionalLocationListViewNav.js"
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "DisclosureIndicator",
+								"KeyName": "$(L,reminders)",
+								"Value": "/SAPAssetManager/Rules/OverviewPage/OverviewPageRemindersCount.js",
+								"OnPress": "/SAPAssetManager/Actions/Reminders/RemindersListViewNav.action"
+							},
+							"DataSubscriptions": [
+								"UserPreferences"
+							]
+						}
+					],
+					"Layout": {
+						"NumberOfColumns": 2,
+						"MinimumInteritemSpacing": "$(PLT,66,0)"
+					},
+					"_Type": "Section.Type.SimplePropertyCollection",
+					"DataSubscriptions": "/SAPAssetManager/Rules/Common/DataSubscriptions.js"
+				}
+			]
+		}
+	],
+	"_Type": "Page",
+	"_Name": "OverviewPageMTStd"
+}

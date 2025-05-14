@@ -1,0 +1,19 @@
+{
+    "_Type": "Section.Type.KeyValue",
+    "_Name": "ServiceContractWarrantySection",
+    "Header": {
+        "Caption": "$(L, service_contract_warranty)"
+    },
+    "KeyAndValues": [
+        {
+            "_Name": "S4ServiceContract.ObjectID",
+            "KeyName": "$(L,service_contract)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/Details/ServiceContractValue.js"
+        },
+        {
+            "_Name": "WarrantyID",
+            "KeyName": "$(L,warranty_id)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/Details/WarrantyIdValue.js"
+        }
+    ]
+}

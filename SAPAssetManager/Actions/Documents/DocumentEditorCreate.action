@@ -1,0 +1,27 @@
+{
+  "_Type": "Action.Type.ODataService.CreateMedia",
+  "Target" : {
+    "EntitySet" : "Documents",
+    "Service" : "/SAPAssetManager/Services/AssetManager.service"
+  },
+  "Headers" : {
+     "slug" : {
+        "ObjectLink": "/SAPAssetManager/Rules/Documents/DocumentEditorObjectLink.js",
+		    "ObjectKey": "/SAPAssetManager/Rules/Documents/DocumentEditorObjectKey.js",
+        "FileName": "/SAPAssetManager/Rules/Documents/DocumentEditorFileNameEncoded.js",
+        "Description": "/SAPAssetManager/Rules/Documents/DocumentEditorDescriptionEncoded.js"
+    }
+  },
+  "Properties" : {
+    "ObjectLink": "/SAPAssetManager/Rules/Documents/DocumentEditorObjectLink.js",
+    "ObjectKey": "/SAPAssetManager/Rules/Documents/DocumentTransactionID.js",
+    "FileName": "/SAPAssetManager/Rules/Documents/DocumentEditorFileName.js",
+    "Description": "/SAPAssetManager/Rules/Documents/DocumentEditorDescription.js",
+    "MimeType": "/SAPAssetManager/Rules/Documents/DocumentEditorMimeType.js"
+  },
+  "IsOnlineRequest": false,
+  "ShowActivityIndicator": true,
+  "ActivityIndicatorText" : "  ",
+  "Media":"/SAPAssetManager/Rules/Documents/DocumentEditorMedia.js",
+  "OnFailure": "/SAPAssetManager/Actions/Documents/DocumentCreateFailure.action"
+}

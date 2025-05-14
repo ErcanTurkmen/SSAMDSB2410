@@ -1,0 +1,10 @@
+{
+    "Actions": [
+        "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/BulkIssueOrReceiptGenericFieldsPost.js"
+    ],
+    "Target": {
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "OnSuccess": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/IssueOrReceiptAttachmentSignature.js",
+    "_Type": "Action.Type.ODataService.ChangeSet"
+}

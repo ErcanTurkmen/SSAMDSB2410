@@ -1,0 +1,16 @@
+{
+    "_Type": "Action.Type.ODataService.CreateEntity",
+    "Target":
+    {
+        "EntitySet" : "WarehouseOrders",
+        "Service" : "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "Properties":
+    {
+
+    },
+    "Headers": {
+        "OfflineOData.RemoveCreatedEntityAfterUpload": true
+    },
+    "ShowActivityIndicator": true
+}

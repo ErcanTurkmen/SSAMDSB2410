@@ -1,0 +1,10 @@
+{
+    "Actions": [
+        "/SAPAssetManager/Actions/Parts/PartsCreateHeaderScanAll.action",
+        "/SAPAssetManager/Actions/Parts/PartsCreateItemScanAll.action"
+    ],
+    "Target": {
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "_Type": "Action.Type.ODataService.ChangeSet"
+}

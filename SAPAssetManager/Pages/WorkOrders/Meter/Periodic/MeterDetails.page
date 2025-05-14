@@ -1,0 +1,177 @@
+{
+    "Caption": "$(L,meter_x, {{#Property:Device_Nav/#Property:Device}})",
+    "OnLoaded": "/SAPAssetManager/Rules/WorkOrders/Meter/Periodic/MeterDetailsOnLoad.js",
+    "ActionBar": {
+        "Items": [
+            {
+                "Position": "Right",
+                "Text": "$(L,take_readings)",
+                "OnPress": "/SAPAssetManager/Rules/Meter/Periodic/MeterReadingsUpdateNav.js"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "ObjectHeader": {
+                        "HeadlineText": "/SAPAssetManager/Rules/Meter/Periodic/DeviceHeadlineDisplay.js",
+                        "Subhead": "/SAPAssetManager/Rules/Meter/Periodic/DeviceLocationDisplay.js",
+                        "Tags": "/SAPAssetManager/Rules/Meter/Periodic/DeviceTagsDisplay.js",
+                        "Footnote":  "/SAPAssetManager/Rules/WorkOrders/Meter/Periodic/MeterAddress.js",
+                        "StatusText": "/SAPAssetManager/Rules/Meter/Periodic/MeterStatusText.js",
+                        "SubstatusText": "/SAPAssetManager/Rules/Meter/Periodic/ConnectedStatus.js"
+                    },
+                    "_Type": "Section.Type.ObjectHeader",
+                    "_Name": "ObjectHeaderSectionTable"
+                },
+                {
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "MeterDetails",
+                    "Header": {
+                        "Caption": "$(L,meter_details)"
+                    },
+                    "KeyAndValues": [
+                        {
+                            "_Name": "MyEquipment.Manufacturer",
+                            "KeyName": "$(L,manufacturer)",
+                            "Value": "/SAPAssetManager/Rules/Meter/Details/Periodic/ManufacturerDisplay.js"
+                        },
+                        {
+                            "_Name": "RegisterGroup.RegisterInfo",
+                            "KeyName": "$(L,register_group)",
+                            "Value": "/SAPAssetManager/Rules/Meter/Details/Periodic/RegisterGroupDisplay.js"
+                        },
+                        {
+                            "_Name": "Device.DeviceCategory",
+                            "KeyName": "$(L,device)",
+                            "Value": "/SAPAssetManager/Rules/Meter/Details/Periodic/DeviceDisplay.js"
+                        },
+                        {
+                            "_Name": "Installation",
+                            "KeyName": "$(L,installation_id)",
+                            "Value": "/SAPAssetManager/Rules/Meter/Details/Periodic/InstallationDisplay.js"
+                        },
+                        {
+                            "_Name": "DeviceGoodsMovement.MovementType",
+                            "KeyName": "$(L,movement_type)",
+                            "Value": "/SAPAssetManager/Rules/Meter/Details/Periodic/MovementTypeDisplay.js"
+                        },
+                        {
+                            "_Name": "Plant.Plant",
+                            "KeyName": "$(L,receiving_plant)",
+                            "Value": "/SAPAssetManager/Rules/Meter/Details/Periodic/ReceivingPlantDisplay.js"
+                        },
+                        {
+                            "_Name": "DeviceGoodsMovement.StorageLocation",
+                            "KeyName": "$(L,storage_location)",
+                            "Value": "/SAPAssetManager/Rules/Meter/Details/Periodic/StorageLocationDisplay.js"
+                        },
+                        {
+                            "KeyName": "$(L,cost_center)",
+                            "Value": "-"
+                        },
+                        {
+                            "_Name": "Device.ActivityReason",
+                            "KeyName": "$(L,reason)",
+                            "Value": "/SAPAssetManager/Rules/Meter/Details/Periodic/ReasonDisplay.js"
+                        },
+                        {
+                            "_Name": "Device.ActivityDate",
+                            "KeyName": "$(L,date)",
+                            "Value": "/SAPAssetManager/Rules/Meter/Details/Periodic/DateDisplay.js"
+                        },
+                        {
+                            "_Name": "Installation.PointOfDeliveryId",
+                            "KeyName": "$(L,Point_Of_Delivery)",
+                            "Value": "/SAPAssetManager/Rules/Meter/Details/PointOfDelivery.js"
+                        }
+                    ]
+                },
+                {
+					"_Name": "DataTableSection",
+					"_Type": "Section.Type.DataTable",
+					"Row": {
+                        "Layout": {
+                        "ColumnWidth": [100,200,200,200,-1]
+                        },
+						"Items": [
+                            {
+                                "Image": "/SAPAssetManager/Rules/Meter/Periodic/RegReadingIsLocal.js",
+                                "TextAlignment": "Center"
+                            },
+							{
+                                "Text": "{{#Property:Register}}",
+                                "Style": "GridTableRowText",
+                                "TextAlignment": "Center"
+							},
+							{
+                                "Text": "$(T, {{#Property:SchedMeterReadingDate}})",
+                                "Style": "GridTableRowText",
+                                "TextAlignment": "Center"
+							},
+							{
+                                "Text": "$(D, {{#Property:SchedMeterReadingDate}})",
+                                "Style": "GridTableRowText",
+                                "TextAlignment": "Center"
+							},
+							{
+                                "Text": "{{#Property:MeterReadingRecorded}}",
+                                "Style": "GridTableRowText",
+                                "TextAlignment": "Center"
+                            }
+						],
+						"OnPress": "/SAPAssetManager/Actions/WorkOrders/Meter/Periodic/RegisterDetailsNav.action",
+						"AccessoryType": "DisclosureIndicator"
+					},
+					"Header": {
+						"DataTable": {
+							"Items": [
+								{
+									"Text": "",
+                                    "TextAlignment": "Center",
+                                    "Style": "GridTableHeaderText"
+								},
+								{
+									"Text": "$(L,register)",
+                                    "TextAlignment": "Center",
+                                    "Style": "GridTableHeaderText"
+								},
+								{
+									"Text": "$(L,time)",
+                                    "TextAlignment": "Center",
+                                    "Style": "GridTableHeaderText"
+								},
+								{
+									"Text": "$(L,date)",
+                                    "TextAlignment": "Center",
+                                    "Style": "GridTableHeaderText"
+								},
+								{
+                                    "Text": "$(L,reading)",
+                                    "TextAlignment": "Center",
+                                    "Style": "GridTableHeaderText"
+								}
+							]
+						}
+                    },
+                    "EmptySection": {
+                        "Caption": "$(L,no_readings)"
+                    },
+					"Target": {
+						"EntitySet": "{{#Property:@odata.readLink}}/Device_Nav/PeriodicMeterReading_Nav",
+						"Service": "/SAPAssetManager/Services/AssetManager.service",
+						"QueryOptions": "$expand=MeterReadingLimit_Nav&$orderby=SchedMeterReadingDate,Register"
+                    },
+                    "DataSubscriptions": ["/SAPAssetManager/Services/AssetManager.service", "PeriodicMeterReadings"]
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "StickyColumn": false,
+            "_Name": "SectionedTable"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "PeriodicMeterDetailsPage",
+    "DataSubscriptions": "/SAPAssetManager/Rules/Common/DataSubscriptions.js"
+}

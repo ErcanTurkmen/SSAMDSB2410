@@ -1,0 +1,64 @@
+{
+    "Caption": "$(L,point_details)",
+    "OnLoaded": "/SAPAssetManager/Rules/Measurements/PointDetailsOnPageLoad.js",
+    "ActionBar": {
+        "_Name": "MeasuringPointWithValutaionCodeDetails",
+        "Items": [
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                "/SAPAssetManager/Pages/Fragments/Measurements/PointDataTable.fragment",
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Measurements/PointDetailsKeyValue.fragment",
+                    "Properties": {
+                        "_Name": "MainKeyValueSection"
+                    }
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Measurements/PointCurrentReading.fragment",
+                    "Properties": {
+                        "Target": {
+                            "EntitySet": "{{#Property:@odata.readLink}}/MeasurementDocs",
+                            "Service": "/SAPAssetManager/Services/AssetManager.service",
+                            "QueryOptions": "/SAPAssetManager/Rules/Measurements/Points/MeasurementDocumentCurrentReadingQuery.js"
+                        },
+                        "DataSubscriptions": ["MeasurementDocuments"]
+                    }
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Measurements/PointPrevReading.fragment",
+                    "Properties": {
+                        "Target": {
+                            "EntitySet": "{{#Property:@odata.readLink}}/MeasurementDocs",
+                            "Service": "/SAPAssetManager/Services/AssetManager.service",
+                            "QueryOptions": "/SAPAssetManager/Rules/Measurements/Points/MeasurementDocumentPreviousReadingQuery.js"
+                        }
+                    }
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable"
+        }
+    ],
+    "FioriToolbar": {
+        "_Name": "MeasuringPointWithValuationCodeDetailsFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Controls": [
+            {
+                "_Name": "ReadingTbI",
+                "_Type": "FioriToolbarItem.Type.Button",
+                "Title": "$(L,take_reading)",
+                "OnPress": "/SAPAssetManager/Rules/Measurements/Document/MeasurementDocumentCreateNav.js",
+                "Visible": "/SAPAssetManager/Rules/UserAuthorizations/Measurements/EnableMeasurementCreate.js"
+            }
+        ]
+    },
+    "_Type": "Page",
+    "_Name": "MeasuringPointwithValuationDetailsPage",
+    "DataSubscriptions": ["MeasurementDocuments"]
+}

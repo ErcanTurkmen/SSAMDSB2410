@@ -1,0 +1,32 @@
+{
+    "Visible": "/SAPAssetManager/Rules/WorkOrders/Meter/Details/HideDisconnectSection.js",
+    "Header": {
+        "Caption": "$(L,meters)"
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_meter_available)"
+    },
+    "Footer": {
+        "Caption": "$(L,see_all)",
+        "AccessoryType": "DisclosureIndicator",
+        "FooterStyle": "Attribute",
+        "AttributeLabel": "/SAPAssetManager/Rules/WorkOrders/Meter/Details/WorkOrderMetersCount.js",
+        "OnPress": "/SAPAssetManager/Actions/WorkOrders/Meter/MetersListClassicViewWithActivityNav.action"
+    },
+    "MaxItemCount": 2,
+    "ObjectCell": {
+        "_Type": "Fragment",
+        "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/MeterListObjectCell.fragment",
+        "Properties": {
+            "SubstatusText": "/SAPAssetManager/Rules/Meter/Format/MeterObjectCell.js"
+        }
+    },
+    "Target": {
+        "EntitySet": "DisconnectionObjects",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "/SAPAssetManager/Rules/WorkOrders/Meter/DisconnectObjectQueryOptions.js"
+    },
+    "_Type": "Section.Type.ObjectTable",
+    "_Name": "MeterWithDisconnectionList",
+    "DataSubscriptions": ["OrderISULinks", "Devices"]
+}

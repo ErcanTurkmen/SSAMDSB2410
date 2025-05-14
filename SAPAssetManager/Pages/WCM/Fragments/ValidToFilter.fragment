@@ -1,0 +1,24 @@
+[
+    {
+        "_Type": "Control.Type.FormCell.Switch",
+        "_Name": "ValidToFilterVisibleSwitch",
+        "Caption": "$(L,wcm_valid_to)",
+        "Value": false,
+        "OnValueChange": "/SAPAssetManager/Rules/WCM/SafetyCertificates/SafetyCertificatesFilterPageDateVisibilityChanged.js",
+        "IsVisible": true
+    },
+    {
+        "_Type": "Control.Type.FormCell.DatePicker",
+        "_Name": "ValidToDatePickerStart",
+        "Caption": "$(L,wcm_date_from)",
+        "Mode": "Datetime",
+        "IsVisible": false
+    },
+    {
+        "_Type": "Control.Type.FormCell.DatePicker",
+        "_Name": "ValidToDatePickerEnd",
+        "Caption": "$(L,wcm_date_to)",
+        "Mode": "Datetime",
+        "IsVisible": false
+    }
+]

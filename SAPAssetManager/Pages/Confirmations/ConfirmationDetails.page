@@ -1,0 +1,144 @@
+{
+    "Caption": "$(L,confirmation_title, {ConfirmationNum})",
+    "ActionBar": {
+        "_Name": "ConfirmationDetails",
+        "Items": [
+            {
+                "Position": "Right",
+                "_Name": "Edit",
+                "SystemItem": "Edit",
+                "Caption": "$(L,edit)",
+                "Visible": "{@sap.isLocal}",
+                "OnPress": "/SAPAssetManager/Rules/Confirmations/CreateUpdate/ConfirmationUpdateNav.js"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "LaborTimeDetailsSection",
+                    "Header": {
+                        "Caption": "$(L, confirmation_details)"
+                    },
+                    "KeyAndValues": [
+                        {
+                            "_Name": "MyWorkOrderHeader.OrderDescription",
+                            "KeyName": "$(L,description)",
+                            "Value": "{{#Property:WorkOrderHeader/#Property:OrderDescription}}"
+                        },
+                        {
+                            "_Name": "Description",
+                            "KeyName": "$(L,confirmation_description)",
+                            "Value": "/SAPAssetManager/Rules/Confirmations/ListView/ConfirmationDescription.js"
+                        },
+                        {
+                            "_Name": "OrderID",
+                            "KeyName": "$(L,ID)",
+                            "Value": "{{#Property:OrderID}}"
+                        },
+                        {
+                            "_Name": "ConfirmationNum",
+                            "KeyName": "$(L,confirmation_title, '') $(L,ID)",
+                            "Value": "{ConfirmationNum}"
+                        },
+                        {
+                            "_Name": "ActualDuration|ActualWork",
+                            "KeyName": "$(L,duration)",
+                            "Value": "/SAPAssetManager/Rules/Confirmations/ListView/ConfirmationFormattedActualDuration.js"
+                        },
+                        {
+                            "_Name": "StartTime",
+                            "KeyName": "$(L,start_time)",
+                            "Value": "/SAPAssetManager/Rules/Confirmations/Details/ConfirmationsStartDateDetails.js"
+                        },
+                        {
+                            "_Name": "FinishTime",
+                            "KeyName": "$(L,end_time)",
+                            "Value": "/SAPAssetManager/Rules/Confirmations/Details/ConfirmationsFinishDateDetails.js"
+                        },
+                        {
+                            "_Name": "PersonnelNumber",
+                            "KeyName": "$(L,name)",
+                            "Value": "/SAPAssetManager/Rules/Confirmations/ConfirmationEmployeeName.js"
+                        },
+                        {
+                            "_Name": "ActivityType",
+                            "KeyName": "$(L,activity_type)",
+                            "Value": "/SAPAssetManager/Rules/Confirmations/ConfirmationActivityTypeDetails.js"
+                        },
+                        {
+                            "_Name": "Operation",
+                            "KeyName": "$(L,operation)",
+                            "Value": "/SAPAssetManager/Rules/Confirmations/ConfirmationOperationDetails.js"
+                        },
+                        {
+                            "_Name": "SubOperation",
+                            "KeyName": "$(L,sub_operation_hyphenated)",
+                            "Value": "/SAPAssetManager/Rules/Confirmations/ConfirmationSubOperationDetails.js"
+                        },
+                        {
+                            "_Name": "VarianceReason",
+                            "KeyName": "$(L,variance_reason)",
+                            "Value": "/SAPAssetManager/Rules/Confirmations/ConfirmationVarianceDetails.js"
+                        },
+                        {
+                            "_Name": "AccountingIndicator",
+                            "KeyName": "$(L,account_indicator)",
+                            "Value": "/SAPAssetManager/Rules/Confirmations/ConfirmationAcctIndicatorDetails.js"
+                        }
+                    ],
+                    "Target": {
+                        "EntitySet": "{@odata.readLink}",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "$expand=WorkOrderHeader,WorkOrderHeader/Operations,WorkOrderHeader/Operations/SubOperations"
+                    }
+                },
+                {
+                    "SimplePropertyCells": [
+                        
+                        {
+                            "SimplePropertyCell": {
+                                "AccessoryType": "DisclosureIndicator",
+                                "KeyName": "$(L,linear_data)",
+                                "Value": "",
+                                "OnPress": "/SAPAssetManager/Rules/LAM/LAMNav.js",
+                                "Visible": "/SAPAssetManager/Rules/LAM/LAMVisible.js"
+                            }
+                        }
+                    ],
+                    "Layout": {
+                        "NumberOfColumns": 1
+                    },
+                    "_Type": "Section.Type.SimplePropertyCollection"
+                },
+                {
+                    "KeyAndValues": [
+                        {
+                            "_Name": "note",
+                            "KeyName": "$(L, notes)",
+                            "Value": "/SAPAssetManager/Rules/Confirmations/Details/ConfirmationDetailsNotes.js"
+                        }
+                    ],
+                    "Layout": {
+                        "NumberOfColumns": 1,
+                        "MinimumInteritemSpacing": "$(PLT,66,0)" 
+                    },
+                    "Target": {
+                        "EntitySet": "{@odata.readLink}",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "$expand=LongText"
+                    },
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "DescriptionNote"
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable",
+            "DataSubscriptions": ["Confirmations", "ConfirmationLongTexts", "LAMObjectData"]
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "ConfirmationDetailsPage"
+}

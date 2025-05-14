@@ -1,0 +1,8 @@
+{
+    "OnFailure": "/SAPAssetManager/Rules/Common/UpdateRequiredFailed.js",
+    "OnSuccess": "/SAPAssetManager/Rules/Confirmations/CreateUpdate/OnCommit/CreateUpdateConfirmation.js",
+    "RequiredFields": "/SAPAssetManager/Rules/Confirmations/CreateUpdate/OnCommit/ConfirmationCreateUpdateRequiredFields.js",    
+    "_Type": "Action.Type.CheckRequiredFields",
+    "ShowActivityIndicator": true,
+    "ActivityIndicatorText" : " "
+}

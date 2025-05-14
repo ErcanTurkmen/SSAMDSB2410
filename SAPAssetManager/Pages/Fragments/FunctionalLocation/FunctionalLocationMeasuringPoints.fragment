@@ -1,0 +1,46 @@
+{
+    "Header": {
+        "Caption": "$(L,measuring_points)"
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_measuring_points_available)"
+    },
+    "Footer": {
+        "Caption": "$(L,see_all_data)",
+        "AccessoryType": "DisclosureIndicator",
+        "FooterStyle": "Attribute",
+        "AttributeLabel": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointsCount.js",
+        "OnPress": "/SAPAssetManager/Actions/Measurements/MeasuringPointsListViewNav.action"
+    },
+    "_Type": "Section.Type.AnalyticCardCollection",
+    "_Name": "FunctionalLocationMeasuringPointsSection",
+    "DataSubscriptions": ["MeasurementDocuments",  "MeasuringPoints"],
+    "MaxItemCount": 3,
+    "Height": 300,
+    "AnalyticCard": {
+        "_Type": "Card.Type.Chart",
+        "_Name": "Chart",
+        "ChartType": "/SAPAssetManager/Rules/Analytics/AnalyticsChartCollectionType.js",
+        "Metric":"/SAPAssetManager/Rules/Analytics/AnalyticsTextView.js",
+        "Title": "{PointDesc}",
+        "StatusText": "/SAPAssetManager/Rules/Analytics/AnalyticsReadingTimeStamp.js",
+        "OnPress": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointDetailsNav.js",
+        "TrailingUnit":"/SAPAssetManager/Rules/Analytics/AnalyticsUOM.js",
+        "LeadingUnit": "",
+        "SeriesTitle":"/SAPAssetManager/Rules/Analytics/AnalyticsSeriesTitles.js",
+        "Visible": true,
+        "SeriesColor": ["#5899DA"],
+        "DataSeries": {
+            "Data": "/SAPAssetManager/Rules/Analytics/AnalyticsDataSeries.js",
+            "CategoryTitles":  "/SAPAssetManager/Rules/Analytics/AnalyticsCategoryTitles.js",
+            "CategoryLabelVisible": true,
+            "NumericLabelVisible": "/SAPAssetManager/Rules/Analytics/AnalyticsCategoryLabelIsVisible.js"
+        }
+    },
+    "Target": {
+        "EntitySet": "{{#Property:@odata.readLink}}/MeasuringPoints",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$top=3&$orderby=SortField&$expand=MeasurementDocs,MeasurementDocs/MeasuringPoint&$select=Point,PointDesc,CharName,UoM,IsCounter,CodeGroup,CatalogType,MeasurementDocs/ReadingDate,MeasurementDocs/ReadingTime,MeasurementDocs/CodeGroup,MeasurementDocs/ValuationCode,MeasurementDocs/CodeShortText,MeasurementDocs/ReadingValue,MeasurementDocs/IsCounterReading,MeasurementDocs/IsCounterReading,MeasurementDocs/ReadingTimestamp,MeasurementDocs/CounterReadingDifference,MeasurementDocs/MeasurementDocNum,MeasurementDocs/MeasuringPoint/CharName,MeasurementDocs/MeasuringPoint/IsCounter"
+    },
+    "Visible": "/SAPAssetManager/Rules/WCM/IsNotWCMOperator.js"
+}

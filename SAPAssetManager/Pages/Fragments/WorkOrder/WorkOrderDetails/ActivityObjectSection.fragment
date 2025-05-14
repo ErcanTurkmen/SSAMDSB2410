@@ -1,0 +1,25 @@
+{
+    "Visible": "/SAPAssetManager/Rules/WorkOrders/Meter/Details/HideDisconnectSection.js",
+    "Header": {
+        "Caption": "$(L,activity)"
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_activity_object_available)"
+    },
+    "ObjectCell":
+    {
+        "AccessoryType": "DisclosureIndicator",
+        "Title": "/SAPAssetManager/Rules/WorkOrders/Meter/Activity/ActivityDetailsTitle.js",
+        "Subhead": "/SAPAssetManager/Rules/WorkOrders/Meter/Activity/ActivityDetailsSubhead.js",
+        "OnPress": "/SAPAssetManager/Rules/WorkOrders/Meter/Activity/ActivityDetailsNav.js",
+        "PreserveIconStackSpacing": false
+    },
+    "Target": {
+        "EntitySet": "/SAPAssetManager/Rules/WorkOrders/Meter/Details/WorkOrderDetailsActivityEntity.js",
+        "QueryOptions": "/SAPAssetManager/Rules/WorkOrders/Meter/Details/WorkOrderDetailsActivityQuery.js",
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "_Name": "WorkOrderActivityObjectSection",
+    "_Type": "Section.Type.ObjectTable",
+    "DataSubscriptions": ["DisconnectionActivities"]
+}

@@ -1,0 +1,11 @@
+{
+	"Target":
+	{
+		"EntitySet": "MaterialDocuments",
+		"Service": "/SAPAssetManager/Services/AssetManager.service",
+		"ReadLink": "/SAPAssetManager/Rules/Inventory/MaterialDocument/MaterialDocumentDeleteReadLink.js"
+	},
+	"_Type": "Action.Type.ODataService.DeleteEntity",
+	"OnSuccess": "/SAPAssetManager/Rules/Common/ClearEmptyEntityErrors.js",
+    "OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/DeleteEntityFailureMessage.action"
+}

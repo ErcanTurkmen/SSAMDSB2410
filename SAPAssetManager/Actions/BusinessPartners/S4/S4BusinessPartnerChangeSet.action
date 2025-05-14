@@ -1,0 +1,12 @@
+{
+    "_Type": "Action.Type.ODataService.ChangeSet",
+    "Actions": [
+        "/SAPAssetManager/Rules/BusinessPartners/S4/CommitS4BusinessPartner.js",
+        "/SAPAssetManager/Rules/BusinessPartners/S4/CommitS4BusinessPartnerNote.js"
+    ],
+    "Target": {
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "OnSuccess": "/SAPAssetManager/Rules/ApplicationEvents/AutoSync/actions/CreateEntitySuccessMessageWithAutoSave.js",
+    "OnFailure": "/SAPAssetManager/Rules/Common/ChangeSet/ChangeSetOnFailure.js"
+}

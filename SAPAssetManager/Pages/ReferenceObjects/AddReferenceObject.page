@@ -1,0 +1,62 @@
+{
+	"Caption": "$(L, add_reference_objects)",
+	"OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "Items": [
+            "/SAPAssetManager/Pages/Fragments/CancelButton.fragment",
+            {
+                "Position": "Right",
+                "SystemItem": "$(PLT,'Done','','','Done')",
+                "Caption": "$(L,done)",
+                "Text": "/SAPAssetManager/Rules/Common/Platform/DoneText.js",
+				"OnPress": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderRefObjectsCreateUpdateOnCommit.js"
+            }
+        ]
+    },
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"_Type": "Section.Type.FormCell",
+					"_Name": "ReferenceObjectSection",
+					"Controls": [
+						{
+                            "_Type": "Fragment",
+                            "Fragment": "/SAPAssetManager/Pages/Fragments/S4CreateUpdate/ProductLstPkr.fragment",
+							"Properties": {
+								"AllowMultipleSelection": true
+							}
+                        },
+						{
+                            "_Type": "Fragment",
+                            "Fragment": "/SAPAssetManager/Pages/Fragments/S4CreateUpdate/FuncLocHierarchyExtensionControl.fragment",
+							"Properties": {
+								 "ExtensionProperties": {
+									"PickerProperties": {
+										"AllowMultipleSelection": true
+									}
+								 }
+							}
+                        },
+						{
+                            "_Type": "Fragment",
+                            "Fragment": "/SAPAssetManager/Pages/Fragments/S4CreateUpdate/EquipHierarchyExtensionControl.fragment",
+							"Properties": {
+								 "ExtensionProperties": {
+									"PickerProperties": {
+										"AllowMultipleSelection": true
+									}
+								 }
+							}
+                        }
+					]
+				}
+
+			],
+			"_Name": "FormCellContainer",
+			"_Type": "Control.Type.FormCellContainer"
+		}
+	],
+	"_Name": "AddReferenceObjectPage",
+	"_Type": "Page"
+}

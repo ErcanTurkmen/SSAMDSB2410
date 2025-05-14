@@ -1,0 +1,117 @@
+{
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "_Name": "ConfirmationListFilter",
+        "Items": [
+            {
+                "Position": "Left",
+                "_Name": "Cancel",
+                "SystemItem": "Cancel",
+                "Caption": "$(L,cancel)",
+                "OnPress": "/SAPAssetManager/Actions/Page/CancelPage.action"
+            },
+            {
+                "Position": "Right",
+                "_Name": "Filter",
+                "SystemItem": "/SAPAssetManager/Rules/Filter/FilterSystemItem.js",
+                "Text": "/SAPAssetManager/Rules/Filter/FilterText.js",
+                "OnPress": "/SAPAssetManager/Rules/Filter/ApplyFilterAndSave.js"
+            }
+        ]
+    },
+    "Caption":"$(L,filter)",
+    "Result": "/SAPAssetManager/Rules/Confirmations/List/Filter/ConfirmationListFilterResults.js",
+    "Controls":[
+        {
+            "Sections":[
+                {
+                    "Controls": [{
+                        "_Type": "Fragment",
+                        "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/SortByFilter.fragment",
+                        "Properties": {
+                            "SortByItems": [
+                                {
+                                    "ReturnValue":"Description",
+                                    "DisplayValue":"$(L, description)"
+                                },
+                                {
+                                    "ReturnValue":"ObjectID",
+                                    "DisplayValue":"$(L, confirmation_id)"
+                                }
+                            ]
+                        }
+                    }]
+                },
+                {
+					"Controls": [
+						{
+							"Caption": "$(L,status)",
+							"_Name": "StatusLstPicker",
+							"IsPickerDismissedOnSelection": true,
+							"AllowMultipleSelection": true,
+							"AllowEmptySelection": true,
+                            "Value": "/SAPAssetManager/Rules/Confirmations/List/Filter/InitialStatusPickerValue.js",
+                            "PickerItems": [
+								{
+									"DisplayValue": "$(L, open)",
+                                	"ReturnValue": "MobileStatus_Nav/MobileStatus eq 'OPEN'"
+								},
+								{
+									"DisplayValue": "$(L, completed)",
+                                	"ReturnValue": "MobileStatus_Nav/MobileStatus eq 'COMPLETED'"
+								},
+                                {
+									"DisplayValue": "$(L, final_text)",
+                                	"ReturnValue": "FinalConfirmation eq 'Y'"
+								}
+							],
+							"_Type": "Control.Type.FormCell.ListPicker",
+                            "FilterProperty": "Status",
+                            "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+						}
+					]
+				},
+                {
+					"Controls": [
+						{
+                            "_Type": "Fragment",
+                            "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/AssignedToFilterListPkr.fragment",
+                            "Properties": {
+                                "_Name": "AssignedToPicker",
+                                "PickerItems": {
+                                    "DisplayValue": "{EmployeeName}",
+                                    "ReturnValue": "{PersonnelNumber}",
+                                    "Target": {
+                                        "EntitySet": "Employees",
+                                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                        "QueryOptions": "$orderby=EmployeeName"
+                                    }
+                                },
+                                "FilterProperty": "ServiceEmployee",
+                                "IsVisible" : true
+                            }
+						}
+					]
+				}
+            ],
+            "_Name":"FormCellContainer",
+            "_Type":"Control.Type.FormCellContainer"
+        }
+    ],
+    "FioriToolbar": {
+        "_Name": "ConfirmationFilterFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Items": [
+            {
+				"_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/ResetFilterToolbarItem.fragment",
+				"Properties": {
+                    "OnPress": "/SAPAssetManager/Rules/WorkOrders/WorkOrderListFilterReset.js"
+				}
+			}
+        ]
+    },
+    "_Type":"Page",
+    "_Name":"ConfirmationListFilterPage",
+    "OnLoaded": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+}

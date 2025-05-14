@@ -1,0 +1,6 @@
+{
+	"_Type": "Action.Type.CheckRequiredFields",
+	"RequiredFields": ["SignatureCaptureFormCell"],
+	"OnSuccess": "/SAPAssetManager/Rules/WCM/Approvals/IssueApproval.js",
+    "OnFailure": "/SAPAssetManager/Rules/WCM/Approvals/IssueApprovalRequiredFieldsOnFailure.js"
+}

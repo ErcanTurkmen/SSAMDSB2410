@@ -1,0 +1,21 @@
+{
+    "Search": {
+        "Enabled": true,
+        "Delay": 500,
+        "MinimumCharacterThreshold": 3,
+        "Placeholder": "$(L,search)",
+        "BarcodeScanner": true
+    },
+    "Header": {
+ 		  "UseTopPadding": false
+ 	  },
+    "ObjectCell":"/SAPAssetManager/Pages/WCM/Fragments/WorkApprovalsObjectCell.fragment",
+    "EmptySection": {
+       "Caption": "$(L,wcm_no_work_approvals)",
+       "HidesFooter":true
+    },
+    "Visible": "/SAPAssetManager/Rules/WCM/Common/WCMWorkApprovalsVisible.js",
+    "_Name": "WorkApprovals",
+    "_Type": "Section.Type.ObjectTable"
+}
+

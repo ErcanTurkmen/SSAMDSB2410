@@ -1,0 +1,89 @@
+{
+	"Caption": "$(L,items)",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Header": {
+						"UseTopPadding": false,
+						"Caption": "/SAPAssetManager/Rules/Inventory/ProductionOrder/ProductionOrderComponentsListCaption.js"
+					},
+					"EmptySection": {
+						"Caption": "$(L,no_components)"
+					},
+					"ObjectCell": {
+						"DetailImageIsCircular": false,
+						"PreserveIconStackSpacing": false,
+						"OnPress": "/SAPAssetManager/Rules/Inventory/Reservation/ReservationItemProductionOrderComponentDetailsQuery.js",
+						"Title": "/SAPAssetManager/Rules/Inventory/Common/GetItemTextOrMaterialName.js",
+						"Description": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetItemDescription.js",
+						"Subhead": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetItemSubHead.js",
+						"Footnote": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetItemFootnote.js",
+						"StatusText": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetPOItemState.js",
+						"SubstatusText": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetPurchaseOrderItemsOpenQuantitiesText.js",
+						"AccessoryButtonIcon": "$(PLT, /SAPAssetManager/Images/edit-accessory.ios.png, /SAPAssetManager/Images/edit-accessory.android.png,'',/SAPAssetManager/Images/edit-accessory.ios.png)",
+						"OnAccessoryButtonPress": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/SetPurchaseOrderGoodsReceipt.js"
+					},
+					"Search": {
+						"Enabled" : true,
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 3,
+                        "Placeholder": "$(L,search)",
+                        "BarcodeScanner": true
+					},
+					"Target": {
+						"EntitySet":  "ProductionOrderComponents",
+                        "QueryOptions": "/SAPAssetManager/Rules/Inventory/ProductionOrder/GetComponentsListQuery.js",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					},
+					"_Name": "PRDComponentsSectionObjectTable",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"FilterFeedbackBar": {
+				"_Type": "Control.Type.FilterFeedbackBar",
+				"_Name": "FilterFeedback",
+				"ShowAllFilters": true,
+				"FastFilters": [
+					{  
+						"_Name": "OpenComponents",
+						"_Type": "Control.Type.FastFilterItem",
+						"FilterType": "Filter",
+						"FilterProperty": "",
+						"CustomQueryGroup": "ComponentsFilter",
+						"DisplayValue": "/SAPAssetManager/Rules/Inventory/ProductionOrder/ProductionOrderOpenComponentsDisplayValue.js",
+						"ReturnValue": "/SAPAssetManager/Rules/Inventory/ProductionOrder/ProductionOrderOpenComponentsFilterQuery.js"
+					},
+					{  
+						"_Name": "IssuedComponents",
+						"_Type": "Control.Type.FastFilterItem",
+						"FilterType": "Filter",
+						"FilterProperty": "",
+						"CustomQueryGroup": "ComponentsFilter",
+						"DisplayValue": "/SAPAssetManager/Rules/Inventory/ProductionOrder/ProductionOrderIssuedComponentsDisplayValue.js",
+						"ReturnValue": "Completed eq 'X' or (not(RequirementQuantity eq 0 or WithdrawalQuantity eq 0 or RequirementQuantity gt WithdrawalQuantity))"
+					}
+				]
+			},
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable",
+			"Filters": "/SAPAssetManager/Rules/Inventory/ProductionOrder/GetComponentsPreselectedFilter.js"
+		}
+	],
+	"FioriToolbar": {
+		"_Name": "ProductionOrderComponentsListFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Items": [
+            {
+                "_Name": "IssuePartTbI",
+                "_Type": "FioriToolbarItem.Type.Button",
+                "Enabled" : "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/BulkGoodsIssueIsAllowed.js",
+                "Title": "$(L,issue_all)",
+                "OnPress": "/SAPAssetManager/Rules/Inventory/ProductionOrder/SetProductionOrderComponentsGoodsIssueIssueAll.js"
+            }
+        ]
+    },
+	"OnReturning": "/SAPAssetManager/Rules/Inventory/ProductionOrder/ProductionOrderComponentsListOnReturning.js",
+	"_Name": "ProductionOrderComponentsListPage",
+	"_Type": "Page"
+}

@@ -1,0 +1,55 @@
+{
+	"_Type": "Page",
+	"_Name": "BatchStockPage",
+	"Caption": "/SAPAssetManager/Rules/Inventory/Stock/StockDescription.js",
+	"Controls": [
+		{
+			"_Type": "Control.Type.SectionedTable",
+			"_Name": "StockDetailsSectionedTable",
+			"Sections": [
+                {
+                    "EmptySection": {
+						"Caption": "$(L,no_related_document)"
+					},
+                    "Header": {
+                        "DataTable": {
+                            "Items": [
+                                {
+                                    "Text": "$(L,batch)",
+                                    "TextAlignment": "Left"
+                                },
+                                {
+                                    "Text": "$(L,stock_quantity_uom)",
+                                    "TextAlignment": "Right"
+                                }
+                            ]
+                        }
+                    },
+                    "Row": {
+                        "Layout": {
+                            "ColumnWidth": [200,200]
+                        },
+                        "Items": [
+                            {
+                                "Text": "{Batch}",
+                                "TextAlignment": "Left"
+                            },
+                            {
+                                "Text": "/SAPAssetManager/Rules/Inventory/Stock/QuantityWithUOM.js",
+                                "TextAlignment": "Right"
+                            }
+                        ]
+                    },
+                    "Target": {
+                        "EntitySet": "MaterialBatchStockSet",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "/SAPAssetManager/Rules/Inventory/Stock/StockMaterialBatchQuery.js"
+                    },
+                    "_Type": "Section.Type.DataTable",
+                    "StickyColumn": false,
+                    "_Name": "DataTableSection"
+                }
+			]
+		}
+	]
+}

@@ -1,0 +1,59 @@
+{
+	"Caption": "/SAPAssetManager/Rules/Operations/PRT/Documents/PRTDocumentListViewCaption.js",
+	"OnLoaded": "/SAPAssetManager/Rules/Filter/ListPageWithFilterOnLoaded.js",
+	"ActionBar":
+	{
+		"_Name": "DocumentsList",
+		"Items":
+		[{
+			"Position": "Right",
+			"_Name": "Filter",
+			"Icon": "$(PLT,'',/SAPAssetManager/Images/filter.android.png)",
+			"Caption": "/SAPAssetManager/Rules/Filter/FilterButtonCaption.js",
+            "OnPress": "/SAPAssetManager/Actions/WorkOrders/Operations/PRT/PRTDocumentFilter.action"
+		}]
+	},
+	"Controls":
+	[{
+		"Sections":
+		[{
+			"Search":
+			{
+				"Enabled" : true,
+				"Delay": 500,
+				"MinimumCharacterThreshold": 3,
+				"Placeholder": "$(L,search)",
+				"BarcodeScanner": true
+			},
+			"Header": {
+				"UseTopPadding": false
+			},
+			"EmptySection": {
+				"Caption": "$(L,no_prt_document_available)"
+			},
+			"ObjectCell":
+			{
+                "Icons": "/SAPAssetManager/Rules/Documents/DocumentListViewIconImages.js",
+                "ProgressIndicator": "/SAPAssetManager/Rules/Operations/PRT/Documents/PRTSetIndicatorStateWrapper.js",
+                "DetailImage": "/SAPAssetManager/Rules/Documents/DocumentTypeIcon.js",
+                "DetailImageIsCircular": false,
+                "Title": "{{#Property:PRTDocument/#Property:FileName}}",
+                "Subhead": "{{#Property:PRTDocument/#Property:Description}}",
+                "Footnote": "/SAPAssetManager/Rules/Operations/PRT/Documents/PRTDocumentFileSizeWrapper.js",
+                "OnAccessoryButtonPress": "/SAPAssetManager/Rules/Operations/PRT/Documents/PRTDownloadOrOpenDocumentWrapper.js"
+            },
+			"Target":
+			{
+                "EntitySet" : "{{#Property:@odata.readLink}}/Tools",
+                "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                "QueryOptions": "/SAPAssetManager/Rules/WorkOrders/Operations/PRT/PRTDocumentsQueryOptions.js"
+            },
+			"_Type" : "Section.Type.ObjectTable",
+			"_Name": "DocumentSection"
+		}],
+		"_Type" : "Control.Type.SectionedTable",
+		"_Name": "SectionedTable"
+	}],
+	"_Type": "Page",
+	"_Name": "PRTDocumentsListView"
+}

@@ -1,0 +1,12 @@
+{
+    "AccessoryType": "DisclosureIndicator",
+    "Description": "/SAPAssetManager/Rules/WorkOrders/History/WorkOrderHistoryLongText.js",
+    "Title": "/SAPAssetManager/Rules/WorkOrders/WorkOrderDescription.js",
+    "Subhead": "{OrderId}",
+    "Footnote": "/SAPAssetManager/Rules/WorkOrders/History/WorkOrderHistoryStartEndDate.js",
+    "StatusText": "#Property:HistoryPriority/#Property:PriorityDescription",
+    "SubstatusText": "{OrderType}",
+    "OnPress": "/SAPAssetManager/Rules/WorkOrders/History/WorkOrderHistoryDetailsNav.js",
+    "PreserveIconStackSpacing":false,
+    "_Type": "Control.Type.ObjectCell"
+}

@@ -1,0 +1,36 @@
+{
+	"Caption": "UserSysInfo",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"_Type": "Section.Type.SimplePropertyCollection",
+					"_Name": "userinfosection",
+					"Header": {
+            			"UseTopPadding": false
+          			},
+					"SimplePropertyCell": {
+						"_Name": "userinfo",
+						"AccessoryType": "none",
+						"KeyName": "{SystemSettingName}",
+						"Value": "{SystemSettingValue}"
+					},
+					"Layout": {
+            			"NumberOfColumns": 1,
+            			"MinimumInteritemSpacing": "$(PLT,66,0)" 
+          			},
+					"Target":{
+						"EntitySet": "UserSystemInfos",
+						"Service": "/SAPAssetManager/Services/AssetManager.service",
+						"QueryOptions": "$filter=SystemSettingGroup eq 'SYS.USER'&$orderby=SystemSettingGroup,SystemSettingName"
+					}
+
+				}
+			],
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"_Name": "UserSysInfo",
+	"_Type": "Page"
+}

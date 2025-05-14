@@ -1,0 +1,29 @@
+{
+    "_Type": "Section.Type.KeyValue",
+    "_Name": "MainReferenceObjectSection",
+    "Header": {
+        "Caption": "$(L,main_reference_object)"
+    },
+    "KeyAndValues": [
+        {
+            "_Name": "ProductID",
+            "KeyName": "$(L,product)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/Details/ServiceOrderProduct.js"
+        },
+        {
+            "_Name": "MyEquipment.EquipDesc",
+            "KeyName": "$(L,equipment)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/Details/ServiceOrderEquipment.js"
+        },
+        {
+            "_Name": "MyFunctionalLocation.FuncLocDesc",
+            "KeyName": "$(L,functional_location)",
+            "Value": "/SAPAssetManager/Rules/ServiceOrders/Details/ServiceOrderFunctionalLocation.js"
+        }
+    ],
+    "Target": {
+        "EntitySet": "{@odata.readLink}/RefObjects_Nav",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$select=ProductID,FuncLoc_Nav/FuncLocDesc,Equipment_Nav/EquipDesc&$expand=FuncLoc_Nav,Equipment_Nav&$filter=MainObject eq 'X'"
+    }
+}

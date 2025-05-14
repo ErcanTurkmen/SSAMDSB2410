@@ -1,0 +1,68 @@
+{
+	"Caption": "$(L, online_search)",
+	"ActionBar": {
+		"Items": [
+			{
+				"_Name": "SelectAll",
+				"Position": "Right",
+				"Text": "$(L,select_all)",
+				"Visible": "/SAPAssetManager/Rules/OnlineSearch/SelectAllButtonVisible.js",
+				"OnPress": "/SAPAssetManager/Rules/OnlineSearch/SelectAllItems.js"
+			},
+			{
+				"_Name": "DeselectAll",
+				"Position": "Right",
+				"Text": "$(L,deselect_all)",
+				"Visible": "/SAPAssetManager/Rules/OnlineSearch/DeselectAllButtonVisible.js",
+				"OnPress": "/SAPAssetManager/Rules/OnlineSearch/DeselectAllItems.js"
+			},
+			{
+				"_Name": "Cancel",
+				"Position": "Left",
+				"Text": "$(L, cancel)",
+				"OnPress": "/SAPAssetManager/Rules/OnlineSearch/ListViewToggleMode.js",
+				"Visible": "/SAPAssetManager/Rules/OnlineSearch/ItemActiveInSelectMode.js"
+			},
+			{
+				"_Name": "Select",
+				"Position": "Right",
+				"IconText": "SelectIcon",
+				"Text": "$(L, select)",
+				"Visible": "/SAPAssetManager/Rules/OnlineSearch/SelectModeButtonVisible.js",
+				"OnPress": "/SAPAssetManager/Rules/OnlineSearch/ListViewToggleMode.js"
+			},
+			{
+				"Position": "Right",
+				"_Name": "SearchCriteria",
+				"Text": "/SAPAssetManager/Rules/OnlineSearch/SearchButtonCaption.js",
+				"Visible": "/SAPAssetManager/Rules/OnlineSearch/OnlineSearchCriteriaVisible.js",
+				"OnPress": "/SAPAssetManager/Rules/OnlineSearch/OnlineSearchCriteriaPopover.js"
+			}
+		]
+	},
+	"Controls": [
+		{
+			"Items": "/SAPAssetManager/Rules/OnlineSearch/OnlineSearchTabItems.js",
+			"SwipeEnabled": false,
+			"Position": "Top",
+			"_Type": "Control.Type.Tabs",
+			"_Name": "TabsControl"
+  		}
+	],
+	"FioriToolbar": {
+		"_Name": "OnlineSearchFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+		"Visible": "/SAPAssetManager/Rules/OnlineSearch/ItemActiveInSelectMode.js",
+		"Items": [
+			{
+				"_Name": "ConfirmBtn",
+				"_Type": "FioriToolbarItem.Type.Button",
+				"Title": "$(L,download)",
+				"Enabled": "/SAPAssetManager/Rules/OnlineSearch/DownloadButtonEnabled.js"
+			}
+		]
+	},
+	"OnReturning": "/SAPAssetManager/Rules/OnlineSearch/OnlineSearchOnReturn.js",
+	"_Name": "OnlineSearch",
+	"_Type": "Page"
+}

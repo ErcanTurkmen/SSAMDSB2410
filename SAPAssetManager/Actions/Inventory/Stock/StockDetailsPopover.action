@@ -1,0 +1,23 @@
+{
+    "PopoverItems":
+    [{
+        "Title": "$(L,add_to_order)",
+        "OnPress": "/SAPAssetManager/Rules/Parts/PartCreateUpdateNavFromDetails.js",
+        "Visible": "/SAPAssetManager/Rules/SideDrawer/EnableMultipleTechnician.js"
+    },
+    {
+        "Title": "$(L,transfer)",
+        "OnPress": "/SAPAssetManager/Rules/Inventory/Stock/Transfer/TransferFromDetails.js"
+    },
+    {
+        "Title": "$(L,issue)",
+        "OnPress": "/SAPAssetManager/Rules/Inventory/Stock/SetStockGoodsIssue.js",
+        "Visible": "/SAPAssetManager/Rules/SideDrawer/EnableInventoryClerk.js"
+    },
+	{
+		"Title": "$(L,add_purchase_requisition)",
+		"OnPress": "/SAPAssetManager/Rules/Inventory/Stock/AddPurchaseRequisitionNavFromStockDetails.js",
+		"Visible": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Technicians/IsPurchaseRequisitionVisible.js"
+	}],
+    "_Type": "Action.Type.PopoverMenu"
+}

@@ -1,0 +1,134 @@
+{
+    "Caption": "/SAPAssetManager/Rules/Inventory/Item/ItemCaption.js",
+    "ActionBar": {
+        "Items": [
+            {
+                "Position": "Right",
+                "Icon": "$(PLT, /SAPAssetManager/Images/edit.png, /SAPAssetManager/Images/edit-accessory.android.png, '', /SAPAssetManager/Images/edit-accessory.android.png)",
+                "IconText": "Edit",
+                "OnPress": "/SAPAssetManager/Rules/Inventory/Item/SetItemEdit.js"
+            },
+            {
+                "Position": "Right",
+                "Icon": "$(PLT,/SAPAssetManager/Images/deliverydetails.png,/SAPAssetManager/Images/deliverydetails.android.png, '', /SAPAssetManager/Images/deliverydetails.png)",
+                "OnPress": "/SAPAssetManager/Rules/Inventory/Item/MaterialDetailsNav.js",
+                "Visible": "/SAPAssetManager/Rules/Inventory/Item/MaterialHeaderButtonVisible.js"
+            },
+            "/SAPAssetManager/Pages/Fragments/SyncButton.fragment"
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "ObjectHeader": {
+                        "HeadlineText": "/SAPAssetManager/Rules/Inventory/Common/GetMaterialName.js",
+                        "Tags": "/SAPAssetManager/Rules/Inventory/Item/ItemTags.js",
+                        "Subhead": "/SAPAssetManager/Rules/Inventory/Item/ItemSubHead.js",
+                        "BodyText": "/SAPAssetManager/Rules/Inventory/Item/ItemBodyText.js",
+                        "Footnote": "/SAPAssetManager/Rules/Inventory/Item/ItemFootnote.js"
+                    },
+                    "_Type": "Section.Type.ObjectHeader",
+                    "_Name": "ObjectHeaderSectionTable"
+                },
+                {
+                   "_Type": "Section.Type.KeyValue",
+                    "_Name": "PhysicalInventoryDetailsSection",
+                    "Header": {
+                        "Caption": "$(L,item_details)"
+                    },
+                    "KeyAndValues": [
+                         {
+							"_Name": "Item",
+							"KeyName": "$(L,item)",
+							"Value": "{ItemNum}"
+						},
+                        {
+							"_Name": "SpecialStockInd",
+							"KeyName": "$(L,special_stock_indicator)",
+							"Value": "$(DV, '/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryDocHeaderGetRelatedSpecialStock.js', '-')"
+						},
+                        {
+							"_Name": "Vendor",
+							"KeyName": "$(L,vendor)",
+							"Value": "$(DV, '/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryDocHeaderGetRelatedVendor.js', '-)"
+						},
+                        {
+							"_Name": "Project",
+							"KeyName": "$(L,project)",
+							"Value": "$(DV,{WBSElement},'-')"
+						},
+                        {
+							"_Name": "CountDate",
+							"KeyName": "$(L,count_date)",
+							"Value": "$(DV, '/SAPAssetManager/Rules/Inventory/PhysicalInventory/GetCountdateForInventoryHeader.js', '-')"
+						},
+                        {
+							"_Name": "StorageBin",
+							"KeyName": "$(L,storage_bin)",
+							"Value": "$(DV,{StorageBin},'-')"
+						},
+                        {
+							"_Name": "Material",
+							"KeyName": "$(L,material)",
+							"Value": "$(DV, '/SAPAssetManager/Rules/Inventory/Item/GetMaterial.js', '-')"
+						},
+                        {
+							"_Name": "Quantity",
+							"KeyName": "$(L,quantity)/$(L,uom)",
+							"Value": "$(DV,{QuantityUOM},'-')"
+						},
+                        {
+							"_Name": "ZeroCount",
+							"KeyName": "$(L, pi_zero_count)",
+							"Value": "$(DV,{ZeroCount},'-')"
+						},
+                        {
+							"_Name": "Batch",
+							"KeyName": "$(L,batch)",
+							"Value": "$(DV,{Batch},'-')"
+						},
+                        {
+							"_Name": "Deleted",
+							"KeyName": "$(L, deleted)",
+							"Value": "{Deleted}"
+						}],
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemDetailsTarget.js",
+                    "Visible": true,
+                    "DataSubscriptions": ["PhysicalInventoryDocItems"]
+                },         
+                {
+                    "Header": {
+                        "Caption": "$(L,serial_numbers)"
+                    },
+                    "EmptySection": {
+                        "Caption": "$(L,no_serial_numbers)"
+                    },
+                    "ObjectCell": {
+                        "Title": "{SerialNumber}",
+                        "PreserveIconStackSpacing": false,
+                        "StatusText": "{Description}"
+                    },
+                    "Target": "/SAPAssetManager/Rules/Inventory/Item/ItemSerialNumbersTarget.js",
+                    "Visible": "/SAPAssetManager/Rules/Inventory/Item/ItemSerialNumbersVisible.js",
+                    "_Type": "Section.Type.ObjectTable",
+                    "_Name": "SerialNumbersSection"
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable"
+        }
+    ],
+    "ToolBar": {
+        "Controls":[
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsPreviousItem.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/FlexibleSpaceToolBar.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsDiscard.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/FlexibleSpaceToolBar.fragment",
+            "/SAPAssetManager/Pages/Fragments/Inventory/ItemDetailsNextItem.fragment"
+        ]
+    },
+    "OnReturning": "/SAPAssetManager/Rules/Inventory/Item/ItemPageOnReturning.js",
+    "_Name": "PhysicalInventoryItemDetailsPage",
+    "_Type": "Page"
+}

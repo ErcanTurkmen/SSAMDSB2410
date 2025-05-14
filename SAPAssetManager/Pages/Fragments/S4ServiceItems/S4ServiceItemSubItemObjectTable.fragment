@@ -1,0 +1,44 @@
+{
+    "_Type": "Section.Type.ObjectTable",
+    "_Name": "ServiceSubItems",
+    "Visible": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceSubItemsObjectTableVisible.js",
+    "Header": {
+        "UseTopPadding": true,
+        "Caption": "$(L, sub_item)"
+    },
+    "EmptySection": {
+        "Caption": "$(L, no_service_items_available)"
+    },
+    "ObjectCell": {
+        "DetailImage": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemDetailImage.js",
+        "Icons": "/SAPAssetManager/Rules/ServiceOrders/ListView/ServiceOrderListViewIconImages.js",
+        "Title": "{ItemDesc}",
+        "Subhead": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemSubheadText.js",
+        "AccessoryType": "DisclosureIndicator",
+        "Description": "/SAPAssetManager/Rules/ServiceOrders/Details/ServiceItemProductIdValue.js",
+        "Footnote": "/SAPAssetManager/Rules/DateTime/ServiceDueByDate.js",
+        "StatusText": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemTypeText.js",
+        "SubstatusText": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemStatusText.js",
+        "OnPress": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/ServiceItemDetailsNav.js",
+        "PreserveIconStackSpacing": true
+    },
+    "MaxItemCount": 2,
+    "Target": {
+        "EntitySet": "S4ServiceItems",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/SubItem/SubServiceItemQueryOptions.js"
+    },
+    "Footer": {
+        "Caption": "$(L,see_all)",
+        "AccessoryType": "DisclosureIndicator",
+        "AttributeLabel": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/SubItem/SubServiceItemByItemCount.js",
+        "FooterStyle": "Attribute",
+        "OnPress": "/SAPAssetManager/Rules/ServiceOrders/Details/ServiceItemsByOrderNav.js",
+        "Visible": "/SAPAssetManager/Rules/ServiceOrders/ServiceItems/SubItem/IsSubServiceItemFooterVisible.js"
+    },
+    "DataSubscriptions": [
+        "S4ServiceItems",
+        "PMMobileStatuses",
+        "S4ServiceOrders"
+    ]
+}

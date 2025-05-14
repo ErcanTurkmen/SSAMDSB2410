@@ -1,0 +1,46 @@
+{
+	"Caption": "$(L, fld_packages_details)",
+	"ActionBar": {
+		"Items": [
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment"
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"ObjectHeader": {
+						"HeadlineText": "/SAPAssetManager/Rules/FL/Packages/Details/PackageHeaderlineText.js",
+						"Subhead": "/SAPAssetManager/Rules/FL/Packages/PackageDescription.js",
+						"StatusText": "#Property:FldLogsContainerStatus_Nav/FldContainerStatusDescription"
+					},			
+					"_Name": "SectionObjectHeader",
+					"_Type": "Section.Type.ObjectHeader"
+				}
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		},
+		{
+			"Items": [
+			{
+				"_Name": "PackagesItemListTab",
+				"Caption": "$(L, fld_packages_items)",
+				"PageToOpen" : "/SAPAssetManager/Pages/FL/Packages/PackageItemsList.page",
+				"_Type": "Control.Type.TabItem"
+			},
+			{
+				"_Name": "PackageHeaderTab",
+				"Caption": "$(L, header)",
+				"PageToOpen" : "/SAPAssetManager/Pages/FL/Packages/PackagesHeader.page",
+				"PageMetadata": "/SAPAssetManager/Rules/FL/Packages/Details/PackagesHeaderPageMetadata.js",
+				"_Type": "Control.Type.TabItem"
+			}],
+			"Position": "Top",
+			"_Type": "Control.Type.Tabs",
+			"_Name": "TabsControl"
+		}
+	],
+	"_Name": "PackageDetailsPage",
+	"_Type": "Page"
+}

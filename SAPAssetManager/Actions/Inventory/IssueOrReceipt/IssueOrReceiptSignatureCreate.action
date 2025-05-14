@@ -1,0 +1,20 @@
+{
+  "_Type": "Action.Type.ODataService.CreateMedia",
+  "Target" : {
+    "EntitySet" : "Documents",
+    "Service" : "/SAPAssetManager/Services/AssetManager.service"
+  },
+  "Headers" : {
+     "slug" : {}
+  },
+  "Properties" : {
+    "ObjectKey": "/SAPAssetManager/Rules/Documents/DocumentTransactionID.js",
+    "MimeType": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/IssueOrReceiptSignatureOnCreateMimeType.js"
+  },
+  "Media": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/SignatureMedia.js",
+  "OnSuccess": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/IssueOrReceiptSignatureCreateOnSuccess.js",
+  "OnFailure": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/IssueOrReceiptSignatureFailure.js",
+  "ActionResult": {
+    "_Name": "IssueOrReceiptSignatureResult"
+  }
+}

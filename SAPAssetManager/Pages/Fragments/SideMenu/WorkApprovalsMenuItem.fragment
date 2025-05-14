@@ -1,0 +1,13 @@
+{
+    "Title": "/SAPAssetManager/Rules/SideDrawer/SideDrawerWorkApprovalsCount.js",
+    "OnPress": "/SAPAssetManager/Actions/WCM/WorkApprovalsListViewNav.action",
+    "_Name": "WorkApprovals",
+    "ResetIfPressedWhenActive": true,
+    "Image": "$(PLT,/SAPAssetManager/Images/workapprovals.png,/SAPAssetManager/Images/workapprovals.android.png)",
+        "Styles": {
+        "SectionItemInactive": "$(PLT,SectionItemActive,SideDrawerItemActive)",
+        "SectionItemActive": "$(PLT,SectionItemActive,SideDrawerItemActive)",
+        "SectionItemOnPress": "$(PLT,SectionItemActive,SideDrawerItemActive)"
+    },
+    "Visible": "/SAPAssetManager/Rules/WCM/Common/WCMWorkApprovalsVisible.js"
+}

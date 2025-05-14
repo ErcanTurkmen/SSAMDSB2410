@@ -1,0 +1,6 @@
+{
+	"_Type": "Action.Type.Message",
+	"Title": "$(L, scan_failed)",
+	"Message": "/SAPAssetManager/Rules/Inventory/SerialNumbers/BarcodeScanFailureMessage.js",
+	"OKCaption": "$(L, ok)"
+}

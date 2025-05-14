@@ -1,0 +1,68 @@
+{
+	"Caption": "/SAPAssetManager/Rules/Notes/NotesViewCaption.js",
+	"ActionBar":
+	{
+		"_Name": "NotesView",
+		"Items":
+		[{
+			"Position": "Right",
+			"_Name": "Edit",
+		    "SystemItem" : "Edit",
+			"Caption": "$(L,edit)",
+			"OnPress": "/SAPAssetManager/Rules/Notes/NoteUpdateNav.js",
+            "Visible": "/SAPAssetManager/Rules/Notes/ShowNoteEdit.js"
+		},
+		{
+			"Position": "Right",
+			"_Name": "Add",
+			"SystemItem": "Add",
+			"Caption": "$(L,add)",
+			"OnPress": "/SAPAssetManager/Rules/Notes/NoteCreateNav.js",
+			"Visible": "/SAPAssetManager/Rules/UserAuthorizations/Common/EnableNoteCreate.js"
+		}
+		]
+	},
+	"Controls":
+	[{
+		"Sections":
+		[{
+			"Header": {
+				"Caption": "/SAPAssetManager/Rules/Notes/List/NoteTime.js"
+			},
+            "KeyAndValues": [
+                {
+					"_Name": "note",
+                    "KeyName": "",
+                    "Value": "/SAPAssetManager/Rules/Notes/NoteViewValue.js"
+                }
+            ],
+            "Layout": {
+                "NumberOfColumns": 1,
+                "MinimumInteritemSpacing": "$(PLT,66,0)" 
+            },
+            "_Type": "Section.Type.KeyValue",
+            "_Name": "Notes"
+        }],
+		"_Type" : "Control.Type.SectionedTable"
+	}],
+	"FioriToolbar": {
+        "_Name": "FioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+		"Visible": "/SAPAssetManager/Rules/Notes/Details/IsNoteDetailsDiscardButtonVisible.js",
+		"Items": [
+			{
+				"_Name": "DiscardButton",
+				"_Type": "FioriToolbarItem.Type.Button",
+				"Title": "$(L, discard)",
+				"Semantic": "Negative",
+				"OnPress": "/SAPAssetManager/Rules/Notes/Delete/DiscardNoteAction.js"
+			}
+		]
+	},
+	"_Type": "Page",
+	"_Name": "NotesView",
+    "OnLoaded": "/SAPAssetManager/Rules/Notes/NotesViewOnPageLoad.js",
+	"OnUnloaded": "/SAPAssetManager/Rules/Notes/NotesViewOnUnloaded.js",
+    "OnReturning": "/SAPAssetManager/Rules/Notes/NotesViewOnReturning.js",
+    "DataSubscriptions": "/SAPAssetManager/Rules/Notes/NoteDataSubscriptions.js"
+}

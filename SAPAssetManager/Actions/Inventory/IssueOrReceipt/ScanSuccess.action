@@ -1,0 +1,7 @@
+{
+	"_Type": "Action.Type.ToastMessage",
+	"Title": "$(L, scan_success)",
+	"Message": "/SAPAssetManager/Rules/Inventory/SerialNumbers/BarcodeScanCount.js",
+    "Duration": 3,
+    "Animated": true
+}

@@ -1,0 +1,57 @@
+{
+	"Header": {
+		"UseTopPadding": false
+	},
+	"Footer": {
+		"UseBottomPadding": false
+	},
+	"Module": "extension-MapFramework",
+	"Control": "MapViewExtension",
+	"Class": "MapViewExtension",
+	"Height": 240,
+	"DataSubscriptions": [
+		"MyEquipments",
+		"MyFunctionalLocations",
+		"Geometries",
+		"PMMobileStatuses",
+		"WCMApplications",
+		"WCMDocumentHeaders",
+		"WCMDocumentItems"
+	],
+	"ExtensionProperties": {
+		"Config": "/SAPAssetManager/Pages/Fragments/Map/MapConfigNoUserInteraction.fragment",
+		"TokenAuthentication": {
+			"Action": "/SAPAssetManager/Rules/Extensions/TokenRequest.js"
+		},
+		"MapToolsetIcons": [],
+		"BusinessObjects": [
+			{
+				"_Type": "Fragment",
+				"Fragment": "/SAPAssetManager/Pages/Fragments/Map/Equipments/MapEquipmentBO.fragment",
+				"Properties": {
+					"Target": {
+						"QueryOptions": "$expand=EquipGeometries/Geometry&$filter=EquipGeometries/any(eg:sap.entityexists(eg/Geometry))"
+					},
+					"Enable": false
+				}
+			},
+			{
+				"_Type": "Fragment",
+				"Fragment": "/SAPAssetManager/Pages/Fragments/Map/FunctionalLocations/MapFunctionalLocationBO.fragment",
+				"Properties": {
+					"Target": {
+						"QueryOptions": "$expand=FuncLocGeometries/Geometry&$filter=FuncLocGeometries/any(fg:sap.entityexists(fg/Geometry))"
+					},
+					"Enable": false
+				}
+			},
+			"/SAPAssetManager/Pages/Fragments/Map/BusinessObjects/WorkPermitBO.fragment",
+			"/SAPAssetManager/Pages/Fragments/Map/BusinessObjects/LOTOCertificateMapBO.fragment",
+			"/SAPAssetManager/Pages/Fragments/Map/BusinessObjects/OperationalItemMapBO.fragment"
+		]
+	},
+	"OnPress": "/SAPAssetManager/Rules/Maps/BeforeWCMMapNav.js",
+	"_Type": "Section.Type.Extension",
+	"_Name": "WCMMapExtensionSection",
+	"Visible": "/SAPAssetManager/Rules/Maps/IsGISEnabled.js"
+}

@@ -1,0 +1,31 @@
+{
+    "Type": "Equipment",
+    "Title": "$(L, dl_equip)",
+    "Legend": "IconEquipment",
+    "Target": {
+        "EntitySet": "MyEquipments",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$expand=EquipGeometries/Geometry&$filter=EquipGeometries/any(eg:sap.entityexists(eg/Geometry))&$top=10",
+        "Properties": [],
+        "KeyProperties": []
+    },
+    "Enable": true,
+    "ObjectScheme": {
+        "Geometry": "EquipGeometries/Geometry/GeometryValue",
+        "Layer": "Equipment",
+        "Properties": {
+            "ID": "{EquipId}"
+        },
+        "Actions": [],
+        "Symbol": {
+            "marker": "/SAPAssetManager/Rules/Maps/Icons/EquipmentIcon.js",
+            "lineColor": "A100C2",
+            "fillColor": "A100C233",
+            "lineWidth": 2,
+            "onSelect": {
+                "marker": "MarkerAssetSelected",
+                "lineWidth": 4
+            }
+        }
+    }
+}

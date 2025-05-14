@@ -1,0 +1,13 @@
+{
+    "_Type": "Action.Type.ODataService.UpdateEntity",
+    "Target": {
+      "EntitySet": "UserPreferences",
+      "Service": "/SAPAssetManager/Services/AssetManager.service",
+		  "ReadLink": "{#ClientData/ReadLink}"
+    },
+    "Properties": {
+      "PreferenceName": "{#ClientData/PreferenceName}",
+      "PreferenceValue": "{#ClientData/PreferenceValue}"
+    },
+	"OnSuccess": "/SAPAssetManager/Actions/Filter/FilterSettingsUpdatedSuccess.action"
+}

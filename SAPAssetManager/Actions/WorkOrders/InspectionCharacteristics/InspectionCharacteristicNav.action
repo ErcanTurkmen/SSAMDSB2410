@@ -1,0 +1,5 @@
+{
+	"PageToOpen": "/SAPAssetManager/Pages/InspectionCharacteristics/InspectionCharacteristicDetails.page",
+	"_Type": "Action.Type.Navigation",
+	"PageMetadata": "/SAPAssetManager/Rules/InspectionCharacteristics/InspectionCharacteristicDetailsPageMetadata.js"
+}

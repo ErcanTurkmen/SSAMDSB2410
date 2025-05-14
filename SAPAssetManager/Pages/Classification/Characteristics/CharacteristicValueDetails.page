@@ -1,0 +1,106 @@
+{
+    "Caption": "/SAPAssetManager/Rules/Classification/Characteristics/CharacteristicValueCaption.js",
+    "OnReturning": "/SAPAssetManager/Rules/Classification/Characteristics/CharacteristicValueDetailsOnReturning.js",
+    "ActionBar": {
+        "_Name": "CharacteristicValueDetails",
+        "Items": [
+            {
+                "Position": "Right",
+                "_Name": "Edit",
+                "SystemItem": "Edit",
+                "Caption": "$(L,edit)",
+                "OnPress": "/SAPAssetManager/Actions/Classification/Characteristics/CharacteristicValueEditPopover.action",
+                "Visible": "/SAPAssetManager/Rules/UserAuthorizations/Characteristics/EnableCharEdit.js"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                "/SAPAssetManager/Pages/Fragments/Equipment/Classifications/CharacteristicKeyValue.fragment",
+                {
+                    "_Name": "DataTableSection",
+                    "StickyColumn": false,
+                    "_Type": "Section.Type.DataTable",
+                    "Header": {
+                        "DataTable": {
+                            "Items": [
+                                {
+                                    "Text": "",
+                                    "Style": "GridTableHeaderText"
+                                },
+                                {
+                                    "Text": "$(L,value)",
+                                    "Style": "GridTableHeaderText",
+                                    "TextAlignment": "Center"
+                                },
+                                {
+                                    "Text": "$(L,start_point)",
+                                    "Style": "GridTableHeaderText",
+                                    "TextAlignment": "Center"
+                                },
+                                {
+                                    "Text": "$(L,end_point)",
+                                    "Style": "GridTableHeaderText",
+                                    "TextAlignment": "Center"
+                                },
+                                {
+                                    "Text": "$(L,length)",
+                                    "Style": "GridTableHeaderText",
+                                    "TextAlignment": "Center"
+                                }
+                            ]
+                        }
+					},
+                    "Row": {
+                        "Layout": {
+                            "ColumnWidth": [100,200,200,200,-1]
+                         },
+                        "Items": [
+                            {
+                                "Image": "/SAPAssetManager/Rules/Common/DataTableSyncIcon.js",
+                                "TextAlignment": "Center"
+                            },
+							{
+                                "Text": "/SAPAssetManager/Rules/Classification/Characteristics/LAM/LAMCharValueFormat.js",
+                                "Style": "GridTableRowText",
+                                "TextAlignment": "Center"
+                            },
+                            {
+								"Text": "/SAPAssetManager/Rules/LAM/LAMStartPointFormat.js",
+                                "Style": "GridTableRowText",
+                                "TextAlignment": "Center"
+							},
+							{
+                                "Text": "/SAPAssetManager/Rules/LAM/LAMEndPointFormat.js",
+                                "Style": "GridTableRowText",
+                                "TextAlignment": "Center"
+                            },
+                            {
+								"Text": "/SAPAssetManager/Rules/LAM/LAMLengthFormat.js",
+                                "Style": "GridTableRowText",
+                                "TextAlignment": "Center"
+							},
+                            {
+                                "Image": "/SAPAssetManager/Rules/Common/DataTableEditIcon.js"
+                            }
+                        ],
+                        "OnPress": "/SAPAssetManager/Rules/Classification/Characteristics/LAM/CharacteristicLAMValuesUpdateNav.js"
+                    },
+                    "Target": {
+                        "EntitySet": "LAMCharacteristicValues",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "/SAPAssetManager/Rules/Classification/Characteristics/LAM/CharacteristicLAMValueQueryOptions.js"
+                    },
+                    "Visible": "/SAPAssetManager/Rules/Classification/Characteristics/CharacteristicsLAMIsVisible.js"
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable",
+            "DataSubscriptions": ["LAMCharacteristicValues", "MyEquipClassCharValues", "MyFuncLocClassCharValues"]
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "CharacteristicValueDetailsPage",
+    "DataSubscriptions": ["LAMCharacteristicValues", "MyEquipClassCharValues", "MyFuncLocClassCharValues"]
+}

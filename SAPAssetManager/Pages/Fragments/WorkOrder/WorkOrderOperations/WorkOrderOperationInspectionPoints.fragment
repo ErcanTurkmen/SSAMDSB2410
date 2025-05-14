@@ -1,0 +1,34 @@
+{
+    "Header": {
+        "Caption": "$(L,inspection_points)"
+    },
+    "Footer": {
+        "Caption": "$(L,see_all)",
+        "AccessoryType": "DisclosureIndicator",
+        "FooterStyle": "Attribute",
+        "AttributeLabel": "#Count",
+        "OnPress": "/SAPAssetManager/Actions/WorkOrders/Operations/InspectionPointsListView.action"
+    },
+    "MaxItemCount": 2,
+    "ObjectCell": {
+        "PreserveIconStackSpacing": false,
+        "AccessoryType": "DisclosureIndicator",
+        "Title": "/SAPAssetManager/Rules/WorkOrders/Operations/InspectionPoints/TechnicalObjectIdAndDescription.js",
+        "StatusText": "#Property:InspCode_Nav/#Property:CodeDesc",
+        "SubstatusText": "#Property:InspValuation_Nav/#Property:ShortText",
+        "Subhead": "/SAPAssetManager/Rules/WorkOrders/InspectionLot/InspectionLotDescriptionOrId.js",
+        "OnPress": "/SAPAssetManager/Actions/WorkOrders/Operations/InspectionPointDetailsNav.action",
+        "Styles": {
+            "SubstatusText": "/SAPAssetManager/Rules/WorkOrders/Operations/InspectionPointValuationFont.js"
+        }
+    },
+    "Target": {
+        "EntitySet": "{{#Property:@odata.readLink}}/InspectionPoint_Nav",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "/SAPAssetManager/Rules/WorkOrders/Operations/InspectionPoints/InspectionPointsQueryOptions.js"
+    },
+    "_Name": "InspectionPointsObjectTable",
+    "_Type": "Section.Type.ObjectTable",
+    "Visible": "/SAPAssetManager/Rules/WorkOrders/Operations/InspectionPoints/InspectionPointsIsVisible.js",
+    "DataSubscriptions": ["InspectionPoints"]
+}

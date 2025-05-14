@@ -1,0 +1,19 @@
+{
+	"Caption": "$(L,app_display_name)",
+	"ActionBar": {
+	    "_Name": "LandingPage",
+		"Items": [
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment",
+			{
+				"Position": "Left",
+				"_Name": "Profile",
+				"Caption": "$(L,profile_settings)",
+				"OnPress": "/SAPAssetManager/Rules/ProfileSettings/UserProfileSettingsNav.js",
+				"SystemItem": "$(PLT,'','','','Edit')",
+				"Visible":"/SAPAssetManager/Rules/Common/IsWindows.js"
+			}
+		]
+	},
+	"_Name": "ApplicationLandingPage",
+	"_Type": "Page"
+}

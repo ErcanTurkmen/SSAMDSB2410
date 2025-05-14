@@ -1,0 +1,24 @@
+{
+    "Headers": {
+        "OfflineOData.NonMergeable": true
+    },
+    "Properties": {
+        "MobileStatus": "/SAPAssetManager/Rules/MobileStatus/MobileStatusCompleted.js",
+        "EffectiveTimestamp": "/SAPAssetManager/Rules/DateTime/CurrentDateTime.js"
+    },
+    "Target": {
+        "EntitySet": "PMMobileStatuses",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "ReadLink" : "/SAPAssetManager/Rules/MobileStatus/MobileStatusReadLink.js"
+    },
+    "UpdateLinks": [
+        {
+			"Property": "OverallStatusCfg_Nav",
+			"Target": {
+				"EntitySet": "EAMOverallStatusConfigs",
+				"QueryOptions": "$filter=MobileStatus eq 'COMPLETED' and ObjectType eq 'TASK'"
+			}
+		}
+    ],
+    "_Type": "Action.Type.ODataService.UpdateEntity"
+}

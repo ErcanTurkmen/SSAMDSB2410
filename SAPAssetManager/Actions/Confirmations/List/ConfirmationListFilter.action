@@ -1,0 +1,8 @@
+{
+	"_Type": "Action.Type.Filter",
+	"PageToOpen": "/SAPAssetManager/Pages/Confirmations/List/ConfirmationListFilter.page",
+	"Filterable": "#Page:S4ConfirmationsListViewPage/#Control:SectionedTable",
+	"ActionResult": {
+		"_Name": "filterResult"
+	}
+}

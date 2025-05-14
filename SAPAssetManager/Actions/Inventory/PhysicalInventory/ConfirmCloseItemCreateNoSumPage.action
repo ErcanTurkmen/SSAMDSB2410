@@ -1,0 +1,7 @@
+{
+    "Message": "$(L, confirm_cancel_pi_create)",
+    "OKCaption": "$(L,continue_text)",
+    "CancelCaption": "$(L,cancel)",
+    "OnOK": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/PhysicalInventoryCreateListNavAfterCancel.js",
+    "_Type": "Action.Type.Message"
+}

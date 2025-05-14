@@ -1,0 +1,17 @@
+{
+	"_Type": "Action.Type.RestService.SendRequest",
+	"Target": {
+	"Service": "/SAPAssetManager/Services/OnlineAssetManager.service",
+	"Path": "/InitialSyncRequests",
+	"RequestProperties": {
+		"Method": "POST",
+		"Body": {
+			"EntitySetName": "Geometries"
+		},
+		"Headers": {
+			"Accept": "application/json",
+			"Content-Type": "application/json"
+		}
+	}
+  }
+}

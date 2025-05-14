@@ -1,0 +1,74 @@
+{
+    "Caption": "$(L, dismantle_equipment)",
+    "OnLoaded": "/SAPAssetManager/Rules/Equipment/Uninstall/EquipmentUninstallPageOnLoaded.js",
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar":
+    {
+        "_Name": "EquipmentUninstall",
+        "Items":
+        [
+        "/SAPAssetManager/Pages/Fragments/CancelButton.fragment",
+        {
+            "Position": "Right",
+            "_Name": "Done",
+            "SystemItem": "$(PLT,'Done','', 'Done')",
+            "Caption": "$(L,done)",
+            "Text": "/SAPAssetManager/Rules/Common/Platform/DoneText.js",
+            "OnPress": "/SAPAssetManager/Actions/Equipment/Uninstall/EquipmentUninstallRequiredFields.action"
+        }
+		]
+    },
+    "Controls":
+    [{
+        "Sections":
+        [{
+            "Controls":
+            [{
+                "Caption" : "/SAPAssetManager/Rules/Equipment/Uninstall/UninstallCaption.js",
+                "Value" : "/SAPAssetManager/Rules/Equipment/Uninstall/UninstallValue.js",
+                "IsEditable": false,
+                "_Name": "SuperiorEquipment",
+                "_Type": "Control.Type.FormCell.SimpleProperty"
+            }]
+        },
+        {
+            "Controls":
+            [{
+                "AllowMultipleSelection": true,
+                "AllowDefaultValueIfOneItem": true,
+                "Caption": "$(L, equipment)",
+                "Search": { 
+                    "Enabled": true,
+                    "Delay": 500,
+                    "MinimumCharacterThreshold": 3,
+                    "Placeholder": "$(L, search)",
+                    "BarcodeScanner": true
+                },
+                "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js",
+                "PickerItems":
+                {
+                    "ObjectCell":
+                    {
+                        "PreserveIconStackSpacing": false,
+                        "Title" : "{{#Property:EquipDesc}}",
+                        "Subhead" : "{{#Property:WorkCenter_Nav/#Property:WorkCenterName}} ({{#Property:WorkCenter_Nav/#Property:PlantId}}), {{#Property:WorkCenter_Nav/#Property:ExternalWorkCenterId}}",
+                        "Footnote" : "{{#Property:EquipId}}"
+                    },
+                    "ReturnValue" : "{EquipId}",
+                    "Target":
+                    {
+                        "EntitySet" : "MyEquipments",
+                        "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "/SAPAssetManager/Rules/Equipment/Uninstall/UninstallQueryOpts.js"
+                    }
+                },
+                "_Name": "EquipmentPicker",
+                "_Type": "Control.Type.FormCell.ListPicker"
+            }]
+        }],
+        "_Name": "FormCellContainer",
+        "_Type": "Control.Type.FormCellContainer"
+    }],
+    "_Type": "Page",
+    "_Name": "EquipmentUninstallPage"
+}

@@ -1,0 +1,69 @@
+{
+"Caption": "$(L,warehouse_order_list)",
+"ActionBar": 
+{ 
+	"Items": [
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment"
+		] 
+},
+"Controls": [
+		{
+			"Sections": [
+				{
+					"EmptySection": {
+						"Caption": "$(L,ewm_no_warehouse_orders)"
+					},
+					"Header": {
+						"Caption": "/SAPAssetManager/Rules/EWM/WarehouseOrder/WarehouseOrderItemsCountCaption.js",
+						"UseTopPadding": false
+					},
+					"ObjectCell": "/SAPAssetManager/Pages/Fragments/EWM/WarehouseOrderCell.fragment",
+					"Search": {
+						"Enabled" : true,
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 3,
+                        "Placeholder": "$(L,search)",
+                        "BarcodeScanner": true
+					},
+					"Target": {
+						"EntitySet": "WarehouseOrders",
+						"QueryOptions":"/SAPAssetManager/Rules/EWM/WarehouseOrder/WarehouseOrderListQueryOptions.js",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					},
+					"_Name": "SectionObjectTable",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"FilterFeedbackBar": { 
+			"_Type": "Control.Type.FilterFeedbackBar",
+			"_Name": "FilterFeedback",
+			"ShowAllFilters": true,
+			"FastFilters": [
+	        { 
+                "_Name": "OpenGenericItems",
+                "_Type": "Control.Type.FastFilterItem",
+                "FilterType": "Filter",
+                "FilterProperty": "",
+                "CustomQueryGroup": "WarehouseOrderList",
+                "DisplayValue": "/SAPAssetManager/Rules/EWM/WarehouseOrder/WOFilterCaptionOpen.js",
+                "ReturnValue": "/SAPAssetManager/Rules/EWM/WarehouseOrder/GetReturnValueFilterOpen.js"
+            },
+            { 
+                "_Name": "ConfirmedGenericItems",
+                "_Type": "Control.Type.FastFilterItem",
+                "FilterType": "Filter",
+                "FilterProperty": "",
+                "CustomQueryGroup": "WarehouseOrderList",
+                "DisplayValue": "/SAPAssetManager/Rules/EWM/WarehouseOrder/WOFilterCaptionConfirmed.js",
+                "ReturnValue": "/SAPAssetManager/Rules/EWM/WarehouseOrder/GetReturnValueFilterConfirmed.js"
+            }
+			]
+			},
+			"Filters": "/SAPAssetManager/Rules/EWM/WarehouseOrder/GetWOPreSelectedFilter.js",
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+			}
+			],
+			"_Name": "WarehouseOrdersListPage",
+			"_Type": "Page"
+}

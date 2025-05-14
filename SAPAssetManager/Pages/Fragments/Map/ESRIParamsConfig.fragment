@@ -1,0 +1,5 @@
+{
+    "ClientID": "#ApplicationSettings/#Property:Client.ID",
+    "RedirectURL": "#ApplicationSettings/#Property:Redirect.URI",
+    "PortalURI": "#ApplicationSettings/#Property:Portal.URI"
+}

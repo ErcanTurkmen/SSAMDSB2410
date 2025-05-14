@@ -1,0 +1,5 @@
+{
+	"_Type": "Action.Type.Filter",
+	"PageToOpen": "/SAPAssetManager/Pages/OnlineSearch/OnlineSearchCriteria.page",
+	"Filterable": "#Page:OnlineSearchEquipmentList/#Control:SectionedTable"
+}

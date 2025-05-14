@@ -1,0 +1,168 @@
+{
+	"Caption": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationListViewCaption.js",
+    "OnLoaded": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationListViewOnLoad.js",
+    "OnReturning": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationListViewOnReturning.js",
+	"OnUnloaded": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsListOnUnloaded.js",
+	"OnCustomEventDataReceived": "/SAPAssetManager/Rules/Common/OnCustomEventDataReceived.js",
+	"ActionBar":
+	{
+		"_Name": "OperationsList",
+		"Items": [
+			{
+				"_Name": "Sync",
+				"_Type": "Fragment",
+				"Fragment": "/SAPAssetManager/Pages/Fragments/SyncButton.fragment",
+				"Properties": {
+					"Visible": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsSyncButtonVisible.js"
+				}
+			},
+			{
+				"_Name": "Add",
+				"Position": "Right",
+				"SystemItem": "Add",
+				"Caption": "$(L,add)",
+				"Visible": "/SAPAssetManager/Rules/Operations/IsAddOperationFromListEnabled.js",
+				"OnPress": "/SAPAssetManager/Rules/WorkOrders/Operations/CreateUpdate/WorkOrderOperationCreateNav.js"
+			},
+			{
+				"_Name": "SelectAll",
+				"Position": "Right",
+				"Text": "$(L,select_all)",
+				"Visible": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsSelectAllButtonVisible.js",
+				"OnPress": "/SAPAssetManager/Rules/WorkOrders/Operations/SelectAllOperations.js"
+			},
+			{
+				"_Name": "DeselectAll",
+				"Position": "Right",
+				"Text": "$(L,deselect_all)",
+				"Visible": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsDeselectAllButtonVisible.js",
+				"OnPress": "/SAPAssetManager/Rules/WorkOrders/Operations/DeselectAllOperations.js"
+			},
+			{
+				"_Name": "Cancel",
+				"Position": "Right",
+				"SystemItem": "Cancel",
+				"Caption": "$(L,cancel)",
+				"OnPress": "/SAPAssetManager/Rules/WorkOrders/Operations/CancelOperationsSelectMode.js",
+				"Visible": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsSelectModeButtonVisible.js"
+			},
+			{
+				"Position": "Right",
+				"_Name": "Filter",
+				"Icon": "$(PLT,'',/SAPAssetManager/Images/filter.android.png)",
+				"Caption": "/SAPAssetManager/Rules/Filter/FilterButtonCaption.js",
+				"OnPress": "/SAPAssetManager/Actions/WorkOrders/Operations/WorkOrderOperationsFilter.action",
+				"Visible": "/SAPAssetManager/Rules/WorkOrders/Operations/FilterButtonVisible.js"
+			},
+			{
+				"_Name": "Select",
+				"Position": "Right",
+				"IconText": "SelectIcon",
+				"Text": "$(L,select)",
+				"Visible": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsDefaultModeButtonVisibleAndroid.js",
+				"OnPress": "/SAPAssetManager/Rules/WorkOrders/Operations/OperationsListViewChangeMode.js"
+			},
+			{
+				"Position": "Right",
+				"_Name": "Dropdown",
+				"IconText": "DropdownIcon",
+				"Text": "Dropdown",
+                "Icon": "$(PLT,/SAPAssetManager/Images/menuicon.png,/SAPAssetManager/Images/menuicon.android.png, '', /SAPAssetManager/Images/menuicon.png)",
+				"Visible": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsDefaultModeButtonVisibleIOS.js",
+				"OnPress": "/SAPAssetManager/Actions/WorkOrders/Operations/OperationsDropdownPopover.action"
+			},
+			{
+				"_Name": "OperationsAssign",
+				"Position": "Right",
+				"IconText": "OperationsAssignIcon",
+				"Text": "$(L,operations_assign)",
+				"Visible": "/SAPAssetManager/Rules/Supervisor/SupervisorRole/IsSupervisorSectionVisibleForOperationsForAndroid.js",
+				"OnPress": "/SAPAssetManager/Rules/Supervisor/Assign/OperationAssignNav.js"
+			}
+		]
+	},
+	"Controls":
+	[{
+		"Sections":
+		[{
+			"Search":
+			{
+				"Enabled" : true,
+				"Delay": 500,
+				"MinimumCharacterThreshold": 3,
+				"Placeholder": "$(L,search)",
+				"BarcodeScanner": true
+			},
+			"Header": {
+		 		"UseTopPadding": false,
+				"Caption": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationListViewSectionCaption.js"
+			},
+			"EmptySection": {
+				"Caption": "$(L,no_operations_available)"
+			},
+			"ObjectCell":
+			{
+				"PreserveIconStackSpacing": true,
+				"Icons": "/SAPAssetManager/Rules/Operations/OperationsListViewIconImages.js",
+				"AccessoryType": "DisclosureIndicator",
+				"Title": "{{#Property:OperationShortText}} ({{#Property:OperationNo}})",
+				"Footnote": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderDueDate.js",
+				"OnPress": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/WorkOrderOperationDetailsNav.js",
+				"Subhead": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationOrderAndPhase.js",
+				"SubstatusText": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationSubPhase.js",
+				"StatusText": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsListViewFormat.js",
+				"ContextMenu": {
+					"PerformFirstActionWithFullSwipe": true,
+					"Items":"/SAPAssetManager/Rules/Operations/WorkOrderOperationObjectCellContextMenuItems.js",
+					"LeadingItems": "/SAPAssetManager/Rules/ContextMenuLeadingItems.js",
+					"TrailingItems": "/SAPAssetManager/Rules/ContextMenuTrailingItems.js"
+				},
+                "Styles": {
+                    "StatusText": "/SAPAssetManager/Rules/Supervisor/Reject/RejectedStatusStyle.js"
+                },
+                "Description": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsListViewDescription.js",
+				"Selected": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationSelected.js"
+			},
+			"Target": {
+				"EntitySet": "/SAPAssetManager/Rules/WorkOrders/Operations/OperationsEntitySet.js",
+				"Service": "/SAPAssetManager/Services/AssetManager.service",
+				"QueryOptions": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsListViewQueryOptionWrapper.js"
+			},
+			"OnSelectionChanged": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsOnSelectionChanged.js",
+			"Selection": {
+				"LongPressToEnable": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsLongPress.js",
+                "ExitOnLastDeselect": false,
+                "Mode": "None"
+			},
+			"_Type" : "Section.Type.ObjectTable",
+			"_Name" : "WorkOrderOperationListSection"
+
+		}],
+		"FilterFeedbackBar": {
+			"_Type": "Control.Type.FilterFeedbackBar",
+			"_Name": "FilterFeedback",
+			"ShowAllFilters": true,
+			"FastFilters": "/SAPAssetManager/Rules/WorkOrders/Operations/Filter/OperationFastFiltersItems.js"
+		},
+		"Filters": "/SAPAssetManager/Rules/WorkOrders/ListView/WorkOrderOperationsListViewDefaultFilters.js",
+		"_Type" : "Control.Type.SectionedTable",
+		"_Name" : "SectionedTable"
+	}],
+	"FioriToolbar": {
+		"_Name": "WorkOrderOperationsListViewFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+		"Visible": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsSelectModeButtonVisible.js",
+		"Items": [
+			{
+				"_Name": "ConfirmBtn",
+				"_Type": "FioriToolbarItem.Type.Button",
+				"Title": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsToolbarButtonCaption.js",
+				"Enabled": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsConfirmButtonEnabled.js",
+				"OnPress": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsConfirmNav.js"
+			}
+		]
+	},
+	"_Type": "Page",
+	"_Name": "WorkOrderOperationsListViewPage",
+	"DataSubscriptions": ["MyWorkOrderOperations", "Confirmations", "Documents", "PMMobileStatuses", "MyWorkOrderOperationLongTexts","UserTimeEntries", "WOOprDocuments_Nav", "WorkOrderTransfers"]
+}

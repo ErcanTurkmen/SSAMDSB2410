@@ -1,0 +1,65 @@
+{
+	"Caption": "$(L,set_usage_decision)",
+	"OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+	"ActionBar": {
+		"_Name": "InspectionLotSetUsage",
+        "Items": [
+            "/SAPAssetManager/Pages/Fragments/CancelButton.fragment",
+            {
+                "Position": "Right",
+				"_Name": "Done",
+				"SystemItem": "$(PLT,'Done','', '','Done')",
+                "Text": "/SAPAssetManager/Rules/Common/Platform/DoneText.js",
+                "OnPress": "/SAPAssetManager/Rules/WorkOrders/InspectionLot/InspectionLotSetUsageDecisionNav.js"
+            }
+        ]
+    },
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Controls": [
+						{
+							"AllowMultipleSelection": false,
+							"IsPickerDismissedOnSelection": true,
+							"IsSearchCancelledAfterSelection": true,
+							"Search": {
+								"Enabled": true,
+								"Delay": 500,
+								"MinimumCharacterThreshold": 3,
+								"Placeholder": "$(L,search)",
+								"BarcodeScanner": true
+							},
+							"Caption": "$(L, code)",
+							"IsEditable": true,
+							"Value": "/SAPAssetManager/Rules/WorkOrders/InspectionLot/SetUsage/InspectionLotSetUsageInitialValue.js",
+							"PickerItems": "/SAPAssetManager/Rules/WorkOrders/InspectionLot/SetUsage/InspectionLotSetUsageInspectionCodesPickerItems.js",
+							"_Name": "CodeListPicker",
+							"_Type": "Control.Type.FormCell.ListPicker",
+							"OnValueChange": "/SAPAssetManager/Rules/WorkOrders/InspectionLot/SetUsage/InspectionLotSetUsageOnValueChange.js"
+						},
+						{
+							"Caption": "$(L,valuation)",
+							"IsEditable": false,
+							"Value": "/SAPAssetManager/Rules/WorkOrders/InspectionLot/InspectionLotDetailsValuation.js",
+							"_Name": "Valuation",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						},
+						{
+							"Caption": "$(L,quality_score)",
+							"IsEditable": false,
+							"Value": "/SAPAssetManager/Rules/WorkOrders/InspectionLot/SetUsage/InspectionLotSetUsageScoreValue.js",
+							"_Name": "QualityScore",
+							"_Type": "Control.Type.FormCell.SimpleProperty"
+						}
+					]
+				}
+			],
+			"_Name": "FormCellContainer",
+			"_Type": "Control.Type.FormCellContainer"
+		}
+	],
+	"_Name": "InspectionLotSetUsage",
+	"_Type": "Page",
+	"OnLoaded": "/SAPAssetManager/Rules/WorkOrders/InspectionLot/SetUsage/InspectionLotOnLoaded.js"
+}

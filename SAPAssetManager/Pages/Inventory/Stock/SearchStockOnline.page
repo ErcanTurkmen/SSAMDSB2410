@@ -1,0 +1,115 @@
+{
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "ActionBar": {
+        "_Name": "SearchOnlineFilterPage",
+        "Items": [
+            {
+                "Position": "Left",
+                "SystemItem": "Cancel",
+                "_Name": "Cancel",
+                "Caption": "$(L,cancel)",
+                "OnPress": "/SAPAssetManager/Actions/Page/CancelPage.action"
+            },
+            {
+                "Position": "Right",
+                "_Name": "Search",
+                "Text": "$(L,search)",
+                "OnPress": "/SAPAssetManager/Rules/Inventory/Stock/SearchStockOnline.js"
+            }
+        ]
+    },
+    "Caption":"$(L,search_online)",
+    
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "Controls": [
+                        {
+                            "AllowEmptySelection": false,
+                            "AllowMultipleSelection": false,
+                            "AllowDefaultValueIfOneItem": true,
+                            "IsPickerDismissedOnSelection": true,
+                            "Caption": "$(L,plant)",
+                            "IsEditable": true,
+                            "IsSelectedSectionEnabled": false,
+                            "PickerItems": {
+                                "DisplayValue" : "{{#Property:Plant}} - {{#Property:PlantDescription}}",
+                                "ReturnValue" : "{Plant}",
+                                "Target":
+                                {
+                                    "EntitySet" : "Plants",
+                                    "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions" : "$orderby=Plant"
+                                }
+                            },
+                            "OnValueChange": "/SAPAssetManager/Rules/Inventory/Stock/OnPlantSelected.js",
+                            "_Name": "PlantListPicker",
+                            "_Type": "Control.Type.FormCell.ListPicker"
+                        },
+                        {
+                            "AllowEmptySelection": false,
+                            "AllowMultipleSelection": false,
+                            "AllowDefaultValueIfOneItem": true,
+                            "IsPickerDismissedOnSelection": true,
+                            "Caption": "$(L,storage_location)",
+                            "IsEditable": false,
+                            "IsSelectedSectionEnabled": false,
+                            "PickerItems": {
+                                "DisplayValue" : "{{#Property:StorageLocation}} - {{#Property:StorageLocationDesc}}",
+                                "ReturnValue" : "{StorageLocation}",
+                                "Target":
+                                {
+                                    "EntitySet" : "StorageLocations",
+                                    "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                                    "QueryOptions" : "$orderby=Plant,StorageLocation"
+                                }
+                            },
+                            "_Name": "StorageLocationListPicker",
+                            "_Type": "Control.Type.FormCell.ListPicker"
+                        },
+                        {
+                            "_Type": "Control.Type.FormCell.SimpleProperty",
+                            "_Name": "MatrialId",
+                            "AlternateInput": "Barcode",
+                            "Caption":"$(L,material_id)"
+                        },
+                        {
+                            "_Type": "Control.Type.FormCell.SimpleProperty",
+                            "_Name": "MatrialDescription",
+                            "Caption":"$(L,material_description)"
+                        },
+                        {
+                            "_Type": "Control.Type.FormCell.SimpleProperty",
+                            "_Name": "ManufacturerPartNum",
+                            "AlternateInput": "Barcode",
+                            "Caption":"$(L,mpn)"
+                        },
+                        {
+                            "_Type": "Control.Type.FormCell.SimpleProperty",
+                            "_Name": "StorageBin",
+                            "AlternateInput": "Barcode",
+                            "Caption":"$(L,storage_bin)"
+                        }
+                    ]
+                },
+                {
+                    "Caption": " ",
+                    "Controls": [
+                        {
+                            "TextAlignment": "Center",
+                            "Title": "$(L,reset)",
+                            "_Name": "FormCellButton0",
+                            "_Type": "Control.Type.FormCell.Button",
+                            "OnPress": "/SAPAssetManager/Rules/Inventory/Stock/SearchStockOnlineReset.js"
+                        }
+                    ]
+                }
+            ],
+            "_Name": "FormCellContainer0",
+            "_Type": "Control.Type.FormCellContainer"
+        }
+    ],
+    "_Type":"Page",
+    "_Name":"SearchStockOnline"
+}

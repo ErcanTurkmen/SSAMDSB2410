@@ -1,0 +1,21 @@
+{
+    "ObjectHeader": {
+        "HeadlineText": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsHeaderFormat.js",
+        "BodyText": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsHeaderFormat.js",
+        "Footnote": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsHeaderFormat.js",
+        "StatusImage": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsHeaderFormat.js",
+        "SubstatusText": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsHeaderFormat.js",
+        "Subhead" : "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsHeaderFormat.js",
+        "Tags": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsHeaderFormat.js",
+        "Styles": {
+            "SubstatusText": "/SAPAssetManager/Rules/Priority/NotificationPriorityStatusStyle.js"
+        },
+        "Target": {
+            "EntitySet": "{@odata.readLink}",
+            "Service": "/SAPAssetManager/Services/AssetManager.service",
+            "QueryOptions": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsQueryOptions.js"
+        }
+    },
+    "_Type": "Section.Type.ObjectHeader",
+    "DataSubscriptions": [ "PMMobileStatuses","UserPreferences", "MeasurementDocuments"]
+}

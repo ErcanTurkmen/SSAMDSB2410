@@ -1,0 +1,83 @@
+{
+    "Caption": "$(L,measuring_point_reading_history)",
+    "Controls": [
+        {
+            "Sections":
+            [
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/Measurements/PointHistoryDataTable.fragment",
+                    "Properties": {
+                        "Header": {
+                            "DataTable": {
+                                "Items": [
+                                    {
+                                        "Text": " ",
+                                        "Style": "GridTableHeaderText",
+                                        "TextAlignment": "Center"
+                                    },
+                                    {
+                                        "Text": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointValueAndReadingDifferenceCaption.js",
+                                        "Style": "GridTableHeaderText",
+                                        "TextAlignment": "Center"
+                                    },
+                                    {
+                                        "Text": "$(L, valuation_code)",
+                                        "Style": "GridTableHeaderText",
+                                        "TextAlignment": "Center"
+                                    },
+                                    {
+                                        "Text": "$(L, date)",
+                                        "Style": "GridTableHeaderText",
+                                        "TextAlignment": "Center"
+                                    },
+                                    {
+                                        "Text": "$(L, time)",
+                                        "Style": "GridTableHeaderText",
+                                        "TextAlignment": "Center"
+                                    }
+                                ]
+                            }
+                        },
+                        "Row": {
+                            "Items": [
+                                {
+                                    "Image": "/SAPAssetManager/Rules/Common/DataTableSyncIcon.js",
+                                    "TextAlignment": "Center"
+                                },
+                                {
+                                    "Text": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointReadingValueAndReadingDifference.js",
+                                    "Style": "GridTableRowText",
+                                    "TextAlignment": "Center"
+                                },
+                                {
+                                    "Text": "/SAPAssetManager/Rules/Measurements/ValuationCode.js",
+                                    "Style": "GridTableRowText",
+                                    "TextAlignment": "Center"
+                                },
+                                {
+                                    "Text": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointHistoryReadingDate.js",
+                                    "Style": "GridTableRowText",
+                                    "TextAlignment": "Center"
+                                },
+                                {
+                                    "Text": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointHistoryReadingTime.js",
+                                    "Style": "GridTableRowText",
+                                    "TextAlignment": "Center"
+                                }
+                            ]
+                        },
+                        "Target": {
+                            "EntitySet": "MeasurementDocuments",
+                            "QueryOptions": "/SAPAssetManager/Rules/Measurements/Document/OnlineMeasurementDocsQueryOptions.js",
+                            "Service": "/SAPAssetManager/Services/OnlineAssetManager.service"
+                        }
+                    }
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "OnlineMeasuringPointWithValCodeHistoryListViewPage"
+}

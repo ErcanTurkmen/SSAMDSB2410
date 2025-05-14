@@ -1,0 +1,29 @@
+{
+	"_Type": "Action.Type.ODataService.CreateEntity",
+    "Target": {
+        "EntitySet": "S4ServiceRequestPartners",
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "Properties": {
+		"ObjectID": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestLocalID.js",
+		"ObjectType": "/SAPAssetManager/Rules/ServiceOrders/ServiceRequestObjectType.js",
+		"BusinessPartnerID": "#Page:ServiceRequestCreateUpdatePage/#Control:SoldToPartyLstPkr/#SelectedValue",
+		"PartnerFunction": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/GetSoldToPartyType.js"
+	},
+    "Headers": {
+        "OfflineOData.RemoveAfterUpload": "true",
+        "OfflineOData.TransactionID": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceRequestLocalID.js"
+    },
+    "CreateLinks": [
+		{
+			"Property": "S4ServiceRequest_Nav",
+			"Target": {
+				"EntitySet": "S4ServiceRequests",
+				"ReadLink": "pending_1"
+			}
+		}
+	],
+    "OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/CreateEntityFailureMessage.action",
+    "ShowActivityIndicator": true,
+    "ActivityIndicatorText" : "  "
+} 

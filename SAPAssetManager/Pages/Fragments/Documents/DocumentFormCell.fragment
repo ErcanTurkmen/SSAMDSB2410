@@ -1,0 +1,12 @@
+{
+    "_Name": "Attachment",
+    "_Type": "Control.Type.FormCell.Attachment",
+    "AttachmentTitle": "$(L,attached_files)",
+    "AttachmentAddTitle": "$(L,add)",
+    "AttachmentCancelTitle": "$(L,cancel)",
+    "AttachmentActionType": ["AddPhoto", "TakePhoto", "SelectFile"],
+    "AllowedFileTypes": [],
+    "OnValueChange": "/SAPAssetManager/Rules/Documents/DocumentEditorAttachmentOnValueChange.js",
+    "OnPress": "/SAPAssetManager/Rules/Documents/DocumentEditorAttachmentOnPress.js",
+    "Value": []
+}

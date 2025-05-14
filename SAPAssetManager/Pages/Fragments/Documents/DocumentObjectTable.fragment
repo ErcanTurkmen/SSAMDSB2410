@@ -1,0 +1,31 @@
+{
+	"Search":
+	{
+		"Enabled" : true,
+		"Delay": 500,
+		"MinimumCharacterThreshold": 3,
+		"Placeholder": "$(L,search)",
+		"BarcodeScanner": true
+	},
+	"Header": {
+		"UseTopPadding": false
+	},
+	"EmptySection": {
+		"Caption": "$(L,no_documents_available)"
+	},
+	"ObjectCell": {
+        "_Type": "Fragment",
+        "Fragment": "/SAPAssetManager/Pages/Fragments/Documents/DocumentObjectCell.fragment",
+        "Properties": {
+            "DetailImage": "/SAPAssetManager/Rules/Documents/DocumentDetailImage.js"
+        }
+    },
+	"Target":
+    {
+        "EntitySet" : "/SAPAssetManager/Rules/Documents/DocumentsBDSListEntitySet.js",
+        "Service" : "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "/SAPAssetManager/Rules/Documents/DocumentsBDSQueryOptions.js"
+    },
+	"_Type" : "Section.Type.ObjectTable",
+	"_Name": "DocumentSection"
+}

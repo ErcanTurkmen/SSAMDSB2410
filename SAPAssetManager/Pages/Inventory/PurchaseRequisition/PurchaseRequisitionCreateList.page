@@ -1,0 +1,81 @@
+{
+	"_Type": "Page",
+	"_Name": "PurchaseRequisitionCreateList",
+	"Caption": "$(L, purchase_requisition_list)",
+	"OnLoaded": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Handlers/SetCreateListParams.js",
+	"OnReturning": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Handlers/SetCreateListParams.js",
+	"OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+	"ActionBar": {
+		"Items": [
+			{
+				"Position": "Left",
+				"SystemItem": "Cancel",
+				"Caption": "$(L,cancel)",
+				"OnPress": "/SAPAssetManager/Actions/Inventory/PurchaseRequisition/ConfirmCloseCreatePage.action"
+			},
+			{
+				"Position": "Right",
+				"SystemItem": "$(PLT,'Done','','','Done')",
+				"Text": "$(L,done)",
+				"OnPress": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/CreatePurchaseRequisitionDone.js"
+			}
+		]
+	},
+	"Controls": [
+		{
+			"_Type": "Control.Type.SectionedTable",
+			"_Name": "SectionedTable",
+			"Sections": [
+				{
+					"_Type": "Section.Type.FormCell",
+					"_Name": "HeaderSectionForm",
+					"Header": {
+                        "UseTopPadding": false
+                    },
+					"Controls": [
+						{
+							"_Type": "Control.Type.FormCell.SimpleProperty",
+							"_Name": "HeaderId",
+							"Caption": "$(L, purchase_requisition)",
+							"Value": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetHeaderLocalId.js",
+							"IsEditable": false
+						}
+					]
+				},
+				{
+					"_Type": "Section.Type.ObjectTable",
+					"_Name": "HeaderItems",
+					"Header": {
+						"Caption": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Handlers/CreatItemsCaption.js"
+					},
+					"EmptySection": {
+						"Caption": "$(L,no_items)"
+					},
+					"ObjectCell": {
+						"Title": "/SAPAssetManager/Rules/Inventory/PhysicalInventory/GetMaterialBinBatchForItem.js",
+						"StatusText": "{ItemQuantity} {BaseUOM}",
+						"AccessoryButtonIcon": "$(PLT, /SAPAssetManager/Images/edit-accessory.ios.png, /SAPAssetManager/Images/edit-accessory.android.png, '', /SAPAssetManager/Images/edit-accessory.android.png)",
+						"OnAccessoryButtonPress": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/EditPurchaseRequisitionNav.js"
+					},
+					"Target": {
+						"EntitySet": "PurchaseRequisitionItems",
+						"Service": "/SAPAssetManager/Services/AssetManager.service",
+						"QueryOptions": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/ItemsQueryOptionsByHeaderId.js"
+					}
+				},
+				{
+					"_Type": "Section.Type.ButtonTable",
+					"_Name": "AddAnother",
+					"Buttons": [
+						{
+							"_Type": "ButtonTable.Type.Button",
+							"Title" : "$(L, add_another_item)",
+							"OnPress" : "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/AddAnotherPurchaseRequisitionItemNav.js",
+							"TextAlignment": "Center"
+						} 
+					]
+				}
+			]
+		}
+	]
+}

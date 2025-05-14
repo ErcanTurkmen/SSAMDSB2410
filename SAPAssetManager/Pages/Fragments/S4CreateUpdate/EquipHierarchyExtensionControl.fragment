@@ -1,0 +1,70 @@
+{
+    "_Type": "Control.Type.FormCell.Extension",
+    "Module": "extension-HierarchyFramework",
+    "Control": "HierarchyExtension",
+    "Class": "HierarchyExtension",
+    "_Name": "EquipHierarchyExtensionControl",
+    "Caption": "$(L,equipment)",
+    "DataSubscriptions": ["MyEquipments"],
+    "IsEditable": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/IsRefObjectPickerEditable.js",
+    "ExtensionProperties": {
+        "IsPicker": true,
+        "Search": {
+            "Enabled": true,
+            "Delay": 500,
+            "MinimumCharacterThreshold": 3,
+            "Placeholder": "$(L,search)",
+            "BarcodeScanner": true
+        },
+        "PickerProperties": {
+            "OnLoaded": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderCreateUpdateHierarchyListPickerOnLoaded.js",
+            "OnValueChange": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/OnRefObjectsValueChanged.js",
+            "ListFilter": "MyEquipments",
+            "AllowMultipleSelection": false,
+            "Caption": "$(L,equipment)",
+            "ItemsPerPage": 50,
+            "CachedItemsToLoad": 20
+        },
+        "HierarchyList": [],
+        "BusinessObjects": [{
+            "Target": {
+                "EntitySet" : "MyEquipments",
+                "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                "QueryOptions": "/SAPAssetManager/Rules/ServiceOrders/CreateUpdate/ServiceOrderCreateUpdateControlsQueryOptions.js",
+                "Properties": [],
+                "KeyProperties": []
+            },
+            "Properties":{
+                "ID":"{@odata.readLink}",
+                "Title":"{EquipDesc}",
+                "Subhead":"{EquipId}",
+                "Footnote": "$(L, equipment)",
+                "ReturnValue" : "{EquipId}",
+                "DisplayValue" : "{EquipId} - {EquipDesc}",
+                "ChildCount": "/SAPAssetManager/Rules/HierarchyControl/ChildCountListPicker.js",
+                "Parent": [
+                    {
+                        "Target": {
+                            "EntitySet" : "MyEquipments",
+                            "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                            "Properties": [],
+                            "KeyProperties": [],
+                            "QueryOptions":"$filter=EquipId eq '{SuperiorEquip}'&$orderby=EquipId"
+                        }
+                    }
+                ],
+                "Children": [
+                    {
+                        "Target": {
+                            "EntitySet" : "MyEquipments",
+                            "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                            "Properties": [],
+                            "KeyProperties": [],
+                            "QueryOptions":"$filter=SuperiorEquip eq '{EquipId}'&$orderby=EquipId"
+                        }
+                    }
+                ]
+            }
+        }]
+    }
+}

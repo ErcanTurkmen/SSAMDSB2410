@@ -1,0 +1,60 @@
+{
+	"Caption": "$(L,items)",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Header": {
+						"UseTopPadding": false,
+						"Caption": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/PurchaseOrderItemsListCaption.js"
+					},
+					"EmptySection": {
+						"Caption": "$(L,no_items)"
+					},
+					"ObjectCell": {
+						"DetailImageIsCircular": false,
+						"PreserveIconStackSpacing": false,
+						"OnPress": "/SAPAssetManager/Rules/Inventory/Item/POandSTOItemDetailsQuery.js",
+						"Title": "/SAPAssetManager/Rules/Inventory/Common/GetItemTextOrMaterialName.js",
+						"Description": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetItemDescription.js",
+						"Subhead": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetItemSubHead.js",
+						"Footnote": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetItemFootnote.js",
+						"StatusText": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetPOItemState.js",
+						"SubstatusText": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetPurchaseOrderItemsOpenQuantitiesText.js",
+						"AccessoryButtonIcon": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/ShowAccessoryButtonIcon.js",
+						"OnAccessoryButtonPress": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/SetPurchaseOrderGoodsReceipt.js"
+					},
+					"Search": {
+						"Enabled" : true,
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 3,
+                        "Placeholder": "$(L,search)",
+                        "BarcodeScanner": true
+					},
+					"Target": {
+						"EntitySet":  "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetPurchaseOrderItemsEntitySet.js",
+                        "QueryOptions": "/SAPAssetManager/Rules/Inventory/Common/GetItemsListQuery.js",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					},
+					"DataSubscriptions": [
+						"PurchaseOrderItems",
+                        "StockTransportOrderItems"
+					],
+					"_Name": "POItemsSectionObjectTable",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"FilterFeedbackBar": {
+				"_Type": "Control.Type.FilterFeedbackBar",
+				"_Name": "FilterFeedback",
+                "FastFilters": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetItemsFastFilters.js",
+				"ShowAllFilters": true
+            },
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"	
+		}
+	],
+	"OnLoaded": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/ItemsListOnLoaded.js",
+	"_Name": "PurchaseOrderItemsListPage",
+	"_Type": "Page"
+}

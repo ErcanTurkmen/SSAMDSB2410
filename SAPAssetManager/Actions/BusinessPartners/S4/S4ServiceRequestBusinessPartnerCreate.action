@@ -1,0 +1,38 @@
+{
+    "_Type": "Action.Type.ODataService.CreateEntity",
+    "Target": {
+        "EntitySet" : "S4ServiceRequestPartners",
+        "Service" : "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "Properties": {
+        "ObjectID": "{ObjectID}",
+        "HeaderID": "{ObjectID}",
+        "ItemNo": "{ItemNo}"
+    },
+    "Headers": {
+        "OfflineOData.RemoveAfterUpload": "true"
+    },
+    "CreateLinks": [
+        {
+            "Property": "S4ServiceRequest_Nav",
+            "Target": {
+                "EntitySet": "S4ServiceRequests",
+                "ReadLink": "{@odata.readLink}"
+            }
+        },
+        {
+            "Property": "BusinessPartner_Nav",
+            "Target": {
+                "EntitySet": "S4BusinessPartners",
+                "ReadLink": "#Control:BusinessPartnerListPicker/#SelectedValue"
+            }
+        },
+        {
+            "Property": "S4PartnerFunction_Nav",
+            "Target": {
+                "EntitySet": "S4PartnerFunctions",
+                "ReadLink": "#Control:BusinessPartnerTypeListPicker/#SelectedValue"
+            }
+        }
+    ]
+}

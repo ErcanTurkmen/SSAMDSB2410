@@ -1,0 +1,78 @@
+{
+	"Caption": "$(L,sto_detail_title)",
+		"ActionBar": {
+		"Items": [
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment"
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"ObjectHeader": {
+						"DetailImageIsCircular": false,
+						"PreserveIconStackSpacing": false,
+						"HeadlineText": "{StockTransportOrderId}"
+ 					},
+					"_Name": "SectionObjectHeader",
+					"_Type": "Section.Type.ObjectHeader"
+				}
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		},
+		{
+			"Items": [{
+				"_Name": "ItemsListTab",
+				"Caption": "$(L, items)",
+				"PageToOpen" : "/SAPAssetManager/Pages/Inventory/PurchaseOrder/PurchaseOrderItemsList.page",
+				"OnPress": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/PurchaseOrderItemsListOnPress.js",
+				"_Type": "Control.Type.TabItem"
+			},
+			{
+				"_Name": "MaterialDocumentsListTab",
+				"Caption": "$(L, material_list_title_no_count)",
+				"PageToOpen" : "/SAPAssetManager/Pages/Inventory/PurchaseOrder/POMaterialDocItemsList.page",
+				"_Type": "Control.Type.TabItem"
+			},
+			{
+				"_Name": "STOrderHeaderTab",
+				"Caption": "$(L, header)" ,
+				"PageToOpen" : "/SAPAssetManager/Pages/Inventory/StockTransportOrder/STOrderHeader.page",
+				"PageMetadata": "/SAPAssetManager/Rules/Inventory/STOrderHeaderPageMetadata.js",
+				"_Type": "Control.Type.TabItem"				
+			
+		}],
+			"Position": "Top",
+			"_Type": "Control.Type.Tabs",
+			"_Name": "TabsControl"
+  		}
+	],
+    "FioriToolbar": {
+		"_Name": "StockTransportOrderDetailsFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Items": [
+            {
+                "_Name": "ReceivePartTbI",
+                "_Type": "FioriToolbarItem.Type.Button",
+                "Enabled" : "/SAPAssetManager/Rules/Inventory/Validation/PurchaseOrderGoodsReceiptReceiveAllIsAllowed.js",
+                "Title": "$(L,receive_all)",
+				"OnPress": "/SAPAssetManager/Rules/Inventory/StockTransportOrder/SetSTOGoodsReceiptReceiveAll.js",
+				"Visible": "/SAPAssetManager/Rules/Inventory/StockTransportOrder/STOIssueOrReceiveAllVisible.js"
+            },
+            {
+                "_Name": "IssuePartTbI",
+                "_Type": "FioriToolbarItem.Type.Button",
+                "Enabled" : "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/BulkUpdate/BulkGoodsIssueIsAllowed.js",
+                "Title": "$(L,issue_all)",
+				"OnPress": "/SAPAssetManager/Rules/Inventory/StockTransportOrder/SetSTOGoodsIssueIssueAll.js",
+				"Visible": "/SAPAssetManager/Rules/Inventory/StockTransportOrder/STOIssueOrReceiveAllVisible.js"
+            }
+        ]
+    },
+	"DataSubscriptions": ["StockTransportOrderHeaders", "MaterialDocItems","MaterialDocuments","StockTransportOrderItems"],
+	"OnLoaded": "/SAPAssetManager/Rules/Inventory/Common/RefreshSoftInputModeConfig.js",
+	"OnReturning": "/SAPAssetManager/Rules/Inventory/StockTransportOrder/StockTransportOrderDetailsPageOnReturn.js",
+	"_Name": "StockTransportOrderDetailsPage",
+	"_Type": "Page"
+}

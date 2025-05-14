@@ -1,0 +1,63 @@
+{
+	"_Type": "Page",
+	"_Name": "StockConsignmentPage",
+	"Caption": "/SAPAssetManager/Rules/Inventory/Stock/StockDescription.js",
+	"Controls": [
+		{
+			"_Type": "Control.Type.SectionedTable",
+			"_Name": "StockDetailsSectionedTable",
+			"Sections": [
+                {
+                    "EmptySection": {
+						"Caption": "$(L,no_related_document)"
+					},
+                    "Header": {
+                        "DataTable": {
+                            "Items": [
+                                {
+                                    "Text": "$(L,vendor)",
+                                    "TextAlignment": "Left"
+                                },
+                                {
+                                    "Text": "$(L,batch)",
+                                    "TextAlignment": "Left"
+                                },
+                                {
+                                    "Text": "$(L,stock_quantity_uom)",
+                                    "TextAlignment": "Left"
+                                }
+                            ]
+                        }
+                    },
+                    "Row": {
+                       "Layout": {
+                            "ColumnWidth": [300,90,150]
+                        },
+                        "Items": [
+                            {
+                                "Text": "/SAPAssetManager/Rules/Inventory/Stock/GetSupplier.js",
+                                "TextAlignment": "Left"
+                            },
+                            {
+                                "Text": "{Batch}",
+                                "TextAlignment": "Left"
+                            },
+                            {
+                                "Text": "/SAPAssetManager/Rules/Inventory/Stock/QuantityWithUOM.js",
+                                "TextAlignment": "Left"
+                            }
+                        ]
+                    },
+                    "Target": {
+                        "EntitySet": "MaterialVendorConsignmentStocks",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "/SAPAssetManager/Rules/Inventory/Stock/StockConsignmentQuery.js"
+                    },
+                    "_Type": "Section.Type.DataTable",
+                    "StickyColumn": false,
+                    "_Name": "DataTableSection"
+                }
+			]
+		}
+	]
+}

@@ -1,0 +1,15 @@
+{
+    "Title": "$(L, action_view_workorder)",
+    "Icon": "ActionView",
+    "Type": "View",
+    "CallbackInfo": {
+        "Action": "/SAPAssetManager/Rules/WorkOrders/WorkOrderDetailsNav.js",
+        "Target": {
+            "EntitySet": "MyWorkOrderHeaders",
+            "Service": "/SAPAssetManager/Services/AssetManager.service",
+            "QueryOptions": "$expand=Operations/OperationLongText,OrderMobileStatus_Nav,UserTimeEntry_Nav,Equipment,FunctionalLocation,HeaderLongText,WODocuments,WOGeometries/Geometry,MarkedJob&$filter=OrderId eq '{OrderId}'",
+            "Properties": [],
+            "KeyProperties": []
+        }
+    }
+}

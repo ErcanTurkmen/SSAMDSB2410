@@ -1,0 +1,5 @@
+{
+    "Message": "$(L, online_search_download_failed)",
+    "Duration": 9999,
+    "_Type": "Action.Type.BannerMessage"
+}

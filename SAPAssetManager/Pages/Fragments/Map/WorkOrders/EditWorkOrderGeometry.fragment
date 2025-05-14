@@ -1,0 +1,10 @@
+{
+    "Title": "$(L, action_edit_geometry)",
+    "Icon": "ActionEdit",
+    "Type": "Update",
+    "IsVisible": "/SAPAssetManager/Rules/UserAuthorizations/WorkOrders/EnableWorkOrderGeometryEdit.js",
+    "CallbackInfo": {
+        "Action": "/SAPAssetManager/Rules/Maps/MapWorkOrderUpdate.js",
+        "Target": "/SAPAssetManager/Pages/Fragments/Map/WorkOrders/MapWorkOrderCallbackInfoTarget.fragment"
+    }
+}

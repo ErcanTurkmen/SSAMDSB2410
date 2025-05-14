@@ -1,0 +1,3 @@
+import PurchaseRequisitionObjectCellData from './PurchaseRequisitionObjectCellData';
+
+export default PurchaseRequisitionObjectCellData.PurchaseRequisitionIcons;

@@ -1,0 +1,9 @@
+{
+	"_Type": "Action.Type.ODataService.DeleteEntity",
+	"Target": {
+		"EntitySet": "PurchaseRequisitionHeaders",
+		"Service": "/SAPAssetManager/Services/AssetManager.service",
+		"ReadLink": "/SAPAssetManager/Rules/Inventory/PurchaseRequisition/Data/GetHeaderLink.js"
+	},
+	"OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/DeleteEntityFailureMessage.action"
+}

@@ -1,0 +1,5 @@
+{
+    "_Type" : "Action.Type.Navigation",
+    "PageToOpen" : "/SAPAssetManager/Pages/Classification/ClassificationListView.page",
+    "PageMetadata": "/SAPAssetManager/Rules/Classification/ClassificationPageMetadata.js"
+}

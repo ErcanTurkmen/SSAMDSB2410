@@ -1,0 +1,34 @@
+{
+	"_Type": "Section.Type.KeyValue",
+	"_Name": "EquipmentWarrantiesDetailsSection",
+	"Header": {
+		"Caption": "$(L,warranty_details)"
+	},
+	"KeyAndValues": [
+		{
+			"_Name": "WarrantyTypeDesc",
+			"KeyName": "$(L,type)",
+			"Value": "{WarrantyTypeDesc}"
+		},
+		{
+			"_Name": "MasterWarrantyNum",
+			"KeyName": "$(L,number)",
+			"Value": "/SAPAssetManager/Rules/Equipment/Warranties/EquipmentWarrantiesNumber.js"
+		},
+		{
+			"_Name": "WarrantyDate",
+			"KeyName": "$(L,start_date)",
+			"Value": "/SAPAssetManager/Rules/Equipment/Warranties/EquipmentWarrantiesStartDate.js"
+		},
+		{
+			"_Name": "WarrantyEnd",
+			"KeyName": "$(L,end_date)",
+			"Value": "/SAPAssetManager/Rules/Equipment/Warranties/EquipmentWarrantiesEndDate.js"
+		},
+		{
+			"_Name": "WarrantyDesc",
+			"KeyName": "$(L,description)",
+			"Value": "/SAPAssetManager/Rules/Equipment/Warranties/EquipmentWarrantiesDescription.js"
+		}
+	]
+}

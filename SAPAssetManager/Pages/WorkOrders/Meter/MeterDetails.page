@@ -1,0 +1,186 @@
+{
+    "Caption": "/SAPAssetManager/Rules/Meter/Details/DetailsCaptionFix.js",
+    "OnLoaded": "/SAPAssetManager/Rules/WorkOrders/Meter/MeterDetailsOnLoad.js",
+    "OnReturning": "/SAPAssetManager/Rules/WorkOrders/Meter/MeterDetailsOnLoad.js",
+    "OnCustomEventDataReceived": "/SAPAssetManager/Rules/Common/OnCustomEventDataReceived.js",
+    "ActionBar": {
+        "_Name": "MeterDetails",
+        "Items": [
+            {
+                "Position": "Right",
+                "_Name": "TakeReadings",
+                "Text": "$(L,take_readings)",
+                "OnPress": "/SAPAssetManager/Rules/Meter/MeterReadingsUpdateNav.js",
+                "Visible": false
+            },
+            {
+                "Position": "Right",
+                "_Name": "ReplaceMeter",
+                "Text": "$(L,replace_meter)",
+                "OnPress": "/SAPAssetManager/Rules/Meter/CreateUpdate/MeterReplaceUpdateNav.js",
+                "Visible": false
+
+            },
+            {
+                "Position": "Right",
+                "_Name": "RemoveMeter",
+                "Text": "$(L,remove_meter)",
+                "OnPress": "/SAPAssetManager/Rules/Meter/CreateUpdate/MeterRemoveUpdateNav.js",
+                "Visible": false
+
+            },
+            {
+                "Position": "Right",
+                "_Name": "Disconnect",
+                "Text": "$(L,disconnect)",
+                "OnPress": "/SAPAssetManager/Rules/Meter/CreateUpdate/MeterDisconnectNav.js",
+                "Visible": false
+            },
+            {
+                "Position": "Right",
+                "_Name": "Reconnect",
+                "Text": "$(L,reconnect)",
+                "OnPress": "/SAPAssetManager/Rules/Meter/CreateUpdate/MeterReconnectNav.js",
+                "Visible": false
+            },
+            {
+                "Position": "Right",
+                "_Name": "Edit",
+                "Text": "$(L,edit)",
+                "OnPress": "/SAPAssetManager/Rules/Meter/MeterUpdateSwitch.js",
+                "Visible": false
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "ObjectHeader": {
+                        "HeadlineText": "/SAPAssetManager/Rules/Meter/Details/DeviceHeadlineDisplay.js",
+                        "Subhead": "/SAPAssetManager/Rules/Meter/Details/DeviceLocationDisplay.js",
+                        "Tags": "/SAPAssetManager/Rules/Meter/Details/DeviceTagsDisplay.js",
+                        "Footnote":  "/SAPAssetManager/Rules/WorkOrders/Meter/MeterAddress.js",
+                        "StatusText": "/SAPAssetManager/Rules/Meter/Details/MeterStatusText.js",
+                        "SubstatusText": "/SAPAssetManager/Rules/Meter/Details/ConnectedStatus.js",
+                        "Target":
+                        {
+                            "EntitySet": "/SAPAssetManager/Rules/Meter/ActivityFix.js",
+                            "Service": "/SAPAssetManager/Services/AssetManager.service",
+                            "QueryOptions": "/SAPAssetManager/Rules/Meter/ActivityQueryOptsFix.js"
+                        }
+                    },
+                    "_Type": "Section.Type.ObjectHeader",
+                    "_Name": "ObjectHeaderSectionTable",
+                    "DataSubscriptions": ["OrderISULinks,MobileStatuses,Devices,MyEquipments,MyEquipObjectStatuses,SystemStatuses"]
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/MeterDetailsSection.fragment",
+                    "Properties": {
+                        "Visible": "/SAPAssetManager/Rules/Common/IsClassicLayoutEnabled.js"
+                    }
+                },
+                {
+                    "_Name": "DataTableSection",
+                    "_Type": "Section.Type.DataTable",
+                    "DataSubscriptions": ["MeterReadings"],
+                    "Row": {
+                        "Layout": {
+                          "ColumnWidth": [100,200,200,200,-1]
+                        },
+                        "Items": [
+                            {
+                                "Image": "/SAPAssetManager/Rules/Meter/RegReadingIsLocal.js"
+                            },
+                            {
+                                "Text": "{RegisterNum}",
+                                "Style": "GridTableRowText"
+                            },
+                            {
+                                "Text": "/SAPAssetManager/Rules/Meter/Format/ReadingTime.js",
+                                "Style": "GridTableRowText"
+                            },
+                            {
+                                "Text": "/SAPAssetManager/Rules/Meter/Format/ReadingDate.js",
+                                "Style": "GridTableRowText"
+                            },
+                            {
+                                "Text": "/SAPAssetManager/Rules/Meter/Format/ReadingValue.js",
+                                "Style": "GridTableRowText"
+                            }
+                        ],
+                        "OnPress": "/SAPAssetManager/Actions/WorkOrders/Meter/Register/RegisterDetailsNav.action",
+                        "AccessoryType": "DisclosureIndicator"
+                    },
+                    "Header": {
+                        "DataTable": {
+                            "Items": [
+                                {
+                                    "Text": "",
+                                    "TextAlignment": "Center",
+                                    "Style": "GridTableHeaderText"
+                                },
+                                {
+                                    "Text": "$(L,register)",
+                                    "TextAlignment": "Center",
+                                    "Style": "GridTableHeaderText"
+                                },
+                                {
+                                    "Text": "$(L,time)",
+                                    "TextAlignment": "Center",
+                                    "Style": "GridTableHeaderText"
+                                },
+                                {
+                                    "Text": "$(L,date)",
+                                    "TextAlignment": "Center",
+                                    "Style": "GridTableHeaderText"
+                                },
+                                {
+                                    "Text": "$(L,reading)",
+                                    "TextAlignment": "Center",
+                                    "Style": "GridTableHeaderText"
+                                }
+                            ]
+                        }
+                    },
+                    "EmptySection": {
+                        "Caption": "$(L,no_readings)"
+                    },
+                    "Target": {
+                        "EntitySet": "/SAPAssetManager/Rules/Meter/Format/MeterRegisterEntitySet.js",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "$orderby=RegisterNum"
+                    }
+                },
+                {
+                    "_Type": "Fragment",
+                    "Fragment": "/SAPAssetManager/Pages/Fragments/WorkOrder/MeterDetailsSection.fragment",
+                    "Properties": {
+                        "Visible": "/SAPAssetManager/Rules/Common/IsClassicLayoutDisabled.js",
+                        "_Name": "MeterDetailsSection"
+                    }
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "StickyColumn": false,
+            "_Name": "SectionedTable"
+        }
+    ],
+    "FioriToolbar": {
+        "_Name": "MeterFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Visible": "/SAPAssetManager/Rules/Meter/CreateUpdate/IsDiscardMeterButtonVisible.js",
+        "Items": [
+            {
+				"_Name": "DiscardMeter",
+				"_Type": "FioriToolbarItem.Type.Button",
+				"Title": "$(L,discard)",
+                "OnPress": "/SAPAssetManager/Rules/Meter/CreateUpdate/DiscardActionSwitch.js"
+			}
+        ]
+    },
+    "_Type": "Page",
+    "_Name": "MeterDetailsPage",
+    "DataSubscriptions": "/SAPAssetManager/Rules/Common/DataSubscriptions.js"
+}

@@ -1,0 +1,7 @@
+{
+  "_Type" : "Action.Type.BannerMessage",
+  "Message" : "",
+  "DismissBannerOnAction": true,
+  "Duration": 7,
+  "Animated": true
+}

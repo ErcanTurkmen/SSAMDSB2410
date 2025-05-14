@@ -1,0 +1,78 @@
+{
+	"Caption": "/SAPAssetManager/Rules/Notifications/Activity/NotificationActivityHeader.js",
+	"OnLoaded": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsOnPageLoad.js",
+
+	"ActionBar":
+	{
+		"_Name": "NotificationActivityDetails",
+		"Items":
+		[
+            {
+                "Position": "Right",
+				"_Name": "Edit",
+                "SystemItem": "Edit",
+				"Caption": "$(L,edit)",
+                "OnPress": "/SAPAssetManager/Rules/Notifications/Activity/CreateUpdate/NotificationActivityUpdateNav.js",
+				"Visible": "/SAPAssetManager/Rules/UserAuthorizations/Notifications/EnableNotificationEdit.js"
+            },
+			{
+                "Position": "Right",
+				"_Name": "Add",
+            	"SystemItem": "Add",
+				"Caption": "$(L,add)",
+                "OnPress": "/SAPAssetManager/Rules/Notifications/Activity/Details/NotificationActivityDetailsPopover.js",
+				"Visible": "/SAPAssetManager/Rules/UserAuthorizations/Notifications/EnableNotificationEdit.js"
+            }
+		]
+	},
+	"Controls":
+	[{
+		"Sections":
+		[{
+			"KeyAndValues":
+			[{
+				"_Name": "ActivityText",
+				"KeyName" : "$(L,description)",
+				"Value" : "{ActivityText}"
+			},
+			{
+				"_Name": "ActivitySortNumber",
+				"KeyName" : "$(L,sort_number)",
+				"Value" : "{ActivitySortNumber}"
+			},
+			{
+				"_Name": "ActivityCodeGroup",
+				"KeyName" : "$(L,group)",
+				"Value" : "/SAPAssetManager/Rules/Notifications/Activity/Details/NotificationActivityDetailsGroup.js"
+			},
+			{
+				"_Name": "ActivityCode",
+				"KeyName" : "$(L,code)",
+				"Value" : "/SAPAssetManager/Rules/Notifications/Activity/Details/NotificationActivityDetailsCode.js"
+			}],
+			"_Name": "NotificationActivityDetailsSection",
+			"_Type" : "Section.Type.KeyValue"
+		},
+		{
+            "SimplePropertyCells":
+            [{
+                "SimplePropertyCell": {
+                    "AccessoryType": "DisclosureIndicator",
+                    "KeyName": "$(L,notes)",
+                    "Value": "/SAPAssetManager/Rules/Notes/NotesCount.js",
+                    "OnPress": "/SAPAssetManager/Rules/Notes/NotesViewNav.js"
+                }
+            }],
+			"Layout":
+			{
+				"NumberOfColumns" : 1,
+                "MinimumInteritemSpacing": "$(PLT,66,0)" 
+			},
+            "_Type" : "Section.Type.SimplePropertyCollection"
+        }],
+		"_Type": "Control.Type.SectionedTable",
+		"_Name": "SectionedTable"
+	}],
+	"_Type": "Page",
+	"_Name": "NotificationActivityDetailsPage"
+}

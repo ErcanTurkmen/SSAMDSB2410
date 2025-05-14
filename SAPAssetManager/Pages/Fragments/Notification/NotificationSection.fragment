@@ -1,0 +1,20 @@
+{
+    "Header": {
+        "Caption": "$(L,notification)"
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_notifications_available)"
+    },
+    "ObjectCell": {
+	    "_Type": "Fragment",
+        "Fragment": "/SAPAssetManager/Pages/Fragments/Notification/NotificationObjectCell.fragment"
+    },
+    "Target": {
+        "EntitySet" : "{{#Property:@odata.readLink}}/NotifHeader_Nav",
+        "Service" : "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions" : "/SAPAssetManager/Rules/Notifications/NotificationsListViewQueryOption.js"
+    },
+    "_Name": "NotificationsList",
+    "_Type": "Section.Type.ObjectTable",
+    "DataSubscriptions": ["MyNotificationHeaders"]
+}

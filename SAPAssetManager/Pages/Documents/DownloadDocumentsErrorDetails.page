@@ -1,0 +1,31 @@
+{
+	"Caption": "$(L, error_details)",
+	"Controls": [
+		{
+			"Sections": [
+				{
+                    "KeyAndValues": [
+						{
+							"KeyName": "$(L, document)",
+							"Value": "/SAPAssetManager/Rules/Documents/DocumentFileName.js"
+						},
+                        {
+                            "KeyName": "$(L, error)",
+                            "Value": "{errorText}"
+                        }
+                    ],
+                    "Layout": {
+                        "NumberOfColumns": 1,
+                        "MinimumInteritemSpacing": "$(PLT,66,0)" 
+                    },
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "ErrorKeyValue"
+                }
+			],
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"_Name": "DownloadDocumentsErrorDetailsPage",
+	"_Type": "Page"
+}

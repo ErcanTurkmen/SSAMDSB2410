@@ -1,0 +1,92 @@
+{
+    "ActionBar": {
+        "Items": "/SAPAssetManager/Pages/WCM/Fragments/FilterActionBarItems.fragment"
+    },
+    "Caption": "$(L,filter)",
+    "OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+    "Result": "/SAPAssetManager/Rules/WCM/WorkApprovals/List/WorkApprovalsListViewFilterResults.js",
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "Controls": [{
+                        "_Type": "Fragment",
+                        "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/SortByFilter.fragment",
+                        "Properties": {
+                            "SortByItems": [
+                                {
+                                    "ReturnValue": "ShortText",
+                                    "DisplayValue": "$(L,description)"
+                                },
+                                {
+                                    "ReturnValue": "ValidTo",
+                                    "DisplayValue": "$(L,wcm_valid_to)"
+                                },
+                                {
+                                    "ReturnValue": "WCMApproval",
+                                    "DisplayValue": "$(L,wcm_work_approval_id)"
+                                }
+                            ]
+                        }
+                    }]
+                },
+                {
+                    "Controls": [
+                        {
+                            "_Type": "Fragment",
+                            "Fragment": "/SAPAssetManager/Pages/WCM/Fragments/HeaderStatusFilter.fragment",
+                            "Properties":{
+                                "PickerItems": "/SAPAssetManager/Rules/WCM/WorkApprovals/List/WorkApprovalsHeaderStatuses.js",
+                                "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "Controls": [
+                        {
+                            "_Type": "Fragment",
+                            "Fragment":"/SAPAssetManager/Pages/WCM/Fragments/FunctionalLocationFilter.fragment",
+                            "Properties": {
+                                "Value": "{FuncLoc}",
+                                "FilterProperty": "FuncLoc"
+                            }
+                        },
+                        {
+                            "_Type": "Fragment",
+                            "Fragment":"/SAPAssetManager/Pages/WCM/Fragments/EquipmentFilter.fragment",
+                            "Properties": {
+                                "Value": "{Equipment}",
+                                "FilterProperty": "Equipment"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "Controls": "/SAPAssetManager/Pages/WCM/Fragments/ValidFromFilter.fragment"
+                },
+                {
+                    "Controls": "/SAPAssetManager/Pages/WCM/Fragments/ValidToFilter.fragment"
+                }
+            ],
+            "_Name": "FormCellContainer",
+            "_Type": "Control.Type.FormCellContainer"
+        }
+    ],
+    "FioriToolbar": {
+        "_Name": "WorkApprovalsFilterFioriToolbar",
+        "_Type": "Control.Type.FioriToolbar",
+        "Items": [
+            {
+				"_Type": "Fragment",
+                "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/ResetFilterToolbarItem.fragment",
+				"Properties": {
+                    "OnPress": "/SAPAssetManager/Rules/Filter/FilterResetToDefault.js"
+				}
+			}
+        ]
+    },
+    "_Type": "Page",
+    "_Name": "WorkApprovalsFilterPage",
+    "OnLoaded": "/SAPAssetManager/Rules/WCM/WorkApprovals/List/WorkApprovalsFilterOnLoaded.js"
+}

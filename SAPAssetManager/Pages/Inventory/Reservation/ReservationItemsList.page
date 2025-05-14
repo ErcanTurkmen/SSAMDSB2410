@@ -1,0 +1,76 @@
+{
+	"Caption": "$(L,items)",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Header": {
+						"UseTopPadding": false,
+						"Caption": "/SAPAssetManager/Rules/Inventory/Reservation/ReservationItemsListCaption.js"
+					},
+					"EmptySection": {
+						"Caption": "$(L,no_items)"
+					},
+					"ObjectCell": {
+						"DetailImageIsCircular": false,
+						"PreserveIconStackSpacing": false,
+						"OnPress": "/SAPAssetManager/Rules/Inventory/Reservation/ReservationItemProductionOrderComponentDetailsQuery.js",
+						"Title": "/SAPAssetManager/Rules/Inventory/Common/GetItemTextOrMaterialName.js",
+						"Description": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetItemDescription.js",
+						"Subhead": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetItemSubHead.js",
+						"Footnote": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetItemFootnote.js",
+						"StatusText": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetPOItemState.js",
+						"SubstatusText": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetPurchaseOrderItemsOpenQuantitiesText.js",
+						"AccessoryButtonIcon": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/ShowAccessoryButtonIcon.js",
+						"OnAccessoryButtonPress": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/SetPurchaseOrderGoodsReceipt.js"
+					},
+					"Search": {
+						"Enabled" : true,
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 3,
+                        "Placeholder": "$(L,search)",
+                        "BarcodeScanner": true
+					},
+					"Target": {
+						"EntitySet":  "ReservationItems",
+                        "QueryOptions": "/SAPAssetManager/Rules/Inventory/Common/GetItemsListQuery.js",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					},
+					"_Name": "ReservationItemsSectionObjectTable",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"FilterFeedbackBar": {
+				"_Type": "Control.Type.FilterFeedbackBar",
+				"_Name": "FilterFeedback",
+				"ShowAllFilters": true,
+				"FastFilters": [
+					{  
+						"_Name": "OpenItems",
+						"_Type": "Control.Type.FastFilterItem",
+						"FilterType": "Filter",
+						"FilterProperty": "",
+						"CustomQueryGroup": "ItemsFilter",
+						"DisplayValue": "/SAPAssetManager/Rules/Inventory/Reservation/ReservationItemsFilterCaptionOpen.js",
+						"ReturnValue": "RequirementQuantity eq 0 or WithdrawalQuantity eq 0 or RequirementQuantity gt WithdrawalQuantity"
+					},
+					{  
+						"_Name": "IssuedItems",
+						"_Type": "Control.Type.FastFilterItem",
+						"FilterType": "Filter",
+						"FilterProperty": "",
+						"CustomQueryGroup": "ItemsFilter",
+						"DisplayValue": "/SAPAssetManager/Rules/Inventory/Reservation/ReservationItemsFilterCaptionIssued.js",
+						"ReturnValue": "Completed eq 'X' or (not(RequirementQuantity eq 0 or WithdrawalQuantity eq 0 or RequirementQuantity gt WithdrawalQuantity))"
+					}
+				]
+			},
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable",
+			"Filters": "/SAPAssetManager/Rules/Inventory/Reservation/GetItemsPreselectedFilter.js"
+		}
+	],
+	"OnReturning": "/SAPAssetManager/Rules/Inventory/Reservation/ReservationItemsListOnReturning.js",
+	"_Name": "ReservationItemsListPage",
+	"_Type": "Page"
+}

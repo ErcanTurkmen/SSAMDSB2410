@@ -1,0 +1,32 @@
+{
+    "Header": {
+        "Caption" : "$(L,notification_items_causes)"
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_item_causes_available)"
+    },
+    "ObjectCell": {
+        "PreserveIconStackSpacing": true,
+        "Icons":"/SAPAssetManager/Rules/Notifications/Item/Cause/NotificationItemCauseTaskActivityIconImages.js",
+        "Title": "/SAPAssetManager/Rules/Notifications/Item/Details/NotificationItemCauseDetailsListFormat.js",
+        "Subhead": "/SAPAssetManager/Rules/Notifications/Item/Details/NotificationItemCauseDetailsListFormat.js",
+        "Footnote" : "/SAPAssetManager/Rules/Notifications/Item/Details/NotificationItemCauseDetailsListFormat.js",
+        "StatusText" : "/SAPAssetManager/Rules/Notifications/Item/Details/NotificationItemCauseDetailsListFormat.js",
+        "AccessoryType" : "disclosureIndicator",
+        "OnPress" : "/SAPAssetManager/Actions/Notifications/Item/NotificationItemCauseDetailsNav.action"
+    },
+    "Target": {
+        "EntitySet" : "{{#Property:@odata.id}}/ItemCauses",
+        "Service" : "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions" : "$top=2&$expand=Item/Notification&$orderby=CauseSortNumber asc"
+    },
+    "Footer": {
+        "Caption": "$(L,see_all)",
+        "AccessoryType": "DisclosureIndicator",
+        "FooterStyle": "Attribute",
+        "AttributeLabel": "/SAPAssetManager/Rules/Notifications/Item/Cause/NotificationItemCausesCount.js",
+        "OnPress" : "/SAPAssetManager/Actions/Notifications/Item/NotificationItemCausesListViewNav.action"
+    },
+    "_Name" : "NotificationItemCauses",
+    "_Type" : "Section.Type.ObjectTable"
+}

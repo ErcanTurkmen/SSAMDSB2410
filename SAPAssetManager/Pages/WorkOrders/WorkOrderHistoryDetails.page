@@ -1,0 +1,67 @@
+{
+	"_Type": "Page",
+	"_Name": "WorkOrderHistoryDetailsPage",
+	"Caption": "/SAPAssetManager/Rules/WorkOrders/Header/WorkOrderHeader.js",
+	"Controls": [
+		{
+			"_Type": "Control.Type.SectionedTable",
+			"_Name": "WorkOrderHistoryDetailsSectionedTable",
+			"Sections": [
+				{
+					"_Type": "Section.Type.KeyValue",
+					"_Name": "WorkOrderHistoryDetailsSection",
+					"Header": {
+						"Caption": "$(L,workorder_history_details)"
+					},
+					"KeyAndValues": [
+						{
+							"_Name": "OrderDescription",
+							"KeyName": "$(L,description)",
+							"Value": "/SAPAssetManager/Rules/WorkOrders/WorkOrderDescription.js"
+						},
+						{
+							"_Name": "OrderId",
+							"KeyName": "$(L,number)",
+							"Value": "{OrderId}"
+						},
+						{
+							"_Name": "Priority",
+							"KeyName": "$(L,priority)",
+							"Value": "#Property:HistoryPriority/#Property:PriorityDescription"
+						},
+						{
+							"_Name": "OrderType",
+							"KeyName": "$(L,type)",
+							"Value": "{OrderType}"
+						},
+						{
+							"_Name": "StartDate",
+							"KeyName": "$(L,start_date)",
+							"Value": "/SAPAssetManager/Rules/WorkOrders/History/WorkOrderHistoryDetailsStartDate.js"
+						},
+						{
+							"_Name": "EndDate",
+							"KeyName": "$(L,end_date)",
+							"Value": "/SAPAssetManager/Rules/WorkOrders/History/WorkOrderHistoryDetailsEndDate.js"
+						}
+					]
+				},
+				{
+					"_Type": "Section.Type.KeyValue",
+					"_Name": "WorkOrderHistoryNotesSection",
+					"Layout": {
+						"NumberOfColumns": 1,
+                        "MinimumInteritemSpacing": "$(PLT,66,0)"
+					},
+					"KeyAndValues": [
+						{
+							"_Name": "Note",
+							"KeyName": "$(L, notes)",
+							"Value": "/SAPAssetManager/Rules/WorkOrders/History/WorkOrderHistoryDetailsNotes.js"
+						}
+					]
+				}
+			]
+		}
+	]
+}

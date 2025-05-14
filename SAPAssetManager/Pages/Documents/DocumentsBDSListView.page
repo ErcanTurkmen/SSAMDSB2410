@@ -1,0 +1,39 @@
+{
+	"Caption": "$(L,documents)",
+	"OnActivityBackPressed": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/CancelCheckOnBackNavAndroid.js",
+	"ActionBar":
+	{
+		"_Name": "DocumentsBDSListView",
+		"Items":
+		[{
+			"Position": "Right",
+			"_Name": "Filter",
+			"Icon": "$(PLT,'',/SAPAssetManager/Images/filter.android.png, '', /SAPAssetManager/Images/filter.android.png)",
+			"Caption": "/SAPAssetManager/Rules/Filter/FilterButtonCaption.js",
+            "OnPress": "/SAPAssetManager/Actions/Documents/DocumentFilter.action"
+		},
+		{
+			"Position": "Right",
+			"_Name": "Add",
+			"SystemItem": "Add",
+			"Caption": "$(L,add)",
+			"OnPress": "/SAPAssetManager/Rules/Documents/Create/DocumentCreateBDSNav.js",
+			"Visible": "/SAPAssetManager/Rules/UserAuthorizations/Attachments/EnableAttachmentCreate.js"
+		}]
+	},
+	"Controls":
+	[{
+		"Sections":
+		[{
+			"_Type": "Fragment",
+			"Fragment": "/SAPAssetManager/Pages/Fragments/Documents/DocumentObjectTable.fragment"
+		}],
+		"_Type" : "Control.Type.SectionedTable",
+		"_Name": "SectionedTable"
+	}],
+	"_Type": "Page",
+	"OnLoaded": "/SAPAssetManager/Rules/Documents/DocumentListViewOnLoad.js",
+	"OnReturning": "/SAPAssetManager/Rules/Documents/OnBDSListReturning.js",
+	"_Name": "DocumentsListView",
+	"DataSubscriptions": ["Documents","MyFuncLocDocuments","MyEquipDocuments","MyWorkOrderDocuments","MyNotifDocuments", "S4ServiceOrderDocuments", "MatDocAttachments","S4ServiceConfirmationDocuments","S4ServiceRequestDocuments", "S4ServiceQuotationDocuments"]
+}

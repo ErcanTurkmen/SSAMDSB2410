@@ -1,0 +1,61 @@
+{
+    "_Type": "Section.Type.ObjectCardCollection",
+    "_Name": "PartsObjectCardCollection",
+    "Header": {
+        "Caption": "$(L,parts)"
+    },
+    "Layout": {
+        "LayoutType": "HorizontalScroll"
+    },
+    "EmptySection": {
+        "Caption": "$(L,no_parts_available)"
+    },
+    "Card": {
+        "_Type":"Control.Type.ObjectCard",
+        "Title": "/SAPAssetManager/Rules/Parts/PartFieldFormat.js",
+        "Subhead": "/SAPAssetManager/Rules/Parts/PartFieldFormat.js",
+        "Footnote": "/SAPAssetManager/Rules/Parts/PartFieldFormat.js",
+        "StatusText": "/SAPAssetManager/Rules/Parts/PartFieldFormat.js",
+        "OnPress" : "/SAPAssetManager/Actions/Parts/PartDetailsNav.action",
+        "DetailImage": "$(PLT, /SAPAssetManager/Images/DetailImages/Parts.png, /SAPAssetManager/Images/DetailImages/Parts.android.png, '', /SAPAssetManager/Images/DetailImages/Parts.android.png)",
+        "OverflowButtons": [
+            {
+                "_Name": "AddNote",
+                "Title" : "$(L, add_note)",
+                "OnPress": "/SAPAssetManager/Rules/Parts/PartObjectCardCreateNoteOnPress.js",
+                "Visible": "/SAPAssetManager/Rules/Parts/Details/PartDetailsAddButtonVisible.js"
+            }
+        ],
+        "PrimaryAction": {
+            "_Name": "IssuePartAction",
+            "Title": "$(L,issue)",
+            "Visible": "/SAPAssetManager/Rules/Parts/Issue/IssueEnableFromObjectCard.js",
+            "OnPress": "/SAPAssetManager/Rules/Parts/Issue/PartIssueNav.js",
+            "Style": "ObjectCardPrimaryAction"
+        },
+        "SecondaryAction": {
+            "_Name": "ReturnPartAction",
+            "Title": "$(L,return_text)",
+            "Visible": "/SAPAssetManager/Rules/Parts/Return/CreateUpdate/PartReturnEnable.js",
+            "OnPress": "/SAPAssetManager/Rules/Parts/Return/CreateUpdate/PartReturnCreate.js",
+            "Style": "ObjectCardPrimaryAction"
+        }
+    },
+    "Target": {
+        "EntitySet": "MyWorkOrderComponents",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "/SAPAssetManager/Rules/Parts/PartsListQueryOptions.js"
+    },
+    "Footer": {
+        "Caption": "$(L,see_all)",
+        "AccessoryType": "DisclosureIndicator",
+        "AttributeLabel": "/SAPAssetManager/Rules/Parts/PartsCount.js",
+        "FooterStyle": "Attribute",
+        "OnPress": "/SAPAssetManager/Actions/Parts/PartsListViewNav.action"
+    },
+    "Separators": {
+        "ControlSeparator": false
+    },
+    "Visible": "/SAPAssetManager/Rules/Parts/PartObjectCardCollectionIsVisible.js",
+    "DataSubscriptions": ["MyWorkOrderComponents", "MaterialDocuments", "MaterialDocItems"]
+}

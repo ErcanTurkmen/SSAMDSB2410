@@ -1,0 +1,52 @@
+{
+    	"Caption": "$(L,header)",
+		"ActionBar": {
+		"Items": [
+			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment"
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [ 
+					{
+           "_Type": "Section.Type.KeyValue",
+            "_Name": "STOrderHeaderPage",
+            "KeyAndValues": [
+                    {
+                        "_Name": "SupplyingPlant",
+                        "KeyName": "$(L,supply_plant)",
+                        "Value": "/SAPAssetManager/Rules/Inventory/StockTransportOrder/GetPlantName.js"
+                    },
+                    {
+                        "_Name": "DocumentType",
+                        "KeyName": "$(L,document_type)",
+                        "Value": "{DocumentType}"
+                    }, 
+                    {
+                        "_Name": "DocumentDate",
+                        "KeyName": "$(L,document_date)",
+                        "Value": "/SAPAssetManager/Rules/Inventory/Common/GetDocumentDateForInventoryHeader.js"
+                    }, 
+                    {
+                        "_Name": "DocumentStatus",
+                        "KeyName": "$(L,document_status)",
+                        "Value": "/SAPAssetManager/Rules/Inventory/StockTransportOrder/DisplaySTOStatus.js"
+                    }, 
+					{
+                        "_Name": "StockTransportOrderHeaderLongText.TextString",
+                        "KeyName": "$(L,note)",
+                        "Value": "/SAPAssetManager/Rules/Inventory/StockTransportOrder/STOHeaderDescription.js"
+                    }				
+                ]
+			}
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],	  
+	"DataSubscriptions": ["StockTransportOrderHeaders", "MaterialDocItems","MaterialDocuments","StockTransportOrderItems"],
+	"OnReturning": "/SAPAssetManager/Rules/Inventory/StockTransportOrder/StockTransportOrderDetailsPageOnReturn.js",
+	"_Name": "STOrderHeaderPage",
+	"_Type": "Page"
+}
+ 

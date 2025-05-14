@@ -1,0 +1,54 @@
+{
+    "_Type": "Page",
+    "_Name": "S4ErrorsListPage",
+    "Caption": "/SAPAssetManager/Rules/S4Errors/S4ErrorsPageCaption.js",
+    "ActionBar": {
+        "Items": [
+            {
+                "Position": "Left",
+                "SystemItem": "$(PLT,'','Cancel','','Cancel')",
+                "Caption": "$(L,close)",
+                "OnPress": "/SAPAssetManager/Actions/Page/ClosePage.action"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "_Type" : "Control.Type.SectionedTable",
+            "_Name": "SectionedTable",
+            "Sections": [
+                {
+                    "_Name": "DataTableSection",
+                    "_Type": "Section.Type.DataTable",
+                    "StickyColumn": false,
+                    "Header": {
+                        "UseTopPadding": false,
+                        "DataTable": {
+                            "Items": [
+                                {
+                                    "Text": "$(L,s4_errors_warning_message)"
+                                }
+                            ]
+                        }
+					},
+                    "Row": {
+                        "Items": [
+                            {
+                                "Value": "{Message}",
+                                "NumberOfLines": 10
+                            }
+                        ],
+                        "Layout": {
+                            "ColumnWidth": [400]
+                        }
+                    },
+                    "Target": {
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "EntitySet": "{@odata.readLink}/S4ServiceErrorMessage_Nav",
+                        "QueryOptions": "/SAPAssetManager/Rules/S4Errors/S4ErrorsListQueryOptions.js"
+                    }
+                }
+            ]
+        }
+    ]
+}

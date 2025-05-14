@@ -1,0 +1,90 @@
+{
+	"Caption": "Resize",
+	"OnLoaded":"/SAPAssetManager/Rules/Documents/DocumentEditorEstimate.js",
+	"ActionBar": {
+		"_Name": "DocumentEditorResize",
+    	"Items": [{
+			"_Name": "SaveImage",
+			"Position": "Right",
+            "Text": "$(L,save)",
+			"OnPress": "/SAPAssetManager/Rules/Documents/DocumentEditorSaveImage.js"
+		}]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"_Type": "Section.Type.Extension",
+					"_Name": "SliderExtensionControl",
+					"Module": "SliderModule",
+					"Control": "SliderExtension",
+					"Class": "SliderClass",
+					"ExtensionProperties": {
+						"MaxValue": 100,
+						"MinValue": 25,
+						"Unit": "%",
+						"Value": "/SAPAssetManager/Globals/Documents/DocumentEditorImageResizeDefaultPercent.global",
+						"Title": "$(L, size_percent)",
+						"OnValueChange": "/SAPAssetManager/Rules/Documents/DocumentEditorEstimate.js"
+					},
+					"Height": 100,
+					"IsVisible": true
+				},
+				{
+					"_Type": "Section.Type.Extension",
+					"_Name": "ImageViewExtensionControl",
+					"Module": "ImageViewModule",
+					"Control": "ImageViewExtension",
+					"Class": "ImageViewClass",
+					"ExtensionProperties": {
+                        "FilePath": "/SAPAssetManager/Rules/Documents/DocumentEditorImageViewPath.js"
+					},
+					"Height": 500,
+					"IsVisible": true
+				},
+				{
+					"_Type": "Section.Type.SimplePropertyCollection",
+					"_Name": "SimplePropertyCollection",
+					"SimplePropertyCells": [
+						{
+							"SimplePropertyCell":{
+								"KeyName": "$(L, original_size)",
+								"Value": "/SAPAssetManager/Rules/Documents/DocumentEditorOriginalSize.js",
+								"AccessoryType": "none"
+							}
+						},
+						{
+							"SimplePropertyCell":{
+								"KeyName": "$(L, estimated_size)",
+								"Value": "/SAPAssetManager/Rules/Documents/DocumentEditorEstimatedSize.js",
+								"AccessoryType": "none"
+							}
+						},
+						{
+							"SimplePropertyCell":{
+								"KeyName": "$(L, original_resolution)",
+								"Value": "/SAPAssetManager/Rules/Documents/DocumentEditorOriginalResolution.js",
+								"AccessoryType": "none"
+							}
+						},
+						{
+							"SimplePropertyCell":{
+								"KeyName": "$(L, estimated_resolution)",
+								"Value": "/SAPAssetManager/Rules/Documents/DocumentEditorEstimatedResolution.js",
+								"AccessoryType": "none"
+							}
+						}
+					],
+					"Layout": {
+            			"NumberOfColumns": 1,
+            			"MinimumInteritemSpacing": "$(PLT,66,0)"
+          			}
+				}
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"_Type": "Page",
+	"_Name": "DocumentEditorResizePage"
+}

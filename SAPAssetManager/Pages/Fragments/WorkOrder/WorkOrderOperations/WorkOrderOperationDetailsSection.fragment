@@ -1,0 +1,69 @@
+{
+    "_Type": "Section.Type.KeyValue",
+    "_Name": "WorkOrderOperationDetailsSection",
+    "Header": {
+        "Caption": "$(L,details)"
+    },
+    "KeyAndValues": [
+        {
+            "_Name": "PersonNum",
+            "KeyName": "$(L,assignedto)",
+            "Value": "/SAPAssetManager/Rules/Supervisor/Assign/WorkOrderOperationAssignedTo.js"
+        },
+        {
+            "_Name": "OperationShortText",
+            "KeyName": "$(L,description)",
+            "Value": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/WorkOrderOperationShortText.js"
+        },
+        {
+            "_Name": "ControlKey",
+            "KeyName": "$(L,control_key)",
+            "Value": "{ControlKey}"
+        },
+        {
+            "_Name": "MainWorkCenterPlant",
+            "KeyName": "$(L,work_center_plant)",
+            "Value": "{MainWorkCenterPlant}"
+        },
+        {
+            "_Name": "MainWorkCenter",
+            "KeyName": "$(L,work_center)",
+            "Value": "{MainWorkCenter}"
+        },
+        {
+            "_Name": "Signature",
+            "KeyName": "$(L,digit_signature)",
+            "Value": "/SAPAssetManager/Rules/DigitalSignature/CheckDigitalSignatureState.js"
+        },
+        {
+            "_Name": "NumberOfCapacities",
+            "KeyName": "$(L,techs_assigned)",
+            "Value": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/OperationNumberOfCapacities.js"
+        },
+        {
+            "_Name": "Duration",
+            "KeyName": "$(L,duration_per_tech)",
+            "Value": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/OperationDuration.js"
+        },
+        {
+            "_Name": "DurationUOM",
+            "KeyName": "$(L,duration_uom)",
+            "Value": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/OperationDurationUOM.js"
+        },
+        {
+            "_Name": "Work",
+            "KeyName": "$(L,work)",
+            "Value": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/OperationWork.js"
+        },
+        {
+            "_Name": "WorkUnit",
+            "KeyName": "$(L,work_uom)",
+            "Value": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/OperationWorkUnit.js"
+        }
+    ],
+    "Target": {
+        "EntitySet": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/BindingReadlink.js",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "$select=PersonNum,OperationShortText,ControlKey,MainWorkCenterPlant,MainWorkCenter,FunctionalLocationOperation/FuncLocDesc,Work,WorkUnit,NumberOfCapacities,Duration,DurationUOM,SchedEarliestStartDate,SchedLatestStartDate,SchedLatestEndTime,SchedEarliestStartTime&$expand=FunctionalLocationOperation,Employee_Nav"
+    }
+}

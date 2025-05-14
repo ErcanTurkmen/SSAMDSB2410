@@ -1,0 +1,8 @@
+{
+    "AccessoryType": "DisclosureIndicator",
+    "Title": "/SAPAssetManager/Rules/S4RelatedHistories/S4RelatedHistoryDescription.js",
+    "Subhead": "{ObjectID}",
+    "Footnote": "/SAPAssetManager/Rules/DateTime/RequestEndDate.js",
+    "OnPress": "/SAPAssetManager/Actions/S4RelatedHistories/S4RelatedHistoryDetailsNav.action",
+    "PreserveIconStackSpacing":false
+}

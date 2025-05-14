@@ -1,0 +1,5 @@
+{
+    "_Type" : "Action.Type.Navigation",
+    "PageToOpen" : "/SAPAssetManager/Pages/Measurements/MeasurementDocumentDetails.page",
+    "PageMetadata": "/SAPAssetManager/Rules/Measurements/MeasurementDocumentDetailsPageMetadata.js"
+}
