@@ -1,0 +1,8 @@
+{
+    "_Type": "Action.Type.ApplicationUpdate",
+    "ActionResult": {
+        "_Name": "AppUpdate"
+    },
+    "OnFailure": "/ZSAPAssetManager/Rules/Application/AppUpdateFailure.js",
+    "OnSuccess": "/ZSAPAssetManager/Rules/Application/AppUpdateSuccess.js"
+}

@@ -1,0 +1,44 @@
+{
+    "Credential": "cf",
+    "Template": {
+        "Id": "@ext-mdkvsc-npm-dev/generator-mdk",
+        "Name": "Base",
+        "Version": "0.0.1"
+    },
+    "CF": {
+        "Target": "https://api.cf.eu10.hana.ondemand.com",
+        "Organization": "b19a2140-9f84-4d0e-b282-a505723989b1",
+        "Space": "ce00c639-f448-42d8-a8aa-eaedb6ec7966",
+        "Deploy": {
+            "Description": "",
+            "WebClient": {
+                "Runtime": "",
+                "URL": ""
+            },
+            "Destination": [{
+                "CF": "",
+                "MDK": "DEST_SAM2410_PPROP",
+                "URL": ""
+            }]
+        }
+    },
+    "MobileService": {
+        "Type": "standard",
+        "AdminAPI": "https://mobile-service-cockpit-api.cfapps.eu10.hana.ondemand.com/cockpit/v1/org/b19a2140-9f84-4d0e-b282-a505723989b1/space/ce00c639-f448-42d8-a8aa-eaedb6ec7966",
+        "AppId": "com.sap.sam2410.dsb.app.eu0.deepti",
+        "Destination": ["DEST_SAM2410_ONLINE_PPROP", "DEST_SAM2410_PPROP"]
+    },
+    "Onboarding": {
+        "Schema": "sapmobilesvcs",
+        "TimeZone": "UTC",
+        "URL": "sapmobilesvcs://?AppId=com.sap.sam2410.dsb.app.eu0.deepti&ClientId=67be4878-97ce-479c-8f18-9928be6b903a&SapCloudPlatformEndpoint=https://dsbgu0-sap-asset-manager-com-sap-sam2410-dsb-app-eu0-deepti.cfapps.eu10.hana.ondemand.com&AuthorizationEndpointUrl=https://dsbgu0-sap-asset-manager-com-sap-sam2410-dsb-app-eu0-deepti.cfapps.eu10.hana.ondemand.com/oauth2/api/v1/authorize&RedirectUrl=dsbeu0://oauth2redirect&TokenUrl=https://dsbgu0-sap-asset-manager-com-sap-sam2410-dsb-app-eu0-deepti.cfapps.eu10.hana.ondemand.com/oauth2/api/v1/token"
+    },
+    "LCAP": {
+        "FullName": "",
+        "Service": [],
+        "sourceTemplate": {
+            "id": "html5moduletemplates.basicSAPUI5ApplicationProjectModule",
+            "version": "1.40.12"
+        }
+    }
+}

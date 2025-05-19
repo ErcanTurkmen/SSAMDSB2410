@@ -1,0 +1,5 @@
+{
+    "ModalPage": true,
+    "PageToOpen": "/ZSAPAssetManager/Pages/Application/UserActivityLog.page",
+    "_Type": "Action.Type.Navigation"
+}

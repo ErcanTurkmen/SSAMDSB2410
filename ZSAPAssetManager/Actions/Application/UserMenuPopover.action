@@ -1,0 +1,46 @@
+{
+    "PopoverItems": [{
+            "Enabled": true,
+            "Icon": "sap-icon://synchronize",
+            "OnPress": "/ZSAPAssetManager/Actions/DEST_SAM2410_PPROP/Service/SyncStartedMessage.action",
+            "Title": "Sync Changes",
+            "Visible": "$(PLT,true,true,false)"
+        },
+        {
+            "Enabled": true,
+            "Icon": "sap-icon://headset",
+            "OnPress": "/ZSAPAssetManager/Actions/Application/NavToSupport.action",
+            "Title": "Support",
+            "Visible": true
+        },
+        {
+            "Enabled": true,
+            "Icon": "sap-icon://refresh",
+            "OnPress": "/ZSAPAssetManager/Actions/Application/AppUpdateProgressBanner.action",
+            "Title": "Check for Updates",
+            "Visible": "$(PLT,true,true,false)"
+        },
+        {
+            "Enabled": true,
+            "Icon": "sap-icon://hint",
+            "OnPress": "/ZSAPAssetManager/Actions/Application/NavToAbout.action",
+            "Title": "About",
+            "Visible": true
+        },
+        {
+            "Enabled": true,
+            "Icon": "sap-icon://reset",
+            "OnPress": "/ZSAPAssetManager/Actions/Application/ResetMessage.action",
+            "Title": "Reset",
+            "Visible": true
+        },
+        {
+            "Enabled": true,
+            "Icon": "sap-icon://log",
+            "OnPress": "/ZSAPAssetManager/Actions/Application/Logout.action",
+            "Title": "Logout",
+            "Visible": "/ZSAPAssetManager/Rules/Application/ClientIsMultiUserMode.js"
+        }
+    ],
+    "_Type": "Action.Type.PopoverMenu"
+}
