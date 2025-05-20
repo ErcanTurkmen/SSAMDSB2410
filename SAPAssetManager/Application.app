@@ -21,5 +21,5 @@
     "OnSuspend": "/SAPAssetManager/Rules/ApplicationEvents/SuspendEventHandler.js",
     "OnExit": "/SAPAssetManager/Rules/ApplicationEvents/ExitEventHandler.js",
     "OnLinkDataReceived": "/SAPAssetManager/Rules/DeepLinks/LinkDataReceived.js",
-    "_SchemaVersion": "24.11"
+    "_SchemaVersion": "24.7"
 }
