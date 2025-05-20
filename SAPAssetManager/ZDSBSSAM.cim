@@ -1,5 +1,51 @@
 {
 	"ProjectName": "ZDSBSSAM",
 	"ApplicationName": "ZDSBSSAM",
+	"IntegrationPoints": [
+		{
+			"Source": "/ZDSBSSAM/Pages/WorkOrders/Operations/PRT/PRTEquipmentAddEdit.page",
+			"Target" : "/SAPAssetManager/Pages/WorkOrders/Operations/PRT/PRTEquipmentAddEdit.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/i18n/i18n_da.properties",
+			"Target": "/SAPAssetManager/i18n/i18n_da.properties"
+		},
+		{
+			"Source": "/ZDSBSSAM/i18n/i18n.properties",
+			"Target": "/SAPAssetManager/i18n/i18n.properties"
+		},
+		{
+			"Source": "/ZDSBSSAM/Actions/WorkOrders/Operations/PRT/PRTAddEditRequiredField.action",
+			"Target": "/SAPAssetManager/Actions/WorkOrders/Operations/PRT/PRTAddEditRequiredField.action"
+		},
+		{
+			"Source": "/ZDSBSSAM/Actions/WorkOrders/Operations/PRT/CreateUpdate/PRTEquipmentCreate.action",
+			"Target": "/SAPAssetManager/Actions/WorkOrders/Operations/PRT/CreateUpdate/PRTEquipmentCreate.action"
+		},
+		{
+			"Source": "/ZDSBSSAM/Actions/WorkOrders/Operations/PRT/CreateUpdate/PRTEquipmentUpdate.action",
+			"Target": "/SAPAssetManager/Actions/WorkOrders/Operations/PRT/CreateUpdate/PRTEquipmentUpdate.action"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/WorkOrders/Operations/PRT/PRTListView.page",
+			"Target": "/SAPAssetManager/Pages/WorkOrders/Operations/PRT/PRTListView.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/Workorders/Operations/PRT/PRTMiscellaneousListView.page",
+			"Target": "/SAPAssetManager/Pages/WorkOrders/Operations/PRT/PRTMiscellaneousListView.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/WorkOrders/Operations/PRT/PRTMiscellaneousListQueryOptions.js",
+			"Target": "/SAPAssetManager/Rules/WorkOrders/Operations/PRT/PRTMiscellaneousListQueryOptions.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Operations/PRT/PRTCount.js",
+			"Target": "/SAPAssetManager/Rules/Operations/PRT/PRTCount.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Operations/PRT/PRTMiscellaneousListViewCaption.js",
+			"Target": "/SAPAssetManager/Rules/Operations/PRT/PRTMiscellaneousListViewCaption.js"
+		}
+	],
 	"ComponentVersion": "1.0"
 }
