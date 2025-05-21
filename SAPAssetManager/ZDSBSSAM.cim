@@ -45,6 +45,34 @@
 		{
 			"Source": "/ZDSBSSAM/Rules/Operations/PRT/PRTMiscellaneousListViewCaption.js",
 			"Target": "/SAPAssetManager/Rules/Operations/PRT/PRTMiscellaneousListViewCaption.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Actions/WorkOrders/Operations/WorkOrderOperationDetailsPopover.action",
+			"Target": "/SAPAssetManager/Actions/WorkOrders/Operations/WorkOrderOperationDetailsPopover.action"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Parts/PartLibrary.js",
+			"Target": "/SAPAssetManager/Rules/Parts/PartLibrary.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Parts/CreateUpdate/MaterialLstPkrQueryOptions.js",
+			"Target": "/SAPAssetManager/Rules/Parts/CreateUpdate/MaterialLstPkrQueryOptions.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Parts/CreateUpdate/UpdateOnlineQueryOptions.js",
+			"Target": "/SAPAssetManager/Rules/Parts/CreateUpdate/UpdateOnlineQueryOptions.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/Parts/PartDetails.page",
+			"Target": "/SAPAssetManager/Pages/Parts/PartDetails.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/Parts/PartCreateUpdate.page",
+			"Target": "/SAPAssetManager/Pages/Parts/PartCreateUpdate.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Parts/CreateUpdate/PartCreateUpdateOnPageLoad.js",
+			"Target": "/SAPAssetManager/Rules/Parts/CreateUpdate/PartCreateUpdateOnPageLoad.js"
 		}
 	],
 	"ComponentVersion": "1.0"
