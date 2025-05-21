@@ -111,6 +111,16 @@
                             "KeyName": "$(L,nsn)",
                             "Value": "/SAPAssetManager/Rules/Parts/PartNATOStockNumber.js",
                             "Visible": "/SAPAssetManager/Rules/Defense/isDefenseEnabled.js"
+                        },
+                        {
+                            "_Name": "Recipient",
+                            "KeyName": "$(L,zrecipient)",
+                            "Value": "{Recipient}"
+                        },
+                        {
+                            "_Name": "UnloadingPoint",
+                            "KeyName": "$(L,unloading_point)",
+                            "Value": "{UnloadingPoint}"
                         }
                     ],
                     "_Type": "Section.Type.KeyValue",

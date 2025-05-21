@@ -206,8 +206,8 @@ export default class {
         }
 
         //DSB customisation
-        validations.push(libThis.validateUnloadingPointExceedsLength(pageClientAPI, dict));
-        validations.push(libThis.validateRecipientExceedsLength(pageClientAPI, dict));
+        validations.push(libThis.zValidateUnloadingPointExceedsLength(pageClientAPI, dict));
+        validations.push(libThis.zValidateRecipientExceedsLength(pageClientAPI, dict));
 
         return Promise.all(validations).then(function () {
             // No errors. Check Online Unrestricted Quantity
@@ -855,7 +855,7 @@ export default class {
         //DSB customisation - added material validation for adhoc issue
         if (pageName === 'ZPartAdhocIssueCreateUpdate') {
             libCom.setInlineControlErrorVisibility(dict.MaterialLstPkr, false);
-            promises.push(libThis.zvalidateMaterialForAdhocNotBlank(pageClientAPI, dict));
+            promises.push(libThis.zValidateMaterialForAdhocNotBlank(pageClientAPI, dict));
         }
         promises.push(libThis.validateQuantityGreaterThanZero(pageClientAPI, dict));
         promises.push(libThis.validateQuantityIsNumeric(pageClientAPI, dict));
@@ -899,7 +899,7 @@ export default class {
         if (pageName === 'ZPartAdhocReturnCreateUpdate') {
             //DSB customisation - added material validation for adhoc issue
             libCom.setInlineControlErrorVisibility(dict.MaterialLstPkr, false);
-            promiseArray.push(libThis.zvalidateMaterialForAdhocNotBlank(pageClientAPI, dict));
+            promiseArray.push(libThis.zValidateMaterialForAdhocNotBlank(pageClientAPI, dict));
 
             if (libCom.isDefined(dict.SerialNumLstPkr) && dict.SerialNumLstPkr.visible) {
                 promiseArray.push(libThis.validateSerialNumberNotBlank(pageClientAPI, dict));
@@ -1753,7 +1753,7 @@ export default class {
     /**
      * Part must be selected if text item is not true
      */
-    static zvalidateMaterialForAdhocNotBlank(pageClientAPI, dict) {
+    static zValidateMaterialForAdhocNotBlank(pageClientAPI, dict) {
 
         let error = false;
         let message;
@@ -1829,6 +1829,76 @@ export default class {
         } else {
             context.executeAction('/SAPAssetManager/Actions/Parts/PartIssueSuccessClose.action');
         }
+    }
+
+    //DSB customisation for UnloadingPoint field/**
+    /**
+     * UnloadingPoint be <= length limit defined in global
+     */
+    static zValidateUnloadingPointExceedsLength(pageClientAPI, dict) {
+        
+        //New short text length must be <= global maximum
+        let error = false;
+        let message;
+        let max = libCom.getAppParam(pageClientAPI, 'ZPART', 'UnloadingPointLength');
+
+            if (libThis.zEvalUnloadingPointLengthWithinLimit(dict, max)) {
+                return Promise.resolve(true);
+            } else {
+                error = true;
+                let params=[max];
+                message = pageClientAPI.localizeText('maximum_field_length',params);
+            }
+        
+        if (error) {
+            libCom.executeInlineControlError(pageClientAPI, dict.UnloadingPointSim, message);
+            return Promise.reject();
+        } else {
+            return Promise.resolve();
+        }
+    }
+
+    //DSB customisation for Recipient field/**
+    /**
+     * Recipient be <= length limit defined in global
+     */
+    static zValidateRecipientExceedsLength(pageClientAPI, dict) {
+        
+        //New short text length must be <= global maximum
+        let error = false;
+        let message;
+        let max = libCom.getAppParam(pageClientAPI, 'ZPART', 'RecipientLength');
+        
+            if (libThis.zEvalRecipientLengthWithinLimit(dict, max)) {
+                return Promise.resolve(true);
+            } else {
+                error = true;
+                let params=[max];
+                message = pageClientAPI.localizeText('maximum_field_length',params);
+            }
+        
+        if (error) {
+            libCom.executeInlineControlError(pageClientAPI, dict.RecipientSim, message);
+            return Promise.reject();
+        } else {
+            return Promise.resolve();
+        }
+    }
+
+    //DSB customisation for Recipient
+    /**
+    * Evaluates whether the current recipient length is within length limit
+    */
+    static zEvalRecipientLengthWithinLimit(dict, limit) {
+        return (libCom.getControlValue(dict.RecipientSim).length <= Number(limit));
+    }
+    
+    //DSB customisation for UnloadingPoint
+    /**
+    * Evaluates whether the current unloading Point length is within length limit
+    */
+    static zEvalUnloadingPointLengthWithinLimit(dict, limit) {
+        return (libCom.getControlValue(dict.UnloadingPointSim).length <= Number(limit));
     }
 }
 
