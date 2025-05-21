@@ -87,7 +87,7 @@
 			"Target": "/SAPAssetManager/Pages/Parts/PartDetails.page"
 		},
 		{
-			"Source": "/SAPAssetManager/Pages/Parts/PartsListView.page",
+			"Source": "/ZDSBSSAM/Pages/Parts/PartsListView.page",
 			"Target": "/SAPAssetManager/Pages/Parts/PartsListView.page"
 		}
 	],
