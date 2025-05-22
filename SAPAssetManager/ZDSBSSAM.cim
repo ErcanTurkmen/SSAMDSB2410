@@ -31,7 +31,7 @@
 			"Target": "/SAPAssetManager/Pages/WorkOrders/Operations/PRT/PRTListView.page"
 		},
 		{
-			"Source": "/ZDSBSSAM/Pages/Workorders/Operations/PRT/PRTMiscellaneousListView.page",
+			"Source": "/ZDSBSSAM/Pages/WorkOrders/Operations/PRT/PRTMiscellaneousListView.page",
 			"Target": "/SAPAssetManager/Pages/WorkOrders/Operations/PRT/PRTMiscellaneousListView.page"
 		},
 		{
