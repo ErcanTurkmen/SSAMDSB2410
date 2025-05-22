@@ -866,7 +866,7 @@ export default class {
         if (!libVal.evalIsEmpty(pageClientAPI.binding.SerialNoProfile) && !autoSerial) {
             promises.push(libThis.validateSerialNumberNotBlank(pageClientAPI, dict));
         }
-        promises.push(libThis.validateQuantityLessThanMaximum(pageClientAPI, dict));
+        //promises.push(libThis.validateQuantityLessThanMaximum(pageClientAPI, dict)); //DSB customization as part of upgrade 4210
 
         //DSb customisation - in std issue validation, added validation for serial no for adhoc issue. cant use std isSerial as we dont have data like wo components
         if (libCom.isDefined(dict.SerialNumLstPkr) && dict.SerialNumLstPkr.visible && pageName === 'ZPartAdhocIssueCreateUpdate') {
