@@ -31,7 +31,7 @@
 			"Target": "/SAPAssetManager/Pages/WorkOrders/Operations/PRT/PRTListView.page"
 		},
 		{
-			"Source": "/ZDSBSSAM/Pages/Workorders/Operations/PRT/PRTMiscellaneousListView.page",
+			"Source": "/ZDSBSSAM/Pages/WorkOrders/Operations/PRT/PRTMiscellaneousListView.page",
 			"Target": "/SAPAssetManager/Pages/WorkOrders/Operations/PRT/PRTMiscellaneousListView.page"
 		},
 		{
@@ -45,6 +45,50 @@
 		{
 			"Source": "/ZDSBSSAM/Rules/Operations/PRT/PRTMiscellaneousListViewCaption.js",
 			"Target": "/SAPAssetManager/Rules/Operations/PRT/PRTMiscellaneousListViewCaption.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Actions/WorkOrders/Operations/WorkOrderOperationDetailsPopover.action",
+			"Target": "/SAPAssetManager/Actions/WorkOrders/Operations/WorkOrderOperationDetailsPopover.action"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Parts/PartLibrary.js",
+			"Target": "/SAPAssetManager/Rules/Parts/PartLibrary.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Parts/CreateUpdate/MaterialLstPkrQueryOptions.js",
+			"Target": "/SAPAssetManager/Rules/Parts/CreateUpdate/MaterialLstPkrQueryOptions.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Parts/CreateUpdate/UpdateOnlineQueryOptions.js",
+			"Target": "/SAPAssetManager/Rules/Parts/CreateUpdate/UpdateOnlineQueryOptions.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/Parts/PartDetails.page",
+			"Target": "/SAPAssetManager/Pages/Parts/PartDetails.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/Parts/PartCreateUpdate.page",
+			"Target": "/SAPAssetManager/Pages/Parts/PartCreateUpdate.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Parts/CreateUpdate/PartCreateUpdateOnPageLoad.js",
+			"Target": "/SAPAssetManager/Rules/Parts/CreateUpdate/PartCreateUpdateOnPageLoad.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Actions/Parts/PartCreate.action",
+			"Target": "/SAPAssetManager/Actions/Parts/PartCreate.action"
+		},
+		{
+			"Source": "/ZDSBSSAM/Actions/Parts/PartUpdate.action",
+			"Target": "/SAPAssetManager/Actions/Parts/PartUpdate.action"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/Parts/PartDetails.page",
+			"Target": "/SAPAssetManager/Pages/Parts/PartDetails.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/Parts/PartsListView.page",
+			"Target": "/SAPAssetManager/Pages/Parts/PartsListView.page"
 		}
 	],
 	"ComponentVersion": "1.0"
