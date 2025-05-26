@@ -47,6 +47,10 @@
 			"Target": "/SAPAssetManager/Rules/Operations/PRT/PRTMiscellaneousListViewCaption.js"
 		},
 		{
+			"Source": "/ZDSBSSAM/Rules/WorkOrders/Operations/PRT/CreateUpdate/PRTEquipmentCreateUpdateOnLoaded.js",
+			"Target": "/SAPAssetManager/Rules/WorkOrders/Operations/PRT/CreateUpdate/PRTEquipmentCreateUpdateOnLoaded.js"
+		},
+		{
 			"Source": "/ZDSBSSAM/Actions/WorkOrders/Operations/WorkOrderOperationDetailsPopover.action",
 			"Target": "/SAPAssetManager/Actions/WorkOrders/Operations/WorkOrderOperationDetailsPopover.action"
 		},
