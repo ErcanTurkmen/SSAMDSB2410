@@ -50,8 +50,8 @@
                                 "ObjectCell":
                                 {
                                     "PreserveIconStackSpacing": false,
-                                    "Title": "{{#Property:EquipDesc}} - {{#Property:EquipId}}",
-                                    "Subhead": "/SAPAssetManager/Rules/Equipment/EquipmentListViewFormat.js",
+                                    "Title": "{{#Property:EquipId}}",
+                                    "Subhead": "{{#Property:EquipDesc}}",
                                     "Footnote": "{{#Property:SerialNumber/#Property:SerialNumber}}"
                                 },
                                 "ReturnValue": "{EquipId}",
