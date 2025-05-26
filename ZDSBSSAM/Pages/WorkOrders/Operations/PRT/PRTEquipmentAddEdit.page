@@ -58,7 +58,7 @@
                                 "Target": {
                                     "EntitySet": "Equipments",
                                     "Service": "/SAPAssetManager/Services/OnlineAssetManager.service",
-                                    "QueryOptions": "$filter=PRTFlag eq 'X'&$orderby=EquipId&$expand=SerialNumber"
+                                    "QueryOptions": "/ZDSBSSAM/Rules/WorkOrders/Operations/PRT/ZPRTEquipmentLstPkrQueryOptions.js"
                                 }
                             }
                         },
