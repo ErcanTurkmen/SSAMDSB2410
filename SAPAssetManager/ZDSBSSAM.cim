@@ -89,6 +89,34 @@
 		{
 			"Source": "/ZDSBSSAM/Pages/Parts/PartsListView.page",
 			"Target": "/SAPAssetManager/Pages/Parts/PartsListView.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Notifications/NotificationLibrary.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/NotificationLibrary.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/Notifications/NotificationCreateUpdate.page",
+			"Target": "/SAPAssetManager/Pages/Notifications/NotificationCreateUpdate.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Notifications/CreateUpdate/NotificationCreateUpdateOnPageLoad.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateOnPageLoad.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Notifications/CreateUpdate/NotificationCreateUpdatePriorityVisibility.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdatePriorityVisibility.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Notifications/CreateUpdate/RequiredFields.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/CreateUpdate/RequiredFields.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Notifications/CreateUpdate/NotificationCreateUpdateValidation.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateValidation.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Notifications/CreateUpdate/NotificationCreateUpdateOnCommit.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateOnCommit.js"
 		}
 	],
 	"ComponentVersion": "1.0"
