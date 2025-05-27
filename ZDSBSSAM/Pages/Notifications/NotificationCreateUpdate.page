@@ -635,7 +635,7 @@
                     "_Type": "Control.Type.FormCell.Note"
                 },
                 {
-                    "AllowDefaultValueIfOneItem": false,
+                    "AllowDefaultValueIfOneItem": true,
                     "AllowMultipleSelection": false,
                     "IsPickerDismissedOnSelection": true,
                     "IsSearchCancelledAfterSelection": true,
@@ -683,7 +683,7 @@
                     "_Type": "Control.Type.FormCell.ListPicker"
                 },
                 {
-                    "AllowDefaultValueIfOneItem": false,
+                    "AllowDefaultValueIfOneItem": true,
                     "AllowMultipleSelection": false,
                     "IsPickerDismissedOnSelection": true,
                     "IsSearchCancelledAfterSelection": true,
@@ -746,7 +746,7 @@
                     "_Type": "Control.Type.FormCell.Note"
                 },
                 {
-                    "AllowDefaultValueIfOneItem": false,
+                    "AllowDefaultValueIfOneItem": true,
                     "AllowMultipleSelection": false,
                     "IsPickerDismissedOnSelection": true,
                     "IsSearchCancelledAfterSelection": true,
