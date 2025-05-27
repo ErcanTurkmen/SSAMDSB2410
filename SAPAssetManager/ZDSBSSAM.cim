@@ -121,6 +121,10 @@
 		{
 			"Source": "/ZDSBSSAM/Pages/Notifications/NotificationItemDetails.page",
 			"Target": "/SAPAssetManager/Pages/Notifications/NotificationItemDetails.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Notifications/EMP/CreateEMPEntries.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/EMP/CreateEMPEntries.js"
 		}
 	],
 	"ComponentVersion": "1.0"
