@@ -117,6 +117,10 @@
 		{
 			"Source": "/ZDSBSSAM/Rules/Notifications/CreateUpdate/NotificationCreateUpdateOnCommit.js",
 			"Target": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateOnCommit.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/Notifications/NotificationItemDetails.page",
+			"Target": "/SAPAssetManager/Pages/Notifications/NotificationItemDetails.page"
 		}
 	],
 	"ComponentVersion": "1.0"
