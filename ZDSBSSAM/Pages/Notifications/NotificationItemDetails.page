@@ -20,7 +20,7 @@
             	"SystemItem": "Add",
 				"Caption": "$(L,add)",
                 "OnPress": "/SAPAssetManager/Rules/Notifications/Item/Details/NotificationItemDetailsPopover.js",
-				"Visible": "/ZDSBSSAM/Rules/Notifications/Item/NotificationItemCauseAddVisible.js"
+				"Visible": "/ZDSBSSAM/Rules/Notifications/Item/ZNotificationItemCauseAddVisible.js"
             }
 		]
 	},

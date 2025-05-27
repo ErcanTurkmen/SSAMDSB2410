@@ -1419,5 +1419,17 @@ export default class {
         }
         return false;
     }
-
+     // DSB Customization for sending FLag from opreation to Notification Create Page  
+    static setZAddFromOperationToNotifFlag(context, FlagValue) {
+        libCom.setStateVariable(context, 'ZNotificationFromOperation', FlagValue, 'WorkOrderOperationDetailsPage');
+    }
+    // DSB Customization for get the  FLag from opreation to Notification Create Page  
+    static getZAddFromOperationToNotifFlag(context) {
+        let result = libCom.getStateVariable(context, 'ZNotificationFromOperation', 'WorkOrderOperationDetailsPage');
+        if (result) {
+            return result;
+        } else {
+            return false;
+        }
+    }
 }

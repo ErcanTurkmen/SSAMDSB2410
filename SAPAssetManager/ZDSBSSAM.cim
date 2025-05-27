@@ -91,6 +91,10 @@
 			"Target": "/SAPAssetManager/Pages/Parts/PartsListView.page"
 		},
 		{
+			"Source": "/ZDSBSSAM/Rules/Parts/Issue/SerialParts/SerialNumberUpdateStatus.js",
+			"Target": "/SAPAssetManager/Rules/Parts/Issue/SerialParts/SerialNumberUpdateStatus.js"
+		},
+		{
 			"Source": "/ZDSBSSAM/Rules/Notifications/NotificationLibrary.js",
 			"Target": "/SAPAssetManager/Rules/Notifications/NotificationLibrary.js"
 		},
@@ -121,6 +125,10 @@
 		{
 			"Source": "/ZDSBSSAM/Pages/Notifications/NotificationItemDetails.page",
 			"Target": "/SAPAssetManager/Pages/Notifications/NotificationItemDetails.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Notifications/EMP/CreateEMPEntries.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/EMP/CreateEMPEntries.js"
 		}
 	],
 	"ComponentVersion": "1.0"
