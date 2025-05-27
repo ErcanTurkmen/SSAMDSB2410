@@ -3,7 +3,7 @@ import Logger from '../../../../SAPAssetManager/Rules/Log/Logger';
 import libCom from '../../../../SAPAssetManager/Rules/Common/Library/CommonLibrary';
 import libNotifMobile from '../../../../SAPAssetManager/Rules/Notifications/MobileStatus/NotificationMobileStatusLibrary';
 
-export default function NotificationItemCauseAddVisible(context) {
+export default function ZNotificationItemCauseAddVisible(context) {
 	// Only 1 cause can be added
     var readLink = context.binding['@odata.readLink'];
     Logger.error("Item read link", readLink);
