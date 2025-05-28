@@ -337,7 +337,8 @@ export default class {
         return this.CatalogCodeQuery(context, notification, type).then(function (value) {
             const isAssignedToCatalogProfile = (context.getPageProxy ? context.getPageProxy() : context).getClientData()[`IsAssignedToCatalogProfile[${type}]`];
             if (isAssignedToCatalogProfile) {
-                return "$filter=Catalog eq '" + value.Catalog + "' and CatalogProfile eq '" + value.CatalogProfile + "'&$orderby=Catalog,CatalogProfile,CodeGroup";
+                //return "$filter=Catalog eq '" + value.Catalog + "' and CatalogProfile eq '" + value.CatalogProfile + "'&$orderby=Catalog,CatalogProfile,CodeGroup";
+                return "$filter=Catalog eq '" + value.Catalog + "' and CodeGroup eq '" + value.ZCodeGroup + "'&$orderby=Catalog,CatalogProfile,CodeGroup";
             } else {
                 return "$filter=Catalog eq '" + value.Catalog + "'&$orderby=Catalog,CodeGroup";
             }
@@ -431,7 +432,7 @@ export default class {
                 if (current.length > 0 && current.getItem(0).CatalogProfile) {
                     catalogProfileResults.push(Promise.resolve(current.getItem(0)).then(function (value) {
                         return context.count('/SAPAssetManager/Services/AssetManager.service', 'PMCatalogProfiles', `$filter=Catalog eq '${catalogs[type]}' and CatalogProfile eq '${value.CatalogProfile}'&$orderby=Catalog,CatalogProfile`).then(function (cnt) {
-                            return { item: value, count: cnt, catalogProfile: value.CatalogProfile };
+                            return { item: value, count: cnt, catalogProfile: value.CatalogProfile,  ZCodeGroupodeGroup:current.getItem(0).ZCodeGroup };
                         });
                     }));
                 }
@@ -444,13 +445,13 @@ export default class {
                     if (codeReadResults[i].count > 0) {
                         clientData[stateVarName] = true;
                         if (codeReadResults[i].item['@odata.type'] === '#sap_mobile.NotificationType') {
-                            return { 'Catalog': codeReadResults[i].item[type], 'CatalogProfile': codeReadResults[i].catalogProfile };
+                            return { 'Catalog': codeReadResults[i].item[type], 'CatalogProfile': codeReadResults[i].catalogProfile, 'ZCodeGroup': '' };
                         }
-                        return { 'Catalog': catalogs[type], 'CatalogProfile': codeReadResults[i].catalogProfile };
+                        return { 'Catalog': catalogs[type], 'CatalogProfile': codeReadResults[i].catalogProfile, 'ZCodeGroup': codeReadResults[i].item.ZCodeGroup};
                     }
                 }
                 clientData[stateVarName] = false;
-                return { 'Catalog': catalogs[type], 'CatalogProfile': readResults[3].getItem(0) && readResults[3].getItem(0).CatalogProfile };
+                return { 'Catalog': catalogs[type], 'CatalogProfile': readResults[3].getItem(0) && readResults[3].getItem(0).CatalogProfile, 'ZCodeGroup': readResults[3].getItem(0).ZCodeGroup };
             });
         }).catch(error => {
             Logger.error('CatalogCodeQuery', error);
@@ -485,9 +486,9 @@ export default class {
                     // eslint-disable-next-line brace-style
                     'NotificationType': (function () { try { return context.evaluateTargetPath('#Control:TypeLstPkr/#SelectedValue'); } catch (e) { return binding.NotificationType || ''; } })(),
                     // eslint-disable-next-line brace-style
-                    'HeaderEquipment': (function () { try { return context.getPageProxy().getControl('FormCellContainer').getControl('EquipHierarchyExtensionControl').getValue(); } catch (e) { return ''; } })(),
+                    'HeaderEquipment': (function () { try { return context.getPageProxy().getControl('FormCellContainer').getControl('EquipHierarchyExtensionControl').getValue() || context.getPageProxy().binding.HeaderEquipment } catch (e) { return ''; } })(),
                     // eslint-disable-next-line brace-style
-                    'HeaderFunctionLocation': (function () { try { return context.getPageProxy().getControl('FormCellContainer').getControl('FuncLocHierarchyExtensionControl').getValue(); } catch (e) { return ''; } })(),
+                    'HeaderFunctionLocation': (function () { try { return context.getPageProxy().getControl('FormCellContainer').getControl('FuncLocHierarchyExtensionControl').getValue() || context.getPageProxy().binding.HeaderFlocId; } catch (e) { return ''; } })(),
                     // eslint-disable-next-line brace-style
                     'ExternalWorkCenterId': (function () { try { return context.getPageProxy().evaluateTargetPath('#Control:MainWorkCenterListPicker/#SelectedValue'); } catch (e) { return ''; } })(),
                 };
