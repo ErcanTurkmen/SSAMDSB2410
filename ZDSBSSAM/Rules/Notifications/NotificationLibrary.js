@@ -76,7 +76,7 @@ export default class {
             targetList.setValue('');
         }
         //end DSB
-        
+
         if (selection.length > 0) {
             let notif = context.getPageProxy().binding;
             if (notif && (notif['@odata.type'] === '#sap_mobile.MyNotificationItem' || notif['@odata.type'] === '#sap_mobile.MyNotificationTask' || notif['@odata.type'] === '#sap_mobile.MyNotificationActivity')) {
@@ -337,8 +337,13 @@ export default class {
         return this.CatalogCodeQuery(context, notification, type).then(function (value) {
             const isAssignedToCatalogProfile = (context.getPageProxy ? context.getPageProxy() : context).getClientData()[`IsAssignedToCatalogProfile[${type}]`];
             if (isAssignedToCatalogProfile) {
-                //return "$filter=Catalog eq '" + value.Catalog + "' and CatalogProfile eq '" + value.CatalogProfile + "'&$orderby=Catalog,CatalogProfile,CodeGroup";
-                return "$filter=Catalog eq '" + value.Catalog + "' and CodeGroup eq '" + value.ZCodeGroup + "'&$orderby=Catalog,CatalogProfile,CodeGroup";
+                if (type === 'CatTypeObjectParts') {
+                    //return "$filter=Catalog eq '" + value.Catalog + "' and CatalogProfile eq '" + value.CatalogProfile + "'&$orderby=Catalog,CatalogProfile,CodeGroup";
+                    return "$filter=Catalog eq '" + value.Catalog + "' and CodeGroup eq '" + value.ZCodeGroup + "'&$orderby=Catalog,CatalogProfile,CodeGroup";
+                }
+                else {
+                    return "$filter=Catalog eq '" + value.Catalog + "' and CatalogProfile eq '" + value.CatalogProfile + "'&$orderby=Catalog,CatalogProfile,CodeGroup";
+                }
             } else {
                 return "$filter=Catalog eq '" + value.Catalog + "'&$orderby=Catalog,CodeGroup";
             }
@@ -432,7 +437,7 @@ export default class {
                 if (current.length > 0 && current.getItem(0).CatalogProfile) {
                     catalogProfileResults.push(Promise.resolve(current.getItem(0)).then(function (value) {
                         return context.count('/SAPAssetManager/Services/AssetManager.service', 'PMCatalogProfiles', `$filter=Catalog eq '${catalogs[type]}' and CatalogProfile eq '${value.CatalogProfile}'&$orderby=Catalog,CatalogProfile`).then(function (cnt) {
-                            return { item: value, count: cnt, catalogProfile: value.CatalogProfile,  ZCodeGroupodeGroup:current.getItem(0).ZCodeGroup };
+                            return { item: value, count: cnt, catalogProfile: value.CatalogProfile, ZCodeGroupodeGroup: current.getItem(0).ZCodeGroup };
                         });
                     }));
                 }
@@ -447,7 +452,7 @@ export default class {
                         if (codeReadResults[i].item['@odata.type'] === '#sap_mobile.NotificationType') {
                             return { 'Catalog': codeReadResults[i].item[type], 'CatalogProfile': codeReadResults[i].catalogProfile, 'ZCodeGroup': '' };
                         }
-                        return { 'Catalog': catalogs[type], 'CatalogProfile': codeReadResults[i].catalogProfile, 'ZCodeGroup': codeReadResults[i].item.ZCodeGroup};
+                        return { 'Catalog': catalogs[type], 'CatalogProfile': codeReadResults[i].catalogProfile, 'ZCodeGroup': codeReadResults[i].item.ZCodeGroup };
                     }
                 }
                 clientData[stateVarName] = false;
@@ -1420,7 +1425,7 @@ export default class {
         }
         return false;
     }
-     // DSB Customization for sending FLag from opreation to Notification Create Page  
+    // DSB Customization for sending FLag from opreation to Notification Create Page  
     static setZAddFromOperationToNotifFlag(context, FlagValue) {
         libCom.setStateVariable(context, 'ZNotificationFromOperation', FlagValue, 'WorkOrderOperationDetailsPage');
     }
