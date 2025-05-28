@@ -668,17 +668,8 @@
                     },
                     "IsEditable" : false,
                     "Caption": "$(L,part)",
-                    "OnValueChange": "/SAPAssetManager/Rules/Notifications/CreateUpdate/OnCauseGroupRelatedLstPkrChanged.js",
-                    "PickerItems":
-                    {
-                        "DisplayValue" : "{{#Property:Code}} - {{#Property:CodeDescription}}",
-                        "ReturnValue": "{Code}",
-                        "Target":
-                        {
-                            "EntitySet" : "PMCatalogCodes",
-                            "Service" : "/SAPAssetManager/Services/AssetManager.service"
-                        }
-                    },
+                    "OnValueChange": "/ZDSBSSAM/Rules/Notifications/CreateUpdate/NotificationCreateUpdateDamageCodeGroup.js",
+                    "PickerItems": [],
                     "_Name": "PartDetailsLstPkr",
                     "_Type": "Control.Type.FormCell.ListPicker"
                 },

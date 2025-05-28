@@ -129,6 +129,14 @@
 		{
 			"Source": "/ZDSBSSAM/Rules/Notifications/EMP/CreateEMPEntries.js",
 			"Target": "/SAPAssetManager/Rules/Notifications/EMP/CreateEMPEntries.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Notifications/NotificationFLOCFilter.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/NotificationFLOCFilter.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Actions/Notifications/Item/NotificationItemDetailsPopover.action",
+			"Target": "/SAPAssetManager/Actions/Notifications/Item/NotificationItemDetailsPopover.action"
 		}
 	],
 	"ComponentVersion": "1.0"
