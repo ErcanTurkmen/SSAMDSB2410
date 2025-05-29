@@ -137,6 +137,14 @@
 		{
 			"Source": "/ZDSBSSAM/Actions/Notifications/Item/NotificationItemDetailsPopover.action",
 			"Target": "/SAPAssetManager/Actions/Notifications/Item/NotificationItemDetailsPopover.action"
+		},
+		{
+			"Source": "/ZDSBSSAM/Actions/FunctionalLocation/FunctionalLocationPopover.action",
+			"Target": "/SAPAssetManager/Actions/FunctionalLocation/FunctionalLocationPopover.action"
+		},
+		{
+			"Source": "/ZDSBSSAM/Actions/Equipment/EquipmentPopover.action",
+			"Target": "/SAPAssetManager/Actions/Equipment/EquipmentPopover.action"
 		}
 	],
 	"ComponentVersion": "1.0"
