@@ -145,6 +145,10 @@
 		{
 			"Source": "/ZDSBSSAM/Actions/Equipment/EquipmentPopover.action",
 			"Target": "/SAPAssetManager/Actions/Equipment/EquipmentPopover.action"
+		},
+		{
+			"Source": "/ZDSBSSAM/Actions/Notifications/NotificationDetailsPopover.action",
+			"Target": "/SAPAssetManager/Actions/Notifications/NotificationDetailsPopover.action"
 		}
 	],
 	"ComponentVersion": "1.0"
