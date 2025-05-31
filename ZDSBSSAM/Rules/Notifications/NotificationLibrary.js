@@ -337,7 +337,7 @@ export default class {
         return this.CatalogCodeQuery(context, notification, type).then(function (value) {
             const isAssignedToCatalogProfile = (context.getPageProxy ? context.getPageProxy() : context).getClientData()[`IsAssignedToCatalogProfile[${type}]`];
             if (isAssignedToCatalogProfile) {
-                if (type === 'CatTypeObjectParts') {
+                if (type === 'CatTypeObjectParts' && value.ZCodeGroup) {
                     //return "$filter=Catalog eq '" + value.Catalog + "' and CatalogProfile eq '" + value.CatalogProfile + "'&$orderby=Catalog,CatalogProfile,CodeGroup";
                     return "$filter=Catalog eq '" + value.Catalog + "' and CodeGroup eq '" + value.ZCodeGroup + "'&$orderby=Catalog,CatalogProfile,CodeGroup";
                 }

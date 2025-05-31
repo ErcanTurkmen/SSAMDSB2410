@@ -44,17 +44,11 @@ export default function RequiredFields(context) {
     }
 
     //*** DSB Customization to remove validate for Type #´31 41. Hence checking for type 30 to validate
-    const typeLstPkr = (() => {
-        try {
-            return context.evaluateTargetPath('#Control:TypeLstPkr/#SelectedValue');
-        } catch (e) {
-            return '';
-        }
-    })();
     //DSB customisation to add validation to 70/71/72 along with 30
-    if (typeLstPkr === '30' || typeLstPkr === '70' || typeLstPkr === '71' || typeLstPkr === '72') {
+    let notifObject = ZGetNotificationFieldValue(context);
+    if (notifObject.typeLstPkr === '30' || notifObject.typeLstPkr === '70' || notifObject.typeLstPkr === '71' || notifObject.typeLstPkr === '72') {
         /**** DSB   Customisation Start For Remove Item validation  ***/
-        if (causeDescription || causeGroup || causeCode) {
+        if (notifObject.causeDescription || notifObject.causeGroup || notifObject.causeCode) {
             //old code 	
             // If any cause fields are filled out, everything is required
             //	 required.push('CauseGroupLstPkr','CodeLstPkr', 'ItemDescription', 'PartGroupLstPkr','PartDetailsLstPkr','DamageGroupLstPkr','DamageDetailsLstPkr');
@@ -62,7 +56,7 @@ export default function RequiredFields(context) {
             required.push('CauseDescription', 'CauseGroupLstPkr', 'CodeLstPkr', 'PartGroupLstPkr', 'PartDetailsLstPkr',
                 'DamageGroupLstPkr', 'DamageDetailsLstPkr');
 
-        } else if (itemDescription || itemPartGroup || itemPart || itemDamageGroup || itemDamage) {
+        } else if (notifObject.itemDescription || notifObject.itemPartGroup || notifObject.itemPart || notifObject.itemDamageGroup || notifObject.itemDamage) {
             // old Code 
             // If any item fields are filled out, only item-related fields are required
             // 	required.push('ItemDescription', 'PartGroupLstPkr','PartDetailsLstPkr','DamageGroupLstPkr','DamageDetailsLstPkr');
@@ -73,7 +67,7 @@ export default function RequiredFields(context) {
         }
         /**** DSB   Customisation End  For Remove Item validation  ***/
     }
-    
+
     return required;
 }
 
@@ -111,4 +105,24 @@ function GetUnpopulatedChildControlNamesWithPopulatedParentControl(parentChildCo
 
 export function isControlPopulated(controlName, formcellContainerProxy) {
     return !ValidationLibrary.evalIsEmpty(formcellContainerProxy.getControl(controlName).getValue());
+}
+
+export function ZGetNotificationFieldValue(context) {
+    //If the user enters an item description then, make the other fields mandatory
+
+    let itemDescription = context.evaluateTargetPath('#Control:ItemDescription/#Value');
+
+    let itemPartGroup = CommonLib.getListPickerValue(CommonLib.getControlProxy(context,'PartGroupLstPkr').getValue());
+    let itemPart = CommonLib.getListPickerValue(CommonLib.getControlProxy(context,'PartDetailsLstPkr').getValue());
+    let itemDamageGroup = CommonLib.getListPickerValue(CommonLib.getControlProxy(context,'DamageGroupLstPkr').getValue());
+    let itemDamage = CommonLib.getListPickerValue(CommonLib.getControlProxy(context,'DamageDetailsLstPkr').getValue());
+    let causeDescription = context.evaluateTargetPath('#Control:CauseDescription/#Value');
+    let causeGroup = CommonLib.getListPickerValue(CommonLib.getControlProxy(context,'CauseGroupLstPkr').getValue());
+    let causeCode = CommonLib.getListPickerValue(CommonLib.getControlProxy(context,'CodeLstPkr').getValue());
+    let typeLstPkr = CommonLib.getListPickerValue(CommonLib.getControlProxy(context,'TypeLstPkr').getValue());
+    return {
+        'itemDescription': `${itemDescription}`, 'itemPartGroup': `${itemPartGroup}`, 'itemPart': `${itemPart}`, 'itemDamageGroup': `${itemDamageGroup}`,
+        'itemDamage': `${itemDamage}`, 'causeDescription': `${causeDescription}`, 'causeGroup': `${causeGroup}`, 'typeLstPkr': `${typeLstPkr}`,
+        'causeCode': `${causeCode}`,
+    }
 }

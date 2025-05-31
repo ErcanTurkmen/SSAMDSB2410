@@ -7,7 +7,8 @@ import libCom from '../../../../SAPAssetManager/Rules/Common/Library/CommonLibra
 */
 export default async function NotificationCreateUpdatePriorityVisibility(context) {
   var onCreate = libCom.IsOnCreate(context);
-  if (!onCreate) {
+  let isLocal = libCom.isCurrentReadLinkLocal(context.binding['@odata.readLink']);
+  if (!onCreate && !isLocal) {
     const prioritiesList = await PriorityListPicker(context);
     //The maximum number of segments is 5 for iOS
     const isSegmentedControlVisible = prioritiesList.length <= 5;
