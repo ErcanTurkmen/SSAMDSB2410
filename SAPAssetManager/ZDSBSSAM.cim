@@ -153,6 +153,10 @@
 		{
 			"Source": "/ZDSBSSAM/Rules/Notifications/CreateUpdate/NotificationCreateUpdateTypeOnValueChange.js",
 			"Target": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateTypeOnValueChange.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/FunctionalLocation/OnlineFunctionalLocationDetails.page",
+			"Target": "/SAPAssetManager/Pages/FunctionalLocation/OnlineFunctionalLocationDetails.page"
 		}
 	],
 	"ComponentVersion": "1.0"
