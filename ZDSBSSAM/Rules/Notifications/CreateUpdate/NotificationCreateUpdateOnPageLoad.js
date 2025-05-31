@@ -111,7 +111,7 @@ export default function NotificationCreateUpdateOnPageLoad(context) {
         container.getControl('FuncLocHierarchyExtensionControl').setEditable(true);
     }
 
-    NotificationCreateUpdateShowFieldsChange(context, false); //Hide the item section on load
+    NotificationCreateUpdateShowFieldsChange(context, true); //DSB customization - Show the item section on load
 
     style(context, 'DiscardButton');
     //Set Failure Group and Detection Group
@@ -139,175 +139,20 @@ export default function NotificationCreateUpdateOnPageLoad(context) {
     var equip;
     var floc;
     if (!onCreate) {
+        //Edit page Disable Edit of Item and damage, Remove add item, Disable FL and Eq
+        container.getControl('EquipHierarchyExtensionControl').setEditable(false);
+        container.getControl('FuncLocHierarchyExtensionControl').setEditable(false);
         container.getControl('PartDetailsLstPkr').setEditable(false);
         container.getControl('PartGroupLstPkr').setEditable(false);
         container.getControl('DamageGroupLstPkr').setEditable(false);
         container.getControl('DamageDetailsLstPkr').setEditable(false);
-        let formCellContainerFN = context.getControl('FormCellContainer');
-
-        let stylizerFn = new Stylizer(['GrayText']);
-        let funcLoc = formCellContainerFN.getControl('FuncLocHierarchyExtensionControl');
-        stylizerFn.apply(funcLoc, 'Value');
-
-        let stylizerEq = new Stylizer(['GrayText']);
-        let equipHierarchyExt = formCellContainerFN.getControl('EquipHierarchyExtensionControl');
-        stylizerEq.apply(equipHierarchyExt, 'Value');
-
-        //	binding = context.getPageProxy().binding;
+    }
+    else {
         /* DSB Custosmzation for Type 31 41 hiding the feilds NotifType */
         let NotificationType = binding.NotificationType;
-        if (NotificationType === '41') {
-            container.getControl('PartDetailsLstPkr').setVisible(false);
-            container.getControl('PartGroupLstPkr').setVisible(false);
-            container.getControl('DamageGroupLstPkr').setVisible(false);
-            container.getControl('DamageDetailsLstPkr').setVisible(false);
-            container.getControl('CauseGroupLstPkr').setVisible(false);
-            container.getControl('CodeLstPkr').setVisible(false);
-        } else if (NotificationType === '31') {
-            container.getControl('PartDetailsLstPkr').setVisible(false);
-            container.getControl('PartGroupLstPkr').setVisible(false);
-            container.getControl('DamageGroupLstPkr').setVisible(false);
-            container.getControl('DamageDetailsLstPkr').setVisible(false);
-            container.getControl('CauseGroupLstPkr').setVisible(false);
-            container.getControl('CodeLstPkr').setVisible(false);
-            container.getControl('ItemDescription').setVisible(false);
-            container.getControl('CauseDescription').setVisible(false);
+        if (NotificationType === '41' || NotificationType === '31') {
+            NotificationCreateUpdateShowFieldsChange(context, false);
         }
-
-        if (binding['@odata.readLink']) { //&& binding['@odata.type'] === '#sap_mobile.MyNotificationHeader') {
-
-            return context.read('/SAPAssetManager/Services/AssetManager.service', binding['@odata.readLink'] + '/Items', [], '')
-                .then(function (data) {
-
-                    // Set Damage Group picker
-
-                    container.getControl('PartDetailsLstPkr').setValue(data.getItem(0).ObjectPart);
-                    container.getControl('PartGroupLstPkr').setValue(data.getItem(0).ObjectPartCodeGroup);
-                    container.getControl('ItemDescription').setValue(data.getItem(0).ItemText);
-                    container.getControl('DamageGroupLstPkr').setValue(data.getItem(0).CodeGroup)
-                    container.getControl('DamageGroupLstPkr').setEditable(false);
-                    container.getControl('DamageDetailsLstPkr').setValue(data.getItem(0).DamageCode);
-
-                    var aPath = "MyNotificationItems(ItemNumber='0001',NotificationNumber='" + data.getItem(0).NotificationNumber + "')/ItemCauses";
-                    return context.read('/SAPAssetManager/Services/AssetManager.service', aPath, [], '')
-                        .then(function (dataCauses) {
-                            container.getControl('CauseGroupLstPkr').setValue(dataCauses.getItem(0).CauseCodeGroup);
-                            container.getControl('CodeLstPkr').setValue(dataCauses.getItem(0).CauseCode);
-                            container.getControl('CauseDescription').setValue(dataCauses.getItem(0).CauseText);
-
-                        });
-
-                });
-        }
-
-    } else {
-        //DSB upgrade 2410 to always show Item Part and Causes enabled in case of Add Notification
-        let additionalFieldsSwitch = container.getControl('ShowAdditionalFieldsSwitch').getValue();
-        if (additionalFieldsSwitch) {
-            context.getControl('FormCellContainer').getSection('CauseSetupSection').setVisible(true);
-            context.getControl('FormCellContainer').getSection('FormCellSection4').setVisible(true);
-        }
-        // let groupQuery;
-        // let partCodeGroup;
-        // let EntitySet;
-
-        // let partGroupPicker = container.getControl('PartGroupLstPkr');
-        // let partGroupSpecifier = partGroupPicker.getTargetSpecifier();
-        // var targetList = container.getControl('PartDetailsLstPkr');
-        // var specifier = targetList.getTargetSpecifier();
-        // let selection;
-        // let notif = context.getPageProxy().binding || {};
-
-        // let floc = binding.HeaderFunctionLocation || '';
-        // let equip = binding.HeaderEquipment || '';
-        // let type = binding.NotifType || '';
-
-        // notif = {
-        //     // eslint-disable-next-line brace-style
-        //     'NotificationType': (function () {
-        //         try {
-        //             return type;
-        //         } catch (e) {
-        //             return '';
-        //         }
-        //     })(),
-        //     // eslint-disable-next-line brace-style
-        //     'HeaderEquipment': (function () {
-        //         try {
-        //             return equip;
-        //         } catch (e) {
-        //             return '';
-        //         }
-        //     })(),
-        //     // eslint-disable-next-line brace-style
-        //     'HeaderFunctionLocation': (function () {
-        //         try {
-        //             return floc;
-        //         } catch (e) {
-        //             return '';
-        //         }
-        //     })(),
-        // };
-
-        // Logger.error("Suri OnCreate before floc  read   ", floc);
-        // Logger.error("Suri OnCreate before equip  read   ", equip);
-
-        // if (floc && equip) {
-
-
-        //     EntitySet = 'MyEquipments';
-        //     groupQuery = "$filter=EquipId eq '" + equip + "' and length(CatalogProfile) gt 0";
-
-        // } else if (floc) {
-
-        //     EntitySet = 'MyFunctionalLocations';
-        //     groupQuery = "$filter=FuncLocIdIntern eq '" + floc + "' and length(CatalogProfile) gt 0";
-        // } else {
-        //     groupQuery = "";
-        // }
-
-        // if (groupQuery !== "") {
-        //     context.read('/SAPAssetManager/Services/AssetManager.service', EntitySet, [], groupQuery).then(function (results) {
-        //         if (results.length > 0 && results.getItem(0).ZCodeGroup) {
-
-        //             partCodeGroup = results.getItem(0).ZCodeGroup;
-        //             Logger.error("Suri OnCreate inside  PartGroupLstPkr  read   ", partCodeGroup);
-        //             partGroupPicker.setValue(partCodeGroup);
-        //             // List filter partGroupLstSpecifier
-        //             partGroupSpecifier.setDisplayValue('{{#Property:CodeGroup}} - {{#Property:Description}}');
-        //             partGroupSpecifier.setReturnValue('{CodeGroup}');
-
-        //             partGroupSpecifier.setEntitySet('PMCatalogProfiles');
-        //             partGroupSpecifier.setService('/SAPAssetManager/Services/AssetManager.service');
-
-        //             partGroupSpecifier.setQueryOptions("$filter= CodeGroup eq '" + partCodeGroup + "'&$orderby=CodeGroup");
-        //             // final return  
-        //             partGroupPicker.setTargetSpecifier(partGroupSpecifier);
-
-
-        //             libNotif.CatalogCodeQuery(context, notif, 'CatTypeObjectParts').then(function (result) {
-        //                 selection = partCodeGroup;
-
-        //                 specifier.setDisplayValue('{{#Property:Code}} - {{#Property:CodeDescription}}');
-        //                 specifier.setReturnValue('{Code}');
-
-        //                 specifier.setEntitySet('PMCatalogCodes');
-        //                 specifier.setService('/SAPAssetManager/Services/AssetManager.service');
-
-        //                 specifier.setQueryOptions("$filter=Catalog eq '" + result.Catalog + "' and CodeGroup eq '" + selection + "'&$orderby=Code");
-        //                 libCom.setEditable(targetList, true);
-
-        //                 return targetList.setTargetSpecifier(specifier).then(() => {
-        //                     targetList.setValue('');
-        //                 });
-        //             });
-        //         }
-
-        //     });
-
-
-        // }
-
     }
     /*********************** DSB Customizatoion End  *****************/
 

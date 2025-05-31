@@ -149,6 +149,10 @@
 		{
 			"Source": "/ZDSBSSAM/Actions/Notifications/NotificationDetailsPopover.action",
 			"Target": "/SAPAssetManager/Actions/Notifications/NotificationDetailsPopover.action"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Notifications/CreateUpdate/NotificationCreateUpdateTypeOnValueChange.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateTypeOnValueChange.js"
 		}
 	],
 	"ComponentVersion": "1.0"

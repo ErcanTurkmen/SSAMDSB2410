@@ -2,7 +2,7 @@ import libNotif from '../NotificationLibrary';
 import libCom from '../../../../SAPAssetManager/Rules/Common/Library/CommonLibrary';
 
 export default function NotificationCreateUpdateValidation(pageClientAPI) {
-
+    let message = '';
     if (!pageClientAPI) {
         throw new TypeError('Context can\'t be null or undefined');
     }
@@ -38,6 +38,10 @@ export default function NotificationCreateUpdateValidation(pageClientAPI) {
     }
     let typeListPicker = formCellContainer.getControl('TypeLstPkr');
     let notifType = libCom.getListPickerValue(typeListPicker.getValue());
+    let itemPartGroup = libCom.getListPickerValue(formCellContainer.getControl('PartGroupLstPkr'));
+    let itemPart = libCom.getListPickerValue(formCellContainer.getControl('PartDetailsLstPkr'));
+    let damageGroup = libCom.getListPickerValue(formCellContainer.getControl('DamageGroupLstPkr'));
+    let damageCode = libCom.getListPickerValue(formCellContainer.getControl('DamageDetailsLstPkr'));
 
     // DSB customisation to check for equipment if it exists. Check field data against business logic here
     //Return true if validation succeeded, or False if failed
@@ -59,7 +63,7 @@ export default function NotificationCreateUpdateValidation(pageClientAPI) {
 
                 return pageClientAPI.read('/SAPAssetManager/Services/AssetManager.service', 'MyEquipments', [], queryOption).then(function (data) {
                     if (data && data.length > 0 && data.getItem(0).EquipId) {
-                        let message = pageClientAPI.localizeText('zvalidation_notification_add_equipment');
+                        message = pageClientAPI.localizeText('zvalidation_notification_add_equipment');
                         let eqControl = formCellContainer.getControl('EquipHierarchyExtensionControl');
                         libCom.executeInlineControlError(pageClientAPI, eqControl, message);
                         return false;
@@ -67,7 +71,14 @@ export default function NotificationCreateUpdateValidation(pageClientAPI) {
                         return result;
                     }
                 });
-            } else {
+            } 
+            if(notifType === '30' && onCreate && (!itemPartGroup || !itemPart || !damageGroup || !damageCode))
+            {
+                message = pageClientAPI.localizeText('zvalidation_item_mandatory');
+                libCom.executeInlineControlError(pageClientAPI, formCellContainer.getControl('PartDetailsLstPkr'), message);
+                libCom.executeInlineControlError(pageClientAPI, formCellContainer.getControl('DamageGroupLstPkr'), message);
+            }
+            else {
                 return result;
             }
         }
