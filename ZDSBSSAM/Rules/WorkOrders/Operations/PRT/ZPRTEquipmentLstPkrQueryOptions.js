@@ -4,11 +4,22 @@ import EnableMultipleTechnician from '../../../../../SAPAssetManager/Rules/SideD
 
 export default function ZPRTEquipmentLstPkrQueryOptions(context) {
     try {
+        let newFilterOpts = [];
+        let equipID = context.getPageProxy().evaluateTargetPath('#Control:EquipmentNumber').getValue();
+        let equipDesc = context.getPageProxy().evaluateTargetPath('#Control:EquipmentDescription').getValue();
         let equipmentLstPkrQueryOptions = context.dataQueryBuilder();
         equipmentLstPkrQueryOptions.expand('SerialNumber');
         equipmentLstPkrQueryOptions.orderBy('EquipId');
+        newFilterOpts.push(`PRTFlag eq 'X'`);
+        if (equipID) {
+            newFilterOpts.push(`EquipId eq '${equipID}'`);
+        }
+
+        if (equipDesc) {
+            newFilterOpts.push(`substringof('${equipDesc}', EquipDesc)`);
+        }
+        equipmentLstPkrQueryOptions.filter(newFilterOpts.join(' and '));
         if (!context.searchString) {
-            equipmentLstPkrQueryOptions.filter("(PRTFlag eq 'X')");
             return equipmentLstPkrQueryOptions
         }
         else {

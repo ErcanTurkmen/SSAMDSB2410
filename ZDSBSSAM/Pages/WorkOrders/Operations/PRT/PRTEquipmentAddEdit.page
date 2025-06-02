@@ -19,6 +19,26 @@
         {
             "Sections": [
                 {
+                    "Controls":
+                    [{
+                        "_Type": "Control.Type.FormCell.SimpleProperty",
+                        "_Name": "EquipmentNumber",
+                        "IsEditable": true,
+                        "IsVisible": true,
+                        "PlaceHolder": "0",
+                        "Caption": "$(L,equipment_id)",
+                        "Value": "",
+                        "OnValueChange": "/ZDSBSSAM/Rules/WorkOrders/Operations/PRT/CreateUpdate/ZPRTEquipmentOnlineQueryOptions.js"
+                    },
+                    {
+                        "_Type": "Control.Type.FormCell.SimpleProperty",
+                        "_Name": "EquipmentDescription",
+                        "Value": "",
+                        "PlaceHolder": "$(L,description)",
+                        "OnValueChange": "/ZDSBSSAM/Rules/WorkOrders/Operations/PRT/CreateUpdate/ZPRTEquipmentOnlineQueryOptions.js"
+                    }]
+                },
+                {
                     "Header": {
                         "UseTopPadding": false
                     },
