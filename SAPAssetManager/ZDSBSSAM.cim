@@ -153,6 +153,18 @@
 		{
 			"Source": "/ZDSBSSAM/Rules/Notifications/CreateUpdate/NotificationCreateUpdateTypeOnValueChange.js",
 			"Target": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateTypeOnValueChange.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/FunctionalLocation/OnlineFunctionalLocationDetails.page",
+			"Target": "/SAPAssetManager/Pages/FunctionalLocation/OnlineFunctionalLocationDetails.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Notifications/MobileStatus/NotificationMobileStatusesFromTable.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/MobileStatus/NotificationMobileStatusesFromTable.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/ContextMenuLeadingItems.js",
+			"Target": "/SAPAssetManager/Rules/ContextMenuLeadingItems.js"
 		}
 	],
 	"ComponentVersion": "1.0"

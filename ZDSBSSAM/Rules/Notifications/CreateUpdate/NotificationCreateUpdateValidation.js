@@ -18,7 +18,7 @@ export default function NotificationCreateUpdateValidation(pageClientAPI) {
     var floc;
     var onCreate = libCom.IsOnCreate(pageClientAPI);
     if (onCreate) {
-        floc = formCellContainer.getControl('FuncLocHierarchyExtensionControl').getValue();
+        floc = formCellContainer.getControl('FuncLocHierarchyExtensionControl').getValue() || pageClientAPI.binding.HeaderFlocId;
 
     } else {
         let flocListPicker = formCellContainer.getControl('FunctionalLocationLstPkr');
@@ -59,21 +59,38 @@ export default function NotificationCreateUpdateValidation(pageClientAPI) {
             }
             if (!equipment && notifType === '30' && onCreate) {
                 let queryOption = "$filter=FuncLocId eq '" + floc + "' &$orderby=EquipId";
-
-
-                return pageClientAPI.read('/SAPAssetManager/Services/AssetManager.service', 'MyEquipments', [], queryOption).then(function (data) {
-                    if (data && data.length > 0 && data.getItem(0).EquipId) {
-                        message = pageClientAPI.localizeText('zvalidation_notification_add_equipment');
-                        let eqControl = formCellContainer.getControl('EquipHierarchyExtensionControl');
-                        libCom.executeInlineControlError(pageClientAPI, eqControl, message);
-                        return false;
-                    } else {
-                        return result;
-                    }
-                });
-            } 
-            if(notifType === '30' && onCreate && (!itemPartGroup || !itemPart || !damageGroup || !damageCode))
-            {
+                let onlineFlag = libCom.getStateVariable(pageClientAPI, 'ZOnlineSearch'); //DSB customization to check if FL has equipment in case when the FL is searched online and notification is created
+                if (onlineFlag) { 
+                    let onlineQuery = `$filter=FuncLocIdIntern eq '${floc}' and SuperiorEquip eq ''&$orderby=EquipId`;
+                    return pageClientAPI.read('/SAPAssetManager/Services/OnlineAssetManager.service', 'Equipments', [], onlineQuery).then(function (data) {
+                        if (data && data.length > 0 && data.getItem(0).EquipId) {
+                            message = pageClientAPI.localizeText('zvalidation_notification_add_equipment');
+                            //let flControl = formCellContainer.getControl('FuncLocHierarchyExtensionControl');
+                            return pageClientAPI.executeAction({
+                                'Name': '/ZDSBSSAM/Actions/FunctionalLocation/ZFunctionLocEquipmentExistErrorMessage.action',
+                                'Properties': {
+                                    'Message': message,
+                                },
+                            });
+                        } else {
+                            return result;
+                        }
+                    });
+                }
+                else {
+                    return pageClientAPI.read('/SAPAssetManager/Services/AssetManager.service', 'MyEquipments', [], queryOption).then(function (data) {
+                        if (data && data.length > 0 && data.getItem(0).EquipId) {
+                            message = pageClientAPI.localizeText('zvalidation_notification_add_equipment');
+                            let eqControl = formCellContainer.getControl('EquipHierarchyExtensionControl');
+                            libCom.executeInlineControlError(pageClientAPI, eqControl, message);
+                            return false;
+                        } else {
+                            return result;
+                        }
+                    });
+                }
+            }
+            if (notifType === '30' && onCreate && (!itemPartGroup || !itemPart || !damageGroup || !damageCode)) {
                 message = pageClientAPI.localizeText('zvalidation_item_mandatory');
                 libCom.executeInlineControlError(pageClientAPI, formCellContainer.getControl('PartDetailsLstPkr'), message);
                 libCom.executeInlineControlError(pageClientAPI, formCellContainer.getControl('DamageGroupLstPkr'), message);

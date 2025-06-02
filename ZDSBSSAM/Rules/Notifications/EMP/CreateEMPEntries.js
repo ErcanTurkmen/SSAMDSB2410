@@ -13,7 +13,7 @@ import AppVersionInfo from '../../../../SAPAssetManager/Rules/UserProfile/AppVer
 import MobileStatusUpdateOverride from '../../../../SAPAssetManager/Rules/MobileStatus/MobileStatusUpdateOverride';
 import ValidationLibrary from '../../../../SAPAssetManager/Rules/Common/Library/ValidationLibrary';
 import AutoSyncLib from '../../../../SAPAssetManager/Rules/ApplicationEvents/AutoSync/AutoSyncLibrary';
-import libNotif from '../../../../SAPAssetManager/Rules/Notifications/NotificationLibrary';
+import libNotif from '../NotificationLibrary';
 
 export const NotificationProcessingContextType = Object.freeze({
 	EmergencyWork: '01',
@@ -155,6 +155,7 @@ export default async function CreateEMPEntries(context, EMPObject, actionResults
 						//checking the flag if Notification created from Operation skip the auto sync 
 						// sync will be trigger after notiification added to object list
 						if (!libNotif.getZAddFromOperationToNotifFlag(context)) {
+							common.setStateVariable(context, 'ZOnlineSearch', false);
 							return AutoSyncLib.autoSync(context);
 						}
 					});
@@ -174,6 +175,7 @@ export default async function CreateEMPEntries(context, EMPObject, actionResults
 						// sync will be trigger after notiification added to object list
 
 						if (!libNotif.getZAddFromOperationToNotifFlag(context)) {
+							common.setStateVariable(context, 'ZOnlineSearch', false);
 							return AutoSyncLib.autoSync(context);
 						}
 					});
@@ -194,6 +196,7 @@ export default async function CreateEMPEntries(context, EMPObject, actionResults
 				//checking the flag if Notification created from Operation skip the auto sync,
 				// sync will be trigger after notiification added to object list
 				if (!libNotif.getZAddFromOperationToNotifFlag(context)) {
+					common.setStateVariable(context, 'ZOnlineSearch', false);
 					return AutoSyncLib.autoSync(context);
 				}
 				if (IsPhaseModelEnabled(context) && notifProcessingContext === NotificationProcessingContextType.MinorWork) {
