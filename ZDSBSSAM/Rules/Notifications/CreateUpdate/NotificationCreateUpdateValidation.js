@@ -28,7 +28,7 @@ export default function NotificationCreateUpdateValidation(pageClientAPI) {
 
     var equipment;
     if (onCreate) {
-        equipment = formCellContainer.getControl('EquipHierarchyExtensionControl').getValue();
+        equipment = formCellContainer.getControl('EquipHierarchyExtensionControl').getValue() || pageClientAPI.binding.HeaderEquipment;
 
     } else {
         let equipListPicker = formCellContainer.getControl('EquipmentLstPkr');
@@ -38,10 +38,10 @@ export default function NotificationCreateUpdateValidation(pageClientAPI) {
     }
     let typeListPicker = formCellContainer.getControl('TypeLstPkr');
     let notifType = libCom.getListPickerValue(typeListPicker.getValue());
-    let itemPartGroup = libCom.getListPickerValue(formCellContainer.getControl('PartGroupLstPkr'));
-    let itemPart = libCom.getListPickerValue(formCellContainer.getControl('PartDetailsLstPkr'));
-    let damageGroup = libCom.getListPickerValue(formCellContainer.getControl('DamageGroupLstPkr'));
-    let damageCode = libCom.getListPickerValue(formCellContainer.getControl('DamageDetailsLstPkr'));
+    let itemPartGroup = libCom.getListPickerValue(formCellContainer.getControl('PartGroupLstPkr').getValue());
+    let itemPart = libCom.getListPickerValue(formCellContainer.getControl('PartDetailsLstPkr').getValue());
+    let damageGroup = libCom.getListPickerValue(formCellContainer.getControl('DamageGroupLstPkr').getValue());
+    let damageCode = libCom.getListPickerValue(formCellContainer.getControl('DamageDetailsLstPkr').getValue());
 
     // DSB customisation to check for equipment if it exists. Check field data against business logic here
     //Return true if validation succeeded, or False if failed
@@ -51,7 +51,7 @@ export default function NotificationCreateUpdateValidation(pageClientAPI) {
 
 
         } else {
-            if (!floc && notifType === '30' && onCreate) {
+            if (!floc && !equipment && notifType === '30' && onCreate) {
                 let messagefloc = pageClientAPI.localizeText('field_is_required');
                 var flocControl = formCellContainer.getControl('FuncLocHierarchyExtensionControl');
                 libCom.executeInlineControlError(pageClientAPI, flocControl, messagefloc);
@@ -60,7 +60,7 @@ export default function NotificationCreateUpdateValidation(pageClientAPI) {
             if (!equipment && notifType === '30' && onCreate) {
                 let queryOption = "$filter=FuncLocId eq '" + floc + "' &$orderby=EquipId";
                 let onlineFlag = libCom.getStateVariable(pageClientAPI, 'ZOnlineSearch'); //DSB customization to check if FL has equipment in case when the FL is searched online and notification is created
-                if (onlineFlag) { 
+                if (onlineFlag) {
                     let onlineQuery = `$filter=FuncLocIdIntern eq '${floc}' and SuperiorEquip eq ''&$orderby=EquipId`;
                     return pageClientAPI.read('/SAPAssetManager/Services/OnlineAssetManager.service', 'Equipments', [], onlineQuery).then(function (data) {
                         if (data && data.length > 0 && data.getItem(0).EquipId) {
@@ -90,10 +90,15 @@ export default function NotificationCreateUpdateValidation(pageClientAPI) {
                     });
                 }
             }
-            if (notifType === '30' && onCreate && (!itemPartGroup || !itemPart || !damageGroup || !damageCode)) {
+            if (notifType === '30' && onCreate && (!itemPart || !itemPartGroup)) {
                 message = pageClientAPI.localizeText('zvalidation_item_mandatory');
-                libCom.executeInlineControlError(pageClientAPI, formCellContainer.getControl('PartDetailsLstPkr'), message);
-                libCom.executeInlineControlError(pageClientAPI, formCellContainer.getControl('DamageGroupLstPkr'), message);
+                // if (!itemPart) {
+                    libCom.executeInlineControlError(pageClientAPI, formCellContainer.getControl('PartDetailsLstPkr'), message);
+                // }
+                // else {
+                //     libCom.executeInlineControlError(pageClientAPI, formCellContainer.getControl('DamageDetailsLstPkr'), pageClientAPI.localizeText('zvalidation_damage_mandatory'));
+                // }
+                return false;
             }
             else {
                 return result;

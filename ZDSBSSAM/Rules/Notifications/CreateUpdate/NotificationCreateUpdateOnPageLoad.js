@@ -48,10 +48,15 @@ export default function NotificationCreateUpdateOnPageLoad(context) {
             if (common.isCurrentReadLinkLocal(binding['@odata.readLink'])) {
                 container.getControl('TypeLstPkr').setEditable(false);
             }
-            let formCellContainer = context.getControl('FormCellContainer');
             let stylizer = new Stylizer(['GrayText']);
+            NotificationCreateUpdateShowFieldsChange(context, false);
+            formCellContainer.getControl('EquipHierarchyExtensionControl').setEditable(true);
+            formCellContainer.getControl('FuncLocHierarchyExtensionControl').setEditable(true);
+            let formCellContainer = context.getControl('FormCellContainer');
             let typePkr = formCellContainer.getControl('TypeLstPkr');
             stylizer.apply(typePkr, 'Value');
+            stylizer.apply(formCellContainer.getControl('EquipHierarchyExtensionControl'), 'Value');
+            stylizer.apply(formCellContainer.getControl('FuncLocHierarchyExtensionControl'), 'Value');
 
             // QM-Specific
             if (userFeaturesLib.isFeatureEnabled(context, context.getGlobalDefinition('/SAPAssetManager/Globals/Features/QM.global').getValue())) {
@@ -111,50 +116,35 @@ export default function NotificationCreateUpdateOnPageLoad(context) {
         container.getControl('FuncLocHierarchyExtensionControl').setEditable(true);
     }
 
-    NotificationCreateUpdateShowFieldsChange(context, true); //DSB customization - Show the item section on load
-
     style(context, 'DiscardButton');
     //Set Failure Group and Detection Group
     libNotif.setFailureAndDetectionGroupQuery(context).then(() => {
         common.saveInitialValues(context);
     });
-
-    setGroupPickersItems(context.getControl('FormCellContainer'), context).then((pickerItems) => {
-        try {
-            if (pickerItems[0]?.length === 1) {
-                context.evaluateTargetPath('#Control:PartGroupLstPkr').setValue(pickerItems[0][0].ReturnValue, true);
-            }
-            if (pickerItems[1]?.length === 1) {
-                context.evaluateTargetPath('#Control:DamageGroupLstPkr').setValue(pickerItems[1][0].ReturnValue, true);
-            }
-            if (pickerItems[2]?.length === 1) {
-                context.evaluateTargetPath('#Control:CauseGroupLstPkr').setValue(pickerItems[2][0].ReturnValue, true);
-            }
-        } catch (error) {
-            Logger.error('NotificationCreateUpdateOnPageLoad', error);
-        }
-    });
-
-    /*********************** DSB Customizatoion Start  *****************/
-    var equip;
-    var floc;
-    if (!onCreate) {
-        //Edit page Disable Edit of Item and damage, Remove add item, Disable FL and Eq
-        container.getControl('EquipHierarchyExtensionControl').setEditable(false);
-        container.getControl('FuncLocHierarchyExtensionControl').setEditable(false);
-        container.getControl('PartDetailsLstPkr').setEditable(false);
-        container.getControl('PartGroupLstPkr').setEditable(false);
-        container.getControl('DamageGroupLstPkr').setEditable(false);
-        container.getControl('DamageDetailsLstPkr').setEditable(false);
-    }
-    else {
-        /* DSB Custosmzation for Type 31 41 hiding the feilds NotifType */
+    if (onCreate) {
         let NotificationType = binding.NotificationType;
         if (NotificationType === '41' || NotificationType === '31') {
             NotificationCreateUpdateShowFieldsChange(context, false);
         }
+        else {
+            NotificationCreateUpdateShowFieldsChange(context, true); //DSB customization - Show the item section on load
+            setGroupPickersItems(context.getControl('FormCellContainer'), context).then((pickerItems) => {
+                try {
+                    if (pickerItems[0]?.length === 1) {
+                        context.evaluateTargetPath('#Control:PartGroupLstPkr').setValue(pickerItems[0][0].ReturnValue, true);
+                    }
+                    if (pickerItems[1]?.length === 1) {
+                        context.evaluateTargetPath('#Control:DamageGroupLstPkr').setValue(pickerItems[1][0].ReturnValue, true);
+                    }
+                    if (pickerItems[2]?.length === 1) {
+                        context.evaluateTargetPath('#Control:CauseGroupLstPkr').setValue(pickerItems[2][0].ReturnValue, true);
+                    }
+                } catch (error) {
+                    Logger.error('NotificationCreateUpdateOnPageLoad', error);
+                }
+            });
+        }
     }
-    /*********************** DSB Customizatoion End  *****************/
 
     if (binding['@odata.type'] === '#sap_mobile.InspectionCharacteristic') {
         let typePicker = context.getControl('FormCellContainer').getControl('TypeLstPkr');
@@ -242,18 +232,20 @@ function setGroupPickersItems(formCellContainer, context) {
             damageGroupPicker.setPickerItems(pickerItems[1]);
             causeGroupPicker.setPickerItems(pickerItems[2]);
             let ZCodeGroup = pickerItems[3].ZCodeGroup;
-            partCodePickerSpecifier.setDisplayValue('{{#Property:Code}} - {{#Property:CodeDescription}}');
-            partCodePickerSpecifier.setReturnValue('{Code}');
+            if (ZCodeGroup) {
+                partCodePickerSpecifier.setDisplayValue('{{#Property:Code}} - {{#Property:CodeDescription}}');
+                partCodePickerSpecifier.setReturnValue('{Code}');
 
-            partCodePickerSpecifier.setEntitySet('PMCatalogCodes');
-            partCodePickerSpecifier.setService('/SAPAssetManager/Services/AssetManager.service');
+                partCodePickerSpecifier.setEntitySet('PMCatalogCodes');
+                partCodePickerSpecifier.setService('/SAPAssetManager/Services/AssetManager.service');
 
-            partCodePickerSpecifier.setQueryOptions(`$filter=Catalog eq '${pickerItems[3].ZCatalog}' and CodeGroup eq '${pickerItems[3].ZCodeGroup}'&$orderby=Code`);
+                partCodePickerSpecifier.setQueryOptions(`$filter=Catalog eq '${pickerItems[3].ZCatalog}' and CodeGroup eq '${ZCodeGroup}'&$orderby=Code`);
 
-            partCodePicker.setTargetSpecifier(partCodePickerSpecifier).then(() => {
-                partCodePicker.redraw(true);
-                return Promise.resolve(pickerItems);
-            });
+                partCodePicker.setTargetSpecifier(partCodePickerSpecifier).then(() => {
+                    partCodePicker.redraw(true);
+                    return Promise.resolve(pickerItems);
+                });
+            }
         })
         .catch((error) => {
             Logger.error('setGroupPickersItems', error);

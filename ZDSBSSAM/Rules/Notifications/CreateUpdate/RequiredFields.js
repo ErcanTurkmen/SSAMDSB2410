@@ -46,24 +46,15 @@ export default function RequiredFields(context) {
     //*** DSB Customization to remove validate for Type #´31 41. Hence checking for type 30 to validate
     //DSB customisation to add validation to 70/71/72 along with 30
     let notifObject = ZGetNotificationFieldValue(context);
+    if (notifObject.itemDescription || notifObject.itemPartGroup || notifObject.itemPart || notifObject.itemDamageGroup )
+    {
+        required.push('ItemDescription', 'PartGroupLstPkr', 'PartDetailsLstPkr', 'DamageGroupLstPkr', 'DamageDetailsLstPkr');
+    }
     if (notifObject.typeLstPkr === '30' || notifObject.typeLstPkr === '70' || notifObject.typeLstPkr === '71' || notifObject.typeLstPkr === '72') {
         /**** DSB   Customisation Start For Remove Item validation  ***/
         if (notifObject.causeDescription || notifObject.causeGroup || notifObject.causeCode) {
-            //old code 	
-            // If any cause fields are filled out, everything is required
-            //	 required.push('CauseGroupLstPkr','CodeLstPkr', 'ItemDescription', 'PartGroupLstPkr','PartDetailsLstPkr','DamageGroupLstPkr','DamageDetailsLstPkr');
-            // new changes 
             required.push('CauseDescription', 'CauseGroupLstPkr', 'CodeLstPkr', 'PartGroupLstPkr', 'PartDetailsLstPkr',
                 'DamageGroupLstPkr', 'DamageDetailsLstPkr');
-
-        } else if (notifObject.itemDescription || notifObject.itemPartGroup || notifObject.itemPart || notifObject.itemDamageGroup || notifObject.itemDamage) {
-            // old Code 
-            // If any item fields are filled out, only item-related fields are required
-            // 	required.push('ItemDescription', 'PartGroupLstPkr','PartDetailsLstPkr','DamageGroupLstPkr','DamageDetailsLstPkr');
-
-            // new code 	
-            required.push('PartGroupLstPkr', 'PartDetailsLstPkr', 'DamageGroupLstPkr', 'DamageDetailsLstPkr');
-
         }
         /**** DSB   Customisation End  For Remove Item validation  ***/
     }

@@ -1,6 +1,6 @@
 
 import Logger from '../../../../SAPAssetManager/Rules/Log/Logger';
-
+import libCom from '../../../../SAPAssetManager/Rules/Common/Library/CommonLibrary';
 /**
 * Describe this function...
 * @param {IControlProxy} controlProxy
@@ -11,30 +11,45 @@ export default async function ZGetTechnicalObjectCodeGroup(context) {
     let equip = binding.HeaderEquipment || '';
     let type = binding.NotificationType || '';
     let { entitySet, groupQuery } = '';
+    let onlineFlag = binding.OnlineFloc || binding.OnlineEquipment;
 
-    let catalog = await context.read('/SAPAssetManager/Services/AssetManager.service', 'NotificationTypes', [], `$filter=NotifType eq '${type}' and length(CatalogProfile) gt 0`).then(function(result){
+    let catalog = await context.read('/SAPAssetManager/Services/AssetManager.service', 'NotificationTypes', [], `$filter=NotifType eq '${type}' and length(CatalogProfile) gt 0`).then(function (result) {
         return result.getItem(0)["CatTypeObjectParts"];
     });
-    if (floc && equip) {
-        entitySet = 'MyEquipments';
+    if (equip) {
+        entitySet = onlineFlag ? 'Equipments' : 'MyEquipments';
         groupQuery = "$filter=EquipId eq '" + equip + "' and length(CatalogProfile) gt 0";
     } else if (floc) {
-        entitySet = 'MyFunctionalLocations';
+        entitySet = onlineFlag ? 'FunctionalLocation' : 'MyFunctionalLocations';
         groupQuery = "$filter=FuncLocIdIntern eq '" + floc + "' and length(CatalogProfile) gt 0";
     } else {
         groupQuery = "";
     }
     if (groupQuery !== "") {
-        return context.read('/SAPAssetManager/Services/AssetManager.service', entitySet, [], groupQuery).then(function (results) {
-            if (results.length > 0 && results.getItem(0).ZCodeGroup) {
-                return { 'ZCodeGroup': results.getItem(0).ZCodeGroup, 'ZCatalog': catalog };
-            }
-        }).catch(error => {
-            Logger.error('NotificationItemPartGroupPickerItems', error);
-            return [];
-        });
+        if (onlineFlag) {
+            await context.read('/SAPAssetManager/Services/OnlineAssetManager.service', entitySet, [], groupQuery).then(function (results) {
+                if (results.length) {
+                    let zcodegroup = results.getItem(0).ZCodeGroup || results.getItem(0).CatalogProfile;
+                    return { 'ZCodeGroup': zcodegroup, 'ZCatalog': catalog };
+                }
+            }).catch(error => {
+                Logger.error('NotificationItemPartGroupPickerItems', error);
+                return { 'ZCodeGroup': '', 'ZCatalog': catalog };
+            });
+        }
+        else {
+            await context.read('/SAPAssetManager/Services/AssetManager.service', entitySet, [], groupQuery).then(function (results) {
+                if (results.length) {
+                    let zcodegroup = results.getItem(0).ZCodeGroup || results.getItem(0).CatalogProfile;
+                    return { 'ZCodeGroup': zcodegroup, 'ZCatalog': catalog };
+                }
+            }).catch(error => {
+                Logger.error('NotificationItemPartGroupPickerItems', error);
+                return { 'ZCodeGroup': '', 'ZCatalog': catalog };
+            });
+        }
     }
     else {
-        return '';
+        return { 'ZCodeGroup': '', 'ZCatalog': catalog };
     }
 }

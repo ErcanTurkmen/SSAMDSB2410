@@ -125,7 +125,8 @@
                         "Caption": "$(L,functional_location)",
                         "AllowMultipleSelection": false,
                         "ItemsPerPage": 50,
-                        "CachedItemsToLoad": 20
+                        "CachedItemsToLoad": 20,
+                        "IsEditable": "/SAPAssetManager/Rules/Common/IsOnCreate.js"
                     },
                     "HierarchyList": [],
                     "BusinessObjects": [{
@@ -195,7 +196,8 @@
                             "AllowMultipleSelection": false,
                             "Caption": "$(L,equipment)",
                             "ItemsPerPage": 50,
-                            "CachedItemsToLoad": 20
+                            "CachedItemsToLoad": 20,
+                            "IsEditable": "/SAPAssetManager/Rules/Common/IsOnCreate.js"
                         },
                         "HierarchyList": [],
                         "BusinessObjects": [{
@@ -530,7 +532,8 @@
                     "Semantic": "Tint",
                     "OnPress": "/SAPAssetManager/Rules/Notifications/PriorityAssessmentNav.js",
                     "_Name": "AssessmentBtn",
-                    "_Type": "Control.Type.FormCell.Button"
+                    "_Type": "Control.Type.FormCell.Button",
+                    "IsVisible": false
                 }]
             },
             {
@@ -622,7 +625,7 @@
                 "Controls":
                 [{
                         "Caption": "$(L,select_notification_extra_fields)",
-                        "Value": true,
+                        "Value": "/SAPAssetManager/Rules/Common/IsOnCreate.js",
                         "_Name": "ShowAdditionalFieldsSwitch",
                         "_Type": "Control.Type.FormCell.Switch",
                         "OnValueChange": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateShowFieldsChange.js",

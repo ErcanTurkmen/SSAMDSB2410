@@ -165,6 +165,10 @@
 		{
 			"Source": "/ZDSBSSAM/Rules/ContextMenuLeadingItems.js",
 			"Target": "/SAPAssetManager/Rules/ContextMenuLeadingItems.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/Equipment/OnlineEquipmentDetails.page",
+			"Target": "/SAPAssetManager/Pages/Equipment/OnlineEquipmentDetails.page"
 		}
 	],
 	"ComponentVersion": "1.0"
