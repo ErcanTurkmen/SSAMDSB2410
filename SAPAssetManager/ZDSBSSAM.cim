@@ -169,6 +169,14 @@
 		{
 			"Source": "/ZDSBSSAM/Pages/Equipment/OnlineEquipmentDetails.page",
 			"Target": "/SAPAssetManager/Pages/Equipment/OnlineEquipmentDetails.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Notifications/Details/NotificationDetailsItemPartCodeDataTable.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsItemPartCodeDataTable.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Notifications/Details/NotificationDetailsItemDamageCodeDataTable.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsItemDamageCodeDataTable.js"
 		}
 	],
 	"ComponentVersion": "1.0"

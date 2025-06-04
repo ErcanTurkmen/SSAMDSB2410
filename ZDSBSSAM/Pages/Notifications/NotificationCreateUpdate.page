@@ -625,7 +625,6 @@
                 "Controls":
                 [{
                         "Caption": "$(L,select_notification_extra_fields)",
-                        "Value": "/SAPAssetManager/Rules/Common/IsOnCreate.js",
                         "_Name": "ShowAdditionalFieldsSwitch",
                         "_Type": "Control.Type.FormCell.Switch",
                         "OnValueChange": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateShowFieldsChange.js",
@@ -726,6 +725,46 @@
             },
             {
                 "Header": {
+                    "Caption": "$(L,notification_item_detail)",
+                    "UseTopPadding": true
+                },
+                "_Type": "Section.Type.FormCell",
+                "_Name": "NonEditableItemPart",
+                "Visible": false,
+                "Controls":
+                [{
+                    "PlaceHolder": "$(L,item_description)",
+                    "_Name": "ItemDescriptionDefault",
+                    "_Type": "Control.Type.FormCell.Note",
+                    "IsEditable": false
+                },{
+                    "_Name": "PartGroupLstPkrDefault",
+                    "_Type": "Control.Type.FormCell.SimpleProperty",
+                    "Caption": "$(L,part_group)",
+                    "IsEditable": false
+                },
+                {
+                    "_Name": "PartCodePkrDefault",
+                    "_Type": "Control.Type.FormCell.SimpleProperty",
+                    "Caption": "$(L,part)",
+                    "IsEditable": false,
+                    "Value": ""
+                },
+                {
+                    "_Name": "DamageGroupLstPkrDefault",
+                    "_Type": "Control.Type.FormCell.SimpleProperty",
+                    "Caption": "$(L,damage_group)",
+                    "IsEditable": false
+                },
+                {
+                    "_Name": "DamageDetailsLstPkrDefault",
+                    "_Type": "Control.Type.FormCell.SimpleProperty",
+                    "Caption": "$(L,damage)",
+                    "IsEditable": false
+                }]
+            },
+                        {
+                "Header": {
                     "Caption": "$(L,create_cause_item)",
                     "UseTopPadding": true
                 },
@@ -734,7 +773,6 @@
                 "Controls":
                 [{
                     "PlaceHolder": "$(L,cause_description)",
-                    "IsEditable": false,
                     "OnValueChange": "/SAPAssetManager/Rules/Notifications/Utils/NotificationDescriptionLengthValidation.js",
                     "_Name": "CauseDescription",
                     "_Type": "Control.Type.FormCell.Note"
@@ -751,7 +789,6 @@
                         "Placeholder": "$(L,search)",
                         "BarcodeScanner": true
                     },
-                    "IsEditable": false,
                     "Caption": "$(L,cause_group)",
                     "Value": "{CauseCodeGroup}",
                     "PickerItems": [],
@@ -764,7 +801,6 @@
                     "AllowDefaultValueIfOneItem": true,
                     "IsPickerDismissedOnSelection": true,
                     "IsSearchCancelledAfterSelection": true,
-                    "IsEditable" : false,
                     "Search": {
                         "Enabled": true,
                         "Delay": 500,
@@ -788,7 +824,7 @@
                     "_Type": "Control.Type.FormCell.ListPicker"
                 }]
             },
-                        {
+            {
                 "_Type": "Section.Type.FormCell",
                 "_Name": "FormCellSection8",
                 "Controls":

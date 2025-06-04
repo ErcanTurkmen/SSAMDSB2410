@@ -189,9 +189,10 @@ export default function NotificationCreateUpdateOnCommit(clientAPI) {
                             'OnSuccess': '',
                         },
                     });
-                } else {
-                    return Promise.reject(); // Skip item and cause create
-                }
+                 } 
+                // else {
+                //     return Promise.reject(); // Skip item and cause create
+                // }
             }).then(actionResult => {
                 // eslint-disable-next-line brace-style
                 const createCause = isControlPopulated('CauseDescription', formCellContainer) || ['CodeLstPkr', 'CauseGroupLstPkr'].every(pickerName => isControlPopulated(pickerName, formCellContainer));

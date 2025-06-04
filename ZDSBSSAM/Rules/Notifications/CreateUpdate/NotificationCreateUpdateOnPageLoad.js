@@ -14,8 +14,9 @@ import Logger from '../../../../SAPAssetManager/Rules/Log/Logger';
 import NotificationItemPartGroupPickerItems from '../../../../SAPAssetManager/Rules/Notifications/Item/CreateUpdate/NotificationItemPartGroupPickerItems';
 import { ValueIfExists } from '../../../../SAPAssetManager/Rules/Common/Library/Formatter';
 import ZGetTechnicalObjectCodeGroup from './ZGetTechnicalObjectCodeGroup';
+import ValidationLibrary from '../../../../SAPAssetManager/Rules/Common/Library/ValidationLibrary';
 
-export default function NotificationCreateUpdateOnPageLoad(context) {
+export default async function NotificationCreateUpdateOnPageLoad(context) {
     // Create empty promise in the event of QM creation. Forces rule to wait until read is completed.
     let QMRead = Promise.resolve();
     hideCancel(context);
@@ -26,13 +27,12 @@ export default function NotificationCreateUpdateOnPageLoad(context) {
     let binding = context.binding;
 
     common.saveInitialValues(context);
-
     if (NotificationCreateUpdateFromOrder(context)) {
         common.setStateVariable(context, 'isFollowOn', true);
     } else {
         common.setStateVariable(context, 'isFollowOn', false);
     }
-
+    let formCellContainer = context.getControl('FormCellContainer');
     if (binding['@odata.type'] === '#sap_mobile.InspectionCharacteristic') {
         caption = context.localizeText('record_defect');
     } else {
@@ -50,13 +50,8 @@ export default function NotificationCreateUpdateOnPageLoad(context) {
             }
             let stylizer = new Stylizer(['GrayText']);
             NotificationCreateUpdateShowFieldsChange(context, false);
-            formCellContainer.getControl('EquipHierarchyExtensionControl').setEditable(true);
-            formCellContainer.getControl('FuncLocHierarchyExtensionControl').setEditable(true);
-            let formCellContainer = context.getControl('FormCellContainer');
             let typePkr = formCellContainer.getControl('TypeLstPkr');
             stylizer.apply(typePkr, 'Value');
-            stylizer.apply(formCellContainer.getControl('EquipHierarchyExtensionControl'), 'Value');
-            stylizer.apply(formCellContainer.getControl('FuncLocHierarchyExtensionControl'), 'Value');
 
             // QM-Specific
             if (userFeaturesLib.isFeatureEnabled(context, context.getGlobalDefinition('/SAPAssetManager/Globals/Features/QM.global').getValue())) {
@@ -121,12 +116,15 @@ export default function NotificationCreateUpdateOnPageLoad(context) {
     libNotif.setFailureAndDetectionGroupQuery(context).then(() => {
         common.saveInitialValues(context);
     });
+    let NotificationType = binding.NotificationType;
     if (onCreate) {
-        let NotificationType = binding.NotificationType;
-        if (NotificationType === '41' || NotificationType === '31') {
-            NotificationCreateUpdateShowFieldsChange(context, false);
-        }
-        else {
+        // formCellContainer.getSection('NonEditableItemPart').setVisible(false);
+        // if (NotificationType === '41' || NotificationType === '31') {
+        //     NotificationCreateUpdateShowFieldsChange(context, false);
+        // }
+        // else {
+        if (!(NotificationType === '41' || NotificationType === '31')) {
+            container.getControl('ShowAdditionalFieldsSwitch').setValue(true);
             NotificationCreateUpdateShowFieldsChange(context, true); //DSB customization - Show the item section on load
             setGroupPickersItems(context.getControl('FormCellContainer'), context).then((pickerItems) => {
                 try {
@@ -143,6 +141,50 @@ export default function NotificationCreateUpdateOnPageLoad(context) {
                     Logger.error('NotificationCreateUpdateOnPageLoad', error);
                 }
             });
+        }
+    }
+    else {
+        if (!(NotificationType === '41' || NotificationType === '31')) {
+            formCellContainer.getSection('FormCellSection4').setVisible(false);
+            formCellContainer.getSection('CauseSetupSection').setVisible(true);
+            formCellContainer.getSection('NonEditableItemPart').setVisible(true);
+            let causeGroupPicker = container.getControl('CauseGroupLstPkr');
+            container.getControl('CauseGroupLstPkr').setEditable(true);
+            container.getControl('CodeLstPkr').setEditable(true);
+            container.getControl('CauseDescription').setEditable(true);
+            let causeQuery = await libNotif.NotificationItemTaskActivityGroupQuery(context, 'CatTypeCauses');
+            let entitySet = 'PMCatalogProfiles';
+            let displayValue = 'Description';
+            const returnValue = 'CodeGroup';
+            await context.read('/SAPAssetManager/Services/AssetManager.service', entitySet, [], causeQuery).then(catalogs => {
+                if (ValidationLibrary.evalIsEmpty(catalogs)) {
+                    return [];
+                }
+                //Using Array.map is faster than Array.from. This will have the noticeable performance improvement when the array is large in loading the NotificationCreateUpdate page.
+                causeGroupPicker.setPickerItems(catalogs._array.map(item => ({
+                    ReturnValue: item[returnValue],
+                    DisplayValue: `${item[returnValue]} - ${item[displayValue]}` || '-',
+                })));
+                Promise.resolve(true);
+            });
+            if (binding['@odata.readLink']) { //&& binding['@odata.type'] === '#sap_mobile.MyNotificationHeader') {
+                let itemData = await context.read('/SAPAssetManager/Services/AssetManager.service', binding['@odata.readLink'] + '/Items', [], '');
+                if (itemData.length > 0) {
+                    container.getControl('ItemDescriptionDefault').setValue(itemData.getItem(0).ItemText);
+                    container.getControl('PartGroupLstPkrDefault').setValue(itemData.getItem(0).ObjectPartCodeGroup);
+                    let part = itemData.getItem(0).ObjectPartCode;
+                    container.getControl('PartCodePkrDefault').setValue(' ');
+                    container.getControl('DamageGroupLstPkrDefault').setValue(itemData.getItem(0).CodeGroup);
+                    container.getControl('DamageDetailsLstPkrDefault').setValue(itemData.getItem(0).DamageCode);
+                    var aPath = "MyNotificationItems(ItemNumber='0001',NotificationNumber='" + itemData.getItem(0).NotificationNumber + "')/ItemCauses";
+                    let dataCauses = context.read('/SAPAssetManager/Services/AssetManager.service', aPath, [], '');
+                    if (dataCauses.length > 0) {
+                        container.getControl('CauseGroupLstPkr').setValue(dataCauses.getItem(0).CauseCodeGroup);
+                        container.getControl('CodeLstPkr').setValue(dataCauses.getItem(0).CauseCode);
+                        container.getControl('CauseDescription').setValue(dataCauses.getItem(0).CauseText);
+                    }
+                }
+            }
         }
     }
 
@@ -164,7 +206,6 @@ export default function NotificationCreateUpdateOnPageLoad(context) {
             });
         });
     }
-
     //Need to set assess priority button visibility here, because other screen fields have not yet been populated (hierarchy extensions)
     return EMPButtonIsVisibleOnLoad(context).then(() => {
         return setPartnerPickers(context, container).then(() => {

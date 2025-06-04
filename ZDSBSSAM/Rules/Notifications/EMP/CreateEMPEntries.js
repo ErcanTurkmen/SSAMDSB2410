@@ -156,7 +156,7 @@ export default async function CreateEMPEntries(context, EMPObject, actionResults
 						// sync will be trigger after notiification added to object list
 						if (!libNotif.getZAddFromOperationToNotifFlag(context)) {
 							common.setStateVariable(context, 'ZOnlineSearch', false);
-							return Promise.resolve(true); //return AutoSyncLib.autoSync(context);
+							return AutoSyncLib.autoSync(context);
 						}
 					});
 				} else {
@@ -176,7 +176,7 @@ export default async function CreateEMPEntries(context, EMPObject, actionResults
 
 						if (!libNotif.getZAddFromOperationToNotifFlag(context)) {
 							common.setStateVariable(context, 'ZOnlineSearch', false);
-							return Promise.resolve(true); //return AutoSyncLib.autoSync(context);
+							return AutoSyncLib.autoSync(context);
 						}
 					});
 				}
@@ -197,7 +197,7 @@ export default async function CreateEMPEntries(context, EMPObject, actionResults
 				// sync will be trigger after notiification added to object list
 				if (!libNotif.getZAddFromOperationToNotifFlag(context)) {
 					common.setStateVariable(context, 'ZOnlineSearch', false);
-					return Promise.resolve(true); //return AutoSyncLib.autoSync(context);
+					return AutoSyncLib.autoSync(context);
 				}
 				if (IsPhaseModelEnabled(context) && notifProcessingContext === NotificationProcessingContextType.MinorWork) {
 					const started = context.getGlobalDefinition('/SAPAssetManager/Globals/MobileStatus/ParameterNames/StartParameterName.global').getValue();

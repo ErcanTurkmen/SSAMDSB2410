@@ -867,7 +867,7 @@ export default class {
         let valPromises = [];
         valPromises.push(libThis.CharacterLimitValidation(context, dict.NotificationDescription));
         valPromises.push(libThis.ValidateNoteNotEmpty(context, dict.NotificationDescription));
-        valPromises.push(libThis.ValidateEndDate(context, dict.MalfunctionEndDatePicker));
+        //valPromises.push(libThis.ValidateEndDate(context, dict.MalfunctionEndDatePicker));
 
         // check attachment count, run the validation rule if there is an attachment
         if (libDoc.attachmentSectionHasData(context)) {
