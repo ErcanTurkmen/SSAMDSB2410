@@ -9,7 +9,7 @@ export default function RequiredFields(context) {
     const required = [];
     const notificationMandatoryFields = ['NotificationDescription', 'TypeLstPkr'];
     const currentPage = CommonLib.getPageName(context);
-
+    let onCreate = CommonLib.IsOnCreate(context);
     // eslint-disable-next-line brace-style
     if ((function () { try { return context.evaluateTargetPathForAPI('#Control:PartnerPicker1').visible; } catch (exc) { return false; } })()) {
         required.push('PartnerPicker1');
@@ -34,29 +34,32 @@ export default function RequiredFields(context) {
     }
 
     DocumentFieldsAddRequired(context, required);
-
-    required.push(...NotificationItemRequiredFields(formcellContainerProxy), ...NotificationItemCauseRequiredFields(formcellContainerProxy));
-    if (currentPage === 'NotificationAddPage') { // on the NotificationUpdateMalfunctionEnd page these fields are not existing
-        required.push(
-            ...GetUnpopulatedChildControlNamesWithPopulatedParentControl([notificationMandatoryFields], formcellContainerProxy),
-            ...NotificationItemDetectionRequiredFields(formcellContainerProxy),
-        );
-    }
-
-    //*** DSB Customization to remove validate for Type #´31 41. Hence checking for type 30 to validate
-    //DSB customisation to add validation to 70/71/72 along with 30
-    let notifObject = ZGetNotificationFieldValue(context);
-    if (notifObject.itemDescription || notifObject.itemPartGroup || notifObject.itemPart || notifObject.itemDamageGroup )
-    {
-        required.push('ItemDescription', 'PartGroupLstPkr', 'PartDetailsLstPkr', 'DamageGroupLstPkr', 'DamageDetailsLstPkr');
-    }
-    if (notifObject.typeLstPkr === '30' || notifObject.typeLstPkr === '70' || notifObject.typeLstPkr === '71' || notifObject.typeLstPkr === '72') {
-        /**** DSB   Customisation Start For Remove Item validation  ***/
-        if (notifObject.causeDescription || notifObject.causeGroup || notifObject.causeCode) {
-            required.push('CauseDescription', 'CauseGroupLstPkr', 'CodeLstPkr', 'PartGroupLstPkr', 'PartDetailsLstPkr',
-                'DamageGroupLstPkr', 'DamageDetailsLstPkr');
+    if (onCreate) {
+        required.push(...NotificationItemRequiredFields(formcellContainerProxy), ...NotificationItemCauseRequiredFields(formcellContainerProxy));
+        if (currentPage === 'NotificationAddPage') { // on the NotificationUpdateMalfunctionEnd page these fields are not existing
+            required.push(
+                ...GetUnpopulatedChildControlNamesWithPopulatedParentControl([notificationMandatoryFields], formcellContainerProxy),
+                ...NotificationItemDetectionRequiredFields(formcellContainerProxy),
+            );
         }
-        /**** DSB   Customisation End  For Remove Item validation  ***/
+
+        //*** DSB Customization to remove validate for Type #´31 41. Hence checking for type 30 to validate
+        //DSB customisation to add validation to 70/71/72 along with 30
+        let notifObject = ZGetNotificationFieldValue(context);
+        if (notifObject.itemDescription || notifObject.itemPartGroup || notifObject.itemPart || notifObject.itemDamageGroup) {
+            required.push('ItemDescription', 'PartGroupLstPkr', 'PartDetailsLstPkr', 'DamageGroupLstPkr', 'DamageDetailsLstPkr');
+        }
+        if (notifObject.typeLstPkr === '30' || notifObject.typeLstPkr === '70' || notifObject.typeLstPkr === '71' || notifObject.typeLstPkr === '72') {
+            /**** DSB   Customisation Start For Remove Item validation  ***/
+            if (notifObject.causeDescription || notifObject.causeGroup || notifObject.causeCode) {
+                required.push('CauseDescription', 'CauseGroupLstPkr', 'CodeLstPkr', 'PartGroupLstPkr', 'PartDetailsLstPkr',
+                    'DamageGroupLstPkr', 'DamageDetailsLstPkr');
+            }
+            /**** DSB   Customisation End  For Remove Item validation  ***/
+        }
+    }
+    else {
+        required.push(...GetUnpopulatedChildControlNamesWithPopulatedParentControl([['CauseGroupLstPkr', 'CodeLstPkr']], formcellContainerProxy));
     }
 
     return required;
@@ -103,14 +106,14 @@ export function ZGetNotificationFieldValue(context) {
 
     let itemDescription = context.evaluateTargetPath('#Control:ItemDescription/#Value');
 
-    let itemPartGroup = CommonLib.getListPickerValue(CommonLib.getControlProxy(context,'PartGroupLstPkr').getValue());
-    let itemPart = CommonLib.getListPickerValue(CommonLib.getControlProxy(context,'PartDetailsLstPkr').getValue());
-    let itemDamageGroup = CommonLib.getListPickerValue(CommonLib.getControlProxy(context,'DamageGroupLstPkr').getValue());
-    let itemDamage = CommonLib.getListPickerValue(CommonLib.getControlProxy(context,'DamageDetailsLstPkr').getValue());
+    let itemPartGroup = CommonLib.getListPickerValue(CommonLib.getControlProxy(context, 'PartGroupLstPkr').getValue());
+    let itemPart = CommonLib.getListPickerValue(CommonLib.getControlProxy(context, 'PartDetailsLstPkr').getValue());
+    let itemDamageGroup = CommonLib.getListPickerValue(CommonLib.getControlProxy(context, 'DamageGroupLstPkr').getValue());
+    let itemDamage = CommonLib.getListPickerValue(CommonLib.getControlProxy(context, 'DamageDetailsLstPkr').getValue());
     let causeDescription = context.evaluateTargetPath('#Control:CauseDescription/#Value');
-    let causeGroup = CommonLib.getListPickerValue(CommonLib.getControlProxy(context,'CauseGroupLstPkr').getValue());
-    let causeCode = CommonLib.getListPickerValue(CommonLib.getControlProxy(context,'CodeLstPkr').getValue());
-    let typeLstPkr = CommonLib.getListPickerValue(CommonLib.getControlProxy(context,'TypeLstPkr').getValue());
+    let causeGroup = CommonLib.getListPickerValue(CommonLib.getControlProxy(context, 'CauseGroupLstPkr').getValue());
+    let causeCode = CommonLib.getListPickerValue(CommonLib.getControlProxy(context, 'CodeLstPkr').getValue());
+    let typeLstPkr = CommonLib.getListPickerValue(CommonLib.getControlProxy(context, 'TypeLstPkr').getValue());
     return {
         'itemDescription': `${itemDescription}`, 'itemPartGroup': `${itemPartGroup}`, 'itemPart': `${itemPart}`, 'itemDamageGroup': `${itemDamageGroup}`,
         'itemDamage': `${itemDamage}`, 'causeDescription': `${causeDescription}`, 'causeGroup': `${causeGroup}`, 'typeLstPkr': `${typeLstPkr}`,
