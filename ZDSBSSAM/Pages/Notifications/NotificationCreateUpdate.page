@@ -756,8 +756,7 @@
                     "_Name": "PartCodeDefault",
                     "_Type": "Control.Type.FormCell.SimpleProperty",
                     "Caption": "$(L,part)",
-                    "IsEditable": false,
-                    "Value": ""
+                    "IsEditable": false
                 },
                 {
                     "_Name": "DamageGroupLstPkrDefault",
