@@ -59,7 +59,13 @@ export default function RequiredFields(context) {
         }
     }
     else {
-        required.push(...GetUnpopulatedChildControlNamesWithPopulatedParentControl([['CauseGroupLstPkr', 'CodeLstPkr']], formcellContainerProxy));
+        let causeGroup = CommonLib.getListPickerValue(CommonLib.getControlProxy(context, 'CauseGroupLstPkr').getValue());
+        let causeCode = CommonLib.getListPickerValue(CommonLib.getControlProxy(context, 'CodeLstPkr').getValue());
+        let causeDescription = context.evaluateTargetPath('#Control:CauseDescription/#Value');
+        if(!causeGroup || !causeCode || !causeDescription)
+        {
+            required.push('CauseDescription', 'CauseGroupLstPkr', 'CodeLstPkr');
+        }
     }
 
     return required;

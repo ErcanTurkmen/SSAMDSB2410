@@ -174,8 +174,7 @@ export default async function NotificationCreateUpdateOnPageLoad(context) {
                 if (itemData.length > 0) {
                     container.getControl('ItemDescriptionDefault').setValue(itemData.getItem(0).ItemText);
                     container.getControl('PartGroupLstPkrDefault').setValue(itemData.getItem(0).ObjectPartCodeGroup);
-                    let part = itemData.getItem(0).ObjectPartCode;
-                    container.getControl('PartCodePkrDefault').setValue(' ');
+                    container.getControl('PartCodeDefault').setValue(itemData.getItem(0).ObjectPart,false);
                     container.getControl('DamageGroupLstPkrDefault').setValue(itemData.getItem(0).CodeGroup);
                     container.getControl('DamageDetailsLstPkrDefault').setValue(itemData.getItem(0).DamageCode);
                     var aPath = "MyNotificationItems(ItemNumber='0001',NotificationNumber='" + itemData.getItem(0).NotificationNumber + "')/ItemCauses";

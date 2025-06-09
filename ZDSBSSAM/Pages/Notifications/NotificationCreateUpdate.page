@@ -37,7 +37,7 @@
                 [{
 					"IsAutoResizing": true,
 					"Value": "$(L,zpriority_disclaimer)",
-					"_Type": "Control.Type.FormCell.Note",
+					"_Type": "Control.Type.FormCell.SimpleProperty",
 					"_Name": "ZPriorityDisclaimer",
 					"IsEditable": false,
 					"IsVisible": false,
@@ -753,7 +753,7 @@
                     "IsEditable": false
                 },
                 {
-                    "_Name": "PartCodePkrDefault",
+                    "_Name": "PartCodeDefault",
                     "_Type": "Control.Type.FormCell.SimpleProperty",
                     "Caption": "$(L,part)",
                     "IsEditable": false,
