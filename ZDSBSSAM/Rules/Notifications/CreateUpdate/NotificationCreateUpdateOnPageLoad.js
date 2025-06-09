@@ -38,8 +38,10 @@ export default async function NotificationCreateUpdateOnPageLoad(context) {
     } else {
         if (onCreate) {
             caption = context.localizeText('add_notification');
+            container.getControl('ZPriorityDisclaimer').setVisible(false);
         } else {
             caption = context.localizeText('edit_notification');
+            container.getControl('ZPriorityDisclaimer').setVisible(true);
 
             if (!common.isCurrentReadLinkLocal(binding['@odata.readLink'])) {
                 container.getControl('TypeLstPkr').setEditable(false);
