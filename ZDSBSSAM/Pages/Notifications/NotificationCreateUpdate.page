@@ -35,6 +35,15 @@
                 },
                 "Controls":
                 [{
+					"IsAutoResizing": true,
+					"Value": "$(L,zpriority_disclaimer)",
+					"_Type": "Control.Type.FormCell.Note",
+					"_Name": "ZPriorityDisclaimer",
+					"IsEditable": false,
+					"IsVisible": false,
+					"PlaceHolder": "PlaceHolder"
+				},
+                {
                     "Caption": "/SAPAssetManager/Rules/Notifications/CreateUpdate/DescriptionFieldCaption.js",
                     "PlaceHolder": "/SAPAssetManager/Rules/Notifications/CreateUpdate/DescriptionFieldCaption.js",
                     "Value": "{NotificationDescription}",

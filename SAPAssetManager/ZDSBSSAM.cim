@@ -177,6 +177,18 @@
 		{
 			"Source": "/ZDSBSSAM/Rules/Notifications/Details/NotificationDetailsItemDamageCodeDataTable.js",
 			"Target": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsItemDamageCodeDataTable.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Actions/Notifications/Item/NotificationItemCauseUpdate.action",
+			"Target": "/SAPAssetManager/Actions/Notifications/Item/NotificationItemCauseUpdate.action"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/ContextMenu/MobileStatus/NotificationMobileStatusHandler.js",
+			"Target": "/SAPAssetManager/Rules/ContextMenu/MobileStatus/NotificationMobileStatusHandler.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Notifications/MobileStatus/NotificationMobileStatusLibrary.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/MobileStatus/NotificationMobileStatusLibrary.js"
 		}
 	],
 	"ComponentVersion": "1.0"
