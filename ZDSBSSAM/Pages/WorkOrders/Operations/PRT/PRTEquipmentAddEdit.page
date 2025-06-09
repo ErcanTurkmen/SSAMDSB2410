@@ -19,6 +19,26 @@
         {
             "Sections": [
                 {
+                    "Controls":
+                    [{
+                        "_Type": "Control.Type.FormCell.SimpleProperty",
+                        "_Name": "EquipmentNumber",
+                        "IsEditable": true,
+                        "IsVisible": true,
+                        "PlaceHolder": "0",
+                        "Caption": "$(L,equipment_id)",
+                        "Value": "",
+                        "OnValueChange": "/ZDSBSSAM/Rules/WorkOrders/Operations/PRT/CreateUpdate/ZPRTEquipmentOnlineQueryOptions.js"
+                    },
+                    {
+                        "_Type": "Control.Type.FormCell.SimpleProperty",
+                        "_Name": "EquipmentDescription",
+                        "Value": "",
+                        "PlaceHolder": "$(L,description)",
+                        "OnValueChange": "/ZDSBSSAM/Rules/WorkOrders/Operations/PRT/CreateUpdate/ZPRTEquipmentOnlineQueryOptions.js"
+                    }]
+                },
+                {
                     "Header": {
                         "UseTopPadding": false
                     },
@@ -30,6 +50,10 @@
                             "AllowDefaultValueIfOneItem": true,
                             "IsPickerDismissedOnSelection": true,
                             "IsSearchCancelledAfterSelection": true,
+                            "DataPaging": {
+                                "ShowLoadingIndicator": true,
+                                "LoadingIndicatorText": "$(L, loading)"
+                            },
                             "Search": {
                                 "Enabled": true,
                                 "Delay": 500,
@@ -46,15 +70,15 @@
                                 "ObjectCell":
                                 {
                                     "PreserveIconStackSpacing": false,
-                                    "Title": "{{#Property:EquipDesc}} - {{#Property:EquipId}}",
-                                    "Subhead": "/SAPAssetManager/Rules/Equipment/EquipmentListViewFormat.js",
+                                    "Title": "{{#Property:EquipId}}",
+                                    "Subhead": "{{#Property:EquipDesc}}",
                                     "Footnote": "{{#Property:SerialNumber/#Property:SerialNumber}}"
                                 },
                                 "ReturnValue": "{EquipId}",
                                 "Target": {
-                                    "EntitySet": "MyEquipments",
-                                    "Service": "/SAPAssetManager/Services/AssetManager.service",
-                                    "QueryOptions": "$filter=PRTFlag eq 'X'&$orderby=EquipId&$expand=SerialNumber"
+                                    "EntitySet": "Equipments",
+                                    "Service": "/SAPAssetManager/Services/OnlineAssetManager.service",
+                                    "QueryOptions": "/ZDSBSSAM/Rules/WorkOrders/Operations/PRT/ZPRTEquipmentLstPkrQueryOptions.js"
                                 }
                             }
                         },

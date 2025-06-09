@@ -21,9 +21,6 @@ export default async function PartCreateUpdateOnPageLoad(context) {
     //DSB changes as part of upgrade 2410 to always use Online Material search
     let materialNumberField = context.evaluateTargetPath('#Control:MaterialNumber');
     let materialDescriptionField = context.evaluateTargetPath('#Control:MaterialDescription');
-    let materialNATOStockNumberField = context.evaluateTargetPath('#Control:MaterialNatoStockNumber');
-    let materialMPNField = context.evaluateTargetPath('#Control:MaterialMPNStockNumber');
-    let materialLMPNField = context.evaluateTargetPath('#Control:MaterialLMPNStockNumber');
     let onlineSwitch = context.evaluateTargetPath('#Control:OnlineSwitch');
 
     context.setCaption(caption);
