@@ -182,104 +182,111 @@ export default function NotificationCreateUpdateOnCommit(clientAPI) {
             }).then(async (result) => {
                 let data = JSON.parse(result.data);
                 if (type !== '31' || type !== '41') {   //DSB customization to disable Disable Object part/defect/cause - code and code group
-                    const createItem = isControlPopulated('ItemDescription', formCellContainer) || [['PartGroupLstPkr', 'PartDetailsLstPkr'], ['DamageGroupLstPkr', 'DamageDetailsLstPkr']]
+                    let createItem = isControlPopulated('ItemDescription', formCellContainer) || [['PartGroupLstPkr', 'PartDetailsLstPkr'], ['DamageGroupLstPkr', 'DamageDetailsLstPkr']]
                         .some(([parentName, childName]) => isControlPopulated(parentName, formCellContainer) && isControlPopulated(childName, formCellContainer));
-                    let itemCount = await ComLib.getEntitySetCount(clientAPI, data['@odata.readLink'] + '/Items');
-                    if (createItem && itemCount == 0) {
-                        return clientAPI.executeAction({
-                            'Name': '/SAPAssetManager/Actions/Notifications/Item/NotificationItemCreate.action',
-                            'Properties': {
-                                'OnSuccess': '',
-                            },
-                        });
+                    createItem = true;
+                    if (createItem) {
+                        return clientAPI.read('/SAPAssetManager/Services/AssetManager.service', data['@odata.readLink'] + '/Items', [], '');
+                        // return clientAPI.executeAction({
+                        //     'Name': '/SAPAssetManager/Actions/Notifications/Item/NotificationItemCreate.action',
+                        //     'Properties': {
+                        //         'OnSuccess': '',
+                        //     },
+                        // });
                     }
                     // else {
                     //     return Promise.reject(); // Skip item and cause create
                     // }
                 }
-            }).then(actionResult => {
+                else {
+                    //DSB  
+                    return Promise.reject({ 'skip': true }); // Skip item and cause create
+                }
+            }).then(async actionResult => {
                 if (type !== '31' || type !== '41') {       //DSB customization to disable Disable Object part/defect/cause - code and code group
                     // eslint-disable-next-line brace-style
                     const createCause = isControlPopulated('CauseDescription', formCellContainer) || ['CodeLstPkr', 'CauseGroupLstPkr'].every(pickerName => isControlPopulated(pickerName, formCellContainer));
                     if (createCause) {
-                        let data = JSON.parse(actionResult.data);
-                        let causeCount = ComLib.getEntitySetCount(clientAPI, data['@odata.readLink'] + '/ItemCauses');
-                        if (causeCount < 1) {
-                            return clientAPI.executeAction({
-                                'Name': '/SAPAssetManager/Actions/Notifications/Item/NotificationItemCauseCreate.action',
-                                'Properties': {
-                                    'Properties':
-                                    {
-                                        'NotificationNumber': data.NotificationNumber,
-                                        'ItemNumber': data.ItemNumber,
-                                        'CauseSequenceNumber': '0001',
-                                        'CauseText': clientAPI.evaluateTargetPath('#Control:CauseDescription/#Value') || '',
-                                        // eslint-disable-next-line brace-style
-                                        'CauseCodeGroup': (function () { try { return clientAPI.evaluateTargetPath('#Control:CauseGroupLstPkr/#SelectedValue'); } catch (e) { return ''; } })(),
-                                        // eslint-disable-next-line brace-style
-                                        'CauseCode': (function () { try { return clientAPI.evaluateTargetPath('#Control:CodeLstPkr/#SelectedValue'); } catch (e) { return ''; } })(),
-                                        'CauseSortNumber': '0001',
-                                    },
-                                    'Headers':
-                                    {
-                                        'OfflineOData.RemoveAfterUpload': 'true',
-                                        'OfflineOData.TransactionID': data.NotificationNumber,
-                                    },
-                                    'CreateLinks':
-                                        [{
-                                            'Property': 'Item',
-                                            'Target':
-                                            {
-                                                'EntitySet': 'MyNotificationItems',
-                                                'ReadLink': data['@odata.readLink'],
-                                            },
-                                        }],
-                                    'OnSuccess': '',
-                                },
-                            });
-                        }
-                        else {
-                            let linksURL = "MyNotificationItemCauses(ItemNumber='" + data.ItemNumber + "',NotificationNumber='" + data.NotificationNumber + "',CauseSequenceNumber='0001')";
-
-                            return clientAPI.executeAction({
-                                'Name': '/ZDSBSSAM/Actions/Notifications/Item/NotificationItemCauseUpdate.action',
-                                'Properties': {
+                        if (actionResult && actionResult.getItem(0)) {
+                            let data = actionResult.getItem(0);
+                            let causeCount = await ComLib.getEntitySetCount(clientAPI, data['@odata.readLink'] + '/ItemCauses');
+                            if (causeCount < 1) {
+                                return clientAPI.executeAction({
+                                    'Name': '/SAPAssetManager/Actions/Notifications/Item/NotificationItemCauseCreate.action',
                                     'Properties': {
-                                        'CauseText': clientAPI.evaluateTargetPath('#Control:CauseDescription/#Value'),
-                                        // eslint-disable-next-line brace-style
-                                        'CauseCodeGroup': (function () {
-                                            try {
-                                                return clientAPI.evaluateTargetPath('#Control:CauseGroupLstPkr/#SelectedValue');
-                                            } catch (e) {
-                                                return '';
-                                            }
-                                        })(),
-                                        // eslint-disable-next-line brace-style
-                                        'CauseCode': (function () {
-                                            try {
-                                                return clientAPI.evaluateTargetPath('#Control:CodeLstPkr/#SelectedValue');
-                                            } catch (e) {
-                                                return '';
-                                            }
-                                        })(),
+                                        'Properties':
+                                        {
+                                            'NotificationNumber': data.NotificationNumber,
+                                            'ItemNumber': data.ItemNumber,
+                                            'CauseSequenceNumber': '0001',
+                                            'CauseText': clientAPI.evaluateTargetPath('#Control:CauseDescription/#Value') || '',
+                                            // eslint-disable-next-line brace-style
+                                            'CauseCodeGroup': (function () { try { return clientAPI.evaluateTargetPath('#Control:CauseGroupLstPkr/#SelectedValue'); } catch (e) { return ''; } })(),
+                                            // eslint-disable-next-line brace-style
+                                            'CauseCode': (function () { try { return clientAPI.evaluateTargetPath('#Control:CodeLstPkr/#SelectedValue'); } catch (e) { return ''; } })(),
+                                            'CauseSortNumber': '0001',
+                                        },
+                                        'Headers':
+                                        {
+                                            'OfflineOData.RemoveAfterUpload': 'true',
+                                            'OfflineOData.TransactionID': data.NotificationNumber,
+                                        },
+                                        'CreateLinks':
+                                            [{
+                                                'Property': 'Item',
+                                                'Target':
+                                                {
+                                                    'EntitySet': 'MyNotificationItems',
+                                                    'ReadLink': data['@odata.readLink'],
+                                                },
+                                            }],
+                                        'OnSuccess': '',
                                     },
-                                    'Headers': {
-                                        'OfflineOData.TransactionID': data.NotificationNumber,
+                                });
+                            }
+                            else {
+                                let linksURL = "MyNotificationItemCauses(ItemNumber='" + data.ItemNumber + "',NotificationNumber='" + data.NotificationNumber + "',CauseSequenceNumber='0001')";
+
+                                return clientAPI.executeAction({
+                                    'Name': '/ZDSBSSAM/Actions/Notifications/Item/NotificationItemCauseUpdate.action',
+                                    'Properties': {
+                                        'Properties': {
+                                            'CauseText': clientAPI.evaluateTargetPath('#Control:CauseDescription/#Value'),
+                                            // eslint-disable-next-line brace-style
+                                            'CauseCodeGroup': (function () {
+                                                try {
+                                                    return clientAPI.evaluateTargetPath('#Control:CauseGroupLstPkr/#SelectedValue');
+                                                } catch (e) {
+                                                    return '';
+                                                }
+                                            })(),
+                                            // eslint-disable-next-line brace-style
+                                            'CauseCode': (function () {
+                                                try {
+                                                    return clientAPI.evaluateTargetPath('#Control:CodeLstPkr/#SelectedValue');
+                                                } catch (e) {
+                                                    return '';
+                                                }
+                                            })(),
+                                        },
+                                        'Headers': {
+                                            'OfflineOData.TransactionID': data.NotificationNumber,
+                                        },
+                                        "Target": {
+                                            "EntitySet": "MyNotificationItemCauses",
+                                            "Service": "/SAPAssetManager/Services/AssetManager.service",
+                                            "ReadLink": linksURL,
+                                        },
+
                                     },
-                                    "Target": {
-                                        "EntitySet": "MyNotificationItemCauses",
-                                        "Service": "/SAPAssetManager/Services/AssetManager.service",
-                                        "ReadLink": linksURL,
-                                    },
+                                    'OnSuccess': '',
 
-                                },
-                                'OnSuccess': '',
+                                });
 
-                            });
-
+                            }
+                        } else {
+                            return Promise.reject(); // Skip cause create
                         }
-                    } else {
-                        return Promise.reject(); // Skip cause create
                     }
                 }
             }).then(() => {

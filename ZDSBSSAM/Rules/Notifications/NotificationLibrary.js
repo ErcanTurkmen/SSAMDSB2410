@@ -3,7 +3,7 @@ import libForm from '../../../SAPAssetManager/Rules/Common/Library/FormatLibrary
 import ValidationLibrary from '../../../SAPAssetManager/Rules/Common/Library/ValidationLibrary';
 import libThis from './NotificationLibrary';
 import libDoc from '../../../SAPAssetManager/Rules/Documents/DocumentLibrary';
-import Logger from '../../../SAPAssetManager/Rules/Log/Logger';
+import Logger from '../../../SAPAssetManager/Rules/Log/Logger'; 
 import { GlobalVar as globals } from '../../../SAPAssetManager/Rules/Common/Library/GlobalCommon';
 import malfunctionStartDate from '../../../SAPAssetManager/Rules/Notifications/MalfunctionStartDate';
 import malfunctionStartTime from '../../../SAPAssetManager/Rules/Notifications/MalfunctionStartTime';

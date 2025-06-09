@@ -15,6 +15,7 @@ import NotificationItemPartGroupPickerItems from '../../../../SAPAssetManager/Ru
 import { ValueIfExists } from '../../../../SAPAssetManager/Rules/Common/Library/Formatter';
 import ZGetTechnicalObjectCodeGroup from './ZGetTechnicalObjectCodeGroup';
 import ValidationLibrary from '../../../../SAPAssetManager/Rules/Common/Library/ValidationLibrary';
+import CommonLibrary from '../../../../SAPAssetManager/Rules/Common/Library/CommonLibrary';
 
 export default async function NotificationCreateUpdateOnPageLoad(context) {
     // Create empty promise in the event of QM creation. Forces rule to wait until read is completed.
@@ -147,6 +148,7 @@ export default async function NotificationCreateUpdateOnPageLoad(context) {
     }
     else {
         if (!(NotificationType === '41' || NotificationType === '31')) {
+            context.showActivityIndicator('');
             formCellContainer.getSection('FormCellSection4').setVisible(false);
             formCellContainer.getSection('CauseSetupSection').setVisible(true);
             formCellContainer.getSection('NonEditableItemPart').setVisible(true);
@@ -158,35 +160,36 @@ export default async function NotificationCreateUpdateOnPageLoad(context) {
             let entitySet = 'PMCatalogProfiles';
             let displayValue = 'Description';
             const returnValue = 'CodeGroup';
-            await context.read('/SAPAssetManager/Services/AssetManager.service', entitySet, [], causeQuery).then(catalogs => {
-                if (ValidationLibrary.evalIsEmpty(catalogs)) {
-                    return [];
-                }
+            let catalogs = await context.read('/SAPAssetManager/Services/AssetManager.service', entitySet, [], causeQuery);
+            if (!ValidationLibrary.evalIsEmpty(catalogs)) {
                 //Using Array.map is faster than Array.from. This will have the noticeable performance improvement when the array is large in loading the NotificationCreateUpdate page.
                 causeGroupPicker.setPickerItems(catalogs._array.map(item => ({
                     ReturnValue: item[returnValue],
                     DisplayValue: `${item[returnValue]} - ${item[displayValue]}` || '-',
                 })));
-                Promise.resolve(true);
-            });
+            }
             if (binding['@odata.readLink']) { //&& binding['@odata.type'] === '#sap_mobile.MyNotificationHeader') {
-                let itemData = await context.read('/SAPAssetManager/Services/AssetManager.service', binding['@odata.readLink'] + '/Items', [], '');
-                if (itemData.length > 0) {
-                    container.getControl('ItemDescriptionDefault').setValue(itemData.getItem(0).ItemText);
-                    container.getControl('PartGroupLstPkrDefault').setValue(itemData.getItem(0).ObjectPartCodeGroup);
-                    container.getControl('PartCodeDefault').setValue(itemData.getItem(0).ObjectPart,false);
-                    container.getControl('DamageGroupLstPkrDefault').setValue(itemData.getItem(0).CodeGroup);
-                    container.getControl('DamageDetailsLstPkrDefault').setValue(itemData.getItem(0).DamageCode);
-                    var aPath = "MyNotificationItems(ItemNumber='0001',NotificationNumber='" + itemData.getItem(0).NotificationNumber + "')/ItemCauses";
-                    let dataCauses = context.read('/SAPAssetManager/Services/AssetManager.service', aPath, [], '');
-                    if (dataCauses.length > 0) {
-                        container.getControl('CauseGroupLstPkr').setValue(dataCauses.getItem(0).CauseCodeGroup);
-                        container.getControl('CodeLstPkr').setValue(dataCauses.getItem(0).CauseCode);
-                        container.getControl('CauseDescription').setValue(dataCauses.getItem(0).CauseText);
+                let pageProxy = context.getPageProxy();
+                return Promise.resolve(context.read('/SAPAssetManager/Services/AssetManager.service', binding['@odata.readLink'] + '/Items', [], '$expand=ItemCauses')).then((itemData) => {
+                    if (itemData && itemData.getItem(0)) {
+                        CommonLibrary.getControlProxy(pageProxy, 'ItemDescriptionDefault').setValue(itemData.getItem(0).ItemText);
+                        CommonLibrary.getControlProxy(pageProxy, 'PartGroupLstPkrDefault').setValue(itemData.getItem(0).ObjectPartCodeGroup);
+                        CommonLibrary.getControlProxy(pageProxy, 'PartCodeDefault').setValue(itemData.getItem(0).ObjectPart);
+                        CommonLibrary.getControlProxy(pageProxy, 'DamageGroupLstPkrDefault').setValue(itemData.getItem(0).CodeGroup, false);
+                        CommonLibrary.getControlProxy(pageProxy, 'DamageDetailsLstPkrDefault').setValue(itemData.getItem(0).DamageCode, false);
+                        if (itemData.getItem(0).ItemCauses && itemData.getItem(0).ItemCauses[0]) {
+                            let causeData = itemData.getItem(0).ItemCauses[0];
+                            CommonLibrary.getControlProxy(pageProxy, 'CauseGroupLstPkr').setValue(causeData.CauseCodeGroup);
+                            CommonLibrary.getControlProxy(pageProxy, 'CodeLstPkr').setValue(causeData.CauseCode);
+                            //setValue('PMCatalogCodes(Code=\'' + row.ValuationCode + '\',CodeGroup=\'' + binding.CodeGroup + '\',Catalog=\'' + binding.CatalogType + '\')');
+                            CommonLibrary.getControlProxy(pageProxy, 'CauseDescription').setValue(causeData.CauseText);
+                        }
                     }
-                }
+                    context.dismissActivityIndicator();
+                });
             }
         }
+        context.dismissActivityIndicator();
     }
 
     if (binding['@odata.type'] === '#sap_mobile.InspectionCharacteristic') {
