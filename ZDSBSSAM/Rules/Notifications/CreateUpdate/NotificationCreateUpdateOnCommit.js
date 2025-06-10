@@ -91,9 +91,11 @@ export default function NotificationCreateUpdateOnCommit(clientAPI) {
                     'RefObjectType': refObjectType,
                 };
 
-                notificationCreateProperties.QMCodeGroup = NotificationCreateUpdateQMCodeGroupValue(clientAPI);
-                notificationCreateProperties.QMCode = NotificationCreateUpdateQMCodeValue(clientAPI);
-                notificationCreateProperties.QMCatalog = NotificationCreateUpdateCatalogValue(clientAPI);
+                //DSB customization - dont use QMCodeGroup
+                //notificationCreateProperties.QMCodeGroup = NotificationCreateUpdateQMCodeGroupValue(clientAPI);
+                //notificationCreateProperties.QMCode = NotificationCreateUpdateQMCodeValue(clientAPI);
+                //notificationCreateProperties.QMCatalog = NotificationCreateUpdateCatalogValue(clientAPI);
+                //* End of DSB customization
 
                 // Only send Notification Processing Context if it's set to '01' or '02'
                 if (npc !== '00') {
@@ -248,7 +250,7 @@ export default function NotificationCreateUpdateOnCommit(clientAPI) {
                                 let linksURL = "MyNotificationItemCauses(ItemNumber='" + data.ItemNumber + "',NotificationNumber='" + data.NotificationNumber + "',CauseSequenceNumber='0001')";
 
                                 return clientAPI.executeAction({
-                                    'Name': '/ZDSBSSAM/Actions/Notifications/Item/NotificationItemCauseUpdate.action',
+                                    'Name': '/ZDSBSSAM/Actions/Notifications/Item/ZNotificationEditCauseUpdate.action',
                                     'Properties': {
                                         'Properties': {
                                             'CauseText': clientAPI.evaluateTargetPath('#Control:CauseDescription/#Value'),

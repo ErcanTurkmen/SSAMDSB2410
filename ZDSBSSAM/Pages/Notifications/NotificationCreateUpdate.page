@@ -458,7 +458,7 @@
                     "_Name": "BreakdownStartSwitch",
                     "_Type": "Control.Type.FormCell.Switch",
                     "OnValueChange": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateBreakdownStartOnChange.js",
-                    "Value": "{_MalfunctionStartSwitch}",
+                    "Value": false,
                     "IsVisible": false
                 },
                 {
@@ -745,30 +745,31 @@
                     "PlaceHolder": "$(L,item_description)",
                     "_Name": "ItemDescriptionDefault",
                     "_Type": "Control.Type.FormCell.Note",
-                    "IsEditable": false
+                    "IsEditable": false,
+                    "KeyboardType": "Default"
                 },{
                     "_Name": "PartGroupLstPkrDefault",
                     "_Type": "Control.Type.FormCell.SimpleProperty",
                     "Caption": "$(L,part_group)",
-                    "IsEditable": false
+                    "KeyboardType": "Default"
                 },
                 {
                     "_Name": "PartCodeDefault",
                     "_Type": "Control.Type.FormCell.SimpleProperty",
                     "Caption": "$(L,part)",
-                    "IsEditable": false
+                    "KeyboardType": "Default"
                 },
                 {
-                    "_Name": "DamageGroupLstPkrDefault",
+                    "_Name": "DamageGroupDefault",
                     "_Type": "Control.Type.FormCell.SimpleProperty",
                     "Caption": "$(L,damage_group)",
-                    "IsEditable": false
+                    "KeyboardType": "Default"
                 },
                 {
-                    "_Name": "DamageDetailsLstPkrDefault",
+                    "_Name": "DamageCodeDefault",
                     "_Type": "Control.Type.FormCell.SimpleProperty",
                     "Caption": "$(L,damage)",
-                    "IsEditable": false
+                    "KeyboardType": "Default"
                 }]
             },
                         {
@@ -778,6 +779,7 @@
                 },
                 "_Name": "CauseSetupSection",
                 "_Type": "Section.Type.FormCell",
+                "Visible": true,
                 "Controls":
                 [{
                     "PlaceHolder": "$(L,cause_description)",
@@ -818,6 +820,7 @@
                     },
                     "Caption": "$(L,cause_code)",
                     "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js",
+                    "Value": "{CauseCode}",
                     "PickerItems":
                     {
                         "DisplayValue" : "{{#Property:Code}} - {{#Property:CodeDescription}}",

@@ -67,21 +67,21 @@ export default class {
             // check for digital signature and device Registration
             return checkDeviceRegistration(context).then(registered => {
                 if (!registered) {
-                        // Needs to register and do digital signarure
-                        return deviceRegistration(context).then(() => {
-                            ///Check is was properly register
-                            return checkDeviceRegistration(context).then(deviceIsRegistered => {
-                                if (deviceIsRegistered) {
-                                    //do digital signarure
-                                    return this.createDigitalSignatureAndCompleteNotification(context, postExecute);
-                                } else {
-                                    return this.cancelDigitalSignature(context, postExecute);
-                                }
-                            });
-
-                        }, () => {
-                            return this.cancelDigitalSignature(context, postExecute);
+                    // Needs to register and do digital signarure
+                    return deviceRegistration(context).then(() => {
+                        ///Check is was properly register
+                        return checkDeviceRegistration(context).then(deviceIsRegistered => {
+                            if (deviceIsRegistered) {
+                                //do digital signarure
+                                return this.createDigitalSignatureAndCompleteNotification(context, postExecute);
+                            } else {
+                                return this.cancelDigitalSignature(context, postExecute);
+                            }
                         });
+
+                    }, () => {
+                        return this.cancelDigitalSignature(context, postExecute);
+                    });
                 } else {
                     // Has registered, needs to do digital signature
                     return this.createDigitalSignatureAndCompleteNotification(context, postExecute);
@@ -102,7 +102,7 @@ export default class {
     }
 
     static createDigitalSignatureAndCompleteNotification(context, postExecute) {
-        return context.executeAction('/SAPAssetManager/Actions/DigitalSignature/CreateDigitalSignatureNav.action').then( () => {
+        return context.executeAction('/SAPAssetManager/Actions/DigitalSignature/CreateDigitalSignatureNav.action').then(() => {
             return postExecute(context);
         }, () => {
             if (libDigSig.isNODigitalSignatureOptional(context)) {
@@ -126,10 +126,10 @@ export default class {
                     return libAutoSync.autoSyncOnStatusChange(context);
                 });
             },
-            (error) => {
-                Logger.error(context.getGlobalDefinition('/SAPAssetManager/Globals/Logs/CategoryNotifications.global').getValue(), error);
-                return pageContext.executeAction('/SAPAssetManager/Actions/Notifications/NotificationMobileStatusFailureMessage.action');
-            });
+                (error) => {
+                    Logger.error(context.getGlobalDefinition('/SAPAssetManager/Globals/Logs/CategoryNotifications.global').getValue(), error);
+                    return pageContext.executeAction('/SAPAssetManager/Actions/Notifications/NotificationMobileStatusFailureMessage.action');
+                });
         });
     }
 
@@ -165,7 +165,7 @@ export default class {
             binding = context.getPageProxy().binding;
         }
         if (binding) {
-            return context.read('/SAPAssetManager/Services/AssetManager.service', `MyNotificationHeaders('${binding.NotificationNumber}')`, [], '$expand=NotifMobileStatus_Nav&$select=NotifMobileStatus_Nav/MobileStatus').then(function(notificationHeaders) {
+            return context.read('/SAPAssetManager/Services/AssetManager.service', `MyNotificationHeaders('${binding.NotificationNumber}')`, [], '$expand=NotifMobileStatus_Nav&$select=NotifMobileStatus_Nav/MobileStatus').then(function (notificationHeaders) {
                 if (notificationHeaders) {
                     const notif = notificationHeaders.getItem(0);
                     if (notif.NotifMobileStatus_Nav) {
@@ -214,7 +214,7 @@ export default class {
 
     static isTasksAndItemTasksExists(context) {
         let binding = context.binding;
-        return context.read('/SAPAssetManager/Services/AssetManager.service', 'MyNotificationHeaders', [], "$filter=NotificationNumber eq '" + binding.NotificationNumber + "'&$expand=Tasks,Items/ItemTasks").then(function(results) {
+        return context.read('/SAPAssetManager/Services/AssetManager.service', 'MyNotificationHeaders', [], "$filter=NotificationNumber eq '" + binding.NotificationNumber + "'&$expand=Tasks,Items/ItemTasks").then(function (results) {
             if (results && results.getItem(0)) {
                 const notification = results.getItem(0);
                 if ((notification.Tasks && notification.Tasks.length > 0) || (notification.Items.ItemTasks && notification.Items.ItemTasks.length > 0)) {
@@ -222,6 +222,84 @@ export default class {
                 }
             }
             return false;
+        });
+    }
+
+    //DSB customisation to check Item Cause exists before completing the notification
+    static isItemCauseExists(context) {
+        var binding = context.binding;
+        if (context.constructor.name === 'SectionedTableProxy') {
+            binding = context.getPageProxy().getExecutedContextMenuItem().getBinding();
+        }
+        var notifType = binding.NotificationType;
+        //check if causes exists for completion for notif type 30/71/70/72
+        return context.read('/SAPAssetManager/Services/AssetManager.service', 'MyNotificationHeaders', [], "$filter=NotificationNumber eq '" + binding.NotificationNumber + "'&$expand=Items/ItemCauses").then(function (results) {
+            if (results && results.getItem(0)) {
+                var notification = results.getItem(0);
+                if (notifType === '30' || notifType === '70' || notifType === '71' || notifType === '72') {
+                    if (notification.Items && notification.Items.length > 0) {
+                        if (notification.Items[0].ItemCauses && notification.Items[0].ItemCauses.length > 0 && notification.Items[0].ItemCauses[0].CauseCodeGroup) {
+                            return true;
+                        }
+                        return false;
+                    }
+                    return false;
+                }
+                return true;
+
+            }
+            return false;
+        });
+    }
+
+    //DSB customisation to check Notification activity exists before completing the notification
+    static isNotifActivityExists(context) {
+        var binding = context.binding;
+        if (context.constructor.name === 'SectionedTableProxy') {
+            binding = context.getPageProxy().getExecutedContextMenuItem().getBinding();
+        }
+        var notifType = binding.NotificationType;
+        //check if activities exists for completion for notif type 30/71/70/72/41
+        return context.read('/SAPAssetManager/Services/AssetManager.service', 'MyNotificationHeaders', [], "$filter=NotificationNumber eq '" + binding.NotificationNumber + "'&$expand=Activities").then(function (results) {
+            if (results && results.getItem(0)) {
+                if (notifType === '41' || notifType === '30' || notifType === '70' || notifType === '71' || notifType === '72') {
+                    var notification = results.getItem(0);
+                    if (notification.Activities && notification.Activities.length > 0) {
+                        return true;
+                    }
+                    return false;
+                }
+                return true;
+            }
+            return false;
+        });
+
+    }
+
+    //DSB customisation to check task  exists before completing the notification for type 31.
+    static isTasksOnNofificationExists(context) {
+        var binding = context.binding;
+        if (context.constructor.name === 'SectionedTableProxy') {
+            binding = context.getPageProxy().getExecutedContextMenuItem().getBinding();
+        }
+        var notifType = binding.NotificationType;
+
+        //check if task exists for completion for notif type 31
+
+        return context.read('/SAPAssetManager/Services/AssetManager.service', 'MyNotificationHeaders', [], "$filter=NotificationNumber eq '" + binding.NotificationNumber + "'&$expand=Tasks,Items/ItemTasks").then(function (results) {
+            if (notifType === '31') {
+                if (results && results.getItem(0)) {
+                    var notification = results.getItem(0);
+
+                    if (notification.Tasks && notification.Tasks.length > 0) {
+
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+            return true;
         });
     }
 }
