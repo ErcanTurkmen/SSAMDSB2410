@@ -1,6 +1,5 @@
 {
 	"_Type": "Action.Type.ODataService.UpdateEntity",
-	"OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/UpdateEntityFailureMessage.action",
 	"OnSuccess": "/SAPAssetManager/Actions/Page/ClosePage.action",
 	"Target": {
 		"EntitySet": "MyNotificationItemCauses",

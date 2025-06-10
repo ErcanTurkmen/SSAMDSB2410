@@ -34,6 +34,7 @@ export default function RequiredFields(context) {
     }
 
     DocumentFieldsAddRequired(context, required);
+    let notifObject = ZGetNotificationFieldValue(context);
     if (onCreate) {
         required.push(...NotificationItemRequiredFields(formcellContainerProxy), ...NotificationItemCauseRequiredFields(formcellContainerProxy));
         if (currentPage === 'NotificationAddPage') { // on the NotificationUpdateMalfunctionEnd page these fields are not existing
@@ -45,28 +46,20 @@ export default function RequiredFields(context) {
 
         //*** DSB Customization to remove validate for Type #´31 41. Hence checking for type 30 to validate
         //DSB customisation to add validation to 70/71/72 along with 30
-        let notifObject = ZGetNotificationFieldValue(context);
-        if (notifObject.itemDescription || notifObject.itemPartGroup || notifObject.itemPart || notifObject.itemDamageGroup) {
+        if (!notifObject.itemDescription || !notifObject.itemPartGroup || !notifObject.itemPart || !notifObject.itemDamageGroup) {
             required.push('ItemDescription', 'PartGroupLstPkr', 'PartDetailsLstPkr', 'DamageGroupLstPkr', 'DamageDetailsLstPkr');
         }
-        if (notifObject.typeLstPkr === '30' || notifObject.typeLstPkr === '70' || notifObject.typeLstPkr === '71' || notifObject.typeLstPkr === '72') {
-            /**** DSB   Customisation Start For Remove Item validation  ***/
-            if (notifObject.causeDescription || notifObject.causeGroup || notifObject.causeCode) {
-                required.push('CauseDescription', 'CauseGroupLstPkr', 'CodeLstPkr', 'PartGroupLstPkr', 'PartDetailsLstPkr',
-                    'DamageGroupLstPkr', 'DamageDetailsLstPkr');
-            }
-            /**** DSB   Customisation End  For Remove Item validation  ***/
-        }
     }
-    else {
-        let causeGroup = CommonLib.getListPickerValue(CommonLib.getControlProxy(context, 'CauseGroupLstPkr').getValue());
-        let causeCode = CommonLib.getListPickerValue(CommonLib.getControlProxy(context, 'CodeLstPkr').getValue());
-        let causeDescription = context.evaluateTargetPath('#Control:CauseDescription/#Value');
-        if(!causeGroup || !causeCode || !causeDescription)
-        {
-            required.push('CauseDescription', 'CauseGroupLstPkr', 'CodeLstPkr');
-        }
-    }
+    // else {
+    //     required.push(...NotificationItemCauseRequiredFields(formcellContainerProxy));
+    //     if (notifObject.typeLstPkr === '30' || notifObject.typeLstPkr === '70' || notifObject.typeLstPkr === '71' || notifObject.typeLstPkr === '72') {
+    //         /**** DSB   Customisation Start For Remove Item validation  ***/
+    //         if (!notifObject.causeDescription || !notifObject.causeGroup || !notifObject.causeCode) {
+    //             required.push('CauseDescription', 'CauseGroupLstPkr', 'CodeLstPkr');
+    //         }
+    //         /**** DSB   Customisation End  For Remove Item validation  ***/
+    //     }
+    // }
 
     return required;
 }

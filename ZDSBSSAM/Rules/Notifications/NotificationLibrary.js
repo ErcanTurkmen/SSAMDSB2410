@@ -112,7 +112,7 @@ export default class {
                 libCom.setEditable(targetList, true);
 
                 return targetList.setTargetSpecifier(specifier).then(() => {
-                    targetList.setValue('');
+                    //targetList.setValue('');
                 });
             });
         } else {
