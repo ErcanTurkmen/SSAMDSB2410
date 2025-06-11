@@ -680,7 +680,14 @@
                     "IsEditable" : false,
                     "Caption": "$(L,part)",
                     "OnValueChange": "/ZDSBSSAM/Rules/Notifications/CreateUpdate/NotificationCreateUpdateDamageCodeGroup.js",
-                    "PickerItems": [],
+                    "PickerItems": {
+						"DisplayValue": "{{#Property:Code}} - {{#Property:CodeDescription}}",
+						"ReturnValue": "{Code}",
+						"Target": {
+							"EntitySet": "PMCatalogCodes",
+							"Service": "/SAPAssetManager/Services/AssetManager.service"
+							}
+					},
                     "_Name": "PartDetailsLstPkr",
                     "_Type": "Control.Type.FormCell.ListPicker"
                 },
