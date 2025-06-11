@@ -42,7 +42,7 @@ export default async function NotificationCreateUpdateOnPageLoad(context) {
         if (onCreate) {
             caption = context.localizeText('add_notification');
             container.getControl('ZPriorityDisclaimer').setVisible(false);
-            if (!(NotificationType === '41' || NotificationType === '31')) {
+            if (NotificationType !== '41' || NotificationType !== '31') {
                 container.getControl('ShowAdditionalFieldsSwitch').setValue(true);
                 setGroupPickersItems(context.getControl('FormCellContainer'), context).then((pickerItems) => {
                     try {
@@ -281,21 +281,23 @@ function setGroupPickersItems(formCellContainer, context) {
             partGroupPicker.setPickerItems(pickerItems[0]);
             damageGroupPicker.setPickerItems(pickerItems[1]);
             causeGroupPicker.setPickerItems(pickerItems[2]);
-            let ZCodeGroup = pickerItems[3].ZCodeGroup;
-            if (ZCodeGroup) {
-                partCodePickerSpecifier.setDisplayValue('{{#Property:Code}} - {{#Property:CodeDescription}}');
-                partCodePickerSpecifier.setReturnValue('{Code}');
+            // if (pickerItems[3] && pickerItems[3][0] && pickerItems[3][0].ZCodeGroup) {
+            //     let ZCodeGroup = pickerItems[3][0].ZCodeGroup;
+            //     if (ZCodeGroup) {
+            //         partCodePickerSpecifier.setDisplayValue('{{#Property:Code}} - {{#Property:CodeDescription}}');
+            //         partCodePickerSpecifier.setReturnValue('{Code}');
 
-                partCodePickerSpecifier.setEntitySet('PMCatalogCodes');
-                partCodePickerSpecifier.setService('/SAPAssetManager/Services/AssetManager.service');
+            //         partCodePickerSpecifier.setEntitySet('PMCatalogCodes');
+            //         partCodePickerSpecifier.setService('/SAPAssetManager/Services/AssetManager.service');
 
-                partCodePickerSpecifier.setQueryOptions(`$filter=Catalog eq '${pickerItems[3].ZCatalog}' and CodeGroup eq '${ZCodeGroup}'&$orderby=Code`);
+            //         partCodePickerSpecifier.setQueryOptions(`$filter=Catalog eq '${pickerItems[3][0].ZCatalog}' and CodeGroup eq '${ZCodeGroup}'&$orderby=Code`);
 
-                partCodePicker.setTargetSpecifier(partCodePickerSpecifier).then(() => {
-                    partCodePicker.redraw(true);
-                    return Promise.resolve(pickerItems);
-                });
-            }
+            //         partCodePicker.setTargetSpecifier(partCodePickerSpecifier).then(() => {
+            //             partCodePicker.redraw(true);
+            //             return Promise.resolve(pickerItems);
+            //         });
+            //     }
+            // }
         })
         .catch((error) => {
             Logger.error('setGroupPickersItems', error);
