@@ -38,12 +38,12 @@ export default async function NotificationCreateUpdateOnPageLoad(context) {
     if (binding['@odata.type'] === '#sap_mobile.InspectionCharacteristic') {
         caption = context.localizeText('record_defect');
     } else {
+        NotificationCreateUpdateShowFieldsChange(context, true);  //DSB customization - Show the item section on load
         if (onCreate) {
             caption = context.localizeText('add_notification');
             container.getControl('ZPriorityDisclaimer').setVisible(false);
             if (!(NotificationType === '41' || NotificationType === '31')) {
                 container.getControl('ShowAdditionalFieldsSwitch').setValue(true);
-                NotificationCreateUpdateShowFieldsChange(context, true); //DSB customization - Show the item section on load
                 setGroupPickersItems(context.getControl('FormCellContainer'), context).then((pickerItems) => {
                     try {
                         if (pickerItems[0]?.length === 1) {
@@ -72,7 +72,6 @@ export default async function NotificationCreateUpdateOnPageLoad(context) {
                 container.getControl('TypeLstPkr').setEditable(false);
             }
             let stylizer = new Stylizer(['GrayText']);
-            NotificationCreateUpdateShowFieldsChange(context, false);
             let typePkr = formCellContainer.getControl('TypeLstPkr');
             stylizer.apply(typePkr, 'Value');
 
@@ -117,13 +116,14 @@ export default async function NotificationCreateUpdateOnPageLoad(context) {
                 endTime.setEditable(true);
             }
             //DSB customization
-            if (!(NotificationType === '41' || NotificationType === '31')) {
+            if (NotificationType !== '41' || NotificationType !== '31') {
                 context.showActivityIndicator('');
-                formCellContainer.getSection('CauseSetupSection').setVisible(true);
+                container.getControl('ShowAdditionalFieldsSwitch').setValue(true);
+                container.getControl('PartGroupLstPkr').setVisible(false);
+                container.getControl('PartDetailsLstPkr').setVisible(false);
+                container.getControl('DamageGroupLstPkr').setVisible(false);
+                container.getControl('DamageDetailsLstPkr').setVisible(false);
                 let causeGroupPicker = container.getControl('CauseGroupLstPkr');
-                //container.getControl('CauseGroupLstPkr').setEditable(true);
-                // container.getControl('CodeLstPkr').setEditable(true);
-                // container.getControl('CauseDescription').setEditable(true);
                 let causeQuery = await libNotif.NotificationItemTaskActivityGroupQuery(context, 'CatTypeCauses');
                 let entitySet = 'PMCatalogProfiles';
                 let displayValue = 'Description';
@@ -140,39 +140,36 @@ export default async function NotificationCreateUpdateOnPageLoad(context) {
                     let pageProxy = context.getPageProxy();
                     return Promise.resolve(context.read('/SAPAssetManager/Services/AssetManager.service', binding['@odata.readLink'] + '/Items', [], '$expand=ItemCauses')).then((itemData) => {
                         if (itemData && itemData.getItem(0)) {
-                            CommonLibrary.getControlProxy(pageProxy, 'ItemDescriptionDefault').setValue(itemData.getItem(0).ItemText);
-                            CommonLibrary.getControlProxy(pageProxy, 'ItemDescriptionDefault').setEditable(false);
+                            container.getControl('ItemDescription').setValue(itemData.getItem(0).ItemText);
 
-                            CommonLibrary.getControlProxy(pageProxy, 'PartGroupLstPkrDefault').setValue(itemData.getItem(0).ObjectPartCodeGroup);
-                            CommonLibrary.getControlProxy(pageProxy, 'PartGroupLstPkrDefault').setEditable(false);
+                            container.getControl('PartGroupLstPkrDefault').setValue(itemData.getItem(0).ObjectPartCodeGroup);
+                            container.getControl('PartGroupLstPkrDefault').setVisible(true);
 
-                            CommonLibrary.getControlProxy(pageProxy, 'PartCodeDefault').setValue(itemData.getItem(0).ObjectPart);
-                            CommonLibrary.getControlProxy(pageProxy, 'PartCodeDefault').setEditable(false);
-                            //CommonLibrary.getControlProxy(pageProxy, 'PartCodeDefault').setValue(itemData.getItem(0).ObjectPart);
+                            container.getControl('PartCodeDefault').setValue(itemData.getItem(0).ObjectPart);
+                            container.getControl('PartCodeDefault').setVisible(true);
 
-                            CommonLibrary.getControlProxy(pageProxy, 'DamageGroupDefault').setValue(itemData.getItem(0).CodeGroup);
-                            CommonLibrary.getControlProxy(pageProxy, 'DamageGroupDefault').setEditable(false);
+                            container.getControl('DamageGroupDefault').setValue(itemData.getItem(0).CodeGroup);
+                            container.getControl('DamageGroupDefault').setVisible(true);
 
-                            CommonLibrary.getControlProxy(pageProxy, 'DamageCodeDefault').setValue(itemData.getItem(0).DamageCode);
-                            CommonLibrary.getControlProxy(pageProxy, 'DamageCodeDefault').setEditable(false);
+                            container.getControl('DamageCodeDefault').setValue(itemData.getItem(0).DamageCode);
+                            container.getControl('DamageCodeDefault').setVisible(true);
 
                             if (itemData.getItem(0).ItemCauses && itemData.getItem(0).ItemCauses[0]) {
                                 let CatTypeCauses = '5';
                                 let causeData = itemData.getItem(0).ItemCauses[0];
-                                CommonLibrary.getControlProxy(pageProxy, 'CauseGroupLstPkr').setValue(causeData.CauseCodeGroup);
-                                CommonLibrary.getControlProxy(pageProxy, 'CodeLstPkr').setValue(causeData.CauseCode);
+                                container.getControl('CauseGroupLstPkr').setValue(causeData.CauseCodeGroup);
+                                container.getControl('CodeLstPkr').setValue(causeData.CauseCode);
                                 //CommonLibrary.getControlProxy(pageProxy, 'CodeLstPkr').redraw();
                                 CommonLibrary.getControlProxy(pageProxy, 'CauseDescription').setValue(causeData.CauseText);
                             }
-                            formCellContainer.getSection('NonEditableItemPart').setVisible(true);
-                            formCellContainer.getSection('FormCellSection4').setVisible(false);
                         }
                         context.dismissActivityIndicator();
                     });
                 }
             }
             else {
-                formCellContainer.getSection('CauseSetupSection').setVisible(false);
+                container.getControl('ShowAdditionalFieldsSwitch').setValue(false);
+                NotificationCreateUpdateShowFieldsChange(context, false);
             }
         }
     }

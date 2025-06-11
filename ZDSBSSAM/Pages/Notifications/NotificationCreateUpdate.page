@@ -730,49 +730,41 @@
                     },
                     "_Name": "DamageDetailsLstPkr",
                     "_Type": "Control.Type.FormCell.ListPicker"
-                }]
-            },
-            {
-                "Header": {
-                    "Caption": "$(L,notification_item_detail)",
-                    "UseTopPadding": true
                 },
-                "_Type": "Section.Type.FormCell",
-                "_Name": "NonEditableItemPart",
-                "Visible": false,
-                "Controls":
-                [{
-                    "PlaceHolder": "$(L,item_description)",
-                    "_Name": "ItemDescriptionDefault",
-                    "_Type": "Control.Type.FormCell.Note",
-                    "IsEditable": false,
-                    "KeyboardType": "Default"
-                },{
+                {
                     "_Name": "PartGroupLstPkrDefault",
                     "_Type": "Control.Type.FormCell.SimpleProperty",
                     "Caption": "$(L,part_group)",
-                    "KeyboardType": "Default"
+                    "KeyboardType": "Default",
+                    "IsEditable": false,
+                    "IsVisible": false
                 },
                 {
                     "_Name": "PartCodeDefault",
                     "_Type": "Control.Type.FormCell.SimpleProperty",
                     "Caption": "$(L,part)",
-                    "KeyboardType": "Default"
+                    "KeyboardType": "Default",
+                    "IsEditable": false,
+                    "IsVisible": false
                 },
                 {
                     "_Name": "DamageGroupDefault",
                     "_Type": "Control.Type.FormCell.SimpleProperty",
                     "Caption": "$(L,damage_group)",
-                    "KeyboardType": "Default"
+                    "KeyboardType": "Default",
+                    "IsEditable": false,
+                    "IsVisible": false
                 },
                 {
                     "_Name": "DamageCodeDefault",
                     "_Type": "Control.Type.FormCell.SimpleProperty",
                     "Caption": "$(L,damage)",
-                    "KeyboardType": "Default"
+                    "KeyboardType": "Default",
+                    "IsEditable": false,
+                    "IsVisible": false
                 }]
             },
-                        {
+            {
                 "Header": {
                     "Caption": "$(L,create_cause_item)",
                     "UseTopPadding": true
