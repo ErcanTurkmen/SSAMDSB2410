@@ -116,13 +116,17 @@ export default async function NotificationCreateUpdateOnPageLoad(context) {
                 endTime.setEditable(true);
             }
             //DSB customization
-            if (NotificationType !== '41' || NotificationType !== '31') {
+            if (NotificationType !== '41' && NotificationType !== '31') {
                 context.showActivityIndicator('');
                 container.getControl('ShowAdditionalFieldsSwitch').setValue(true);
                 container.getControl('PartGroupLstPkr').setVisible(false);
                 container.getControl('PartDetailsLstPkr').setVisible(false);
                 container.getControl('DamageGroupLstPkr').setVisible(false);
                 container.getControl('DamageDetailsLstPkr').setVisible(false);
+                container.getControl('CauseGroupLstPkr').setEditable(true);
+                container.getControl('CodeLstPkr').setEditable(true);
+                container.getControl('CauseDescription').setEditable(true);
+                container.getControl('ItemDescription').setEditable(false);
                 let causeGroupPicker = container.getControl('CauseGroupLstPkr');
                 let causeQuery = await libNotif.NotificationItemTaskActivityGroupQuery(context, 'CatTypeCauses');
                 let entitySet = 'PMCatalogProfiles';

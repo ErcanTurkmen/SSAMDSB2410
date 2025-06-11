@@ -197,6 +197,10 @@
 		{
 			"Source": "/ZDSBSSAM/Rules/Notifications/MobileStatus/NotificationMobileStatusComplete.js",
 			"Target": "/SAPAssetManager/Rules/Notifications/MobileStatus/NotificationMobileStatusComplete.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Notifications/CreateUpdate/UpdateCauseGroupEditable.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/CreateUpdate/UpdateCauseGroupEditable.js"
 		}
 	],
 	"ComponentVersion": "1.0"

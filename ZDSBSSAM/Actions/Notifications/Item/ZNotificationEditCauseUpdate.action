@@ -1,6 +1,5 @@
 {
 	"_Type": "Action.Type.ODataService.UpdateEntity",
-	"OnSuccess": "/SAPAssetManager/Actions/Page/ClosePage.action",
 	"Target": {
 		"EntitySet": "MyNotificationItemCauses",
 		"Service": "/SAPAssetManager/Services/AssetManager.service",
