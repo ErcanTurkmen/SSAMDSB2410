@@ -11,7 +11,8 @@ export default function ZPRTEquipmentOnlineQueryOptions(context) {
     let equipmentLstPkrSpecifier = equipmentListPicker.getTargetSpecifier();
     equipmentListPicker.setValue('');
     equipmentLstPkrSpecifier.setEntitySet('Equipments');
-    return equipmentListPicker.setTargetSpecifier(equipmentLstPkrSpecifier).then(() => {
+    equipmentLstPkrSpecifier.setService('/SAPAssetManager/Services/OnlineAssetManager.service');
+    return equipmentListPicker.setTargetSpecifier(equipmentLstPkrSpecifier,false).then(() => {
         return equipmentListPicker.setValue('');
     }).catch(() => {
         // Could not set specifier
