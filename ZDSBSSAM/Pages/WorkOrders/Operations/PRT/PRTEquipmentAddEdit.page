@@ -35,7 +35,8 @@
                         "_Name": "EquipmentDescription",
                         "Value": "",
                         "PlaceHolder": "$(L,description)",
-                        "OnValueChange": "/ZDSBSSAM/Rules/WorkOrders/Operations/PRT/CreateUpdate/ZPRTEquipmentOnlineQueryOptions.js"
+                        "OnValueChange": "/ZDSBSSAM/Rules/WorkOrders/Operations/PRT/CreateUpdate/ZPRTEquipmentOnlineQueryOptions.js",
+                        "IsVisible": true
                     }]
                 },
                 {
