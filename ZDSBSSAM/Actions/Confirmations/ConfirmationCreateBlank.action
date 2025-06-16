@@ -1,0 +1,26 @@
+{
+	"_Type": "Action.Type.ODataService.CreateEntity",
+	"Target": {
+		"EntitySet": "Confirmations",
+		"Service": "/SAPAssetManager/Services/AssetManager.service"
+	},
+	"Properties": {
+		"ConfirmationCounter": "/SAPAssetManager/Rules/Confirmations/CreateUpdate/OnCommit/GenerateConfirmationCounter.js",
+		"ConfirmationNum": "/SAPAssetManager/Rules/Confirmations/BlankFinal/GenerateOffsetConfirmationNum.js",
+		"FinalConfirmation": "X",
+		"FinishDate": "/ZDSBSSAM/Rules/Confirmations/ConfirmationBlankSetDates.js",
+		"FinishTime": "/ZDSBSSAM/Rules/Confirmations/ConfirmationBlankSetTime.js",
+		"Operation": "/ZDSBSSAM/Rules/Confirmations/BlankFinal/FinalConfirmationOperation.js",
+		"OrderID": "/ZDSBSSAM/Rules/Confirmations/BlankFinal/FinalConfirmationOrderId.js",
+		"PersonnelNumber": "/SAPAssetManager/Rules/Timesheets/CreateUpdate/TimeSheetCreateUpdatePersonnelNumber.js",
+		"PostingDate": "/ZDSBSSAM/Rules/Confirmations/ConfirmationBlankSetDates.js",
+		"StartDate": "/ZDSBSSAM/Rules/Confirmations/ConfirmationBlankSetDates.js",
+		"StartTime": "/ZDSBSSAM/Rules/Confirmations/ConfirmationBlankSetTime.js",
+		"SubOperation": "",
+		 "CreatedDate": "/ZDSBSSAM/Rules/Confirmations/ConfirmationBlankSetDates.js",
+        "CreatedTime": "/ZDSBSSAM/Rules/Confirmations/ConfirmationBlankSetTime.js"
+	},
+	"Headers": {
+		"OfflineOData.RemoveAfterUpload": "true"
+	}
+}
