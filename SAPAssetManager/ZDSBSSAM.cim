@@ -225,6 +225,14 @@
 		{
 			"Source": "/ZDSBSSAM/Pages/Fragments/WorkOrder/WorkOrderObjectCell.fragment",
 			"Target": "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderObjectCell.fragment"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/WorkOrders/Operations/WorkOrderOperationsListView.page",
+			"Target": "/SAPAssetManager/Pages/WorkOrders/Operations/WorkOrderOperationsListView.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/Fragments/WorkOrder/WorkOrderOperations/WorkOrderOperationDetailsSection.fragment",
+			"Target": "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderOperations/WorkOrderOperationDetailsSection.fragment"
 		}
 	],
 	"ComponentVersion": "1.0"
