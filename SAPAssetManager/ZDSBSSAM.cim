@@ -201,6 +201,38 @@
 		{
 			"Source": "/ZDSBSSAM/Rules/Notifications/CreateUpdate/UpdateCauseGroupEditable.js",
 			"Target": "/SAPAssetManager/Rules/Notifications/CreateUpdate/UpdateCauseGroupEditable.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Actions/Confirmations/ConfirmationCreateBlank.action",
+			"Target": "/SAPAssetManager/Actions/Confirmations/ConfirmationCreateBlank.action"
+		},
+        {
+            "Source": "/ZDSBSSAM/Rules/WorkOrders/ListView/WorkOrdersListViewQueryOption.js",
+            "Target": "/SAPAssetManager/Rules/WorkOrders/ListView/WorkOrdersListViewQueryOption.js"
+        },
+		{
+            "Source": "/ZDSBSSAM/Rules/WorkOrders/Operations/CreateUpdate/WorkOrderOperationCreateUpdateDefault.js",
+            "Target": "/SAPAssetManager/Rules/WorkOrders/Operations/CreateUpdate/WorkOrderOperationCreateUpdateDefault.js"
+        },
+		{
+            "Source": "/ZDSBSSAM/Rules/WorkOrders/WorkOrderLibrary.js",
+            "Target": "/SAPAssetManager/Rules/WorkOrders/WorkOrderLibrary.js"
+        },
+		{
+			"Source": "/ZDSBSSAM/Pages/WorkOrders/WorkOrdersListView.page",
+			"Target": "/SAPAssetManager/Pages/WorkOrders/WorkOrdersListView.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/Fragments/WorkOrder/WorkOrderObjectCell.fragment",
+			"Target": "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderObjectCell.fragment"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/WorkOrders/Operations/WorkOrderOperationsListView.page",
+			"Target": "/SAPAssetManager/Pages/WorkOrders/Operations/WorkOrderOperationsListView.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/Fragments/WorkOrder/WorkOrderOperations/WorkOrderOperationDetailsSection.fragment",
+			"Target": "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderOperations/WorkOrderOperationDetailsSection.fragment"
 		}
 	],
 	"ComponentVersion": "1.0"
