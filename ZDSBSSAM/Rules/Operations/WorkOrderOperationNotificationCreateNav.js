@@ -17,12 +17,15 @@ export default function WorkOrderOperationNotificationCreateNav(context) {
     libNotif.setZAddFromOperationToNotifFlag(context, true);     //libNotif.setZAddFromOperationToNotifFlag(context,false);
 
     let bindingObject = {
-        HeaderEquipment: binding.OperationEquipment,
-        HeaderFunctionLocation: binding.OperationFunctionLocation,
+        // HeaderEquipment: binding.OperationEquipment,
+        // HeaderFunctionLocation: binding.OperationFunctionLocation,
+        //DSB customisation to populate operation notification FL and Eq with WO header FL and Eq and noificaiton desc
+        HeaderEquipment: binding.WOHeader.HeaderEquipment,
+        HeaderFunctionLocation: binding.WOHeader.HeaderFunctionLocation,
+        NotificationDescription: binding.OperationShortText,
         ExternalWorkCenterId: binding.MainWorkCenter,
         MainWorkCenterPlant: binding.MainWorkCenterPlant,
         OperationOrderId: binding.OrderId,
-        NotificationDescription: binding.OperationShortText,
     };
 
     // Return the result of the change set nav
