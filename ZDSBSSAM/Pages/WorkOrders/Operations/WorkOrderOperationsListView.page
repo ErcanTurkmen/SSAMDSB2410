@@ -21,7 +21,7 @@
 				"Position": "Right",
 				"SystemItem": "Add",
 				"Caption": "$(L,add)",
-				"Visible": "/SAPAssetManager/Rules/Operations/IsAddOperationFromListEnabled.js",
+				"Visible": false,
 				"OnPress": "/SAPAssetManager/Rules/WorkOrders/Operations/CreateUpdate/WorkOrderOperationCreateNav.js"
 			},
 			{
@@ -120,7 +120,7 @@
                 "Styles": {
                     "StatusText": "/SAPAssetManager/Rules/Supervisor/Reject/RejectedStatusStyle.js"
                 },
-                "Description": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsListViewDescription.js",
+                "Description": "{ZMedarbRolle}",
 				"Selected": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationSelected.js"
 			},
 			"Target": {

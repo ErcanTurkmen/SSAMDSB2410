@@ -3,23 +3,23 @@
         {
             "Title": "$(L,add_suboperation)",
             "OnPress": "/SAPAssetManager/Rules/SubOperations/CreateUpdate/SubOperationCreateNav.js",
-            "Visible": "/SAPAssetManager/Rules/UserAuthorizations/WorkOrders/EnableSubOperation.js"
+            "Visible": false
         },
         {
             "Title": "$(L,add_notification)",
-            "Visible": "/SAPAssetManager/Rules/UserAuthorizations/Notifications/EnableNotificationCreateFromWorkOrderOperation.js",
+            "Visible": "/ZDSBSSAM/Rules/WorkOrders/Operations/ZCheckOperationNotificationExists.js",
             "OnPress" : "/SAPAssetManager/Rules/Operations/WorkOrderOperationNotificationCreateNav.js"
         },
         {
             "Title" : "$(L,add_part)",
             "OnPress" : "/SAPAssetManager/Rules/Parts/CreateUpdate/PartCreateNav.js",
-            "Visible": "/SAPAssetManager/Rules/UserAuthorizations/WorkOrders/EnableWorkOrderEdit.js"
+            "Visible": "/ZDSBSSAM/Rules/Parts/ZPartAddVisibilityFromOpr.js"
 
         },
         {
             "Title" : "$(L, add_note)",
             "OnPress": "/SAPAssetManager/Rules/Notes/NoteCreateNav.js",
-            "Visible": "/SAPAssetManager/Rules/UserAuthorizations/WorkOrders/EnableWorkOrderEdit.js"
+            "Visible": false
         },
         {
             "Title" : "$(L,record_results)",

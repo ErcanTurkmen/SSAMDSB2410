@@ -1,0 +1,27 @@
+{
+	"EmptySection": {
+		"Caption": "$(L,no_notifications_available)",
+		"FooterVisible": false
+	},
+	"Header": {
+		"Caption": "$(L,notification)",
+			"UseTopPadding": true
+		},
+	"ObjectCell": {
+		"AccessoryType": "disclosureIndicator",
+		"OnPress": "/SAPAssetManager/Actions/Notifications/NotificationDetailsNav.action",
+		"PreserveIconStackSpacing": false,
+		"StatusText": "/ZDSBSSAM/Rules/WorkOrders/Operations/ZOperationsNotificationStatus.js",
+		"Subhead": "{NotificationNumber}",
+		"Title": "{NotificationDescription}"
+	},
+	"Target": {
+		"EntitySet": "{{#Property:@odata.readLink}}/NotifHeader_Nav",
+		"QueryOptions": "/SAPAssetManager/Rules/Notifications/NotificationsListViewQueryOption.js",
+		"Service": "/SAPAssetManager/Services/AssetManager.service"
+	},
+    "_Type": "Section.Type.ObjectTable",
+    "_Name": "SectionObjectTable3",
+    "DataSubscriptions": ["MyNotificationHeaders","PMMobileStatuses"],
+    "Visible": true
+}
