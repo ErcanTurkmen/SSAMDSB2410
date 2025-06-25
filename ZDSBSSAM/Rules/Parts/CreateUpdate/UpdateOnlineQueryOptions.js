@@ -3,7 +3,7 @@ import Logger from '../../../../SAPAssetManager/Rules/Log/Logger';
 
 //Upgraded to 2210
 export default function UpdateOnlineQueryOptions(context) {
-
+    const onCreate = libCom.IsOnCreate(context);
     let pageName = libCom.getPageName(context);
     // Get values from controls
     let materialNumber = context.getPageProxy().evaluateTargetPath('#Control:MaterialNumber').getValue();
@@ -12,7 +12,9 @@ export default function UpdateOnlineQueryOptions(context) {
     // Get target specifier
     let materialListPicker = context.getPageProxy().evaluateTargetPathForAPI('#Control:MaterialLstPkr');
     let materialLstPkrSpecifier = materialListPicker.getTargetSpecifier();
-    materialListPicker.setValue('');
+    if (onCreate) {
+        materialListPicker.setValue('');
+    }
     if (pageName === "ZPartAdhocIssueCreateUpdate" || pageName === "ZPartAdhocReturnCreateUpdate") {
         materialListPicker.setEditable(true);
     }
