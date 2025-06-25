@@ -285,6 +285,10 @@
 		{
 			"Source": "/ZDSBSSAM/Rules/Operations/OperationsListViewIconImages.js",
 			"Target": "/SAPAssetManager/Rules/Operations/OperationsListViewIconImages.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/WorkOrders/Operations/WorkOrderOperationPopoverIsVisible.js",
+			"Target": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationPopoverIsVisible.js"
 		}
 	],
 	"ComponentVersion": "1.0"
