@@ -705,7 +705,7 @@ export class OperationEventLibrary {
      * @param {Map} userInfo
      */
     static setDefaultValues(pageProxy) {
-        const ZOperationControlKey = pageClientAPI.getGlobalDefinition('/ZDSBSSAM/Globals/WorkOrders/Operations/ZOperationControlKey.global').getValue(); //'0000000837';
+        const ZOperationControlKey = pageProxy.getGlobalDefinition('/ZDSBSSAM/Globals/WorkOrders/Operations/ZOperationControlKey.global').getValue(); 
         let onWoChangeSet = libCommon.isOnWOChangeset(pageProxy);
         let parentWorkOrderPromise = libPrivate._getParentWorkOrder(pageProxy, onWoChangeSet);
 

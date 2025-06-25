@@ -281,6 +281,10 @@
 		{
 			"Source": "/ZDSBSSAM/Rules/OnlineSearch/Download/DownloadToDevice.js",
 			"Target": "/SAPAssetManager/Rules/OnlineSearch/Download/DownloadToDevice.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Operations/OperationsListViewIconImages.js",
+			"Target": "/SAPAssetManager/Rules/Operations/OperationsListViewIconImages.js"
 		}
 	],
 	"ComponentVersion": "1.0"
