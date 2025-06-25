@@ -1476,6 +1476,7 @@ export class WorkOrderEventLibrary {
                 // Header Level - Planner Group
                 return pageProxy.executeAction('/SAPAssetManager/Actions/Page/ClosePageNextChangeset.action');
             case '6':
+            case 'Z':       //DSB customization to support assignment type Z as 6
                 // Operation Level - Work Center
                 return pageProxy.executeAction('/SAPAssetManager/Actions/Page/ClosePageNextChangeset.action');
             case '7':

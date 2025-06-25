@@ -233,6 +233,54 @@
 		{
 			"Source": "/ZDSBSSAM/Pages/Fragments/WorkOrder/WorkOrderOperations/WorkOrderOperationDetailsSection.fragment",
 			"Target": "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderOperations/WorkOrderOperationDetailsSection.fragment"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Common/Library/CommonLibrary.js",
+			"Target": "/SAPAssetManager/Rules/Common/Library/CommonLibrary.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/WorkOrders/Operations/WorkOrderOperationLibrary.js",
+			"Target": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationLibrary.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/OnlineSearch/WorkOrders/AccessoryButtonIcon.js",
+			"Target": "/SAPAssetManager/Rules/OnlineSearch/WorkOrders/AccessoryButtonIcon.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/MobileStatus/MobileStatusLibrary.js",
+			"Target": "/SAPAssetManager/Rules/MobileStatus/MobileStatusLibrary.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/WorkOrders/Operations/WorkOrderOperationListFilterResults.js",
+			"Target": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationListFilterResults.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/WorkOrders/WorkOrderDetails.page",
+			"Target": "/SAPAssetManager/Pages/WorkOrders/WorkOrderDetails.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/WorkOrders/Operations/WorkOrderOperationsFilter.page",
+			"Target": "/SAPAssetManager/Pages/WorkOrders/Operations/WorkOrderOperationsFilter.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Operations/WorkOrderOperationNotificationCreateNav.js",
+			"Target": "/SAPAssetManager/Rules/Operations/WorkOrderOperationNotificationCreateNav.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/WorkOrders/Operations/WorkOrderOperationDetailsWithObjectCards.page",
+			"Target": "/SAPAssetManager/Pages/WorkOrders/Operations/WorkOrderOperationDetailsWithObjectCards.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/WorkOrders/Operations/WorkOrderOperationsListViewQueryOption.js",
+			"Target": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsListViewQueryOption.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules//Operations/WorkOrderOperationQABSettings.js",
+			"Target": "/SAPAssetManager/Rules//Operations/WorkOrderOperationQABSettings.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/OnlineSearch/Download/DownloadToDevice.js",
+			"Target": "/SAPAssetManager/Rules/OnlineSearch/Download/DownloadToDevice.js"
 		}
 	],
 	"ComponentVersion": "1.0"
