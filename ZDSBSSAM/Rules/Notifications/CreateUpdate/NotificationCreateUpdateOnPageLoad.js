@@ -126,7 +126,7 @@ export default async function NotificationCreateUpdateOnPageLoad(context) {
                 container.getControl('CauseGroupLstPkr').setEditable(true);
                 container.getControl('CodeLstPkr').setEditable(true);
                 container.getControl('CauseDescription').setEditable(true);
-                container.getControl('ItemDescription').setEditable(false);
+                container.getControl('ItemDescription').setEditable(true);
                 let causeGroupPicker = container.getControl('CauseGroupLstPkr');
                 let causeQuery = await libNotif.NotificationItemTaskActivityGroupQuery(context, 'CatTypeCauses');
                 let entitySet = 'PMCatalogProfiles';
@@ -172,8 +172,22 @@ export default async function NotificationCreateUpdateOnPageLoad(context) {
                 }
             }
             else {
-                container.getControl('ShowAdditionalFieldsSwitch').setValue(false);
-                NotificationCreateUpdateShowFieldsChange(context, false);
+                if (NotificationType === '31') {
+                    container.getControl('ShowAdditionalFieldsSwitch').setValue(false);
+                    NotificationCreateUpdateShowFieldsChange(context, false);
+                }
+                else if(NotificationType === '41')
+                {
+                    container.getControl('ShowAdditionalFieldsSwitch').setValue(true);
+                    container.getControl('PartGroupLstPkr').setVisible(false);
+                    container.getControl('PartDetailsLstPkr').setVisible(false);
+                    container.getControl('DamageGroupLstPkr').setVisible(false);
+                    container.getControl('DamageDetailsLstPkr').setVisible(false);
+                    container.getControl('CauseGroupLstPkr').setVisible(false);
+                    container.getControl('CodeLstPkr').setVisible(false);
+                    container.getControl('CauseDescription').setEditable(true);
+                    container.getControl('ItemDescription').setEditable(true);
+                }
             }
         }
     }

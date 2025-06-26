@@ -289,6 +289,30 @@
 		{
 			"Source": "/ZDSBSSAM/Rules/WorkOrders/Operations/WorkOrderOperationPopoverIsVisible.js",
 			"Target": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationPopoverIsVisible.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/Fragments/WorkOrder/WorkOrderOperations/WorkOrderOperationActionbarItems.fragment",
+			"Target": "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderOperations/WorkOrderOperationActionbarItems.fragment"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Notifications/MobileStatus/CanNotificationMobileStatusComplete.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/MobileStatus/CanNotificationMobileStatusComplete.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/Notifications/NotificationItemCauseDetails.page",
+			"Target": "/SAPAssetManager/Pages/Notifications/NotificationItemCauseDetails.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/Fragments/Notification/NotificationObjectCell.fragment",
+			"Target": "/SAPAssetManager/Pages/Fragments/Notification/NotificationObjectCell.fragment"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/Notifications/NotificationItemCreateUpdate.page",
+			"Target": "/SAPAssetManager/Pages/Notifications/NotificationItemCreateUpdate.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/Notifications/NotificationItemCausesListView.page",
+			"Target": "/SAPAssetManager/Pages/Notifications/NotificationItemCausesListView.page"
 		}
 	],
 	"ComponentVersion": "1.0"

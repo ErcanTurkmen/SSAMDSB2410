@@ -126,7 +126,8 @@
 			{
 				"NumberOfColumns" : 1
 			},
-            "_Type" : "Section.Type.SimplePropertyCollection"
+            "_Type" : "Section.Type.SimplePropertyCollection",
+            "Visible": false
         }],
 		"_Type": "Control.Type.SectionedTable",
 		"_Name": "SectionedTable",

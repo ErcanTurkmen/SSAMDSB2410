@@ -246,7 +246,7 @@
                     "Enabled": true,
                     "Delay": 500,
                     "MinimumCharacterThreshold": 3,
-                    "Placeholder": "$(L,material_description)",
+                    "Placeholder": "$(L,material_number)",
                     "BarcodeScanner": true
                 },
                 "IsEditable": true,

@@ -3,7 +3,7 @@ import libForm from '../../../SAPAssetManager/Rules/Common/Library/FormatLibrary
 import ValidationLibrary from '../../../SAPAssetManager/Rules/Common/Library/ValidationLibrary';
 import libThis from './NotificationLibrary';
 import libDoc from '../../../SAPAssetManager/Rules/Documents/DocumentLibrary';
-import Logger from '../../../SAPAssetManager/Rules/Log/Logger'; 
+import Logger from '../../../SAPAssetManager/Rules/Log/Logger';
 import { GlobalVar as globals } from '../../../SAPAssetManager/Rules/Common/Library/GlobalCommon';
 import malfunctionStartDate from '../../../SAPAssetManager/Rules/Notifications/MalfunctionStartDate';
 import malfunctionStartTime from '../../../SAPAssetManager/Rules/Notifications/MalfunctionStartTime';
@@ -857,29 +857,66 @@ export default class {
     /**
      * Handle error and warning processing for Notification create/update
      */
-    static NotificationCreateUpdateValidation(context) {
+    static NotificationCreateUpdateValidation(context,isOnCreate) {
 
-        let dict = libCom.getControlDictionaryFromPage(context);
+        var dict = libCom.getControlDictionaryFromPage(context);
         dict.NotificationDescription.clearValidation();
         if (dict.TypeLstPkr) {
             dict.TypeLstPkr.clearValidation();
         }
+        // DSB customization to skip the below  validation for type 31 and 41
+        let pageProxy = context.getPageProxy();
+        let formCellContainer = pageProxy.getControl('FormCellContainer');
+        let typeListPicker = formCellContainer.getControl('TypeLstPkr');
+        let notificationType = libCom.getListPickerValue(typeListPicker.getValue());
+
+        // dsb customisation to add part group and damage mandatory
+        dict.PartGroupLstPkr.clearValidation();
+        dict.PartDetailsLstPkr.clearValidation();
+        dict.DamageGroupLstPkr.clearValidation();
+        dict.DamageDetailsLstPkr.clearValidation();
+
         let valPromises = [];
         valPromises.push(libThis.CharacterLimitValidation(context, dict.NotificationDescription));
         valPromises.push(libThis.ValidateNoteNotEmpty(context, dict.NotificationDescription));
         //valPromises.push(libThis.ValidateEndDate(context, dict.MalfunctionEndDatePicker));
+
+        //valPromises.push(libThis.ValidateEndDate(context, dict.MalfunctionEndDatePicker));
+        //valPromises.push(libThis.ValidateEndDate(context, dict.MalfunctionEndDatePicker));
+        //DSB customisation
+        //Need to add validation for item and cause desc for 2210 as the std validation for max 40 has changed. user can now add more than 40 with just warning message
+        //hence need to add explicit validation to not exceed 40 like notification desc
+        dict.ItemDescription.clearValidation();
+        dict.CauseDescription.clearValidation();
+        valPromises.push(libThis.CharacterLimitValidation(context, dict.ItemDescription));
+        valPromises.push(libThis.CharacterLimitValidation(context, dict.CauseDescription));
+
+        // DSB customisation - added by surendra - skip validations only for 31 and 41
+        if (notificationType !== '41' && notificationType !== '31' && isOnCreate) {
+            valPromises.push(libThis.ValidateControlIsRequired(context, dict.PartGroupLstPkr));
+            valPromises.push(libThis.ValidateControlIsRequired(context, dict.PartDetailsLstPkr));
+            valPromises.push(libThis.ValidateControlIsRequired(context, dict.DamageGroupLstPkr));
+            valPromises.push(libThis.ValidateControlIsRequired(context, dict.DamageDetailsLstPkr));
+        }
+        //DSB customisation
+        /*if (libThis.getAddFromOperationFlag(context)){
+            valPromises.push(libThis.ValidateFunctionalLocation(context,dict.FuncLocHierarchyExtensionControl));
+        }*/
 
         // check attachment count, run the validation rule if there is an attachment
         if (libDoc.attachmentSectionHasData(context)) {
             valPromises.push(libDoc.createValidationRule(context));
         }
 
+        // Based on Jin's implementation check all validation promises;
         // if all resolved -> return true
         // if at least 1 rejected -> return false
-        return Promise.allSettled(valPromises).then(results => {
-            const pass = results.every(r => r.status === 'fulfilled');
+        return Promise.all(valPromises).then((results) => {
+            const pass = results.reduce((total, value) => {
+                return total && value;
+            });
             if (!pass) {
-                throw new Error();
+                throw false;
             }
             return true;
         }).catch(() => {
