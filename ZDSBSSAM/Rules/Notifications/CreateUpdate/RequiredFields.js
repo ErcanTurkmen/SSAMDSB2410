@@ -50,16 +50,16 @@ export default function RequiredFields(context) {
             required.push('ItemDescription', 'PartGroupLstPkr', 'PartDetailsLstPkr', 'DamageGroupLstPkr', 'DamageDetailsLstPkr');
         }
     }
-    // else {
-    //     required.push(...NotificationItemCauseRequiredFields(formcellContainerProxy));
-    //     if (notifObject.typeLstPkr === '30' || notifObject.typeLstPkr === '70' || notifObject.typeLstPkr === '71' || notifObject.typeLstPkr === '72') {
-    //         /**** DSB   Customisation Start For Remove Item validation  ***/
-    //         if (!notifObject.causeDescription || !notifObject.causeGroup || !notifObject.causeCode) {
-    //             required.push('CauseDescription', 'CauseGroupLstPkr', 'CodeLstPkr');
-    //         }
-    //         /**** DSB   Customisation End  For Remove Item validation  ***/
-    //     }
-    // }
+    else {
+        /**** DSB   Customisation to validate cause  ***/
+        if (notifObject.typeLstPkr === '30' || notifObject.typeLstPkr === '70' || notifObject.typeLstPkr === '71' || notifObject.typeLstPkr === '72') {
+
+            if (!notifObject.causeDescription || (!notifObject.causeGroup && !notifObject.causeCode)) {
+                required.push('CauseDescription', 'CauseGroupLstPkr', 'CodeLstPkr');
+            }
+            /**** DSB   Customisation end  ***/
+        }
+    }
 
     return required;
 }

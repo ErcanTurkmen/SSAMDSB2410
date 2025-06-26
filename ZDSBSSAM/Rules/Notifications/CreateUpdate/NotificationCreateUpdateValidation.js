@@ -21,7 +21,7 @@ export default function NotificationCreateUpdateValidation(pageClientAPI) {
 
     // DSB customisation to check for equipment if it exists. Check field data against business logic here
     //Return true if validation succeeded, or False if failed
-    return libNotif.NotificationCreateUpdateValidation(pageClientAPI).then(result => {
+    return libNotif.NotificationCreateUpdateValidation(pageClientAPI,onCreate).then(result => {
         if (!result) {
             return result;
 
@@ -76,6 +76,9 @@ export default function NotificationCreateUpdateValidation(pageClientAPI) {
                     //     libCom.executeInlineControlError(pageClientAPI, formCellContainer.getControl('DamageDetailsLstPkr'), pageClientAPI.localizeText('zvalidation_damage_mandatory'));
                     // }
                     return false;
+                }
+                else {
+                    return result;
                 }
             }
             else {

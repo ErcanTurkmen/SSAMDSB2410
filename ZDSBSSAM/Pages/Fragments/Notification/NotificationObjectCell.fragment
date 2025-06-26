@@ -1,0 +1,20 @@
+{
+    "Icons":"/SAPAssetManager/Rules/Notifications/ListView/NotificationListViewIconImages.js",
+    "Title": "{{#Property:NotificationNumber}} - {{#Property:NotificationDescription}}",
+    "Subhead": "{{#Property:HeaderFunctionLocation}}- {{#Property:FunctionalLocation/FuncLocDesc}}",
+    "Footnote": "/SAPAssetManager/Rules/Notifications/ListView/NotificationsListViewFormat.js",
+    "StatusText": "/SAPAssetManager/Rules/Notifications/ListView/NotificationsListViewFormat.js",
+    "SubstatusText": "/SAPAssetManager/Rules/Notifications/ListView/NotificationsListViewFormat.js",
+    "Description": "{{#Property:HeaderEquipment}} - {{#Property:Equipment/EquipDesc}}",
+    "Styles": {
+		"StatusText":  "/SAPAssetManager/Rules/Priority/NotificationPriorityStatusStyle.js"
+	},
+    "AccessoryType": "DisclosureIndicator",
+    "OnPress" : "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsNav.js",
+    "ContextMenu": {
+        "PerformFirstActionWithFullSwipe": true,
+        "Items":"/SAPAssetManager/Rules/ContextMenuTable.js",
+        "LeadingItems": "/SAPAssetManager/Rules/ContextMenuLeadingItems.js",
+        "TrailingItems": "/SAPAssetManager/Rules/ContextMenuTrailingItems.js"
+    }
+}

@@ -1,4 +1,4 @@
-import libNotifMobile from '../../../../SAPAssetManager/Rules/Notifications/MobileStatus/NotificationMobileStatusLibrary';
+import libNotifMobile from '../../Notifications/MobileStatus/NotificationMobileStatusLibrary';
 import libMobile from '../../../../SAPAssetManager/Rules/MobileStatus/MobileStatusLibrary';
 import libCommon from '../../../../SAPAssetManager/Rules/Common/Library/CommonLibrary';
 import IsPhaseModelEnabled from '../../../../SAPAssetManager/Rules/Common/IsPhaseModelEnabled';
@@ -11,20 +11,20 @@ import FormInstanceCount from '../../../../SAPAssetManager/Rules/Forms/SDF/FormI
 * @param {IClientAPI} context
 */
 export default function NotificationMobileStatusHandler(context) {
-	let binding = context.binding;
-	if (context.constructor.name === 'SectionedTableProxy') {
+    let binding = context.binding;
+    if (context.constructor.name === 'SectionedTableProxy') {
         binding = context.getPageProxy().getExecutedContextMenuItem().getBinding();
     }
-	if (libMobile.isNotifHeaderStatusChangeable(context)) {
+    if (libMobile.isNotifHeaderStatusChangeable(context)) {
         let mobileStatus = libMobile.getMobileStatus(binding, context);
 
         if (mobileStatus && mobileStatus !== '') {
             let started = libCommon.getAppParam(context, 'MOBILESTATUS', context.getGlobalDefinition('/SAPAssetManager/Globals/MobileStatus/ParameterNames/StartParameterName.global').getValue());
             let received = libCommon.getAppParam(context, 'MOBILESTATUS', context.getGlobalDefinition('/SAPAssetManager/Globals/MobileStatus/ParameterNames/ReceivedParameterName.global').getValue());
-            let objectType = IsPhaseModelEnabled(context) ? libCommon.getAppParam(context,'OBJECTTYPE','Notification') : 'NOTIFICATION';
+            let objectType = IsPhaseModelEnabled(context) ? libCommon.getAppParam(context, 'OBJECTTYPE', 'Notification') : 'NOTIFICATION';
             let actionProperties = {
                 'Properties': {
-                    'ObjectKey' : binding.NotifMobileStatus_Nav.ObjectKey,
+                    'ObjectKey': binding.NotifMobileStatus_Nav.ObjectKey,
                     'MobileStatus': '',
                     'EffectiveTimestamp': '/SAPAssetManager/Rules/DateTime/CurrentDateTime.js',
                     'CreateUserGUID': '/SAPAssetManager/Rules/UserPreferences/UserPreferencesUserGuidOnCreate.js',
@@ -33,7 +33,7 @@ export default function NotificationMobileStatusHandler(context) {
                 'Target': {
                     'EntitySet': 'PMMobileStatuses',
                     'Service': '/SAPAssetManager/Services/AssetManager.service',
-                    'ReadLink' : binding.NotifMobileStatus_Nav['@odata.readLink'],
+                    'ReadLink': binding.NotifMobileStatus_Nav['@odata.readLink'],
                 },
                 'Headers': {
                     'OfflineOData.NonMergeable': true,
@@ -44,15 +44,15 @@ export default function NotificationMobileStatusHandler(context) {
                 // Override is required since rule binding on NotificationStartUpdate.action will be wrong
                 actionProperties.Properties.MobileStatus = started;
                 if (!IsPhaseModelEnabled(context)) {
-                    actionProperties.UpdateLinks = 
-                    [{
-                        'Property': 'OverallStatusCfg_Nav',
-                        'Target':
-                        {
-                            'EntitySet': 'EAMOverallStatusConfigs',
-                            'QueryOptions': `$filter=ObjectType eq '${objectType}' and MobileStatus eq '${started}'`,
-                        },
-                    }];
+                    actionProperties.UpdateLinks =
+                        [{
+                            'Property': 'OverallStatusCfg_Nav',
+                            'Target':
+                            {
+                                'EntitySet': 'EAMOverallStatusConfigs',
+                                'QueryOptions': `$filter=ObjectType eq '${objectType}' and MobileStatus eq '${started}'`,
+                            },
+                        }];
                 }
 
                 return context.executeAction({
@@ -93,54 +93,60 @@ export default function NotificationMobileStatusHandler(context) {
                         return count === 0;
                     });
 
-                    actionProperties.UpdateLinks = 
-                    [{
-                        'Property': 'OverallStatusCfg_Nav',
-                        'Target':
-                        {
-                            'EntitySet': 'EAMOverallStatusConfigs',
-                            'QueryOptions': `$filter=ObjectType eq '${objectType}' and MobileStatus eq '${completed}'`,
-                        },
-                    }];
+                    actionProperties.UpdateLinks =
+                        [{
+                            'Property': 'OverallStatusCfg_Nav',
+                            'Target':
+                            {
+                                'EntitySet': 'EAMOverallStatusConfigs',
+                                'QueryOptions': `$filter=ObjectType eq '${objectType}' and MobileStatus eq '${completed}'`,
+                            },
+                        }];
 
                 }
-                
-                return Promise.all([allItemTasksComplete, allTasksComplete, allFormsComplete, isItemCauseExists]).then(([allItemTasksCompleteResult, allTasksCompleteResult, allFormsCompleteResult, isItemCauseExistsResult]) => {
-                    if (allItemTasksCompleteResult && allTasksCompleteResult && allFormsCompleteResult && isItemCauseExistsResult) {
-                        return libNotifMobile.showNotificationCompleteWarningMessage(context).then(proceed => {
-                            if (proceed) {
-                                return libNotifMobile.completeNotification(context, function() {
-                                    return libNotifMobile.NotificationUpdateMalfunctionEnd(context).then(() => {
-                                        return context.executeAction({
-                                            'Name': '/SAPAssetManager/Actions/Notifications/NotificationStartUpdate.action',
-                                            'Properties': actionProperties,
-                                        }).then(() => {
-                                            return context.executeAction('/SAPAssetManager/Actions/Notifications/NotificationMobileStatusSuccessMessage.action').then(() => {
-                                                return libAutoSync.autoSyncOnStatusChange(context);
+                return libNotifMobile.isTasksOnNofificationExists(context).then(tasksExists => {
+                    if (tasksExists) {
+                        return Promise.all([allItemTasksComplete, allTasksComplete, allFormsComplete, isItemCauseExists]).then(([allItemTasksCompleteResult, allTasksCompleteResult, allFormsCompleteResult, isItemCauseExistsResult]) => {
+                            if (allItemTasksCompleteResult && allTasksCompleteResult && allFormsCompleteResult && isItemCauseExistsResult) {
+                                return libNotifMobile.showNotificationCompleteWarningMessage(context).then(proceed => {
+                                    if (proceed) {
+                                        return libNotifMobile.completeNotification(context, function () {
+                                            return libNotifMobile.NotificationUpdateMalfunctionEnd(context).then(() => {
+                                                return context.executeAction({
+                                                    'Name': '/SAPAssetManager/Actions/Notifications/NotificationStartUpdate.action',
+                                                    'Properties': actionProperties,
+                                                }).then(() => {
+                                                    return context.executeAction('/SAPAssetManager/Actions/Notifications/NotificationMobileStatusSuccessMessage.action').then(() => {
+                                                        return libAutoSync.autoSyncOnStatusChange(context);
+                                                    });
+                                                }, () => {
+                                                    return context.executeAction('/SAPAssetManager/Actions/Notifications/NotificationMobileStatusFailureMessage.action');
+                                                });
                                             });
-                                        }, () => {
-                                            return context.executeAction('/SAPAssetManager/Actions/Notifications/NotificationMobileStatusFailureMessage.action');
                                         });
-                                    });
+                                    } else {
+                                        context.dismissActivityIndicator();
+                                        return '';
+                                    }
                                 });
+
                             } else {
-                                context.dismissActivityIndicator();
-                                return '';
+                                if (!isItemCauseExistsResult) {
+                                    return context.executeAction('/ZDSBSSAM/Actions/Notifications/MobileStatus/NotificationCausePendingError.action');
+                                }
+                                if (!allFormsCompleteResult) {
+                                    return context.executeAction('/SAPAssetManager/Actions/Notifications/MobileStatus/NotificationFormPendingError.action');
+                                }
+                                return context.executeAction('/SAPAssetManager/Actions/Notifications/MobileStatus/NotificationTaskPendingError.action');
                             }
                         });
-                        
-                    } else {
-                        if(!isItemCauseExistsResult)
-                        {
-                            return context.executeAction('/ZDSBSSAM/Actions/Notifications/MobileStatus/NotificationCausePendingError.action');
-                        }
-                        if (!allFormsCompleteResult) {
-                            return context.executeAction('/SAPAssetManager/Actions/Notifications/MobileStatus/NotificationFormPendingError.action');
-                        }
-                        return context.executeAction('/SAPAssetManager/Actions/Notifications/MobileStatus/NotificationTaskPendingError.action');
                     }
-                });
+                    else {
+                        return context.executeAction('/ZDSBSSAM/Actions/Notifications/MobileStatus/ZNotificationTaskExistsPendingError.action');
+                    }
+                }); // end return task exists   
             }
+
             context.dismissActivityIndicator();
             return '';
         }
