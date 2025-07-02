@@ -15,6 +15,7 @@ export default function WorkOrderOperationNotificationCreateNav(context) {
 
     // DSB customization for setting the Flag for Notification Page Create 
     libNotif.setZAddFromOperationToNotifFlag(context, true);     //libNotif.setZAddFromOperationToNotifFlag(context,false);
+    libCommon.setStateVariable(context, 'ZNotificationFromOperation', true, 'WorkOrderOperationDetailsPage');
 
     let bindingObject = {
         // HeaderEquipment: binding.OperationEquipment,
