@@ -313,6 +313,34 @@
 		{
 			"Source": "/ZDSBSSAM/Pages/Notifications/NotificationItemCausesListView.page",
 			"Target": "/SAPAssetManager/Pages/Notifications/NotificationItemCausesListView.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/ContextMenuTrailingItems.js",
+			"Target": "/SAPAssetManager/Rules/ContextMenuTrailingItems.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/UserAuthorizations/Common/EnableNoteCreate.js",
+			"Target": "/SAPAssetManager/Rules/UserAuthorizations/Common/EnableNoteCreate.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Notifications/Details/NotificationQABSettings.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/Details/NotificationQABSettings.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/QAB/QABSettings.js",
+			"Target": "/SAPAssetManager/Rules/QAB/QABSettings.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Actions/Notifications/Activity/NotificationActivityCreateUpdateRequired.action",
+			"Target": "/SAPAssetManager/Actions/Notifications/Activity/NotificationActivityCreateUpdateRequired.action"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/ContextMenuItems.js",
+			"Target": "/SAPAssetManager/Rules/ContextMenuItems.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Notifications/Activity/CreateUpdate/NotificationActivityCreateNav.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/Activity/CreateUpdate/NotificationActivityCreateNav.js"
 		}
 	],
 	"ComponentVersion": "1.0"

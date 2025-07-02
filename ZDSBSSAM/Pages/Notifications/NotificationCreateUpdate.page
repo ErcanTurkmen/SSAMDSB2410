@@ -96,7 +96,8 @@
                     },
                     "OnValueChange": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateTypeOnValueChange.js",
                     "_Name": "TypeLstPkr",
-                    "_Type": "Control.Type.FormCell.ListPicker"
+                    "_Type": "Control.Type.FormCell.ListPicker",
+                    "IsEditable": false
                 },
                 {
                     "_Type": "Fragment",
