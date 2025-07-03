@@ -341,6 +341,10 @@
 		{
 			"Source": "/ZDSBSSAM/Rules/Notifications/Activity/CreateUpdate/NotificationActivityCreateNav.js",
 			"Target": "/SAPAssetManager/Rules/Notifications/Activity/CreateUpdate/NotificationActivityCreateNav.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Notifications/ListView/NotificationsListViewFormat.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/ListView/NotificationsListViewFormat.js"
 		}
 	],
 	"ComponentVersion": "1.0"
