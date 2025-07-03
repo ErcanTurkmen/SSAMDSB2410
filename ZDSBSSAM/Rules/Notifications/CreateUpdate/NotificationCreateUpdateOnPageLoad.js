@@ -16,6 +16,7 @@ import { ValueIfExists } from '../../../../SAPAssetManager/Rules/Common/Library/
 import ZGetTechnicalObjectCodeGroup from './ZGetTechnicalObjectCodeGroup';
 import ValidationLibrary from '../../../../SAPAssetManager/Rules/Common/Library/ValidationLibrary';
 import CommonLibrary from '../../../../SAPAssetManager/Rules/Common/Library/CommonLibrary';
+import libForm from '../../../../SAPAssetManager/Rules/Common/Library/FormatLibrary';
 
 export default async function NotificationCreateUpdateOnPageLoad(context) {
     // Create empty promise in the event of QM creation. Forces rule to wait until read is completed.
@@ -142,21 +143,31 @@ export default async function NotificationCreateUpdateOnPageLoad(context) {
                 }
                 if (binding['@odata.readLink']) { //&& binding['@odata.type'] === '#sap_mobile.MyNotificationHeader') {
                     let pageProxy = context.getPageProxy();
-                    return Promise.resolve(context.read('/SAPAssetManager/Services/AssetManager.service', binding['@odata.readLink'] + '/Items', [], '$expand=ItemCauses')).then((itemData) => {
+                    return Promise.resolve(context.read('/SAPAssetManager/Services/AssetManager.service', binding['@odata.readLink'] + '/Items', [], '$expand=ItemCauses')).then(async (itemData) => {
                         if (itemData && itemData.getItem(0)) {
                             container.getControl('ItemDescription').setValue(itemData.getItem(0).ItemText);
 
-                            container.getControl('PartGroupLstPkrDefault').setValue(itemData.getItem(0).ObjectPartCodeGroup);
                             container.getControl('PartGroupLstPkrDefault').setVisible(true);
-
-                            container.getControl('PartCodeDefault').setValue(itemData.getItem(0).ObjectPart);
                             container.getControl('PartCodeDefault').setVisible(true);
+                            await context.read('/SAPAssetManager/Services/AssetManager.service', 'PMCatalogCodes', [], "$select=CodeDescription&$filter=Code eq '" + itemData.getItem(0).ObjectPart + "' and CodeGroup eq '" + itemData.getItem(0).ObjectPartCodeGroup + "' and Catalog eq 'Z'").then((result) => {
+                                if (result.length > 0) {
+                                    //Grab the first row (should only ever be one row)
+                                    const row = result.getItem(0);
+                                    container.getControl('PartGroupLstPkrDefault').setValue(libForm.getFormattedKeyDescriptionPair(context, itemData.getItem(0).ObjectPartCodeGroup, row.CodeGroupDesc));
+                                    container.getControl('PartCodeDefault').setValue(libForm.getFormattedKeyDescriptionPair(context, itemData.getItem(0).ObjectPart, row.CodeDescription));
+                                }
+                            });
 
-                            container.getControl('DamageGroupDefault').setValue(itemData.getItem(0).CodeGroup);
                             container.getControl('DamageGroupDefault').setVisible(true);
-
-                            container.getControl('DamageCodeDefault').setValue(itemData.getItem(0).DamageCode);
                             container.getControl('DamageCodeDefault').setVisible(true);
+                            await context.read('/SAPAssetManager/Services/AssetManager.service', 'PMCatalogCodes', [], "$select=CodeDescription&$filter=Code eq '" + itemData.getItem(0).DamageCode + "' and CodeGroup eq '" + itemData.getItem(0).CodeGroup + "' and Catalog eq '9'").then((result) => {
+                                if (result.length > 0) {
+                                    //Grab the first row (should only ever be one row)
+                                    const row = result.getItem(0);
+                                    container.getControl('DamageGroupDefault').setValue(libForm.getFormattedKeyDescriptionPair(context, itemData.getItem(0).CodeGroup, row.CodeGroupDesc));
+                                    container.getControl('DamageCodeDefault').setValue(libForm.getFormattedKeyDescriptionPair(context, itemData.getItem(0).DamageCode, row.CodeDescription));
+                                }
+                            });
 
                             if (itemData.getItem(0).ItemCauses && itemData.getItem(0).ItemCauses[0]) {
                                 let CatTypeCauses = '5';
@@ -176,8 +187,7 @@ export default async function NotificationCreateUpdateOnPageLoad(context) {
                     container.getControl('ShowAdditionalFieldsSwitch').setValue(false);
                     NotificationCreateUpdateShowFieldsChange(context, false);
                 }
-                else if(NotificationType === '41')
-                {
+                else if (NotificationType === '41') {
                     container.getControl('ShowAdditionalFieldsSwitch').setValue(true);
                     container.getControl('PartGroupLstPkr').setVisible(false);
                     container.getControl('PartDetailsLstPkr').setVisible(false);

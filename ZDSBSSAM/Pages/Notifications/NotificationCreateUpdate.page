@@ -799,7 +799,7 @@
                         "Placeholder": "$(L,search)",
                         "BarcodeScanner": true
                     },
-                    "Caption": "$(L,cause_group)",
+                    "Caption": "$(L,group)",
                     "Value": "{CauseCodeGroup}",
                     "PickerItems": [],
                     "OnValueChange" : "/SAPAssetManager/Rules/Notifications/Item/Cause/CreateUpdate/NotificationItemCauseCreateUpdateCode.js",
@@ -818,7 +818,7 @@
                         "Placeholder": "$(L,search)",
                         "BarcodeScanner": true
                     },
-                    "Caption": "$(L,cause_code)",
+                    "Caption": "$(L,code)",
                     "OnValueChange": "/SAPAssetManager/Rules/Common/Validation/ResetValidationOnInput.js",
                     "Value": "{CauseCode}",
                     "PickerItems":
