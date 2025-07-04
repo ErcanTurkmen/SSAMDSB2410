@@ -345,6 +345,10 @@
 		{
 			"Source": "/ZDSBSSAM/Rules/Notifications/ListView/NotificationsListViewFormat.js",
 			"Target": "/SAPAssetManager/Rules/Notifications/ListView/NotificationsListViewFormat.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/MobileStatus/MobileStatusGenerator.js",
+			"Target": "/SAPAssetManager/Rules/MobileStatus/MobileStatusGenerator.js"
 		}
 	],
 	"ComponentVersion": "1.0"

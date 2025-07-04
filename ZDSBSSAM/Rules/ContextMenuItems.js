@@ -165,6 +165,21 @@ export async function getOperationMenuItems(context) {
             'Mode': 'Deletion',
             'OnSwipe': '/SAPAssetManager/Rules/ContextMenu/ContextMenuDelete.js',
         },
+        //DSB customization to add confirm in swipe menu
+        {
+            '_Name': 'ZConfirm',
+            'Image': '$(PLT, /SAPAssetManager/Images/end.png, /SAPAssetManager/Images/end.android.png)',
+            'Text': '$(L,zconfirm)',
+            'Mode': 'Normal',
+            'OnSwipe': '/ZDSBSSAM/Rules/Workorders/Operations/ZOperationConfirmFromOpListSwipe.js',
+        },
+        {
+            '_Name': 'PRT_AddEquipment',
+            'Image': '$(PLT, /SAPAssetManager/Images/addnotif.png, /SAPAssetManager/Images/addnotif.android.png)',
+            'Text': '$(L,zPRTAddEquipment)',
+            'Mode': 'Normal',
+            'OnSwipe': '/ZDSBSSAM/Rules/WorkOrders/Operations/PRT/ZPRTEquipmentAddNavFromSwipe.js',
+        },
         ...statusMenuItems,
     ];
 }
