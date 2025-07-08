@@ -956,6 +956,8 @@ export default class {
     }
 
     static getMobileStatusFilterOptions(context, objectType) {
+        //DSB remove transfer option from Filter page
+        const TRANSFER = context.getGlobalDefinition('/SAPAssetManager/Globals/MobileStatus/ParameterNames/TransferParameterName.global').getValue().toUpperCase();
         const optionsConfig = {
             name: 'MobileStatus_Nav/MobileStatus',
             values: [],
@@ -1012,7 +1014,9 @@ export default class {
 
                     const fromStatusCode = fromStatus && fromStatus.MobileStatus;
                     const toStatusCode = toStatus && toStatus.MobileStatus;
+                    if(toStatusCode.toUpperCase() !== TRANSFER){
                     values = this.updateOptionConfigValues(fromStatusCode, toStatusCode, values, context);
+                    }
                 });
 
                 optionsConfig.values = values;

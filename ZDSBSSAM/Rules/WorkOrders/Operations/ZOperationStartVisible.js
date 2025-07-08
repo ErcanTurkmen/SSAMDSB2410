@@ -6,12 +6,12 @@ import isUnPlannedWO from '../ZIsUnPlannedWorkOrderType';
 
 //status button (start/hold/complete) - issueparttbl is made visible for 
 //unplanned orders if not SO13 order type
-	//or unplanned orders if SO13 order type then PMA should not be 288 and 295
-	// if 288/295 and without timeregkey - confirm only. Start should not be seen
+//or unplanned orders if SO13 order type then PMA should not be 288 and 295
+// if 288/295 and without timeregkey - confirm only. Start should not be seen
 // or planned orders with key 
 // and not operation 0010
 export default function ZOperationStartVisible(context) {
-	const aPlannedOrderTypes = ['SO11', 'SO22', 'SO26', 'SO12' , 'SO19' , 'SO23', 'SO16', 'SO14', 'SO15'];
+	const aPlannedOrderTypes = ['SO11', 'SO22', 'SO26', 'SO12', 'SO19', 'SO23', 'SO16', 'SO14', 'SO15'];
 	let binding = '';
 	if (typeof context === 'object') {
 		binding = context;
@@ -26,15 +26,18 @@ export default function ZOperationStartVisible(context) {
 	let zTimeRegKey = binding.ZTimeRegKey;
 	zTimeRegKey = zTimeRegKey.toUpperCase();
 	//let returnVal = false;
-	
+
 	let pma = binding.WOHeader.MaintenanceActivityType;
 	let orderType = binding.WOHeader.OrderType;
-	
+
 	//
-	if(((!isPlannedWorkorder && orderType !== 'SO13')|| (!isPlannedWorkorder && orderType === 'SO13' && (pma !=='288'&& pma !=='295')) || (!isPlannedWorkorder && orderType === 'SO13' && (pma ==='288'|| pma ==='295') && zTimeRegKey === 'X') || (isPlannedWorkorder && fieldKey !== 'OVERSKR' && zTimeRegKey  === 'X')) && (binding.OperationNo !== '0010')){               
-	//if(((!isPlannedWorkorder && orderType !== 'SO13')|| (!isPlannedWorkorder && orderType === 'SO13' &&  zTimeRegKey  === 'X') || (isPlannedWorkorder && fieldKey  !== 'OVERSKR' && zTimeRegKey  === 'X')) && (context.binding.OperationNo !== '0010')){
-	
+	if (((!isPlannedWorkorder && orderType !== 'SO13') || (!isPlannedWorkorder && orderType === 'SO13' && (pma !== '288' && pma !== '295')) || (!isPlannedWorkorder && orderType === 'SO13' && (pma === '288' || pma === '295') && zTimeRegKey === 'X') || (isPlannedWorkorder && fieldKey !== 'OVERSKR' && zTimeRegKey === 'X')) && (binding.OperationNo !== '0010')) {
+		//if(((!isPlannedWorkorder && orderType !== 'SO13')|| (!isPlannedWorkorder && orderType === 'SO13' &&  zTimeRegKey  === 'X') || (isPlannedWorkorder && fieldKey  !== 'OVERSKR' && zTimeRegKey  === 'X')) && (context.binding.OperationNo !== '0010')){
+
 		return true;
+	}
+	else {
+		return false;
 	}
 	/* Done to split the condn and to understand this better
 	if (context.binding.OperationNo !== '0010')

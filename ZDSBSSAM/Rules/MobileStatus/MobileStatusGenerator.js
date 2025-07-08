@@ -39,12 +39,12 @@ export default class MobileStatusGenerator {
         this._objectType = objectType;
         this._helperClass = this._getMobileStatusHelperClass(context, binding, currentStatus, objectType);
 
-        const { 
-            HOLD, STARTED, COMPLETED, WORKCOMPL, TRANSFER, 
-            CONFIRM, UNCONFIRM, 
+        const {
+            HOLD, STARTED, COMPLETED, WORKCOMPL, TRANSFER,
+            CONFIRM, UNCONFIRM,
             ACCEPTED, ONSITE, TRAVEL, REJECTED, REVIEW,
         } = libMobile.getMobileStatusValueConstants(context);
-        
+
         this._HOLD = HOLD;
         this._STARTED = STARTED;
         this._COMPLETED = COMPLETED;
@@ -58,7 +58,7 @@ export default class MobileStatusGenerator {
         this._REJECTED = REJECTED;
         this._REVIEW = REVIEW;
     }
-    
+
     /**
      * Get helper class for current object type that will help run data type specific checks
      * @param {IPageProxy | ISelectableSectionProxy | IObjectCardCollectionSectionProxy} context 
@@ -93,7 +93,7 @@ export default class MobileStatusGenerator {
                     [this._HOLD]: this._getHoldStatusOverrideProperties(),
                     [this._WORKCOMPL]: this._getWorkCompletedStatusOverrideProperties(),
                     [this._TRANSFER]: await this._getTransferStatusOverrideProperties(),
-                    [this._CONFIRM]: this._getConfirmStatusOverrideProperties(),
+                    [this._CONFIRM]: await this._getConfirmStatusOverrideProperties(),
                     [this._ACCEPTED]: this._getAcceptedStatusOverrideProperties(),
                     [this._REJECTED]: this._getRejectedStatusOverrideProperties(),
                     [this._TRAVEL]: this._getEnrouteStatusOverrideProperties(),
@@ -137,7 +137,7 @@ export default class MobileStatusGenerator {
             ContextMenu_Icon: '$(PLT, /SAPAssetManager/Images/hold.png, /SAPAssetManager/Images/hold.android.png)',
         };
     }
-    
+
     /**
      * Get override for Transfer status
      * @returns {StatusOverride}
@@ -149,7 +149,7 @@ export default class MobileStatusGenerator {
             ContextMenu_Icon: '$(PLT, /SAPAssetManager/Images/transfer.png, /SAPAssetManager/Images/transfer.android.png)',
         };
     }
-    
+
     /**
      * Get override for Started status
      * @returns {StatusOverride}
@@ -180,7 +180,7 @@ export default class MobileStatusGenerator {
             TransitionType,
         };
     }
-    
+
     /**
      * Get override for Completed status
      * @returns {StatusOverride}
@@ -192,7 +192,7 @@ export default class MobileStatusGenerator {
             ContextMenu_Icon: '$(PLT, /SAPAssetManager/Images/end.png, /SAPAssetManager/Images/end.android.png)',
         };
     }
-    
+
     /**
      * Get override for Work Completed status
      * @returns {StatusOverride}
@@ -210,17 +210,28 @@ export default class MobileStatusGenerator {
      * @returns {StatusOverride}
      */
     async _getConfirmStatusOverrideProperties() {
+        const currentMobileStatus = this._currentStatus.MobileStatus;
+        const isAnythingStarted = await this._helperClass.isAnythingStarted();
+        let OnlyOption = false, ExtraOption = false, Visible = false;
+        const isOperationHeaderLevelAssignment = ['Header', 'Operation'].includes(libCom.getWorkOrderAssnTypeLevel(this._context));
+        if (isOperationHeaderLevelAssignment && !isAnythingStarted && !currentMobileStatus === this._COMPLETED) {
+            OnlyOption = true;
+            ExtraOption = true;
+            TransitionType = 'P';
+            Visible = ZOperationConfirmVisible(this._binding);
+        }
         return {
             ...this._getGenericStatusOverrideProperties(),
-            Visible: ZOperationConfirmVisible(this._binding),
+            Visible: Visible,
+            OnlyOption: OnlyOption,
             ContextMenu_Icon: '$(PLT, /SAPAssetManager/Images/confirm.png, /SAPAssetManager/Images/confirm.android.png)',
             ExtraOption: true,
-            TransitionType: 'S',
+            TransitionType: 'P',
             TransitionText: this._context.localizeText('zconfirm'),
             Status: this._CONFIRM,
         };
     }
-    
+
     /**
      * Get override for Unconfirm status
      * @returns {StatusOverride}
@@ -248,7 +259,7 @@ export default class MobileStatusGenerator {
             ContextMenu_Style: 'ContextMenuGreen',
         };
     }
-    
+
     /**
      * Get override for Reject status
      * @returns {StatusOverride}
@@ -292,7 +303,7 @@ export default class MobileStatusGenerator {
         const isAnythingStarted = await this._helperClass.isAnythingStarted();
         const isClockedIn = libCICO.isBusinessObjectClockedIn(this._context, this._binding);
         const currentMobileStatus = this._currentStatus.MobileStatus;
-        
+
         // Bussiness object is started, but user is not clocked in and has another started-clocked in objects, so disable status options
         if (currentMobileStatus === this._STARTED && (libCICO.isCICOEnabled(this._context) && !isClockedIn) && isAnythingStarted) {
             return false;
