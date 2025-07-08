@@ -260,7 +260,6 @@
     "FioriToolbar": {
         "_Name": "OperationWithObjectCardsFioriToolbar",
         "_Type": "Control.Type.FioriToolbar",
-        "Visible": "/SAPAssetManager/Rules/Common/DetailsPageToolbar/DetailsPageToolbarVisibility.js",
         "Items": "/SAPAssetManager/Rules/Common/DetailsPageToolbar/DetailsPageToolbarItems.js"
     },
     "_Type": "Page",
