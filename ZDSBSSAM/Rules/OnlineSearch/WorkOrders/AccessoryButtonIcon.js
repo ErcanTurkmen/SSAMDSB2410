@@ -50,7 +50,7 @@ export async function showAssignDependingOnAssignmentType(context) {
             return object['@odata.type'] === '#sap_mobile.WorkOrderSubOperation' && isAssignAvailable;
         case '6':
         case 'Z':   //DSB customization to support assignment type Z as 6
-            return object['@odata.type'] === '#sap_mobile.WorkOrderOperation' && isAssignAvailable;
+            return object['@odata.type'] === '#sap_mobile.WorkOrderHeader' && isAssignAvailable;        //return object['@odata.type'] === '#sap_mobile.WorkOrderOperation' && isAssignAvailable;
         case '8': 
             return isSupervisorFeatureEnabled(context) && isAssignAvailable;
         default:
