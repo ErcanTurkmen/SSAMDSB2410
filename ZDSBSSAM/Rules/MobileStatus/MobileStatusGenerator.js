@@ -214,9 +214,8 @@ export default class MobileStatusGenerator {
         const isAnythingStarted = await this._helperClass.isAnythingStarted();
         let OnlyOption = false, Visible = false;
         const isOperationHeaderLevelAssignment = ['Header', 'Operation'].includes(libCom.getWorkOrderAssnTypeLevel(this._context));
-        if (isOperationHeaderLevelAssignment && !isAnythingStarted && !currentMobileStatus === this._COMPLETED) {
+        if (isOperationHeaderLevelAssignment && !isAnythingStarted && currentMobileStatus !== this._COMPLETED) {
             OnlyOption = true;
-            TransitionType = 'P';
             Visible = ZOperationConfirmVisible(this._binding);
         }
         return {

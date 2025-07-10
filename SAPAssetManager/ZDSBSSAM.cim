@@ -373,6 +373,10 @@
 		{
 			"Source": "/ZDSBSSAM/Rules/WorkOrders/Complete/FinalizeCompletePage.js",
 			"Target": "/SAPAssetManager/Rules/WorkOrders/Complete/FinalizeCompletePage.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/MobileStatus/CompleteMobileStatusAction.js",
+			"Target": "/SAPAssetManager/Rules/MobileStatus/CompleteMobileStatusAction.js"
 		}
 	],
 	"ComponentVersion": "1.0"
