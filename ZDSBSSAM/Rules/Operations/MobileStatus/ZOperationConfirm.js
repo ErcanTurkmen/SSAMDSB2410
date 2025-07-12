@@ -21,6 +21,7 @@ export default function ZOperationConfirm(context) {
         libCom.setStateVariable(context, 'BINDINGOBJECT', binding);
         pageContext = libMobile.getPageContext(context, libCom.getPageName(context));
         ApplicationSettings.setString(context, 'BINDINGOBJECT', JSON.stringify(binding));
+        libCom.setStateVariable(context, 'ZMenuSwipeContext', 'SectionedTableProxy');
     }
     else {
         pageContext = libMobile.getPageContext(context, libCom.getPageName(context));
@@ -53,6 +54,8 @@ export default function ZOperationConfirm(context) {
             return action.execute(pageContext).then((result) => {
                 if (result) {
                     libCom.enableToolBar(context, workOrderOperationDetailsPage, 'Confirm', false);
+                    ApplicationSettings.setString(context, 'BINDINGOBJECT', "");
+                    libCom.setStateVariable(context, 'ZMenuSwipeContext', '');
                     //libMobile.setCompleteStatus(context);
                     let odataDate = new ODataDate();
                     libCom.setStateVariable(context, 'ConfirmationTime', odataDate.toDBTimeString(context));
@@ -60,6 +63,7 @@ export default function ZOperationConfirm(context) {
                     libMobile.setCompleteStatus(pageContext);
                     return context.executeAction('/SAPAssetManager/Actions/WorkOrders/MobileStatus/OperationMobileStatusSuccessMessage.action').then(results => {
                         return context.executeAction('/SAPAssetManager/Actions/Confirmations/ConfirmationCreateBlank.action').then(results => {
+                            ApplicationSettings.setString(context, 'BINDINGOBJECT', '');
                             return context.executeAction('/SAPAssetManager/Actions/Page/ClosePage.action');
                             /*.then (() =>{
                             //DSb removed the autosync on plannned orders which we only complete
