@@ -51,12 +51,12 @@ export default class CompleteMobileStatusAction extends MobileStatusAction {
     setMobileStatusComplete(context, instance, binding) {
         //Binding object should be either a MyWorkOrderHeader, MyWorkOrderOperation, or MyWorkOrderSubOperation.
         let bindingObj = binding || libCommon.getBindingObject(context);
-        if (!libCommon.isDefined(bindingObj) && context.constructor.name !== 'SectionedTableProxy') {
-            bindingObj = context.getClientData().currentObject;
-        }
-        else
-        {
+        let menuContext = libCommon.getStateVariable(context, 'ZMenuSwipeContext');
+        if (menuContext === 'SectionedTableProxy') {
             bindingObj = JSON.parse(ApplicationSettings.getString(context, 'BINDINGOBJECT'));
+        }
+        if (!libCommon.isDefined(bindingObj)) {
+            bindingObj = context.getClientData().currentObject;
         }
         let mobileStatusObject = '';
 
@@ -67,9 +67,9 @@ export default class CompleteMobileStatusAction extends MobileStatusAction {
          * mConfirmation contains MyWorkOrderHeader inside it, in a property called WorkOrderHeader.
          * Here we are just setting bindingObj to be MyWorkOrderHeader from mConfirmation.WorkOrderHeader.
          */
-        if (Object.prototype.hasOwnProperty.call(bindingObj,'name') && bindingObj.name === 'mConfirmation' && !!bindingObj.SubOperation && !!bindingObj.Operation) {
+        if (Object.prototype.hasOwnProperty.call(bindingObj, 'name') && bindingObj.name === 'mConfirmation' && !!bindingObj.SubOperation && !!bindingObj.Operation) {
             bindingObj = bindingObj.OperationObject;
-        } else if (Object.prototype.hasOwnProperty.call(bindingObj,'name') && bindingObj.name === 'mConfirmation') {
+        } else if (Object.prototype.hasOwnProperty.call(bindingObj, 'name') && bindingObj.name === 'mConfirmation') {
             bindingObj = libMobile.getWorkOrderHeaderObjFromConfirmationObj(context);
         }
 
@@ -123,7 +123,7 @@ export default class CompleteMobileStatusAction extends MobileStatusAction {
                 case 'MyWorkOrderSubOperations': {
                     if (bindingObj['@odata.type'] === '#sap_mobile.MyWorkOrderSubOperation') {
                         mobileStatusObject = bindingObj.SubOpMobileStatus_Nav;
-                            mobileInstance = bindingObj;
+                        mobileInstance = bindingObj;
                     }
                     headerObj = mobileInstance.WorkOrderOperation.WOHeader;
                     break;
@@ -159,7 +159,7 @@ export default class CompleteMobileStatusAction extends MobileStatusAction {
                 context.evaluateTargetPathForAPI('#Page:-Previous').getClientData().currentInstance = instance;
             }
             if (!libEval.evalIsEmpty(context.getClientData().currentObject)) {
-                context.getClientData().currentObject.currentInstance=context.getClientData().currentInstance;
+                context.getClientData().currentObject.currentInstance = context.getClientData().currentInstance;
             }
             let target = mobileInstance;
             if (!target) {
@@ -177,7 +177,7 @@ export default class CompleteMobileStatusAction extends MobileStatusAction {
                                     'Target': {
                                         'EntitySet': 'PMMobileStatuses',
                                         'Service': '/SAPAssetManager/Services/AssetManager.service',
-                                        'ReadLink' : mobileInstance.MobileStatusReadLink,
+                                        'ReadLink': mobileInstance.MobileStatusReadLink,
                                     },
                                     'UpdateLinks': MobileStatusReviewUpdateLinks(context),
                                 },
@@ -197,24 +197,26 @@ export default class CompleteMobileStatusAction extends MobileStatusAction {
                         };
                         const autoCompletedOrderTypes = ['DC01', 'RC01'];
                         const transactionIgnore = libCommon.getAppParam(context, 'METERACTION', 'ISU.WorkOrder.AutoComplete') === 'Y' && autoCompletedOrderTypes.includes(headerObj.OrderType);
-                        let mobileStatusCompleteAction = {'Name': '/SAPAssetManager/Actions/Confirmations/MobileStatusSetComplete.action', 'Properties': {
-                            'Properties': properties,
-                            'Target': {
-                                'EntitySet': 'PMMobileStatuses',
-                                'Service': '/SAPAssetManager/Services/AssetManager.service',
-                                'ReadLink' : mobileInstance.MobileStatusReadLink,
-                            },
-                            'UpdateLinks': [{
-                                'Property': 'OverallStatusCfg_Nav',
+                        let mobileStatusCompleteAction = {
+                            'Name': '/SAPAssetManager/Actions/Confirmations/MobileStatusSetComplete.action', 'Properties': {
+                                'Properties': properties,
                                 'Target': {
-                                    'EntitySet': 'EAMOverallStatusConfigs',
-                                    'QueryOptions': `$filter=MobileStatus eq '${completeMobileStatus}' and ObjectType eq '${eamObjType}' and EAMOverallStatusProfile eq '${mobileStatusObject.EAMOverallStatusProfile}'`,
+                                    'EntitySet': 'PMMobileStatuses',
+                                    'Service': '/SAPAssetManager/Services/AssetManager.service',
+                                    'ReadLink': mobileInstance.MobileStatusReadLink,
                                 },
-                            }],
-                            'Headers': {
-                                'Transaction.Ignore': transactionIgnore,
-                            },
-                        }};
+                                'UpdateLinks': [{
+                                    'Property': 'OverallStatusCfg_Nav',
+                                    'Target': {
+                                        'EntitySet': 'EAMOverallStatusConfigs',
+                                        'QueryOptions': `$filter=MobileStatus eq '${completeMobileStatus}' and ObjectType eq '${eamObjType}' and EAMOverallStatusProfile eq '${mobileStatusObject.EAMOverallStatusProfile}'`,
+                                    },
+                                }],
+                                'Headers': {
+                                    'Transaction.Ignore': transactionIgnore,
+                                },
+                            }
+                        };
                         //We want the Usage Decision to go up in the same batch as WorkOrder Complete. So we will add the OfflineOData.TransactionID only for this scenario.
                         //ICMTANGOAMF10-29637 has been logged to open this up for all scenarios in 2410
                         if (bindingObj['@odata.type'] === '#sap_mobile.MyWorkOrderHeader' && IsInspectionLotEnabled(context)) {
@@ -283,27 +285,29 @@ export default class CompleteMobileStatusAction extends MobileStatusAction {
                     // Execute the blank final confirmation create action
                     // Action override required to ensure context hasn't changed. Promises will not be resolved in time, hence Promise.all()
                     return Promise.all([GenerateOffsetConfirmationNum(context), GenerateConfirmationCounter(context)]).then(([confirmationNum, confirmationCounter]) => {
-                        return context.executeAction({'Name': '/SAPAssetManager/Actions/Confirmations/ConfirmationCreateBlank.action', 'Properties': {
-                            'Properties': {
-                                'ConfirmationNum': confirmationNum,
-                                'ConfirmationCounter': confirmationCounter,
-                                'FinalConfirmation': FinalConfirmation(context),
-                                'OrderID': FinalConfirmationOrderID(context),
-                                'Operation': FinalConfirmationOperation(context),
-                                'SubOperation': FinalConfirmationSubOperation(context),
-                                'StartDate': '/SAPAssetManager/Rules/Confirmations/BlankFinal/GetCurrentDate.js',
-                                'StartTime': '/SAPAssetManager/Rules/Confirmations/BlankFinal/GetCurrentTime.js',
-                                'FinishDate': '/SAPAssetManager/Rules/Confirmations/BlankFinal/GetCurrentDate.js',
-                                'FinishTime': '/SAPAssetManager/Rules/Confirmations/BlankFinal/GetCurrentTime.js',
-                                'PostingDate': '/SAPAssetManager/Rules/Confirmations/CreateUpdate/OnCommit/GetCreatedDate.js',
-                                'CreatedDate': '/SAPAssetManager/Rules/Confirmations/CreateUpdate/OnCommit/GetCreatedDate.js',
-                                'CreatedTime': '/SAPAssetManager/Rules/Confirmations/CreateUpdate/OnCommit/GetCreatedTime.js',
-                            },
-                            'CreateLinks': ConfirmationCreateBlankReadLink(context),
-                            'Headers': {
-                                'OfflineOData.TransactionID': confirmationNum,
-                            },
-                        }});
+                        return context.executeAction({
+                            'Name': '/SAPAssetManager/Actions/Confirmations/ConfirmationCreateBlank.action', 'Properties': {
+                                'Properties': {
+                                    'ConfirmationNum': confirmationNum,
+                                    'ConfirmationCounter': confirmationCounter,
+                                    'FinalConfirmation': FinalConfirmation(context),
+                                    'OrderID': FinalConfirmationOrderID(context),
+                                    'Operation': FinalConfirmationOperation(context),
+                                    'SubOperation': FinalConfirmationSubOperation(context),
+                                    'StartDate': '/SAPAssetManager/Rules/Confirmations/BlankFinal/GetCurrentDate.js',
+                                    'StartTime': '/SAPAssetManager/Rules/Confirmations/BlankFinal/GetCurrentTime.js',
+                                    'FinishDate': '/SAPAssetManager/Rules/Confirmations/BlankFinal/GetCurrentDate.js',
+                                    'FinishTime': '/SAPAssetManager/Rules/Confirmations/BlankFinal/GetCurrentTime.js',
+                                    'PostingDate': '/SAPAssetManager/Rules/Confirmations/CreateUpdate/OnCommit/GetCreatedDate.js',
+                                    'CreatedDate': '/SAPAssetManager/Rules/Confirmations/CreateUpdate/OnCommit/GetCreatedDate.js',
+                                    'CreatedTime': '/SAPAssetManager/Rules/Confirmations/CreateUpdate/OnCommit/GetCreatedTime.js',
+                                },
+                                'CreateLinks': ConfirmationCreateBlankReadLink(context),
+                                'Headers': {
+                                    'OfflineOData.TransactionID': confirmationNum,
+                                },
+                            }
+                        });
                     });
                 }
                 return true;
