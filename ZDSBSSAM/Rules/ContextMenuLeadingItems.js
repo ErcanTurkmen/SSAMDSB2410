@@ -83,8 +83,9 @@ export default function ContextMenuLeadingItems(context) {
 
     let operationMenuItems = async function (navLinkName) {
         const statusItems = await operationMobileStatusMenuItems();
+        const isAnythingStarted = await libOPMobile.isAnyOperationStarted(context);
 
-        if (!libCom.isDefined(statusItems)) {
+        if (!libCom.isDefined(statusItems) && !isAnythingStarted) {
             const mobileStatus = context.binding?.[navLinkName]?.MobileStatus;
             //Start of DSB customization for swipe menu
             let fieldKey = context.binding.FieldKey;
