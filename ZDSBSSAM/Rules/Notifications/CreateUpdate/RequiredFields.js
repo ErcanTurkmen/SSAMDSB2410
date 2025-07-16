@@ -53,10 +53,16 @@ export default function RequiredFields(context) {
     else {
         /**** DSB   Customisation to validate cause  ***/
         if (notifObject.typeLstPkr === '30' || notifObject.typeLstPkr === '70' || notifObject.typeLstPkr === '71' || notifObject.typeLstPkr === '72') {
-
-            if (!notifObject.causeDescription || (!notifObject.causeGroup && !notifObject.causeCode)) {
-                required.push('CauseDescription', 'CauseGroupLstPkr', 'CodeLstPkr');
+            if (CommonLib.isDefined(notifObject.causeDescription))
+            {
+                if(!CommonLib.isDefined(notifObject.causeGroup) || !CommonLib.isDefined(notifObject.causeCode))
+                {
+                    required.push('CauseGroupLstPkr', 'CodeLstPkr');
+                }
             }
+            // if (!notifObject.causeDescription || (!notifObject.causeGroup && !notifObject.causeCode)) {
+            //     required.push('CauseDescription', 'CauseGroupLstPkr', 'CodeLstPkr');
+            // }
             /**** DSB   Customisation end  ***/
         }
     }

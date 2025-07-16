@@ -3,15 +3,19 @@ import libCom from '../../../../../SAPAssetManager/Rules/Common/Library/CommonLi
 import EnableMultipleTechnician from '../../../../../SAPAssetManager/Rules/SideDrawer/EnableMultipleTechnician';
 import ModifyListViewSearchCriteria from '../../../../../SAPAssetManager/Rules/LCNC/ModifyListViewSearchCriteria';
 
+
 export default function ZPRTEquipmentLstPkrQueryOptions(context) {
     try {
         let newFilterOpts = [];
+        let userMainternancePlant = libCom.getUserDefaultMainternancePlant();
         let equipID = context.getPageProxy().evaluateTargetPath('#Control:EquipmentNumber').getValue();
         let equipDesc = context.getPageProxy().evaluateTargetPath('#Control:EquipmentDescription').getValue();
         let equipmentLstPkrQueryOptions = context.dataQueryBuilder();
         equipmentLstPkrQueryOptions.expand('SerialNumber');
         equipmentLstPkrQueryOptions.orderBy('EquipId');
         newFilterOpts.push(`PRTFlag eq 'X'`);
+        newFilterOpts.push(`EquipCategory eq 'P'`);
+        newFilterOpts.push(`MaintPlant eq '${userMainternancePlant}'`);
         if (!context.searchString) {
             if (equipID) {
                 newFilterOpts.push(`EquipId eq '${equipID}'`);
@@ -34,8 +38,9 @@ export default function ZPRTEquipmentLstPkrQueryOptions(context) {
     }
     catch (exc) {
     // If page is first loaded, attempts to get controls will fail
-    return `$filter=PRTFlag eq 'X'&$orderby=EquipId&$expand=SerialNumber`;
-}
+    let userMainternancePlant = libCom.getUserDefaultMainternancePlant();
+    return `$filter=PRTFlag eq 'X' and EquipCategory eq 'P' and MaintPlant eq` + `'${userMainternancePlant}'&$orderby=EquipId&$expand=SerialNumber`;
+    }
 }
 
 function getSearchQuery(context, searchString) {

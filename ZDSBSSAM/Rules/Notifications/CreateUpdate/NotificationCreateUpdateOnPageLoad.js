@@ -63,14 +63,14 @@ export default async function NotificationCreateUpdateOnPageLoad(context) {
             }
         } else {
             caption = context.localizeText('edit_notification');
-            container.getControl('ZPriorityDisclaimer').setVisible(true);
-
             if (!common.isCurrentReadLinkLocal(binding['@odata.readLink'])) {
                 container.getControl('TypeLstPkr').setEditable(false);
+                container.getControl('ZPriorityDisclaimer').setVisible(true);
             }
             ///Notification type can't be edit on local notifications
             if (common.isCurrentReadLinkLocal(binding['@odata.readLink'])) {
                 container.getControl('TypeLstPkr').setEditable(false);
+                container.getControl('ZPriorityDisclaimer').setVisible(false);
             }
             let stylizer = new Stylizer(['GrayText']);
             let typePkr = formCellContainer.getControl('TypeLstPkr');
