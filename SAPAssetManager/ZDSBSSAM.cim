@@ -377,6 +377,14 @@
 		{
 			"Source": "/ZDSBSSAM/Rules/MobileStatus/CompleteMobileStatusAction.js",
 			"Target": "/SAPAssetManager/Rules/MobileStatus/CompleteMobileStatusAction.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Notifications/Details/NotificationDetailsHeaderFormat.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsHeaderFormat.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Notifications/NotificationsListViewQueryOption.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/NotificationsListViewQueryOption.js"
 		}
 	],
 	"ComponentVersion": "1.0"
