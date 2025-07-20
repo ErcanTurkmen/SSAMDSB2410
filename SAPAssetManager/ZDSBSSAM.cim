@@ -243,10 +243,6 @@
 			"Target": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationLibrary.js"
 		},
 		{
-			"Source": "/ZDSBSSAM/Rules/OnlineSearch/WorkOrders/AccessoryButtonIcon.js",
-			"Target": "/SAPAssetManager/Rules/OnlineSearch/WorkOrders/AccessoryButtonIcon.js"
-		},
-		{
 			"Source": "/ZDSBSSAM/Rules/MobileStatus/MobileStatusLibrary.js",
 			"Target": "/SAPAssetManager/Rules/MobileStatus/MobileStatusLibrary.js"
 		},
@@ -277,10 +273,6 @@
 		{
 			"Source": "/ZDSBSSAM/Rules//Operations/WorkOrderOperationQABSettings.js",
 			"Target": "/SAPAssetManager/Rules//Operations/WorkOrderOperationQABSettings.js"
-		},
-		{
-			"Source": "/ZDSBSSAM/Rules/OnlineSearch/Download/DownloadToDevice.js",
-			"Target": "/SAPAssetManager/Rules/OnlineSearch/Download/DownloadToDevice.js"
 		},
 		{
 			"Source": "/ZDSBSSAM/Rules/Operations/OperationsListViewIconImages.js",
@@ -385,6 +377,10 @@
 		{
 			"Source": "/ZDSBSSAM/Rules/Notifications/NotificationsListViewQueryOption.js",
 			"Target": "/SAPAssetManager/Rules/Notifications/NotificationsListViewQueryOption.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/OverviewPage/MyWorkSection/ObjectCardOrderButtonVisible.js",
+			"Target": "/SAPAssetManager/Rules/OverviewPage/MyWorkSection/ObjectCardOrderButtonVisible.js"
 		}
 	],
 	"ComponentVersion": "1.0"

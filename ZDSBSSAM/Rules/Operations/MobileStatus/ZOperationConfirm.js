@@ -16,7 +16,7 @@ export default function ZOperationConfirm(context) {
     let pageContext = '';
     let pageObject = ''
     if (context.constructor.name === 'SectionedTableProxy') {
-        binding = context.getPageProxy().getExecutedContextMenuItem().getBinding(); 
+        binding = context.getPageProxy().getActionBinding() || context.getPageProxy().getExecutedContextMenuItem().getBinding();
         libCom.setStateVariable(context, 'contextMenuSwipePage', libCom.getPageName(context));
         libCom.setStateVariable(context, 'BINDINGOBJECT', binding);
         pageContext = libMobile.getPageContext(context, libCom.getPageName(context));
