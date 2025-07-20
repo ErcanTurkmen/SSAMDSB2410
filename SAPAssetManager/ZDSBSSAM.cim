@@ -381,7 +381,11 @@
 		{
 			"Source": "/ZDSBSSAM/Rules/OverviewPage/MyWorkSection/ObjectCardOrderButtonVisible.js",
 			"Target": "/SAPAssetManager/Rules/OverviewPage/MyWorkSection/ObjectCardOrderButtonVisible.js"
-		}
+		},
+		{
+            "Source": "/ZDSBSSAM/Rules/OnlineSearch/WorkOrders/AccessoryButtonIcon.js",
+            "Target": "/SAPAssetManager/Rules/OnlineSearch/WorkOrders/AccessoryButtonIcon.js"
+        }
 	],
 	"ComponentVersion": "1.0"
 }
