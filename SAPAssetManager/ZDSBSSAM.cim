@@ -385,6 +385,10 @@
 		{
             "Source": "/ZDSBSSAM/Rules/OnlineSearch/WorkOrders/AccessoryButtonIcon.js",
             "Target": "/SAPAssetManager/Rules/OnlineSearch/WorkOrders/AccessoryButtonIcon.js"
+        },
+		{
+            "Source": "/ZDSBSSAM/Rules/OnlineSearch/Download/DownloadToDevice.js",
+            "Target": "/SAPAssetManager/Rules/OnlineSearch/Download/DownloadToDevice.js"
         }
 	],
 	"ComponentVersion": "1.0"
