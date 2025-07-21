@@ -453,17 +453,19 @@ export class WorkOrderLibrary {
                 let filter = '';
 
                 switch (assignmentType) {
-                    case '1':
-                        filter = `((WOPartners/any(partner:partner/PartnerFunction eq 'VW' and (partner/PersonnelNum eq '${libCommon.getPersonnelNumber()}' or partner/Partner eq '${libCommon.getPersonnelNumber()}'))) or sap.islocal())`;
-                        break;
+                    // case '1':
+                    //     filter = `((WOPartners/any(partner:partner/PartnerFunction eq 'VW' and (partner/PersonnelNum eq '${libCommon.getPersonnelNumber()}' or partner/Partner eq '${libCommon.getPersonnelNumber()}'))) or sap.islocal())`;
+                    //     break;
                     case '5':
                         filter = `PlannerGroup eq '${libCommon.getDefaultUserParam('USER_PARAM.IHG')}'`;
                         break;
                     case '7':
                         filter = `(WOPartners/any(partner:partner/PartnerFunction eq 'VU' and partner/Partner eq '${libCommon.getSapUserName(context)}') or sap.islocal())`;
                         break;
+                    case '1':
                     case '8':
-                        filter = `MainWorkCenter eq '${assnType.getWorkOrderFieldDefault('WorkOrderHeader', 'MainWorkCenter')}'`;
+                        filter = `MainWorkCenter eq '${libCommon.getDefaultUserParam('USER_PARAM.AGR')}'`;
+                        //filter = `MainWorkCenter eq '${assnType.getWorkOrderFieldDefault('WorkOrderHeader', 'MainWorkCenter')}'`;
                         break;
                 }
 
