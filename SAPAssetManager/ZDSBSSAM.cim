@@ -387,6 +387,10 @@
             "Target": "/SAPAssetManager/Rules/OnlineSearch/WorkOrders/AccessoryButtonIcon.js"
         },
 		{
+			"Source": "/ZDSBSSAM/Pages/Fragments/WorkOrder/WorkOrderDetails/ActionBarItems.fragment",
+			"Target": "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderDetails/ActionBarItems.fragment"
+		},
+		{
             "Source": "/ZDSBSSAM/Rules/OnlineSearch/Download/DownloadToDevice.js",
             "Target": "/SAPAssetManager/Rules/OnlineSearch/Download/DownloadToDevice.js"
         }
