@@ -14,6 +14,7 @@ import libOPMobile from './OperationMobileStatusLibrary';
 //DSB customisation - to capture 0 time confirmation
 export default function ZOperationComplete(context) {
     let pageContext = context;
+    let binding = '';
     if (typeof context.setToolbarItemCaption !== 'function') {
         pageContext = context.getPageProxy();
     }
@@ -21,8 +22,12 @@ export default function ZOperationComplete(context) {
     let parent = this;
     let promises = [];
     //const pageBinding = pageContext.getBindingObject();
-    let binding = libCommon.getBindingObject(context);
-
+    if (context.constructor.name === 'SectionedTableProxy') {
+        binding = context.getPageProxy().getActionBinding();
+    }
+    else {
+        binding = libCommon.getBindingObject(context);
+    }
     return ZCheckOperationNotificationCompletion(context).then(results => { //Check for non-complete notif
         if (results === true) {
             const equipment = binding.OperationEquipment;
@@ -33,7 +38,7 @@ export default function ZOperationComplete(context) {
                         doMarkComplete => {
                             if (!doMarkComplete) {
                                 // User elected not to mark this operation as complete
-                                return '';
+                                return Promise.resolve(true);
                             }
                             if (libMobile.isOperationStatusChangeable(context)) {
                                 promises.push(isSignatureControlEnabled(context));
@@ -89,7 +94,7 @@ export default function ZOperationComplete(context) {
                                                 return libClock.reloadUserTimeEntries(context).then(() => {
                                                     return libOPMobile.didSetOperationCompleteWrapper(pageContext).then(() => {
                                                         return context.executeAction('/SAPAssetManager/Actions/Confirmations/ConfirmationCreateBlank.action').then(results => {
-                                                            if (typeof context.setToolbarItemCaption === 'function') {
+                                                            if (context.getType() === 'FioriToolbarItem.Type.Button') {
                                                                 return context.executeAction('/SAPAssetManager/Actions/Page/ClosePage.action').then(() => {
                                                                     return libAutoSync.autoSyncOnStatusChange(context);
                                                                 });
@@ -126,14 +131,14 @@ function ZCheckOperationNotificationCompletion(context) {
     // if notificaiton is completed
     // Else - show the message and navigate to notif details screen
     let operBinding = libCommon.getBindingObject(context);
-  
+
     if (operBinding.NotifNum) {
         let readLink = operBinding['@odata.readLink'] + '/NotifHeader_Nav';
         return context.read('/SAPAssetManager/Services/AssetManager.service', readLink, [], '$expand=NotifMobileStatus_Nav').then(results => {
             if (results && results.length > 0) {
                 let notif = results.getItem(0);
                 let complete = libCommon.getAppParam(context, 'MOBILESTATUS', context.getGlobalDefinition('/SAPAssetManager/Globals/MobileStatus/ParameterNames/CompleteParameterName.global').getValue());
-                if (notif.NotifMobileStatus_Nav.MobileStatus !== complete ) {  
+                if (notif.NotifMobileStatus_Nav.MobileStatus !== complete) {
                     context.getPageProxy().setActionBinding(notif);
                     return context.executeAction('/ZDSBSSAM/Actions/Notifications/MobileStatus/NotificationCompletePendingError.action').then(() => {
                         context.dismissActivityIndicator();
@@ -147,11 +152,10 @@ function ZCheckOperationNotificationCompletion(context) {
             return Promise.resolve(true);
         });
     }
-    else
-    {
+    else {
         return Promise.resolve(true);
     }
-    
+
 }
 
 function showOperationCompleteWarningMessage(context, mobileStatus) {

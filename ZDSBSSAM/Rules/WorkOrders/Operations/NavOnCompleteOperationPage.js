@@ -4,6 +4,7 @@ import libCommon from '../../../../SAPAssetManager/Rules/Common/Library/CommonLi
 import { ChecklistLibrary as libChecklist } from '../../../../SAPAssetManager/Rules/Checklists/ChecklistLibrary';
 import SmartFormsCompletionLibrary from '../../../../SAPAssetManager/Rules/Forms/SmartFormsCompletionLibrary';
 import FinalizeCompletePageMessage from '../../../../SAPAssetManager/Rules/WorkOrders/Complete/FinalizeCompletePageMessage';
+import ZOperationComplete from '../../Operations/MobileStatus/ZOperationComplete';
 
 
 export default function NavOnCompleteOperationPage(context, actionBinding) {
@@ -28,38 +29,38 @@ export default function NavOnCompleteOperationPage(context, actionBinding) {
                     WorkOrderCompletionLibrary.getInstance().setCompletionFlow('operation');
                     await WorkOrderCompletionLibrary.getInstance().initSteps(context);
                     WorkOrderCompletionLibrary.getInstance().setBinding(context, binding);
-                    //await ZOperationComplete(context);
+                    await ZOperationComplete(context);
                     ///**  Start of DSB customization to handle operation completion
-                    return IsWONotificationVisible(context, binding.WOHeader, 'Notification').then((notification) => {
-                        if (notification) {
-                            WorkOrderCompletionLibrary.updateStepState(context, 'notification', {
-                                visible: true,
-                                data: JSON.stringify(notification),
-                                link: notification['@odata.editLink'],
-                                initialData: JSON.stringify(notification),
-                            });
-                        } else {
-                            WorkOrderCompletionLibrary.updateStepState(context, 'notification', {
-                                visible: false,
-                            });
-                        }
+                    // return IsWONotificationVisible(context, binding.WOHeader, 'Notification').then((notification) => {
+                    //     if (notification) {
+                    //         WorkOrderCompletionLibrary.updateStepState(context, 'notification', {
+                    //             visible: true,
+                    //             data: JSON.stringify(notification),
+                    //             link: notification['@odata.editLink'],
+                    //             initialData: JSON.stringify(notification),
+                    //         });
+                    //     } else {
+                    //         WorkOrderCompletionLibrary.updateStepState(context, 'notification', {
+                    //             visible: false,
+                    //         });
+                    //     }
 
-                        return SmartFormsCompletionLibrary.updateSmartformStep(context).then(() => {
-                            WorkOrderCompletionLibrary.getInstance().setCompleteFlag(context, true);
-                            let title = `${context.localizeText('completion_operation_title')}`;
-                            let message = `${binding.OperationShortText} (${binding.OperationNo})`;
-                            return showMessageDialog(context, title, message).then(
-                                doMarkComplete => {
-                                    if (doMarkComplete) {
-                                        FinalizeCompletePageMessage(context);
-                                    }
-                                    else {
-                                        return Promise.resolve(true);
-                                    }
-                                });
-                            //return WorkOrderCompletionLibrary.getInstance().openMainPage(context, false);
-                        });
-                    });
+                    //     return SmartFormsCompletionLibrary.updateSmartformStep(context).then(() => {
+                    //         WorkOrderCompletionLibrary.getInstance().setCompleteFlag(context, true);
+                    //         let title = `${context.localizeText('completion_operation_title')}`;
+                    //         let message = `${binding.OperationShortText} (${binding.OperationNo})`;
+                    //         return showMessageDialog(context, title, message).then(
+                    //             doMarkComplete => {
+                    //                 if (doMarkComplete) {
+                    //                     FinalizeCompletePageMessage(context);
+                    //                 }
+                    //                 else {
+                    //                     return Promise.resolve(true);
+                    //                 }
+                    //             });
+                    //         //return WorkOrderCompletionLibrary.getInstance().openMainPage(context, false);
+                    //     });
+                    // });
 
                     //End of DSB customization to handle operation completion */
                 }
