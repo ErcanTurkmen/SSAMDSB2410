@@ -28,6 +28,7 @@ export default function ZOperationComplete(context) {
     else {
         binding = libCommon.getBindingObject(context);
     }
+    libCommon.setStateVariable(context, 'BINDINGOBJECT', binding);
     return ZCheckOperationNotificationCompletion(context).then(results => { //Check for non-complete notif
         if (results === true) {
             const equipment = binding.OperationEquipment;
@@ -93,6 +94,7 @@ export default function ZOperationComplete(context) {
                                             if (result) {
                                                 return libClock.reloadUserTimeEntries(context).then(() => {
                                                     return libOPMobile.didSetOperationCompleteWrapper(pageContext).then(() => {
+                                                        let abc = libCommon.getStateVariable(context, 'BINDINGOBJECT');
                                                         return context.executeAction('/SAPAssetManager/Actions/Confirmations/ConfirmationCreateBlank.action').then(results => {
                                                             if (context.getType() === 'FioriToolbarItem.Type.Button') {
                                                                 return context.executeAction('/SAPAssetManager/Actions/Page/ClosePage.action').then(() => {
