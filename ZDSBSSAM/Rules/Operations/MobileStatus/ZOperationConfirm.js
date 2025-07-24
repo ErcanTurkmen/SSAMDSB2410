@@ -29,7 +29,7 @@ export default function ZOperationConfirm(context) {
     }
     pageObject = libCom.getStateVariable(context, 'BINDINGOBJECT');
     return libMobile.showWarningMessage(context, context.localizeText('complete_operation_warning_message')).then(bool => {
-        if (bool) {
+    if (bool) {
             //libCom.enableToolBar(context, 'WorkOrderOperationDetailsPage', 'Confirm', false);
             //return context.executeAction('/SAPAssetManagerCustomisation/Actions/Workorder/Operations/ZOperationUpdate.action').then (results =>{
             //if(results)
@@ -64,9 +64,7 @@ export default function ZOperationConfirm(context) {
                     return context.executeAction('/SAPAssetManager/Actions/WorkOrders/MobileStatus/OperationMobileStatusSuccessMessage.action').then(results => {
                         return context.executeAction('/SAPAssetManager/Actions/Confirmations/ConfirmationCreateBlank.action').then(results => {
                             ApplicationSettings.setString(context, 'BINDINGOBJECT', '');
-                            if (context.getType() === 'FioriToolbarItem.Type.Button') {
-                                return context.executeAction('/SAPAssetManager/Actions/Page/ClosePage.action');
-                            }
+                            return context.executeAction('/SAPAssetManager/Actions/Page/ClosePage.action');
                             /*.then (() =>{
                             //DSb removed the autosync on plannned orders which we only complete
                              return libAutoSync.autoSyncOnStatusChange(context);
@@ -88,7 +86,7 @@ export default function ZOperationConfirm(context) {
             return Promise.resolve(false);
         }
 
-    });
+   });
 
 
 }
