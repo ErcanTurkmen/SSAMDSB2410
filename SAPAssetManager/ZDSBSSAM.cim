@@ -4,7 +4,7 @@
 	"IntegrationPoints": [
 		{
 			"Source": "/ZDSBSSAM/Pages/WorkOrders/Operations/PRT/PRTEquipmentAddEdit.page",
-			"Target" : "/SAPAssetManager/Pages/WorkOrders/Operations/PRT/PRTEquipmentAddEdit.page"
+			"Target": "/SAPAssetManager/Pages/WorkOrders/Operations/PRT/PRTEquipmentAddEdit.page"
 		},
 		{
 			"Source": "/ZDSBSSAM/i18n/i18n_da.properties",
@@ -206,18 +206,18 @@
 			"Source": "/ZDSBSSAM/Actions/Confirmations/ConfirmationCreateBlank.action",
 			"Target": "/SAPAssetManager/Actions/Confirmations/ConfirmationCreateBlank.action"
 		},
-        {
-            "Source": "/ZDSBSSAM/Rules/WorkOrders/ListView/WorkOrdersListViewQueryOption.js",
-            "Target": "/SAPAssetManager/Rules/WorkOrders/ListView/WorkOrdersListViewQueryOption.js"
-        },
 		{
-            "Source": "/ZDSBSSAM/Rules/WorkOrders/Operations/CreateUpdate/WorkOrderOperationCreateUpdateDefault.js",
-            "Target": "/SAPAssetManager/Rules/WorkOrders/Operations/CreateUpdate/WorkOrderOperationCreateUpdateDefault.js"
-        },
+			"Source": "/ZDSBSSAM/Rules/WorkOrders/ListView/WorkOrdersListViewQueryOption.js",
+			"Target": "/SAPAssetManager/Rules/WorkOrders/ListView/WorkOrdersListViewQueryOption.js"
+		},
 		{
-            "Source": "/ZDSBSSAM/Rules/WorkOrders/WorkOrderLibrary.js",
-            "Target": "/SAPAssetManager/Rules/WorkOrders/WorkOrderLibrary.js"
-        },
+			"Source": "/ZDSBSSAM/Rules/WorkOrders/Operations/CreateUpdate/WorkOrderOperationCreateUpdateDefault.js",
+			"Target": "/SAPAssetManager/Rules/WorkOrders/Operations/CreateUpdate/WorkOrderOperationCreateUpdateDefault.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/WorkOrders/WorkOrderLibrary.js",
+			"Target": "/SAPAssetManager/Rules/WorkOrders/WorkOrderLibrary.js"
+		},
 		{
 			"Source": "/ZDSBSSAM/Pages/WorkOrders/WorkOrdersListView.page",
 			"Target": "/SAPAssetManager/Pages/WorkOrders/WorkOrdersListView.page"
@@ -383,12 +383,16 @@
 			"Target": "/SAPAssetManager/Rules/OverviewPage/MyWorkSection/ObjectCardOrderButtonVisible.js"
 		},
 		{
-            "Source": "/ZDSBSSAM/Rules/OnlineSearch/WorkOrders/AccessoryButtonIcon.js",
-            "Target": "/SAPAssetManager/Rules/OnlineSearch/WorkOrders/AccessoryButtonIcon.js"
-        },
+			"Source": "/ZDSBSSAM/Rules/OnlineSearch/WorkOrders/AccessoryButtonIcon.js",
+			"Target": "/SAPAssetManager/Rules/OnlineSearch/WorkOrders/AccessoryButtonIcon.js"
+		},
 		{
 			"Source": "/ZDSBSSAM/Pages/Fragments/WorkOrder/WorkOrderDetails/ActionBarItems.fragment",
 			"Target": "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderDetails/ActionBarItems.fragment"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/OverviewPage/MyWorkSection/ObjectCardNotificationButtonVisible.js",
+			"Target": "/SAPAssetManager/Rules/OverviewPage/MyWorkSection/ObjectCardNotificationButtonVisible.js"
 		}
 	],
 	"ComponentVersion": "1.0"
