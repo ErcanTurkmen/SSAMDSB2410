@@ -24,5 +24,9 @@
     "Headers": {
         "OfflineOData.RemoveAfterUpload": "true"
     },
-    "CreateLinks": "/SAPAssetManager/Rules/Confirmations/BlankFinal/ConfirmationCreateBlankReadLink.js"
+    "ActionResult": {
+        "_Name": "confirmationissue"
+    },
+    "CreateLinks": "/SAPAssetManager/Rules/Confirmations/BlankFinal/ConfirmationCreateBlankReadLink.js",
+    "OnFailure": "/SAPAssetManager/Rules/ZConfirmationFailure.js"
 }
