@@ -13,23 +13,26 @@ const workOrderOperationDetailsPage = 'WorkOrderOperationDetailsPage';
 // enhanced to capture operation status to complete as it now needs to be shown on the list screen
 export default function ZOperationConfirm(context) {
     let binding = '';
-    let pageContext = '';
-    let pageObject = ''
+    let pageName = libCom.getPageName(context);
+    let pageContext = libMobile.getPageContext(context, libCom.getPageName(context));
     if (context.constructor.name === 'SectionedTableProxy') {
         binding = context.getPageProxy().getActionBinding() || context.getPageProxy().getExecutedContextMenuItem().getBinding();
-        libCom.setStateVariable(context, 'contextMenuSwipePage', libCom.getPageName(context));
-        libCom.setStateVariable(context, 'BINDINGOBJECT', binding);
-        pageContext = libMobile.getPageContext(context, libCom.getPageName(context));
-        ApplicationSettings.setString(context, 'BINDINGOBJECT', JSON.stringify(binding));
+        libCom.setStateVariable(pageContext, 'contextMenuSwipePage', pageName);
+        libCom.setStateVariable(pageContext, 'BINDINGOBJECT', binding);
+        ApplicationSettings.setString(pageContext, 'BINDINGOBJECT', JSON.stringify(binding));
         libCom.setStateVariable(context, 'ZMenuSwipeContext', 'SectionedTableProxy');
     }
     else {
-        pageContext = libMobile.getPageContext(context, libCom.getPageName(context));
         binding = pageContext.getBindingObject();
     }
-    pageObject = libCom.getStateVariable(context, 'BINDINGOBJECT');
+    libCom.setStateVariable(context, 'BINDINGOBJECT', binding);
+    let bindingval = libCom.getStateVariable(pageContext, 'contextMenuSwipePage');
     return libMobile.showWarningMessage(context, context.localizeText('complete_operation_warning_message')).then(bool => {
     if (bool) {
+        if (context.constructor.name === 'SectionedTableProxy') {
+            pageName = libCom.getPageName(context);
+            libCom.setStateVariable(pageContext, 'contextMenuSwipePage', pageName);
+        }
             //libCom.enableToolBar(context, 'WorkOrderOperationDetailsPage', 'Confirm', false);
             //return context.executeAction('/SAPAssetManagerCustomisation/Actions/Workorder/Operations/ZOperationUpdate.action').then (results =>{
             //if(results)
@@ -54,17 +57,19 @@ export default function ZOperationConfirm(context) {
             return action.execute(pageContext).then((result) => {
                 if (result) {
                     libCom.enableToolBar(context, workOrderOperationDetailsPage, 'Confirm', false);
-                    ApplicationSettings.setString(context, 'BINDINGOBJECT', "");
-                    libCom.setStateVariable(context, 'ZMenuSwipeContext', '');
                     //libMobile.setCompleteStatus(context);
                     let odataDate = new ODataDate();
                     libCom.setStateVariable(context, 'ConfirmationTime', odataDate.toDBTimeString(context));
                     //changed context to page contact for setcompletestatus
                     libMobile.setCompleteStatus(pageContext);
+                    libCom.setStateVariable(context, 'BINDINGOBJECT', binding);
                     return context.executeAction('/SAPAssetManager/Actions/WorkOrders/MobileStatus/OperationMobileStatusSuccessMessage.action').then(results => {
                         return context.executeAction('/SAPAssetManager/Actions/Confirmations/ConfirmationCreateBlank.action').then(results => {
-                            ApplicationSettings.setString(context, 'BINDINGOBJECT', '');
-                            return context.executeAction('/SAPAssetManager/Actions/Page/ClosePage.action');
+                            ApplicationSettings.setString(context, 'BINDINGOBJECT', "");
+                            libCom.removeStateVariable(context, 'contextMenuSwipePage');
+                            if (context.getType() === 'FioriToolbarItem.Type.Button') {
+                                return context.executeAction('/SAPAssetManager/Actions/Page/ClosePage.action');
+                            }
                             /*.then (() =>{
                             //DSb removed the autosync on plannned orders which we only complete
                              return libAutoSync.autoSyncOnStatusChange(context);
