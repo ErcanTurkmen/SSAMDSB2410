@@ -11,11 +11,13 @@ export default function WorkOrderOperationNotificationCreateNav(context) {
         binding = context.getPageProxy().getExecutedContextMenuItem().getBinding();
     }
     //set the follow up flag
-    libNotif.setAddFromOperationFlag(context, true);
+   // libNotif.setAddFromOperationFlag(context, true);
 
     // DSB customization for setting the Flag for Notification Page Create 
-    libNotif.setZAddFromOperationToNotifFlag(context, true);     //libNotif.setZAddFromOperationToNotifFlag(context,false);
-    libCommon.setStateVariable(context, 'ZNotificationFromOperation', true, 'WorkOrderOperationDetailsPage');
+    //libNotif.setZAddFromOperationToNotifFlag(context, true);     //libNotif.setZAddFromOperationToNotifFlag(context,false);
+    const currentPageName = libCommon.getPageName(context);
+    libCommon.setStateVariable(context, 'ZNotificationFromOperation', true, 'WorkOrderOperationDetailsWithObjectCards');
+    let abc = libCommon.getStateVariable(context, 'ZNotificationFromOperation', 'WorkOrderOperationDetailsWithObjectCards');
 
     let bindingObject = {
         // HeaderEquipment: binding.OperationEquipment,
@@ -114,7 +116,7 @@ export default function WorkOrderOperationNotificationCreateNav(context) {
                                                 }
                                             }).then(() => {
                                                 //DSB customization for auto sync enable after workorder operation create. 
-                                                libNotif.setZAddFromOperationToNotifFlag(context, false);
+                                                libCommon.removeStateVariable(context, 'ZNotificationFromOperation', 'WorkOrderOperationDetailsWithObjectCards')
                                                 return ZCreateEntitySuccessMessageNoClosePageWithAutoSyncWithOutSave(context);
                                             });
                                         }

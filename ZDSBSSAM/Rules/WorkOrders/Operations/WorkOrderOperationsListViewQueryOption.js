@@ -28,7 +28,7 @@ export default function WorkOrderOperationsListViewQueryOption(context) {
                         } else {
                             queryBuilder.expand('WOHeader');
                         }
-                        let expands = 'WOObjectList_Nav,Tools,OperationMobileStatus_Nav/OverallStatusCfg_Nav,OperationLongText,WOHeader,UserTimeEntry_Nav,WOHeader/WOPriority,Employee_Nav,WOOprDocuments_Nav/Document';
+                        let expands = 'WOObjectList_Nav,Tools,OperationMobileStatus_Nav/OverallStatusCfg_Nav,OperationLongText,WOHeader,UserTimeEntry_Nav,WOHeader/WOPriority,Employee_Nav,WOOprDocuments_Nav/Document,NotifHeader_Nav';
                         if (userFeaturesLib.isFeatureEnabled(context, context.getGlobalDefinition('/SAPAssetManager/Globals/Features/QM.global').getValue())) {
                             expands = 'InspectionPoint_Nav,' + expands;
                         }
@@ -48,7 +48,7 @@ export default function WorkOrderOperationsListViewQueryOption(context) {
             filter = getSearchQuery(context, searchString.toLowerCase());
         }
         if (CommonLibrary.isDefined(context.binding) && CommonLibrary.isDefined(context.binding['@odata.type']) && context.binding['@odata.type'] === '#sap_mobile.InspectionLot') {
-            let expand = 'WOHeader/InspectionLot_Nav,WOObjectList_Nav,Tools,OperationMobileStatus_Nav/OverallStatusCfg_Nav,OperationLongText,WOHeader,WOHeader/OrderMobileStatus_Nav,WOHeader/UserTimeEntry_Nav,UserTimeEntry_Nav,WOHeader/WOPriority,Employee_Nav';
+            let expand = 'WOHeader/InspectionLot_Nav,WOObjectList_Nav,Tools,OperationMobileStatus_Nav/OverallStatusCfg_Nav,OperationLongText,WOHeader,WOHeader/OrderMobileStatus_Nav,WOHeader/UserTimeEntry_Nav,UserTimeEntry_Nav,WOHeader/WOPriority,Employee_Nav,NotifHeader_Nav';
             if (userFeaturesLib.isFeatureEnabled(context, context.getGlobalDefinition('/SAPAssetManager/Globals/Features/QM.global').getValue())) {
                 expand = 'InspectionPoint_Nav,' + expand;
             }

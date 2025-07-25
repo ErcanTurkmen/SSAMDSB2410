@@ -154,7 +154,8 @@ export default async function CreateEMPEntries(context, EMPObject, actionResults
 						// DSB customization disable auto sync on save so auto sync on create notification enable    
 						//checking the flag if Notification created from Operation skip the auto sync 
 						// sync will be trigger after notiification added to object list
-						if (!libNotif.getZAddFromOperationToNotifFlag(context)) {
+						if (!common.getStateVariable(context, 'ZNotificationFromOperation', 'WorkOrderOperationDetailsWithObjectCards')) {
+							common.removeStateVariable(context, 'ZNotificationFromOperation', 'WorkOrderOperationDetailsWithObjectCards');
 							common.setStateVariable(context, 'ZOnlineSearch', false);
 							return AutoSyncLib.autoSync(context);
 						}
@@ -173,8 +174,8 @@ export default async function CreateEMPEntries(context, EMPObject, actionResults
 						// DSB customization disable auto sync on save so auto sync on create notification enable    
 						//checking the flag if Notification created from Operation skip the auto sync 
 						// sync will be trigger after notiification added to object list
-
-						if (!libNotif.getZAddFromOperationToNotifFlag(context)) {
+						if (!common.getStateVariable(context, 'ZNotificationFromOperation', 'WorkOrderOperationDetailsWithObjectCards')) {
+							common.removeStateVariable(context, 'ZNotificationFromOperation', 'WorkOrderOperationDetailsWithObjectCards');
 							common.setStateVariable(context, 'ZOnlineSearch', false);
 							return AutoSyncLib.autoSync(context);
 						}
@@ -195,7 +196,8 @@ export default async function CreateEMPEntries(context, EMPObject, actionResults
 				// DSB customization disable auto sync on save so  auto sync on create notification enable     
 				//checking the flag if Notification created from Operation skip the auto sync,
 				// sync will be trigger after notiification added to object list
-				if (!libNotif.getZAddFromOperationToNotifFlag(context)) {
+				if (!common.getStateVariable(context, 'ZNotificationFromOperation', 'WorkOrderOperationDetailsWithObjectCards')) {
+					common.removeStateVariable(context, 'ZNotificationFromOperation', 'WorkOrderOperationDetailsWithObjectCards');
 					common.setStateVariable(context, 'ZOnlineSearch', false);
 					return AutoSyncLib.autoSync(context);
 				}

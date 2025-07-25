@@ -1469,7 +1469,7 @@ export default class {
     // DSB Customization for get the  FLag from opreation to Notification Create Page  
     static getZAddFromOperationToNotifFlag(context) {
         //let result = true;
-        libCom.getStateVariable(context, 'ZNotificationFromOperation', 'WorkOrderOperationDetailsPage');
+        let result = libCom.getStateVariable(context, 'ZNotificationFromOperation', 'WorkOrderOperationDetailsPage');
         if (result) {
             return result;
         } else {

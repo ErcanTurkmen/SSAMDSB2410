@@ -71,7 +71,33 @@
                 },
                 "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderDetails/ActivityObjectSection.fragment",
                 "/SAPAssetManager/Pages/Fragments/WorkOrder/Assets.fragment",
-                "/ZDSBSSAM/Pages/Fragments/WorkOrder/WorkOrderOperations/ZWorkOrderOperationNotification.fragment",
+                {
+                    "EmptySection": {
+                        "Caption": "$(L,no_notifications_available)",
+                        "FooterVisible": false
+                    },
+                    "Header": {
+                        "Caption": "$(L,notification)",
+                            "UseTopPadding": true
+                        },
+                    "ObjectCell": {
+                        "AccessoryType": "disclosureIndicator",
+                        "OnPress": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsNav.js",
+                        "PreserveIconStackSpacing": false,
+                        "StatusText": "/ZDSBSSAM/Rules/WorkOrders/Operations/ZOperationsNotificationStatus.js",
+                        "Subhead": "{NotificationNumber}",
+                        "Title": "{NotificationDescription}"
+                    },
+                    "Target": {
+                        "EntitySet": "{{#Property:@odata.readLink}}/NotifHeader_Nav",
+                        "QueryOptions": "/SAPAssetManager/Rules/Notifications/NotificationsListViewQueryOption.js",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service"
+                    },
+                    "_Type": "Section.Type.ObjectTable",
+                    "_Name": "SectionObjectTable3",
+                    "DataSubscriptions": ["MyNotificationHeaders","PMMobileStatuses"],
+                    "Visible": true
+                },
 				{
 					"_Type": "Section.Type.ObjectCardCollection",
 					"Visible": false,
