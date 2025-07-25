@@ -271,8 +271,8 @@
 			"Target": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsListViewQueryOption.js"
 		},
 		{
-			"Source": "/ZDSBSSAM/Rules//Operations/WorkOrderOperationQABSettings.js",
-			"Target": "/SAPAssetManager/Rules//Operations/WorkOrderOperationQABSettings.js"
+			"Source": "/ZDSBSSAM/Rules/Operations/WorkOrderOperationQABSettings.js",
+			"Target": "/SAPAssetManager/Rules/Operations/WorkOrderOperationQABSettings.js"
 		},
 		{
 			"Source": "/ZDSBSSAM/Rules/Operations/OperationsListViewIconImages.js",

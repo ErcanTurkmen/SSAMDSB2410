@@ -11,6 +11,7 @@ import EnableWorkOrderEdit from '../../../SAPAssetManager/Rules/UserAuthorizatio
 import ConfirmationsIsEnabled from '../../../SAPAssetManager/Rules/Confirmations/ConfirmationsIsEnabled';
 import DocumentAddFromOperationDetails from '../../../SAPAssetManager/Rules//Documents/DocumentAddFromOperationDetails';
 import IsAddConfirmationButtonVisibleOnOperationDetails from '../../../SAPAssetManager/Rules/QAB/IsAddConfirmationButtonVisibleOnOperationDetails';
+import ZCheckOperationNotificationExists from '../WorkOrders/Operations/ZCheckOperationNotificationExists';
 
 export default class WorkOrderOperationQABSettings extends QABSettings {
     async generateChips() {
@@ -22,7 +23,7 @@ export default class WorkOrderOperationQABSettings extends QABSettings {
                 'Label': this._context.localizeText('add_notification'),
                 'IsEnabled': EnableNotificationCreate(this._context) && !IsPhaseModelEnabled(this._context),
                 'IsButtonEnabled': await EnableNotificationCreateFromWorkOrderOperation(this._context),
-                'IsButtonVisible': '/ZDSBSSAM/Rules/WorkOrders/Operations/ZCheckOperationNotificationExists.js',
+                'IsButtonVisible': await ZCheckOperationNotificationExists(this._context),
                 'Action': '/SAPAssetManager/Rules/Operations/WorkOrderOperationNotificationCreateNav.js',
             }),
             await this._addMeterChip(),
