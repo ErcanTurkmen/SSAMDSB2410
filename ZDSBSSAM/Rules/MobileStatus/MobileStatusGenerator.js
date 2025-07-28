@@ -211,10 +211,10 @@ export default class MobileStatusGenerator {
      */
     async _getConfirmStatusOverrideProperties() {
         const currentMobileStatus = this._currentStatus.MobileStatus;
-        const isAnythingStarted = await this._helperClass.isAnythingStarted();
+        //const isAnythingStarted = await this._helperClass.isAnythingStarted();
         let OnlyOption = false, Visible = false;
         const isOperationHeaderLevelAssignment = ['Header', 'Operation'].includes(libCom.getWorkOrderAssnTypeLevel(this._context));
-        if (isOperationHeaderLevelAssignment && !isAnythingStarted && currentMobileStatus !== this._COMPLETED) {
+        if (isOperationHeaderLevelAssignment && currentMobileStatus !== this._COMPLETED) {
             OnlyOption = true;
             Visible = ZOperationConfirmVisible(this._binding);
         }

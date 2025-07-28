@@ -10,11 +10,13 @@ import generateGUID from '../../../../SAPAssetManager/Rules/Common/guid';
 import libAutoSync from '../../../../SAPAssetManager/Rules/ApplicationEvents/AutoSync/AutoSyncLibrary';
 import libSuper from '../../../../SAPAssetManager/Rules/Supervisor/SupervisorLibrary';
 import libOPMobile from './OperationMobileStatusLibrary';
+import NotificationDetailsNav from '../../../../SAPAssetManager/Rules/Notifications/Details/NotificationDetailsNav';
 
 //DSB customisation - to capture 0 time confirmation
 export default function ZOperationComplete(context) {
     let pageContext = context;
     let binding = '';
+    let pageName = libCommon.getPageName(context);
     if (typeof context.setToolbarItemCaption !== 'function') {
         pageContext = context.getPageProxy();
     }
@@ -24,10 +26,12 @@ export default function ZOperationComplete(context) {
     //const pageBinding = pageContext.getBindingObject();
     if (context.constructor.name === 'SectionedTableProxy') {
         binding = context.getPageProxy().getActionBinding();
+        libCommon.setStateVariable(context.getPageProxy(), 'contextMenuSwipePage', pageName);
     }
     else {
         binding = libCommon.getBindingObject(context);
     }
+    libCommon.setStateVariable(context, 'BINDINGOBJECT', binding);
     return ZCheckOperationNotificationCompletion(context).then(results => { //Check for non-complete notif
         if (results === true) {
             const equipment = binding.OperationEquipment;
@@ -42,6 +46,10 @@ export default function ZOperationComplete(context) {
                             }
                             if (libMobile.isOperationStatusChangeable(context)) {
                                 promises.push(isSignatureControlEnabled(context));
+                            }
+                            if (context.constructor.name === 'SectionedTableProxy') {
+                                pageName = libCommon.getPageName(context);
+                                libCommon.setStateVariable(context.getPageProxy(), 'contextMenuSwipePage', pageName);
                             }
                             return Promise.all(promises).then(() => {
                                 let actionArgs = {
@@ -93,7 +101,9 @@ export default function ZOperationComplete(context) {
                                             if (result) {
                                                 return libClock.reloadUserTimeEntries(context).then(() => {
                                                     return libOPMobile.didSetOperationCompleteWrapper(pageContext).then(() => {
+                                                        let abc = libCommon.getStateVariable(context, 'BINDINGOBJECT');
                                                         return context.executeAction('/SAPAssetManager/Actions/Confirmations/ConfirmationCreateBlank.action').then(results => {
+                                                            libCommon.removeStateVariable(context, 'contextMenuSwipePage');
                                                             if (context.getType() === 'FioriToolbarItem.Type.Button') {
                                                                 return context.executeAction('/SAPAssetManager/Actions/Page/ClosePage.action').then(() => {
                                                                     return libAutoSync.autoSyncOnStatusChange(context);
@@ -140,12 +150,16 @@ function ZCheckOperationNotificationCompletion(context) {
                 let complete = libCommon.getAppParam(context, 'MOBILESTATUS', context.getGlobalDefinition('/SAPAssetManager/Globals/MobileStatus/ParameterNames/CompleteParameterName.global').getValue());
                 if (notif.NotifMobileStatus_Nav.MobileStatus !== complete) {
                     context.getPageProxy().setActionBinding(notif);
-                    return context.executeAction('/ZDSBSSAM/Actions/Notifications/MobileStatus/NotificationCompletePendingError.action').then(() => {
+                    return context.executeAction('/ZDSBSSAM/Actions/Notifications/MobileStatus/NotificationCompletePendingError.action').then(async() => {
                         context.dismissActivityIndicator();
-                        return context.executeAction('/SAPAssetManager/Actions/Notifications/NotificationDetailsNav.action').then(() => {
-                            context.getPageProxy().setActionBinding(operBinding);
-                            return Promise.resolve();
-                        });
+                        await NotificationDetailsNav(context, false).then(() => {
+                                context.getPageProxy().setActionBinding(operBinding);
+                                return Promise.resolve();
+                            });
+                        // return context.executeAction('/SAPAssetManager/Actions/Notifications/NotificationDetailsNav.action').then(() => {
+                        //     context.getPageProxy().setActionBinding(operBinding);
+                        //     return Promise.resolve();
+                        // });
                     });
                 }
             }
