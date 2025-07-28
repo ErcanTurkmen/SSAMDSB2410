@@ -1,2 +1,0 @@
-Pass:
-Generated bundle file /home/user/projects/SSAMDSB2410/SAPAssetManager/.build/SAPAssetManager/.build/uploadBundle.zip

@@ -393,6 +393,26 @@
 		{
 			"Source": "/ZDSBSSAM/Rules/OverviewPage/MyWorkSection/ObjectCardNotificationButtonVisible.js",
 			"Target": "/SAPAssetManager/Rules/OverviewPage/MyWorkSection/ObjectCardNotificationButtonVisible.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/UserAuthorizations/Notifications/EnableNotificationCreateFromWorkOrderOperation.js",
+			"Target": "/SAPAssetManager/Rules/UserAuthorizations/Notifications/EnableNotificationCreateFromWorkOrderOperation.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/Fragments/Notification/Details/SoldToPartySection.fragment",
+			"Target": "/SAPAssetManager/Pages/Fragments/Notification/Details/SoldToPartySection.fragment"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/Fragments/Notification/Details/BusinessPartnersSection.fragment",
+			"Target": "/SAPAssetManager/Pages/Fragments/Notification/Details/BusinessPartnersSection.fragment"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/Fragments/Notification/Details/ServiceOrderDetailsSection.fragment",
+			"Target": "/SAPAssetManager/Pages/Fragments/Notification/Details/ServiceOrderDetailsSection.fragment"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/UserAuthorizations/Notifications/EnableNotificationCreateFromWorkOrder.js",
+			"Target": "/SAPAssetManager/Rules/UserAuthorizations/Notifications/EnableNotificationCreateFromWorkOrder.js"
 		}
 	],
 	"ComponentVersion": "1.0"
