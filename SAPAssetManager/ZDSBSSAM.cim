@@ -393,7 +393,11 @@
 		{
             "Source": "/ZDSBSSAM/Rules/OnlineSearch/Download/DownloadToDevice.js",
             "Target": "/SAPAssetManager/Rules/OnlineSearch/Download/DownloadToDevice.js"
-        }
+        },
+		{
+			"Source": "/ZDSBSSAM/Pages/WorkOrders/WorkOrderDetailsWithObjectCards.page",
+			"Target": "/SAPAssetManager/Pages/WorkOrders/WorkOrderDetailsWithObjectCards.page"
+		}
 	],
 	"ComponentVersion": "1.0"
 }
