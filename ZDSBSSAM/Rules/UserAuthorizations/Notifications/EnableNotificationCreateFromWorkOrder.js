@@ -1,5 +1,3 @@
-import EnableNotificationCreate from './EnableNotificationCreate';
-import EnableWorkOrderEdit from '../WorkOrders/EnableWorkOrderEdit';
 
 export default function EnableNotificationCreateFromWorkOrder(clientAPI) {
 
