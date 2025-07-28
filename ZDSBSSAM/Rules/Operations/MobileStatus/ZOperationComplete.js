@@ -16,7 +16,7 @@ import NotificationDetailsNav from '../../../../SAPAssetManager/Rules/Notificati
 export default function ZOperationComplete(context) {
     let pageContext = context;
     let binding = '';
-    let pageName = '';
+    let pageName = libCommon.getPageName(context);
     if (typeof context.setToolbarItemCaption !== 'function') {
         pageContext = context.getPageProxy();
     }
@@ -26,6 +26,7 @@ export default function ZOperationComplete(context) {
     //const pageBinding = pageContext.getBindingObject();
     if (context.constructor.name === 'SectionedTableProxy') {
         binding = context.getPageProxy().getActionBinding();
+        libCommon.setStateVariable(context.getPageProxy(), 'contextMenuSwipePage', pageName);
     }
     else {
         binding = libCommon.getBindingObject(context);
