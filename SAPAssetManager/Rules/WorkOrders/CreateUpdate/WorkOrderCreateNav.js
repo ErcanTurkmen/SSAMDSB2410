@@ -58,6 +58,13 @@ export default function WorkOrderCreateNav(clientAPI) {
                 if (binding.WorkCenter_Main_Nav && binding.WorkCenter_Main_Nav.ExternalWorkCenterId) {
                     libCommon.setStateVariable(clientAPI, 'WODefaultMainWorkCenter', binding.WorkCenter_Main_Nav.ExternalWorkCenterId);
                 }
+            } else if (binding['@odata.type'] === '#sap_mobile.FunctionalLocation') { // online use case
+                actionBinding.HeaderFunctionLocation = binding.FuncLocId;
+                actionBinding.HeaderFunctionLocationDesc = binding.FuncLocDesc;
+                actionBinding.OnlineFloc = true;
+                if (binding.PlanningPlant) { //Save defaults for planning plant
+                    libCommon.setStateVariable(clientAPI, 'WODefaultPlanningPlant', binding.PlanningPlant);
+                }
             } else if (binding['@odata.type'] === '#sap_mobile.MyEquipment') {
                 actionBinding.HeaderEquipment = binding.EquipId;
                 actionBinding.HeaderFunctionLocation = binding.FuncLocIdIntern || binding.FunctionalLocation?.FuncLocIdIntern;

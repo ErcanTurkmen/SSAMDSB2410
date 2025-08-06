@@ -342,9 +342,9 @@ export default class {
 
         // We are not assigning EntitySet for Equipment and Functional Location to save the performance of this function. 
         //If the functional location or equipment is not selected, then we are returning the promise to avoid unnecessary reading
+        let service = '/SAPAssetManager/Services/AssetManager.service';
         let equipEntitySet = '';
         let flocEntitySet = '';
-        let equipQuery, flocQuery = '';
         let workcenterEntitySet = 'WorkCenters';
         let workCenterQuery = '$filter=length(CatalogProfile) gt 0';
 
@@ -352,19 +352,24 @@ export default class {
         if (notification['@odata.readLink'] && notification['@odata.readLink'] !== 'pending_1') {
             equipEntitySet = notification['@odata.readLink'] + '/Equipment';
             flocEntitySet = notification['@odata.readLink'] + '/FunctionalLocation';
-
-            equipQuery = '';
-            flocQuery = '';
         }
 
         if (notification.HeaderEquipment) {
-            equipEntitySet = 'MyEquipments';
-            equipQuery = "$filter=EquipId eq '" + notification.HeaderEquipment + "' and length(CatalogProfile) gt 0";
+            if (notification.OnlineEquipment) {
+                service = '/SAPAssetManager/Services/OnlineAssetManager.service';
+                equipEntitySet = `Equipments('${encodeURIComponent(notification.HeaderEquipment)}')`;
+            } else {
+                equipEntitySet = `MyEquipments('${notification.HeaderEquipment}')`;
+            }
         }
 
         if (notification.HeaderFunctionLocation) {
-            flocEntitySet = 'MyFunctionalLocations';
-            flocQuery = "$filter=FuncLocIdIntern eq '" + notification.HeaderFunctionLocation + "' and length(CatalogProfile) gt 0";
+            if (notification.OnlineFloc) {
+                service = '/SAPAssetManager/Services/OnlineAssetManager.service';
+                flocEntitySet = `FunctionalLocations('${encodeURIComponent(notification.HeaderFunctionLocation)}')`;
+            } else {
+                flocEntitySet = `MyFunctionalLocations('${notification.HeaderFunctionLocation}')`;
+            }
         }
 
         if (notification.MainWorkCenter) {
@@ -382,14 +387,14 @@ export default class {
         let reads = [];
 
         // Equipment Read
-        if (!ValidationLibrary.evalIsEmpty(equipEntitySet) || !ValidationLibrary.evalIsEmpty(equipQuery)) {
-            reads.push(context.read('/SAPAssetManager/Services/AssetManager.service', equipEntitySet, [], equipQuery));
+        if (!ValidationLibrary.evalIsEmpty(equipEntitySet)) {
+            reads.push(context.read(service, equipEntitySet, [], '').then(res => res).catch(() => []));
         } else {
             reads.push(Promise.resolve([]));
         }
         // Functional Location Read
-        if (!ValidationLibrary.evalIsEmpty(flocEntitySet) || !ValidationLibrary.evalIsEmpty(flocQuery)) {
-            reads.push(context.read('/SAPAssetManager/Services/AssetManager.service', flocEntitySet, [], flocQuery));
+        if (!ValidationLibrary.evalIsEmpty(flocEntitySet)) {
+            reads.push(context.read(service, flocEntitySet, [], '').then(res => res).catch((exc) => []));
         } else {
             reads.push(Promise.resolve([]));
         } 
@@ -485,6 +490,10 @@ export default class {
                     // eslint-disable-next-line brace-style
                     'ExternalWorkCenterId': (function() { try { return context.getPageProxy().evaluateTargetPath('#Control:MainWorkCenterListPicker/#SelectedValue'); } catch (e) { return ''; } })(),
                 };
+                if (context.binding)
+                {
+                    Object.assign(binding, context.binding);
+                }
                 return this.GroupQuery(context, binding, type);
             }
         }
@@ -552,6 +561,10 @@ export default class {
                     // eslint-disable-next-line brace-style
                     'ExternalWorkCenterId': (function() { try { return context.getPageProxy().evaluateTargetPath('#Control:MainWorkCenterListPicker/#SelectedValue'); } catch (e) { return ''; } })(),
                 };
+                if (context.binding)
+                {
+                    Object.assign(binding, context.binding);
+                }
                 return parent.GroupQuery(context, binding, type);
             });
     }
