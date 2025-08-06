@@ -67,6 +67,7 @@ export default function ZOperationConfirm(context) {
                         return context.executeAction('/SAPAssetManager/Actions/Confirmations/ConfirmationCreateBlank.action').then(results => {
                             ApplicationSettings.setString(context, 'BINDINGOBJECT', "");
                             libCom.removeStateVariable(context, 'contextMenuSwipePage');
+                            libCom.removeStateVariable(context, 'ZMenuSwipeContext');
                             if (context.getType() === 'FioriToolbarItem.Type.Button') {
                                 return context.executeAction('/SAPAssetManager/Actions/Page/ClosePage.action');
                             }
