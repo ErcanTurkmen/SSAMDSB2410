@@ -12,7 +12,7 @@
 	"MobileService": {
 		"Type": "standard",
 		"AdminAPI": "https://mobile-service-cockpit-api.cfapps.eu10.hana.ondemand.com/cockpit/v1/org/b19a2140-9f84-4d0e-b282-a505723989b1/space/ce00c639-f448-42d8-a8aa-eaedb6ec7966",
-		"AppId": "com.sap.sam2410.dsb.app.eu0.poonam",
+		"AppId": "com.sap.sam2410.dsb.app.eu0",
 		"Destination": []
 	},
 	"Build": {

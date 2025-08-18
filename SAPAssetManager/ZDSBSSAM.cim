@@ -379,10 +379,6 @@
 			"Target": "/SAPAssetManager/Rules/Notifications/NotificationsListViewQueryOption.js"
 		},
 		{
-			"Source": "/ZDSBSSAM/Rules/OverviewPage/MyWorkSection/ObjectCardOrderButtonVisible.js",
-			"Target": "/SAPAssetManager/Rules/OverviewPage/MyWorkSection/ObjectCardOrderButtonVisible.js"
-		},
-		{
 			"Source": "/ZDSBSSAM/Rules/OnlineSearch/WorkOrders/AccessoryButtonIcon.js",
 			"Target": "/SAPAssetManager/Rules/OnlineSearch/WorkOrders/AccessoryButtonIcon.js"
 		},
@@ -413,14 +409,30 @@
 		{
 			"Source": "/ZDSBSSAM/Rules/UserAuthorizations/Notifications/EnableNotificationCreateFromWorkOrder.js",
 			"Target": "/SAPAssetManager/Rules/UserAuthorizations/Notifications/EnableNotificationCreateFromWorkOrder.js"
-},
-{
-            "Source": "/ZDSBSSAM/Rules/OnlineSearch/Download/DownloadToDevice.js",
-            "Target": "/SAPAssetManager/Rules/OnlineSearch/Download/DownloadToDevice.js"
-        },
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/OnlineSearch/Download/DownloadToDevice.js",
+			"Target": "/SAPAssetManager/Rules/OnlineSearch/Download/DownloadToDevice.js"
+		},
 		{
 			"Source": "/ZDSBSSAM/Pages/WorkOrders/WorkOrderDetailsWithObjectCards.page",
 			"Target": "/SAPAssetManager/Pages/WorkOrders/WorkOrderDetailsWithObjectCards.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/Actions/WorkOrders/WorkOrderDetailsAddPopover.action",
+			"Target": "/SAPAssetManager/Actions/WorkOrders/WorkOrderDetailsAddPopover.action"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/Overview.page",
+			"Target": "/SAPAssetManager/Pages/Overview.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/OverviewPage/MyWorkSection/ObjectCardOrderButtonVisible.js",
+			"Target": "/SAPAssetManager/Rules/OverviewPage/MyWorkSection/ObjectCardOrderButtonVisible.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/WorkOrders/Operations/WorkOrderOperationCreateUpdate.page",
+			"Target": "/SAPAssetManager/Pages/WorkOrders/Operations/WorkOrderOperationCreateUpdate.page"
 		}
 	],
 	"ComponentVersion": "1.0"

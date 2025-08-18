@@ -1,4 +1,5 @@
 [
+        "/SAPAssetManager/Pages/Fragments/SyncButton.fragment",
     {
         "Position": "Right",
         "_Name": "Edit",
