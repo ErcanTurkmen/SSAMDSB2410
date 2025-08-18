@@ -18,6 +18,9 @@ export default function NotificationCreateUpdateValidation(pageClientAPI) {
     let itemPart = libCom.getListPickerValue(formCellContainer.getControl('PartDetailsLstPkr').getValue());
     let damageGroup = libCom.getListPickerValue(formCellContainer.getControl('DamageGroupLstPkr').getValue());
     let damageCode = libCom.getListPickerValue(formCellContainer.getControl('DamageDetailsLstPkr').getValue());
+    let causeCodeGroup = libCom.getListPickerValue(formCellContainer.getControl('CauseCodeGroup').getValue());
+    let causeCode = libCom.getListPickerValue(formCellContainer.getControl('causeCode').getValue());
+    
 
     // DSB customisation to check for equipment if it exists. Check field data against business logic here
     //Return true if validation succeeded, or False if failed
@@ -69,12 +72,7 @@ export default function NotificationCreateUpdateValidation(pageClientAPI) {
                 }
                 if (notifType === '30' && onCreate && (!itemPart || !itemPartGroup)) {
                     message = pageClientAPI.localizeText('zvalidation_item_mandatory');
-                    // if (!itemPart) {
                     libCom.executeInlineControlError(pageClientAPI, formCellContainer.getControl('PartDetailsLstPkr'), message);
-                    // }
-                    // else {
-                    //     libCom.executeInlineControlError(pageClientAPI, formCellContainer.getControl('DamageDetailsLstPkr'), pageClientAPI.localizeText('zvalidation_damage_mandatory'));
-                    // }
                     return false;
                 }
                 else {

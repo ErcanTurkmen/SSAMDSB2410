@@ -106,12 +106,16 @@ export default function ZOperationComplete(context) {
                                                             libCommon.removeStateVariable(context, 'contextMenuSwipePage');
                                                             if (context.getType() === 'FioriToolbarItem.Type.Button') {
                                                                 return context.executeAction('/SAPAssetManager/Actions/Page/ClosePage.action').then(() => {
-                                                                    return libAutoSync.autoSyncOnStatusChange(context);
+                                                                    return libAutoSync.autoSyncOnStatusChange(context).then(() => {
+                                                                            context.redraw();
+                                                                        });
                                                                 });
                                                             }
                                                             else
                                                                 //return Promise.resolve(true);
-                                                                return libAutoSync.autoSyncOnStatusChange(context);
+                                                                return libAutoSync.autoSyncOnStatusChange(context).then(() => {
+                                                                            context.redraw();
+                                                                        });
                                                         });
                                                     });
 

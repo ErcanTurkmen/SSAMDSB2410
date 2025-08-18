@@ -5,14 +5,21 @@ import Logger from '../../../SAPAssetManager/Rules/Log/Logger';
  */
 export default function ZPartAddVisibilityFromOpr(context) {
 
-    const aOrderTypesToDisable = ['SO11', 'SO22', 'SO26', 'SO12', 'SO16'];
-    let woReadLink = context.binding['@odata.readLink'] + '/WOHeader';
+    if(context.binding.OperationNo === '0010')
+    {
+        return false;
+    }
+    else
+    {
+        const aOrderTypesToDisable = ['SO11', 'SO22', 'SO26', 'SO12', 'SO16'];
+        let woReadLink = context.binding['@odata.readLink'] + '/WOHeader';
 
-    return context.read('/SAPAssetManager/Services/AssetManager.service', woReadLink, [], '')
-        .then(workOrder => {
-            if (workOrder.getItem(0) && workOrder.getItem(0).OrderType) {
-                let orderType = workOrder.getItem(0).OrderType;
-                return !aOrderTypesToDisable.includes(orderType);
-            }
-        });
+        return context.read('/SAPAssetManager/Services/AssetManager.service', woReadLink, [], '')
+            .then(workOrder => {
+                if (workOrder.getItem(0) && workOrder.getItem(0).OrderType) {
+                    let orderType = workOrder.getItem(0).OrderType;
+                    return !aOrderTypesToDisable.includes(orderType);
+                }
+            });
+    }
 }
