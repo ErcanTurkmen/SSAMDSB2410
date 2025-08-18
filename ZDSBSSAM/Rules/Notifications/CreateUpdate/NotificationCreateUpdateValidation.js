@@ -16,14 +16,15 @@ export default function NotificationCreateUpdateValidation(pageClientAPI) {
     let notifType = libCom.getListPickerValue(typeListPicker.getValue());
     let itemPartGroup = libCom.getListPickerValue(formCellContainer.getControl('PartGroupLstPkr').getValue());
     let itemPart = libCom.getListPickerValue(formCellContainer.getControl('PartDetailsLstPkr').getValue());
-    let damageGroup = libCom.getListPickerValue(formCellContainer.getControl('DamageGroupLstPkr').getValue());
-    let damageCode = libCom.getListPickerValue(formCellContainer.getControl('DamageDetailsLstPkr').getValue());
-    let causeCodeGroup = libCom.getListPickerValue(formCellContainer.getControl('CauseCodeGroup').getValue());
-    let causeCode = libCom.getListPickerValue(formCellContainer.getControl('causeCode').getValue());
+    //Return true if validation succeeded, or False if failed
+    // let damageGroup = libCom.getListPickerValue(formCellContainer.getControl('DamageGroupLstPkr').getValue());
+    // let damageCode = libCom.getListPickerValue(formCellContainer.getControl('DamageDetailsLstPkr').getValue());
+    // let causeCodeGroup = libCom.getListPickerValue(formCellContainer.getControl('CauseCodeGroup').getValue());
+    // let causeCode = libCom.getListPickerValue(formCellContainer.getControl('causeCode').getValue());
     
 
     // DSB customisation to check for equipment if it exists. Check field data against business logic here
-    //Return true if validation succeeded, or False if failed
+
     return libNotif.NotificationCreateUpdateValidation(pageClientAPI,onCreate).then(result => {
         if (!result) {
             return result;
