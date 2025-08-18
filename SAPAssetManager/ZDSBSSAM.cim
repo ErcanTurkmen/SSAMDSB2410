@@ -229,7 +229,7 @@
 		{
 			"Source": "/ZDSBSSAM/Pages/WorkOrders/Operations/WorkOrderOperationsListView.page",
 			"Target": "/SAPAssetManager/Pages/WorkOrders/Operations/WorkOrderOperationsListView.page"
-		},
+		},	
 		{
 			"Source": "/ZDSBSSAM/Pages/Fragments/WorkOrder/WorkOrderOperations/WorkOrderOperationDetailsSection.fragment",
 			"Target": "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderOperations/WorkOrderOperationDetailsSection.fragment"
@@ -433,6 +433,10 @@
 		{
 			"Source": "/ZDSBSSAM/Pages/WorkOrders/Operations/WorkOrderOperationCreateUpdate.page",
 			"Target": "/SAPAssetManager/Pages/WorkOrders/Operations/WorkOrderOperationCreateUpdate.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/ApplicationEvents/AutoSync/AutoSyncLibrary.js",
+			"Target": "/SAPAssetManager/Rules/ApplicationEvents/AutoSync/AutoSyncLibrary.js"
 		}
 	],
 	"ComponentVersion": "1.0"
