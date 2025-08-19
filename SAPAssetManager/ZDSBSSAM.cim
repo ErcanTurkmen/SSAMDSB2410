@@ -437,6 +437,10 @@
 		{
 			"Source": "/ZDSBSSAM/Rules/ApplicationEvents/AutoSync/AutoSyncLibrary.js",
 			"Target": "/SAPAssetManager/Rules/ApplicationEvents/AutoSync/AutoSyncLibrary.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Notifications/Item/Cause/CreateUpdate/NotificationItemCauseCreateUpdateDonePressed.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/Item/Cause/CreateUpdate/NotificationItemCauseCreateUpdateDonePressed.js"
 		}
 	],
 	"ComponentVersion": "1.0"

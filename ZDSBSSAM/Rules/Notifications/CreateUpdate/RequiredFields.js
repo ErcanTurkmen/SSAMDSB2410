@@ -49,14 +49,18 @@ export default function RequiredFields(context) {
         if (!notifObject.itemDescription || !notifObject.itemPartGroup || !notifObject.itemPart || !notifObject.itemDamageGroup) {
             required.push('ItemDescription', 'PartGroupLstPkr', 'PartDetailsLstPkr', 'DamageGroupLstPkr', 'DamageDetailsLstPkr');
         }
+        if (CommonLib.isDefined(notifObject.causeDescription) && (!CommonLib.isDefined(notifObject.causeGroup) || !CommonLib.isDefined(notifObject.causeCode))) {
+            required.push('CauseGroupLstPkr', 'CodeLstPkr');
+        }
+        if (!CommonLib.isDefined(notifObject.causeDescription) && (CommonLib.isDefined(notifObject.causeGroup) || CommonLib.isDefined(notifObject.causeCode))) {
+            required.push('CauseDescription');
+        }
     }
     else {
         /**** DSB   Customisation to validate cause  ***/
         if (notifObject.typeLstPkr === '30' || notifObject.typeLstPkr === '70' || notifObject.typeLstPkr === '71' || notifObject.typeLstPkr === '72') {
-            if (CommonLib.isDefined(notifObject.causeDescription))
-            {
-                if(!CommonLib.isDefined(notifObject.causeGroup) || !CommonLib.isDefined(notifObject.causeCode))
-                {
+            if (CommonLib.isDefined(notifObject.causeDescription)) {
+                if (!CommonLib.isDefined(notifObject.causeGroup) || !CommonLib.isDefined(notifObject.causeCode)) {
                     required.push('CauseGroupLstPkr', 'CodeLstPkr');
                 }
             }
