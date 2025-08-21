@@ -50,7 +50,10 @@ export default function ZPartAdhocIssueSetUOMAndSerialNo(context) {
                     materialUOMLstPkrQueryOptions += `&$filter=MaterialNum eq '${material.MaterialNum}'`;
                     materialUOMLstPkrSpecifier.setQueryOptions(materialUOMLstPkrQueryOptions);
                     materialUOMLstPkrSpecifier.setEntitySet(materialUOMs);
+                    materialUOMLstPkrSpecifier.setService(service);
+                    resetMaterialUOMValue(context, materialUOMListPicker);
                     materialUOMListPicker.setTargetSpecifier(materialUOMLstPkrSpecifier);
+                    ResetValidationOnInput(materialUOMListPicker);
                     let isBatch = material.BatchIndicator === 'X';
                     if (batchListPicker && !isMultipleTechnician) {
                         batchListPicker.setVisible(isBatch);
@@ -67,74 +70,74 @@ export default function ZPartAdhocIssueSetUOMAndSerialNo(context) {
             });
 
             
-                //Code to set serial no
-                /*let querySerial = onlineSwitch 
-                ? `$filter=Plant eq '${readLinkData.Plant}' and MaterialNum eq '${readLinkData.MaterialNum}'`
-                : '';*/
-                context.read(service, 'MaterialPlants', [], `$filter=Plant eq '${readLinkData.Plant}' and MaterialNum eq '${readLinkData.MaterialNum}'`).then(result => {
-                    if (result && result.getItem(0)) {
-                        let materialRow = result.getItem(0);
-                        let isSerial=materialRow.SerialNumberProfile;
-                            if(isSerial){ 
-                                let serialNumListPicker = context.getPageProxy().evaluateTargetPathForAPI('#Control:SerialNumLstPkr');
-                                let serialNumLstPkrSpecifier = serialNumListPicker.getTargetSpecifier();
-                                let entitySet = returnValue+ '/Material/SerialNumbers';
-                                serialNumLstPkrSpecifier.setEntitySet(entitySet);
-                                //serialNumLstPkrSpecifier.setService('/SAPAssetManager/Services/AssetManager.service');
-                                serialNumLstPkrSpecifier.setReturnValue('{SerialNumber}');
-                                serialNumLstPkrSpecifier.setObjectCell({
-                                    'Title': '{SerialNumber}',
-                                });
-                                let queryOptions = "$expand=Material&$orderby=SerialNumber&$filter=Issued eq ''";
+                // //Code to set serial no
+                // /*let querySerial = onlineSwitch 
+                // ? `$filter=Plant eq '${readLinkData.Plant}' and MaterialNum eq '${readLinkData.MaterialNum}'`
+                // : '';*/
+                // context.read(service, 'MaterialPlants', [], `$filter=Plant eq '${readLinkData.Plant}' and MaterialNum eq '${readLinkData.MaterialNum}'`).then(result => {
+                //     if (result && result.getItem(0)) {
+                //         let materialRow = result.getItem(0);
+                //         let isSerial=materialRow.SerialNumberProfile;
+                //             if(isSerial){ 
+                //                 let serialNumListPicker = context.getPageProxy().evaluateTargetPathForAPI('#Control:SerialNumLstPkr');
+                //                 let serialNumLstPkrSpecifier = serialNumListPicker.getTargetSpecifier();
+                //                 let entitySet = returnValue+ '/Material/SerialNumbers';
+                //                 serialNumLstPkrSpecifier.setEntitySet(entitySet);
+                //                 //serialNumLstPkrSpecifier.setService('/SAPAssetManager/Services/AssetManager.service');
+                //                 serialNumLstPkrSpecifier.setReturnValue('{SerialNumber}');
+                //                 serialNumLstPkrSpecifier.setObjectCell({
+                //                     'Title': '{SerialNumber}',
+                //                 });
+                //                 let queryOptions = "$expand=Material&$orderby=SerialNumber&$filter=Issued eq ''";
                                 
-                                if (readLinkData.StorageLocation) {
-                                    queryOptions = queryOptions + " and StorageLocation eq '" + readLinkData.StorageLocation + "'";
-                                }
-                                serialNumLstPkrSpecifier.setQueryOptions(queryOptions);
-                                serialNumListPicker.setTargetSpecifier(serialNumLstPkrSpecifier);
-                                serialNumListPicker.setVisible(true);
+                //                 if (readLinkData.StorageLocation) {
+                //                     queryOptions = queryOptions + " and StorageLocation eq '" + readLinkData.StorageLocation + "'";
+                //                 }
+                //                 serialNumLstPkrSpecifier.setQueryOptions(queryOptions);
+                //                 serialNumListPicker.setTargetSpecifier(serialNumLstPkrSpecifier);
+                //                 serialNumListPicker.setVisible(true);
 
-                                //set for autoserial switch - DSB customisation to not set this true. Auto serial no not valid for DSB
-                                //let autoGenerateSerialNumberSwitch = context.getPageProxy().evaluateTargetPathForAPI('#Control:AutoGenerateSerialNumberSwitch');
-                                //autoGenerateSerialNumberSwitch.setVisible(true);
-                            }
-                            else
-                            {
-                                let serialNumListPicker = context.getPageProxy().evaluateTargetPathForAPI('#Control:SerialNumLstPkr');
-                                serialNumListPicker.setVisible(false);
-                                serialNumListPicker.setValue("");
-                                let autoGenerateSerialNumberSwitch = context.getPageProxy().evaluateTargetPathForAPI('#Control:AutoGenerateSerialNumberSwitch');
-                                autoGenerateSerialNumberSwitch.setVisible(false);
-                                autoGenerateSerialNumberSwitch.setValue(false);
-                            }
+                //                 //set for autoserial switch - DSB customisation to not set this true. Auto serial no not valid for DSB
+                //                 //let autoGenerateSerialNumberSwitch = context.getPageProxy().evaluateTargetPathForAPI('#Control:AutoGenerateSerialNumberSwitch');
+                //                 //autoGenerateSerialNumberSwitch.setVisible(true);
+                //             }
+                //             else
+                //             {
+                //                 let serialNumListPicker = context.getPageProxy().evaluateTargetPathForAPI('#Control:SerialNumLstPkr');
+                //                 serialNumListPicker.setVisible(false);
+                //                 serialNumListPicker.setValue("");
+                //                 let autoGenerateSerialNumberSwitch = context.getPageProxy().evaluateTargetPathForAPI('#Control:AutoGenerateSerialNumberSwitch');
+                //                 autoGenerateSerialNumberSwitch.setVisible(false);
+                //                 autoGenerateSerialNumberSwitch.setValue(false);
+                //             }
                         
-                        /*let isValCat=materialRow.ValuationCategory;
+                //         /*let isValCat=materialRow.ValuationCategory;
                        
-                            if(isValCat){ 
-                                let valuationTypePicker = context.getPageProxy().evaluateTargetPathForAPI('#Control:ValuationTypePicker');
-                                let valuationTypePkrSpecifier = valuationTypePicker.getTargetSpecifier();
-                                let entitySet = returnValue+ '/Material/MaterialValuation_Nav';
-                                valuationTypePkrSpecifier.setEntitySet(entitySet);
-                                valuationTypePkrSpecifier.setReturnValue('{ValuationType}');
-                                valuationTypePkrSpecifier.setObjectCell({
-                                    'Title': '{ValuationType}',
-                                });
-                                let queryOptions = "$orderby=ValuationType";
+                //             if(isValCat){ 
+                //                 let valuationTypePicker = context.getPageProxy().evaluateTargetPathForAPI('#Control:ValuationTypePicker');
+                //                 let valuationTypePkrSpecifier = valuationTypePicker.getTargetSpecifier();
+                //                 let entitySet = returnValue+ '/Material/MaterialValuation_Nav';
+                //                 valuationTypePkrSpecifier.setEntitySet(entitySet);
+                //                 valuationTypePkrSpecifier.setReturnValue('{ValuationType}');
+                //                 valuationTypePkrSpecifier.setObjectCell({
+                //                     'Title': '{ValuationType}',
+                //                 });
+                //                 let queryOptions = "$orderby=ValuationType";
                               
-                                valuationTypePkrSpecifier.setQueryOptions(queryOptions);
-                                valuationTypePicker.setTargetSpecifier(valuationTypePkrSpecifier);
-                                valuationTypePicker.setVisible(true);
-                            }
-                            else
-                            {
-                                let valuationTypePicker = context.getPageProxy().evaluateTargetPathForAPI('#Control:ValuationTypePicker');
-                                valuationTypePicker.setVisible(false);
-                                valuationTypePicker.setValue("");
-                            }
-                        */
+                //                 valuationTypePkrSpecifier.setQueryOptions(queryOptions);
+                //                 valuationTypePicker.setTargetSpecifier(valuationTypePkrSpecifier);
+                //                 valuationTypePicker.setVisible(true);
+                //             }
+                //             else
+                //             {
+                //                 let valuationTypePicker = context.getPageProxy().evaluateTargetPathForAPI('#Control:ValuationTypePicker');
+                //                 valuationTypePicker.setVisible(false);
+                //                 valuationTypePicker.setValue("");
+                //             }
+                //         */
 
-                    }
-                });
+                //     }
+                // });
                     
 
         } else {
@@ -167,5 +170,13 @@ export default function ZPartAdhocIssueSetUOMAndSerialNo(context) {
     } catch (err) {
         /**Implementing our Logger class*/
         Logger.error(context.getGlobalDefinition('/SAPAssetManager/Globals/Logs/CategoryParts.global').getValue(), `PartLibrary.partCreateUpdateOnChange(MaterialLstPkr) error: ${err}`);
+    }
+}
+
+function resetMaterialUOMValue(context, materialUOMListPicker) {
+    if (libCom.getStateVariable(context, 'MaterialUOMLstPkrNoReset')) {
+        libCom.removeStateVariable(context, 'MaterialUOMLstPkrNoReset');
+    } else {
+        materialUOMListPicker.setValue('');
     }
 }

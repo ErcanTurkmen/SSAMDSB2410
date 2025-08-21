@@ -1,5 +1,12 @@
 [
-        "/SAPAssetManager/Pages/Fragments/SyncButton.fragment",
+	{
+		"_Name": "Sync",
+		"_Type": "Fragment",
+		"Fragment": "/SAPAssetManager/Pages/Fragments/SyncButton.fragment",
+			"Properties": {
+	    		"Visible": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsSyncButtonVisible.js"
+		    }
+	},
     {
         "Position": "Right",
         "_Name": "Edit",
