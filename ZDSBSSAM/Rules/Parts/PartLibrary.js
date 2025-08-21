@@ -311,12 +311,13 @@ export default class {
                     let woCreateLink = context.createLinkSpecifierProxy('WOHeader', 'MyWorkOrderHeaders', '$filter=OrderId eq \'' + orderID + '\'', '');
                     createLinks.push(woCreateLink.getSpecifier());
 
-                    if (materialNum) {
-                        //This link is needed to connect the workordercomponent to the material.
-                        let materialReadLink = `Materials('${materialNum}')`;
-                        let materialCreateLink = context.createLinkSpecifierProxy('Material', 'Materials', '', materialReadLink);
-                        createLinks.push(materialCreateLink.getSpecifier());
-                    }
+                    //DSB customisation - since part is now online, material entity does not exists so link is not required to be created
+                    // if (materialNum) {
+                    //     //This link is needed to connect the workordercomponent to the material.
+                    //     let materialReadLink = `Materials('${materialNum}')`;
+                    //     let materialCreateLink = context.createLinkSpecifierProxy('Material', 'Materials', '', materialReadLink);
+                    //     createLinks.push(materialCreateLink.getSpecifier());
+                    // }
 
                     return createLinks;
                 }
