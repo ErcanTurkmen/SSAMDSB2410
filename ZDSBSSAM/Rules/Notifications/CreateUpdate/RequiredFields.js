@@ -3,7 +3,7 @@ import ValidationLibrary from '../../../../SAPAssetManager/Rules/Common/Library/
 import DocumentFieldsAddRequired from '../../../../SAPAssetManager/Rules/Documents/Create/DocumentFieldsAddRequired';
 import CommonLib from '../../../../SAPAssetManager/Rules/Common/Library/CommonLibrary';
 
-
+ 
 export default function RequiredFields(context) {
     const formcellContainerProxy = context.getPageProxy().getControl('FormCellContainer');
     const required = [];
@@ -63,6 +63,9 @@ export default function RequiredFields(context) {
                 if (!CommonLib.isDefined(notifObject.causeGroup) || !CommonLib.isDefined(notifObject.causeCode)) {
                     required.push('CauseGroupLstPkr', 'CodeLstPkr');
                 }
+            }
+            if (!CommonLib.isDefined(notifObject.causeDescription) && (CommonLib.isDefined(notifObject.causeGroup) || CommonLib.isDefined(notifObject.causeCode))) {
+                required.push('CauseDescription');
             }
             // if (!notifObject.causeDescription || (!notifObject.causeGroup && !notifObject.causeCode)) {
             //     required.push('CauseDescription', 'CauseGroupLstPkr', 'CodeLstPkr');
