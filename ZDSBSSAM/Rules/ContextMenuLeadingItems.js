@@ -55,14 +55,14 @@ export default function ContextMenuLeadingItems(context) {
     let orderMobileStatusItems = async function () {
         const statusItems = await getStatuses();
 
-        if (!libCom.isDefined(statusItems)) {
-            const mobileStatus = context.binding?.OrderMobileStatus_Nav?.MobileStatus;
+        // if (!libCom.isDefined(statusItems)) {
+        //     const mobileStatus = context.binding?.OrderMobileStatus_Nav?.MobileStatus;
 
-            if (mobileStatus !== COMPLETED) {
-                return ['Add_Notification'];
-            }
-            return [];
-        }
+        //     if (mobileStatus !== COMPLETED) {
+        //         return ['Add_Notification'];
+        //     }
+        //     return [];
+        // }
         return statusItems;
     };
 
