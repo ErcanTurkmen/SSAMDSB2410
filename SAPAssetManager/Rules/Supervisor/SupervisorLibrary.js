@@ -417,7 +417,7 @@ export default class {
             let queryBuilder = context.dataQueryBuilder();
             queryBuilder.select('CostCenter,WODocuments/DocumentID,ObjectKey,MaintenanceActivityType,OrderType,Priority,DueDate,HeaderEquipment,OrderDescription,OrderId,MainWorkCenter,MainWorkCenterPlant,PlanningPlant,OrderMobileStatus_Nav/MobileStatus,OrderMobileStatus_Nav/CreateUserGUID,OrderMobileStatus_Nav/EAMOverallStatusProfile,WOPriority/PriorityDescription,MarkedJob/PreferenceValue');
             queryBuilder.expand('WODocuments,WODocuments/Document,OrderMobileStatus_Nav,Operations,Operations/SubOperations,WOPriority,MarkedJob,UserTimeEntry_Nav,WOPartners,WOPartners/Employee_Nav');
-            queryBuilder.orderBy('Priority,DueDate,OrderId,WODocuments/DocumentID,OrderMobileStatus_Nav/MobileStatus');
+            queryBuilder.orderBy('Priority,DueDate,OrderId');
 
             if (useFilter) {
                 queryBuilder.filter("(OrderMobileStatus_Nav/MobileStatus eq '" + review + "' or OrderMobileStatus_Nav/MobileStatus eq '" + disapproved + "' or OrderMobileStatus_Nav/MobileStatus eq '" + approved + "')");
@@ -428,7 +428,7 @@ export default class {
 
         let query = 'select=CostCenter,WODocuments/DocumentID,ObjectKey,MaintenanceActivityType,OrderType,Priority,DueDate,HeaderEquipment,OrderDescription,OrderId,MainWorkCenter,MainWorkCenterPlant,PlanningPlant,OrderMobileStatus_Nav/MobileStatus,OrderMobileStatus_Nav/CreateUserGUID,OrderMobileStatus_Nav/EAMOverallStatusProfile,WOPriority/PriorityDescription,MarkedJob/PreferenceValue' +
         '&$expand=WODocuments,WODocuments/Document,OrderMobileStatus_Nav,Operations,Operations/SubOperations,WOPriority,MarkedJob,UserTimeEntry_Nav,WOPartners,WOPartners/Employee_Nav' +
-        '&$orderby=Priority,DueDate,OrderId,WODocuments/DocumentID,OrderMobileStatus_Nav/MobileStatus';
+        '&$orderby=Priority,DueDate,OrderId';
 
         if (useFilter) {
             query += "&$filter=(OrderMobileStatus_Nav/MobileStatus eq '" + review + "' or OrderMobileStatus_Nav/MobileStatus eq '" + disapproved + "' or OrderMobileStatus_Nav/MobileStatus eq '" + approved + "')";
@@ -459,7 +459,7 @@ export default class {
         if (useDataQuery) {
             let queryBuilder = context.dataQueryBuilder();
             queryBuilder.expand('WOObjectList_Nav,Tools,OperationMobileStatus_Nav,OperationLongText,WOHeader,UserTimeEntry_Nav,WOHeader/WOPriority,Employee_Nav');
-            queryBuilder.orderBy('OrderId,OperationNo,OperationMobileStatus_Nav/MobileStatus');
+            queryBuilder.orderBy('OrderId,OperationNo');
 
             if (useFilter) {
                 queryBuilder.filter("(OperationMobileStatus_Nav/MobileStatus eq '" + review + "' or OperationMobileStatus_Nav/MobileStatus eq '" + disapproved + "' or OperationMobileStatus_Nav/MobileStatus eq '" + approved + "')");
@@ -469,7 +469,7 @@ export default class {
         }
 
         let query = '$expand=WOObjectList_Nav,Tools,OperationMobileStatus_Nav,OperationLongText,WOHeader,UserTimeEntry_Nav,WOHeader/WOPriority,Employee_Nav' +
-        '&$orderby=OrderId,OperationNo,OperationMobileStatus_Nav/MobileStatus';
+        '&$orderby=OrderId,OperationNo';
 
         if (useFilter) {
             query += "&$filter=(OperationMobileStatus_Nav/MobileStatus eq '" + review + "' or OperationMobileStatus_Nav/MobileStatus eq '" + disapproved + "' or OperationMobileStatus_Nav/MobileStatus eq '" + approved + "')";
@@ -500,14 +500,14 @@ export default class {
             let queryBuilder = context.dataQueryBuilder();
             queryBuilder.select('CostCenter,WODocuments/DocumentID,ObjectKey,MaintenanceActivityType,OrderType,Priority,DueDate,HeaderEquipment,OrderDescription,OrderId,MainWorkCenter,MainWorkCenterPlant,PlanningPlant,OrderMobileStatus_Nav/MobileStatus,OrderMobileStatus_Nav/CreateUserGUID,OrderMobileStatus_Nav/EAMOverallStatusProfile,WOPriority/PriorityDescription,MarkedJob/PreferenceValue');
             queryBuilder.expand('WODocuments,WODocuments/Document,OrderMobileStatus_Nav,Operations,Operations/SubOperations,WOPriority,MarkedJob,UserTimeEntry_Nav,WOPartners,WOPartners/Employee_Nav');
-            queryBuilder.orderBy('Priority,DueDate,OrderId,WODocuments/DocumentID,OrderMobileStatus_Nav/MobileStatus');
+            queryBuilder.orderBy('Priority,DueDate,OrderId');
             queryBuilder.filter("(OrderMobileStatus_Nav/MobileStatus eq '" + review + "' or OrderMobileStatus_Nav/MobileStatus eq '" + disapproved + "' or OrderMobileStatus_Nav/MobileStatus eq '" + approved + "')");
             return queryBuilder;
         }
         libCom.setStateVariable(context, 'CustomListFilter', "(OrderMobileStatus_Nav/MobileStatus eq '" + review + "' or OrderMobileStatus_Nav/MobileStatus eq '" + disapproved + "' or OrderMobileStatus_Nav/MobileStatus eq '" + approved + "')");
         return 'select=CostCenter,WODocuments/DocumentID,ObjectKey,MaintenanceActivityType,OrderType,Priority,DueDate,HeaderEquipment,OrderDescription,OrderId,MainWorkCenter,MainWorkCenterPlant,PlanningPlant,OrderMobileStatus_Nav/MobileStatus,OrderMobileStatus_Nav/CreateUserGUID,OrderMobileStatus_Nav/EAMOverallStatusProfile,WOPriority/PriorityDescription,MarkedJob/PreferenceValue' +
         '&$expand=WODocuments,WODocuments/Document,OrderMobileStatus_Nav,Operations,Operations/SubOperations,WOPriority,MarkedJob,UserTimeEntry_Nav,WOPartners,WOPartners/Employee_Nav' +
-        '&$orderby=Priority,DueDate,OrderId,WODocuments/DocumentID,OrderMobileStatus_Nav/MobileStatus' +
+        '&$orderby=Priority,DueDate,OrderId' +
         "&$filter=(OrderMobileStatus_Nav/MobileStatus eq '" + review + "' or OrderMobileStatus_Nav/MobileStatus eq '" + disapproved + "' or OrderMobileStatus_Nav/MobileStatus eq '" + approved + "')";
     }
 
@@ -533,13 +533,13 @@ export default class {
         if (useDataQuery) {
             let queryBuilder = context.dataQueryBuilder();
             queryBuilder.expand('WOObjectList_Nav,Tools,OperationMobileStatus_Nav,OperationLongText,WOHeader,UserTimeEntry_Nav,WOHeader/WOPriority,Employee_Nav');
-            queryBuilder.orderBy('OrderId,OperationNo,OperationMobileStatus_Nav/MobileStatus');
+            queryBuilder.orderBy('OrderId,OperationNo');
             queryBuilder.filter("(OperationMobileStatus_Nav/MobileStatus eq '" + review + "' or OperationMobileStatus_Nav/MobileStatus eq '" + disapproved + "' or OperationMobileStatus_Nav/MobileStatus eq '" + approved + "')");
             return queryBuilder;
         }
         libCom.setStateVariable(context, 'CustomListFilter', "(OperationMobileStatus_Nav/MobileStatus eq '" + review + "' or OperationMobileStatus_Nav/MobileStatus eq '" + disapproved + "' or OperationMobileStatus_Nav/MobileStatus eq '" + approved + "')");
         return '$expand=WOObjectList_Nav,Tools,OperationMobileStatus_Nav,OperationLongText,WOHeader,UserTimeEntry_Nav,WOHeader/WOPriority,Employee_Nav' +
-        '&$orderby=OrderId,OperationNo,OperationMobileStatus_Nav/MobileStatus' +
+        '&$orderby=OrderId,OperationNo' +
         "&$filter=(OperationMobileStatus_Nav/MobileStatus eq '" + review + "' or OperationMobileStatus_Nav/MobileStatus eq '" + disapproved + "' or OperationMobileStatus_Nav/MobileStatus eq '" + approved + "')";
     }
 

@@ -1119,12 +1119,12 @@ export class OperationConstants {
         if (useDataQuery) {
             let queryBuilder = context.dataQueryBuilder();
             queryBuilder.expand(expands);
-            queryBuilder.orderBy('ZPriorityOpr asc,OrderId,OperationNo,OperationMobileStatus_Nav/MobileStatus');
+            queryBuilder.orderBy('ZPriorityOpr asc,OrderId,OperationNo');
             return queryBuilder;
         }
         libCommon.setStateVariable(context, 'CustomListFilter', '');
         return '$expand=' + expands +
-            '&$orderby=ZPriorityOpr asc,OrderId,OperationNo,OperationMobileStatus_Nav/MobileStatus';
+            '&$orderby=ZPriorityOpr asc,OrderId,OperationNo';
     }
 
     static OperationListQueryOptions(context) {
@@ -1143,7 +1143,7 @@ export class OperationConstants {
         libCommon.setStateVariable(context, 'CustomListFilter', '');
         return ''
             + expands
-            + '&$orderby=ZPriorityOpr asc,OrderId,OperationNo,ObjectKey,OperationMobileStatus_Nav/MobileStatus';
+            + '&$orderby=ZPriorityOpr asc,OrderId,OperationNo';
     }
 
     static OperationsObjectCardCollectionQueryOptions(context, top) {
