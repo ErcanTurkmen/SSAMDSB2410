@@ -353,7 +353,7 @@ export class WorkOrderLibrary {
         let queryBuilder = context.dataQueryBuilder();
         queryBuilder.select('*,OrderMobileStatus_Nav/*,WODocuments/DocumentID,WOPartners/Employee_Nav/EmployeeName,WOPartners/PartnerFunction,MarkedJob/PreferenceValue,WOPriority/PriorityDescription,WOPriority/Priority,FunctionalLocation/FuncLocDesc'); //DSB customization to search based on FL desc
         queryBuilder.expand('WODocuments,WODocuments/Document,OrderMobileStatus_Nav/OverallStatusCfg_Nav,Operations,Operations/SubOperations,WOPriority,MarkedJob,UserTimeEntry_Nav,WOPartners,WOPartners/Employee_Nav,FunctionalLocation');
-        queryBuilder.orderBy('Priority,DueDate,OrderId,WODocuments/DocumentID,OrderMobileStatus_Nav/MobileStatus');
+        queryBuilder.orderBy('Priority,DueDate,OrderId');
         return queryBuilder;
     }
 
@@ -411,7 +411,7 @@ export class WorkOrderLibrary {
     static WorkOrdersDetailsFollowOnQueryOption(context) {
         let queryBuilder = context.dataQueryBuilder();
         queryBuilder.expand('WODocuments,WODocuments/Document,OrderMobileStatus_Nav/OverallStatusCfg_Nav,Operations,Operations/SubOperations,WOPriority,MarkedJob,UserTimeEntry_Nav,WOPartners,WOPartners/Employee_Nav');
-        queryBuilder.orderBy('Priority,DueDate,OrderId,WODocuments/DocumentID,OrderMobileStatus_Nav/MobileStatus');
+        queryBuilder.orderBy('Priority,DueDate,OrderId');
 
         let searchString = context.searchString;
         if (searchString) {

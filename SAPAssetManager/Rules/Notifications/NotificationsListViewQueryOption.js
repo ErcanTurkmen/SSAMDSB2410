@@ -19,7 +19,7 @@ export default function NotificationsListViewQueryOption(context) {
     return notificationsListGetTypesQueryOption(context).then(typesQueryOption => {
         let queryBuilder = context.dataQueryBuilder();
         queryBuilder.expand('WorkOrder,NotifPriority,NotifMobileStatus_Nav,NotifDocuments,NotifDocuments/Document,HeaderLongText,FunctionalLocation,Equipment,NotifMobileStatus_Nav/OverallStatusCfg_Nav,Tasks,Activities,Items,Items/ItemActivities,Items/ItemCauses,Items/ItemTasks');
-        queryBuilder.orderBy('Priority,ObjectKey,NotificationNumber,OrderId');
+        queryBuilder.orderBy('Priority,NotificationNumber');
         if (phaseModel(context)) {
             let phaseModelNavlinks = phaseModelExpands('QMI');
             queryBuilder.expand(phaseModelNavlinks);

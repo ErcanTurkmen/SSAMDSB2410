@@ -27,6 +27,6 @@ export default function WorkOrderOperationsConfirmQueryOption(context) {
         queryBuilder.filter(`${selectedOperationsFilter.join(' or ')}`);
     }
     queryBuilder.expand('OperationLongText,WOHeader/WOPriority,WOHeader/Notification,OperationMobileStatus_Nav/OverallStatusCfg_Nav');
-    queryBuilder.orderBy('OperationNo,OrderId,ObjectKey,OperationMobileStatus_Nav/MobileStatus');
+    queryBuilder.orderBy('OrderId,OperationNo');
     return queryBuilder;
 }
