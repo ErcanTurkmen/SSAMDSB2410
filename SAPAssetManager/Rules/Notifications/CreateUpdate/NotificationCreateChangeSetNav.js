@@ -44,7 +44,11 @@ export default function NotificationCreateChangeSetNav(context, bindingParams) {
             binding.HeaderEquipment = contextBinding.EquipId;
             binding.HeaderFunctionLocation = contextBinding.FuncLocIdIntern || contextBinding.FunctionalLocation?.FuncLocIdIntern;
             binding.MainWorkCenter = contextBinding.WorkCenter_Main_Nav?.WorkCenterId;
-        } else if (contextBinding && contextBinding['@odata.type'] === '#sap_mobile.Equipment') { // online use case
+        } else if (contextBinding && contextBinding['@odata.type'] === '#sap_mobile.FunctionalLocation') { // online use case - Functional Location
+            binding.HeaderFunctionLocation = contextBinding.FuncLocId;
+            binding.HeaderFunctionLocationDesc = contextBinding.FuncLocDesc;
+            binding.OnlineFloc = true;
+        } else if (contextBinding && contextBinding['@odata.type'] === '#sap_mobile.Equipment') { // online use case - Equipment
             binding.HeaderEquipment = contextBinding.EquipId;
             binding.HeaderEquipmentDesc = contextBinding.EquipDesc;
             binding.OnlineEquipment = true;
