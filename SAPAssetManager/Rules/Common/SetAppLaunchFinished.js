@@ -4,11 +4,13 @@ import libPersona from '../Persona/PersonaLibrary';
 
 export default function SetAppLaunchFinished(context) {
     ApplicationSettings.setBoolean(context, 'onAppLaunch', false);
-    return AnalyticsManager.init(context).then((result) => {
-        if (result) {
-            triggerLaunchEvents(context);
-        }
-    });
+    if (!context.isDemoMode()) {
+        return AnalyticsManager.init(context).then((result) => {
+            if (result) {
+                triggerLaunchEvents(context);
+            }
+        });
+    }
 }
 
 function triggerLaunchEvents(context) {
