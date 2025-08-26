@@ -353,7 +353,7 @@ export class WorkOrderLibrary {
         let queryBuilder = context.dataQueryBuilder();
         queryBuilder.select('*,OrderMobileStatus_Nav/*,WODocuments/DocumentID,WOPartners/Employee_Nav/EmployeeName,WOPartners/PartnerFunction,MarkedJob/PreferenceValue,WOPriority/PriorityDescription,WOPriority/Priority');
         queryBuilder.expand('WODocuments,WODocuments/Document,OrderMobileStatus_Nav/OverallStatusCfg_Nav,Operations,Operations/SubOperations,WOPriority,MarkedJob,UserTimeEntry_Nav,WOPartners,WOPartners/Employee_Nav');
-        queryBuilder.orderBy('Priority,DueDate,OrderId,WODocuments/DocumentID,OrderMobileStatus_Nav/MobileStatus');
+        queryBuilder.orderBy('Priority,DueDate,OrderId');
         return queryBuilder;
     }
 
@@ -411,7 +411,7 @@ export class WorkOrderLibrary {
     static WorkOrdersDetailsFollowOnQueryOption(context) {
         let queryBuilder = context.dataQueryBuilder();
         queryBuilder.expand('WODocuments,WODocuments/Document,OrderMobileStatus_Nav/OverallStatusCfg_Nav,Operations,Operations/SubOperations,WOPriority,MarkedJob,UserTimeEntry_Nav,WOPartners,WOPartners/Employee_Nav');
-        queryBuilder.orderBy('Priority,DueDate,OrderId,WODocuments/DocumentID,OrderMobileStatus_Nav/MobileStatus');
+        queryBuilder.orderBy('Priority,DueDate,OrderId');
 
         let searchString = context.searchString;
         if (searchString) {
@@ -1512,7 +1512,7 @@ export class WorkOrderEventLibrary {
      * @param context WorkOrderListView page context
      */
     static WorkOrdersListViewFormat(context) {
-        const section = context.getName();
+        const section = context?.getParent()?.getName();
         const property = context.getProperty();
         const binding = context.binding;
         let value = '';
@@ -1568,7 +1568,7 @@ export class WorkOrderEventLibrary {
      * @param context SubOperationsListView page context
      */
     static SubOperationsListViewFormat(context) {
-        const section = context.getName();
+        const section = context?.getParent()?.getName();
         const property = context.getProperty();
 
         if ((property === 'SubstatusText') && (section === 'WorkOrderSubOperationListSection')) {
@@ -1605,7 +1605,7 @@ export class WorkOrderEventLibrary {
      * @param context WorkOrderOperationsListView page context
      */
     static WorkOrderOperationsListViewFormat(context) {
-        const section = context.getName();
+        const section = context?.getParent()?.getName();
         const property = context.getProperty();
 
         if ((property === 'Subhead' && section === 'OperationsObjectCardCollection') || ((property === 'StatusText') && (section === 'WorkOrderOperationListSection')) || (section === 'OperationsObjectTable')) {

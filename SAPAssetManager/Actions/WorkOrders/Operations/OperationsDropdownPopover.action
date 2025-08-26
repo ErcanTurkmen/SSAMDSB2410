@@ -1,0 +1,23 @@
+{
+	"PopoverItems": [
+		{
+			"Position": "Right",
+			"Icon": "$(PLT,'',/SAPAssetManager/Images/filter.android.png, '', /SAPAssetManager/Images/filter.android.png)",
+			"Title": "$(L,filter)",
+			"OnPress": "/SAPAssetManager/Actions/WorkOrders/Operations/WorkOrderOperationsFilter.action",
+			"Visible": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsDefaultModeButtonVisible.js"
+		},
+		{
+			"Position": "Right",
+			"Title": "$(L,select)",
+			"Visible": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsDefaultModeButtonVisible.js",
+			"OnPress": "/SAPAssetManager/Rules/WorkOrders/Operations/OperationsListViewChangeMode.js"
+		},
+		{
+			"Title": "$(L,operations_assign)",
+			"Visible": "/SAPAssetManager/Rules/Supervisor/SupervisorRole/IsSupervisorSectionVisibleForOperations.js",
+			"OnPress": "/SAPAssetManager/Rules/Supervisor/Assign/OperationAssignNav.js"
+		}
+	],
+	"_Type": "Action.Type.PopoverMenu"
+}
