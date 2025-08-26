@@ -9,7 +9,7 @@ import { LRUCache } from '../HierarchyControl/ChildCountListPicker';
 export default function EquipmentListViewFormat(context) {
     let pageProxy = context.getPageProxy();
     let clientData = pageProxy && pageProxy.getClientData ? pageProxy.getClientData() : {};
-    let section = context.getName();
+    const section = context?.getParent()?.getName();
     let property = context.getProperty();
     let value = '';
     let cachedPlant;

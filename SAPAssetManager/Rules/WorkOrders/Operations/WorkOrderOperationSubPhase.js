@@ -16,6 +16,6 @@ export default function WorkOrderOperationSubPhase(context) {
                 return '';
             });
         }
-        return '';
+        return context.binding.WOHeader?.WOPriority?.PriorityDescription || context.binding.Header?.PriorityDescription || '';
     });
 }

@@ -161,12 +161,14 @@ export default class StatusUIGenerator {
         switch (proxyName) {
             case 'PageProxy':
                 return libThis.createToolbarItem(context, ...params);
+            case 'ObjectCardCollectionSectionProxy':
             case 'ObjectCardActionItemProxy':
             case 'ObjectCardOverflowButtonProxy':
-            case 'ObjectCardCollectionSectionProxy':
             case 'SectionedTableProxy':
-                return libThis.createObjectCardActionItem(context, ...params);
-            case 'SelectableSectionProxy':
+                 return libThis.createObjectCardActionItem(context, ...params);
+             case 'SelectableSectionProxy':
+             case 'ObjectCellContextMenuProxy':
+             case 'ObjectTableProxy':
                 return libThis.createContextMenuItem(context, ...params);
             default:
                 return libThis.createToolbarItem(context, ...params);

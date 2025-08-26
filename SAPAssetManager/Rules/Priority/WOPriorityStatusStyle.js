@@ -7,6 +7,10 @@ export default function WOPriorityStatusStyle(context) {
         return GetPriorityColor(binding.WOPriority.Priority || binding.WOPriority.PriorityDescription);
     }
 
+    if (context?.getParent()?.getName() !== 'ObjectCardTest' && (binding?.WOHeader?.WOPriority?.Priority || binding?.WOHeader?.WOPriority?.PriorityDescription)) {
+        return GetPriorityColor(binding.WOHeader.WOPriority.Priority || binding.WOHeader.WOPriority.PriorityDescription);
+    }
+
     if (binding && binding.Priority) {
         return GetPriorityColor(binding.Priority);
     }
