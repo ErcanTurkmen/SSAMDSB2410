@@ -1512,7 +1512,7 @@ export class WorkOrderEventLibrary {
      * @param context WorkOrderListView page context
      */
     static WorkOrdersListViewFormat(context) {
-        const section = context.getName();
+        const section = context?.getParent()?.getName();
         const property = context.getProperty();
         const binding = context.binding;
         let value = '';
@@ -1568,7 +1568,7 @@ export class WorkOrderEventLibrary {
      * @param context SubOperationsListView page context
      */
     static SubOperationsListViewFormat(context) {
-        const section = context.getName();
+        const section = context?.getParent()?.getName();
         const property = context.getProperty();
 
         if ((property === 'SubstatusText') && (section === 'WorkOrderSubOperationListSection')) {
@@ -1605,7 +1605,7 @@ export class WorkOrderEventLibrary {
      * @param context WorkOrderOperationsListView page context
      */
     static WorkOrderOperationsListViewFormat(context) {
-        const section = context.getName();
+        const section = context?.getParent()?.getName();
         const property = context.getProperty();
 
         if ((property === 'Subhead' && section === 'OperationsObjectCardCollection') || ((property === 'StatusText') && (section === 'WorkOrderOperationListSection')) || (section === 'OperationsObjectTable')) {
