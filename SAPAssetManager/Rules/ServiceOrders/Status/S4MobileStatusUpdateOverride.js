@@ -14,6 +14,10 @@ export default function S4MobileStatusUpdateOverride(context, dataObject, nextSt
         businessObjectType = data.ItemObjectType;
     }
 
+    if (data['@odata.type'] === '#sap_mobile.S4ServiceConfirmation') {
+        objectType = 'S4_SRV_CONF';
+    }
+
     return {
         'Name': '/SAPAssetManager/Actions/MobileStatus/MobileStatusUpdate.action',
         'Properties': {
