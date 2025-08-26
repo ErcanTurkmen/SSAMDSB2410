@@ -4,7 +4,7 @@
         "Items": [
             {
                 "Position": "Right",
-                "Icon": "$(PLT, /SAPAssetManager/Images/edit.png, /SAPAssetManager/Images/edit-accessory.android.png, '', /SAPAssetManager/Images/edit-accessory.android.png)",
+                "SystemItem": "Edit",
                 "IconText": "Edit",
                 "OnPress": "/SAPAssetManager/Rules/Inventory/Item/SetItemEdit.js"
             },

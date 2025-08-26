@@ -6,7 +6,7 @@
       "_Type": "Control.Type.SideDrawer",
       "ClearHistory": true,
       "DataSubscriptions": "/SAPAssetManager/Rules/Common/DataSubscriptions.js",
-      "DrawerButton":"$(PLT,/SAPAssetManager/Images/sidemenu.pdf,/SAPAssetManager/Images/sidemenu.android.png)",
+      "DrawerButton":"$(PLT,sap-icon://menu2, sap-icon://menu2)",
       "AlwaysShowDrawerButton": true,
       "Header": {
         "IconIsCircular": true,

@@ -1,4 +1,4 @@
-import { AnalyticsManager } from 'extension-SAMFoundation';
+import { AnalyticsEventLogger } from 'extension-SAMFoundation';
 import { GlobalVar } from '../Common/Library/GlobalCommon';
 
 export default class {
@@ -11,8 +11,8 @@ export default class {
      * @returns {Promise} Promise
      */
     static async init(context) {
-        let licenseNo = GlobalVar.getUserSystemInfo().get(context.getGlobalDefinition('/SAPAssetManager/Globals/AnalyticsManager/LicenseNumber.global').getValue());
-        return AnalyticsManager.getInstance().init(context, licenseNo);
+        let licenseNo = GlobalVar.getUserSystemInfo().get(context.getGlobalDefinition('/SAPAssetManager/Globals/AnalyticsEventLogger/LicenseNumber.global').getValue());
+        return AnalyticsEventLogger.getInstance().init(context, licenseNo);
     }
 
      /**
@@ -22,7 +22,7 @@ export default class {
      * @returns {void}
      */
      static operationCompleteSuccess() {
-        AnalyticsManager.getInstance().logEvent('operation.complete.success');
+        AnalyticsEventLogger.getInstance().logEvent('operation.complete.success');
     }
 
     /**
@@ -32,7 +32,7 @@ export default class {
      * @returns {void}
      */
     static operationCompleteCancel() {
-        AnalyticsManager.getInstance().logEvent('operation.complete.cancel');
+        AnalyticsEventLogger.getInstance().logEvent('operation.complete.cancel');
     }
 
     /**
@@ -42,7 +42,7 @@ export default class {
      * @returns {void}
      */
     static orderCompleteSuccess() {
-        AnalyticsManager.getInstance().logEvent('order.complete.success');
+        AnalyticsEventLogger.getInstance().logEvent('order.complete.success');
     }
 
     /**
@@ -52,7 +52,7 @@ export default class {
      * @returns {void}
      */
     static orderCompleteCancel() {
-        AnalyticsManager.getInstance().logEvent('order.complete.cancel');
+        AnalyticsEventLogger.getInstance().logEvent('order.complete.cancel');
     }
 
     /**
@@ -62,7 +62,7 @@ export default class {
      * @returns {void}
      */
     static suboperationCompleteSuccess() {
-        AnalyticsManager.getInstance().logEvent('suboperation.complete.success');
+        AnalyticsEventLogger.getInstance().logEvent('suboperation.complete.success');
     }
 
     /**
@@ -72,7 +72,7 @@ export default class {
      * @returns {void}
      */
     static suboperationCompleteCancel() {
-        AnalyticsManager.getInstance().logEvent('suboperation.complete.cancel');
+        AnalyticsEventLogger.getInstance().logEvent('suboperation.complete.cancel');
     }
 
     /**
@@ -82,7 +82,7 @@ export default class {
      * @returns {void}
      */
     static notificationCreateSuccess() {
-        AnalyticsManager.getInstance().logEvent('notification.create.success');
+        AnalyticsEventLogger.getInstance().logEvent('notification.create.success');
     }
 
     /**
@@ -92,7 +92,7 @@ export default class {
      * @returns {void}
      */
     static notificationCreateCancel() {
-        AnalyticsManager.getInstance().logEvent('notification.create.cancel');
+        AnalyticsEventLogger.getInstance().logEvent('notification.create.cancel');
     }
 
     /**
@@ -102,7 +102,7 @@ export default class {
      * @returns {void}
      */
     static notificationCompleteSuccess() {
-        AnalyticsManager.getInstance().logEvent('notification.complete.success');
+        AnalyticsEventLogger.getInstance().logEvent('notification.complete.success');
     }
 
     /**
@@ -112,7 +112,7 @@ export default class {
      * @returns {void}
      */
     static notificationCompleteCancel() {
-        AnalyticsManager.getInstance().logEvent('notification.complete.cancel');
+        AnalyticsEventLogger.getInstance().logEvent('notification.complete.cancel');
     }
 
     /**
@@ -122,7 +122,7 @@ export default class {
      * @returns {void}
      */
     static maintenanceTechnicaionAppLaunch() {
-        AnalyticsManager.getInstance().logEvent('mt.app.launch');
+        AnalyticsEventLogger.getInstance().logEvent('mt.app.launch');
     }
 
     /**
@@ -132,7 +132,7 @@ export default class {
      * @returns {void}
      */
     static maintenanceTechnicaionSTDAppLaunch() {
-        AnalyticsManager.getInstance().logEvent('mt.std.app.launch');
+        AnalyticsEventLogger.getInstance().logEvent('mt.std.app.launch');
     }
 
     /**
@@ -142,7 +142,7 @@ export default class {
      * @returns {void}
      */
     static fieldServiceTechnicaionAppLaunch() {
-        AnalyticsManager.getInstance().logEvent('fst.app.launch');
+        AnalyticsEventLogger.getInstance().logEvent('fst.app.launch');
     }
 
     /**
@@ -152,7 +152,7 @@ export default class {
      * @returns {void}
      */
     static fieldServiceTechnicaionProAppLaunch() {
-        AnalyticsManager.getInstance().logEvent('fst.pro.app.launch');
+        AnalyticsEventLogger.getInstance().logEvent('fst.pro.app.launch');
     }
 
     /**
@@ -162,7 +162,7 @@ export default class {
      * @returns {void}
      */
     static inventoryManagerAppLaunch() {
-        AnalyticsManager.getInstance().logEvent('im.app.launch');
+        AnalyticsEventLogger.getInstance().logEvent('im.app.launch');
     }
 
     /**
@@ -172,7 +172,7 @@ export default class {
      * @returns {void}
      */
     static safetyTechnicaionAppLaunch() {
-        AnalyticsManager.getInstance().logEvent('st.app.launch');
+        AnalyticsEventLogger.getInstance().logEvent('st.app.launch');
     }
 
     /**
@@ -182,7 +182,7 @@ export default class {
      * @returns {void}
      */
     static timeEntryCreateSuccess() {
-        AnalyticsManager.getInstance().logEvent('timeentry.create.success');
+        AnalyticsEventLogger.getInstance().logEvent('timeentry.create.success');
     }
 
     /**
@@ -192,7 +192,7 @@ export default class {
      * @returns {void}
      */
     static timeEntryCreateCancel() {
-        AnalyticsManager.getInstance().logEvent('timeentry.create.cancel');
+        AnalyticsEventLogger.getInstance().logEvent('timeentry.create.cancel');
     }
 
     /**
@@ -202,7 +202,7 @@ export default class {
      * @returns {void}
      */
     static operationalItemLockSuccess() {
-        AnalyticsManager.getInstance().logEvent('operationalitem.lock.success');
+        AnalyticsEventLogger.getInstance().logEvent('operationalitem.lock.success');
     }
 
     /**
@@ -212,7 +212,7 @@ export default class {
      * @returns {void}
      */
     static operationalItemUnlockSuccess() {
-        AnalyticsManager.getInstance().logEvent('operationalitem.unlock.success');
+        AnalyticsEventLogger.getInstance().logEvent('operationalitem.unlock.success');
     }
 
     /**
@@ -222,7 +222,7 @@ export default class {
      * @returns {void}
      */
     static permitApprovalSuccess() {
-        AnalyticsManager.getInstance().logEvent('permit.approval.success');
+        AnalyticsEventLogger.getInstance().logEvent('permit.approval.success');
     }
 
     /**
@@ -232,7 +232,7 @@ export default class {
      * @returns {void}
      */
     static goodsIssueSuccess() {
-        AnalyticsManager.getInstance().logEvent('Goods.issue.success');
+        AnalyticsEventLogger.getInstance().logEvent('Goods.issue.success');
     }
 
     /**
@@ -242,7 +242,7 @@ export default class {
      * @returns {void}
      */
     static goodsIssueCancel() {
-        AnalyticsManager.getInstance().logEvent('Goods.issue.cancel');
+        AnalyticsEventLogger.getInstance().logEvent('Goods.issue.cancel');
     }
 
     /**
@@ -252,7 +252,7 @@ export default class {
      * @returns {void}
      */
     static goodsReceiptSuccess() {
-        AnalyticsManager.getInstance().logEvent('Goods.receipt.success');
+        AnalyticsEventLogger.getInstance().logEvent('Goods.receipt.success');
     }
 
     /**
@@ -262,7 +262,7 @@ export default class {
      * @returns {void}
      */
     static goodsReceiptCancel() {
-        AnalyticsManager.getInstance().logEvent('Goods.receipt.cancel');
+        AnalyticsEventLogger.getInstance().logEvent('Goods.receipt.cancel');
     }
 
     /**
@@ -272,7 +272,7 @@ export default class {
      * @returns {void}
      */
     static inventoryCountSuccess() {
-        AnalyticsManager.getInstance().logEvent('inventory.count.success');
+        AnalyticsEventLogger.getInstance().logEvent('inventory.count.success');
     }
 
     /**
@@ -282,7 +282,7 @@ export default class {
      * @returns {void}
      */
     static serviceItemCompleteSuccess() {
-        AnalyticsManager.getInstance().logEvent('ServiceItem.complete.success');
+        AnalyticsEventLogger.getInstance().logEvent('ServiceItem.complete.success');
     }
 
     /**
@@ -292,7 +292,7 @@ export default class {
      * @returns {void}
      */
     static serviceOrderCompleteSuccess() {
-        AnalyticsManager.getInstance().logEvent('ServiceOrder.complete.success');
+        AnalyticsEventLogger.getInstance().logEvent('ServiceOrder.complete.success');
     }
 
     /**
@@ -302,7 +302,7 @@ export default class {
      * @returns {void}
      */
     static serviceConfirmationItemCreateSuccess() {
-        AnalyticsManager.getInstance().logEvent('ServiceConfirmationItem.Create.success');
+        AnalyticsEventLogger.getInstance().logEvent('ServiceConfirmationItem.Create.success');
     }
 
     /**
@@ -312,7 +312,7 @@ export default class {
      * @returns {void}
      */
     static serviceRequestCreateSuccess() {
-        AnalyticsManager.getInstance().logEvent('ServiceRequest.Create.success');
+        AnalyticsEventLogger.getInstance().logEvent('ServiceRequest.Create.success');
     }
 
     /**
@@ -322,7 +322,7 @@ export default class {
      * @returns {void}
      */
     static inspectionCreateSuccess() {
-        AnalyticsManager.getInstance().logEvent('inspection.create.success');
+        AnalyticsEventLogger.getInstance().logEvent('inspection.create.success');
     }
 
     /**
@@ -332,7 +332,7 @@ export default class {
      * @returns {void}
      */
     static inspectionCreateCancel() {
-        AnalyticsManager.getInstance().logEvent('inspection.create.cancel');
+        AnalyticsEventLogger.getInstance().logEvent('inspection.create.cancel');
     }
 
     /**
@@ -342,7 +342,7 @@ export default class {
      * @returns {void}
      */
     static searchComplete() {
-        AnalyticsManager.getInstance().logEvent('Search.complete');
+        AnalyticsEventLogger.getInstance().logEvent('Search.complete');
     }
 
     /**
@@ -352,7 +352,7 @@ export default class {
      * @returns {void}
      */
     static appLaunch() {
-        AnalyticsManager.getInstance().logEvent('app.launch');
+        AnalyticsEventLogger.getInstance().logEvent('app.launch');
     }
 
     /**
@@ -362,7 +362,7 @@ export default class {
      * @returns {void}
      */
     static maintenanceTechnicaionReturnOverview() {
-        AnalyticsManager.getInstance().logEvent('mt.overview.return');
+        AnalyticsEventLogger.getInstance().logEvent('mt.overview.return');
     }
 
     /**
@@ -372,7 +372,7 @@ export default class {
      * @returns {void}
      */
     static maintenanceTechnicaionStdReturnOverview() {
-        AnalyticsManager.getInstance().logEvent('mt.std.overview.return');
+        AnalyticsEventLogger.getInstance().logEvent('mt.std.overview.return');
     }
 
     /**
@@ -382,7 +382,7 @@ export default class {
      * @returns {void}
      */
     static fieldServiceTechnicaionReturnOverview() {
-        AnalyticsManager.getInstance().logEvent('fst.overview.return');
+        AnalyticsEventLogger.getInstance().logEvent('fst.overview.return');
     }
 
     /**
@@ -392,7 +392,7 @@ export default class {
      * @returns {void}
      */
     static fieldServiceTechnicaionProReturnOverview() {
-        AnalyticsManager.getInstance().logEvent('fst.pro.overview.return');
+        AnalyticsEventLogger.getInstance().logEvent('fst.pro.overview.return');
     }
 
     /**
@@ -402,7 +402,7 @@ export default class {
      * @returns {void}
      */
     static inventoryManagerReturnOverview() {
-        AnalyticsManager.getInstance().logEvent('im.overview.return');
+        AnalyticsEventLogger.getInstance().logEvent('im.overview.return');
     }
 
     /**
@@ -412,15 +412,15 @@ export default class {
      * @returns {void}
      */
     static safetyTechnicaionReturnOverview() {
-        AnalyticsManager.getInstance().logEvent('st.overview.return');
+        AnalyticsEventLogger.getInstance().logEvent('st.overview.return');
     }
 
     static systemLaunch(context) {
-        let systemSetting = GlobalVar.getUserSystemInfo().get(context.getGlobalDefinition('/SAPAssetManager/Globals/AnalyticsManager/SystemClientRole.global').getValue());
+        let systemSetting = GlobalVar.getUserSystemInfo().get(context.getGlobalDefinition('/SAPAssetManager/Globals/AnalyticsEventLogger/SystemClientRole.global').getValue());
         if (systemSetting === 'P') {
-            AnalyticsManager.getInstance().logEvent('production.system.launch');
+            AnalyticsEventLogger.getInstance().logEvent('production.system.launch');
         } else if (systemSetting === 'T') {
-            AnalyticsManager.getInstance().logEvent('test.system.launch');
+            AnalyticsEventLogger.getInstance().logEvent('test.system.launch');
         }
     }
 }
