@@ -8,7 +8,7 @@ import CommonLibrary from '../../../../SAPAssetManager/Rules/Common/Library/Comm
 export default function PRTCount(context) {
     let queryString = '';
     if (context.getName()) {
-        let name = context.getName();
+        let name = context.getParent().getName();
         switch (name) {
             case 'Equipment':
                 queryString = '$filter=(PRTCategory eq \'E\')';

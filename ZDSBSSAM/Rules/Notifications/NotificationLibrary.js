@@ -924,12 +924,10 @@ export default class {
         // Based on Jin's implementation check all validation promises;
         // if all resolved -> return true
         // if at least 1 rejected -> return false
-        return Promise.all(valPromises).then((results) => {
-            const pass = results.reduce((total, value) => {
-                return total && value;
-            });
+        return Promise.allSettled(valPromises).then(results => {
+            const pass = results.every(r => r.status === 'fulfilled');
             if (!pass) {
-                throw false;
+                throw new Error();
             }
             return true;
         }).catch(() => {

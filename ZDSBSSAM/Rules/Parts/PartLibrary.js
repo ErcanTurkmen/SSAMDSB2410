@@ -1419,7 +1419,7 @@ export default class {
     * Formats the field formats for various part screens
     */
     static partFieldFormat(sectionProxy, key = '') {
-        let section = sectionProxy.getName();
+        let section = sectionProxy.getParent().getName();
         let property = sectionProxy.getProperty();
         let binding = sectionProxy.binding;
 

@@ -15,7 +15,7 @@ export default function ZOperationConfirm(context) {
     let binding = '';
     let pageName = libCom.getPageName(context);
     let pageContext = libMobile.getPageContext(context, libCom.getPageName(context));
-    if (context.constructor.name === 'SectionedTableProxy') {
+    if (context.constructor.name === 'ObjectCardActionItemProxy') {
         binding = context.getPageProxy().getActionBinding() || context.getPageProxy().getExecutedContextMenuItem().getBinding();
         libCom.setStateVariable(pageContext, 'contextMenuSwipePage', pageName);
         libCom.setStateVariable(pageContext, 'BINDINGOBJECT', binding);
@@ -29,7 +29,7 @@ export default function ZOperationConfirm(context) {
     let bindingval = libCom.getStateVariable(pageContext, 'contextMenuSwipePage');
     return libMobile.showWarningMessage(context, context.localizeText('complete_operation_warning_message')).then(bool => {
     if (bool) {
-        if (context.constructor.name === 'SectionedTableProxy') {
+        if (context.constructor.name === 'ObjectCardActionItemProxy') {
             pageName = libCom.getPageName(context);
             libCom.setStateVariable(pageContext, 'contextMenuSwipePage', pageName);
         }
