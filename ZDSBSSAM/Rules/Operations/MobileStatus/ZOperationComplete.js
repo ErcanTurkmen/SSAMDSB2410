@@ -24,7 +24,7 @@ export default function ZOperationComplete(context) {
     let parent = this;
     let promises = [];
     //const pageBinding = pageContext.getBindingObject();
-    if (context.constructor.name === 'SectionedTableProxy') {
+    if (context.constructor.name === 'ObjectCardActionItemProxy') {
         binding = context.getPageProxy().getActionBinding();
         libCommon.setStateVariable(context.getPageProxy(), 'contextMenuSwipePage', pageName);
     }
@@ -47,7 +47,7 @@ export default function ZOperationComplete(context) {
                             if (libMobile.isOperationStatusChangeable(context)) {
                                 promises.push(isSignatureControlEnabled(context));
                             }
-                            if (context.constructor.name === 'SectionedTableProxy') {
+                            if (context.constructor.name === 'ObjectCardActionItemProxy') {
                                 pageName = libCommon.getPageName(context);
                                 libCommon.setStateVariable(context.getPageProxy(), 'contextMenuSwipePage', pageName);
                             }

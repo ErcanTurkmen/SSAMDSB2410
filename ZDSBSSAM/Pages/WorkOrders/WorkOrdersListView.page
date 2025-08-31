@@ -19,24 +19,15 @@
 		},
 		{
 			"Position": "Right",
-			"_Name": "Menu",
-			"Text": "Menu",
-			"Icon":"$(PLT,/SAPAssetManager/Images/menuicon.png,/SAPAssetManager/Images/menuicon.android.png)",
-			"OnPress": "/SAPAssetManager/Actions/Supervisor/SupervisorWorkOrderAddPopover.action",
-			"Visible": "/SAPAssetManager/Rules/WorkOrders/WorkOrdersListPopoverVisible.js"
-		},
-		{
-			"Position": "Right",
 			"_Name": "Assign",
 			"Text": "$(L,workorders_assign)",
-			"Visible": "/SAPAssetManager/Rules/Supervisor/SupervisorRole/IsSupervisorSectionVisibleForWOAndroid.js",
+			"Visible": "/SAPAssetManager/Rules/Supervisor/SupervisorRole/IsSupervisorSectionVisibleForWO.js",
 			"OnPress": "/SAPAssetManager/Rules/Supervisor/Assign/WorkOrderAssignNav.js"
 		},
 		{				
 			"_Type": "Fragment",
 			"Fragment": "/SAPAssetManager/Pages/Fragments/FilterButton.fragment",
 			"Properties": {
-				"Visible": "/SAPAssetManager/Rules/WorkOrders/WorkOrderListViewFilterVisible.js",
 				"OnPress": "/SAPAssetManager/Actions/WorkOrders/WorkOrderFilter.action"
 			}
 		},
@@ -45,7 +36,7 @@
 			"_Name": "OnlineSearch",
 			"Text": "$(L, online_search)",
 			"OnPress": "/SAPAssetManager/Rules/OnlineSearch/WorkOrders/OnlineSearchFromWorkOrdersNav.js",
-			"Visible": false
+			"Visible": "/SAPAssetManager/Rules/OnlineSearch/IsOnlineSearchEnabled.js"
 		}]
 	},
 	"Controls":

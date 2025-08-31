@@ -8,7 +8,7 @@
 		"Items": [
 			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment",
 			{
-				"Position": "Right",
+				"Position": "Right", 
 				"_Name": "AutoSync",
 				"Caption": "AutoSync",
 				"IconText": "SyncIcon",

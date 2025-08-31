@@ -95,7 +95,7 @@ export default function ContextMenuLeadingItems(context) {
 
             let pma = context.binding.WOHeader.MaintenanceActivityType;
             let orderType = context.binding.WOHeader.OrderType;
-            let isPlannedWorkorder = isPlannedWO(context);
+            let isPlannedWorkorder = isPlannedWO(context); 
             // show only complete button
             //Enable for planned orders with no time reg key and field key
             //unplanned orders if SO13 order type then PMA should   be 288 or  295 and zTimeRegKey  !== 'X'
