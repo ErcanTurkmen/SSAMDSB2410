@@ -23,7 +23,7 @@ export default function ZOperationConfirm(context) {
         libCom.setStateVariable(context, 'ZMenuSwipeContext', 'SectionedTableProxy');
     }
     else {
-        binding = pageContext.getBindingObject();
+        binding = context.getPageProxy().getActionBinding() || pageContext.getBindingObject();
     }
     libCom.setStateVariable(context, 'BINDINGOBJECT', binding);
     let bindingval = libCom.getStateVariable(pageContext, 'contextMenuSwipePage');
