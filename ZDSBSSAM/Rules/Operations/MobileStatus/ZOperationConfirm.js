@@ -29,9 +29,11 @@ export default function ZOperationConfirm(context) {
     let bindingval = libCom.getStateVariable(pageContext, 'contextMenuSwipePage');
     return libMobile.showWarningMessage(context, context.localizeText('complete_operation_warning_message')).then(bool => {
     if (bool) {
-        if (context.constructor.name === 'ObjectCardActionItemProxy') {
+        if (context.constructor.name === 'ObjectCardActionItemProxy' || context.constructor.name ==='ObjectCellContextMenuItemProxy') {
             pageName = libCom.getPageName(context);
             libCom.setStateVariable(pageContext, 'contextMenuSwipePage', pageName);
+            libCom.setStateVariable(pageContext, 'BINDINGOBJECT', binding);
+
         }
             //libCom.enableToolBar(context, 'WorkOrderOperationDetailsPage', 'Confirm', false);
             //return context.executeAction('/SAPAssetManagerCustomisation/Actions/Workorder/Operations/ZOperationUpdate.action').then (results =>{
