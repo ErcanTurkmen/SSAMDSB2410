@@ -109,8 +109,7 @@
 					"TrailingItems": "/SAPAssetManager/Rules/ContextMenuTrailingItems.js"
 				},
                 "Styles": {
-                    "StatusText": "/SAPAssetManager/Rules/Supervisor/Reject/RejectedStatusStyle.js",
-					"SubstatusText":"/SAPAssetManager/Rules/Priority/WOPriorityStatusStyle.js"
+                    "StatusText": "/SAPAssetManager/Rules/Supervisor/Reject/RejectedStatusStyle.js"
                 },
                 "Description": "{ZMedarbRolle}",
 				"Selected": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationSelected.js"
