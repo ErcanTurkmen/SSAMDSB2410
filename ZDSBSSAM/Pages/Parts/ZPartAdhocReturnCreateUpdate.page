@@ -106,7 +106,7 @@
 								"SeparatorIsHidden": false,
 								"ValidationViewIsHidden": false
 							},
-							"Value": false,
+							"Value": true,
 							"_Type": "Control.Type.FormCell.Switch",
 							"_Name": "OnlineSwitch",
 							"IsVisible": false,

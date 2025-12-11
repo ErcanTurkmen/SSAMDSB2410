@@ -236,7 +236,7 @@ export default class {
         return context.read('/SAPAssetManager/Services/AssetManager.service', 'MyNotificationHeaders', [], "$filter=NotificationNumber eq '" + binding.NotificationNumber + "'&$expand=Items/ItemCauses").then(function (results) {
             if (results && results.getItem(0)) {
                 var notification = results.getItem(0);
-                if (notifType === '30' || notifType === '70' || notifType === '71' || notifType === '72') {
+                if (notifType === '30' || notifType === '70' || notifType === '71' || notifType === '72' || notifType === '42') {
                     if (notification.Items && notification.Items.length > 0) {
                         if (notification.Items[0].ItemCauses && notification.Items[0].ItemCauses.length > 0 && notification.Items[0].ItemCauses[0].CauseCodeGroup) {
                             return true;
@@ -259,10 +259,10 @@ export default class {
             binding = context.getPageProxy().getExecutedContextMenuItem().getBinding();
         }
         var notifType = binding.NotificationType;
-        //check if activities exists for completion for notif type 30/71/70/72/41
+        //check if activities exists for completion for notif type 42
         return context.read('/SAPAssetManager/Services/AssetManager.service', 'MyNotificationHeaders', [], "$filter=NotificationNumber eq '" + binding.NotificationNumber + "'&$expand=Activities").then(function (results) {
             if (results && results.getItem(0)) {
-                if (notifType === '41' || notifType === '30' || notifType === '70' || notifType === '71' || notifType === '72') {
+                if (notifType === '42') {
                     var notification = results.getItem(0);
                     if (notification.Activities && notification.Activities.length > 0) {
                         return true;

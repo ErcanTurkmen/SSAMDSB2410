@@ -18,7 +18,7 @@ export default function ContextMenuTrailingItems(context) {
                 return trailing;
             }
 
-            return EnableWorkOrderEdit(context).then( isEnabled => {
+            return EnableWorkOrderEdit(context).then(isEnabled => {
                 if (isEnabled) {
                     //trailing.push('Edit_WorkOrder');
                     if (isLocal) {
@@ -32,15 +32,18 @@ export default function ContextMenuTrailingItems(context) {
             if (isSupervisorFeatureEnabled(context)) {//As per Kunal, for 2110.0.2 we will disable the context menu when the user is a supervisor. This will be revisited in 2205.
                 return trailing;
             }
-            if (isLocal) {
-                trailing = ['PRT_AddEquipment','Delete_Operation'];
-            } else {
-                trailing = ['PRT_AddEquipment'];
+            let operationNo = context.binding?.OperationNo;
+            if (operationNo !== '0010' && operationNo !== '0011') {
+                if (isLocal) {
+                    trailing = ['PRT_AddEquipment', 'Delete_Operation'];
+                } else {
+                    trailing = ['PRT_AddEquipment'];
+                }
             }
             break;
         case '#sap_mobile.MyWorkOrderSubOperation':
             if (isLocal) {
-                trailing = ['Edit_SubOperation','Delete_SubOperation'];
+                trailing = ['Edit_SubOperation', 'Delete_SubOperation'];
             } else {
                 trailing = ['Edit_SubOperation'];
             }
@@ -55,13 +58,13 @@ export default function ContextMenuTrailingItems(context) {
             return trailing;
         case '#sap_mobile.MyFunctionalLocation':
         case '#sap_mobile.MyEquipment':
-            if (context.binding.MeasuringPoints.length > 0 && userFeaturesLib.isFeatureEnabled(context, context.getGlobalDefinition('/SAPAssetManager/Globals/Features/PMMeasurement.global').getValue())) 
+            if (context.binding.MeasuringPoints.length > 0 && userFeaturesLib.isFeatureEnabled(context, context.getGlobalDefinition('/SAPAssetManager/Globals/Features/PMMeasurement.global').getValue()))
                 trailing = ['Take_Reading'];
             else
                 trailing = [];
             break;
         case '#sap_mobile.CatsTimesheetOverviewRow':
-                trailing = ['Delete_Timesheet'];
+            trailing = ['Delete_Timesheet'];
             break;
         case '#sap_mobile.Confirmation':
             if (isLocal) {
@@ -81,13 +84,13 @@ export default function ContextMenuTrailingItems(context) {
                 trailing = [];
             }
             break;
-        case '#sap_mobile.MyWorkOrderDocument':  
+        case '#sap_mobile.MyWorkOrderDocument':
             if (isLocal) {
                 trailing = ['Delete_Document'];
             } else {
                 trailing = [];
             }
-            
+
             //disable signatures removal after work order is completed
             if (data && data.Document && data.OrderId) {
                 return ContextMenuTrailingItemsForSignature(context, data, trailing);

@@ -12,7 +12,7 @@ import isUnPlannedWO from '../ZIsUnPlannedWorkOrderType';
 // and not operation 0010
 export default function ZOperationDetailPageToolbarVisibility(context) {
 	let binding = context.binding;
-	let isPlannedWorkorder= isPlannedWO(context);
+	let isPlannedWorkorder= isPlannedWO(binding);
 	let fieldKey = context.binding.FieldKey
 	fieldKey = fieldKey.toUpperCase();
 	let zTimeRegKey=context.binding.ZTimeRegKey;

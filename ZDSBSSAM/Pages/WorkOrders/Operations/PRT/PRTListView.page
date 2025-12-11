@@ -9,7 +9,7 @@
                 "SystemItem": "Add",
                 "Caption": "$(L,add)",
                 "OnPress": "/SAPAssetManager/Actions/WorkOrders/Operations/PRT/PRTAddEquipmentPopover.action",
-                "Visible": "/SAPAssetManager/Rules/UserAuthorizations/WorkOrders/EnableWorkOrderEdit.js"
+                "Visible": "/ZDSBSSAM/Rules/Operations/PRT/ZEnableAddPRT.js"
             }
         ]
     },
@@ -21,7 +21,7 @@
                     "Fragment": "/SAPAssetManager/Pages/Fragments/Equipment/ObjectTableSection.fragment",
                     "Properties": {
                         "Footer": {
-                            "AttributeLabel": "/SAPAssetManager/Rules/Operations/PRT/PRTCount.js",
+                            "AttributeLabel": "/ZDSBSSAM/Rules/Operations/PRT/ZPRTEquipmentTotalCount.js",
                             "OnPress": "/SAPAssetManager/Actions/WorkOrders/Operations/PRT/PRTEquipmentsListViewNav.action"
                         },
                         "MaxItemCount": 2,
@@ -76,7 +76,7 @@
                         "Caption": "$(L,see_all_data)",
                         "AccessoryType": "DisclosureIndicator",
                         "FooterStyle": "Attribute",
-                        "AttributeLabel": "/SAPAssetManager/Rules/Operations/PRT/PRTCount.js",
+                        "AttributeLabel": "/ZDSBSSAM/Rules/Operations/PRT/ZPRTMiscellaneousTotalCount.js",
                         "OnPress": "/SAPAssetManager/Actions/WorkOrders/Operations/PRT/PRTMiscellaneousListViewNav.action"
                     },
                     "MaxItemCount": 2,

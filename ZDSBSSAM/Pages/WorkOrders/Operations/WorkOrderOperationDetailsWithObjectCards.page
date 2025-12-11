@@ -197,7 +197,15 @@
                     }
                 },
                 "/SAPAssetManager/Pages/Fragments/Forms/FSM/FormInstanceObjectTableOperation.fragment",
-                "/SAPAssetManager/Pages/Fragments/Documents/DocumentsSection.fragment",
+                {
+					"_Type": "Fragment",
+					"Fragment": "/SAPAssetManager/Pages/Fragments/Documents/DocumentsSection.fragment",
+					"Properties": {
+                        "Visible": false
+					}
+                },
+                "/ZDSBSSAM/Pages/Fragments/WorkOrder/WorkOrderOperations/PRT/PRTSection.fragment",
+                "/ZDSBSSAM/Pages/Fragments/WorkOrder/WorkOrderOperations/PRT/PRTDocumentSection.fragment",
                 "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderOperations/WorkOrderOperationDetailsSection.fragment",
                 {
                     "_Type": "Fragment",
@@ -222,7 +230,7 @@
                             "KeyName": "$(L,prt)",
                             "Value": "/SAPAssetManager/Rules/Operations/PRT/PRTTotalCount.js",
                             "OnPress": "/SAPAssetManager/Actions/WorkOrders/Operations/PRT/PRTListViewNav.action",
-                            "Visible": "/SAPAssetManager/Rules/Operations/PRT/PRTIsVisible.js"
+                            "Visible": true
                         }
                     },
                     {

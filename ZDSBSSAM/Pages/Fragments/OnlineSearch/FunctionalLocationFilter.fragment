@@ -1,0 +1,30 @@
+{
+    "IsSelectedSectionEnabled": false,
+    "_Name": "FunctionalLocationFilter",
+    "AllowMultipleSelection": false,
+    "AllowEmptySelection": true,
+    "Caption": "$(L,wcm_functional_location)",
+    "_Type": "Control.Type.FormCell.ListPicker",
+    "IsEditable": true,
+    "IsPickerDismissedOnSelection": true,
+    "IsSearchCancelledAfterSelection": true,
+    "Search": {
+        "Enabled": true,
+        "Delay": 500,
+        "MinimumCharacterThreshold": 3,
+        "Placeholder": "$(L,search)",
+        "BarcodeScanner": true
+    },
+    "PickerItems": {
+        "DisplayValue": "{{#Property:FuncLocId}} - {{#Property:FuncLocDesc}}",
+        "ReturnValue": "{FuncLocIdIntern}",
+        "Target": {
+            "EntitySet": "MyFunctionalLocations",
+            "Service": "/SAPAssetManager/Services/AssetManager.service",
+            "QueryOptions": "$filter=length(FuncLocId) eq 6&$orderby=FuncLocId asc"
+        }
+    },
+    "FilterProperty": "FuncLocIdIntern",
+    "IsVisible": true,
+    "OnValueChange": "/SAPAssetManager/Rules/Filter/RedrawFilterToolbar.js"
+}

@@ -25,6 +25,27 @@
     [{
         "Sections":
         [{
+            "Controls":
+            [{
+                "Value": "{ZMedarbRolle}",
+                "_Type": "Control.Type.FormCell.ListPicker",
+                "_Name": "UserRoleFilter",
+                "AllowMultipleSelection": true,
+                "Caption": "$(L,userrole)",
+                "IsPickerDismissedOnSelection": false,
+                "IsSearchCancelledAfterSelection": false,
+                "FilterProperty": "ZMedarbRolle",
+                "Search": {
+                    "Enabled": true,
+                    "Placeholder": "$(L,search)",
+                    "BarcodeScanner": true,
+                    "Delay": 500,
+                    "MinimumCharacterThreshold": 3
+                },
+            "PickerItems": "/ZDSBSSAM/Rules/Workorders/Operations/ZOperationMedarbRolleListPicker.js"
+            }]
+        },
+        {
             "Controls": [{
 				"_Type": "Fragment",
                 "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/SortByFilter.fragment",
@@ -67,24 +88,6 @@
         {
             "Controls":
             [{
-                "Value": "{ZMedarbRolle}",
-                "_Type": "Control.Type.FormCell.ListPicker",
-                "_Name": "UserRoleFilter",
-                "AllowMultipleSelection": true,
-                "Caption": "$(L,userrole)",
-                "IsPickerDismissedOnSelection": false,
-                "IsSearchCancelledAfterSelection": false,
-                "FilterProperty": "ZMedarbRolle",
-                "Search": {
-                    "Enabled": true,
-                    "Placeholder": "$(L,search)",
-                    "BarcodeScanner": true,
-                    "Delay": 500,
-                    "MinimumCharacterThreshold": 3
-                },
-            "PickerItems": "/ZDSBSSAM/Rules/Workorders/Operations/ZOperationMedarbRolleListPicker.js"
-            },
-            {
                 "_Type": "Fragment",
                 "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/FilterByFilter.fragment",
 				"Properties": {

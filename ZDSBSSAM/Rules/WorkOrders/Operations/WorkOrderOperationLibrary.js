@@ -19,8 +19,7 @@ import DocumentLibrary from '../../../../SAPAssetManager/Rules/Documents/Documen
  */
 export class OperationLibrary {
 
-    /**
-     * Dynamically set the CreateLinks of the WorkOrder
+    /* Dynamically set the CreateLinks of the WorkOrder
      * @param {IPageProxy}
      * @return {Array} array of create update links
      */

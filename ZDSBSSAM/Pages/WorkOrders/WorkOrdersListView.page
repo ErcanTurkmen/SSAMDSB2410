@@ -36,7 +36,7 @@
 			"_Name": "OnlineSearch",
 			"Text": "$(L, online_search)",
 			"OnPress": "/SAPAssetManager/Rules/OnlineSearch/WorkOrders/OnlineSearchFromWorkOrdersNav.js",
-			"Visible": "/SAPAssetManager/Rules/OnlineSearch/IsOnlineSearchEnabled.js"
+			"Visible": false
 		}]
 	},
 	"Controls":

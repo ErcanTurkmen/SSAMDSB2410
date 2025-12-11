@@ -76,6 +76,7 @@ class QABSettingsHelpers {
                 'IsButtonVisible': enableCreate,
                 'Action': '/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateChangeSetNav.js',
                 '_Name': 'ADD_NOTIFICATION',
+                'IsButtonVisibleBySettings': false
             }, ...props,
         });
     }
@@ -476,7 +477,7 @@ export default class QABSettings extends QABSettingsHelpers {
         const defaultChips = [{
             'IsIconVisible': true,
             'Icon': '$(PLT,/SAPAssetManager/Images/QABSettings.png,/SAPAssetManager/Images/QABSettings.android.png)',
-            'IsButtonVisible': false,
+            'IsButtonVisible': true,
             'IsButtonEnabled': true,
             'Action': '/SAPAssetManager/Rules/QAB/QABSettingsPageNav.js',
             '_Name': 'SETTINGS',

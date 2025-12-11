@@ -1,0 +1,8 @@
+{
+    "_Type": "Action.Type.ApplicationUpdate",
+    "ActionResult": {
+        "_Name": "AppUpdate"
+    },
+    "OnFailure": "/ZDSBSSAM/Rules/Application/AppUpdateFailure.js",
+    "OnSuccess": "/ZDSBSSAM/Rules/Application/AppUpdateSuccess.js"
+}

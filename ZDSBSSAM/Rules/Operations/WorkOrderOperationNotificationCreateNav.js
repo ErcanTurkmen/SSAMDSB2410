@@ -3,6 +3,7 @@ import notifCreateChangeSetNav from '../../../SAPAssetManager/Rules/Notification
 import libCommon from '../../../SAPAssetManager/Rules/Common/Library/CommonLibrary';
 import userFeaturesLib from '../../../SAPAssetManager/Rules/UserFeatures/UserFeaturesLibrary';
 import ZCreateEntitySuccessMessageNoClosePageWithAutoSyncWithOutSave from '../ApplicationEvents/AutoSync/actions/ZCreateEntitySuccessMessageNoClosePageWithAutoSyncWithOutSave.js';
+import Logger from '../../../SAPAssetManager/Rules/Log/Logger';
 
 export default function WorkOrderOperationNotificationCreateNav(context) {
 
@@ -16,8 +17,7 @@ export default function WorkOrderOperationNotificationCreateNav(context) {
     // DSB customization for setting the Flag for Notification Page Create 
     //libNotif.setZAddFromOperationToNotifFlag(context, true);     //libNotif.setZAddFromOperationToNotifFlag(context,false);
     const currentPageName = libCommon.getPageName(context);
-    libCommon.setStateVariable(context, 'ZNotificationFromOperation', true, 'WorkOrderOperationDetailsWithObjectCards');
-    let abc = libCommon.getStateVariable(context, 'ZNotificationFromOperation', 'WorkOrderOperationDetailsWithObjectCards');
+    libCommon.setStateVariable(context, 'ZNotificationFromOperation', true, currentPageName);
 
     let bindingObject = {
         // HeaderEquipment: binding.OperationEquipment,
@@ -29,13 +29,17 @@ export default function WorkOrderOperationNotificationCreateNav(context) {
         ExternalWorkCenterId: binding.MainWorkCenter,
         MainWorkCenterPlant: binding.MainWorkCenterPlant,
         OperationOrderId: binding.OrderId,
+        CurrentPageName: currentPageName,
     };
-
+    bindingObject['@odata.type'] = "#sap_mobile.MyNotificationHeader";
     // Return the result of the change set nav
     libCommon.setStateVariable(context, 'LocalId', ''); //Reset the localid before creating a new notification
+    Logger.error("Poonam LocalId before");
     return notifCreateChangeSetNav(context, bindingObject).then(() => {
+        Logger.error("Poonam LocalId after notf create");
         //Start the process of checking if we need to add this notification as an object list to the work order.
         let localId = libCommon.getStateVariable(context, 'LocalId');
+        Logger.error("Poonam LocalId after", localId);
         if (localId) {
             if (binding.WOHeader && binding.WOHeader.OrderType && binding.WOHeader.PlanningPlant) {
                 let orderType = binding.WOHeader.OrderType;

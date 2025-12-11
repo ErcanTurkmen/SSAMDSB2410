@@ -8,7 +8,7 @@
 		"Items": [
 			"/SAPAssetManager/Pages/Fragments/SyncButton.fragment",
 			{
-				"Position": "Right", 
+				"Position": "Right",
 				"_Name": "AutoSync",
 				"Caption": "AutoSync",
 				"IconText": "SyncIcon",
@@ -49,15 +49,6 @@
                                 ],
                                 "OnPress": "/SAPAssetManager/Rules/OverviewPage/KPI/OpenListViewNav.js",
                                 "CaptionLabel": "$(L, kpi_open)"
-                            },
-                            {
-                                "MetricItems": [
-                                    {
-                                        "Value": "/SAPAssetManager/Rules/OverviewPage/KPI/CompletedCount.js"
-                                    }
-                                ],
-                                "OnPress": "/SAPAssetManager/Rules/OverviewPage/KPI/CompletedListViewNav.js",
-                                "CaptionLabel": "$(L, kpi_completed)"
                             },
                             {
 

@@ -21,33 +21,40 @@ export default function NotificationMobileStatusComplete(context) {
 		//Don't allow notification to be completed if all notification tasks and notification item tasks are not complete.
 		return CanNotificationMobileStatusComplete(context).then(async canComplete => {
 			if (canComplete) {
-				return libNotifMobile.isItemCauseExists(context).then(async causeExists => {	// DSB customisation to check the activities and item cause before completion
-					if (causeExists) {
-						return libNotifMobile.NotificationUpdateMalfunctionEnd(context).then(() => {
-							//libNotifMobile.completeNotification does digital signature and device registration. The function name is misleading.
-							return libNotifMobile.completeNotification(context, dummyFunction).then(() => {
-								LocationUpdate(context);
-								//Update the mobile status to complete in db
-								return context.executeAction(MobileStatusUpdateOverride(context, statusElement, 'NotifMobileStatus_Nav', '')).then(() => {
-									let pageContext = MobileStatusLibrary.getPageContext(context, NotificationDetailsPageName(context));
-									context.getFioriToolbar().setVisible(false);
-									HideActionItems(pageContext.getPageProxy(), 2);
-									return pageContext.executeAction('/SAPAssetManager/Actions/Notifications/NotificationMobileStatusSuccessMessage.action').then(() => {
-										CommonLibrary.removeStateVariable(context, 'StatusElement');
-										return pageContext.executeAction('/SAPAssetManager/Actions/Page/ClosePage.action');
-										//DSB customisation to remove autosync on status change - complete
-										//AutoSyncLibrary.autoSyncOnStatusChange(pageContext);
-									}).then(() => {
-										//Add AnalyticsManager Check here
-										AnalyticsManager.notificationCompleteSuccess();
+				return libNotifMobile.isNotifActivityExists(context).then(async activityExists => {	// DSB customisation to check the activities and item cause before completion
+					if (activityExists) {
+						return libNotifMobile.isItemCauseExists(context).then(async causeExists => {	// DSB customisation to check the activities and item cause before completion
+							if (causeExists) {
+								return libNotifMobile.NotificationUpdateMalfunctionEnd(context).then(() => {
+									//libNotifMobile.completeNotification does digital signature and device registration. The function name is misleading.
+									return libNotifMobile.completeNotification(context, dummyFunction).then(() => {
+										LocationUpdate(context);
+										//Update the mobile status to complete in db
+										return context.executeAction(MobileStatusUpdateOverride(context, statusElement, 'NotifMobileStatus_Nav', '')).then(() => {
+											let pageContext = MobileStatusLibrary.getPageContext(context, NotificationDetailsPageName(context));
+											context.getFioriToolbar().setVisible(false);
+											HideActionItems(pageContext.getPageProxy(), 2);
+											return pageContext.executeAction('/SAPAssetManager/Actions/Notifications/NotificationMobileStatusSuccessMessage.action').then(() => {
+												CommonLibrary.removeStateVariable(context, 'StatusElement');
+												return pageContext.executeAction('/SAPAssetManager/Actions/Page/ClosePage.action');
+												//DSB customisation to remove autosync on status change - complete
+												//AutoSyncLibrary.autoSyncOnStatusChange(pageContext);
+											}).then(() => {
+												//Add AnalyticsManager Check here
+												AnalyticsManager.notificationCompleteSuccess();
+											});
+										});
 									});
 								});
-							});
+							}
+							else {
+								return context.executeAction('/ZDSBSSAM/Actions/Notifications/MobileStatus/NotificationCausePendingError.action');
+							}
 						});
-					}
-					else {
-						return context.executeAction('/ZDSBSSAM/Actions/Notifications/MobileStatus/NotificationCausePendingError.action');
-					}
+				}
+				else {
+					return context.executeAction('/ZDSBSSAM/Actions/Notifications/MobileStatus/NotificationActivityPendingError.action');
+				}
 				});
 			}
 			let errorAction = '/SAPAssetManager/Actions/Notifications/MobileStatus/NotificationTaskPendingError.action';

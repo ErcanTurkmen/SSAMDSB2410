@@ -10,7 +10,7 @@ import ModifyListViewSearchCriteria from '../../../SAPAssetManager/Rules/LCNC/Mo
 import FilterLibrary from '../../../SAPAssetManager/Rules/Filter/FilterLibrary';
 
 export default function NotificationsListViewQueryOption(context) {
-    let ignoreFilter = false;
+    let ignoreFilter = false; 
     let pageName = libCommon.getPageName(context);
 
     if (pageName === WorkOrderDetailsPageName(context)) {

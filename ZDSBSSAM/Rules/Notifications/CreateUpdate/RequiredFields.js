@@ -58,7 +58,7 @@ export default function RequiredFields(context) {
     }
     else {
         /**** DSB   Customisation to validate cause  ***/
-        if (notifObject.typeLstPkr === '30' || notifObject.typeLstPkr === '70' || notifObject.typeLstPkr === '71' || notifObject.typeLstPkr === '72') {
+        if (notifObject.typeLstPkr === '30' || notifObject.typeLstPkr === '70' || notifObject.typeLstPkr === '71' || notifObject.typeLstPkr === '72' || notifObject.typeLstPkr === '42') {
             if (CommonLib.isDefined(notifObject.causeDescription)) {
                 if (!CommonLib.isDefined(notifObject.causeGroup) || !CommonLib.isDefined(notifObject.causeCode)) {
                     required.push('CauseGroupLstPkr', 'CodeLstPkr');

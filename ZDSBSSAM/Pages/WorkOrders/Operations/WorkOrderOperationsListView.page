@@ -28,7 +28,7 @@
 				"_Name": "SelectAll",
 				"Position": "Right",
 				"Text": "$(L,select_all)",
-				"Visible": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsDefaultModeButtonVisible.js",
+				"Visible": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsSelectAllButtonVisible.js",
 				"OnPress": "/SAPAssetManager/Rules/WorkOrders/Operations/SelectAllOperations.js"
 			},
 			{
@@ -52,7 +52,7 @@
 				"Icon": "$(PLT,'',/SAPAssetManager/Images/filter.android.png)",
 				"Caption": "/SAPAssetManager/Rules/Filter/FilterButtonCaption.js",
 				"OnPress": "/SAPAssetManager/Actions/WorkOrders/Operations/WorkOrderOperationsFilter.action",
-				"Visible": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsDefaultModeButtonVisible.js"
+				"Visible": "/SAPAssetManager/Rules/WorkOrders/Operations/FilterButtonVisible.js"
 			},
 			{
 				"_Name": "Select",
@@ -109,8 +109,7 @@
 					"TrailingItems": "/SAPAssetManager/Rules/ContextMenuTrailingItems.js"
 				},
                 "Styles": {
-                    "StatusText": "/SAPAssetManager/Rules/Supervisor/Reject/RejectedStatusStyle.js",
-					"SubstatusText":"/SAPAssetManager/Rules/Priority/WOPriorityStatusStyle.js"
+                    "StatusText": "/SAPAssetManager/Rules/Supervisor/Reject/RejectedStatusStyle.js"
                 },
                 "Description": "{ZMedarbRolle}",
 				"Selected": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationSelected.js"

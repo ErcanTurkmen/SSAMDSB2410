@@ -20,7 +20,7 @@ export default class NotificationQABSettings extends QABSettings {
     const isCreateEditEnabled = await EnableNotificationCreateEdit(this._context);
 
     const chips = [
-        this._createChip({
+        /*this._createChip({
             'Label': this._context.localizeText('add_item'),
             'Icon': '$(PLT,/SAPAssetManager/Images/QABAddItem.png,/SAPAssetManager/Images/QABAddItem.android.png)',
             'IsEnabled': isEditEnabled,
@@ -28,7 +28,7 @@ export default class NotificationQABSettings extends QABSettings {
             'IsButtonVisible': false,
             'Action': '/SAPAssetManager/Rules/Notifications/Item/CreateUpdate/NotificationItemCreateNav.js',
             '_Name': 'ADD_ITEM',
-        }),
+        }),*/
         this._createChip({
             'Label': this._context.localizeText('add_task'),
             'Icon': '$(PLT,/SAPAssetManager/Images/QABAddTask.png,/SAPAssetManager/Images/QABAddTask.android.png)',
@@ -54,16 +54,16 @@ export default class NotificationQABSettings extends QABSettings {
             'IsButtonVisible': IsGISEnabled(this._context),
             'Action': '/SAPAssetManager/Rules/Notifications/NotificationMapNav.js',
         }),
-        await this._createTakeReadingsChip(),
+        //await this._createTakeReadingsChip(),
         this._createAddNoteChip({
             'IsButtonEnabled': isCreateEditEnabled,
             'IsButtonVisibleBySettings': false,
         }),
-        this._createAddReminderChip({
+       /* this._createAddReminderChip({
             'IsButtonEnabled': isCreateEditEnabled,
             'IsButtonVisibleBySettings': false,
         }),
-        this._createViewRelatedOrdersListChip(),
+        this._createViewRelatedOrdersListChip(),*/
     ];
 
     return super.generateChips(chips);

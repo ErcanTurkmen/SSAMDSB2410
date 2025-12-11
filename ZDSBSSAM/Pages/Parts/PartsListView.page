@@ -12,7 +12,7 @@
                 "SystemItem": "Add",
                 "Caption": "$(L,add)",
                 "OnPress": "/SAPAssetManager/Rules/Parts/CreateUpdate/PartCreateNav.js",
-                "Visible": "/ZDSBSSAM/Rules/Parts/PartAddVisibility.js"
+                "Visible": "/ZDSBSSAM/Rules/Parts/ZPartAddVisibilityFromOpr.js"
             },
             {
                 "Position": "Right",

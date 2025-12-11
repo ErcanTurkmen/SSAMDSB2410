@@ -14,8 +14,8 @@ import operationEntity from '../../../../SAPAssetManager/Rules/WorkOrders/Operat
 
 export default function OperationZMedarbRolleListPicker(context) {
     var jsonResult = [];
-	let binding = context.binding;
-	if(binding.Operations)
+	let binding = context?.binding;
+	if(binding?.Operations)
 	{
 	    let oprlist = binding.Operations;
 	   /*for (var k = 0; k < oprlist.length; k++) {

@@ -30,7 +30,7 @@ import SoldToPartyLstPkrIsEditable from '../../../SAPAssetManager/Rules/ServiceO
 import IsFromOnlineFlocCreate from '../../../SAPAssetManager/Rules/Common/IsFromOnlineFlocCreate';
 import FSMOverviewHelpers from '../../../SAPAssetManager/Rules/OverviewPage/Helpers/FSMOverviewHelpers';
 
-
+ 
 /**
  * Contains all common Work Order related method, except CreateUpdate page event and contorl method;
  * NOTE: For CreateUpdate related Event and Control please use WorkOrderEventLibrary and WorkWorkControlsLibrary

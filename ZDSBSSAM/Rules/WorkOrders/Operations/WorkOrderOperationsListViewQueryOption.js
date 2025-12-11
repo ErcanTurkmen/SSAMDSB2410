@@ -7,9 +7,10 @@ import userFeaturesLib from '../../../../SAPAssetManager/Rules/UserFeatures/User
 import OperationsEntitySet from '../../../../SAPAssetManager/Rules/WorkOrders/Operations/OperationsEntitySet';
 import MobileStatusLibrary from '../../../../SAPAssetManager/Rules/MobileStatus/MobileStatusLibrary';
 import ModifyListViewSearchCriteria from '../../../../SAPAssetManager/Rules/LCNC/ModifyListViewSearchCriteria';
+import ZOperationMultiConfirmQueryOption from './ZOperationMultiConfirmQueryOption';
 
 export default function WorkOrderOperationsListViewQueryOption(context) {
-    let filter = '';
+    let filter = ''; 
     let queryBuilder;
     let searchString = context.searchString;
     let clockedInString = context.localizeText('clocked_in');
@@ -119,7 +120,7 @@ export default function WorkOrderOperationsListViewQueryOption(context) {
             const HOLD = CommonLibrary.getAppParam(context, 'MOBILESTATUS', context.getGlobalDefinition('/SAPAssetManager/Globals/MobileStatus/ParameterNames/HoldParameterName.global').getValue());
             const STARTED = CommonLibrary.getAppParam(context, 'MOBILESTATUS', context.getGlobalDefinition('/SAPAssetManager/Globals/MobileStatus/ParameterNames/StartParameterName.global').getValue());
             const REVIEW = CommonLibrary.getAppParam(context, 'MOBILESTATUS', context.getGlobalDefinition('/SAPAssetManager/Globals/MobileStatus/ParameterNames/ReviewParameterName.global').getValue());
-            if (context.getPageProxy().getControl('SectionedTable') && context.getPageProxy().getControl('SectionedTable').getSections()[0].getSelectionMode() === 'Multiple') {
+            if (context.getPageProxy()?.getControl('SectionedTable') && context.getPageProxy()?.getControl('SectionedTable')?.getSections()[0]?.getSelectionMode() === 'Multiple') {
 
                 queryBuilder.filter(Constants.notFinallyConfirmedFilter());
 
@@ -150,7 +151,10 @@ export default function WorkOrderOperationsListViewQueryOption(context) {
                     queryBuilder.filter(dateFilterFromFSMOverviewScreen);
                 }
             }
-
+            if(context.getPageProxy()?.getControl('SectionedTable')?.getSections()[0]?.getSelectionMode() == 'Multiple'){
+                let queryOptions = ZOperationMultiConfirmQueryOption(context);
+                queryBuilder.filter(queryOptions);
+            }
             return queryBuilder;
         } else {
             let queryOptions = Constants.OperationListQueryOptions(context);

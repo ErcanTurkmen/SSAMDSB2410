@@ -1,0 +1,6 @@
+{
+    "_Type": "Action.Type.Message",
+    "Title": "$(L,notification_complete_title)",
+    "Message": "$(L,notification_complete_warning_text)",
+    "OKCaption": "$(L,ok)"
+}

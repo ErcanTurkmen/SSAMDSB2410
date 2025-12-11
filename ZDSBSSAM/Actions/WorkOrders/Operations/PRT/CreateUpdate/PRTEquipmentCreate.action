@@ -6,7 +6,7 @@
     },
     "Properties": {
         "PRTCategory": "E",
-        "Description": "/SAPAssetManager/Rules/WorkOrders/Operations/PRT/CreateUpdate/PRTDescription.js",
+        "Description": "/ZDSBSSAM/Rules/Operations/PRT/ZPRTDescription.js",
         "OrderId": "#Property:OrderId",
         "OperationNo": "#Property:OperationNo",
         "Equipment": "#Control:EquipmentLstPkr/#SelectedValue",
@@ -22,13 +22,6 @@
     },
     "CreateLinks": [
         {
-            "Property": "PRTEquipment",
-            "Target": {
-                "EntitySet": "MyEquipments",
-                "QueryOptions": "$filter=EquipId eq '{{#Control:EquipmentLstPkr/#SelectedValue}}'"
-            }
-        },
-        {
             "Property": "WOOperation_Nav",
             "Target": {
                 "EntitySet": "MyWorkOrderOperations",
@@ -37,8 +30,11 @@
         }
     	
     ],
+    "ActionResult": {
+        "_Name": "PRTCreate"
+    },    
     "OnSuccess":"/SAPAssetManager/Rules/ApplicationEvents/AutoSync/actions/PRTEquipmentCreateSuccessWithAutoSync.js",
-    "OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/CreateEntityFailureMessage.action",
+    "OnFailure": "/ZDSBSSAM/Rules/Operations/PRT/ZPRTCreateOnFailure.js",
     "ValidationRule": "/ZDSBSSAM/Rules/Workorders/Operations/PRT/CreateUpdate/ZPRTEquipmentCreateUpdateValidation.js",
     "ShowActivityIndicator": true,
     "ActivityIndicatorText" : "  "

@@ -1,5 +1,6 @@
 import libCom from '../../../../SAPAssetManager/Rules/Common/Library/CommonLibrary';
 import Logger from '../../../../SAPAssetManager/Rules/Log/Logger';
+import CheckForConnectivity from '../../../../SAPAssetManager/Rules/Common/CheckForConnectivity';
 
 //Upgraded to 2210
 export default function UpdateOnlineQueryOptions(context) {
@@ -20,45 +21,47 @@ export default function UpdateOnlineQueryOptions(context) {
     }
 
     // DSB Customisation - changed title. removed desc and added in Subhead. Added Material Num as title
-    if (onlineSwitchValue) {
-        materialLstPkrSpecifier.setObjectCell({
-            'PreserveIconStackSpacing': false,
-            'Title': '{{#Property:MaterialNum}}',
-            'Subhead': '{{#Property:MaterialDesc}}',
-            'Footnote': '/ZDSBSSAM/Rules/Parts/CreateUpdate/ZOnlinePlantValue.js',
-        });
-    } else {
-        materialLstPkrSpecifier.setObjectCell({
-            'PreserveIconStackSpacing': false,
-            'Title': '{{#Property:Material/#Property:Description}} ({{#Property:MaterialNum}})',
-            'Subhead': '/SAPAssetManager/Rules/Parts/CreateUpdate/PlantValue.js',
-            'Footnote': '{{#Property:Material/#Property:BaseUOM}}',
-        });
-    }
-    materialLstPkrSpecifier.setEntitySet('MaterialSLocs');
-    materialLstPkrSpecifier.setReturnValue('{@odata.readLink}');
-    //    materialLstPkrSpecifier.setQueryOptions(materialLstPkrQueryOptions);
-    if (onlineSwitchValue) {
-        materialLstPkrSpecifier.setService('/SAPAssetManager/Services/OnlineAssetManager.service');
-    } else {
-        materialLstPkrSpecifier.setService('/SAPAssetManager/Services/AssetManager.service');
-    }
-    return materialListPicker.setTargetSpecifier(materialLstPkrSpecifier, false).then(() => {
-        let plant = '';
-        if (context.getPageProxy().binding['@odata.type'] === "#sap_mobile.MyWorkOrderHeader") {
-            plant = context.getPageProxy().binding.MaintenancePlant;
-        }
-        else {
-            plant = context.getPageProxy().binding.WOHeader.MaintenancePlant;
-        }
-        if (materialNumber && plant && context.getPageProxy().binding.StorageLocation) {
-            return materialListPicker.setValue(`MaterialSLocs(Plant='${plant}',StorageLocation='${context.getPageProxy().binding.StorageLocation}',MaterialNum='${materialNumber}')`);
+    try {
+        if (onlineSwitchValue && CheckForConnectivity(context)) {
+            materialLstPkrSpecifier.setObjectCell({
+                'PreserveIconStackSpacing': false,
+                'Title': '{{#Property:MaterialNum}}',
+                'Subhead': '{{#Property:MaterialDesc}}',
+                'Footnote': '/ZDSBSSAM/Rules/Parts/CreateUpdate/ZOnlinePlantValue.js',
+            });
+            materialLstPkrSpecifier.setService('/SAPAssetManager/Services/OnlineAssetManager.service');
         } else {
-            return materialListPicker.setValue('');
+            materialLstPkrSpecifier.setObjectCell({
+                'PreserveIconStackSpacing': false,
+                'Title': '{{#Property:Material/#Property:Description}} ({{#Property:MaterialNum}})',
+                'Subhead': '/SAPAssetManager/Rules/Parts/CreateUpdate/PlantValue.js',
+                'Footnote': '{{#Property:Material/#Property:BaseUOM}}',
+            });
+            materialLstPkrSpecifier.setService('/SAPAssetManager/Services/AssetManager.service');
         }
-    }).catch(() => {
-        // Could not set specifier
-        return materialListPicker.setValue('');
-    });
-
+        materialLstPkrSpecifier.setEntitySet('MaterialSLocs');
+        materialLstPkrSpecifier.setReturnValue('{@odata.readLink}');
+        return materialListPicker.setTargetSpecifier(materialLstPkrSpecifier, false).then(() => {
+            let plant = '';
+            if (context.getPageProxy().binding['@odata.type'] === "#sap_mobile.MyWorkOrderHeader") {
+                plant = context.getPageProxy().binding.MaintenancePlant;
+            }
+            else {
+                plant = context.getPageProxy().binding.WOHeader.MaintenancePlant;
+            }
+            if (materialNumber && plant && context.getPageProxy().binding.StorageLocation) {
+                return materialListPicker.setValue(`MaterialSLocs(Plant='${plant}',StorageLocation='${context.getPageProxy().binding.StorageLocation}',MaterialNum='${materialNumber}')`);
+            } else {
+                return materialListPicker.setValue('');
+            }
+        }).catch(() => {
+            // Could not set specifier
+            return materialListPicker.setValue('');
+        });
+    }
+    catch (error) {
+        // Could not init online service
+        Logger.error(`Failed to initialize Online OData Service: ${error}`);
+        return context.executeAction('/SAPAssetManager/Actions/SyncErrorBannerMessage.action');
+    }
 }

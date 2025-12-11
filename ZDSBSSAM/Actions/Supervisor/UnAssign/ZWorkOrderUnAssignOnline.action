@@ -1,0 +1,30 @@
+{
+    "Target":
+    {
+        "EntitySet": "WorkOrderTransfers",
+        "Service": "/SAPAssetManager/Services/OnlineAssetManager.service"
+    },
+    "Properties":
+    {
+        "OrderId": "{OrderId}",
+        "OperationNo": "",
+        "SubOperationNo": "",
+        "EmployeeFrom": "{EmployeeFrom}",
+        "EmployeeTo": "{EmployeeTo}",
+        "HeaderNotes": "",
+        "EffectiveTimestamp": "/SAPAssetManager/Rules/DateTime/CurrentDateTime.js",
+        "IsSupervisor": "X",
+        "UserFrom":"/SAPAssetManager/Rules/MobileStatus/GetSAPUserId.js",
+        "UserTo":""
+    },
+    "RequestOptions":
+    {
+        "UpdateMode": "Replace"
+    },
+	"ShowActivityIndicator": true,
+	"ActionResult":{
+		"_Name": "result"
+	},
+    "OnSuccess": "/SAPAssetManager/Rules/ApplicationEvents/ApplicationOnSync.js",
+    "_Type": "Action.Type.ODataService.CreateEntity"
+}

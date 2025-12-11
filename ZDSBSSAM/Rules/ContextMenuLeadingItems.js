@@ -85,110 +85,110 @@ export default function ContextMenuLeadingItems(context) {
         const statusItems = await operationMobileStatusMenuItems();
         const isAnythingStarted = await libOPMobile.isAnyOperationStarted(context);
 
-        if (!libCom.isDefined(statusItems) && !isAnythingStarted) {
-            const mobileStatus = context.binding?.[navLinkName]?.MobileStatus;
-            //Start of DSB customization for swipe menu
-            let fieldKey = context.binding.FieldKey;
-            fieldKey = fieldKey.toUpperCase();
-            let zTimeRegKey = context.binding.ZTimeRegKey;
-            zTimeRegKey = zTimeRegKey.toUpperCase();
+        // if (!libCom.isDefined(statusItems) && !isAnythingStarted) {
+        //     const mobileStatus = context.binding?.[navLinkName]?.MobileStatus;
+        //     //Start of DSB customization for swipe menu
+        //     let fieldKey = context.binding.FieldKey;
+        //     fieldKey = fieldKey.toUpperCase();
+        //     let zTimeRegKey = context.binding.ZTimeRegKey;
+        //     zTimeRegKey = zTimeRegKey.toUpperCase();
 
-            let pma = context.binding.WOHeader.MaintenanceActivityType;
-            let orderType = context.binding.WOHeader.OrderType;
-            let isPlannedWorkorder = isPlannedWO(context); 
-            // show only complete button
-            //Enable for planned orders with no time reg key and field key
-            //unplanned orders if SO13 order type then PMA should   be 288 or  295 and zTimeRegKey  !== 'X'
-            //if (isPlannedWorkorder && fieldKey  !== 'OVERSKR' && zTimeRegKey  !== 'X')
-            if ((isPlannedWorkorder && fieldKey !== 'OVERSKR' && zTimeRegKey !== 'X') || ((!isPlannedWorkorder && orderType === 'SO13' && (pma === '288' || pma === '295') && zTimeRegKey !== 'X'))) {
-                if ((context.binding.OperationNo === '0010') || (mobileStatus === COMPLETED)) {
-                    return Promise.resolve([]);
-                }
-                else {
-                    //leading = Promise.resolve(['ZConfirm']);
-                    return ['ZConfirm'];
-                }
-            }
-            //To show show start/hold/complete
-            //status button (start/hold/complete) - unplanned orders if not SO13 order type
-            //or unplanned orders if SO13 order type then zTimeRegKey  === 'X'
-            // or planned orders with key 
-            // and not operation 0010
-            if (((!isPlannedWorkorder && orderType !== 'SO13') || (!isPlannedWorkorder && orderType === 'SO13' && (pma !== '288' || pma !== '295')) || (!isPlannedWorkorder && orderType === 'SO13' && (pma === '288' || pma === '295') && zTimeRegKey === 'X') || (isPlannedWorkorder && fieldKey !== 'OVERSKR' && zTimeRegKey === 'X')) && (context.binding.OperationNo !== '0010'))
+        //     let pma = context.binding.WOHeader.MaintenanceActivityType;
+        //     let orderType = context.binding.WOHeader.OrderType;
+        //     let isPlannedWorkorder = isPlannedWO(context);
+        //     // show only complete button
+        //     //Enable for planned orders with no time reg key and field key
+        //     //unplanned orders if SO13 order type then PMA should   be 288 or  295 and zTimeRegKey  !== 'X'
+        //     //if (isPlannedWorkorder && fieldKey  !== 'OVERSKR' && zTimeRegKey  !== 'X')
+        //     if ((isPlannedWorkorder && fieldKey !== 'OVERSKR' && zTimeRegKey !== 'X') || ((!isPlannedWorkorder && orderType === 'SO13' && (pma === '288' || pma === '295') && zTimeRegKey !== 'X'))) {
+        //         if ((context.binding.OperationNo === '0010') || (mobileStatus === COMPLETED)) {
+        //             return Promise.resolve([]);
+        //         }
+        //         else {
+        //             //leading = Promise.resolve(['ZConfirm']);
+        //             return ['ZConfirm'];
+        //         }
+        //     }
+        //     //To show show start/hold/complete
+        //     //status button (start/hold/complete) - unplanned orders if not SO13 order type
+        //     //or unplanned orders if SO13 order type then zTimeRegKey  === 'X'
+        //     // or planned orders with key 
+        //     // and not operation 0010
+        //     if (((!isPlannedWorkorder && orderType !== 'SO13') || (!isPlannedWorkorder && orderType === 'SO13' && (pma !== '288' || pma !== '295')) || (!isPlannedWorkorder && orderType === 'SO13' && (pma === '288' || pma === '295') && zTimeRegKey === 'X') || (isPlannedWorkorder && fieldKey !== 'OVERSKR' && zTimeRegKey === 'X')) && (context.binding.OperationNo !== '0010'))
 
-            {
+        //     {
 
-                if (libClock.isBusinessObjectClockedIn(context)) {
-                    if ((!isPlannedWorkorder && orderType === 'SO13' && zTimeRegKey !== 'X') || (!isPlannedWorkorder && orderType !== 'SO13')) {
-                        leading = Promise.resolve(['Complete_Operation', 'Hold_Operation']);
-                    }
-                    else {
-                        leading = Promise.resolve(['Hold_Operation']);
-                    }
-                }
-                else if (mobileStatus === RECEIVED || mobileStatus === HOLD) {
-                    leading = libOPMobile.isAnyOperationStarted(context).then(isAnyOperationStarted => {
-                        if (!isAnyOperationStarted) {
-                            //return Promise.resolve(['Start_Operation']);
-                            return ['Start_Operation'];
-                        }
-                        else { return Promise.resolve([]); }
-                    });
-                }
-                else if (mobileStatus === STARTED) {
-                    //if (libClock.isCICOEnabled(context)) 
-                    //{ //Handle clock in/out feature
-                    if (context.binding.ClockSapUserName && context.binding.ClockSapUserName === libCom.getSapUserName(context)) {
-                        //This op was started by current user
-                        //if unplanned then hold and complete operation else planned Wo with field key only hold
-                        //if(!isPlannedWorkorder ) {
-                        if ((!isPlannedWorkorder && orderType === 'SO13' && zTimeRegKey !== 'X') || (!isPlannedWorkorder && orderType !== 'SO13')) {
-                            leading = Promise.resolve(['Complete_Operation', 'Hold_Operation']);
-                        }
-                        else {
-                            leading = Promise.resolve(['Hold_Operation']);
-                        }
-                    } else {
-                        //This op was started by someone else, so clock current user in and adjust mobile status
-                        leading = libOPMobile.isAnyOperationStarted(context).then(isAnyOperationStarted => {
-                            if (!isAnyOperationStarted) {
-                                //return Promise.resolve(['Start_Operation']);
-                                return ['Start_Operation'];
-                            }
-                            else {
-                                //return Promise.resolve([]);
-                                return libClock.reloadUserTimeEntries(context).then(() => {
-                                    if (libClock.isBusinessObjectClockedIn(context) && libClock.allowClockInOverride(context, mobileStatus)) {
-                                        //return Promise.resolve(context.localizeText('clock_out'));
-                                        //return ['Hold_Operation'];
-                                        if ((!isPlannedWorkorder && orderType === 'SO13' && zTimeRegKey !== 'X') || (!isPlannedWorkorder && orderType !== 'SO13')) {
-                                            return Promise.resolve(['Complete_Operation', 'Hold_Operation']);
-                                        }
-                                        else {
-                                            return Promise.resolve(['Hold_Operation']);
-                                        }
-                                    } else {
-                                        return Promise.resolve([]);
-                                    }
-                                });
+        //         if (libClock.isBusinessObjectClockedIn(context)) {
+        //             if ((!isPlannedWorkorder && orderType === 'SO13' && zTimeRegKey !== 'X') || (!isPlannedWorkorder && orderType !== 'SO13')) {
+        //                 leading = Promise.resolve(['Complete_Operation', 'Hold_Operation']);
+        //             }
+        //             else {
+        //                 leading = Promise.resolve(['Hold_Operation']);
+        //             }
+        //         }
+        //         else if (mobileStatus === RECEIVED || mobileStatus === HOLD) {
+        //             leading = libOPMobile.isAnyOperationStarted(context).then(isAnyOperationStarted => {
+        //                 if (!isAnyOperationStarted) {
+        //                     //return Promise.resolve(['Start_Operation']);
+        //                     return ['Start_Operation'];
+        //                 }
+        //                 else { return Promise.resolve([]); }
+        //             });
+        //         }
+        //         else if (mobileStatus === STARTED) {
+        //             //if (libClock.isCICOEnabled(context)) 
+        //             //{ //Handle clock in/out feature
+        //             if (context.binding.ClockSapUserName && context.binding.ClockSapUserName === libCom.getSapUserName(context)) {
+        //                 //This op was started by current user
+        //                 //if unplanned then hold and complete operation else planned Wo with field key only hold
+        //                 //if(!isPlannedWorkorder ) {
+        //                 if ((!isPlannedWorkorder && orderType === 'SO13' && zTimeRegKey !== 'X') || (!isPlannedWorkorder && orderType !== 'SO13')) {
+        //                     leading = Promise.resolve(['Complete_Operation', 'Hold_Operation']);
+        //                 }
+        //                 else {
+        //                     leading = Promise.resolve(['Hold_Operation']);
+        //                 }
+        //             } else {
+        //                 //This op was started by someone else, so clock current user in and adjust mobile status
+        //                 leading = libOPMobile.isAnyOperationStarted(context).then(isAnyOperationStarted => {
+        //                     if (!isAnyOperationStarted) {
+        //                         //return Promise.resolve(['Start_Operation']);
+        //                         return ['Start_Operation'];
+        //                     }
+        //                     else {
+        //                         //return Promise.resolve([]);
+        //                         return libClock.reloadUserTimeEntries(context).then(() => {
+        //                             if (libClock.isBusinessObjectClockedIn(context) && libClock.allowClockInOverride(context, mobileStatus)) {
+        //                                 //return Promise.resolve(context.localizeText('clock_out'));
+        //                                 //return ['Hold_Operation'];
+        //                                 if ((!isPlannedWorkorder && orderType === 'SO13' && zTimeRegKey !== 'X') || (!isPlannedWorkorder && orderType !== 'SO13')) {
+        //                                     return Promise.resolve(['Complete_Operation', 'Hold_Operation']);
+        //                                 }
+        //                                 else {
+        //                                     return Promise.resolve(['Hold_Operation']);
+        //                                 }
+        //                             } else {
+        //                                 return Promise.resolve([]);
+        //                             }
+        //                         });
 
-                            }
+        //                     }
 
-                        });
-                    } //end if check user GUID
-                    /* } 
-                     else {
-                        leading = Promise.resolve(['Hold_Operation', 'Complete_Operation']);
-                     } // end if else  libclock        */
-                } else { //if else for operation started
-                    leading = Promise.resolve([]);
-                }
-            }
-            // if (mobileStatus !== COMPLETED) {
-            //     return ['Add_Notification'];
-            // }
-            // return [];
-        }
+        //                 });
+        //             } //end if check user GUID
+        //             /* } 
+        //              else {
+        //                 leading = Promise.resolve(['Hold_Operation', 'Complete_Operation']);
+        //              } // end if else  libclock        */
+        //         } else { //if else for operation started
+        //             leading = Promise.resolve([]);
+        //         }
+        //     }
+        //     // if (mobileStatus !== COMPLETED) {
+        //     //     return ['Add_Notification'];
+        //     // }
+        //     // return [];
+        // }
         //End of DSB customization for swipe menu
         return statusItems;
     };

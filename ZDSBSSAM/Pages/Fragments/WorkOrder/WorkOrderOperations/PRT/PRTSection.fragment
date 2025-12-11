@@ -1,0 +1,53 @@
+{
+    "Header": {
+        "Items": [
+                {
+                    "_Type": "SectionHeaderItem.Type.Label",
+                    "_Name": "PRTSectionHeaderLabel",
+                    "Title": "$(L, prt)",
+                    "Position": "Left"
+                },
+                {
+                    "_Type": "SectionHeaderItem.Type.Button",
+                    "_Name": "PRTSectionHeaderButton",
+                    "Position": "Right",
+                    "Title": "$(L, add_equipment)",
+                    "Visible": "/ZDSBSSAM/Rules/Operations/PRT/ZEnableAddPRT.js",
+                    "OnPress": "/SAPAssetManager/Rules/WorkOrders/Operations/PRT/PRTEquipmentAddNav.js",
+                    "Styles": {
+                        "Button": "HeaderItemButtonText"
+                    }
+                }
+        ]
+    },
+	"EmptySection": {
+		"Caption": "$(L,no_equipment_available)"
+	},
+    "Search": {
+        "Enabled" : false
+    },
+    "ObjectCell": {
+        "Icons": "/SAPAssetManager/Rules/WorkOrders/Operations/PRT/PRTEquipmentsListIconImages.js",
+        "Title": "{Description}",
+        "OnPress": "/SAPAssetManager/Actions/WorkOrders/Operations/PRT/PRTEquipmentDetailsViewNav.action",
+        "Subhead": "{Equipment}"
+    },  
+    "Target": {
+        "EntitySet": "{{#Property:@odata.readLink}}/Tools", 
+        "Service" : "/SAPAssetManager/Services/AssetManager.service",
+        "QueryOptions": "/SAPAssetManager/Rules/Operations/PRT/PRTListQueryOptions.js"
+    },
+    "MaxItemCount": 2,
+    "Footer": {
+        "Caption": "$(L,see_all)",
+        "AccessoryType": "DisclosureIndicator",
+        "FooterStyle": "Attribute",
+        "AttributeLabel": "/ZDSBSSAM/Rules/Operations/PRT/ZPRTEquipmentTotalCount.js",
+        "OnPress": "/SAPAssetManager/Actions/WorkOrders/Operations/PRT/PRTListViewNav.action",
+        "Visible": "/SAPAssetManager/Rules/Operations/PRT/PRTIsVisible.js"
+    },
+    "Visible": "/SAPAssetManager/Rules/Operations/PRT/PRTIsVisible.js",
+    "DataSubscriptions": ["Tools", "EquipmentOperation"],
+	"_Type" : "Section.Type.ObjectTable",
+	"_Name": "ZPRTSection"
+}

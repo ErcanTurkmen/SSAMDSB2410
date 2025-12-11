@@ -34,7 +34,10 @@ async function isAbleToAssign(context) {
     const userPlannerGroup = libCom.getDefaultUserParam('USER_PARAM.IHG');
     const isGroupMatch = userPlannerGroup ? userPlannerGroup === plannerGroup : true;
     const isUserHasParams = isPlanningPlantMatch && isWorkCenterMatch && isGroupMatch;
-    return isUserHasParams && (assignedTo === '00000000' || assignedTo === '' || assignedTo === undefined) && !isAvailableOffline;
+    //return isUserHasParams && (assignedTo === '00000000' || assignedTo === '' || assignedTo === undefined) && !isAvailableOffline;
+    //return isUserHasParams && !isAvailableOffline;  //DSB customization to support online work order download
+    return !isAvailableOffline;  //DSB customization to support online work order download
+
 }
 
 export async function showAssignDependingOnAssignmentType(context) {
@@ -49,9 +52,10 @@ export async function showAssignDependingOnAssignmentType(context) {
         case '3':
             return object['@odata.type'] === '#sap_mobile.WorkOrderSubOperation' && isAssignAvailable;
         case '6':
-        case 'Z':   //DSB customization to support assignment type Z as 6
+            return object['@odata.type'] === '#sap_mobile.WorkOrderHeader' && isAssignAvailable;
+        case '7':   //DSB customization to support assignment type 7 as 6
             return object['@odata.type'] === '#sap_mobile.WorkOrderHeader' && isAssignAvailable;        //return object['@odata.type'] === '#sap_mobile.WorkOrderOperation' && isAssignAvailable;
-        case '8': 
+        case '8':
             return isSupervisorFeatureEnabled(context) && isAssignAvailable;
         default:
             return false;

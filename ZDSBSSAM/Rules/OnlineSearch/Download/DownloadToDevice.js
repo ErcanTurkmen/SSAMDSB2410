@@ -14,12 +14,12 @@ export default function DownloadToDevice(context) {
         disableActionsOnDownload(context);
         libCom.setStateVariable(context, 'OnlineSearchDownloadInProgress', true);
         //DSB change
-        // on WO tab should assign WO and then download
-        // if (activeTab === workOrdersTabName) {
-        //     return context.executeAction('/SAPAssetManager/Actions/OnlineSearch/AssignAndDownloadInProgress.action');
-        // } else {
+        //on WO tab should assign WO and then download
+        if (activeTab === workOrdersTabName) {
+            return context.executeAction('/SAPAssetManager/Actions/OnlineSearch/AssignAndDownloadInProgress.action');
+        } else {
             return context.executeAction('/SAPAssetManager/Actions/OnlineSearch/DownloadInProgress.action');
-        //}
+        }
     }
 
     return context.executeAction('/SAPAssetManager/Actions/OnlineSearch/DownloadInProgressErrorDialog.action');

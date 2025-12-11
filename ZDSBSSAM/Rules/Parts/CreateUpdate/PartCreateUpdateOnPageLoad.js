@@ -25,7 +25,7 @@ export default async function PartCreateUpdateOnPageLoad(context) {
 
     context.setCaption(caption);
     //DSB changes as part of upgrade 2410 to always use Online Material search
-    if (!context.isDemoMode() && CheckForConnectivity(context)) {
+    if (!context.isDemoMode() && CheckForConnectivity(context)) { 
         await onlineSwitch.executeAction('/SAPAssetManager/Actions/Parts/PartsOnlineSearchIndicator.action').then(function () {
             materialNumberField.setVisible(true);
             materialDescriptionField.setVisible(true);

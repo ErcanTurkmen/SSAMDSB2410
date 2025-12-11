@@ -339,7 +339,7 @@ export default class {
             if (isAssignedToCatalogProfile) {
                 if (type === 'CatTypeObjectParts' && value.ZCodeGroup) {
                     //return "$filter=Catalog eq '" + value.Catalog + "' and CatalogProfile eq '" + value.CatalogProfile + "'&$orderby=Catalog,CatalogProfile,CodeGroup";
-                    return "$filter=Catalog eq '" + value.Catalog + "' and CodeGroup eq '" + value.ZCodeGroup + "'&$orderby=Catalog,CatalogProfile,CodeGroup";
+                    return "$filter=CatalogProfile eq '" + value.ZCodeGroup + "' and Catalog eq '" + value.Catalog + "' and CodeGroup eq '" + value.ZCodeGroup + "'&$orderby=Catalog,CatalogProfile,CodeGroup";
                 }
                 else {
                     return "$filter=Catalog eq '" + value.Catalog + "' and CatalogProfile eq '" + value.CatalogProfile + "'&$orderby=Catalog,CatalogProfile,CodeGroup";
@@ -1475,12 +1475,14 @@ export default class {
     }
     // DSB Customization for sending FLag from opreation to Notification Create Page  
     static setZAddFromOperationToNotifFlag(context, FlagValue) {
-        libCom.setStateVariable(context, 'ZNotificationFromOperation', FlagValue, 'WorkOrderOperationDetailsPage');
+        const currentPageName = libCom.getPageName(context);
+        libCom.setStateVariable(context, 'ZNotificationFromOperation', FlagValue, currentPageName);
     }
     // DSB Customization for get the  FLag from opreation to Notification Create Page  
     static getZAddFromOperationToNotifFlag(context) {
         //let result = true;
-        let result = libCom.getStateVariable(context, 'ZNotificationFromOperation', 'WorkOrderOperationDetailsPage');
+        const currentPageName = libCom.getPageName(context);
+        let result = libCom.getStateVariable(context, 'ZNotificationFromOperation', currentPageName);
         if (result) {
             return result;
         } else {

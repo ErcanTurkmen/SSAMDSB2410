@@ -167,7 +167,11 @@
 							"Style": "ObjectCardPrimaryAction"
 						}
 					},
-					"Target":  "/SAPAssetManager/Rules/Operations/OperationsObjectCardCollection/OperationsObjectCardCollectionTarget.js",
+					"Target": {
+                        "EntitySet": "{{#Property:@odata.readLink}}/Operations",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsTableQueryOption.js"
+                    },
 					"Footer": {
                         "Caption": "$(L,see_all)",
                         "AccessoryType": "DisclosureIndicator",
@@ -180,7 +184,8 @@
 					},
 					"DataSubscriptions": [
 						"PMMobileStatuses",
-						"Confirmations"
+						"Confirmations",
+                        "Tools"
 					]
 				},
                                 {

@@ -10,6 +10,7 @@ import generateGUID from '../../../../SAPAssetManager/Rules/Common/guid';
 import libAutoSync from '../../../../SAPAssetManager/Rules/ApplicationEvents/AutoSync/AutoSyncLibrary';
 import libSuper from '../../../../SAPAssetManager/Rules/Supervisor/SupervisorLibrary';
 import libOPMobile from './OperationMobileStatusLibrary';
+import isPlannedWO from '../../WorkOrders/ZIsPlannedWorkOrderType';
 import NotificationDetailsNav from '../../../../SAPAssetManager/Rules/Notifications/Details/NotificationDetailsNav';
 
 //DSB customisation - to capture 0 time confirmation
@@ -34,6 +35,7 @@ export default function ZOperationComplete(context) {
     libCommon.setStateVariable(context, 'BINDINGOBJECT', binding);
     return ZCheckOperationNotificationCompletion(context).then(results => { //Check for non-complete notif
         if (results === true) {
+            const isPlannedOrder = isPlannedWO(binding);
             const equipment = binding.OperationEquipment;
             const functionalLocation = binding.OperationFunctionLocation;
             return libChecklist.allowWorkOrderComplete(context, equipment, functionalLocation).then(results => { //Check for non-complete checklists and ask for confirmation
@@ -101,17 +103,27 @@ export default function ZOperationComplete(context) {
                                             if (result) {
                                                 return libClock.reloadUserTimeEntries(context).then(() => {
                                                     return libOPMobile.didSetOperationCompleteWrapper(pageContext).then(() => {
-                                                        let abc = libCommon.getStateVariable(context, 'BINDINGOBJECT');
-                                                        return context.executeAction('/SAPAssetManager/Actions/Confirmations/ConfirmationCreateBlank.action').then(results => {
+                                                        return context.executeAction('/SAPAssetManager/Actions/Confirmations/ConfirmationCreateBlank.action').then(async (results) => {
                                                             libCommon.removeStateVariable(context, 'contextMenuSwipePage');
                                                             if (context.getType() === 'FioriToolbarItem.Type.Button') {
                                                                 return context.executeAction('/SAPAssetManager/Actions/Page/ClosePage.action').then(() => {
-                                                                    return libAutoSync.autoSyncOnStatusChange(context);
+                                                                    if (!isPlannedOrder) {
+                                                                        return libAutoSync.autoSyncOnStatusChange(context);
+                                                                    }
+                                                                    else {
+                                                                        return Promise.resolve(true);
+                                                                    }
                                                                 });
                                                             }
                                                             else
-                                                                //return Promise.resolve(true);
-                                                                return libAutoSync.autoSyncOnStatusChange(context);
+                                                            {
+                                                                if (!isPlannedOrder) {
+                                                                    return libAutoSync.autoSyncOnStatusChange(context);
+                                                                }
+                                                                else {
+                                                                    return Promise.resolve(true);
+                                                                }
+                                                            }
                                                         });
                                                     });
 
@@ -150,12 +162,12 @@ function ZCheckOperationNotificationCompletion(context) {
                 let complete = libCommon.getAppParam(context, 'MOBILESTATUS', context.getGlobalDefinition('/SAPAssetManager/Globals/MobileStatus/ParameterNames/CompleteParameterName.global').getValue());
                 if (notif.NotifMobileStatus_Nav.MobileStatus !== complete) {
                     context.getPageProxy().setActionBinding(notif);
-                    return context.executeAction('/ZDSBSSAM/Actions/Notifications/MobileStatus/NotificationCompletePendingError.action').then(async() => {
+                    return context.executeAction('/ZDSBSSAM/Actions/Notifications/MobileStatus/NotificationCompletePendingError.action').then(async () => {
                         context.dismissActivityIndicator();
                         await NotificationDetailsNav(context, false).then(() => {
-                                context.getPageProxy().setActionBinding(operBinding);
-                                return Promise.resolve();
-                            });
+                            context.getPageProxy().setActionBinding(operBinding);
+                            return Promise.resolve();
+                        });
                         // return context.executeAction('/SAPAssetManager/Actions/Notifications/NotificationDetailsNav.action').then(() => {
                         //     context.getPageProxy().setActionBinding(operBinding);
                         //     return Promise.resolve();

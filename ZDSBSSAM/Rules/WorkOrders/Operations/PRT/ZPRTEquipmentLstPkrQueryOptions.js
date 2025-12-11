@@ -44,17 +44,17 @@ export default function ZPRTEquipmentLstPkrQueryOptions(context) {
 }
 
 function getSearchQuery(context, searchString) {
-    let searchQuery = '';
-    var regex = /[A-Za-z]/;
+    // let searchQuery = '';
+    // var regex = /[A-Za-z]/;
 
-    if (regex.test(searchString)) {
-        // let searchByProperties = ['EquipId', 'EquipDesc'];
-        // ModifyListViewSearchCriteria(context, 'Equipments', searchByProperties);
+    // if (regex.test(searchString)) {
+    //     // let searchByProperties = ['EquipId', 'EquipDesc'];
+    //     // ModifyListViewSearchCriteria(context, 'Equipments', searchByProperties);
 
-        // searchQuery = libCom.combineSearchQuery(searchString, searchByProperties);
-        return `substringof('${searchString}',EquipDesc)`;
-    }
-    else {
+    //     // searchQuery = libCom.combineSearchQuery(searchString, searchByProperties);
+    //     return `substringof('${searchString}',EquipDesc)`;
+    // }
+    // else {
         return `EquipId eq '${searchString}'`;
-    }
+    //}
 }

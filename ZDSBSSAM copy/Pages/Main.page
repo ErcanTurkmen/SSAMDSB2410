@@ -1,0 +1,82 @@
+{
+	"Controls": [
+		{
+			"FilterFeedbackBar": {
+				"ShowAllFilters": false,
+				"_Type": "Control.Type.FilterFeedbackBar"
+			},
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable",
+			"Sections": [
+				{
+					"_Type": "Section.Type.ButtonTable",
+					"_Name": "SectionButtonTable1_DEST_SAM2410_PPROP",
+					"Header": {
+						"_Name": "SectionHeader_DEST_SAM2410_PPROP",
+						"AccessoryType": "None",
+						"UseTopPadding": true,
+						"Caption": "DEST_SAM2410_PPROP",
+						"Items": [
+							{
+								"_Type": "SectionHeaderItem.Type.Label",
+								"_Name": "SectionHeaderItemTypeLabel_DEST_SAM2410_PPROP",
+								"Visible": true,
+								"Position": "Left",
+								"Title": "DEST_SAM2410_PPROP"
+							},
+							{
+								"_Type": "SectionHeaderItem.Type.Button",
+								"_Name": "SectionHeaderItemTypeButton_DEST_SAM2410_PPROP",
+								"Title": "Sync",
+								"ButtonType": "Text",
+								"Semantic": "Tint",
+								"ImagePosition": "Leading",
+								"Visible": true,
+								"Enabled": true,
+								"Position": "Right",
+								"OnPress": "/ZDSBSSAM/Actions/DEST_SAM2410_PPROP/Service/SyncStartedMessage.action"
+							}
+						],
+						"_Type": "SectionCommon.Type.Header"
+					},
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"Separators": {
+						"TopSectionSeparator": false,
+						"BottomSectionSeparator": true,
+						"HeaderSeparator": true,
+						"FooterSeparator": true,
+						"ControlSeparator": true
+					},
+					"Buttons": [],
+					"Layout": {
+						"LayoutType": "Vertical",
+						"HorizontalAlignment": "Leading"
+					}
+				}
+			]
+		}
+	],
+	"_Name": "Main",
+	"_Type": "Page",
+	"ActionBar": {
+		"Items": [
+			{
+				"_Name": "ActionBarItem0",
+				"Caption": "User Menu",
+				"Icon": "sap-icon://customer",
+				"Position": "Right",
+				"IsIconCircular": false,
+				"Visible": true,
+				"OnPress": "/ZDSBSSAM/Actions/Application/UserMenuPopover.action",
+				"_Type": "Control.Type.ActionBarItem"
+			}
+		],
+		"_Name": "ActionBar1",
+		"Caption": "Main",
+		"PrefersLargeCaption": true,
+		"_Type": "Control.Type.ActionBar"
+	}
+}

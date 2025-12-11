@@ -43,6 +43,10 @@ export default async function PRTEquipmentCreateUpdateOnLoaded(pageClientAPI) {
             equipmentLstPkrSpecifier.setReturnValue('EquipId');
             equipmentLstPkrSpecifier.setService('/SAPAssetManager/Services/OnlineAssetManager.service');
             return Promise.resolve(true);
+        }).catch(function (err) {
+            // Could not init online service
+            Logger.error(`Failed to initialize Online OData Service: ${err}`);
+            return context.executeAction('/SAPAssetManager/Actions/SyncErrorBannerMessage.action');
         });
     }
 }
