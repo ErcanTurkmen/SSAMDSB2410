@@ -229,7 +229,7 @@
 		{
 			"Source": "/ZDSBSSAM/Pages/WorkOrders/Operations/WorkOrderOperationsListView.page",
 			"Target": "/SAPAssetManager/Pages/WorkOrders/Operations/WorkOrderOperationsListView.page"
-		},	
+		},
 		{
 			"Source": "/ZDSBSSAM/Pages/Fragments/WorkOrder/WorkOrderOperations/WorkOrderOperationDetailsSection.fragment",
 			"Target": "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderOperations/WorkOrderOperationDetailsSection.fragment"
@@ -441,7 +441,99 @@
 		{
 			"Source": "/ZDSBSSAM/Rules/Notifications/Item/Cause/CreateUpdate/NotificationItemCauseCreateUpdateDonePressed.js",
 			"Target": "/SAPAssetManager/Rules/Notifications/Item/Cause/CreateUpdate/NotificationItemCauseCreateUpdateDonePressed.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Actions/Notifications/Item/NotificationItemCreate.action",
+			"Target": "/SAPAssetManager/Actions/Notifications/Item/NotificationItemCreate.action"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/Notifications/NotificationDetails.page",
+			"Target": "/SAPAssetManager/Pages/Notifications/NotificationDetails.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/Fragments/WorkOrder/WorkOrderOperations/StandardTextKeyListPicker.fragment",
+			"Target": "/SAPAssetManager/Pages/Fragments/WorkOrder/WorkOrderOperations/StandardTextKeyListPicker.fragment"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/WorkOrders/Details/WorkOrderQABSettings.js",
+			"Target": "/SAPAssetManager/Rules/WorkOrders/Details/WorkOrderQABSettings.js"
+    	},
+    	{
+			"Source": "/ZDSBSSAM/Pages/Fragments/Parts/PartsObjectCardCollection.fragment",
+			"Target": "/SAPAssetManager/Pages/Fragments/Parts/PartsObjectCardCollection.fragment"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/OverviewPage/MyWorkSection/ObjectCardDueDate.js",
+			"Target": "/SAPAssetManager/Rules/OverviewPage/MyWorkSection/ObjectCardDueDate.js"
+    },
+		{
+			"Source": "/ZDSBSSAM/Actions/WorkOrders/Operations/OperationsDropdownPopover.action",
+			"Target": "/SAPAssetManager/Actions/WorkOrders/Operations/OperationsDropdownPopover.action"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/WorkOrders/Operations/OperationsToSelectCount.js",
+			"Target": "/SAPAssetManager/Rules/WorkOrders/Operations/OperationsToSelectCount.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/WorkOrders/Operations/WorkOrderOperationListViewSetCaption.js",
+			"Target": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationListViewSetCaption.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/WorkOrders/Operations/WorkOrderOperationsToolbarButtonCaption.js",
+			"Target": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsToolbarButtonCaption.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/WorkOrders/Operations/WorkOrderOperationsConfirmNav.js",
+			"Target": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsConfirmNav.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/WorkOrders/Operations/WorkOrderOperationsConfirm.page",
+			"Target": "/SAPAssetManager/Pages/WorkOrders/Operations/WorkOrderOperationsConfirm.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/WorkOrders/Operations/WorkOrderOperationsConfirmation.js",
+			"Target": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsConfirmation.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/WorkOrders/Operations/WorkOrderOperationsTableQueryOption.js",
+			"Target": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsTableQueryOption.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Actions/Supervisor/Assign/WorkOrderAssignOnline.action",
+			"Target": "/SAPAssetManager/Actions/Supervisor/Assign/WorkOrderAssignOnline.action"
+     },
+     {
+			"Source": "/ZDSBSSAM/Rules/WorkOrders/ListView/WorkOrderOperationsListViewDefaultFilters.js",
+			"Target": "/SAPAssetManager/Rules/WorkOrders/ListView/WorkOrderOperationsListViewDefaultFilters.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/WorkOrders/Operations/WorkOrderOperationListViewOnReturning.js",
+			"Target": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationListViewOnReturning.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/WorkOrders/Operations/WorkOrderOperationsListViewQueryOptionWrapper.js",
+			"Target": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsListViewQueryOptionWrapper.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/ClockInClockOut/ClockInClockOutLibrary.js",
+			"Target": "/SAPAssetManager/Rules/ClockInClockOut/ClockInClockOutLibrary.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Operations/PRT/PRTTotalCount.js",
+			"Target": "/SAPAssetManager/Rules/Operations/PRT/PRTTotalCount.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/OnlineSearch/OnlineSearchCriteriaWorkOrders.page",
+			"Target": "/SAPAssetManager/Pages/OnlineSearch/OnlineSearchCriteriaWorkOrders.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/OnlineSearch/SearchCriteria/WorkOrdersListFilterResults.js",
+			"Target": "/SAPAssetManager/Rules/OnlineSearch/SearchCriteria/WorkOrdersListFilterResults.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/Documents/DownloadOrOpenDocument.js",
+			"Target": "/SAPAssetManager/Rules/Documents/DownloadOrOpenDocument.js"
 		}
 	],
 	"ComponentVersion": "1.0"
-}
+}	
