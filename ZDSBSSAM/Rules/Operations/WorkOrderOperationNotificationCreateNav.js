@@ -34,17 +34,16 @@ export default function WorkOrderOperationNotificationCreateNav(context) {
     bindingObject['@odata.type'] = "#sap_mobile.MyNotificationHeader";
     // Return the result of the change set nav
     libCommon.setStateVariable(context, 'LocalId', ''); //Reset the localid before creating a new notification
-    Logger.error("Poonam LocalId before");
     return notifCreateChangeSetNav(context, bindingObject).then(() => {
-        Logger.error("Poonam LocalId after notf create");
         //Start the process of checking if we need to add this notification as an object list to the work order.
         let localId = libCommon.getStateVariable(context, 'LocalId');
-        Logger.error("Poonam LocalId after", localId);
         if (localId) {
             if (binding.WOHeader && binding.WOHeader.OrderType && binding.WOHeader.PlanningPlant) {
                 let orderType = binding.WOHeader.OrderType;
                 let planningPlant = binding.WOHeader.PlanningPlant;
-                return context.read('/SAPAssetManager/Services/AssetManager.service', 'OrderTypes', ['ObjectListAssignment'], "$filter=OrderType eq '" + orderType + "' and PlanningPlant eq '" + planningPlant + "'").then(function (data) {
+                //return context.read('/SAPAssetManager/Services/AssetManager.service', 'OrderTypes', ['ObjectListAssignment'], "$filter=OrderType eq '" + orderType + "' and PlanningPlant eq '" + planningPlant + "'").then(function (data) {
+                //DSB customisation to remove filter by IWK. 
+                return context.read('/SAPAssetManager/Services/AssetManager.service', 'OrderTypes', ['ObjectListAssignment'], "$filter=OrderType eq '" + orderType + "'").then(function (data) {
                     if (data && data.length > 0) {
                         let row = data.getItem(0);
                         if (row.ObjectListAssignment === '2' || row.ObjectListAssignment === '3') { //Add this notification to the object list

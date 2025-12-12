@@ -130,8 +130,9 @@ export default function NotificationCreateUpdateOnCommit(clientAPI) {
                     if (!ComLib.isOnChangeset(clientAPI)) {
                         return CreateEMPEntries(clientAPI, clientAPI.getClientData().EMP).catch((error) => {
                             Logger.error('CreateEMPEntries error: ' + error);
-                            clientAPI.dismissActivityIndicator();
-                            return clientAPI.executeAction('/SAPAssetManager/Actions/OData/ODataCreateFailureMessage.action');
+                            /*clientAPI.dismissActivityIndicator();
+                            return clientAPI.executeAction('/SAPAssetManager/Actions/OData/ODataCreateFailureMessage.action');*/
+                            return Promise.resolve(); // DSBtemp fix for mdk25
                         });
                     } else {
                         return Promise.resolve();
@@ -371,8 +372,9 @@ export default function NotificationCreateUpdateOnCommit(clientAPI) {
             }).then(() => {
                 return CreateEMPEntries(clientAPI, clientAPI.getClientData().EMP).catch((error) => {
                     Logger.error('CreateEMPEntries error: ' + error);
-                    clientAPI.dismissActivityIndicator();
-                    return clientAPI.executeAction('/SAPAssetManager/Actions/CreateUpdateDelete/UpdateEntityFailureMessage.action');
+                    /*clientAPI.dismissActivityIndicator();
+                    return clientAPI.executeAction('/SAPAssetManager/Actions/CreateUpdateDelete/UpdateEntityFailureMessage.action');*/
+                    return Promise.resolve(); // Continue action chain. DSB Temp fix for mdk25
                 });
             }).catch(() => {
                 return Promise.resolve(); // Continue action chain

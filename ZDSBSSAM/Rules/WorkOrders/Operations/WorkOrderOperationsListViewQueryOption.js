@@ -78,7 +78,7 @@ export default function WorkOrderOperationsListViewQueryOption(context) {
             queryBuilder.expand('OperationMobileStatus_Nav/OverallStatusCfg_Nav,Confirmations,Employee_Nav,NotifHeader_Nav');
             queryBuilder.expand('WOHeader/OrderMobileStatus_Nav'); //Required for operation status changes
             queryBuilder.expand('WOOprDocuments_Nav/Document');
-            queryBuilder.orderBy('OrderId,OperationNo');
+            queryBuilder.orderBy('OrderId,OperationNo,ObjectKey,OperationMobileStatus_Nav/MobileStatus');
 
             if (userFeaturesLib.isFeatureEnabled(context, context.getGlobalDefinition('/SAPAssetManager/Globals/Features/QM.global').getValue())) {
                 queryBuilder.expand('InspectionPoint_Nav');

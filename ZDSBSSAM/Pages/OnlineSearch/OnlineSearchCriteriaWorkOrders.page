@@ -174,7 +174,7 @@
           "Controls": [
             {
               "_Type": "Fragment",
-              "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/PlanningPlantFilter.fragment"
+              "Fragment": "/ZDSBSSAM/Pages/Fragments/Filter/ZOnlineSearchPlanningPlantFilter.fragment"
             },
             {
               "_Type": "Fragment",
@@ -186,7 +186,7 @@
             },
             {
               "_Type": "Fragment",
-              "Fragment": "/SAPAssetManager/Pages/Fragments/Filter/WorkCenterFilter.fragment",
+              "Fragment": "/ZDSBSSAM/Pages/Fragments/Filter/ZOnlineSearchWorkCenterFilter.fragment",
               "Properties": {
                 "FilterProperty": "/SAPAssetManager/Rules/OnlineSearch/SearchCriteria/WorkCenterFilterPropertyName.js"
               }

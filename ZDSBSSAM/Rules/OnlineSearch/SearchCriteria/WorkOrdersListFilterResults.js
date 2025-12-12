@@ -21,6 +21,7 @@ function getSimplePropertyFilters(context, fcContainer) {
         'LocationLstPkr',
         'WorkCenterFilter',
     ].map(n => {
+         //DSB customisation to post FL - train as substring so it reaches to backend and returns data as MG5601*. The key change is to use substring
         const value = fcContainer.getControl(n).getFilterValue()?.filterItems?.[0];
         const name = fcContainer.getControl(n).getName();
         if (name === 'HeaderFunctionLocation' && value) {

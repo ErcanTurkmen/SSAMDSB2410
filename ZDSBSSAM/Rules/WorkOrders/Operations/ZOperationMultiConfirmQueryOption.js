@@ -1,5 +1,6 @@
 import isPlannedWO from '../ZIsPlannedWorkOrderType';
 import CommonLibrary from '../../../../SAPAssetManager/Rules/Common/Library/CommonLibrary';
+import Logger from '../../../../SAPAssetManager/Rules/Log/Logger';
 //import isUnPlannedWO from '../IsUnPlannedWorkOrderType';
 
 //Confirmation enabled for operation not 0010 and ones not already confirmed
@@ -16,17 +17,20 @@ export default function ZOperationMultiConfirmQueryOption(context) {
 	// fieldKey = fieldKey.toUpperCase();
 	// let zTimeRegKey = context.binding?.ZTimeRegKey;
 	// zTimeRegKey = zTimeRegKey.toUpperCase();
-
+	Logger.error("poonam ZOperationMultiConfirmQueryOption");
 	if (isPlannedWorkorder) {
 		query = `OperationNo ne '0010' and FieldKey ne 'OVERSKR' and ZTimeRegKey ne 'X'`;	//and op/OperationMobileStatus_Nav/MobileStatus ne '${COMPLETE}'
+		Logger.error("poonam ZOperationMultiConfirmQueryOption query", query);
 		return query;
 	}
 
 	if (!isPlannedWorkorder && orderType === 'SO13' && (PMA ==='288'||  PMA ==='295') ) {
 		query = `OperationNo ne '0010' and ZTimeRegKey ne 'X'`;
+		Logger.error("poonam ZOperationMultiConfirmQueryOption unplanned query", query);
 		return query;
 	}
 	else {
+		Logger.error("poonam ZOperationMultiConfirmQueryOption else query", query);
 		return query;
 	}
 }

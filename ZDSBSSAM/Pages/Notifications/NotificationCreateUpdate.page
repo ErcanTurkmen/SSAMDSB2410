@@ -134,6 +134,7 @@
                         "ListFilter": "MyFunctionalLocations",
                         "Caption": "$(L,functional_location)",
                         "AllowMultipleSelection": false,
+                        "AllowDefaultValueIfOneItem":false,
                         "ItemsPerPage": 50,
                         "CachedItemsToLoad": 20,
                         "IsEditable": "/SAPAssetManager/Rules/Common/IsOnCreate.js"

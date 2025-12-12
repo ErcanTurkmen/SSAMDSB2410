@@ -3,6 +3,7 @@ import CommonLibrary from '../../Common/Library/CommonLibrary';
 import OperationsEntitySet from './OperationsEntitySet';
 import WorkOrderOperationListViewCaption from './WorkOrderOperationListViewCaption';
 import WorkOrderOperationsListViewQueryOption from './WorkOrderOperationsListViewQueryOption';
+import Logger from '../../Log/Logger';
 
 export default async function SelectAllOperations(context) {
     CommonLibrary.setStateVariable(context, 'selectAllActive', true, 'WorkOrderOperationsListViewPage');
@@ -13,6 +14,7 @@ export default async function SelectAllOperations(context) {
 
     pageProxy.showActivityIndicator();
     //manually add all items to the array
+    Logger.error("Poonam Select all");
     let selectedOperations = await addAllRecords(context);
     CommonLibrary.setStateVariable(context, 'selectedOperations', selectedOperations);
     pageProxy.dismissActivityIndicator();
@@ -23,6 +25,7 @@ export default async function SelectAllOperations(context) {
     pageProxy.setActionBarItemVisible('DeselectAll', true);
 
     return WorkOrderOperationListViewCaption(context).then(caption => {
+         Logger.error("Poonam Select all caption", caption);
         return pageProxy.setCaption(caption);
     });
 }
@@ -31,9 +34,11 @@ async function addAllRecords(context) {
     //This needs to be done because MDK will only have information about the object cells that have been loaded by the user. By default the paging size is 50.
     //So we would only get 50 as the selected rows even if there are several more. So in order to get around that we will manually read the records from the db
     //and maintain the list ourselves
+    Logger.error("Poonam addAllRecords");
     let queryOptions = await getTableFilters(context);
     let selectedOperations = [];
     if (queryOptions) {
+         Logger.error("Poonam addAllRecords queryOptions", queryOptions);
         const totalRecords = await context.count('/SAPAssetManager/Services/AssetManager.service', OperationsEntitySet(context), queryOptions);
         const batchSize = 50;
         let recordsAlreadyRead = selectedOperations.length;
@@ -62,12 +67,13 @@ async function addAllRecords(context) {
 
 async function getTableFilters(context) {
     const sectionedTable = context.getPageProxy().getControls()[0];
-
+     Logger.error("Poonam sectionedTable", sectionedTable);
     let filterQuery = '';
     let expandQuery = '';
     let tableQueryOptions = WorkOrderOperationsListViewQueryOption(sectionedTable);
+    Logger.error("Poonam tableQueryOptions", tableQueryOptions);
     let quickFilters = CommonLibrary.getQueryOptionFromFilter(context);
-
+Logger.error("Poonam quickFilters", quickFilters);
     if (tableQueryOptions && tableQueryOptions.hasFilter) {
         const filter = await tableQueryOptions.filterOption.build();
         filterQuery = '$filter=' + filter;
@@ -85,6 +91,6 @@ async function getTableFilters(context) {
             filterQuery = quickFilters;
         }
     }
-
+    Logger.error("Poonam filterQuery", filterQuery);
     return `${filterQuery}${expandQuery}`;
 }

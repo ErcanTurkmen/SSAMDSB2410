@@ -465,7 +465,7 @@
 		{
 			"Source": "/ZDSBSSAM/Rules/OverviewPage/MyWorkSection/ObjectCardDueDate.js",
 			"Target": "/SAPAssetManager/Rules/OverviewPage/MyWorkSection/ObjectCardDueDate.js"
-    },
+    	},
 		{
 			"Source": "/ZDSBSSAM/Actions/WorkOrders/Operations/OperationsDropdownPopover.action",
 			"Target": "/SAPAssetManager/Actions/WorkOrders/Operations/OperationsDropdownPopover.action"
@@ -501,8 +501,8 @@
 		{
 			"Source": "/ZDSBSSAM/Actions/Supervisor/Assign/WorkOrderAssignOnline.action",
 			"Target": "/SAPAssetManager/Actions/Supervisor/Assign/WorkOrderAssignOnline.action"
-     },
-     {
+		},
+		{
 			"Source": "/ZDSBSSAM/Rules/WorkOrders/ListView/WorkOrderOperationsListViewDefaultFilters.js",
 			"Target": "/SAPAssetManager/Rules/WorkOrders/ListView/WorkOrderOperationsListViewDefaultFilters.js"
 		},
@@ -533,6 +533,18 @@
 		{
 			"Source": "/ZDSBSSAM/Rules/Documents/DownloadOrOpenDocument.js",
 			"Target": "/SAPAssetManager/Rules/Documents/DownloadOrOpenDocument.js"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/OnlineSearch/OnlineSearchCriteriaNotifications.page",
+			"Target": "/SAPAssetManager/Pages/OnlineSearch/OnlineSearchCriteriaNotifications.page"
+		},
+		{
+			"Source": "/ZDSBSSAM/Pages/Fragments/OnlineSearch/OnlineWorkOrderObjectCell.fragment",
+			"Target": "/SAPAssetManager/Pages/Fragments/OnlineSearch/OnlineWorkOrderObjectCell.fragment"
+		},
+		{
+			"Source": "/ZDSBSSAM/Rules/OnlineSearch/SearchCriteria/NotificationsListFilterResults.js",
+			"Target": "/SAPAssetManager/Rules/OnlineSearch/SearchCriteria/NotificationsListFilterResults.js"
 		}
 	],
 	"ComponentVersion": "1.0"

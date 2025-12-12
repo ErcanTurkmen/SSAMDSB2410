@@ -9,7 +9,9 @@ export default function WorkOrderOperationListViewCaption(context) {
     //If you can't find the PageCaption stored in the clientdata, then use default
     if (context.getPageProxy().getControl('SectionedTable') && context.getPageProxy().getControl('SectionedTable').getSections()[0].getSelectionMode() === 'Multiple') {
       let selectedOperations = libCommon.getStateVariable(context, 'selectedOperations') || [];
+      Logger.error("Poonam selectedOperations", selectedOperations);
       return OperationsToSelectCount(context).then(res => {
+        Logger.error("Poonam res", res);
         if (res > 0) {
           return context.localizeText('select_operations_x_x', [selectedOperations.length, res]);
         } else {
